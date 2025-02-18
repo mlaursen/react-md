@@ -1,16 +1,22 @@
 import { defaultExtractor } from "../searching/utils.js";
 import { type TextExtractor } from "../types.js";
 
+/** @since 6.0.0 */
+export const DEFAULT_COLLATOR_OPTIONS = {
+  numeric: true,
+  caseFirst: "upper",
+} as const satisfies Intl.CollatorOptions;
+
 /**
  * The default `Intl.Collator` that should be used for sorting large lists.
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare#performance
  * @since 6.0.0
  */
-export const DEFAULT_COLLATOR = new Intl.Collator("en-US", {
-  numeric: true,
-  caseFirst: "upper",
-});
+export const DEFAULT_COLLATOR = new Intl.Collator(
+  "en-US",
+  DEFAULT_COLLATOR_OPTIONS
+);
 
 /** @since 6.0.0 */
 export interface AlphaNumericSortOptions<T> {

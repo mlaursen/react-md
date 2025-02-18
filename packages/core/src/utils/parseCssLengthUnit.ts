@@ -1,7 +1,7 @@
 /** @internal */
 export interface ParseCssLengthUnitOptions {
   /**
-   *
+   * The css unit to convert to a numeric value.
    */
   value: number | string;
 

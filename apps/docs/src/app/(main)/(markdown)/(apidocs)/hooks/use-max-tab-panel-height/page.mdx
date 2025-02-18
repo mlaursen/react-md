@@ -1,0 +1,91 @@
+# useMaxTabPanelHeight [$SOURCE](packages/core/src/tabs/useMaxTabPanelHeight.ts)
+
+```ts disableTransform
+function useMaxTabPanelHeight<E extends HTMLElement = HTMLDivElement>(
+  options: MaxTabPanelHeightOptions<E>
+): MaxTabPanelHeightImplementation<E>;
+```
+
+The `useMaxTabPanelHeight` hook is used to create static heights for tab panels
+that are rendered within the page to prevent layout shifts of content below the
+tab panels.
+
+See the [Use Max Tab Panel Height Demo](/components/tabs#use-max-tab-panel-height) for
+a working example.
+
+## Example Usage
+
+```tsx
+import { Tab } from "@react-md/core/tabs/Tab";
+import { TabList } from "@react-md/core/tabs/TabList";
+import { useMaxTabPanelHeight } from "@react-md/core/tabs/useMaxTabPanelHeight";
+import { useTabs } from "@react-md/core/tabs/useTabs";
+import { Slide } from "@react-md/core/transition/Slide";
+import { SlideContainer } from "@react-md/core/transition/SlideContainer";
+import { Typography } from "@react-md/core/typography/Typography";
+import { type ReactElement } from "react";
+
+function Example(): ReactElement {
+  const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =
+    useTabs();
+  const { getMaxTabPanelHeightProps } = useMaxTabPanelHeight({
+    getTabPanelsProps,
+  });
+
+  return (
+    <>
+      <TabList {...getTabListProps()}>
+        <Tab {...getTabProps(0)}>Tab 1</Tab>
+        <Tab {...getTabProps(1)}>Tab 2</Tab>
+        <Tab {...getTabProps(2)}>Tab 3</Tab>
+      </TabList>
+      <SlideContainer {...getMaxTabPanelHeightProps()}>
+        <Slide {...getTabPanelProps(0)}>
+          <Tab1Content />
+        </Slide>
+        <Slide {...getTabPanelProps(1)}>
+          <Tab2Content />
+        </Slide>
+        <Slide {...getTabPanelProps(2)}>
+          <Tab3Content />
+        </Slide>
+      </SlideContainer>
+    </>
+  );
+}
+```
+
+## Parameters
+
+- `options` - an object with the following definition:
+
+```ts disableTransform
+export interface MaxTabPanelHeightOptions<E extends HTMLElement>
+  extends Pick<TabsImplementation, "getTabPanelsProps"> {
+  ref?: Ref<E>;
+  style?: CSSProperties;
+
+  /**
+   * @defaultValue `undefined`
+   */
+  defaultHeight?: UseStateInitializer<string | number>;
+}
+```
+
+## Returns
+
+An object with the following definition:
+
+```ts disableTransform
+export interface MaxTabPanelHeightImplementation<E extends HTMLElement> {
+  getMaxTabPanelHeightProps: (
+    style?: CSSProperties
+  ) => ProvidedMaxTabPanelsHeightProps<E>;
+}
+
+export interface ProvidedMaxTabPanelsHeightProps<E extends HTMLElement> {
+  ref: Ref<E>;
+  direction: SlideDirection;
+  style: CSSProperties;
+}
+```

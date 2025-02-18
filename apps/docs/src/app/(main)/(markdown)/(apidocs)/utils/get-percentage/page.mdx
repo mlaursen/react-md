@@ -1,0 +1,74 @@
+# getPercentage [$SOURCE](packages/core/src/utils/getPercentage.ts)
+
+```ts disableTransform
+function getPercentage(options: GetPercentageOptions): number;
+```
+
+The `getPercentage` function can be used to get the current percentage based on
+the `min`, `max`, and current `value`.
+
+## Example Usage
+
+```ts disableTransform
+import { getPercentage } from "@react-md/core/utils/getPercentage";
+
+const [value, setValue] = useValue(33);
+
+getPercentage({ min: 0, max: 100, value }); // 0.33
+```
+
+### Force Validation
+
+If the `min`, `max`, and `value` should be validated to ensure they are valid,
+enable the `validate` option:
+
+```ts disableTransform
+getPercentage({ min: 5, max: 3, value: 4 });
+// RangeError
+
+getPercentage({ min: 0, max: 3, value: 8 });
+// RangeError
+```
+
+## Parameters
+
+- `options` - an object with the following definition:
+
+```ts disableTransform
+export interface GetPercentageOptions {
+  /**
+   * The min value allowed.
+   */
+  min: number;
+
+  /**
+   * The max value allowed.
+   */
+  max: number;
+
+  /**
+   * The current value
+   */
+  value: number;
+
+  /**
+   * Boolean if the min, max, and value options should be validated to make sure
+   * they are within the correct range relative to each other.
+   *
+   * @defaultValue `false`
+   */
+  validate?: boolean;
+}
+```
+
+## Returns
+
+A number between `0` and `1` representing the current percentage.
+
+## Throws
+
+A `RangeError` if the `validate` option is `true` and:
+
+- the `min` is greator than or equal the `max`
+- the `value` is greater than the `max`
+- the `value` is less than the `min`

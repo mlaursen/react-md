@@ -1,9 +1,11 @@
 @use "everything";
 
 .container {
-  @include everything.box-set-var(item-min-size, 18rem);
-  @include everything.box-set-var(auto-rows-height, 18rem * 3);
-  @include everything.box-set-var(row-max-height, 18rem);
+  @include everything.tablet-media {
+    @include everything.box-set-var(item-min-size, 18rem);
+    @include everything.box-set-var(auto-rows-height, 18rem * 3);
+    @include everything.box-set-var(row-max-height, 18rem);
+  }
 
   width: 100%;
 }

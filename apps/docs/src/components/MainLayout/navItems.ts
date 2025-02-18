@@ -528,6 +528,16 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/use-tabs",
+        children: "useTabs",
+      },
+      {
+        type: "route",
+        href: "/use-max-tab-panel-height",
+        children: "useMaxTabPanelHeight",
+      },
+      {
+        type: "route",
         href: "/use-toggle",
         children: "useToggle",
       },
@@ -767,11 +777,6 @@ export const navItems: readonly NavigationItem[] = [
         href: "/loop",
         children: "loop",
       },
-      {
-        type: "route",
-        href: "/find-match-index",
-        children: "findMatchIndex",
-      },
       { type: "subheader", children: "Numbers" },
       {
         type: "route",
@@ -805,26 +810,6 @@ export const navItems: readonly NavigationItem[] = [
         children: "wait",
       },
       { type: "subheader", children: "Colors and Accessibility" },
-      {
-        type: "route",
-        href: "/hex-to-rgb",
-        children: "hexToRGB",
-      },
-      {
-        type: "route",
-        href: "/get-rgb",
-        children: "getRGB",
-      },
-      {
-        type: "route",
-        href: "/get-luminance",
-        children: "getLuminance",
-      },
-      {
-        type: "route",
-        href: "/get-contrast-ratio",
-        children: "getContrastRatio",
-      },
       {
         type: "route",
         href: "/is-contrast-compliant",

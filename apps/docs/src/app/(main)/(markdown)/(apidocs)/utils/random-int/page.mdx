@@ -1,0 +1,37 @@
+# randomInt [$SOURCE](packages/core/src/utils/randomInt.ts)
+
+```ts disableTransform
+function randomInt(options: RandomIntOptions = {}): number;
+```
+
+The `randomInt` function can be used to to generate a random
+integer between a min and max value.
+
+> !Warn!
+> [Math.random](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
+> does not provide cryptographically secure random numbers. Do not use them for anything related to security.
+
+## Example Usage
+
+```ts disableTransform
+randomInt(); // an integer between 0 and 10
+
+randomInt({ min: -100, max: 100 }); // an integer between -100 and 100
+```
+
+## Parameters
+
+- `options` (optional) - an object with the following definition:
+
+```ts disableTransform
+export interface RandomIntOptions {
+  /** @defaultValue `0` */
+  min?: number;
+  /** @defaultValue `10` */
+  max?: number;
+}
+```
+
+## Returns
+
+A random integer.

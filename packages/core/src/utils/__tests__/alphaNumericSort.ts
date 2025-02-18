@@ -35,22 +35,34 @@ describe("alphaNumericSort", () => {
 
   it("should allow for a custom compare function", () => {
     const list = ["Z", "a", "z", "ä"];
-    const compareDE = new Intl.Collator("de").compare;
-    const compareSV = new Intl.Collator("sv").compare;
+    const compareDE = new Intl.Collator("de", {
+      numeric: true,
+      caseFirst: "upper",
+    }).compare;
+    const compareSV = new Intl.Collator("sv", {
+      numeric: true,
+      caseFirst: "upper",
+    }).compare;
 
     expect(alphaNumericSort(list, { compare: compareDE })).toEqual([
       "a",
       "ä",
-      "z",
       "Z",
+      "z",
     ]);
     expect(alphaNumericSort(list, { compare: compareSV })).toEqual([
       "a",
-      "z",
       "Z",
+      "z",
       "ä",
     ]);
 
     expect(alphaNumericSort(list)).toEqual(["a", "ä", "Z", "z"]);
+  });
+
+  it("should be able to sort the list in descending order", () => {
+    const list = ["a", "f", "d"];
+    const sorted = alphaNumericSort(list, { descending: true });
+    expect(sorted).toEqual(["f", "d", "a"]);
   });
 });

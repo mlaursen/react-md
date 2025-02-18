@@ -1,0 +1,25 @@
+# wait [$SOURCE](packages/core/src/utils/wait.ts)
+
+```ts disableTransform
+function wait(ms: number): Promise<void>;
+```
+
+The `wait` function is a promisified `setTimeout` call allowing it to be `await`-ed.
+
+## Example Usage
+
+```ts disableTransform
+import { wait } from "@react-md/core/utils/wait";
+
+console.log("start");
+await wait(5000);
+console.log("it has been five seconds");
+```
+
+## Parameters
+
+- `ms` - the amount of time (in milliseconds) to wait
+
+## Returns
+
+Nothing.

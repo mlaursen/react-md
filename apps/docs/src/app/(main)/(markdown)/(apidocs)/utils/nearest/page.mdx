@@ -1,0 +1,52 @@
+# nearest [$SOURCE](packages/core/src/utils/nearest.ts)
+
+```ts disableTransform
+function nearest(options: NearestOptions): number;
+```
+
+> !Info! See https://stackoverflow.com/a/13635455
+
+The `nearest` function can be used to round a number to the
+nearest step within a min/max range.
+
+## Example Usage
+
+```ts disableTransform
+expect(nearest({ value: 1, min: 0, max: 1, steps: 1 })).toBe(1);
+expect(nearest({ value: 0, min: 0, max: 100, steps: 100 })).toBe(0);
+
+expect(nearest({ value: 28, min: 0, max: 100, steps: 10 })).toBe(30);
+expect(nearest({ value: 28.7, min: 0, max: 100, steps: 10 })).toBe(30);
+expect(nearest({ value: 28.3, min: 0, max: 100, steps: 100 })).toBe(28);
+expect(nearest({ value: 28.7, min: 0, max: 100, steps: 100 })).toBe(29);
+
+expect(nearest({ value: 2.75, min: 0, max: 10, steps: 10 })).toBe(3);
+expect(nearest({ value: 5.12, min: 5, max: 6, steps: 10 })).toBe(5.1);
+expect(nearest({ value: 0.06, min: 0, max: 1, steps: 10 })).toBe(0.1);
+
+expect(nearest({ value: 0.12, min: 0, max: 1, steps: 4 })).toBe(0);
+expect(nearest({ value: 0.13, min: 0, max: 1, steps: 4 })).toBe(0.25);
+expect(nearest({ value: 0.24, min: 0, max: 1, steps: 4 })).toBe(0.25);
+expect(nearest({ value: 0.28, min: 0, max: 1, steps: 4 })).toBe(0.25);
+expect(nearest({ value: 0.33, min: 0, max: 1, steps: 4 })).toBe(0.25);
+```
+
+## Parameters
+
+- `options` - an object with the following definition:
+
+```ts disableTransform
+export interface NearestOptions {
+  min: number;
+  max: number;
+  steps: number;
+  value: number;
+
+  /** @defaultValue `max - min` */
+  range?: number;
+}
+```
+
+## Returns
+
+The rounded number.

@@ -1,0 +1,222 @@
+# caseInsensitiveSearch [$SOURCE](packages/core/src/searching/caseInsensitive.ts)
+
+```ts disableTransform
+function caseInsensitiveSearch<T>(
+  options: CaseInsensitiveOptions<T>
+): readonly T[] | T | undefined;
+```
+
+The `caseInsensitiveSearch` function can be used to search a list for items
+that match the provided query string ignoring case. The default behavior will
+filter the list to only include matches but can also be updated to find the
+first match by providing `type: "search"`.
+
+## Example Usage
+
+```ts disableTransform
+import { caseInsensitiveSearch } from "@react-md/core/searching/caseInsensitive";
+
+const fruits = ["Apple", "Banana", "Grape", "Orange"];
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "ap",
+});
+// ["Apple", "Grape"]
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "ap",
+  type: "search",
+});
+// "Apple"
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "apl",
+  type: "search",
+});
+// undefined
+```
+
+### Non-string lists
+
+When the provided `list` is not a list of strings, a text `extractor` must also be provided:
+
+```ts disableTransform
+const fruits = [
+  { name: "Apple", value: 0 },
+  { name: "Banana", value: 1 },
+  { name: "Grape", value: 2 },
+  { name: "Orange", value: 3 },
+];
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "ap",
+  extractor: (item) => item.name,
+});
+// [{ name: "Apple", value: 0 }, { name: "Grape", value: 2 }]
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "ap",
+  type: "search",
+  extractor: (item) => item.name,
+});
+// { name: "Apple", value: 0 }
+```
+
+### Handling Whitespace
+
+The default behavior is to keep whitespace but also supports:
+
+- `"keep"` (default) - whitespace is untouched
+- `"ignore"` - remove all whitespace
+- `"trim"` - remove whitespace at the start and end
+
+```ts disableTransform
+import { caseInsensitiveSearch } from "@react-md/core/searching/caseInsensitive";
+
+const fruits = ["Apple", "Banana", "Grape", "Orange"];
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "  a p",
+});
+// []
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "  a p",
+  whitespace: "ignore",
+});
+// ["Apple", "Grape"]
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "  ap  ",
+  whitespace: "trim",
+});
+// ["Apple", "Grape"]
+```
+
+### Must Start With Query
+
+Enable the `startsWith` option to require the matching items to start with the
+provided query. This also works with the `whitespace` behavior.
+
+```ts disableTransform
+import { caseInsensitiveSearch } from "@react-md/core/searching/caseInsensitive";
+
+const fruits = ["Apple", "Banana", "Grape", "Orange"];
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "ap",
+});
+// ["Apple", "Grape"]
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "ap",
+  startsWith: true,
+});
+// ["Apple"]
+```
+
+## Parameters
+
+- `options` - an object with the following definition:
+
+````ts disableTransform
+export interface CaseInsensitiveOptions<T>
+  extends BaseSearchOptions<T>,
+    CaseInsensitiveStartsWithOptions {}
+
+export interface BaseSearchOptions<T> {
+  list: readonly T[];
+
+  /**
+   * @defaultValue `"filter"`
+   */
+  type?: "search" | "filter";
+
+  /**
+   * The current query string. i.e. `"SeArch"`
+   */
+  query: string;
+
+  /**
+   * This is required if the list includes anything other than strings.
+   * @see {@link TextExtractor}
+   */
+  extractor?: TextExtractor<T>;
+
+  /**
+   * @defaultValue `"keep"`
+   */
+  whitespace?: WhitespaceFilter;
+}
+
+export interface CaseInsensitiveStartsWithOptions {
+  /**
+   * Set this to `true` if the item in the list must start with the query
+   * instead of only including it.
+   *
+   * @example Search Example
+   * ```ts
+   * const fruits = ["Banana", "Grape", "Apple", "Orange"];
+   *
+   * caseInsensitiveSearch({
+   *   list: fruits,
+   *   query: "ap",
+   *   type: "search",
+   * });
+   * // "Grape"
+   *
+   * caseInsensitiveSearch({
+   *   list: fruits,
+   *   query: "ap",
+   *   type: "search",
+   *   startsWith: true,
+   * });
+   * // "Apple"
+   * ```
+   *
+   * @example Filter Example
+   * ```ts
+   * const fruits = ["Apple", "Banana", "Grape", "Orange"];
+   *
+   * caseInsensitiveSearch({
+   *   list: fruits,
+   *   query: "ap",
+   * });
+   * // ["Apple", "Grape"]
+   *
+   * caseInsensitiveSearch({
+   *   list: fruits,
+   *   query: "ap",
+   *   startsWith: true,
+   * });
+   * // ["Apple"]
+   * ```
+   *
+   * @defaultValue `false`
+   */
+  startsWith?: boolean;
+}
+````
+
+## Returns
+
+The return type changes depending on the fuzzy search `type`:
+
+- `"filter"` (default) - a new list with all the items that match
+- `"search"` - the first item that matches or `undefined`
+
+## See Also
+
+- [fuzzySearch](./fuzzy-search)
+- [alphaNumericSort](./alpha-numeric-sort)
+- [Autocomplete](/components/autocomplete)

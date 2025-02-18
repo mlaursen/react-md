@@ -45,7 +45,7 @@ export interface BEMResult {
  *
  * @example Simple Example
  * ```tsx
- * import { bem } from "@react-md/core":
+ * import { bem } from "@react-md/core/utils/bem":
  *
  * const styles = bem("my-component"):
  *

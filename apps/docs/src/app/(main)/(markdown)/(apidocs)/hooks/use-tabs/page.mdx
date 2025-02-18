@@ -1,0 +1,130 @@
+# useTabs [$SOURCE](packages/core/src/tabs/useTabs.ts)
+
+```ts disableTransform
+function useTabs<TabValue extends string | number>(
+  options: TabsHookOptions<TabValue> = {}
+): TabsImplementation<TabValue>;
+```
+
+The `useTabs` hook is used to control the active tab and tab panel state for
+the [Tabs components](/components/tabs)
+
+## Example Usage
+
+See the [Tabs demo page](/components/tabs) for examples.
+
+## Parameters
+
+- `options` (optional) - an object with the following definition:
+
+```ts disableTransform
+export interface TabsHookOptions<TabValue extends string | number = number> {
+  /**
+   * This can be used to generate the ids for the different components within
+   * the tab widget.
+   *
+   * @defaultValue `"tab-" + useId()`
+   */
+  baseId?: string;
+
+  /**
+   * Set this to an **ordered** list of tab values when:
+   * - using a `string` tab value
+   * - using a `number` tab value does not represent a tab index
+   *
+   * See the examples on the {@link useTabs} for usage.
+   */
+  tabs?: readonly TabValue[];
+
+  /**
+   * Provide this value and {@link setActiveTab} to control the active tab
+   * behavior.
+   */
+  activeTab?: TabValue;
+
+  /** @see {@link activeTab} */
+  setActiveTab?: Dispatch<TabValue>;
+
+  /**
+   * Set this to the default tab index when not controlling the active tab value
+   * through {@link activeTab} and {@link setActiveTab}.
+   *
+   * @defaultValue `0`
+   */
+  defaultActiveTab?: UseStateInitializer<TabValue>;
+
+  /** Convenience pass-through prop to {@link TabProps.stacked} */
+  stacked?: boolean;
+  /** Convenience pass-through prop to {@link TabProps.iconAfter} */
+  iconAfter?: boolean;
+
+  /** Convenience pass-through props to {@link TabListProps.vertical} */
+  vertical?: boolean;
+
+  /**
+   * Set this to `true` if changing active tabs should no longer attempt to
+   * scroll to the top of the tab panels container when using the
+   * {@link TabsImplementation.getTabPanelsProps}.
+   *
+   * @defaultValue `false`
+   */
+  disableScrollFix?: boolean;
+
+  /**
+   * Convenience prop to disable all transitions for the
+   * {@link TabsImplementation.getTabProps} and
+   * {@link TabsImplementation.getTabListProps}.
+   */
+  disableTransition?: boolean;
+}
+```
+
+## Returns
+
+An object with the following definition:
+
+```ts disableTransform
+export interface TabsImplementation<TabValue extends string | number = number> {
+  direction: SlideDirection;
+  setDirection: UseStateSetter<SlideDirection>;
+  activeTab?: TabValue;
+  setActiveTab?: (nextActiveTab: TabValue) => void;
+  getTabProps: (tabValue: TabValue) => ProvidedTabProps;
+  getTabListProps: () => ProvidedTabListProps;
+  getTabPanelProps: (tabValue: TabValue) => ProvidedTabPanelProps;
+  getTabPanelsProps: <E extends HTMLElement>(
+    ref?: Ref<E>
+  ) => ProvidedTabPanelsProps<E>;
+}
+
+export type SlideDirection = "left" | "right";
+
+export interface ProvidedTabProps {
+  "aria-controls": string;
+  id: string;
+  active: boolean;
+  stacked?: boolean;
+  iconAfter?: boolean;
+  activeIndicator?: boolean;
+  verticalActiveIndicator?: boolean;
+}
+
+export interface ProvidedTabListProps {
+  activeIndex: number;
+  setActiveIndex: Dispatch<number>;
+  vertical?: boolean;
+  disableTransition?: boolean;
+}
+
+export interface ProvidedTabPanelProps {
+  "aria-labelledby": string;
+  id: string;
+  role: "tabpanel";
+  active: boolean;
+}
+
+export interface ProvidedTabPanelsProps<E extends HTMLElement> {
+  ref: Ref<E>;
+  direction: SlideDirection;
+}
+```

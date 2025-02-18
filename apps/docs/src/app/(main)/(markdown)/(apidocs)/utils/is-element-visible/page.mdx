@@ -1,0 +1,36 @@
+# isElementVisible [$SOURCE](packages/core/src/utils/isElementVisible.ts)
+
+```ts disableTransform
+function isElementVisible(element: HTMLElement | null): boolean;
+```
+
+The `isElementVisible` function is used to check if an element
+**within `react-md`** is visible by checking the element and all parents to see
+if they contain the `DISPLAY_NONE_CLASS`.
+
+This can be useful in testing.
+
+## Example Usage
+
+```tsx disableTransform
+import { isElementVisible } from "@react-md/core/utils/isElementVisible";
+
+const treeItem = screen.getByRole("treeitem", { name: "Tree Item" });
+const subTreeItem = screen.getByRole("treeitem", { Name: "Sub Tree Item" });
+
+expect(isElementVisible(treeItem)).toBe(true);
+expect(isElementVisible(subTreeItem)).toBe(false);
+
+await user.click(treeItem);
+expect(isElementVisible(treeItem)).toBe(true);
+expect(isElementVisible(subTreeItem)).toBe(true);
+```
+
+## Parameters
+
+- `element` - the element to check
+
+## Returns
+
+`true` if the element exists, does not contain the `DISPLAY_NONE_CLASS`, and
+all parents do not contain the `DISPLAY_NONE_CLASS`.

@@ -1,0 +1,54 @@
+# parseCssLengthUnit [$SOURCE](packages/core/src/utils/parseCssLengthUnit.ts)
+
+```ts disableTransform
+function parseCssLengthUnit(options: ParseCssLengthUnitOptions): number;
+```
+
+The `parseCssLengthUnit` function is used to convert CSS length units into a
+number. At this time, it really only supports
+
+- `px`
+- `rem`
+- `em` (if the `container` option is provided)
+
+> !Info! See [CSS values and units](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random).
+
+## Example Usage
+
+```ts disableTransform
+import { parseCssLengthUnit } from "@react-md/core/utils/parseCssLengthUnit";
+
+parseCssLengthUnit({ value: "24px" }); // 24
+parseCssLengthUnit({ value: "3.5rem" }); // 56
+parseCssLengthUnit({
+  value: "3em",
+  container: document.querySelector(SOME_QUERY),
+}); // container's computed fontSize * 3
+```
+
+## Parameters
+
+- `options` - an object with the following definition:
+
+```ts disableTransform
+export interface ParseCssLengthUnitOptions {
+  /**
+   * The css unit to convert to a numeric value.
+   */
+  value: number | string;
+
+  /**
+   * @defaultValue `16`
+   */
+  fallbackFontSize?: number;
+
+  /**
+   * @defaultValue `document.documentElement`
+   */
+  container?: Element | null;
+}
+```
+
+## Returns
+
+The number.

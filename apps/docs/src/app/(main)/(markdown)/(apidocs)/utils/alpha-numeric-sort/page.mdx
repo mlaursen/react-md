@@ -1,0 +1,135 @@
+# alphaNumericSort [$SOURCE](packages/core/src/utils/alphaNumericSort.ts)
+
+```ts disableTransform
+function alphaNumericSort<T>(
+  list: readonly T[],
+  options: AlphaNumericSortOptions<T> = {}
+): readonly T[];
+```
+
+The `alphaNumericSort` function can be used to performantly sort a list
+alphanumerically using
+[Intl.Collator.localeCompare](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare#performance).
+
+## Example Usage
+
+```ts disableTransform
+import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
+
+const items = ["World", "Hello"];
+const sorted = alphaNumericSort(items);
+// sorted == ["Hello", "World"]
+```
+
+### Non-string lists
+
+If the provided `list` is not a list of strings, an `extractor` option must
+also be provided to get the search text for each item.
+
+```ts disableTransform
+interface Item {
+  name: string;
+}
+
+const items: Item[] = [{ name: "World" }, { name: "Hello" }];
+
+const sorted = alphaNumericSort(items, {
+  extractor: (item) => item.name,
+});
+// sorted == [{ name: "Hello" }, { name: "World" }]
+```
+
+### Descending order
+
+Just enable the `descending` option to return a descending sorted list instead
+of ascending.
+
+```ts disableTransform
+const list = ["a", "f", "d"];
+const sorted = alphaNumericSort(list, { descending: true });
+// sorted == ["f", "d", "a"];
+```
+
+### Different Locales
+
+The default compare function uses `"en-US"` and cannot be configured. Instead, provide
+a custom compare function:
+
+```ts disableTransform
+const list = ["Z", "a", "z", "ä"];
+const compareDE = new Intl.Collator("de", DEFAULT_COLLATOR_OPTIONS).compare;
+const compareSV = new Intl.Collator("sv", DEFAULT_COLLATOR_OPTIONS).compare;
+
+const sortedUS = alphaNumericSort(list);
+// sortedUS == ["a", "ä", "Z", "z"]
+const sortedDE = alphaNumericSort(list, { compare: compareDE });
+// sortedDE == ["a", "ä", "Z", "z"]
+const sortedSV = alphaNumericSort(list, { compare: compareSV });
+// sortedSV == [ "a", "Z", "z", "ä"]
+```
+
+## Parameters
+
+- `options` - an object with the following definition:
+
+````ts disableTransform
+export interface AlphaNumericSortOptions<T> {
+  /**
+   * The extractor is only required when the list of items are not strings.
+   *
+   * @example Simple Example
+   * ```ts
+   * interface Item {
+   *   name: string;
+   * }
+   *
+   * const items: Item[] = [{ name: 'Hello' }, { name: 'World' }];
+   *
+   * alphaNumericSort(items, {
+   *   extractor: (item) => item.name,
+   * });
+   * ```
+   *
+   * For javascript developers, this will throw an error in dev mode if an
+   * extractor is not provided for non-string lists.
+   *
+   * @defaultValue `typeof item === "string" ? item : ""`
+   */
+  extractor?: TextExtractor<T>;
+
+  /**
+   * A custom compare function for sorting the list. This should really only be
+   * provided if the language for your app is not `"en-US"` or you'd like to
+   * provide some custom sorting options.
+   *
+   * @example Custom Compare using Intl.Collator
+   * ```ts
+   * const collator = new Intl.Collator("en-US", {
+   *   numeric: false,
+   *   caseFirst: "lower",
+   *   usage: "search",
+   * });
+   *
+   * alphaNumericSort(items, {
+   *   compare: collator.compare,
+   * })
+   * ```
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator
+   * @defaultValue `new Intl.Collator("en-US", { numeric: true, caseFirst: "upper" }).compare`
+   */
+  compare?: (a: string, b: string) => number;
+
+  /**
+   * Setting this to `true` will return the list in descending order instead of
+   * ascending.
+   *
+   * @defaultValue `false`
+   */
+  descending?: boolean;
+}
+````
+
+## Returns
+
+A new list sorted alphanumerically.

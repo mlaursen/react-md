@@ -1,0 +1,78 @@
+# bem [$SOURCE](packages/core/src/utils/bem.ts)
+
+```ts disableTransform
+function bem(base: string): BEMResult;
+```
+
+The `bem` function is used to create a [BEM styled class name](https://getbem.com/)
+when not using [CSS Modules](https://github.com/css-modules/css-modules) or another
+styling framework to combat global namespace conflicts.
+
+> !Info! You _probably_ don't want to use this unless you are creating another
+> component library.
+
+## Example Usage
+
+```tsx disableTransform
+import { bem } from "@react-md/core/utils/bem":
+
+const styles = bem("my-component"):
+
+export function MyComponent(props) {
+  const className = styles({
+    always: true,
+    never: false,
+    "some-condition": props.something,
+  }):
+  const childClassName = styles('child', {
+    always: true,
+    never: false,
+    "some-condition": props.something,
+  });
+
+  // With a false-like `props.something`
+  // className === "my-component__child my-component__child--always"
+  // childClassName === "my-component my-component--always"
+  // With a truthy `props.something`
+  // className === "my-component my-component--always my-component--some-condition"
+  // childClassName === "my-component__child my-component__child--always my-component__child--some-condition"
+
+  return (
+    <div className={className}>
+      <div className={childClassName} />
+    </div>
+  ):
+}
+```
+
+## Parameters
+
+- `ms` - the amount of time (in milliseconds) to wait
+
+## Returns
+
+A function that can be used to generate the class with optional modifiers or child elements.
+
+```ts disableTransform
+export interface BEMResult {
+  /**
+   * Creates the full class name from the base block name. This can be called
+   * without any arguments which will just return the base block name (kind of
+   * worthless), or you can provide a child element name and modifiers.
+   *
+   * @param elementOrModifier - This is either the child element name or an
+   * object of modifiers to apply. This **must** be a string if the second
+   * argument is provided.
+   * @param modifier - Any optional modifiers to apply to the block and optional
+   * element.
+   * @returns the full class name
+   */
+  (elementOrModifier?: BEMModifier): string;
+  (elementOrModifier?: string, modifier?: BEMModifier): string;
+
+  /**
+   * The base class name
+   */
+  base: string;
+}
+```

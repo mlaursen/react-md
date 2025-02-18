@@ -1,0 +1,72 @@
+# loop [$SOURCE](packages/core/src/utils/loop.ts)
+
+```ts disableTransform
+function loop(options: LoopOptions): number;
+```
+
+The `loop` function can be used to iterate through a range (mostly a list) and
+loop to the `min` or `max` as needed. This is used internally for the
+[useCarousel hook](/components//carousel) and keyboard navigation.
+
+## Example Usage
+
+```ts disableTransform
+import { loop } from "@react-md/core/utils/loop";
+import { nanoid } from "nanoid";
+
+const max = 100;
+const list = Array.from({ length: max }, () => nanoid());
+let index = 0;
+
+window.setInterval(() => {
+  index = loop({
+    max,
+    value: index,
+    increment: true,
+  });
+
+  // `item` should never be undefined
+  console.table({ index, item: list[index] });
+}, 100);
+```
+
+## Parameters
+
+- `options` - an object with the following definition:
+
+```ts disableTransform
+export interface LoopOptions {
+  /**
+   * The current value that should be modified.
+   */
+  value: number;
+
+  /**
+   * An optional `min` value that can be used before looping to the `max` value.
+   *
+   * @defaultValue `0`
+   */
+  min?: number;
+
+  /**
+   * The max number that can be used before looping to the `min` value.
+   */
+  max: number;
+
+  /**
+   * Boolean if the `value` should be incremented or decremented by `1`.
+   */
+  increment: boolean;
+
+  /**
+   * Boolean if the looping should be ignored and only the `min`/`max` options
+   * should be respected. In other words, the looping  behavior will be disabled
+   * and the `value` must be: `min >= value <= max`
+   */
+  minmax?: boolean;
+}
+```
+
+## Returns
+
+The next numeric value.

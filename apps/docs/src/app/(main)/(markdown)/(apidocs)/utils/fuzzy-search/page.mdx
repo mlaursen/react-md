@@ -1,0 +1,172 @@
+# fuzzySearch [$SOURCE](packages/core/src/searching/fuzzy.ts)
+
+```ts disableTransform
+function fuzzySearch<T>(
+  options: FuzzySearchOptions<T>
+): readonly T[] | T | undefined;
+```
+
+The `fuzzySearch` function can be used to search a list for items that match
+the provided query string as long as the characters appear in order. The
+default behavior will filter the list to only include matches but can also be
+updated to find the first match by providing `type: "search"`.
+
+## Example Usage
+
+```ts disableTransform
+const list = [
+  "at",
+  "charAt",
+  "charCodeAt",
+  "codePointAt",
+  "concat",
+  "constructor",
+  "endsWith",
+  "includes",
+  "indexOf",
+  "lastIndexOf",
+  "length",
+  "localeCompare",
+  "match",
+  "matchAll",
+  "normalize",
+  "padEnd",
+  "padStart",
+  "repeat",
+  "replace",
+  "replaceAll",
+  "search",
+  "slice",
+  "split",
+  "startsWith",
+  "substring",
+  "toLocaleLowerCase",
+  "toLocaleUpperCase",
+  "toLowerCase",
+  "toString",
+  "toUpperCase",
+  "trim",
+  "trimEnd",
+  "trimStart",
+  "valueOf",
+];
+
+fuzzySearch({
+  list,
+  query: "la",
+});
+// [
+//   "lastIndexOf",
+//    ^^
+//   "localeCompare",
+//    ^  ^
+//   "replace",
+//       ^^
+//   "replaceAll",
+//       ^^
+//   "toLocaleLowerCase",
+//      ^  ^
+//   "toLocaleUpperCase",
+//      ^  ^
+//   "toLowerCase",
+//      ^     ^
+// ]
+
+fuzzySearch({
+  list,
+  query: "ad",
+  type: "search",
+});
+// "charCodeAt"
+//    ^   ^
+```
+
+### Non-string lists
+
+If the provided `list` is not a list of strings, an `extractor` option must
+also be provided to get the search text for each item.
+
+```ts disableTransform
+interface Item {
+  name: string;
+}
+
+const items: Item[] = [{ name: "Hello" }, { name: "World" }];
+
+fuzzySearch({
+  list,
+  query: "el",
+  extractor: (item) => item.name,
+});
+// [{ name: "Hello" }]
+//            ^^
+
+fuzzySearch({
+  list,
+  query: "od",
+  extractor: (item) => item.name,
+});
+// { name: "World" }
+//           ^  ^
+
+fuzzySearch({
+  list,
+  query: "aa",
+  extractor: (item) => item.name,
+});
+// undefined
+```
+
+## Parameters
+
+- `options` - an object with the following definition:
+
+```ts disableTransform
+export type FuzzySearchOptions<T> = BaseSearchOptions<T>;
+
+/**
+ * @since 6.0.0
+ */
+export type WhitespaceFilter = "ignore" | "trim" | "keep";
+
+/**
+ * @since 6.0.0
+ */
+export interface BaseSearchOptions<T> {
+  list: readonly T[];
+
+  /**
+   * @defaultValue `"filter"`
+   */
+  type?: "search" | "filter";
+
+  /**
+   * The current query string. i.e. `"SeArch"`
+   */
+  query: string;
+
+  /**
+   * This is required if the list includes anything other than strings.
+   * @see {@link TextExtractor}
+   */
+  extractor?: TextExtractor<T>;
+
+  /**
+   * @defaultValue `"keep"`
+   */
+  whitespace?: WhitespaceFilter;
+}
+```
+
+## Returns
+
+The return type changes depending on the fuzzy search `type`:
+
+- `"filter"` (default) - a new list with all the items that match
+- `"search"` - the first item that matches or `undefined`
+
+## See Also
+
+- [caseInsensitiveSearch](./case-insensitive-search)
+- [alphaNumericSort](./alpha-numeric-sort)
+- [Autocomplete](/components/autocomplete)

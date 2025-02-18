@@ -1,0 +1,34 @@
+# identity [$SOURCE](packages/core/src/utils/identity.ts)
+
+```ts disableTransform
+const identity = <T>(thing: T): T => thing;
+```
+
+The `identity` function is just used for typescript users and probably
+shouldn't be used externally since it just returns whatever was provided.
+
+## Example Usage
+
+```tsx disableTransform
+import { identity } from "@react-md/core/utils/identity";
+
+interface Props {
+  sort: <T>(items: readonly T[]) => readonly T[];
+}
+
+function Example(props: Props) {
+  const { sort = identity } = props;
+
+  const sorted = sort(SOME_ITEMS);
+  // do whatever
+  return null;
+}
+```
+
+## Parameters
+
+- `thing` - anything that has a type
+
+## Returns
+
+The parameter that was provided

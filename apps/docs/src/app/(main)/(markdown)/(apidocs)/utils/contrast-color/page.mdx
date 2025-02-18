@@ -1,0 +1,56 @@
+# contrastColor [$SOURCE](packages/core/src/theme/utils.tsL186)
+
+```ts disableTransform
+function contrastColor(
+  backgroundColor: string,
+  lightColor?: string,
+  darkColor?: string
+): string;
+```
+
+The `contrastColor` function is a javascript implementation of the
+`core.contrast-color` function allowing to dynamically set the text color based
+on a provided background color.
+
+## Example Usage
+
+```tsx disableTransform
+import {
+  blue500,
+  greenAccent700,
+  orangeAccent200,
+  orangeAccent400,
+  red500,
+} from "@react-md/core/colors";
+import { type ConfigurableThemeColors } from "@react-md/core/theme/ThemeProvider";
+import { contrastColor } from "@react-md/core/theme/utils";
+
+const darkTheme: Readonly<ConfigurableThemeColors> = {
+  primaryColor: blue500,
+  onPrimaryColor: contrastColor(blue500),
+  secondaryColor: orangeAccent400,
+  onSecondaryColor: contrastColor(orangeAccent400),
+  warningColor: orangeAccent200,
+  onWarningColor: contrastColor(orangeAccent200),
+  errorColor: red500,
+  onErrorColor: contrastColor(red500),
+  successColor: greenAccent700,
+  onSuccessColor: contrastColor(greenAccent700),
+  backgroundColor: "#121212",
+  textPrimaryColor: "#d9d9d9",
+  textSecondaryColor: "#b3b3b3",
+  textHintColor: "gray", // #808080
+  textDisabledColor: "gray", // #808080
+};
+```
+
+## Parameters
+
+- `backgroundColor` - the `background-color` to compare against
+- `lightColor` (optional `#fff`) - the lighter color to use
+- `darkColor` (optional `#000`) - the darker color to use
+
+## Returns
+
+The `lightColor` if it has a higher contrast ratio on the `backgroundColor`
+than the `darkColor`. Otherwise the `darkColor`.

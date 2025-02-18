@@ -143,8 +143,14 @@ export interface TabsImplementation<TabValue extends string | number = number> {
 /**
  * @example Super Simple
  * ```tsx
- * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
- * import type { ReactElement } from "react";
+ * "use client";
+ *
+ * import { Tab } from "@react-md/core/tabs/Tab";
+ * import { TabList } from "@react-md/core/tabs/TabList";
+ * import { useTabs } from "@react-md/core/tabs/useTabs";
+ * import { Slide } from "@react-md/core/transition/Slide";
+ * import { SlideContainer } from "@react-md/core/transition/SlideContainer";
+ * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   const {
@@ -187,9 +193,14 @@ export function useTabs(): TabsImplementation & {
  *
  * @example Controlled
  * ```tsx
- * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
- * import type { ReactElement } from "react";
- * import { useState } from "react";
+ * "use client";
+ *
+ * import { Tab } from "@react-md/core/tabs/Tab";
+ * import { TabList } from "@react-md/core/tabs/TabList";
+ * import { useTabs } from "@react-md/core/tabs/useTabs";
+ * import { Slide } from "@react-md/core/transition/Slide";
+ * import { SlideContainer } from "@react-md/core/transition/SlideContainer";
+ * import { type ReactElement, useState } from "react";
  *
  * function Example(): ReactElement {
  *   const [activeTab, setActiveTab] = useState(1);
@@ -250,8 +261,14 @@ export function useTabs<TabValue extends number>(
  *
  * @example String Value Simple
  * ```tsx
- * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
- * import type { ReactElement } from "react";
+ * "use client";
+ *
+ * import { Tab } from "@react-md/core/tabs/Tab";
+ * import { TabList } from "@react-md/core/tabs/TabList";
+ * import { useTabs } from "@react-md/core/tabs/useTabs";
+ * import { Slide } from "@react-md/core/transition/Slide";
+ * import { SlideContainer } from "@react-md/core/transition/SlideContainer";
+ * import { type ReactElement } from "react";
  *
  * const tabs = ["value-1", "value-2", "value-3"];
  *
@@ -303,8 +320,12 @@ export function useTabs<TabValue extends string>(
  *
  * @example String Controlled Simple
  * ```tsx
- * import { TabList, Tab, SlideContainer, Slide, useTabs } from "@react-md/core";
- * import type { ReactElement } from "react";
+ * import { Tab } from "@react-md/core/tabs/Tab";
+ * import { TabList } from "@react-md/core/tabs/TabList";
+ * import { useTabs } from "@react-md/core/tabs/useTabs";
+ * import { Slide } from "@react-md/core/transition/Slide";
+ * import { SlideContainer } from "@react-md/core/transition/SlideContainer";
+ * import { type ReactElement } from "react";
  *
  * const tabs = ["value-1", "value-2", "value-3"] as const;
  *
@@ -344,63 +365,27 @@ export function useTabs<TabValue extends string>(
  * @example Navigation Tabs
  * ```tsx
  * "use client";
+ *
+ * import { Tab } from "@react-md/core/tabs/Tab";
+ * import { TabList } from "@react-md/core/tabs/TabList";
+ * import { useTabs } from "@react-md/core/tabs/useTabs";
+ * import Link from "next/link.js";
+ * import { usePathname } from "next/navigation.js";
  * import {
- *   RippleContainer,
- *   Tab,
- *   TabList,
- *   useElementInteraction,
- *   useEnsuredId,
- *   useHigherContrastChildren,
- *   useKeyboardMovementContext,
- *   useTabs,
- * } from "@react-md/core";
- * import type { LinkProps } from "next/link";
- * import Link from "next/link";
- * import type { PropsWithChildren, ReactElement } from "react";
- * import { usePathname } from "next/navigation";
+ *   type AnchorHTMLAttributes,
+ *   type ReactElement,
+ *   forwardRef,
+ *   useEffect,
+ *   useState,
+ * } from "react";
  *
- * interface TabLinkProps extends LinkProps {
- *   active: boolean;
- * }
- *
- * function TabLink(props: LinkProps): ReactElement {
- *   const {
- *     id: propId,
- *     children: propChildren,
- *     active,
- *     className,
- *     ...remaining,
- *   } = props;
- *
- *   const id = useEnsuredId(propId, "tab");
- *   const { activeDescendantId } = useKeyboardMovementContext();
- *   const { handlers, ripples } = useElementInteraction(props);
- *   const children = useHigherContrastChildren(propChildren);
- *
- *   return (
- *     <Link
- *       {...props}
- *       {...handlers}
- *       id={id}
- *       aria-selected={active}
- *       role="tab"
- *       tabIndex={id === activeDescendantId ? 0 : -1}
- *       className={tab({
- *         className,
- *         active,
- *         // stacked,
- *         // reversed,
- *       })}
- *     >
- *       {children}
- *       {ripples}
- *     </Link>
- *   );
- * }
- *
- * const noop = (): void => {
- *  // do nothing
- * };
+ * // this just fixes the `href` type definition causing errors
+ * const SimpleLink = forwardRef<
+ *   HTMLAnchorElement,
+ *   AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
+ * >(function SimpleLink(props, ref) {
+ *   return <Link {...props} ref={ref} />;
+ * });
  *
  * const PATHNAME_TABS = ["/", "/page-1", "/page-2"];
  *
@@ -415,9 +400,9 @@ export function useTabs<TabValue extends string>(
  *   return (
  *     <>
  *       <TabList {...getTabListProps()}>
- *         <TabLink {...getTabProps("/")} href="/">Home</TabLink>
- *         <TabLink {...getTabProps("/page-1")} href="/page-1">Page 1</TabLink>
- *         <TabLink {...getTabProps("/page-2")} href="/page-2">Page 2</TabLink>
+ *         <Tab {...getTabProps("/")} href="/" as={SimpleLink}>Home</Tab>
+ *         <Tab {...getTabProps("/page-1")} href="/page-1" as={SimpleLink}>Page 1</Tab>
+ *         <Tab {...getTabProps("/page-2")} href="/page-2" as={SimpleLink}>Page 2</Tab>
  *       </TabList>
  *       <main>{children}</main>
  *     </>

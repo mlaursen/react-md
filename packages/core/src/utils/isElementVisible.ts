@@ -16,7 +16,7 @@ export const DISPLAY_NONE_CLASS = "rmd-display-none";
  * const subTreeItem = screen.getByRole("treeitem", { Name: "Sub Tree Item" });
  *
  * expect(isElementVisible(treeItem)).toBe(true);
- * expect(isElementVisible(subTreeItem)).toBe(false):
+ * expect(isElementVisible(subTreeItem)).toBe(false);
  *
  * await user.click(treeItem);
  * expect(isElementVisible(treeItem)).toBe(true);

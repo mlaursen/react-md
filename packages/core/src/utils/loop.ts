@@ -29,6 +29,8 @@ export interface LoopOptions {
    * Boolean if the looping should be ignored and only the `min`/`max` options
    * should be respected. In other words, the looping  behavior will be disabled
    * and the `value` must be: `min >= value <= max`
+   *
+   * @defaultValue `false`
    */
   minmax?: boolean;
 }

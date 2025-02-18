@@ -51,8 +51,14 @@ export interface MaxTabPanelHeightImplementation<E extends HTMLElement> {
  *
  * @example Main Usage
  * ```tsx
+ * import { Tab } from "@react-md/core/tabs/Tab";
+ * import { TabList } from "@react-md/core/tabs/TabList";
  * import { useMaxTabPanelHeight } from "@react-md/core/tabs/useMaxTabPanelHeight";
  * import { useTabs } from "@react-md/core/tabs/useTabs";
+ * import { Slide } from "@react-md/core/transition/Slide";
+ * import { SlideContainer } from "@react-md/core/transition/SlideContainer";
+ * import { Typography } from "@react-md/core/typography/Typography";
+ * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =

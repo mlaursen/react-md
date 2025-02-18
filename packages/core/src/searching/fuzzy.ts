@@ -120,7 +120,7 @@ export type FuzzySearchOptions<T> = BaseSearchOptions<T>;
  *   type: "search",
  * });
  * // "charCodeAt"
- *  //    ^   ^
+ * //    ^   ^
  * ```
  *
  * @since 6.0.0

@@ -1,0 +1,39 @@
+# isContrastCompliant [$SOURCE](packages/core/src/theme/utils.tsL153)
+
+```ts disableTransform
+function isContrastCompliant(
+  background: string,
+  foreground: string,
+  compliance?: ContrastRatioCompliance | number
+): boolean;
+```
+
+The `isContrastCompliant` function can be used to check if a background and
+foreground color meet the required [contrast ratio](https://www.w3.org/TR/WCAG20/#visual-audio-contrast)
+
+## Example Usage
+
+```tsx disableTransform
+import { isContrastCompliant } from "@react-md/core/theme/utils";
+
+const rmdTeal500 = "#009688";
+expect(isContrastCompliant("#fafafa", rmdTeal500, "large")).toBe(true);
+expect(isContrastCompliant("#fafafa", rmdTeal500, "normal")).toBe(false);
+expect(isContrastCompliant("#fafafa", rmdTeal500, "AAA")).toBe(false);
+
+expect(isContrastCompliant("#fafafa", rmdTeal500)).toBe(false);
+```
+
+## Parameters
+
+- `background` - a background color in hex or rgb
+- `foreground` - a foreground color in hex or rgb
+- `compliance` (optional: defaults to `"normal"`) - one of the following values:
+  - `"large"` - 3
+  - `"normal"` - 4.5
+  - `"AAA"` - 7
+  - `number` - a custom ratio
+
+## Returns
+
+`true` if the color is contrast compliant
