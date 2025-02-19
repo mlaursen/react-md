@@ -44,7 +44,7 @@ $tablist-scroller-background-color: theme.theme-get-var(
   background-color,
   inherit
 ) !default;
-$tablist-vertical-indicator-left: 0 !default;
+$tablist-vertical-indicator-position: 0 !default;
 $tablist-button-border-radius: 0 !default;
 
 $variables: (
@@ -101,13 +101,13 @@ $variables: (
     @if not $disable-indicator-vertical {
       &--v::after {
         height: 100%;
-        left: $tablist-vertical-indicator-left;
+        right: $tablist-vertical-indicator-position;
         top: 0;
         width: $indicator-height;
 
         @include utils.rtl {
-          left: auto;
-          right: $tablist-vertical-indicator-left;
+          left: $tablist-vertical-indicator-position;
+          right: auto;
         }
       }
     }
