@@ -1,0 +1,25 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "out": "public/typedoc",
+  "tsconfig": "../../packages/core/tsconfig.types.json",
+  "highlightLanguages": [
+    "bash",
+    "console",
+    "css",
+    "scss",
+    "diff",
+    "html",
+    "javascript",
+    "json",
+    "jsonc",
+    "json5",
+    "yaml",
+    "tsx",
+    "typescript"
+  ],
+  "gitRemote": "https://github.com/mlaursen/react-md",
+  "exclude": ["**/__tests__/**"],
+  "readme": "../../packages/core/README.md",
+  "entryPoints": ["../../packages/core/src"],
+  "entryPointStrategy": "expand"
+}

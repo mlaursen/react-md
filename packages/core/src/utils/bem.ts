@@ -16,23 +16,47 @@ function modify(base: string, modifier?: BEMModifier): string {
 }
 
 /**
+ * Creates the full class name from the base block name. This can be called
+ * without any arguments which will just return the base block name (kind of
+ * worthless), or you can provide a child element name and modifiers.
+ *
  * @since 6.0.0 Converted to an interface that supports the `base` attribute.
  */
 export interface BEMResult {
   /**
-   * Creates the full class name from the base block name. This can be called
-   * without any arguments which will just return the base block name (kind of
-   * worthless), or you can provide a child element name and modifiers.
+   * @example Simple Example
+   * ```ts
+   * const styles = bem("root");
    *
-   * @param elementOrModifier - This is either the child element name or an
-   * object of modifiers to apply. This **must** be a string if the second
-   * argument is provided.
+   * styles("child"); // "root__child"
+   * styles("child", {
+   *   modifier1: true,
+   *   modifier2: false,
+   * }); // "root__child root__child--modifier-1"
+   * ```
+   * @param element - The child element to be prefixed before any modifiers.
    * @param modifier - Any optional modifiers to apply to the block and optional
    * element.
    * @returns the full class name
    */
-  (elementOrModifier?: BEMModifier): string;
-  (elementOrModifier?: string, modifier?: BEMModifier): string;
+  (element: string, modifier?: BEMModifier): string;
+
+  /**
+   * @example Simple Example
+   * ```ts
+   * const styles = bem("root");
+   *
+   * styles() // "root"
+   * styles({
+   *   modifier1: true,
+   *   modifier2: false,
+   * }); // "root--modifier-1"
+   * ```
+   * @param modifier - Any optional modifiers to apply to the block and optional
+   * element.
+   * @returns the full class name
+   */
+  (modifier?: BEMModifier): string;
 
   /**
    * The base class name

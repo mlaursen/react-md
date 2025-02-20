@@ -8,15 +8,18 @@
     "@react-md/codemod#build": {
       "outputs": ["bin/**"]
     },
-    "build": {
+    "docs#build": {
       "dependsOn": ["^build"],
       "outputs": [
-        "dist/**",
-        "types/**",
-        ".next/**",
         "src/generated/**",
+        "public/typedoc/**",
+        ".next/**",
         "!.next/cache/**"
       ]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "types/**"]
     },
     "test": {
       "outputs": ["coverage/**"],

@@ -132,6 +132,12 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
         errors.add(`\`${name}\` is not a valid demo prop`);
     }
   });
+  if (props.phone && !props.card) {
+    errors.add(
+      "`phone` must be used with the `card` prop, but it was missing."
+    );
+  }
+
   if (errors.size) {
     errors.add(`Valid demo props are:
 ${Object.keys(props)

@@ -142,7 +142,7 @@ export function isMediaFile(file: File): boolean {
  *
  * @since 2.9.0
  * @since 6.0.0 Removed `"readAsBinaryString` since it is deprecated
- * {@see https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsBinaryString}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsBinaryString}
  */
 export type FileReaderParser =
   | "readAsText"

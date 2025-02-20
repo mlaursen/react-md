@@ -709,6 +709,17 @@ export const navItems: readonly NavigationItem[] = [
   },
   {
     type: "group",
+    children: "API Docs",
+    items: [
+      {
+        type: "route",
+        href: "/typedoc/index.html",
+        children: "Typedoc",
+      },
+    ],
+  },
+  {
+    type: "group",
     href: "/testing",
     children: "Testing",
     items: [

@@ -8,6 +8,7 @@
     "run-script": "tsx --tsconfig scripts/tsconfig.json",
     "create-env": "pnpm run run-script scripts/createEnv.ts",
     "create-scss-lookup": "pnpm run run-script scripts/createScssLookup.ts",
+    "typedoc": "typedoc",
     "typecheck-src": "tsc --noEmit",
     "typecheck-scripts": "tsc --noEmit -P scripts/tsconfig.json",
     "typecheck": "npm-run-all typecheck-src typecheck-scripts",
@@ -15,7 +16,7 @@
     "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
     "lint": "npm-run-all lint-scripts lint-styles",
     "clean-static": "rm -rf .turbo .next node_modules",
-    "clean-generated": "rm -rf src/generated",
+    "clean-generated": "rm -rf src/generated public/typedoc",
     "clean": "npm-run-all clean-static clean-generated",
     "watch-demos": "pnpm run run-script scripts/watchDemos.ts",
     "watch-scss-lookup": "pnpm create-scss-lookup -- --watch",
@@ -25,7 +26,7 @@
     "next-build": "next build",
     "dev": "npm-run-all build-env dev-tasks",
     "dev-tasks": "npm-run-all --parallel watch-demos watch-scss-lookup generator-dev",
-    "build": "npm-run-all build-env next-build",
+    "build": "npm-run-all build-env typedoc next-build",
     "start": "next start"
   },
   "repository": {
@@ -81,6 +82,7 @@
     "stylelint-scss": "^6.11.0",
     "svgo": "^3.3.2",
     "tsx": "^4.19.2",
+    "typedoc": "^0.27.7",
     "typescript": "^5.7.3"
   },
   "volta": {
