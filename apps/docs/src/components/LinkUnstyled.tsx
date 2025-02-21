@@ -9,6 +9,10 @@ export interface LinkUnstyledProps
 
 export const LinkUnstyled = forwardRef<HTMLAnchorElement, LinkUnstyledProps>(
   function LinkUnstyled(props, ref) {
+    if (props.href.endsWith(".html")) {
+      return <a {...props} ref={ref} />;
+    }
+
     return <Link {...props} ref={ref} />;
   }
 );

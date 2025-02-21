@@ -8,7 +8,6 @@
     "run-script": "tsx --tsconfig scripts/tsconfig.json",
     "create-env": "pnpm run run-script scripts/createEnv.ts",
     "create-scss-lookup": "pnpm run run-script scripts/createScssLookup.ts",
-    "typedoc": "typedoc",
     "typecheck-src": "tsc --noEmit",
     "typecheck-scripts": "tsc --noEmit -P scripts/tsconfig.json",
     "typecheck": "npm-run-all typecheck-src typecheck-scripts",
@@ -22,11 +21,12 @@
     "watch-scss-lookup": "pnpm create-scss-lookup -- --watch",
     "generator-dev": "nodemon --config scripts/nodemon.docs-generator.json",
     "build-env": "npm-run-all create-env create-scss-lookup",
+    "build-typedoc": "pnpm run run-script scripts/typedoc.ts",
     "next-dev": "next dev",
     "next-build": "next build",
     "dev": "npm-run-all build-env dev-tasks",
     "dev-tasks": "npm-run-all --parallel watch-demos watch-scss-lookup generator-dev",
-    "build": "npm-run-all build-env typedoc next-build",
+    "build": "npm-run-all build-env build-typedoc next-build",
     "start": "next start"
   },
   "repository": {
