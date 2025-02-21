@@ -10,6 +10,7 @@ const frontend = strict
 export default config(
   gitignore(import.meta.url),
   ...frontend,
+  ...configs.next,
   {
     // this seems to be needed to set the module/moduleResolution/target to "nodenext" + "esnext"
     languageOptions: {
@@ -41,6 +42,15 @@ export default config(
     rules: {
       // I want demos and examples to prioritize other things
       "@typescript-eslint/no-use-before-define": "off",
+    },
+  },
+  {
+    files: [
+      "**/(demos)/**",
+      "src/components/FilePreview/SimpleFilePreview.tsx",
+    ],
+    rules: {
+      "@next/next/no-img-element": "off",
     },
   }
 );
