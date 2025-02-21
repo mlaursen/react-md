@@ -230,6 +230,15 @@ $transition-variables: (
 
 @mixin slide-transition {
   .rmd-slide-container {
+    --p1-start-x: var(--p1-start);
+    --p1-start-y: 0;
+    --p1-end-x: var(--p1-end);
+    --p1-end-y: 0;
+    --p2-start-x: var(--p2-start);
+    --p2-start-y: 0;
+    --p2-end-x: var(--p2-end);
+    --p2-end-y: 0;
+
     align-items: flex-start;
     display: flex;
     flex-wrap: nowrap;
@@ -237,18 +246,29 @@ $transition-variables: (
     overflow: hidden auto;
     width: 100%;
 
-    &--left {
+    &--forward {
       --p1-start: 0;
       --p2-start: 0;
       --p1-end: -100%;
       --p2-end: -100%;
     }
 
-    &--right {
+    &--backward {
       --p1-start: -100%;
       --p2-start: -100%;
       --p1-end: 0;
       --p2-end: 0;
+    }
+
+    &--vertical {
+      --p1-start-x: 0;
+      --p1-start-y: var(--p1-start);
+      --p1-end-x: 0;
+      --p1-end-y: var(--p1-end);
+      --p2-start-x: 0;
+      --p2-start-y: var(--p2-start);
+      --p2-end-x: 0;
+      --p2-end-y: var(--p2-end);
     }
   }
 
@@ -264,19 +284,19 @@ $transition-variables: (
     }
 
     &--enter {
-      transform: translate3d(var(--p1-start), 0, 0);
+      transform: translate3d(var(--p1-start-x), var(--p1-start-y), 0);
     }
 
     &--enter-active {
-      transform: translate3d(var(--p1-end), 0, 0);
+      transform: translate3d(var(--p1-end-x), var(--p1-end-y), 0);
     }
 
     &--exit {
-      transform: translate3d(var(--p2-start), 0, 0);
+      transform: translate3d(var(--p2-start-x), var(--p2-start-y), 0);
     }
 
     &--exit-active {
-      transform: translate3d(var(--p2-end), 0, 0);
+      transform: translate3d(var(--p2-end-x), var(--p2-end-y), 0);
     }
   }
 }

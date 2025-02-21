@@ -443,7 +443,7 @@ export function useTabs<TabValue extends string | number>(
   } = options;
 
   const baseId = useEnsuredId(propBaseId, "tab");
-  const [direction, setDirection] = useState<SlideDirection>("left");
+  const [direction, setDirection] = useState<SlideDirection>("forward");
 
   const [activeTab, setActiveTab] = useEnsuredState({
     value: propActiveTab,
@@ -489,7 +489,7 @@ export function useTabs<TabValue extends string | number>(
       return {
         activeIndex,
         setActiveIndex: (nextActiveIndex) => {
-          setDirection(activeIndex < nextActiveIndex ? "left" : "right");
+          setDirection(activeIndex < nextActiveIndex ? "forward" : "backward");
           if (typeof activeTab === "string" || tabs.length > 0) {
             setActiveTab(tabs[nextActiveIndex]);
           } else {

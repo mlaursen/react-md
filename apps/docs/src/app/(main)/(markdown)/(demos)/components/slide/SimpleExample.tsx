@@ -19,14 +19,14 @@ interface State {
 export default function SimpleExample(): ReactElement {
   const [state, setState] = useState<State>({
     page: 1,
-    direction: "left",
+    direction: "forward",
   });
   const { page, direction } = state;
 
   const setPage = (page: 1 | 2 | 3): void => {
     setState((prev) => ({
       page,
-      direction: prev.page < page ? "left" : "right",
+      direction: prev.page < page ? "forward" : "backward",
     }));
   };
 

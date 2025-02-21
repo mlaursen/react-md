@@ -6,7 +6,7 @@ import { bem } from "../utils/bem.js";
 const styles = bem("rmd-slide-container");
 
 /**
- * @example Direction "left"
+ * @example Direction "forward"
  * ```
  *           -------------
  *           |           |
@@ -25,7 +25,7 @@ const styles = bem("rmd-slide-container");
  *           -------------
  * ```
  *
- * @example Direction "right"
+ * @example Direction "backward"
  * ```
  *           -------------
  *           |           |
@@ -46,7 +46,7 @@ const styles = bem("rmd-slide-container");
  *
  * @since 6.0.0
  */
-export type SlideDirection = "left" | "right";
+export type SlideDirection = "backward" | "forward";
 
 /** @since 6.0.0 */
 export interface SlideContainerClassNameOptions {
@@ -54,6 +54,8 @@ export interface SlideContainerClassNameOptions {
 
   /** @see {@link SlideDirection} */
   direction: SlideDirection;
+
+  vertical?: boolean;
 }
 
 /**
@@ -63,9 +65,9 @@ export interface SlideContainerClassNameOptions {
 export function slideContainer(
   options: SlideContainerClassNameOptions
 ): string {
-  const { className, direction } = options;
+  const { className, direction, vertical } = options;
 
-  return cnb(styles({ [direction]: true }), className);
+  return cnb(styles({ [direction]: true, vertical }), className);
 }
 
 /** @since 6.0.0 */
@@ -90,17 +92,17 @@ export interface SlideContainerProps
  *
  * function Example(): ReactElement {
  *   const [state, setState] = useState<State>({
- *     direction: "left",
+ *     direction: "forward",
  *     activeIndex: 0,
  *   });
  *   const { direction, activeIndex } = state;
  *
- *   // when changing a slide, `direction` should be set to "left" if the
+ *   // when changing a slide, `direction` should be set to "forward" if the
  *   // previous `activeIndex` is less than the next index
  *   //
  *   // i.e.
  *   // setState((prevState) => ({
- *   //   direction: prevState.activeIndex < index ? "left" : "right",
+ *   //   direction: prevState.activeIndex < index ? "forward" : "backward",
  *   //   activeIndex: index,
  *   // }))
  *
@@ -124,13 +126,13 @@ export interface SlideContainerProps
  */
 export const SlideContainer = forwardRef<HTMLDivElement, SlideContainerProps>(
   function SlideContainer(props, ref) {
-    const { className, direction, children, ...remaining } = props;
+    const { className, direction, vertical, children, ...remaining } = props;
 
     return (
       <div
         {...remaining}
         ref={ref}
-        className={slideContainer({ className, direction })}
+        className={slideContainer({ className, direction, vertical })}
       >
         {children}
       </div>

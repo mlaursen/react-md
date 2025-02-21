@@ -9,6 +9,22 @@ The slide transition can be created by using a `SlideContainer` and `Slide`
 components. The `SlideContainer` requires the transition `direction` prop and
 each `Slide` requires an `active` state to trigger the transition.
 
-```demo source="./SimpleExample.tsx"
+```demo source="./SimpleExample.tsx" disablePadding
 
 ```
+
+## Vertical
+
+The slide transition can also be vertical instead of horizontal by enabling the `vertical` prop.
+
+```demo source="./VerticalExample.tsx" disablePadding
+
+```
+
+# Preventing Layout Shifts
+
+When the `Slide` content have different heights, the layout might shift when
+the animation completes to match the current content's height. If this
+behavior isn't desired, check out the
+[useMaxTabPanelHeight](/hooks/use-max-tab-panel-height) hook and
+[Use Max Tab Panel Height demo](/components/tabs#use-max-tab-panel-height).

@@ -176,7 +176,7 @@ export function useCarousel(options: CarouselOptions): CarouselImplementation {
   const total = totalSlides - 1;
 
   const [state, setCarouselSlideState] = useState<CarouselSlideState>({
-    direction: "left",
+    direction: "forward",
     activeIndex: 0,
   });
   const {
@@ -194,7 +194,7 @@ export function useCarousel(options: CarouselOptions): CarouselImplementation {
             : activeIndexOrGetter;
 
         return {
-          direction: prevActiveIndex < nextActiveIndex ? "left" : "right",
+          direction: prevActiveIndex < nextActiveIndex ? "forward" : "backward",
           activeIndex: nextActiveIndex,
         };
       });
@@ -203,13 +203,13 @@ export function useCarousel(options: CarouselOptions): CarouselImplementation {
   );
   const increment = useCallback(() => {
     setCarouselSlideState((prevState) => ({
-      direction: "left",
+      direction: "forward",
       activeIndex: Math.min(total, prevState.activeIndex + 1),
     }));
   }, [total]);
   const decrement = useCallback(() => {
     setCarouselSlideState((prevState) => ({
-      direction: "right",
+      direction: "backward",
       activeIndex: Math.max(0, prevState.activeIndex - 1),
     }));
   }, []);
@@ -228,7 +228,7 @@ export function useCarousel(options: CarouselOptions): CarouselImplementation {
         increment: true,
       });
       setCarouselSlideState({
-        direction: activeIndex < nextActiveIndex ? "left" : "right",
+        direction: activeIndex < nextActiveIndex ? "forward" : "backward",
         activeIndex: nextActiveIndex,
       });
     }, duration);

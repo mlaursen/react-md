@@ -10,6 +10,7 @@ import {
 import { useCodeEditHistory } from "@react-md/code/useCodeEditHistory";
 import { TooltippedButton } from "@react-md/core/button/TooltippedButton";
 import { Chip } from "@react-md/core/chip/Chip";
+import { MenuConfigurationProvider } from "@react-md/core/menu/MenuConfigurationProvider";
 import { ToastManager } from "@react-md/core/snackbar/ToastManager";
 import { ToastManagerProvider } from "@react-md/core/snackbar/ToastManagerProvider";
 import { Tab } from "@react-md/core/tabs/Tab";
@@ -93,96 +94,104 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
 
   return (
     <ToastManagerProvider manager={toastManager}>
-      <DemoCodePreview
-        key={`${toggled}`}
-        code={code.replace("Demo.module.scss", `${demoName}.module.scss`)}
-        card={card}
-        scope={scope}
-        phone={phone}
-        disableBox={disableBox}
-        transparent={transparent}
-        forceDarkMode={forceDarkMode}
-        disablePadding={disablePadding}
-      />
-      <CodeBlockAppBar>
-        {isTypescriptFileActive && <ConfigureTypescriptEnabled disableLabel />}
-        {activeTab === 1 && (
-          <Chip
-            theme="outline"
-            selected={isCssVisible}
-            onClick={toggleCssVisible}
-          >
-            Show CSS
-          </Chip>
-        )}
-        <TooltippedButton
-          tooltip="Reset the demo"
-          onClick={() => {
-            resetPreview();
-            setCode(
-              isTypescriptEnabled ? tsCodeFile.code : tsCodeFile.compiled
-            );
-          }}
-        >
-          <RefreshOutlinedIcon />
-        </TooltippedButton>
-      </CodeBlockAppBar>
-      {isMultiFile && (
-        <TabList
-          {...getTabListProps()}
-          inline
-          fullWidthTabs={false}
-          scrollButtons={readOnlyFileNames.length > 0 ? "auto" : false}
-        >
-          <Tab {...getTabProps(0)}>
-            {tsCodeFile.name.replace(".t", isTypescriptEnabled ? ".t" : ".j")}
-          </Tab>
-          {scssCodeFile && <Tab {...getTabProps(1)}>{scssCodeFile.name}</Tab>}
-          {readOnlyFileNames.map((fileName, i) => (
-            <Tab
-              key={fileName}
-              {...getTabProps(i + startIndex)}
-              icon={<EditOffIcon />}
-            >
-              {fileName}
-            </Tab>
-          ))}
-        </TabList>
-      )}
-      {!isMultiFile && (
-        <TypescriptCodeEditor
-          code={code}
-          editorRef={editorRef}
-          editorProps={editorProps}
+      <MenuConfigurationProvider renderAsSheet={false}>
+        <DemoCodePreview
+          key={`${toggled}`}
+          code={code.replace("Demo.module.scss", `${demoName}.module.scss`)}
+          card={card}
+          scope={scope}
+          phone={phone}
+          disableBox={disableBox}
+          transparent={transparent}
+          forceDarkMode={forceDarkMode}
+          disablePadding={disablePadding}
         />
-      )}
-      {isMultiFile && (
-        <div ref={getTabPanelsProps<HTMLDivElement>().ref}>
-          <Slide {...getTabPanelProps(0)} timeout={0}>
-            <TypescriptCodeEditor
-              code={code}
-              editorRef={editorRef}
-              editorProps={editorProps}
-            />
-          </Slide>
-          {scssCodeFile && (
-            <Slide {...getTabPanelProps(1)} timeout={0}>
-              <ScssCodeEditor
-                key={`${toggled}`}
-                demoName={demoName}
-                isCssVisible={isCssVisible}
-                scssCodeFile={scssCodeFile}
+        <CodeBlockAppBar>
+          {isTypescriptFileActive && (
+            <ConfigureTypescriptEnabled disableLabel />
+          )}
+          {activeTab === 1 && (
+            <Chip
+              theme="outline"
+              selected={isCssVisible}
+              onClick={toggleCssVisible}
+            >
+              Show CSS
+            </Chip>
+          )}
+          <TooltippedButton
+            tooltip="Reset the demo"
+            onClick={() => {
+              resetPreview();
+              setCode(
+                isTypescriptEnabled ? tsCodeFile.code : tsCodeFile.compiled
+              );
+            }}
+          >
+            <RefreshOutlinedIcon />
+          </TooltippedButton>
+        </CodeBlockAppBar>
+        {isMultiFile && (
+          <TabList
+            {...getTabListProps()}
+            inline
+            fullWidthTabs={false}
+            scrollButtons={readOnlyFileNames.length > 0 ? "auto" : false}
+          >
+            <Tab {...getTabProps(0)}>
+              {tsCodeFile.name.replace(".t", isTypescriptEnabled ? ".t" : ".j")}
+            </Tab>
+            {scssCodeFile && <Tab {...getTabProps(1)}>{scssCodeFile.name}</Tab>}
+            {readOnlyFileNames.map((fileName, i) => (
+              <Tab
+                key={fileName}
+                {...getTabProps(i + startIndex)}
+                icon={<EditOffIcon />}
+              >
+                {fileName}
+              </Tab>
+            ))}
+          </TabList>
+        )}
+        {!isMultiFile && (
+          <TypescriptCodeEditor
+            code={code}
+            editorRef={editorRef}
+            editorProps={editorProps}
+          />
+        )}
+        {isMultiFile && (
+          <div ref={getTabPanelsProps<HTMLDivElement>().ref}>
+            <Slide {...getTabPanelProps(0)} timeout={0}>
+              <TypescriptCodeEditor
+                code={code}
+                editorRef={editorRef}
+                editorProps={editorProps}
               />
             </Slide>
-          )}
-          {!!readOnlyFiles.length &&
-            readOnlyFiles.map((file, i) => (
-              <Slide key={i} {...getTabPanelProps(i + startIndex)} timeout={0}>
-                {file}
+            {scssCodeFile && (
+              <Slide {...getTabPanelProps(1)} timeout={0}>
+                <ScssCodeEditor
+                  key={`${toggled}`}
+                  demoName={demoName}
+                  isCssVisible={isCssVisible}
+                  scssCodeFile={scssCodeFile}
+                />
               </Slide>
-            ))}
-        </div>
-      )}
+            )}
+            {!!readOnlyFiles.length &&
+              readOnlyFiles.map((file, i) => (
+                <Slide
+                  key={i}
+                  {...getTabPanelProps(i + startIndex)}
+                  timeout={0}
+                >
+                  {file}
+                </Slide>
+              ))}
+          </div>
+        )}
+      </MenuConfigurationProvider>
     </ToastManagerProvider>
   );
 }
