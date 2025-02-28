@@ -16,7 +16,8 @@ import {
  * @example Simple Example
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import { DropdownMenu, MenuItemSwitch } from "@react-md/core";
+ * import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+ * import { MenuItemSwitch } from "@react-md/core/menu/MenuItemSwitch";
  *
  * function Example(): ReactElement {
  *   const [checked, setChecked] = useState(false);

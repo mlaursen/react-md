@@ -65,12 +65,10 @@ export interface LayoutNavProps
  * @example Full Height Layout
  * ```tsx
  * "use client";
- * import {
- *   LayoutAppBar,
- *   LayoutNav,
- *   Main,
- *   useHorizontalLayoutTransition,
- * } from "@react-md/core";
+ * import { LayoutAppBar } from "@react-md/core/layout/LayoutAppBar";
+ * import { LayoutNav } from "@react-md/core/layout/LayoutNav";
+ * import { Main } from "@react-md/core/layout/Main";
+ * import { useHorizontalLayoutTransition } from "@react-md/core/layout/useHorizontalLayoutTransition";
  * import type { ReactElement, PropsWithChildren } from "react";
  *
  * function Layout({ children }: PropsWithChildren): ReactElement {
@@ -97,12 +95,10 @@ export interface LayoutNavProps
  * @example Toggleable Layout
  * ```tsx
  * "use client";
- * import {
- *   LayoutNav,
- *   Main,
- *   useHorizontalLayoutTransition,
- *   useToggle,
- * } from "@react-md/core";
+ * import { LayoutAppBar } from "@react-md/core/layout/LayoutAppBar";
+ * import { Main } from "@react-md/core/layout/Main";
+ * import { useHorizontalLayoutTransition } from "@react-md/core/layout/useHorizontalLayoutTransition";
+ * import { useToggle } from "@react-md/core/useToggle";
  * import MenuIcon from "@react-md/material-icons/MenuIcon";
  * import { cnb } from "cnbuilder";
  * import type { ReactElement, PropsWithChildren } from "react";

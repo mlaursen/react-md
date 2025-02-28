@@ -40,7 +40,7 @@ export interface SkeletonPlaceholderProps
  * @example Simple Example
  * ```tsx
  * import type { ReactElement } from "@react";
- * import { SkeletonPlaceholder } from "@react-md/core";
+ * import { SkeletonPlaceholder } from "@react-md/core/transition/SkeletonPlaceholder";
  *
  * interface ExampleProps {
  *   loading: boolean;
@@ -59,7 +59,7 @@ export interface SkeletonPlaceholderProps
  * @example Pre-rendered Layout
  * ```tsx
  * import type { ReactElement } from "@react";
- * import { SkeletonPlaceholder } from "@react-md/core";
+ * import { SkeletonPlaceholder } from "@react-md/core/transition/SkeletonPlaceholder";
  *
  * interface Data {
  *   id: string;

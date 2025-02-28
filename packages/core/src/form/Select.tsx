@@ -57,8 +57,8 @@ const noop = (): void => {
  *
  * @example Simple Usage
  * ```tsx
- * import type { SelectedChangeEvent } from "@react-md/core";
- * import { Select, Option } from "@react-md/core";
+ * import { Select, type SelectChangeEvent } from "@react-md/core/form/Select";
+ * import { Option } from "@react-md/core/form/Option";
  * import type { ReactElement } from "react";
  *
  * type Value = "" | "a" | "b" | "c" | "d";
@@ -219,7 +219,8 @@ export interface SelectProps<Value extends string>
  *
  * @example Simple Example
  * ```tsx
- * import { Select, Option } from "react-md";
+ * import { Option } from "@react-md/core/form/Option";
+ * import { Select } from "@react-md/core/form/Select";
  * import { useState, type ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -239,31 +240,6 @@ export interface SelectProps<Value extends string>
  *     </Select>
  *   );
  * }
- * ```
- *
- * @example Testing
- * ```tsx
- * rmdRender(
- *   <Select label="Select" selectedOptionProps={{ "data-testid": "selected" }}>
- *     <Option value="a">Option 1</Option>
- *     <Option value="b">Option 2</Option>
- *     <Option value="c">Option 3</Option>
- *     <Option value="d">Option 4</Option>
- *   </Select>
- * );
- *
- * const user = userEvent.setup();
- * const select = screen.getByRole("combobox", { name: "Select" });
- * const selected = screen.getByTestId("selected")
- * const selectInput = screen.getByRole("textbox", { hidden: true });
- * expect(selected).toHaveTextContent("");
- * expect(selectInput).toHaveValue("");
- *
- * await user.click(select);
- * await user.click(screen.getByRole("option"), { name: "Option 2" });
- *
- * expect(selected).toHaveTextContent("Option 2");
- * expect(selectInput).toHaveValue("b");
  * ```
  *
  * @since 6.0.0 Rewritten with a new API.

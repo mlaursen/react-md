@@ -314,7 +314,9 @@ export interface TooltipImplementation<
 /**
  * @example Simple Usage
  * ```tsx
- * import { Button, useTooltip, Tooltip } from "@react-md/core";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { Tooltip } from "@react-md/core/tooltip/Tooltip";
+ * import { useTooltip } from "@react-md/core/tooltip/useTooltip";
  *
  * function Example() {
  *   const { elementProps, tooltipProps } = useTooltip();
@@ -332,13 +334,10 @@ export interface TooltipImplementation<
  *
  * @example Overflow-only Tooltips
  * ```tsx
- * import {
- *   cssUtils,
- *   Link,
- *   Tooltip,
- *   useTooltip,
- *   type LinkProps,
- * } from "@react-md/core";
+ * import { cssUtils } from "@react-md/core/cssUtils";
+ * import { Link, type LinkProps } from "@react-md/core/link/Link";
+ * import { Tooltip } from "@react-md/core/tooltip/Tooltip";
+ * import { useTooltip } from "@react-md/core/tooltip/useTooltip";
  * import { type ReactElement } from "react";
  *
  * function NavigationLink(props: LinkProps): ReactElement {

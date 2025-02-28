@@ -45,7 +45,7 @@ export class ResizeObserverMock implements ResizeObserver {
    *   cleanupResizeObserverAfterEach,
    *   setupResizeObserverMock,
    * } from "@react-md/core/test-utils";
-   * import { useResizeObserver } from "@react-md/core";
+   * import { useResizeObserver } from "@react-md/core/useResizeObserver";
    * import { ExampleComponent } from "../ExampleComponent.js";
    *
    * // choose your test framework

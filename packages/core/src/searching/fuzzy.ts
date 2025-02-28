@@ -5,7 +5,8 @@ import { defaultExtractor, search } from "./utils.js";
 /**
  * @example
  * ```tsx
- * import { createFuzzyRegExp, toSearchQuery } from "@react-md/core":
+ * import { createFuzzyRegExp } from "@react-md/core/searching/fuzzy":
+ * import { toSearchQuery } from "@react-md/core/searching/toSearchQuery":
  * import { useDeferredValue, useMemo, useState, type ReactElement } from "react";
  *
  * function Example(): ReactElement {

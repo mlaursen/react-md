@@ -46,7 +46,7 @@ export interface MainProps
  *
  * @example Styles Only
  * ```tsx
- * import { main as mainStyles } from "@react-md/core":
+ * import { main as mainStyles } from "@react-md/core/layout/mainStyles":
  *
  * function MyCustomMainElement({ children }) {
  *   return (

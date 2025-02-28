@@ -105,7 +105,7 @@ export interface TextFieldProps
  *
  * @example Simple Example
  * ```tsx
- * import { TextField } from "@react-md/core";
+ * import { TextField } from "@react-md/core/form/TextField";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

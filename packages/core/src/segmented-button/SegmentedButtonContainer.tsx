@@ -2,7 +2,7 @@ import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
 
 import {
   type SegmentedButtonContainerClassNameOptions,
-  segmentedButtonContainerStyles,
+  segmentedButtonContainer,
 } from "./segmentedButtonContainerStyles.js";
 
 /**
@@ -16,21 +16,19 @@ export interface SegmentedButtonContainerProps
 
 /**
  * Simple wrapper `div` to apply the segmented button container styles. You can
- * just use the {@link segmentedButtonContainerStyles} util function instead.
+ * just use the {@link segmentedButtonContainer} util function instead.
  *
  * @example Without This Component
  * ```tsx
- * import {
- *   SegmentedButton,
- *   segmentedButtonContainerStyles,
- * } from "@react-md/core";
+ * import { SegmentedButton } from "@react-md/core/segmented-button/SegmentedButton";
+ * import { segmentedButtonContainer } from "@react-md/core/segmented-button/SegmentedButtonContainer";
  * import type { ReactElement } from "react";
  *
  * import { CustomWrapperComponent } from "./CustomWrapperComponent.jsx";
  *
  * function Example(): ReactElement {
  *   return (
- *     <CustomWrapperComponent className={segmentedButtonContainerStyles()}>
+ *     <CustomWrapperComponent className={segmentedButtonContainer()}>
  *       <SegmentedButton>One</SegmentedButton>
  *       <SegmentedButton>Two</SegmentedButton>
  *       <SegmentedButton>Three</SegmentedButton>
@@ -51,7 +49,7 @@ export const SegmentedButtonContainer = forwardRef<
     <div
       {...remaining}
       ref={ref}
-      className={segmentedButtonContainerStyles({
+      className={segmentedButtonContainer({
         className,
         disableFullWidth,
       })}

@@ -24,7 +24,8 @@ export interface TextContainerClassNameOptions {
 /**
  * @example Simple Example
  * ```tsx
- * import { textContainer, Typography } from "@react-md/core";
+ * import { textContainer } from "@react-md/core/typography/textContainerStyles";
+ * import { Typography } from "@react-md/core/typography/Typography";
  *
  * function Example() {
  *   return (

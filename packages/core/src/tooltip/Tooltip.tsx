@@ -92,7 +92,9 @@ export interface TooltipProps
  *
  * @example Simple Usage
  * ```tsx
- * import { Button, useTooltip, Tooltip } from "@react-md/core";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { Tooltip } from "@react-md/core/tooltip/Tooltip";
+ * import { useTooltip } from "@react-md/core/tooltip/useTooltip";
  *
  * function Example() {
  *   const { elementProps, tooltipProps } = useTooltip();

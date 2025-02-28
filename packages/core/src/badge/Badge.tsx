@@ -12,8 +12,9 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 /**
  * @example Simple Example
  * ```tsx
- * import type { ReactElement } from "react";
- * import { Badge, Button, MaterialSymbol } from "@react-md/core";
+ * import { Badge } from "@react-md/core/badge/Badge";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   return (
@@ -30,8 +31,10 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
  *
  * @example Within Buttons Example
  * ```tsx
- * import type { ReactElement } from "react";
- * import { Badge, Button, MaterialSymbol } from "@react-md/core";
+ * import { Badge } from "@react-md/core/badge/Badge";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { MaterialSymbol } from "@react-md/core/icon/MaterialSymbol";
+ * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   return (

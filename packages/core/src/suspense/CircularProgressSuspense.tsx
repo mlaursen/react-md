@@ -22,7 +22,7 @@ export interface CircularProgressSuspenseProps extends CircularProgressProps {
  *
  * @example Simple Example
  * ```tsx
- * import { CircularProgressSuspense } from "@react-md/core";
+ * import { CircularProgressSuspense } from "@react-md/core/suspense/CircularProgressSuspense";
  * import type { ReactElement } from "react";
  * import { lazy } from "react";
  *

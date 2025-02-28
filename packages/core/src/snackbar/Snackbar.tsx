@@ -48,14 +48,12 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
    *
    * @example
    * ```ts
-   * import type { ToastRendererProps } from "@react-md/core";
-   * import {
-   *   Snackbar,
-   *   Toast,
-   *   ToastContent,
-   *   useToastManager,
-   * } from "@react-md/core";
-   * import type { ReactElement } from "react";
+   * import { Snackbar } from "@react-md/core/snackbar/Snackbar";
+   * import { Toast } from "@react-md/core/snackbar/Toast";
+   * import { ToastContent } from "@react-md/core/snackbar/ToastContent";
+   * import { type ToastRendererProps } from "@react-md/core/snackbar/DefaultToastRenderer";
+   * import { useToastManager } from "@react-md/core/snackbar/ToastManagerProvider";
+   * import { type ReactElement } from "react";
    *
    * function CustomToast(props: CustomToastRendererProps): ReactElement {
    *   // Pretend like we don't need anything else from the toast since the
@@ -122,7 +120,9 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
  *
  * @example Super Simple Example
  * ```tsx
- * import { Button, Snackbar, addToast } from "@react-md/core";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { Snackbar } from "@react-md/core/snackbar/Snackbar";
+ * import { addToast } from "@react-md/core/snackbar/ToastManager";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

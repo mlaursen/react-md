@@ -17,7 +17,9 @@ export interface NoSsrProps {
  *
  * @example Simple Example
  * ```tsx
- * import { CoreProviders, NoSsr, Typography } from "@react-md/core";
+ * import { NoSsr } from "@react-md/core/NoSsr";
+ * import { CoreProviders } from "@react-md/core/CoreProviders"
+ * import { Typography } from "@react-md/core/typography/Typography"
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

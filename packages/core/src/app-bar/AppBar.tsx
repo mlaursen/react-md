@@ -36,7 +36,9 @@ export interface AppBarProps
 /**
  * @example Simple Example
  * ```tsx
- * import { AppBar, AppBarTitle, Button } from "@react-md/core";
+ * import { AppBar } from "@react-md/core/app-bar/AppBar";
+ * import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
+ * import { Button } from "@react-md/core/button/Button";
  * import MenuIcon from "@react-md/material-icons/MenuIcon";
  * import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
  * import type { ReactElement } from "react";

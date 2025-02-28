@@ -85,7 +85,8 @@ export interface FileInputProps
  *
  * @example Simple Example
  * ```tsx
- * import { FileInput, Form } from "@react-md/core";
+ * import { FileInput } from "@react-md/core/form/FileInput";
+ * import { Form } from "@react-md/core/form/Form";
  * import type { ReactElement } from "react";
  *
  * const extensions = [

@@ -54,14 +54,14 @@ export interface TableRadioProps
   sticky?: boolean;
 
   /**
-   * This allows you to override any props for the checkbox that are not
+   * This allows you to override any props for the radio that are not
    * configurable as top-level props.
    *
    * @example Simple Example
    * ```tsx
-   * checkboxProps={{
+   * radioProps={{
    *   id: "some-custom-id",
-   *   ref: checkboxRef,
+   *   ref: radioRef,
    * }}
    * ```
    *
@@ -78,16 +78,14 @@ export interface TableRadioProps
  *
  * @example Simple Example
  * ```tsx
- * import {
- *   Table,
- *   TableBody,
- *   TableCell,
- *   TableRadio,
- *   TableContainer,
- *   TableHeader,
- *   TableRow,
- *   useRadioGroup,
- * } from "@react-md/core";
+ * import { useRadioGroup } from "@react-md/core/form/useRadioGroup";
+ * import { Table } from "@react-md/core/table/Table";
+ * import { TableBody } from "@react-md/core/table/TableBody";
+ * import { TableCell } from "@react-md/core/table/TableCell";
+ * import { TableContainer } from "@react-md/core/table/TableContainer";
+ * import { TableHeader } from "@react-md/core/table/TableHeader";
+ * import { TableRadio } from "@react-md/core/table/TableRadio";
+ * import { TableRow } from "@react-md/core/table/TableRow";
  * import type { ReactElement } from "react";
  *
  * const rows = [

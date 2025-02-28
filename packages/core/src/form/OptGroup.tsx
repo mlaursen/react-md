@@ -46,7 +46,9 @@ export interface OptGroupProps extends Omit<ListProps, "role"> {
  *
  * @example Simple Example
  * ```tsx
- * import { Select, OptGroup, Option } from "@react-md/core";
+ * import { Select } from "@react-md/core/form/Select";
+ * import { OptGroup } from "@react-md/core/form/OptGroup";
+ * import { Option } from "@react-md/core/form/Option";
  * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
  * import type { ReactElement } from "react";
  *

@@ -103,7 +103,7 @@ export interface TypographyProps
  *
  * @example All Example
  * ```tsx
- * import { Typography } from "@react-md/core":
+ * import { Typography } from "@react-md/core/typography/Typography":
  *
  * export function Example() {
  *   return (

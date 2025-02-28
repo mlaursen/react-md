@@ -36,12 +36,10 @@ export interface MenuItemCircularProgressProps extends CircularProgressProps {
  * @example Simple Example
  * ```tsx
  * "use client";
- * import {
- *   DropdownMenu,
- *   MenuItem,
- *   MenuItemCircularProgress,
- *   useAsyncFunction,
- * } from "@react-md/core";
+ * import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+ * import { MenuItem } from "@react-md/core/menu/MenuItem";
+ * import { MenuItemCircularProgress } from "@react-md/core/menu/MenuItemCircularProgress";
+ * import { useAsyncFunction } from "@react-md/core/useAsyncFunction";
  *
  * function Example() {
  *   const { handleAsync, pending } = useAsyncFunction();

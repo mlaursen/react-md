@@ -30,16 +30,14 @@ export interface CardProps
 /**
  * @example Simple Example
  * ```tsx
- * import {
- *   Button,
- *   Card,
- *   CardContent,
- *   CardFooter,
- *   CardHeader,
- *   CardTitle,
- *   CardSubtitle,
- *   Typography,
- * } from "@react-md/core";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { Card } from "@react-md/core/card/Card";
+ * import { CardContent } from "@react-md/core/card/CardContent";
+ * import { CardFooter } from "@react-md/core/card/CardFooter";
+ * import { CardHeader } from "@react-md/core/card/CardHeader";
+ * import { CardTitle } from "@react-md/core/card/CardTitle";
+ * import { CardSubtitle } from "@react-md/core/card/CardSubtitle";
+ * import { Typography } from "@react-md/core/typography/Typography";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

@@ -28,13 +28,11 @@ export type MenuItemGroupProps = LabelRequiredForA11y<
  * @example Simple Example
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import {
- *   DropdownMenu,
- *   MenuItemGroup,
- *   MenuItemRadio,
- *   MenuItemSeparator,
- *   MenuItemSwitch,
- * } from "@react-md/core";
+ * import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+ * import { MenuItemGroup } from "@react-md/core/menu/MenuItemGroup";
+ * import { MenuItemRadio } from "@react-md/core/menu/MenuItemRadio";
+ * import { MenuItemSeparator } from "@react-md/core/menu/MenuItemSeparator";
+ * import { MenuItemSwitch } from "@react-md/core/menu/MenuItemSwitch";
  *
  * function Example(): ReactElement {
  *   const [value, setValue] = useState("value1");

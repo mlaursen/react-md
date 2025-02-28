@@ -51,7 +51,7 @@ export interface RootHtmlProps extends HtmlHTMLAttributes<HTMLHtmlElement> {
  * @example Simple Example
  * ```tsx
  * // src/app/layout.tsx
- * import { RootHtml } from "@react-md/core";
+ * import { RootHtml } from "@react-md/core/RootHtml";
  * import { type ReactElement, type PropsWithChildren } from "react";
  * import { Roboto_Flex } from "next/font/google";
  *

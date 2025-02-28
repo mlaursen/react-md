@@ -77,7 +77,7 @@ const returnNegative1 = (): number => -1;
  * import {
  *   KeyboardMovementProvider,
  *   useKeyboardMovementProvider,
- * } from "@react-md/core";
+ * } from "@react-md/core/movement/useKeyboardMovementProvider";
  * import type { ReactElement, ReactNode } from "react";
  *
  * function Example({ children }: { children: ReactNode }): ReactElement {
@@ -101,7 +101,7 @@ const returnNegative1 = (): number => -1;
  *   KeyboardMovementProvider,
  *   useKeyboardMovementContext,
  *   useKeyboardMovementProvider,
- * } from "@react-md/core";
+ * } from "@react-md/core/movement/useKeyboardMovementProvider";
  * import type { ReactElement, ReactNode } from "react";
  * import { useId } from "react";
  *
@@ -147,7 +147,7 @@ const returnNegative1 = (): number => -1;
  *   KeyboardMovementProvider,
  *   useKeyboardMovementContext,
  *   useKeyboardMovementProvider,
- * } from "@react-md/core";
+ * } from "@react-md/core/movement/useKeyboardMovementProvider";
  * import type { ReactElement, ReactNode } from "react";
  * import { useId } from "react";
  *

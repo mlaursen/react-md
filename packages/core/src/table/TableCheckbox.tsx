@@ -83,16 +83,14 @@ export interface TableCheckboxProps
  *
  * @example Simple Example
  * ```tsx
- * import {
- *   Table,
- *   TableBody,
- *   TableCell,
- *   TableCheckbox,
- *   TableContainer,
- *   TableHeader,
- *   TableRow,
- *   useCheckboxGroup
- * } from "@react-md/core";
+ * import { useCheckboxGroup } from "@react-md/core/form/useCheckboxGroup";
+ * import { Table } from "@react-md/core/table/Table";
+ * import { TableBody } from "@react-md/core/table/TableBody";
+ * import { TableCell } from "@react-md/core/table/TableCell";
+ * import { TableCheckbox } from "@react-md/core/table/TableCheckbox";
+ * import { TableContainer } from "@react-md/core/table/TableContainer";
+ * import { TableHeader } from "@react-md/core/table/TableHeader";
+ * import { TableRow } from "@react-md/core/table/TableRow";
  * import { type ReactElement } from "react";
  *
  * const rows = [

@@ -81,7 +81,8 @@ export interface SlideContainerProps
  *
  * @example Simple Example
  * ```tsx
- * import { SlideContainer, Slide } from "@react-md/core";
+ * import { Slide } from "@react-md/core/transition/Slide";
+ * import { SlideContainer } from "@react-md/core/transition/SlideContainer";
  * import type { ReactElement, ReactNode } from "react";
  * import { useState } from "react";
  *

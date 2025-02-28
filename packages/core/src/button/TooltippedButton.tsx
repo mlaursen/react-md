@@ -58,7 +58,7 @@ export interface TooltippedButtonProps extends ButtonProps {
  *
  * @example
  * ```tsx
- * import { TooltippedButton } from "@react-md/core";
+ * import { TooltippedButton } from "@react-md/core/button/TooltippedButton";
  * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
  *
  * export default function Example(): ReactElement {

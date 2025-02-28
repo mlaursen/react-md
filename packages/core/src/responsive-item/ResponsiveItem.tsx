@@ -21,7 +21,7 @@ export interface ResponsiveItemProps
 /**
  * @example Image Example
  * ```tsx
- * import { ResponsiveItem } from "@react-md/core";
+ * import { ResponsiveItem } from "@react-md/core/responsive-item/ResponsiveItem";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -35,7 +35,7 @@ export interface ResponsiveItemProps
  *
  * @example Iframe Example
  * ```tsx
- * import { ResponsiveItem } from "@react-md/core";
+ * import { ResponsiveItem } from "@react-md/core/responsive-item/ResponsiveItem";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -53,7 +53,7 @@ export interface ResponsiveItemProps
  *
  * @example Forced Aspect Ratio
  * ```tsx
- * import { ResponsiveItem } from "@react-md/core";
+ * import { ResponsiveItem } from "@react-md/core/responsive-item/ResponsiveItem";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

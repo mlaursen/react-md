@@ -88,13 +88,9 @@ export interface ExpansionPanelHeaderProps
  *
  * @example Custom Header
  * ```tsx
- * import type { ExpansionPanelProps } from "@react-md/core";
- * import {
- *   ExpansionPanel,
- *   ExpansionPanelHeader,
- * } from "@react-md/core";
- * import type { ReactElement } from "react";
- * const { useId } from "react";
+ * import { ExpansionPanel, type ExpansionPanelProps } from "@react-md/core/expansion-panel/ExpansionPanel";
+ * import { ExpansionPanelHeader } from "@react-md/core/expansion-panel/ExpansionPanelHeader";
+ * import { type ReactElement, useId } from "react";
  *
  * export type CustomExpansionPanelProps = ExpansionPanelProps & { id: string; };
  *

@@ -68,7 +68,8 @@ export type DropdownMenuProps = DropdownMenuButtonProps &
  * @example Simple Example
  * ```tsx
  * import type { ReactElement } from "react";
- * import { DropdownMenu, MenuItem } from "@react-md/core";
+ * import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+ * import { MenuItem } from "@react-md/core/menu/MenuItem";
  *
  * function Example() {
  *   return (
@@ -87,7 +88,8 @@ export type DropdownMenuProps = DropdownMenuButtonProps &
  * @example Nested Dropdown Menus
  * ```tsx
  * import type { ReactElement } from "react";
- * import { DropdownMenu, MenuItem } from "@react-md/core";
+ * import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+ * import { MenuItem } from "@react-md/core/menu/MenuItem";
  *
  * function Example() {
  *   return (

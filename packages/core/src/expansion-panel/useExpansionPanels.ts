@@ -125,11 +125,9 @@ export interface ExpansionPanelImplementation {
  *
  * @example Index Based Panels
  * ```tsx
- * import {
- *   ExpansionList,
- *   ExpansionPanel,
- *   useExpansionPanels,
- * } from "@react-md/core";
+ * import { ExpansionList } from "@react-md/core/expansion-panel/ExpansionList";
+ * import { ExpansionPanel } from "@react-md/core/expansion-panel/ExpansionPanel";
+ * import { useExpansionPanels } from "@react-md/core/expansion-panel/useExpansionPanels";
  * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -153,11 +151,9 @@ export interface ExpansionPanelImplementation {
  *
  * @example Custom Panel Ids and Expand All Panels by Default
  * ```tsx
- * import {
- *   ExpansionList,
- *   ExpansionPanel,
- *   useExpansionPanels,
- * } from "@react-md/core";
+ * import { ExpansionList } from "@react-md/core/expansion-panel/ExpansionList";
+ * import { ExpansionPanel } from "@react-md/core/expansion-panel/ExpansionPanel";
+ * import { useExpansionPanels } from "@react-md/core/expansion-panel/useExpansionPanels";
  * import { type ReactElement } from "react";
  *
  * import { BillingAddress } from "./BillingAddress";

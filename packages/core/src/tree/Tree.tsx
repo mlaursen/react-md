@@ -120,12 +120,10 @@ export interface TreeProps<T extends TreeItemNode>
   /**
    * @example Custom Tree Item Renderer
    * ```tsx
-   * import {
-   *   TreeItem,
-   *   useKeyboardMovementContext,
-   *   useTreeContext,
-   *   type TreeItemRendererProps,
-   * } from "@react-md/core";
+   * import { useTreeContext } from "@react-md/core/movement/TreeProvider"
+   * import { useKeyboardMovementContext } from "@react-md/core/movement/useKeyboardMovementProvider"
+   * import { TreeItem } from "@react-md/core/tree/TreeItem";
+   * import { type TreeItemRendererProps } from "@react-md/core/tree/types";
    * import FolderIcon from "@react-md/material-icons/FolderIcon";
    * import FolderOpenIcon from "@react-md/material-icons/FolderOpenIcon";
    * import { type ReactElement } from "react";
@@ -181,8 +179,9 @@ export interface TreeProps<T extends TreeItemNode>
  *
  * @example Simple Tree
  * ```tsx
- * import type { TreeData } from "@react-md/core";
- * import { Tree, useTree } from "@react-md/core";
+ * import { Tree } from "@react-md/core/tree/Tree";
+ * import { type TreeData } from "@react-md/core/tree/types";
+ * import { useTree } from "@react-md/core/tree/useTree";
  * import type { ReactElement } from "react";
  *
  * const data: TreeData = {

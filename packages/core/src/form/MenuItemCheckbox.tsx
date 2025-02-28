@@ -18,7 +18,8 @@ import {
  *
  * @example Simple Example
  * ```tsx
- * import { DropdownMenu, MenuItemCheckbox } from "@react-md/core";
+ * import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+ * import { MenuItemCheckbox } from "@react-md/core/menu/MenuItemCheckbox";
  * import { ReactElement, useState } from "react";
  *
  * function Example(): ReactElement {

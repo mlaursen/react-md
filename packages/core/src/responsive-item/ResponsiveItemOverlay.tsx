@@ -18,19 +18,21 @@ export interface ResponsiveItemOverlayProps
 /**
  * @example Simple Example
  * ```tsx
- * import { ResponsiveItemContainer, ResponsiveItemOverlay } from "@react-md/core";
+ * import { CardContent } from "@react-md/core/card/CardContent";
+ * import { ResponsiveItemOverlay } from "@react-md/core/responsive-item/ResponsiveItemOverlay";
+ * import { Typography } from "@react-md/core/typography/Typography";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   return (
- *     <ResponsiveItemContainer>
+ *     <CardContent>
  *       <img alt="" src="/some-image.png" />
  *       <ResponsiveItemOverlay>
  *         <Typography type="headline-5" margin="none">
  *           This appears at the bottom by default.
  *         </Typography>
  *       </ResponsiveItemOverlay>
- *     </ResponsiveItemContainer>
+ *     </CardContent>
  *   );
  * }
  * ```

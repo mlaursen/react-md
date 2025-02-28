@@ -64,7 +64,7 @@ const { Provider } = context;
  *
  * @example Manually Changing the Writing Direction
  * ```tsx
- * import { useDir } from "@react-md/core";
+ * import { useDir } from "@react-md/core/typography/WritingDirectionProvider";
  *
  * function Example() {
  *   const { dir, toggleDir } = useDir();
@@ -139,25 +139,24 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
  *
  * @example Root Setup
  * ```tsx
+ * import { WritingDirectionProvider } from "@react-md/core/typography/WritingDirectionProvider";
  * import { createRoot } from "react-dom/client";
- * import { WritingDirection } from "@react-md/core";
  * import App from "./App.js":
  *
  * const container = document.getElementById("root");
  * const root = createRoot(container);
  *
  * root.render(
- *   <WritingDirection>
+ *   <WritingDirectionProvider>
  *     <App />
- *   </WritingDirection>
+ *   </WritingDirectionProvider>
  * );
  * ```
  *
  * @example Supporting RTL Languages
  * ```tsx
  * import { createRoot } from "react-dom/client";
- * import { WritingDirection } from "@react-md/core";
- * import type { Dir } from "@react-md/core";
+ * import { type Dir, WritingDirectionProvider } from "@react-md/core/typography/WritingDirectionProvider";
  * import App from "./App.js":
  *
  * const container = document.getElementById("root");
@@ -190,9 +189,9 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
  * }
  *
  * root.render(
- *   <WritingDirection defaultDir={defaultDir}>
+ *   <WritingDirectionProvider defaultDir={defaultDir}>
  *     <App />
- *   </WritingDirection>
+ *   </WritingDirectionProvider>
  * );
  * ```
  *

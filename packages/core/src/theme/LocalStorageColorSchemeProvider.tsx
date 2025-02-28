@@ -46,12 +46,10 @@ export interface LocalStorageColorSchemeProviderProps {
  *
  * @example
  * ```tsx
- * import {
- *   LocalStorageColorSchemeProvider,
- *   SegmentedButtonContainer,
- *   SegmentedButton,
- *   useColorScheme,
- * } from "@react-md/core";
+ * import { SegmentedButton } from "@react-md/core/segmented-button/SegmentedButton";
+ * import { SegmentedButtonContainer } from "@react-md/core/segmented-button/SegmentedButtonContainer";
+ * import { LocalStorageColorSchemeProvider } from "@react-md/core/theme/LocalStorageColorSchemeProvider";
+ * import { useColorScheme } from "@react-md/core/theme/useColorScheme";
  * import { createRoot } from "react-dom/client";
  *
  * function MyComponent(): ReactElement {

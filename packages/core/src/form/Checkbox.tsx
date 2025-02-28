@@ -11,7 +11,7 @@ import { type CheckboxProps, InputToggle } from "./InputToggle.js";
  * @example Simple Example
  * ```tsx
  * import type { ReactElement } from "react";
- * import { Checkbox } from "@react-md/core";
+ * import { Checkbox } from "@react-md/core/form/Checkbox";
  *
  * function Example(): ReactElement {
  *   return <Checkbox label="Checkbox" value="a" />;

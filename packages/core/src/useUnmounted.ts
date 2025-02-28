@@ -7,7 +7,7 @@ import type { NonNullRef } from "./types.js";
 /**
  * @example Simple Example
  * ```tsx
- * import { useUnmounted } from "@react-md/core";
+ * import { useUnmounted } from "@react-md/core/useUnmounted";
  * import { useEffect, useState } from "react";
  *
  * function Example(): ReactElement {

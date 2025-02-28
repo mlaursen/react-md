@@ -35,14 +35,12 @@ export interface TableProps
  *
  * @example Responsive Example
  * ```tsx
- * import {
- *   Table,
- *   TableBody,
- *   TableCell,
- *   TableContainer,
- *   TableHeader,
- *   TableRow,
- * } from "@react-md/core";
+ * import { Table } from "@react-md/core/table/Table";
+ * import { TableBody } from "@react-md/core/table/TableBody";
+ * import { TableCell } from "@react-md/core/table/TableCell";
+ * import { TableContainer } from "@react-md/core/table/TableContainer";
+ * import { TableHeader } from "@react-md/core/table/TableHeader";
+ * import { TableRow } from "@react-md/core/table/TableRow";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

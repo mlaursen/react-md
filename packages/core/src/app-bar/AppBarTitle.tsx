@@ -27,7 +27,8 @@ export interface AppBarTitleProps
 /**
  * @example Updating the Keyline
  * ```tsx
- * import { AppBar, AppBarTitle } from "@react-md/core";
+ * import { AppBar } from "@react-md/core/app-bar/AppBar";
+ * import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

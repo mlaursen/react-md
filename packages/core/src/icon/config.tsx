@@ -173,7 +173,7 @@ export type ConfigurableIconName = keyof ConfigurableIcons;
  *
  * @example Mutating this object
  * ```tsx
- * import { ICON_CONFIG } from "@react-md/core";
+ * import { ICON_CONFIG } from "@react-md/core/icon/config";
  * import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
  * import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
  * import CancelIcon from "@react-md/material-icons/CancelIcon";
@@ -244,7 +244,7 @@ export const ICON_CONFIG: ConfiguredIcons = {
  * @example Using SVG Material Icons
  * ```tsx
  * "use client";
- * import { configureIcons } from "@react-md/core";
+ * import { configureIcons } from "@react-md/core/icon/config";
  * import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
  * import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
  * import CancelIcon from "@react-md/material-icons/CancelIcon";

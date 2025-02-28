@@ -70,7 +70,8 @@ export interface ListItemProps
  *
  * @example Simple Example
  * ```tsx
- * import { List, ListItem } from "@react-md/core";
+ * import { List } from "@react-md/core/list/List";
+ * import { ListItem } from "@react-md/core/list/ListItem";
  * import type { ReactElement  } from "react";
  *
  * function Example(): ReactElement {
@@ -99,7 +100,8 @@ export interface ListItemProps
  *
  * @example Applying Addons Example
  * ```tsx
- * import { List, ListItem } from "@react-md/core";
+ * import { List } from "@react-md/core/list/List";
+ * import { ListItem } from "@react-md/core/list/ListItem";
  * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
  * import type { ReactElement  } from "react";
  *

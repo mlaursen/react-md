@@ -184,7 +184,8 @@ export interface TextFieldHookOptions<
    *
    * @example Accessing TextField DOM Node
    * ```tsx
-   * import { TextField, useTextField } from "@react-md/core";
+   * import { TextField } from "@react-md/core/form/TextField";
+   * import { useTextField } from "@react-md/core/form/useTextField";
    * import { useEffect } from "react";
    * import type { ReactElement } from "react";
    *

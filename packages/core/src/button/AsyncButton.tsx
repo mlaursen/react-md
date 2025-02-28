@@ -141,7 +141,7 @@ export interface AsyncButtonProps extends ButtonProps {
  *
  * @example Async onClick
  * ```tsx
- * import { AsyncButton } from "@react-md/core";
+ * import { AsyncButton } from "@react-md/core/button/AsyncButton";
  * import { useState, type ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -163,7 +163,7 @@ export interface AsyncButtonProps extends ButtonProps {
  *
  * @example Manual Loading State
  * ```tsx
- * import { AsyncButton } from "@react-md/core";
+ * import { AsyncButton } from "@react-md/core/button/AsyncButton";
  * import { useMutation } from "@tanstack/query";
  * import { useState, type ReactElement } from "react";
  *

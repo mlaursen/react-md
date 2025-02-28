@@ -38,7 +38,7 @@ export interface ButtonProps
  *
  * @example Simple Example
  * ```tsx
- * import { Button } from "@react-md/core";
+ * import { Button } from "@react-md/core/button/Button";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -56,7 +56,7 @@ export interface ButtonProps
  *
  * @example Theme Example
  * ```tsx
- * import { Button } from "@react-md/core";
+ * import { Button } from "@react-md/core/button/Button";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -76,8 +76,8 @@ export interface ButtonProps
  *
  * @example Icon Button Example
  * ```tsx
- * import { Button } from "@react-md/core";
- * import { FavoriteSVGIcon } from "@react-md/material-icons";
+ * import { Button } from "@react-md/core/button/Button";
+ * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -90,7 +90,7 @@ export interface ButtonProps
  *         // do something
  *       }}
  *     >
- *       <FavoriteSVGIcon />
+ *       <FavoriteIcon />
  *     </Button>
  *   );
  * }
@@ -98,8 +98,8 @@ export interface ButtonProps
  *
  * @example Text Button with icons
  * ```tsx
- * import { Button } from "@react-md/core";
- * import { FavoriteSVGIcon } from "@react-md/material-icons";
+ * import { Button } from "@react-md/core/button/Button";
+ * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -109,7 +109,7 @@ export interface ButtonProps
  *         // do something
  *       }}
  *     >
- *       <FavoriteSVGIcon />
+ *       <FavoriteIcon />
  *       Content
  *     </Button>
  *   );

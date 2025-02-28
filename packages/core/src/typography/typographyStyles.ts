@@ -56,7 +56,7 @@ export type NullableTypographyClassNameOptions = Omit<
  *
  * @example Simple Example
  * ```ts
- * import { typography } from "@react-md/core";
+ * import { typography } from "@react-md/core/typography/typographyStyles";
  *
  * function Example() {
  *   return (
@@ -81,7 +81,7 @@ export type NullableTypographyClassNameOptions = Omit<
  *
  * @example Applying Additional Styles
  * ```ts
- * import { typography } from "@react-md/core";
+ * import { typography } from "@react-md/core/typography/typographyStyles";
  *
  * function Example() {
  *   return (

@@ -163,7 +163,7 @@ export interface ChipProps
 /**
  * @example Simple Example
  * ```tsx
- * import { Chip } from "@react-md/core";
+ * import { Chip } from "@react-md/core/chip/Chip";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -173,7 +173,7 @@ export interface ChipProps
  *
  * @example Outlined Example
  * ```tsx
- * import { Chip } from "@react-md/core";
+ * import { Chip } from "@react-md/core/chip/Chip";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -183,7 +183,8 @@ export interface ChipProps
  *
  * @example Addons Example
  * ```tsx
- * import { Avatar, Chip } from "@react-md/core";
+ * import { Avatar } from "@react-md/core/avatar/Avatar";
+ * import { Chip } from "@react-md/core/chip/Chip";
  * import AddCircleIcon from "@react-md/material-icons/AddCircleIcon";
  * import type { ReactElement } from "react";
  *

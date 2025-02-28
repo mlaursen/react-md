@@ -17,7 +17,7 @@ import { type ListItemChildrenProps } from "./types.js";
  *
  * @example Custom Component Usage
  * ```tsx
- * import { ListItemChildren } from "@react-md/core";
+ * import { ListItemChildren } from "@react-md/core/list/ListItemChildren";
  * import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
  * import type { ReactElement } from "react";
  *

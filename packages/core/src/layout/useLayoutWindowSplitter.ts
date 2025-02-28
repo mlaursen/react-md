@@ -75,8 +75,9 @@ export interface LayoutWindowSplitterImplementation
  *
  * @example Without this hook
  * ```tsx
- * import { useWindowSize, useWindowSplitter } from "@react-md/core";
- * import type { ProvidedLayoutWindowSplitterProps } from "@react-md/core";
+ * import { type ProvidedLayoutWindowSplitterProps } from "@react-md/core/layout/useLayoutWindowSplitter";
+ * import { useWindowSplitter } from "@react-md/core/window-splitter/useWindowSplitter";
+ * import { useWindowSize } from "@react-md/core/useWindowSize.js";
  *
  * export function useMyLayoutWindowSplitter(): ProvidedLayoutWindowSplitterProps {
  *   const { width } = useWindowSize({ disableHeight: true });

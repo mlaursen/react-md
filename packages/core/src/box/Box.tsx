@@ -25,7 +25,7 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
  * ```
  *
  * ```tsx
- * import { Box } from "@react-md/core";
+ * import { Box } from "@react-md/core/box/Box";
  * import type { ReactElement } from "react";
  *
  * export default function Example(): ReactElement {
@@ -53,7 +53,7 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
  * ```
  *
  * ```tsx
- * import { Box } from "@react-md/core";
+ * import { Box } from "@react-md/core/box/Box";
  * import type { ReactElement } from "react";
  *
  * export default function Example(): ReactElement {
@@ -87,7 +87,7 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
  * ```
  *
  * ```tsx
- * import { Box } from "@react-md/core";
+ * import { Box } from "@react-md/core/box/Box";
  * import type { ReactElement } from "react";
  *
  * export default function Example(): ReactElement {

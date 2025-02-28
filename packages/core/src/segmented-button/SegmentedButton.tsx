@@ -66,10 +66,8 @@ export interface SegmentedButtonProps
  *
  * @example Simple Example
  * ```tsx
- * import {
- *   SegmentedButton,
- *   SegmentedButtonContainer,
- * } from "@react-md/core";
+ * import { SegmentedButton } from "@react-md/core/segmented-button/SegmentedButton";
+ * import { SegmentedButtonContainer } from "@react-md/core/segmented-button/SegmentedButtonContainer";
  * import type { ReactElement } from "react";
  * import { useState } from "react";
  *

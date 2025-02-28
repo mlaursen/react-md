@@ -41,7 +41,8 @@ export interface SwitchProps
 /**
  * @example Simple Example
  * ```tsx
- * import { Form, Switch } from "@react-md/core";
+ * import { Form } from "@react-md/core/form/Form";
+ * import { Switch } from "@react-md/core/form/Switch";
  * import type { ReactElement } from "react";
  * import { useState } from "react";
  *

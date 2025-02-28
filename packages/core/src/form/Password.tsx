@@ -123,7 +123,7 @@ export interface PasswordProps
  *
  * @example Simple Example
  * ```tsx
- * import { Password } from "@react-md/core";
+ * import { Password } from "@react-md/core/form/Password";
  *
  * function Example(): ReactElement {
  *   return (

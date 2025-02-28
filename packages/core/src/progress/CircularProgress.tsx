@@ -118,7 +118,7 @@ const styles = bem("rmd-circular-progress");
 /**
  * @example Indeterminate Example
  * ```tsx
- * import { CircularProgress } from "@react-md/core":
+ * import { CircularProgress } from "@react-md/core/progress/CircularProgress":
  * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -128,7 +128,7 @@ const styles = bem("rmd-circular-progress");
  *
  * @example Determinate Example
  * ```tsx
- * import { CircularProgress } from "@react-md/core":
+ * import { CircularProgress } from "@react-md/core/progress/CircularProgress":
  * import { useState, type ReactElement } from "react";
  *
  * function Example(): ReactElement {

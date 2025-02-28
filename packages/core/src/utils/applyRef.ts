@@ -7,7 +7,7 @@ import type { MutableRefObject, Ref } from "react";
  * @example Simple Example
  * ```tsx
  * import { HTMLAttributes, forwardRef } from "react";
- * import { applyRef } from "@react-md/core";
+ * import { applyRef } from "@react-md/core/utils/applyRef";
  *
  * export type ExampleProps = HTMLAttributes<HTMLDivElement>;
  *

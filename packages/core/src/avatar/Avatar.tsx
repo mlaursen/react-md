@@ -88,7 +88,7 @@ export interface AvatarProps
  *
  * @example Simple Example
  * ```tsx
- * import { Avatar } from "@react-md/core";
+ * import { Avatar } from "@react-md/core/avatar/Avatar";
  * import { type ReactElement } from "react";
  *
  * export function Example(): ReactElement {

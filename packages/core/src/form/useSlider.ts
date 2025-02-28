@@ -59,7 +59,9 @@ export interface SliderOptions extends SliderValueOptions {
 /**
  * @example Simple Example
  * ```tsx
- * import { Form, Slider, useSlider } from "@react-md/core";
+ * import { Form } from "@react-md/core/form/Form";
+ * import { Slider } from "@react-md/core/form/Slider";
+ * import { useSlider } from "@react-md/core/form/useSlider";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

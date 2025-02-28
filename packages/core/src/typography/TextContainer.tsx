@@ -21,7 +21,8 @@ export interface TextContainerProps
  *
  * @example Simple Example
  * ```tsx
- * import { TextContainer, Typography } from "@react-md/core";
+ * import { TextContainer } from "@react-md/core/typography/TextContainer";
+ * import { Typography } from "@react-md/core/typography/Typography";
  *
  * function Example() {
  *   return (

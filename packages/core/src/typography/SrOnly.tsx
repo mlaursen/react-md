@@ -33,7 +33,7 @@ export interface SrOnlyProps extends HTMLAttributes<TypographyHTMLElement> {
  *
  * @example Simple Example
  * ```tsx
- * import { SrOnly } from "@react-md/core";
+ * import { SrOnly } from "@react-md/core/typography/SrOnly";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

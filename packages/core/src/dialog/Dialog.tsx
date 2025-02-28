@@ -191,16 +191,14 @@ export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
  *
  * @example Simple Example
  * ```tsx
- * import {
- *   Button,
- *   Dialog,
- *   DialogHeader,
- *   DialogTitle,
- *   DialogContent,
- *   DialogFooter,
- *   Typography,
- *   useToggle,
- * } from "@react-md/core";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { Dialog } from "@react-md/core/dialog/Dialog";
+ * import { DialogContent } from "@react-md/core/dialog/DialogContent";
+ * import { DialogFooter } from "@react-md/core/dialog/DialogFooter";
+ * import { DialogHeader } from "@react-md/core/dialog/DialogHeader";
+ * import { DialogTitle } from "@react-md/core/dialog/DialogTitle";
+ * import { Typography } from "@react-md/core/typography/Typography";
+ * import { useToggle } from "@react-md/core/useToggle";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

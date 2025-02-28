@@ -36,7 +36,8 @@ export interface ClickableCardProps
  *
  * @example Simple Example
  * ```tsx
- * import { CardContent, ClickableCard } from "@react-md/core";
+ * import { CardContent } from "@react-md/core/card/CardContent"
+ * import { ClickableCard } from "@react-md/core/card/ClickableCard";
  * import { type ReactElement } from "react";
  *
  * export default function ClickableCardExample(): ReactElement {

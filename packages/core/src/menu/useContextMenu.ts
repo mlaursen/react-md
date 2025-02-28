@@ -64,7 +64,9 @@ const noop = (): void => {
  * @example Simple Example
  * ```tsx
  * import type { ReactElement } from "react";
- * import [ Menu, MenuItem, useContextMenu ] from "@react-md/core":
+ * import { Menu } from "@react-md/core/menu/Menu":
+ * import { MenuItem } from "@react-md/core/menu/MenuItem":
+ * import { useContextMenu } from "@react-md/core/menu/useContextMenu":
  *
  * function Example(): ReactElement {
  *   const { menuProps, onContextMenu } = useContextMenu();

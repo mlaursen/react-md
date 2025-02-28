@@ -11,7 +11,9 @@ import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
  *
  * @example Debounced Search API Requests
  * ```tsx
- * import { TextField, useDebouncedFunction, useUnmounted } from "@react-md/core";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useDebouncedFunction } from "@react-md/core/useDebouncedFunction";
+ * import { useUnmounted } from "@react-md/core/useUnmounted";
  * import { useState } from "react";
  * import type { ReactElement } from "react";
  *

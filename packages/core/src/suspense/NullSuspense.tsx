@@ -12,7 +12,7 @@ export interface NullSuspenseProps {
  *
  * @example Simple Example
  * ```tsx
- * import { NullSuspense } from "@react-md/core";
+ * import { NullSuspense } from "@react-md/core/suspense/NullSuspense";
  * import type { ReactElement } from "react";
  * import { lazy } from "react";
  *

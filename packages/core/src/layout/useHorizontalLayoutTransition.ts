@@ -42,7 +42,9 @@ export interface HorizontalLayoutTransitionOptions
 /**
  * @example
  * ```tsx
- * import { LayoutAppBar, Main, useHorizontalLayoutTransition } from "@react-md/core";
+ * import { LayoutAppBar } from "@react-md/core/layout/LayoutAppBar";
+ * import { Main } from "@react-md/core/layout/Main";
+ * import { useHorizontalLayoutTransition } from "@react-md/core/layout/useHorizontalLayoutTransition";
  * import type { ReactElement, ReactNode } from "react";
  *
  * interface Props {

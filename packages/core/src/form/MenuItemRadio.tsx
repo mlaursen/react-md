@@ -26,7 +26,8 @@ import {
  * @example Only Radio Items
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import { DropdownMenu, MenuItemRadio } from "@react-md/core";
+ * import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+ * import { MenuItemRadio } from "@react-md/core/menu/MenuItemRadio";
  *
  * function Example(): ReactElement {
  *   const [value, setValue] = useState("value1");
@@ -61,13 +62,11 @@ import {
  *
  * @example With Other Items
  * ```tsx
- * import {
- *   DropdownMenu,
- *   MenuItemGroup,
- *   MenuItemRadio,
- *   MenuItemSwitch,
- *   MenuItemSeparator,
- * } from "@react-md/core";
+ * import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+ * import { MenuItemGroup } from "@react-md/core/menu/MenuItemGroup";
+ * import { MenuItemRadio } from "@react-md/core/menu/MenuItemRadio";
+ * import { MenuItemSeparator } from "@react-md/core/menu/MenuItemSeparator";
+ * import { MenuItemSwitch } from "@react-md/core/menu/MenuItemSwitch";
  * import type { ReactElement } from "react";
  * import { useState } from "react";
  *

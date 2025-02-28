@@ -75,7 +75,7 @@ export const { Provider: ColorSchemeProvider } = context;
  * );
  *
  * // DarkTheme.tsx
- * import { useHtmlClassName } from "@react-md/core";
+ * import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
  *
  * import styles from "./DarkTheme.module.scss";
  *

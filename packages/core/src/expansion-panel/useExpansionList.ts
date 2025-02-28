@@ -31,14 +31,12 @@ export type ExpansionListImplementation<E extends HTMLElement> =
 /**
  * @example Custom Implementation
  * ```tsx
- * import {
- *   ExpansionPanel,
- *   Form,
- *   KeyboardMovementProvider,
- *   useExpansionList,
- *   useExpansionPanels,
- * } from "@react-md/core";
- * import type { ReactElement } from "react";
+ * import { ExpansionPanel } from "@react-md/core/expansion-panel/ExpansionPanel";
+ * import { useExpansionList } from "@react-md/core/expansion-panel/useExpansionList";
+ * import { useExpansionPanels } from "@react-md/core/expansion-panel/useExpansionPanels";
+ * import { KeyboardMovementProvider } from "@react-md/core/movement/useKeyboardMovementProvider";
+ * import { Form } from "@react-md/core/form/Form";
+ * import { type ReactElement } from "react";
  *
  * import { BillingAddress } from "./BillingAddress";
  * import { BillingInformation } from "./BillingInformation";

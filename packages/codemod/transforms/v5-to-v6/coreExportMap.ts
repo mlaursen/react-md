@@ -1642,7 +1642,7 @@ export const VARIABLES: ReadonlySet<string> = new Set([
   "SegmentedButton",
   "segmentedButton",
   "SegmentedButtonContainer",
-  "segmentedButtonContainerStyles",
+  "segmentedButtonContainer",
   "Select",
   "select",
   "SelectedOption",
@@ -3348,12 +3348,12 @@ export const EXPORT_MAP: Record<string, string> = {
     "@react-md/core/segmented-button/segmentedButtonStyles",
   SegmentedButtonContainer:
     "@react-md/core/segmented-button/SegmentedButtonContainer",
+  segmentedButtonContainer:
+    "@react-md/core/segmented-button/segmentedButtonContainerStyles",
   SegmentedButtonContainerClassNameOptions:
     "@react-md/core/segmented-button/segmentedButtonContainerStyles",
   SegmentedButtonContainerProps:
     "@react-md/core/segmented-button/SegmentedButtonContainer",
-  segmentedButtonContainerStyles:
-    "@react-md/core/segmented-button/segmentedButtonContainerStyles",
   SegmentedButtonProps: "@react-md/core/segmented-button/SegmentedButton",
   Select: "@react-md/core/form/Select",
   select: "@react-md/core/form/selectStyles",

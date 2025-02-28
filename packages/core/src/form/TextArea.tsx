@@ -103,7 +103,7 @@ export interface TextAreaProps
  *
  * @example Simple Example
  * ```tsx
- * import { TextArea } from "@react-md/core";
+ * import { TextArea } from "@react-md/core/form/TextArea";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

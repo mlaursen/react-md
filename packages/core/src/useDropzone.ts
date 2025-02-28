@@ -108,8 +108,9 @@ export interface DropzoneImplementation {
  *
  * @example Dragging Example
  * ```tsx
- * import { useDropzone, useFileUpload } from "@react-md/core"
- * import type { CSSProperties, ReactElement } from "react";
+ * import { useFileUpload } from "@react-md/core/files/useFileUpload";
+ * import { useDropzone } from "@react-md/core/useDropzone";
+ * import { type CSSProperties, type ReactElement } from "react";
  *
  * const draggingStyle: CSSProperties = {
  *   backgroundColor: "orange",

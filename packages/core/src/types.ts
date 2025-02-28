@@ -49,7 +49,7 @@ export interface LabelA11y {
  * @example Simple Example
  * ```ts
  * import type { HTMLAttributes, ReactElement } from "react";
- * import type { LabelRequiredForA11y } from "@react-md/core";
+ * import type { LabelRequiredForA11y } from "@react-md/core/types";
  *
  * type Props = LabelRequiredForA11y<HTMLAttributes<HTMLDivElement>>;
  *

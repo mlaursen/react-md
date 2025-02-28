@@ -69,7 +69,10 @@ export interface SkeletonPlaceholderRandomOptions {
  *
  * @example
  * ```tsx
- * import { skeletonPlaceholder, randomSkeletonPlaceholder } from "@react-md/core";
+ * import {
+ *   randomSkeletonPlaceholder,
+ *   skeletonPlaceholder,
+ * } from "@react-md/core/transition/skeletonPlaceholderUtils";
  * import "server-only";
  *
  * export function RandomSkeletonPlaceholder(): ReactElement {

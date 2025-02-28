@@ -105,7 +105,8 @@ export interface ThemeContext extends ConfigurableThemeColors {
   /**
    * @example Simple Example
    * ```tsx
-   * import { getDerivedTheme, useHtmlClassName, useTheme } from "@react-md/core";
+   * import { getDerivedTheme, useTheme } from "@react-md/core/theme/ThemeProvider";
+   * import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
    * import { useEffect } from "react";
    *
    * import styles from "./LightTheme.module.scss";
@@ -214,7 +215,7 @@ export const getDerivedTheme = (
  *
  * @example Simple Example
  * ```tsx
- * import { useTheme } from "@react-md/core";
+ * import { useTheme } from "@react-md/core/theme/useTheme";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -283,6 +284,7 @@ export interface ThemeProviderProps {
  *
  * @example
  * ```tsx
+ * import { CoreProviders } from "@react-md/core/CoreProviders";
  * import {
  *   black,
  *   blue500,
@@ -290,10 +292,8 @@ export interface ThemeProviderProps {
  *   orangeAccent200,
  *   orangeAccent400,
  *   red500,
- *   CoreProviders,
- *   ThemeProvider,
- * } from "@react-md/core";
- * import type { ConfigurableThemeColors } from "@react-md/core";
+ * } from "@react-md/core/theme/colors";
+ * import { type ConfigurableThemeColors, ThemeProvider } from "@react-md/core/theme/ThemeProvider";
  * import type { ReactElement } from "react";
  * import { createRoot } from "react-dom/client";
  *
@@ -330,11 +330,9 @@ export interface ThemeProviderProps {
  *
  * @example Automatically Deriving the Theme
  * ```tsx
- * import {
- *   CoreProviders,
- *   LocalStorageColorSchemeProvider,
- *   ThemeProvider,
- * } from "@react-md/core";
+ * import { CoreProviders } from "@react-md/core/CoreProviders";
+ * import { LocalStorageColorSchemeProvider } from "@react-md/core/theme/LocalStorageColorSchemeProvider";
+ * import { ThemeProvider } from "@react-md/core/theme/ThemeProvider";
  * import { type ReactElement } from "react";
  * import { createRoot } from "react-dom/client";
  *

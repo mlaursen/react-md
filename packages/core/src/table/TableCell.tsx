@@ -149,8 +149,10 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
    *
    * @example
    * ```tsx
-   * import type { SortOrder } from "@react-md/core";
-   * import { Button, Dialog, TableCell } from "@react-md/core";
+   * import { Button } from "@react-md/core/button/Button";
+   * import { Dialog } from "@react-md/core/dialog/Dialog";
+   * import { TableCell } from "@react-md/core/table/TableCell";
+   * import { type SortOrder } from "@react-md/core/table/types";
    * import MoreVertIcon from "@react-md/material-icons/MoreVertIcon";
    * import type { ReactElement } from "react";
    * import { useState } from "react";

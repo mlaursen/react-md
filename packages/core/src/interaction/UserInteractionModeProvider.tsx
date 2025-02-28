@@ -65,7 +65,7 @@ export interface UserInteractionModeProviderProps {
  * @example Mount at the root of your app
  * ```tsx
  * import { createRoot } from "react-dom/client";
- * import { UserInteractionModeProvider } from "@react-md/core";
+ * import { UserInteractionModeProvider } from "@react-md/core/interaction/UserInteractionModeProvider";
  * import App from "./App":
  *
  * const container = document.getElementById("root");

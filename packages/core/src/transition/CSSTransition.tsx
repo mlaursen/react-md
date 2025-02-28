@@ -29,7 +29,8 @@ export interface CSSTransitionProps<E extends HTMLElement>
  * @example Simple Example
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import { Button, CSSTransition } from "@react-md/core":
+ * import { Button } from "@react-md/core/button/Button":
+ * import { CSSTransition } from "@react-md/core/transition/CSSTransition":
  *
  * // pretend global styles:
  * //

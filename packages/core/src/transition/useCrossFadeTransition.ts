@@ -67,44 +67,6 @@ export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
  * distance. This is generally used for full page transitions when a route
  * changes.
  *
- * @example New Page Transition with the Layout component
- * ```tsx
- * import { ReactElement, ReactNode, useLayoutEffect } from "react";
- * import { useLocation } from "react-router-dom":
- * import { Layout, useCrossFadeTransition, useLayoutNavigation } from "@react-md/core";
- *
- * import { navItems } from "./navItems";
- *
- * interface ExampleProps {
- *   children: ReactNode;
- * }
- *
- * function Example({ children }: ExampleProps): ReactElement {
- *   const { pathname } = useLocation();
- *   const { elementProps, transitionTo } = useCrossFadeTransition();
- *
- *   const prevPathname = useRef(pathname);
- *   useLayoutEffect(() => {
- *     if (prevPathname.current === pathname) {
- *       return
- *     }
- *
- *     prevPathname.current = pathname;
- *     transitionTo('enter');
- *   }, [pathname, transitionTo])
- *
- *   return (
- *     <Layout
- *       {...useLayoutNavigation(navItems, pathname)}
- *       appBarTitle="My App"
- *       mainProps={elementProps}
- *     >
- *       {children}
- *     </Layout>
- *   );
- * }
- * ```
- *
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
  * @since 4.0.0

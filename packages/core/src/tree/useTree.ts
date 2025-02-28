@@ -35,8 +35,9 @@ export interface TreeImplementation extends TreeSelection, TreeExpansion {}
  *
  * @example Simple Example
  * ```tsx
- * import type { TreeData } from "@react-md/core";
- * import { Tree, useTree } from "@react-md/core";
+ * import { Tree } from "@react-md/core/tree/Tree";
+ * import { type TreeData } from "@react-md/core/tree/types";
+ * import { useTree } from "@react-md/core/tree/useTree";
  * import type { ReactElement } from "react";
  *
  * const data: TreeData = {

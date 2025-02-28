@@ -43,7 +43,7 @@ export interface MaterialSymbolProps
  *
  * @example Simple Example
  * ```tsx
- * import { MaterialSymbol } from "@react-md/core";
+ * import { MaterialSymbol } from "@react-md/core/icon/MaterialSymbol";
  * import type { ReactElement } from "react";
  * import { createRoot } from "react-dom/client";
  *

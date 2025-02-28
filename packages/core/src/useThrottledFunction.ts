@@ -10,7 +10,9 @@ import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
  *
  * @example Throttling Search API Requests
  * ```tsx
- * import { TextField, useThrottledFunction, useUnmounted } from "@react-md/core";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useThrottledFunction } from "@react-md/core/useThrottledFunction";
+ * import { useUnmounted } from "@react-md/core/useUnmounted";
  * import { useState } from "react";
  * import type { ReactElement } from "react";
  *

@@ -66,7 +66,7 @@ const styles = bem("rmd-linear-progress");
 /**
  * @example Indeterminate Example
  * ```tsx
- * import { LinearProgress } from "@react-md/core";
+ * import { LinearProgress } from "@react-md/core/progress/LinearProgress";
  * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -76,7 +76,7 @@ const styles = bem("rmd-linear-progress");
  *
  * @example Determinate Example
  * ```tsx
- * import { LinearProgress } from "@react-md/core";
+ * import { LinearProgress } from "@react-md/core/progress/LinearProgress";
  * import { useState, type ReactElement } from "react";
  *
  * function Example(): ReactElement {

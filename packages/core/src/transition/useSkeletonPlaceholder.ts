@@ -62,7 +62,7 @@ export interface SkeletonPlaceholderOptions
    * @example No Inline Width
    * ```ts
    * import type { ReactElement } from "@react";
-   * import { useSkeletonPlaceholder } from "@react-md/core";
+   * import { useSkeletonPlaceholder } from "@react-md/core/transition/useSkeletonPlaceholder";
    *
    * import styles from "./MyComponent.module.scss";
    *
@@ -83,7 +83,7 @@ export interface SkeletonPlaceholderOptions
    * @example Custom Inline Width
    * ```ts
    * import type { ReactElement } from "@react";
-   * import { useSkeletonPlaceholder } from "@react-md/core";
+   * import { useSkeletonPlaceholder } from "@react-md/core/transition/useSkeletonPlaceholder";
    *
    * export function Example(): ReactElement {
    *   const skeletonProps = useSkeletonPlaceholder({
@@ -117,7 +117,7 @@ export interface SkeletonPlaceholderOptions
    * @example Pre-rendered Layout
    * ```tsx
    * import type { ReactElement } from "@react";
-   * import { SkeletonPlaceholder } from "@react-md/core";
+   * import { SkeletonPlaceholder } from "@react-md/core/transition/useSkeletonPlaceholder";
    *
    * interface Data {
    *   id: string;

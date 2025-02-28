@@ -2,7 +2,9 @@
 
 import { useCallback, useState } from "react";
 
-import type { NonNullRef, UseStateSetter } from "./types.js";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type AsyncButton } from "./button/AsyncButton.js";
+import { type NonNullRef, type UseStateSetter } from "./types.js";
 import { useUnmounted } from "./useUnmounted.js";
 
 /**
@@ -64,77 +66,19 @@ export interface AsyncFunctionHookImplementation {
  * `react-query`, `@reduxjs/toolkit/query`, `@apollo/client`, etc for API calls
  * which have a built-in pending state for mutations.
  *
- * @example Simple Example (Async Button)
- * ```tsx
- * import type { ButtonProps } from "@react-md/core";
- * import { box, Button, CircularProgress, useAsyncFunction } from "@react-md/core";
- * import { cnb } from "cnbuilder";
- * import type { MouseEvent, ReactElement } from "react";
- *
- * import styles from "./AsyncButton.module.scss";
- *
- * export interface AsyncButtonProps extends ButtonProps {
- *   onClick(event: MouseEvent<HTMLButtonElement>): Promise<void>;
- * }
- *
- * export function AsyncButton(props: AsyncButtonProps): ReactElement {
- *   const { onClick, children, theme, className, disabled, ...remaining } = props;
- *   const { handleAsync, pending } = useAsyncFunction({ disabled });
- *
- *   return (
- *     <Button
- *       {...remaining}
- *       aria-disabled={pending || undefined}
- *       disabled={disabled}
- *       className={cnb(pending && styles.loading, className)}
- *       theme={pending ? "disabled" : theme}
- *       onClick={handleAsync(onClick)}
- *     >
- *       {children}
- *       {pending && (
- *         <span
- *           className={box({
- *             align: "center",
- *             disablePadding: true,
- *             className: styles.overlay,
- *           })}
- *         >
- *           <CircularProgress />
- *         </span>
- *       )}
- *     </Button>
- *   );
- * }
- *
- * // `AsyncButton.module.scss`
- * // hide everything in the button except for the overlay containing the circular
- * // progress
- * .loading > *:not(.overlay) {
- *   opacity: 0;
- * }
- *
- * .overlay {
- *   border-radius: inherit;
- *   box-shadow: inherit;
- *   inset: 0;
- *   position: absolute;
- *   z-index: 1;
- * }
- * ```
+ * @see {@link AsyncButton}
  *
  * @example Confirmation Dialog with Overlay
  * ```tsx
- * import {
- *   Button,
- *   DialogHeader,
- *   DialogContent,
- *   DialogFooter,
- *   Form,
- *   useAsyncFunction,
- * } from "@react-md/core";
+ * import { Button } from "@react-md/core/button/Button";
+ * import { Dialog } from "@react-md/core/dialog/Dialog";
+ * import { DialogContent } from "@react-md/core/dialog/DialogContent";
+ * import { DialogFooter } from "@react-md/core/dialog/DialogFooter";
+ * import { DialogHeader } from "@react-md/core/dialog/DialogHeader";
+ * import { Form } from "@react-md/core/form/Form";
+ * import { useAsyncFunction } from "@react-md/core/useAsyncFunction";
  * import CloseIcon from "@react-md/material-icons/CloseIcon";
- * import type { ReactElement } from "react";
- * import { useId } from "react";
+ * import { type ReactElement, useId } from "react";
  *
  * interface ExampleProps {
  *   hide(); void;

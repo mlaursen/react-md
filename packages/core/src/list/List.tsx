@@ -40,7 +40,9 @@ export interface ListProps extends HTMLAttributes<ListElement> {
  *
  * @example Simple Example
  * ```tsx
- * import { List, ListItem, ListItemLink } from "@react-md/core";
+ * import { List } from "@react-md/core/list/List";
+ * import { ListItem } from "@react-md/core/list/ListItem";
+ * import { ListItemLink } from "@react-md/core/list/ListItemLink";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

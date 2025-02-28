@@ -43,14 +43,12 @@ export interface LayoutWindowSplitterProps
  *
  * @example Dynamic Resizing
  * ```tsx
- * import {
- *   LayoutNav,
- *   LayoutWindowSplitter,
- *   Main,
- *   NoSsr,
- *   useWindowSize,
- *   useWindowSplitter,
- * } from "@react-md/core";
+ * import { LayoutNav } from "@react-md/core/layout/LayoutNav";
+ * import { LayoutWindowSplitter } from "@react-md/core/layout/LayoutWindowSplitter";
+ * import { Main } from "@react-md/core/layout/Main";
+ * import { NoSsr } from "@react-md/core/NoSsr";
+ * import { useWindowSplitter } from "@react-md/core/window-splitter/useWindowSplitter";
+ * import { useWindowSize } from "@react-md/core/useWindowSize";
  * import type { ReactElement, PropsWithChildren } from "react"
  *
  * function MyWindowSplitter(): ReactElement {

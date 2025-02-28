@@ -64,7 +64,8 @@ export interface NumberFieldHookOptions
    *
    * @example Deferring Updates on Blur
    * ```tsx
-   * import { TextField, useNumberField } from "@react-md/core";
+   * import { TextField } from "@react-md/core/form/TextField";
+   * import { useNumberField } from "@react-md/core/form/useNumberField";
    * import type { ReactElement } from "react";
    *
    * function Example(): ReactElement {
@@ -163,7 +164,8 @@ export interface ValidatedNumberFieldImplementation
 /**
  * @example Enforce Number Value and No Error Messages
  * ```tsx
- * import { TextField, useNumberField } from "@react-md/core";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useNumberField } from "@react-md/core/form/useNumberField";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -200,7 +202,8 @@ export function useNumberField(
 /**
  * @example No Error Messages
  * ```tsx
- * import { TextField, useNumberField } from "@react-md/core";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useNumberField } from "@react-md/core/form/useNumberField";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -231,7 +234,8 @@ export function useNumberField(
 /**
  * @example Enforce Number Value
  * ```tsx
- * import { TextField, useNumberField } from "@react-md/core";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useNumberField } from "@react-md/core/form/useNumberField";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -253,7 +257,8 @@ export function useNumberField(
  *
  * @example Enforce Number Value and Deferring Updates
  * ```tsx
- * import { TextField, useNumberField } from "@react-md/core";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useNumberField } from "@react-md/core/form/useNumberField";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -292,7 +297,8 @@ export function useNumberField(
  *
  * @example Default Implementation
  * ```tsx
- * import { TextField, useNumberField } from "@react-md/core";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useNumberField } from "@react-md/core/form/useNumberField";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {
@@ -314,7 +320,8 @@ export function useNumberField(
  *
  * @example Adding Constraints
  * ```tsx
- * import { TextField, useNumberField } from "@react-md/core";
+ * import { TextField } from "@react-md/core/form/TextField";
+ * import { useNumberField } from "@react-md/core/form/useNumberField";
  * import type { ReactElement } from "react";
  *
  * function Example(): ReactElement {

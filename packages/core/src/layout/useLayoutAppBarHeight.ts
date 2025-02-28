@@ -24,12 +24,10 @@ export interface LayoutAppBarHeightResult {
 /**
  * @example Main Usage
  * ```tsx
+ * import { AppBar } from "@react-md/core/app-bar/AppBar";
+ * import { useLayoutAppBarHeight } from "@react-md/core/layout/useLayoutAppBarHeight";
+ * import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
  * import type { PropsWithChildren, ReactElement } from "react";
- * import {
- *   AppBar,
- *   useCSSVariables,
- *   useLayoutAppBarHeight
- * } from "@react-md/core";
  *
  * export function LayoutHeader({ children }: PropsWithChildren): ReactElement {
  *   const { appBarRef, variables } = useLayoutAppBarHeight();
@@ -45,12 +43,10 @@ export interface LayoutAppBarHeightResult {
  *
  * @example Inline Variables
  * ```tsx
+ * import { AppBar } from "@react-md/core/app-bar/AppBar";
+ * import { useLayoutAppBarHeight } from "@react-md/core/layout/useLayoutAppBarHeight";
+ * import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
  * import type { PropsWithChildren, ReactElement } from "react";
- * import {
- *   AppBar,
- *   useCSSVariables,
- *   useLayoutAppBarHeight
- * } from "@react-md/core";
  *
  * export function Layout({ children }: PropsWithChildren): ReactElement {
  *   const { appBarRef, variables } = useLayoutAppBarHeight();
