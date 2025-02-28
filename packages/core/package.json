@@ -33,6 +33,7 @@
   "scripts": {
     "run-script": "tsx --tsconfig scripts/tsconfig.json",
     "export-map": "pnpm run run-script scripts/getExportMap.ts",
+    "create-index-file": "pnpm run run-script scripts/createIndexFile.ts",
     "dev": "npm-run-all --parallel build-esm-watch build-scss-watch build-types-watch",
     "prepare-release": "npm-run-all clean-dist build",
     "build": "npm-run-all build-esm build-scss build-types",

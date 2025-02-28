@@ -10,6 +10,8 @@ import { join } from "node:path";
 const isContinue1 = process.argv.includes("--c1");
 const isPreRelease = process.argv.includes("--pre");
 const isSkipBuild = isContinue1 || process.argv.includes("--skip-build");
+const isSkipCoreGenerate =
+  isContinue1 || process.argv.includes("--skip-generate");
 
 const exec = (command: string): void => {
   console.log(command);
@@ -110,6 +112,13 @@ async function getReleaseVersion(): Promise<string> {
 
 if (!isSkipBuild) {
   exec("pnpm clean-dist");
+
+  if (!isSkipCoreGenerate) {
+    exec("pnpm core-export-map");
+    exec("pnpm core-index-file");
+    exec("git add -u");
+  }
+
   exec("pnpm build-packages");
 }
 

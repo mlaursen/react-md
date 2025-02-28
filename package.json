@@ -21,6 +21,8 @@
     "test-core-watch": "pnpm --filter core test --watch",
     "test-core-coverage": "pnpm --filter core test --coverage",
     "test-core-coverage-watch": "pnpm --filter core test --coverage --watch",
+    "core-export-map": "pnpm --filter core export-map",
+    "core-index-file": "pnpm --filter core create-index-file",
     "typecheck": "TURBO_TELEMETRY_DISABLED=1 turbo run typecheck",
     "validate": "pnpm run lint && pnpm run typecheck",
     "format": "prettier --write .",

@@ -1,5 +1,5 @@
-import { writeFile } from "fs/promises";
 import { glob } from "glob";
+import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { format } from "prettier";
 import { Node, Project } from "ts-morph";
