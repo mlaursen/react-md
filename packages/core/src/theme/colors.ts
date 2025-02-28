@@ -271,5 +271,5 @@ export const blueGrey700 = "#455a64";
 export const blueGrey800 = "#37474f";
 export const blueGrey900 = "#263238";
 
-export const white = "#fff";
-export const black = "#000";
+export const white = "#ffffff";
+export const black = "#000000";
