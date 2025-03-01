@@ -7,8 +7,8 @@ const ASCI_REGEX = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
 export const words = (s: string): readonly string[] =>
   s.match(ASCI_REGEX) || [];
 
-export const upperFirst = (s: string): string =>
-  s.slice(0, 1).toUpperCase() + s.slice(1);
+export const upperFirst = <S extends string>(s: S): Capitalize<S> =>
+  (s.slice(0, 1).toUpperCase() + s.slice(1)) as Capitalize<S>;
 
 /**
  * @see https://github.com/lodash/lodash/blob/c7c70a7da5172111b99bb45e45532ed034d7b5b9/src/camelCase.ts
