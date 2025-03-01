@@ -52,7 +52,7 @@ export type AutocompleteLabeledOption = string | { label: string };
  * @since 6.0.0
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export type AutocompleteOption = AutocompleteLabeledOption | {};
+export type AutocompleteOption = AutocompleteLabeledOption | object;
 
 /**
  * @since 6.0.0
@@ -231,7 +231,7 @@ export type AutocompleteQuery =
  * - `"selected"` - sets the 	query	 to the selected value's label
  * - `"as-is"` - doesn't change the `query`
  *
- * @defaultValue `(multiselect || Array.isArray(value ?? defaultValue)) ? "clear" : "as-is"`
+ * @defaultValue `(multiselect || Array.isArray(value ?? defaultValue)) ? "clear" : "selected"`
  * @since 6.0.0
  */
 export type AutocompleteUpdateQueryOnSelect = "clear" | "selected" | "as-is";
@@ -377,7 +377,7 @@ export interface AutocompleteFilterAndListboxOptions<
 
   /**
    * @see {@link AutocompleteUpdateQueryOnSelect}
-   * @defaultValue `multiselect ? "clear" : "as-is"`
+   * @defaultValue `multiselect ? "clear" : "selected"`
    */
   updateQueryOnSelect?: AutocompleteUpdateQueryOnSelect;
 

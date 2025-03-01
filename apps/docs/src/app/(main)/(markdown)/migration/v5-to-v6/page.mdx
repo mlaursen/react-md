@@ -350,7 +350,171 @@ Converts all material icons into the new `MaterialSymbol` component.
 
 # Update the scoped packages
 
-## Alert
+## Alert ❌
+
+There are a lot of breaking changes for the alert components and API. There are
+some auto-migrations available, but it is recommended to change a few things
+manually to adapt to the new API. The best way to understand the changes is to
+check out the new [Snackbar Exmaples](/components/snackbar), but here's a
+summary of the changes:
+
+- Add a `Snackbar` near the root of the app and display toasts with the
+  `addToast` export
+- The `MessageQueue` is no longer required and replaced by an optional
+  `ToastManagerProvider`
+- The `useAddMessage` hook is no longer required and replaced by `useAddToast`
+- Add a `Snackbar` component near the root of of the app
+- Add new messages or toasts using the `addToast` function instead of the
+  `useAddMessage` hook
+- The `messageId` has been renamed to `toastId`
+- The `messagePriority` has been renamed to `priority`
+- The toast duplicates behavior renamed `"prevent"` to `"update"`
+- The `disableAutohide` message option has been removed in favor of just
+  setting `visibleTime` to `null`
+- The `twoLines` option is no longer required since a resize observer
+  automatically determines multiple lines of text. If the number of lines are always known,
+  the `multiline` prop can be set to a boolean instead.
+- The `useMessageQueueActions` has been removed in favor of
+  `useToastManager`/`useCurrentToastActions`
+
+Here's an example diff for converting the "Simple Message Queue" demo in v5 to
+the v6 implementation:
+
+```diff
++import { Snackbar } from "@react-md/core/snackbar/Snackbar";
++import { addToast, type CreateToastOptions } from "@react-md/core/snackbar/ToastManager";
+ import type { ReactElement } from "react";
+-import type { ToastMessage } from "@react-md/alert";
+-import { MessageQueue, useAddMessage } from "@react-md/alert";
+ import { Button } from "@react-md/button";
+ import { Form, Radio, useChoice } from "@react-md/form";
+
+ const SINGLE_LINE = "SINGLE_LINE";
+ const SINGLE_LINE_ACTION = "SINGLE_LINE_ACTION";
+ const TWO_LINES = "TWO_LINES";
+ const TWO_LINES_ACTION = "TWO_LINES_ACTION";
+ const TWO_LINES_STACKED = "TWO_LINES_STACKED";
+
+ type MessageKeys =
+   | typeof SINGLE_LINE
+   | typeof SINGLE_LINE_ACTION
+   | typeof TWO_LINES
+   | typeof TWO_LINES_ACTION
+   | typeof TWO_LINES_STACKED;
+-type MessageRecord = Record<MessageKeys, ToastMessage>;
++type MessageRecord = Record<MessageKeys, CreateToastOptions>;
+
+ const messages: MessageRecord = {
+   [SINGLE_LINE]: {
+     children: "This is an example message",
+   },
+   [SINGLE_LINE_ACTION]: {
+     action: "Action",
+     children: "This is an example message",
+   },
+   [TWO_LINES]: {
+-    twoLines: true,
++    // this is optional
++    multiline: true,
+     children: (
+       <>
+         <p>This is an example message</p>
+         <p>With a second line of text.</p>
+       </>
+     ),
+   },
+   [TWO_LINES_ACTION]: {
+     action: "Action",
+-    twoLines: true,
++    // this is optional
++    multiline: true,
+     children: (
+       <>
+         <p>This is an example message</p>
+         <p>With a second line of text.</p>
+       </>
+     ),
+   },
+   [TWO_LINES_STACKED]: {
+     action: "Action",
+     stacked: true,
+-    twoLines: true,
++    // this is optional
++    multiline: true,
+     children: (
+       <>
+         <p>This is an example message</p>
+         <p>With a second line of text.</p>
+       </>
+     ),
+   },
+ };
+
+ function SimpleMessageQueue(): ReactElement {
+-  const addMessage = useAddMessage();
+   const [key, handleKeyChange] = useChoice<MessageKeys>(SINGLE_LINE);
+
+   return (
+-    <Form onSubmit={() => addMessage(messages[key])}>
++    <Form onSubmit={() => addToast(messages[key])}>
+       <Radio
+         id="mqr-1"
+         name="message"
+         value={SINGLE_LINE}
+         checked={key === SINGLE_LINE}
+         onChange={handleKeyChange}
+         label="Single Line Message"
+       />
+       <Radio
+         id="mqr-2"
+         name="message"
+         value={SINGLE_LINE_ACTION}
+         checked={key === SINGLE_LINE_ACTION}
+         onChange={handleKeyChange}
+         label="Single Line Message with Action"
+       />
+       <Radio
+         id="mqr-3"
+         name="message"
+         value={TWO_LINES}
+         checked={key === TWO_LINES}
+         onChange={handleKeyChange}
+         label="Two Line Message"
+       />
+       <Radio
+         id="mqr-4"
+         name="message"
+         value={TWO_LINES_ACTION}
+         checked={key === TWO_LINES_ACTION}
+         onChange={handleKeyChange}
+         label="Two Line Message with Action"
+       />
+       <Radio
+         id="mqr-5"
+         name="message"
+         value={TWO_LINES_STACKED}
+         checked={key === TWO_LINES_STACKED}
+         onChange={handleKeyChange}
+         label="Two Line Message with Stacked Action"
+       />
+       <Button id="mqr-submit" type="submit" theme="primary">
+         Add Message
+       </Button>
+     </Form>
+   );
+ }
+
+ export default function SimpleMessageQueueContainer(): ReactElement {
+   return (
++    <>
+-    <MessageQueue id="simple-message-queue">
+       <SimpleMessageQueue />
++      <Snackbar />
++    <>
+-    </MessageQueue>
+   );
+ }
+```
 
 ## App Bar
 
@@ -598,7 +762,52 @@ The following props have changed for the `AppBarTitle` component:
  }
 ```
 
-## Auto Complete
+## Auto Complete ❌
+
+The `AutoComplete` has a completely new API and has been renamed to `Autocomplete`. It
+is recommended to check out the [Autocomplete Demos](/components/autocomplete) to see
+how to use the new API.
+
+The main breaking changes are:
+
+- The `data` prop was renamed to `options`
+- The `value` prop has been renamed to `query` since the `value` is now the
+  selected option(s)
+- The `filter` prop no longer accepts string values (`"case-insensitive"`,
+  `"fuzzy"`, `"none"`) and instead should always be a filter function
+  - `"none"` filter can be replaced with `noopAutocompleteFilter` from `@react-md/core/autocomplete/defaults`
+  - `"case-insensitive"` filter can be replaced with
+    `defaultAutocompleteFilter` from `@react-md/core/autocomplete/defaults` or
+    `caseInsensitiveSearch` from `@react-md/core/searching/caseInsensitive`
+  - `"fuzzy"` filter can be replaced with `fuzzySearch` from `@react-md/core/searching/fuzzy`
+- The `filter` function now provides a single argument instead of multiple so
+  the `query` and `data` must be destructured.
+- The `filterOptions` and `filterOnNoValue` props were removed in favor of the
+  custom `filter` function
+- The `highlight`, `highlightRepeating`, `highlightStyle`, and `highlightClassName` props
+  were removed since highlighting is no longer supported. See the [Highlights example](/components/autocomplete#highlights)
+  for a way to add highlights back
+- The `labelKey`, `valueKey`, `omitKeys`, `getResultId`, `getResultLabel`, and
+  `getResultValue` props have been removed. Use `getOptionLabel` and
+  `getOptionProps` instead
+- The `beforeResultsChildren` and `afterResultsChildren` have been removed in favor
+  of just providing the custom `children` instead
+- The `autoComplete` prop has been removed and only supports the `"list"` or
+  `"none"` behavior. Set the `filter` prop to `noopAutocompleteFilter` to
+  enable the `"none"` behavior.
+- The `clearOnAutoComplete` prop has been removed in favor of setting
+  `updateQueryOnSelect` to `"clear"`
+- The `onAutocomplete` prop has been removed in favor of controlling the `value`
+  or the `onValueChange` prop
+- The `disableShowOnFocus` prop has been removed
+- The listbox style, className, and positioning options must now be passed to
+  `listboxProps`:
+
+### 🔧 update-simple-props
+
+```sh
+npx @react-md/codemod v5-to-v6/autocomplete/update-simple-props
+```
 
 ## Avatar 🎉
 
@@ -610,6 +819,89 @@ No breaking changes!
 
 ```sh
 npx @react-md/codemod v5-to-v6/badge/remove-badge-container
+```
+
+This codemod will attempt to fix all the breaking changes and add TODOs for all
+the manual steps.
+
+```diff
+  +// TODO: Ensure the `Autocomplete` options are strings or add the `getOptionLabel` prop
+ import { type ReactElement, useState } from "react";
+-import { AutoComplete } from "react-md";
++import { Autocomplete } from "react-md";
+
+ const fruits = [
+   "Apple",
+   "Apricot",
+   "Banana",
+   "Blueberry",
+   "Cranberry",
+   "Kiwi",
+   "Peach",
+   "Plum",
+   "Strawberry",
+ ];
+
+ export default function CustomFilterFunction(): ReactElement {
+   const [value, setValue] = useState("");
+   return (
+     <>
+-      <AutoComplete
++      <Autocomplete
+         id="simple-autocomplete-1"
+         label="Case insensitive"
+         placeholder="Apple"
+-        value={value}
++        query={value}
+         onChange={(event) => {
+           setValue(event.currentTarget.value)
+         }}
+-        data={fruits}
++        options={fruits}
+-        filter={(query, data, options) => {
++        filter={({ query, list: data, ...options }) => {
+           return data;
+         }}
+-        clearOnAutoComplete
++        updateQueryOnSelect="clear"
+-        onAutoComplete={({ value, index, result, dataIndex, filteredData }) => {
++        onValueChange={(value) => {
+           // do something
+         }}
+-        listboxStyle={{ color: "red" }}
+-        listboxClassName="custom-class-name"
+-        listboxWidth="auto"
+-        anchor={BELOW_CENTER_ANCHOR}
+-        vwMargin={20}
+-        vhMargin={20}
+-        xMargin={12}
+-        yMargin={12}
+-        closeOnResize={false}
+-        transformOrigin={false}
+-        closeOnScroll={false}
+-        preventOverlap={false}
+-        disableSwapping={false}
+-        disableVHBounds={false}
++        listboxProps={{
++          style: { color: "red" },
++          className: "custom-class-name",
++          width: "auto",
++          anchor: BELOW_CENTER_ANCHOR,
++          vwMargin: 20,
++          vhMargin: 20,
++          xMargin: 12,
++          yMargin: 12,
++          closeOnResize: false,
++          transformOrigin: false,
++          closeOnScroll: false,
++          preventOverlap: false,
++          disableSwapping: false,
++          disableVHBounds: false,
++        }}
+       />
+     </>
+   );
+ }
 ```
 
 The `BadgeContainer` was removed and custom styles must be used instead.
@@ -1107,6 +1399,146 @@ The `Chip` renamed the `noninteractable` prop to `noninteractive`.
 
 ## Dialog
 
+### ✅ remove-nested-dialog-context-provider
+
+```sh
+npx @react-md/codemod v5-to-v6/dialog/remove-nested-dialog-context-provider
+```
+
+The `NestedDialogContextProvider` has been removed and is no longer required.
+
+```diff
+   IconProvider,
+   type MenuConfiguration,
+   MenuConfigurationProvider,
+-  NestedDialogContextProvider,
+   StatesConfig,
+   type StatesConfigProps,
+   UserInteractionModeListener,
+@@ -100,7 +99,7 @@ export function Configuration({
+   menuConfiguration,
+ }: ConfigurationProps): ReactElement {
+   return (
+     <Dir defaultDir={defaultDir}>
+       <AppSizeListener
+         defaultSize={defaultSize}
+         onChange={onAppResize}
+@@ -110,7 +109,7 @@ export function Configuration({
+         desktopMinWidth={desktopMinWidth}
+         desktopLargeMinWidth={desktopLargeMinWidth}
+       >
+-        <NestedDialogContextProvider>
++        <>
+           <UserInteractionModeListener>
+             <StatesConfig
+               disableRipple={disableRipple}
+@@ -129,8 +128,8 @@ export function Configuration({
+               </HoverModeProvider>
+             </StatesConfig>
+           </UserInteractionModeListener>
+-        </NestedDialogContextProvider>
++        </>
+       </AppSizeListener>
+     </Dir>
+   );
+ }
+```
+
+### 🔧 update-dialog-props
+
+```sh
+npx @react-md/codemod v5-to-v6/dialog/update-dialog-props
+```
+
+The `Dialog` and `FixedDialog` components have the following prop changes:
+
+- `forceContainer` has been removed since there is always a container element
+  now
+- `overlay` has been renamed to `disableOverlay`
+- `overlayStyle`, `overlayClassName`, and `overlayHidden` have been removed in
+  favor of the `overlayProps` where `overlayHidden` is renamed to `noOpacity`
+- `containerStyle` and `containerClassName` have been removed in favor of
+  `containerProps`
+- `component` has been removed and only supports being rendered as a `"div"`
+- `disableNestedDialogFixes` has been removed since it is no longer needed
+- `defaultFocus` has been removed and default focus must be set manually
+  instead using `autoFocus` on a focusable element or custom logic
+- `disableFocusContainer`, `disableFocusOnMount`, `disableFocusOnUnmount`, and
+  `disableTabFocusWrap` have been removed in favor of the `isFocusTypeDisabled` function
+- `disableFocusCache`, `disableFocusOnMountScroll`, and `unmountFocusFallback`
+  have been removed
+
+```diff
++// A `Dialog` set the `defaultFocus` but that is no longer supported. Enable the `autoFocus` prop on the target element instead.
+ import { ReactElement, useRef } from "react";
+ import {
+   Button,
+   FixedDialog,
+   DialogContent,
+   DialogFooter,
+   DialogHeader,
+   DialogTitle,
+   Typography,
+   useToggle,
+ } from "react-md";
+
+ export default function Demo(): ReactElement {
+   const [visible, enable, disable] = useToggle(false);
+   const fixedTo = useRef<HTMLButtonElement>(null);
+   return (
+@@ -19,37 +20,31 @@ export default function Demo(): ReactElement {
+         Show Dialog
+       </Button>
+       <FixedDialog
+         id="simple-dialog"
+         fixedTo={fixedTo}
+         visible={visible}
+         onRequestClose={disable}
+         aria-labelledby="dialog-title"
+-        forceContainer
+-        defaultFocus="last"
+-        disableFocusContainer
+-        disableFocusCache
+-        disableFocusOnMount
+-        disableTabFocusWrap
+-        disableFocusOnMountScroll
+-        disableFocusOnUnmount
+-        unmountFocusFallback
+-        disableNestedDialogFixes
+-        component="nav"
+-        overlay={false}
+-        overlayHidden
+-        overlayStyle={{ color: "red" }}
+-        overlayClassName="custom-overlay-class"
+-        containerStyle={{ backgroundColor: "orange" }}
+-        containerClassName="custom-container-class"
++        disableOverlay
+         options={{ xMargin: 12, yMargin: 12 }}
+-        getOptions={() => ({
++        getFixedPositionOptions={() => ({
+           vhMargin: 20,
+           vwMargin: 20,
+         })}
++        overlayProps={{
++        noOpacity: true,
++          style: { color: "red" },
++          className: "custom-overlay-class",
++        }}
++        containerProps={{
++          style: { backgroundColor: "orange" },
++          className: "custom-container-class",
++        }}
++        isFocusTypeDisabled={() => true}
+       >
+         <DialogHeader>
+           <DialogTitle id="dialog-title">Simple Dialog</DialogTitle>
+         </DialogHeader>
+         <DialogContent>
+           <Typography margin="none">This is some text in a dialog.</Typography>
+         </DialogContent>
+         <DialogFooter>
+```
+
 ## Divider
 
 ### 🎨 vertical-divider-to-divider
@@ -1160,8 +1592,6 @@ and there is no replacement.
    return <div style={style} ref={ref} vertical />;
  }
 ```
-
-## Elevation
 
 ## Expansion Panel
 
@@ -3046,4 +3476,129 @@ instead of multiple parameters.
 +    value: -1,
 +  }),
 +).toBe(0);
+```
+
+### 🔧 update-search-functions
+
+```sh
+npx @react-md/codemod v5-to-v6/utils/update-search-functions
+```
+
+There were a few breaking changes for the `caseInsensitiveFilter`, `fuzzyFilter`, and `findIgnoreCase` functions:
+
+- All three functions now accept a single argument instead of three
+- `caseInsensitiveFilter` and `findIgnoreCase` have been renamed to `caseInsensitiveSearch`
+  - `findIgnoreCase` should add `type: "search"` to the options
+- `fuzzyFilter` has been renamed to `fuzzySearch`
+- The `valueKey` option was removed
+- The `getItemValue` option was renamed to `extractor`
+- `trim` and `ignoreWhitespace` have been merged into a single `whitespace` option which can be one of:
+  - `"trim"`, `"ignore"`, or `"as-is"`
+- The following constants were removed:
+  - `DEFAULT_GET_ITEM_VALUE`
+  - `DEFAULT_VALUE_KEY`
+  - `DEFAULT_IGNORE_WHITESPACE`
+  - `DEFAULT_SEARCH_RESET_TIME`
+  - `DEFAULT_SEARCH_OPTIONS`
+- The `GetItemValue` type was renamed to `TextExtractor`
+- The `SearchOptions` type was removed
+
+```diff
++// TODO: Check if `caseInsensitiveSearch` is using a list of objects and requires an `extractor` option
++// TODO: Check if `fuzzySearch` is using a list of objects and requires an `extractor` option
++import { caseInsensitiveSearch, fuzzySearch } from "react-md";
+-import { caseInsensitiveFilter, findIgnoreCase, fuzzyFilter } from "react-md";
+
+ const FRUITS = ["Apple", "Banana", "Mango", "Orange"];
+
+-expect(caseInsensitiveFilter("", list1)).toBe(list1);
+-expect(caseInsensitiveFilter("ap", FRUITS, { startsWith: true })).toEqual([
+-  "Apple",
+-]);
+-expect(caseInsensitiveFilter("an", FRUITS, { startsWith: true })).toEqual([]);
++expect(caseInsensitiveSearch({ query: "", list: list1 })).toBe(list1);
++expect(
++  caseInsensitiveSearch({
++    query: "ap",
++    list: FRUITS,
++    whitespace: "trim",
++    startsWith: true,
++  })
++).toEqual(["Apple"]);
++expect(
++  caseInsensitiveSearch({ query: "an", list: FRUITS, whitespace: "ignore" })
++).toEqual([]);
+
+ const list = ["Item 1", "This is Item 1"];
+-expect(caseInsensitiveFilter("item", list, { startsWith: true })).toEqual([
+-  "Item 1",
+-]);
++expect(
++  caseInsensitiveSearch({
++    query: "item",
++    list,
++  })
++).toEqual(["Item 1"]);
+
+ const item1 = "Lorem ipsum";
+ const item2 = "another item";
+ const item3 = "in this string";
+ const item4 = "not interested, mate";
+ const item5 = "not in my house";
+ const list2 = [item1, item2, item3, item4, item5];
+
+-expect(fuzzyFilter("ti", list2)).toEqual([item3]);
+-expect(fuzzyFilter("ti", list2, { ignoreWhitespace: true })).toEqual([
+-  item2,
+-  item3,
+-  item4,
+-  item5,
+-]);
+-expect(fuzzyFilter("t i", list2, { ignoreWhitespace: true })).toEqual([
+-  item2,
+-  item3,
+-  item4,
+-  item5,
+-]);
+-expect(fuzzyFilter("rem", list2, { ignoreWhitespace: true })).toEqual([
+-  item1,
+-  item2,
+-]);
+-expect(fuzzyFilter("tem", list2, { ignoreWhitespace: true })).toEqual([item2]);
++expect(fuzzySearch({ query: "ti", list: list2 })).toEqual([item3]);
++expect(fuzzySearch({ query: "ti", list: list2, whitespace: "ignore" })).toEqual(
++  [item2, item3, item4, item5]
++);
++expect(
++  fuzzySearch({ query: "t i", list: list2, whitespace: "ignore" })
++).toEqual([item2, item3, item4, item5]);
++expect(
++  fuzzySearch({ query: "rem", list: list2, whitespace: "ignore" })
++).toEqual([item1, item2]);
++expect(
++  fuzzySearch({ query: "tem", list: list2, whitespace: "ignore" })
++).toEqual([item2]);
+
+-expect(findIgnoreCase("", list)).toBe(null);
+-expect(findIgnoreCase("f", list)).toBe(item1);
+-expect(findIgnoreCase("s", list)).toBe(item2);
+-expect(findIgnoreCase("thi", list)).toBe(item3);
+-const getItemValue1 = (item: string) => `thing-${item}`;
+-expect(findIgnoreCase("thing-a", FRUITS, { getItemValue: getItemValue1 })).toBe(
+-  "Apple"
++expect(caseInsensitiveSearch({ query: "", list, type: "search" })).toBe(null);
++expect(caseInsensitiveSearch({ query: "f", list, type: "search" })).toBe(item1);
++expect(caseInsensitiveSearch({ query: "s", list, type: "search" })).toBe(item2);
++expect(caseInsensitiveSearch({ query: "thi", list, type: "search" })).toBe(
++  item3
+ );
++const getItemValue1 = (item: string) => `thing-${item}`;
++expect(
++  caseInsensitiveSearch({
++    query: "thing-a",
++    list: FRUITS,
++    type: "search",
++    extractor: getItemValue1,
++  })
++).toBe("Apple");
 ```

@@ -236,7 +236,7 @@ export function useAutocomplete<
     multiselect,
     comboboxProps: {
       ...comboboxProps,
-      "aria-autocomplete": "list",
+      "aria-autocomplete": filter === noopAutocompleteFilter ? "none" : "list",
       value: query,
       onKeyDown(event) {
         comboboxProps.onKeyDown(event);

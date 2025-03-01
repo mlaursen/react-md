@@ -3,6 +3,7 @@ import {
   type ArrowFunctionExpression,
   type AssignmentPattern,
   type BlockStatement,
+  type BooleanLiteral,
   type CallExpression,
   type FunctionDeclaration,
   type FunctionExpression,
@@ -80,3 +81,9 @@ export type NonEmptyJSXExpresson = Exclude<
   JSXExpressionContainer["expression"],
   JSXEmptyExpression
 >;
+
+export type BooleanJSXAttribute = JSXAttribute & {
+  value: JSXExpressionContainer & {
+    expression: BooleanLiteral;
+  };
+};

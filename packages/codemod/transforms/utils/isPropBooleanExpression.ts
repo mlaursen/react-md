@@ -1,16 +1,10 @@
-import {
-  type BooleanLiteral,
-  type JSXAttribute,
-  type JSXExpressionContainer,
-} from "jscodeshift";
+import { type JSXAttribute } from "jscodeshift";
+
+import { type BooleanJSXAttribute } from "../types";
 
 export function isPropBooleanExpression(
   attr: JSXAttribute
-): attr is JSXAttribute & {
-  value: JSXExpressionContainer & {
-    expression: BooleanLiteral;
-  };
-} {
+): attr is BooleanJSXAttribute {
   return (
     attr.value?.type === "JSXExpressionContainer" &&
     attr.value.expression.type === "BooleanLiteral"

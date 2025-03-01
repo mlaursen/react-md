@@ -72,7 +72,7 @@ export interface OptionProps extends MenuItemProps, OptionSelectedIconProps {
    * @defaultValue `"option"`
    */
   role?: string;
-  value: string | number | Record<string, unknown>;
+  value: string | number | object;
 
   /**
    * An optional className to apply only while the current option is selected to

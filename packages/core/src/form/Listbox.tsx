@@ -15,7 +15,7 @@ import { type OptionSelectedIconProps } from "./Option.js";
  * @since 6.0.0
  * @internal
  */
-export type ListboxValue = string | number | null | Record<string, unknown>;
+export type ListboxValue = string | number | null | object;
 
 /**
  * @since 6.0.0

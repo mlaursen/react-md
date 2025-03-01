@@ -698,7 +698,7 @@ describe("Autocomplete", () => {
       rerender(
         <Autocomplete
           listboxLabel="Options"
-          // 3 extends {} so there is no error. I can't use `object` since it makes the listbox annoying
+          // @ts-expect-error
           options={["One", "Two", 3, "Four"]}
         />
       );
