@@ -363,9 +363,7 @@ summary of the changes:
 - The `MessageQueue` is no longer required and replaced by an optional
   `ToastManagerProvider`
 - The `useAddMessage` hook is no longer required and replaced by `useAddToast`
-- Add a `Snackbar` component near the root of of the app
-- Add new messages or toasts using the `addToast` function instead of the
-  `useAddMessage` hook
+  - Use the `addToast` export instead for most cases
 - The `messageId` has been renamed to `toastId`
 - The `messagePriority` has been renamed to `priority`
 - The toast duplicates behavior renamed `"prevent"` to `"update"`
@@ -1730,9 +1728,336 @@ The `usePanels` hook was renamed to `useExpansionPanels` with a new API:
 
 ## Form
 
-## Icon
+### replace-with-message-components 🔧
 
-## Layout
+```sh
+npx @react-md/codemod v5-to-v6/form/replace-with-message-components
+```
+
+The `TextFieldWithMessage`, `TextAreaWithMessage`, and `PasswordWithMessage` components
+have been removed and instead the default behavior for the `TextField`,
+`TextArea`, and `Password` components.
+
+### update-use-text-field-api 🔧
+
+```sh
+npx @react-md/codemod v5-to-v6/form/update-use-text-field-api
+```
+
+The `useTextField` and `useNumberField` hooks have updated their api slightly:
+
+- The hooks return an object instead of an ordered list
+- The `validateOnChange` option was renamed to `validationType` and no longer
+  supports boolean values
+  - `true` would now be `"change"`
+  - `false` would now be `[]`
+  - ❌ the `getErrorMessage` and `isErrored` options also renamed this option, but
+    is not handled by the codemod
+- `getErrorIcon` option now provides a single `options` object instead of multiple arguments
+  - the `defaultGetErrorIcon` util matches this as well
+
+```diff
+ import { defaultGetErrorIcon, useNumberField, useTextField } from "react-md";
+
++export function ExampleDiff(): null {
+-  const [, textFieldProps] = useTextField({
++  const { fieldProps: textFieldProps } = useTextField({
+     name: "field",
+-    validateOnChange: true,
+-    getErrorIcon: (errorMessage, error, errorIcon) => {
++    validationType: "change",
++    getErrorIcon: (options) => {
++      const { error, errorIcon, errorMessage } = options;
++
+       if (errorMessage === "Hello") {
+         return errorIcon;
+       }
+
+-      return defaultGetErrorIcon(errorMessage, error, errorIcon);
++      return defaultGetErrorIcon({
++        error,
++        errorIcon,
++        errorMessage,
++      });
+     },
+   });
+-  const [numberValue, numberFieldProps, { reset, setState }] = useNumberField({
+-    name: "field2",
+-    validateOnChange: false,
+-    getErrorIcon: (errorMessage, error, errorIcon) => {
++  const {
++    value: numberValue,
++    fieldProps: numberFieldProps,
++    reset,
++    setState,
++  } = useNumberField({
++    name: "field",
++    validationType: [],
++    getErrorIcon: (options) => {
++      const { error, errorIcon, errorMessage } = options;
++
+       if (errorMessage === "Hello") {
+         return errorIcon;
+       }
+
+-      return defaultGetErrorIcon(errorMessage, error, errorIcon);
++      return defaultGetErrorIcon({
++        error,
++        errorIcon,
++        errorMessage,
++      });
+     },
+   });
+
+   return null;
+ }
+
+```
+
+## Layout ❌
+
+There is no longer a pre-built layout component so see the new
+[Layout component documentation](/getting-started/layout) for the new setup. For
+convenience, here's a list of the changes:
+
+- The `Configuration` component has been removed in favor of the
+  [CoreProviders](/components/core-providers)
+- The `Layout` component has been removed in favor of building the layout manually
+  with the functionality provided by hooks:
+  - [useExpandableLayout](/hooks/use-expandable-layout) - this should be used most of the time
+    and handles the `"toggleable"`, `"floating"`, `"clipped"`, and `"full-height"` variations
+  - [useTemporaryLayout](/hooks/use-temporary-layout) - this should be used if the layout
+    was set to `"temporary"` for all viewports
+  - [useResizableLayout](/hooks/use-resizable-layout) - this should be used if the user can
+    manually resize the navigation pane on larger viewports
+  - [useLayoutTree](/hooks/use-layout-tree) - this should be used if the main navigation was
+    rendered using the `useLayoutNavigation` hook and `LayoutTree`. See the
+    [Tree Main Navigation](/getting-started/layout#tree-component) for example usage.
+  - [useNavigationExpansion](/hooks/use-navigation-expansion) - this should be used if switching
+    to the new [Navigation components](/components/navigation)
+- Use a normal `Sheet` + [Navigation](/components/navigation) or [Tree](/components/tree) to replace
+  the `LayoutNavigation` component
+- There is no longer built-in support for mini navigation panels
+- The `LayoutMain` has been renamed to `Main` and no longer handles transitions
+- The `LayoutAppBar` no longer conditionally renders the `LayoutNavToggle` and
+  `LayoutAppBarTitle` and should only be used if the `AppBar` changes height. Use
+  the normal `AppBar` for all other cases
+- The `LayoutAppBarTitle`, `LayoutChildren`, `LayoutCloseNavigationButton`,
+  `LayoutNavToggle`, `LayoutNavigation`, `LayoutNavigationHeader`,
+  `LayoutProvider`, `LayoutTree`, and `MiniLayoutWrapper` components have been
+  removed
+- The `defaultMiniNavigationItemsRenderer` and `defaultNavigationItemRenderer`
+  renderers have been removed
+- The `getLayoutType`, `isTemporaryLayout`, `isToggleableLayout`,
+  `isPersistentLayout`, `isFullHeightLayout`, and `isMiniLayout` utils have been
+  removed
+- Most of the Typescript types have been removed
+
+Here's an example diff for converting the
+[Configurable Layout Example](https://v5.react-md.dev/packages/layout/demos#configurable-layout-title)
+from the v5 website.
+
+> !Warn! A custom `renderer` must be passed to the `Tree` component if there
+> are non-tree items in the navigation tree like dividers or subheaders.
+
+```diff
++import { AppBar } from "@react-md/core/app-bar/AppBar";
++import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
++import { Button } from "@react-md/core/button/Button";
++import { LayoutNav } from "@react-md/core/layout/LayoutNav";
++import { Main } from "@react-md/core/layout/Main";
++import { useExpandableLayout } from "@react-md/core/layout/useExpandableLayout";
++import { useLayoutTree } from "@react-md/core/layout/useLayoutTree";
++import { Sheet } from "@react-md/core/sheet/Sheet";
++import { Tree } from "@react-md/core/tree/Tree";
++import { type TreeData } from "@react-md/core/tree/types";
+ import {
+   HomeSVGIcon,
+   SecuritySVGIcon,
+   SettingsSVGIcon,
+   ShareSVGIcon,
+   SnoozeSVGIcon,
+   StarSVGIcon,
+   StorageSVGIcon,
+ } from "@react-md/material-icons";
+ import { type ReactElement, useState } from "react";
+-import {
+-  DEFAULT_DESKTOP_LAYOUT,
+-  DEFAULT_LANDSCAPE_TABLET_LAYOUT,
+-  DEFAULT_PHONE_LAYOUT,
+-  DEFAULT_TABLET_LAYOUT,
+-  Layout,
+-  type LayoutNavigationTree,
+-  type SupportedPhoneLayout,
+-  type SupportedTabletLayout,
+-  type SupportedWideLayout,
+-  useLayoutNavigation,
+-} from "react-md";
+
+-import { ConfigurationForm } from "./ConfigurationForm";
+ import { CurrentChildren } from "./CurrentChildren";
+
+-const navItems: LayoutNavigationTree = {
++const navItems: TreeData = {
+   "/": {
+     itemId: "/",
++    href: "/",
+     parentId: null,
+     children: "Home",
+     leftAddon: <HomeSVGIcon />,
+   },
+   "/route-1": {
+     itemId: "/route-1",
++    href: "/route-1",
+     parentId: null,
+     children: "Route 1",
+     leftAddon: <StarSVGIcon />,
+   },
+   "/divider-1": {
+     itemId: "/divider-1",
+     parentId: null,
+     divider: true,
+     isCustom: true,
+   },
+   "/route-2": {
+     itemId: "/route-2",
++    href: "/route-2",
+     parentId: null,
+     children: "Route 2",
+     leftAddon: <ShareSVGIcon />,
+   },
+   "/route-2-1": {
+     itemId: "/route-2-1",
++    href: "/route-2-1",
+     parentId: "/route-2",
+     children: "Route 2-1",
+     leftAddon: <SettingsSVGIcon />,
+   },
+   "/route-2-2": {
+     itemId: "/route-2-2",
++    href: "/route-2-2",
+     parentId: "/route-2",
+     children: "Route 2-2",
+     leftAddon: <StorageSVGIcon />,
+   },
+   "/route-2-3": {
+     itemId: "/route-2-3",
++    href: "/route-2-3",
+     parentId: "/route-2",
+     children: "Route 2-3",
+     leftAddon: <SecuritySVGIcon />,
+   },
+   "/route-3": {
+     itemId: "/route-3",
++    href: "/route-3",
+     parentId: null,
+     children: "Route 3",
+     leftAddon: <SnoozeSVGIcon />,
+   },
+   "/route-4": {
+     itemId: "/route-4",
++    href: "/route-4",
+     parentId: null,
+     children: "Route 4",
+   },
+ };
+
+ export default function Demo(): ReactElement {
+-  const [phoneLayout, setPhoneLayout] =
+-    useState<SupportedPhoneLayout>(DEFAULT_PHONE_LAYOUT);
+-  const [tabletLayout, setTabletLayout] = useState<SupportedTabletLayout>(
+-    DEFAULT_TABLET_LAYOUT
+-  );
+-  const [landscapeTabletLayout, setLandscapeTabletLayout] =
+-    useState<SupportedTabletLayout>(DEFAULT_LANDSCAPE_TABLET_LAYOUT);
+-  const [desktopLayout, setDesktopLayout] = useState<SupportedWideLayout>(
+-    DEFAULT_DESKTOP_LAYOUT
+-  );
+-  const [largeDesktopLayout, setLargeDesktopLayout] =
+-    useState<SupportedWideLayout>(DEFAULT_DESKTOP_LAYOUT);
+-
+   const [selectedId, setSelectedId] = useState("/");
++  const tree = useLayoutTree({
++    navItems,
++    pathname: selectedId,
++  });
++  const {
++    temporary,
++    persistent,
++    temporaryNavProps,
++    navToggleProps,
++    appBarProps,
++    mainProps,
++    expandableNavProps,
++  } = useExpandableLayout({
++    pathname: selectedId,
++    fullHeightNav: "static",
++  });
+
+   return (
+-    <Layout
+-      id="configurable-layout"
+-      title="Configurable Layout Title"
+-      navHeaderTitle="Another Title"
+-      phoneLayout={phoneLayout}
+-      tabletLayout={tabletLayout}
+-      landscapeTabletLayout={landscapeTabletLayout}
+-      desktopLayout={desktopLayout}
+-      treeProps={{
+-        ...useLayoutNavigation(navItems, selectedId),
+-        onItemSelect: setSelectedId,
+-      }}
+-      // this is only required since I already have a main element due to the
+-      // documentation site's Layout component
+-      mainProps={{ component: "div" }}
+-    >
+-      <CurrentChildren route={selectedId} />
+-      <ConfigurationForm
+-        phoneLayout={phoneLayout}
+-        setPhoneLayout={setPhoneLayout}
+-        tabletLayout={tabletLayout}
+-        setTabletLayout={setTabletLayout}
+-        landscapeTabletLayout={landscapeTabletLayout}
+-        setLandscapeTabletLayout={setLandscapeTabletLayout}
+-        desktopLayout={desktopLayout}
+-        setDesktopLayout={setDesktopLayout}
+-        largeDesktopLayout={largeDesktopLayout}
+-        setLargeDesktopLayout={setLargeDesktopLayout}
+-      />
+-    </Layout>
++    <>
++      <AppBar {...appBarProps}>
++        <Button {...navToggleProps} />
++        <AppBarTitle>Configurable Layout Title</AppBarTitle>
++      </AppBar>
++      {persistent && (
++        <LayoutNav {...expandableNavProps}>
++          <AppBar>
++            <AppBarTitle>Another Title</AppBarTitle>
++          </AppBar>
++          <Tree
++            {...tree}
++            aria-label="Navigation"
++            toggleTreeItemSelection={setSelectedId}
++          />
++        </LayoutNav>
++      )}
++      {temporary && (
++        <Sheet {...temporaryNavProps}>
++          <Tree
++            {...tree}
++            aria-label="Navigation"
++            toggleTreeItemSelection={setSelectedId}
++          />
++        </Sheet>
++      )}
++      <Main {...mainProps}>
++        <CurrentChildren route={selectedId} />
++      </Main>
++    </>
+   );
+ }
+```
 
 ## Link
 
@@ -1926,8 +2251,6 @@ Remove `SimpleListItem`:
    );
 ```
 
-## Material Icons
-
 ## Media
 
 ## Menu
@@ -2097,7 +2420,119 @@ The `CircularProgress` updated the following props:
 
 ## Sheet 🎉
 
-## States
+## States ❌
+
+The `@react-md/states` packages was _mostly_ internal so codemods will not be provided
+to update this package.
+
+### Replace `StatesConnfig` context provider
+
+The `StatesConfig` context provider has been removed in favor of the new
+`INTERACTION_CONFIG` object. Here is an example on how to update the `disableRipple`
+behavior:
+
+```diff
++import { INTERACTION_CONFIG } from "@react-md/core/interaction/config";
+-import { StatesConfig } from "react-md";
+ import { RestOfTheApp } from "./RestOfTheApp.jsx";
+
++INTERACTION_CONFIG.mode = "none";
+
+ export default function App() {
+   return (
+-    <StatesConfig disableRipple>
+       <RestOfTheApp />
+-    </StatesConfig>
+   );
+ }
+```
+
+### Replace `useInteractionStates` with `useElementInteraction`
+
+If the `useInteractionStates` hook was used, switch to the
+[useElementInteraction](/hooks/use-element-interaction) hook.
+
+```diff
+ import cn from "classnames";
+ import { type ButtonHTMLAttributes, type ReactElement } from "react";
+-import { type InteractionStatesOptions, useInteractionStates } from "react-md";
++import { useElementInteraction } from "react-md";
+
+ import styles from "./CustomComponent.module.scss";
+
+-interface CustomButtonProps
+-  extends ButtonHTMLAttributes<HTMLButtonElement>,
+-    Omit<InteractionStatesOptions, "handlers"> {}
++interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
++  disableRipple?: boolean;
++}
+
+ function CustomButton({
+   disabled,
+   disableRipple,
+-  disableSpacebarClick,
+-  disableProgrammaticRipple,
+-  className: propClassName,
++  className,
+   children,
++  onBlur,
++  onClick,
+   onKeyDown,
+   onKeyUp,
+   onMouseDown,
+   onMouseUp,
+   onMouseLeave,
++  onDragStart,
+   onTouchStart,
+   onTouchMove,
+   onTouchEnd,
+   ...props
+ }: CustomButtonProps): ReactElement {
+-  const { ripples, handlers, className } = useInteractionStates({
+-    handlers: {
++  const { ripples, handlers, pressed, pressedClassName } =
++    useElementInteraction({
++      onBlur,
++      onClick,
+       onKeyDown,
+       onKeyUp,
+       onMouseDown,
+       onMouseUp,
+       onMouseLeave,
++      onDragStart,
+       onTouchStart,
+       onTouchMove,
+       onTouchEnd,
+-    },
+-    disabled,
+-    disableRipple,
+-    disableSpacebarClick,
+-    disableProgrammaticRipple,
+-    className: propClassName,
+-  });
++      disabled,
++      mode: disableRipple ? "none" : undefined,
++    });
+
+   return (
+     <button
+       {...props}
+       type="button"
+-      className={cn(styles.button, className)}
++      className={cn(
++        styles.button,
++        className,
++        pressedClassName,
++        pressed && styles.pressed
++      )}
+       {...handlers}
+     >
+       {children}
+       {ripples}
+     </button>
+   );
+ }
+```
 
 ## Table
 
@@ -2391,8 +2826,6 @@ components were defined in the same file.
    );
  }
 ```
-
-## Theme
 
 ## Transition
 

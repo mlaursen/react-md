@@ -42,6 +42,7 @@ export type TextFieldValidationType =
 
 /**
  * @since 2.5.0
+ * @since 6.0.0 Renamed `validateOnChange` to `validationType`
  */
 export interface ErrorMessageOptions extends TextFieldValidationOptions {
   /**

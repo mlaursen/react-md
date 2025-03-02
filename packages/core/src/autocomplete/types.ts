@@ -51,7 +51,6 @@ export type AutocompleteLabeledOption = string | { label: string };
 /**
  * @since 6.0.0
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export type AutocompleteOption = AutocompleteLabeledOption | object;
 
 /**

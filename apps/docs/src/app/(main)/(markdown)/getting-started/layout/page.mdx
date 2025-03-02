@@ -313,6 +313,7 @@ component accepts a list of `items` and `data` containing the `pathname` and
 ```tsx
 import { Navigation } from "@react-md/core/navigation/Navigation";
 import { type NavigationItem } from "@react-md/core/navigation/types";
+import { useNavigationExpansion } from "@react-md/core/navigation/useNavigationExpansion";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import HomeIcon from "@react-md/material-icons/HomeIcon";
 import StarIcon from "@react-md/material-icons/StarIcon";
@@ -343,8 +344,12 @@ const items: readonly NavigationItem[] = [
 
 export function MainNavigation(): ReactElement {
   const pathname = usePathname();
+  const { data } = useNavigationExpansion({
+    pathname,
+    linkComponent: Link,
+  });
 
-  return <Navigation items={items} data={{ pathname, linkComponent: Link }} />;
+  return <Navigation items={items} data={data} />;
 }
 ```
 
@@ -370,6 +375,7 @@ the current `pathname`, it will gain the active styles.
 A tree layout can be viewed [here](/layout-example/full-height?navType=tree).
 
 ```tsx
+import { useLayoutTree } from "@react-md/core/layout/useLayoutTree";
 import { Tree } from "@react-md/core/tree/Tree";
 import { type TreeData } from "@react-md/core/tree/types";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
