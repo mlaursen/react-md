@@ -386,6 +386,7 @@ function Configuration({
                   key={value}
                   value={value}
                   secondaryText={<code>{JSON.stringify(anchor, null, 2)}</code>}
+                  multiline
                 >
                   {value}
                 </Option>
@@ -405,7 +406,12 @@ function Configuration({
               onChange={(event) => setWidth(event.currentTarget.value)}
             >
               {Object.entries(WIDTHS).map(([value, description]) => (
-                <Option key={value} value={value} secondaryText={description}>
+                <Option
+                  key={value}
+                  value={value}
+                  secondaryText={description}
+                  multiline
+                >
                   {value}
                 </Option>
               ))}

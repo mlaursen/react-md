@@ -281,6 +281,17 @@ export function createHorizontalPosition(
   } = options;
 
   const screenRight = vw - vwMargin;
+  if (width !== "equal" && elWidth > vw - vwMargin * 2) {
+    // if the element's width is greater than the viewport's width minus the
+    // margin on both sides, just make the element span the entire viewport with
+    // the margin
+    return {
+      left: vwMargin,
+      right: vwMargin,
+      actualX: x,
+    };
+  }
+
   if (width === "min" || width === "equal") {
     return createEqualWidth({
       x,
@@ -292,17 +303,6 @@ export function createHorizontalPosition(
       screenRight,
       isMinWidth: width === "min",
     });
-  }
-
-  if (elWidth > vw - vwMargin * 2) {
-    // if the element's width is greater than the viewport's width minus the
-    // margin on both sides, just make the element span the entire viewport with
-    // the margin
-    return {
-      left: vwMargin,
-      right: vwMargin,
-      actualX: x,
-    };
   }
 
   const config: FixConfig = {
