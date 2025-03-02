@@ -22,6 +22,13 @@ import {
   useResizingTextArea,
 } from "./useResizingTextArea.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-textarea-height"?: string | number;
+    "--rmd-textarea-padding"?: string | number;
+  }
+}
+
 /**
  * @since 6.0.0 Added `containerProps`.
  */

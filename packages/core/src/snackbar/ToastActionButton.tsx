@@ -4,7 +4,7 @@ import { cnb } from "cnbuilder";
 import { forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button/Button.js";
-import { type ButtonTheme } from "../button/buttonStyles.js";
+import { type ButtonTheme } from "../button/styles.js";
 import { bem } from "../utils/bem.js";
 import { useCurrentToastActions } from "./useCurrentToastActions.js";
 

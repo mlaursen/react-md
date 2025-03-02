@@ -1,15 +1,12 @@
-import { cnb } from "cnbuilder";
 import { type HTMLAttributes, forwardRef } from "react";
 
-import { bem } from "../utils/bem.js";
+import { sliderTrack } from "./sliderStyles.js";
 import {
   type ClosestThumbEventHandlersOptions,
   type ThumbOffsetsOptions,
   getClosestThumbEventHandlers,
   getThumbOffsets,
 } from "./sliderUtils.js";
-
-const styles = bem("rmd-slider-track");
 
 /**
  * @internal
@@ -80,20 +77,13 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
             isRangeSlider,
           }),
         }}
-        className={cnb(
-          styles({
-            animate,
-            disabled,
-            hoverable: !disabled,
-            h: !vertical,
-            h1: !vertical && !isRangeSlider,
-            h2: !vertical && isRangeSlider,
-            v: vertical,
-            v1: vertical && !isRangeSlider,
-            v2: vertical && isRangeSlider,
-          }),
-          className
-        )}
+        className={sliderTrack({
+          className,
+          animate,
+          disabled,
+          vertical,
+          isRangeSlider,
+        })}
         {...getClosestThumbEventHandlers({
           vertical,
           isRangeSlider,

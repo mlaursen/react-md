@@ -16,6 +16,13 @@ import {
   overlay,
 } from "./overlayStyles.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-overlay-background-color"?: string;
+    "--rmd-overlay-z-index"?: number;
+  }
+}
+
 /**
  * @since 6.0.0 Added `align` and `justify` props.
  * @since 6.0.0 Renamed `hidden` to `noOpacity`.

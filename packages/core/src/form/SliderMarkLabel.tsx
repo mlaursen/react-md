@@ -1,4 +1,3 @@
-import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 
 import {
@@ -7,9 +6,7 @@ import {
   type TypographyProps,
 } from "../typography/Typography.js";
 import { type TypographyType } from "../typography/typographyStyles.js";
-import { bem } from "../utils/bem.js";
-
-const styles = bem("rmd-slider-mark-label");
+import { sliderMarkLabel } from "./sliderStyles.js";
 
 /**
  * @since 6.0.0
@@ -53,7 +50,7 @@ export function SliderMarkLabel(props: SliderMarkLabelProps): ReactElement {
       as={as}
       type={type}
       style={{ ...style, "--rmd-slider-mark-offset": offset }}
-      className={cnb(styles({ h: !vertical, v: vertical }), className)}
+      className={sliderMarkLabel({ className, vertical })}
     >
       {children}
     </Typography>

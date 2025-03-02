@@ -1,13 +1,10 @@
 "use client";
 
-import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 
 import { Tooltip, type TooltipProps } from "../tooltip/Tooltip.js";
 import { type CSSTransitionClassNames } from "../transition/types.js";
-import { bem } from "../utils/bem.js";
-
-const styles = bem("rmd-slider-tooltip");
+import { sliderValueTooltip } from "./sliderStyles.js";
 
 const HORIZONTAL_CLASS_NAMES: CSSTransitionClassNames = {
   enter: "rmd-slider-tooltip--h-off",
@@ -63,12 +60,7 @@ export function SliderValueTooltip(
       dense
       disablePortal
       textOverflow="nowrap"
-      className={cnb(
-        styles({ h: !vertical, v: vertical }),
-        animate && "rmd-slider-thumb--animate",
-        `rmd-slider-thumb--${vertical ? "v" : "h"}${index}`,
-        className
-      )}
+      className={sliderValueTooltip({ className, animate, index, vertical })}
       classNames={classNames}
       {...remaining}
     >

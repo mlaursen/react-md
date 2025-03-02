@@ -7,7 +7,7 @@ import {
   forwardRef,
 } from "react";
 
-import { type ButtonClassNameThemeOptions } from "../button/buttonStyles.js";
+import { type ButtonClassNameThemeOptions } from "../button/styles.js";
 import { getIcon } from "../icon/config.js";
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";

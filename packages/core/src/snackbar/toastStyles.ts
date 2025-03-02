@@ -3,14 +3,6 @@ import { cnb } from "cnbuilder";
 import { type BackgroundColor, cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-toast-color"?: string;
-    "--rmd-toast-background-color"?: string;
-    "--rmd-toast-offset"?: string | number;
-  }
-}
-
 const styles = bem("rmd-toast");
 
 /** @since 6.0.0 */

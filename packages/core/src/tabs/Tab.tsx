@@ -19,6 +19,26 @@ import { tab } from "./tabStyles.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type useTabs } from "./useTabs.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-tab-color"?: string;
+    "--rmd-tab-active-color"?: string;
+    "--rmd-tab-inactive-color"?: string;
+    "--rmd-tab-disabled-color"?: string;
+
+    "--rmd-tab-size"?: string;
+    "--rmd-tab-offset"?: string | number;
+    "--rmd-tab-min-width"?: string;
+    "--rmd-tab-max-width"?: string;
+    "--rmd-tab-min-height"?: string;
+    "--rmd-tab-stacked-height"?: string;
+    "--rmd-tab-stacked-width"?: string;
+    "--rmd-tab-padding"?: string | number;
+    "--rmd-tab-stacked-padding"?: string | number;
+    "--rmd-tab-indicator-background"?: string;
+  }
+}
+
 /**
  * @since 6.0.0
  */

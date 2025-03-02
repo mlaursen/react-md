@@ -19,6 +19,13 @@ import {
   type FormMessageContainerExtension,
 } from "./types.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-switch-track-background-color"?: string;
+    "--rmd-switch-ball-background-color"?: string;
+  }
+}
+
 /**
  * @since 6.0.0 Added `containerProps` and support for the
  * `FormMessage` behavior.

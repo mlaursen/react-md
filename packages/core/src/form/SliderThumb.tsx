@@ -1,6 +1,5 @@
 "use client";
 
-import { cnb } from "cnbuilder";
 import {
   type ChangeEventHandler,
   type HTMLAttributes,
@@ -13,60 +12,13 @@ import {
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { type TooltipProps } from "../tooltip/Tooltip.js";
 import { type LabelRequiredForA11y } from "../types.js";
-import { bem } from "../utils/bem.js";
 import { SliderValueTooltip } from "./SliderValueTooltip.js";
+import { sliderThumb, sliderThumbInput } from "./sliderStyles.js";
 import { type SliderValueOptions } from "./useSlider.js";
-
-const styles = bem("rmd-slider-thumb");
 
 const noop = (): void => {
   // do nothing
 };
-
-/**
- * @internal
- * @since 6.0.0
- */
-interface SliderThumbClassNameOptions {
-  className?: string;
-
-  mask?: boolean;
-  index: 1 | 2;
-  active: boolean;
-  animate: boolean;
-  vertical: boolean;
-  disabled: boolean;
-}
-
-/**
- * @internal
- * @since 6.0.0
- */
-function sliderThumb(options: SliderThumbClassNameOptions): string {
-  const { className, mask, index, active, animate, disabled, vertical } =
-    options;
-
-  const isSecondThumb = index === 2;
-  return cnb(
-    styles({
-      h: !vertical,
-      h1: !vertical && !isSecondThumb,
-      h2: !vertical && isSecondThumb,
-      v: vertical,
-      v1: vertical && !isSecondThumb,
-      v2: vertical && isSecondThumb,
-      mask,
-      "mask-h": mask && !vertical,
-      "mask-v": mask && vertical,
-      active,
-      animate,
-      disabled,
-      "disabled-h": disabled && !vertical && !mask,
-      "disabled-v": disabled && vertical && !mask,
-    }),
-    className
-  );
-}
 
 /**
  * @since 6.0.0
@@ -309,7 +261,7 @@ export const SliderThumb = forwardRef<
         disabled={disabled}
         tabIndex={-1}
         onChange={onChange}
-        className={styles("input")}
+        className={sliderThumbInput()}
       />
       {discrete && (
         <SliderValueTooltip

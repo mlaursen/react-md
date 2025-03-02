@@ -2,13 +2,6 @@ import { cnb } from "cnbuilder";
 
 import { bem } from "../utils/bem.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-line-length"?: string | number;
-    "--rmd-text-container-padding"?: string | number;
-  }
-}
-
 const styles = bem("rmd-text-container");
 
 /**

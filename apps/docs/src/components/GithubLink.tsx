@@ -3,7 +3,7 @@
 import {
   type ButtonClassNameOptions,
   button,
-} from "@react-md/core/button/buttonStyles";
+} from "@react-md/core/button/styles";
 import { Tooltip } from "@react-md/core/tooltip/Tooltip";
 import {
   type TooltipOptions,

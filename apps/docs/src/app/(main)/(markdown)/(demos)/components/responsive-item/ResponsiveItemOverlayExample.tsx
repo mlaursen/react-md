@@ -1,6 +1,6 @@
 import { Box } from "@react-md/core/box/Box";
 import { box } from "@react-md/core/box/styles";
-import { button } from "@react-md/core/button/buttonStyles";
+import { button } from "@react-md/core/button/styles";
 import { Card } from "@react-md/core/card/Card";
 import { ResponsiveItem } from "@react-md/core/responsive-item/ResponsiveItem";
 import { ResponsiveItemOverlay } from "@react-md/core/responsive-item/ResponsiveItemOverlay";

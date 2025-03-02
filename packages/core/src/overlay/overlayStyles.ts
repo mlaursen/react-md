@@ -11,13 +11,6 @@ import {
 } from "../transition/types.js";
 import { bem } from "../utils/bem.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-overlay-background-color"?: string;
-    "--rmd-overlay-z-index"?: number;
-  }
-}
-
 const styles = bem("rmd-overlay");
 
 /** @since 6.0.0 */

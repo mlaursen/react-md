@@ -48,14 +48,6 @@ import {
 } from "./useTooltipPosition.js";
 import { getAnchor } from "./utils.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-tooltip-background-color"?: string;
-    "--rmd-tooltip-color"?: string;
-    "--rmd-tooltip-spacing"?: string | number;
-  }
-}
-
 const noop = (): void => {
   // do nothing
 };

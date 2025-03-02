@@ -4,20 +4,6 @@ import { type TextColor, type ThemeColor, cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import { type FormComponentStates, type FormThemeOptions } from "./types.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-text-field-height"?: string | number;
-    "--rmd-text-field-padding-left"?: string | number;
-    "--rmd-text-field-padding-right"?: string | number;
-    "--rmd-text-field-padding-top"?: string | number;
-    "--rmd-text-field-border-color"?: string;
-    "--rmd-text-field-hover-border-color"?: string;
-    "--rmd-text-field-filled-color"?: string;
-    "--rmd-form-addon-top"?: string | number;
-    "--rmd-form-addon-margin-top"?: string | number;
-  }
-}
-
 const styles = bem("rmd-text-field-container");
 
 /** @since 6.0.0 */

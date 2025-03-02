@@ -25,7 +25,6 @@ import {
 } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
-import { label as labelStyles } from "./Label.js";
 import { Listbox } from "./Listbox.js";
 import { SelectedOption } from "./SelectedOption.js";
 import {
@@ -33,6 +32,7 @@ import {
   type TextFieldContainerProps,
 } from "./TextFieldContainer.js";
 import { getFormConfig } from "./formConfig.js";
+import { label as labelStyles } from "./labelStyles.js";
 import { select } from "./selectStyles.js";
 import { extractOptionsFromChildren } from "./selectUtils.js";
 import { textField } from "./textFieldStyles.js";

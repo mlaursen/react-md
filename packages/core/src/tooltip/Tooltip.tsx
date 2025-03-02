@@ -19,7 +19,15 @@ import {
   DEFAULT_TOOLTIP_POSITION,
   DEFAULT_TOOLTIP_TIMEOUT,
 } from "./constants.js";
-import { tooltip } from "./tooltipStyles.js";
+import { tooltip } from "./styles.js";
+
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-tooltip-background-color"?: string;
+    "--rmd-tooltip-color"?: string;
+    "--rmd-tooltip-spacing"?: string | number;
+  }
+}
 
 /**
  * The base props for the `Tooltip` component. This can be extended when

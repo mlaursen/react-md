@@ -10,7 +10,7 @@ import {
   type ButtonTheme,
   type ButtonThemeType,
   type ButtonType,
-} from "../buttonStyles.js";
+} from "../styles.js";
 
 describe("Button", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

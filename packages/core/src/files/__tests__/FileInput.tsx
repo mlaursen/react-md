@@ -1,10 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 
-import {
-  type ButtonTheme,
-  type ButtonThemeType,
-} from "../../button/buttonStyles.js";
+import { type ButtonTheme, type ButtonThemeType } from "../../button/styles.js";
 import { rmdRender, screen } from "../../test-utils/index.js";
 import { FileInput } from "../FileInput.js";
 

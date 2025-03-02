@@ -3,7 +3,7 @@ import { createRef } from "react";
 
 import { render, screen } from "../../test-utils/index.js";
 import { ButtonUnstyled } from "../ButtonUnstyled.js";
-import { buttonUnstyled } from "../buttonUnstyledStyles.js";
+import { buttonUnstyled } from "../styles.js";
 
 describe("ButtonUnstyled", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

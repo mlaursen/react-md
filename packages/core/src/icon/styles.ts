@@ -2,7 +2,10 @@ import { cnb } from "cnbuilder";
 
 import { type TextColor, type ThemeColor, cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
-import type { MaterialIconFamily, MaterialSymbolFamily } from "./material.js";
+import {
+  type MaterialIconFamily,
+  type MaterialSymbolFamily,
+} from "./material.js";
 
 declare module "react" {
   interface CSSProperties {

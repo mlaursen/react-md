@@ -7,9 +7,6 @@ import {
 import { bem } from "../utils/bem.js";
 import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 
-const styles = bem("rmd-dialog");
-const containerStyles = bem("rmd-dialog-container");
-
 declare module "react" {
   interface CSSProperties {
     "--rmd-dialog-background-color"?: string;
@@ -24,6 +21,9 @@ declare module "react" {
     "--rmd-dialog-footer-padding"?: string | number;
   }
 }
+
+const styles = bem("rmd-dialog");
+const containerStyles = bem("rmd-dialog-container");
 
 export type DialogType = "full-page" | "centered" | "custom";
 

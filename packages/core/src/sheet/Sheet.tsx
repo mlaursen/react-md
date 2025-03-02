@@ -11,6 +11,19 @@ import {
   sheet,
 } from "./styles.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-sheet-height"?: string | number;
+    "--rmd-sheet-width"?: string | number;
+    "--rmd-sheet-max-height"?: string | number;
+    "--rmd-sheet-touch-width"?: string | number;
+    "--rmd-sheet-touch-max-height"?: string | number;
+    "--rmd-sheet-static-width"?: string | number;
+    "--rmd-sheet-transform-offscreen"?: string | number;
+    "--rmd-sheet-z-index"?: number;
+  }
+}
+
 /**
  * @since 6.0.0
  */

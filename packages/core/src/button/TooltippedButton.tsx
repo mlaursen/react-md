@@ -10,7 +10,7 @@ import {
   useTooltip,
 } from "../tooltip/useTooltip.js";
 import { Button, type ButtonProps } from "./Button.js";
-import { type ButtonType } from "./buttonStyles.js";
+import { type ButtonType } from "./styles.js";
 
 /**
  * @since 6.0.0

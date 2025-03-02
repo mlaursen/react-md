@@ -1,6 +1,6 @@
 import { cnb } from "cnbuilder";
 
-import { button } from "../button/buttonStyles.js";
+import { button } from "../button/styles.js";
 import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 

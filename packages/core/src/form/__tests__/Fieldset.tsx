@@ -2,8 +2,9 @@ import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
 
 import { render, screen } from "../../test-utils/index.js";
-import { Fieldset, fieldset } from "../Fieldset.js";
+import { Fieldset } from "../Fieldset.js";
 import { Legend } from "../Legend.js";
+import { fieldset } from "../fieldsetStyles.js";
 
 describe("Fieldset", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {

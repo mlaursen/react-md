@@ -2,8 +2,6 @@ import { cnb } from "cnbuilder";
 
 import { bem } from "../utils/bem.js";
 
-const styles = bem("rmd-divider");
-
 declare module "react" {
   interface CSSProperties {
     "--rmd-divider-size"?: string | number;
@@ -15,6 +13,8 @@ declare module "react" {
     "--rmd-divider-max-size"?: string | number;
   }
 }
+
+const styles = bem("rmd-divider");
 
 /** @since 6.0.0 */
 export interface DividerClassNameOptions {

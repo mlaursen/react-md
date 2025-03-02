@@ -1,5 +1,5 @@
 import { FloatingActionButton } from "@react-md/core/button/FloatingActionButton";
-import { button } from "@react-md/core/button/buttonStyles";
+import { button } from "@react-md/core/button/styles";
 import { Typography } from "@react-md/core/typography/Typography";
 import Link from "next/link.js";
 import { type ReactElement } from "react";

@@ -1,9 +1,6 @@
-import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
 
-import { bem } from "../utils/bem.js";
-
-const styles = bem("rmd-slider-container");
+import { sliderContainer } from "./sliderStyles.js";
 
 /**
  * @since 2.5.0
@@ -66,17 +63,12 @@ export const SliderContainer = forwardRef<HTMLDivElement, SliderContainerProps>(
       <div
         {...remaining}
         ref={ref}
-        className={cnb(
-          styles({
-            h: !vertical,
-            "pad-left": !vertical && !beforeAddon,
-            "pad-right": !vertical && !afterAddon,
-            v: vertical,
-            "pad-bottom": vertical && !beforeAddon,
-            "pad-top": vertical && !afterAddon,
-          }),
-          className
-        )}
+        className={sliderContainer({
+          className,
+          vertical,
+          beforeAddon: !!beforeAddon,
+          afterAddon: !!afterAddon,
+        })}
       >
         {beforeAddon}
         {children}

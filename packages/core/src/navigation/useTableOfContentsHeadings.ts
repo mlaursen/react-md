@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 
-import { useSsr } from "../SsrProvider.jsx";
+import { useSsr } from "../SsrProvider.js";
 import {
   type HeadingReference,
   type HeadingReferenceWithChildren,

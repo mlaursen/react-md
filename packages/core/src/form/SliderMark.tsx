@@ -1,9 +1,6 @@
-import { cnb } from "cnbuilder";
 import { type HTMLAttributes, type ReactElement } from "react";
 
-import { bem } from "../utils/bem.js";
-
-const styles = bem("rmd-slider-mark");
+import { sliderMark } from "./sliderStyles.js";
 
 /**
  * @internal
@@ -26,15 +23,7 @@ export function SliderMark(props: SliderMarkProps): ReactElement {
     <span
       {...remaining}
       style={{ ...style, "--rmd-slider-mark-offset": offset }}
-      className={cnb(
-        styles({
-          active,
-          inactive: !active,
-          h: !vertical,
-          v: vertical,
-        }),
-        className
-      )}
+      className={sliderMark({ className, active, vertical })}
     />
   );
 }

@@ -5,6 +5,17 @@ import { windowSplitter } from "./styles.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type useWindowSplitter } from "./useWindowSplitter.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-window-splitter-top"?: number | string;
+    "--rmd-window-splitter-right"?: number | string;
+    "--rmd-window-splitter-bottom"?: number | string;
+    "--rmd-window-splitter-left"?: number | string;
+    "--rmd-window-splitter-opacity"?: number | string;
+    "--rmd-window-splitter-position"?: number | string;
+  }
+}
+
 /**
  * @since 6.0.0
  * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/}

@@ -13,17 +13,6 @@ import {
 } from "../draggable/useDraggable.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-window-splitter-top"?: number | string;
-    "--rmd-window-splitter-right"?: number | string;
-    "--rmd-window-splitter-bottom"?: number | string;
-    "--rmd-window-splitter-left"?: number | string;
-    "--rmd-window-splitter-opacity"?: number | string;
-    "--rmd-window-splitter-position"?: number | string;
-  }
-}
-
 /**
  * @since 6.0.0
  */

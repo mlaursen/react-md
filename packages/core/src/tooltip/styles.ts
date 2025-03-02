@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
 
 import { type TextOverflow, cssUtils } from "../cssUtils.js";
-import type { SimplePosition } from "../positioning/types.js";
+import { type SimplePosition } from "../positioning/types.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-tooltip");

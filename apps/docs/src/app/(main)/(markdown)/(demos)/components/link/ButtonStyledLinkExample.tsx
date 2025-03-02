@@ -1,4 +1,4 @@
-import { button } from "@react-md/core/button/buttonStyles";
+import { button } from "@react-md/core/button/styles";
 import { cssUtils } from "@react-md/core/cssUtils";
 import { type ReactElement } from "react";
 

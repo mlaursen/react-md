@@ -2,6 +2,13 @@ import { type HTMLAttributes, forwardRef } from "react";
 
 import { list } from "./listStyles.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-list-padding-h"?: string | number;
+    "--rmd-list-padding-v"?: string | number;
+  }
+}
+
 export type ListElement = HTMLUListElement | HTMLOListElement;
 
 export interface ListProps extends HTMLAttributes<ListElement> {

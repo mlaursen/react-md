@@ -9,7 +9,7 @@ import {
 } from "react";
 
 import { Button, type ButtonProps } from "../button/Button.js";
-import { type ButtonClassNameThemeOptions } from "../button/buttonStyles.js";
+import { type ButtonClassNameThemeOptions } from "../button/styles.js";
 import { getIcon } from "../icon/config.js";
 import { type PropsWithRef } from "../types.js";
 import { useDir } from "../typography/WritingDirectionProvider.js";

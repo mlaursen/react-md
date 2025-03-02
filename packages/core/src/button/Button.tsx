@@ -11,7 +11,7 @@ import {
   type FloatingActionButtonPosition,
   type FloatingActionButtonProps,
 } from "./FloatingActionButton.js";
-import { type ButtonClassNameThemeOptions, button } from "./buttonStyles.js";
+import { type ButtonClassNameThemeOptions, button } from "./styles.js";
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,

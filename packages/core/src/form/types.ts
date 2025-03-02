@@ -72,6 +72,9 @@ export interface FormConfiguration extends Required<FormThemeOptions> {
   uncontrolledToggles: boolean;
 }
 
+/**
+ * @since 6.0.0
+ */
 export interface FormComponentStates {
   /** @defaultValue `false` */
   error?: boolean;
@@ -452,8 +455,28 @@ export interface ConfigurableTextFieldAddonProps
 }
 
 /**
- * @since 6.0.0 Added support for `leftAddonProps` and
- * `rightAddonProps`.
+ * @since 6.0.0 Split props into `ConfigurableTextFieldAddonProps`
+ */
+export interface TextFieldAddonProps extends ConfigurableTextFieldAddonProps {
+  /**
+   * @defaultValue `false`
+   */
+  after?: boolean;
+
+  /**
+   * Set this to `true` if the addon should not be wrapped in a `<span>` with some
+   * additional styles.
+   *
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
+}
+
+/**
+ * @since 6.0.0 Renamed the `leftChildren` / `rightChildren` props to
+ * `leftAddon` / `rightAddon`. Renamed `isLeftAddon` / `isRightAddon` to
+ * `disableLeftAddonStyles` / `disableRightAddonStyles`. Added
+ * `leftAddonProps` / `rightAddonProps`. Removed `stretch`
  */
 export interface TextFieldContainerOptions
   extends FormThemeOptions,

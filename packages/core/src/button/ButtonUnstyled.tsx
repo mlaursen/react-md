@@ -1,6 +1,6 @@
 import { type ButtonHTMLAttributes, forwardRef } from "react";
 
-import { buttonUnstyled } from "./buttonUnstyledStyles.js";
+import { buttonUnstyled } from "./styles.js";
 
 /**
  * The props for the unstyled button are just all the normal button html

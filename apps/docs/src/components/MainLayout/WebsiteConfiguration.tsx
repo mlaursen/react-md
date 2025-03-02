@@ -4,7 +4,7 @@ import { AppBar } from "@react-md/core/app-bar/AppBar";
 import { AppBarTitle } from "@react-md/core/app-bar/AppBarTitle";
 import { Box } from "@react-md/core/box/Box";
 import { Button } from "@react-md/core/button/Button";
-import { button } from "@react-md/core/button/buttonStyles";
+import { button } from "@react-md/core/button/styles";
 import { DialogContent } from "@react-md/core/dialog/DialogContent";
 import { Divider } from "@react-md/core/divider/Divider";
 import { Form } from "@react-md/core/form/Form";
