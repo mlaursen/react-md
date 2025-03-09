@@ -1,3 +1,7 @@
+////
+/// @group dialog
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../box-shadows";
@@ -5,53 +9,178 @@
 @use "../interaction/interaction";
 @use "../theme/theme";
 
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` of the default dialog enter/exit transition styles should not
+/// be generated.
+///
+/// @type Boolean
+$disable-default-transition: false !default;
+
+/// Set to `true` when the `FixedDialog` will not be used.
+///
+/// @type Boolean
 $disable-fixed: false !default;
+
+/// Set to `true` if the `DialogHeader` will not be used.
+///
+/// @type Boolean
 $disable-header: false !default;
+
+/// Set to `true` if the `DialogTitle` will not be used.
+///
+/// @type Boolean
 $disable-title: false !default;
+
+/// Set to `true` if the `DialogContent` will not be used.
+///
+/// @type Boolean
 $disable-content: false !default;
+
+/// Set to `true` if the `DialogFooter` will not be used.
+///
+/// @type Boolean
 $disable-footer: false !default;
+
+/// Set to `true` if the `Dialog` component will never gain focus because each
+/// `Dialog` usage has a child component with `defaultFocus` enabled.
+///
+/// @type Boolean
 $disable-focus-outline: false !default;
+
+/// Set to `true` if the `DialogFooter` will never set `align="stacked-start"`
+/// and `align="stacked-end"`
+///
+/// @type Boolean
 $disable-footer-flex-vertical: false !default;
+
+/// Set to `true` if the `DialogFooter` will never set `align="start"` and
+/// `align="stacked-start"`.
+///
+/// @type Boolean
 $disable-footer-flex-start: false !default;
+
+/// Set to `true` if the `DialogFooter` will never set `align="between"`.
+///
+/// @type Boolean
 $disable-footer-space-between: false !default;
+
+/// Set to `true` if the `DialogFooter` will never set `align="end"` and
+/// `align="stacked-end".
+///
+/// @type Boolean
 $disable-footer-flex-end: false !default;
 
+/// A number between 0-24 representing the box-shadow elevation for the dialog.
+///
+/// @type Number
 $elevation: 16 !default;
+
+/// The z-index to apply to the `Dialog`.
+///
+/// @type Number
 $z-index: utils.$temporary-element-z-index !default;
 
+/// @type Color
 $background-color: if(
   theme.$disable-dark-elevation,
   theme.theme-get-var(surface-color),
   null
 ) !default;
+/// @type Color
 $color: if(
   theme.$disable-dark-elevation,
   theme.theme-get-var(text-primary-color),
   null
 ) !default;
 
+/// The `min-width` to apply to all `Dialog`s.
+///
+/// @type Number
 $min-width: 17.5rem !default;
+
+/// The `width` to use when `width="small"`.
+///
+/// @type Number
 $small-width: 25rem !default;
+
+/// The `width` to use when `width="medium"`.
+///
+/// @type Number
 $medium-width: 40rem !default;
+
+/// The `width` to use when `width="large"`.
+///
+/// @type Number
 $large-width: 60rem !default;
+
+/// The `width` to use when `width="extra-large"`.
+///
+/// @type Number
 $extra-large-width: 80rem !default;
+
+/// The amount of spacing to apply to the left and right of the dialog when it
+/// is centered.
+///
+/// @type Number
 $horizontal-margin: 2.5rem !default;
+
+/// The amount of spacing to apply to the top and bottom of the dialog when it
+/// is centered.
+///
+/// @type Number
 $vertical-margin: 1.5rem !default;
+
+/// The distance to move while the dialog enters and exits.
+/// @type Number
 $transition-distance: 1.875rem !default;
 
+/// The `Dialog` enter transition duration. If this value changes, the
+/// `Dialog.timeout` should be updated as well.
+///
+/// @type Number
 $enter-duration: transition.$enter-duration !default;
+
+/// The `Dialog` enter transition timing function.
+///
+/// @type Number
 $enter-timing-function: transition.$deceleration-timing-function !default;
+
+/// If this value changes, the `Dialog.timeout` should be updated as well.
+///
+/// @type Number
 $leave-timing-function: transition.$acceleration-timing-function !default;
+
+/// The `Dialog` exit transition timing function.
+///
+/// @type Number
 $leave-duration: transition.$leave-duration !default;
 
+/// The amount of padding to apply to the `DialogHeader` component.
+///
+/// @type Number
 $header-padding: 1.5rem !default;
+
+/// The amount of padding-bottom to apply to the `DialogHeader` component.
+///
+/// @type Number
 $header-padding-bottom: 1.25rem !default;
 
+/// The amount of padding-bottom to apply to the `DialogContent` component.
+///
+/// @type Number
 $content-padding: 1.5rem !default;
 
+/// The amount of padding-bottom to apply to the `DialogFooter` component.
+///
+/// @type Number
 $footer-padding: 0.5rem !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   min-width,
   horizontal-margin,
@@ -68,6 +197,9 @@ $variables: (
   extra-large-width
 );
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "dialog");
 
@@ -78,16 +210,24 @@ $variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "dialog")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(min-width, $min-width);
@@ -122,6 +262,10 @@ $variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(dialog, $disable-layer) {
@@ -220,28 +364,30 @@ $variables: (
           }
         }
 
-        &--enter {
-          transform: translateY($transition-distance);
-        }
+        @if not $disable-default-transition {
+          &--enter {
+            transform: translateY($transition-distance);
+          }
 
-        &--enter-active {
-          transform: translateY(0);
-          transition: transform $enter-duration;
-          transition-timing-function: $enter-timing-function;
-        }
+          &--enter-active {
+            transform: translateY(0);
+            transition: transform $enter-duration;
+            transition-timing-function: $enter-timing-function;
+          }
 
-        &--exit {
-          opacity: 1;
-          transform: translateY(0);
-          transition:
-            transform $leave-duration,
-            opacity $leave-duration;
-          transition-timing-function: $leave-timing-function;
-        }
+          &--exit {
+            opacity: 1;
+            transform: translateY(0);
+            transition:
+              transform $leave-duration,
+              opacity $leave-duration;
+            transition-timing-function: $leave-timing-function;
+          }
 
-        &--exit-active {
-          opacity: 0;
-          transform: translateY($transition-distance);
+          &--exit-active {
+            opacity: 0;
+            transform: translateY($transition-distance);
+          }
         }
 
         @if not $disable-fixed {

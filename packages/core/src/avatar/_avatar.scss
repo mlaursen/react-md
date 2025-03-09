@@ -1,3 +1,7 @@
+////
+/// @group avatar
+////
+
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
@@ -6,70 +10,70 @@
 @use "../typography/typography";
 @use "../icon/icon";
 
-// Set to `true` to disable all the styles
-// @type boolean
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
 
-// Set to `true` to disable updating the icon color within avatars to inherit
-// the current color by default.
-// @type boolean
+/// Set to `true` to disable updating the icon color within avatars to inherit
+/// the current color by default.
+/// @type Boolean
 $disable-icon: false !default;
 
-// Set to `true` to disable allowing the avatar to be sized as an icon.
-// @type boolean
+/// Set to `true` to disable allowing the avatar to be sized as an icon.
+/// @type Boolean
 $disable-icon-size: false !default;
 
-// Set to `true` to disable the img styling when `src` or `imgProps` are
-// provided to the avatar.
-// @type boolean
+/// Set to `true` to disable the img styling when `src` or `imgProps` are
+/// provided to the avatar.
+/// @type Boolean
 $disable-image: false !default;
 
-// Set to `true` to disable automatically updating all `img` elements that
-// appear in an avatar to be responsive.
-// @type boolean
+/// Set to `true` to disable automatically updating all `img` elements that
+/// appear in an avatar to be responsive.
+/// @type Boolean
 $disable-auto-image: false !default;
 
-// The default text color
-// @type Color
+/// The default text color
+/// @type Color
 $color: colors.$grey-100 !default;
 
-// The default background color
-// @type Color
+/// The default background color
+/// @type Color
 $background-color: colors.$grey-700 !default;
 
-// The default line height
-// @type number
+/// The default line height
+/// @type Number
 $line-height: map.get(typography.$subtitle-1-styles, line-height) !default;
 
-// The default border color
-// @type Color
+/// The default border color
+/// @type Color
 $border-color: transparent !default;
 
-// The default border radius. If you want to make avatars be more square-like,
-// set this to something like 0.25rem.
-//
-// @type number
+/// The default border radius. If you want to make avatars be more square-like,
+/// set this to something like 0.25rem.
+///
+/// @type Number
 $border-radius: 50% !default;
 
-// The default height and width
-// @type number
+/// The default height and width
+/// @type Number
 $size: 2.5rem !default;
 
-// The default font size
-// @type number
+/// The default font size
+/// @type Number
 $font-size: 1.5rem !default;
 
-// The default height and width when sized as an icon
-// @type number
+/// The default height and width when sized as an icon
+/// @type Number
 $icon-sized-size: icon.get-var(size) !default;
 
-// The default font size when sized as an avatar
-// @type number
+/// The default font size when sized as an avatar
+/// @type Number
 $icon-sized-font-size: 0.75rem !default;
 
-// Some reasonable defaults for the avatar colors that ensure contrast ratios
-// are accessible between the background and foreground.
-// @type Map
+/// Some reasonable defaults for the avatar colors that ensure contrast ratios
+/// are accessible between the background and foreground.
+/// @type Map
 $default-colors: (
   red: colors.$red-a-700 colors.$red-50,
   pink: colors.$pink-600 colors.$white,
@@ -92,26 +96,26 @@ $default-colors: (
   blue-grey: colors.$blue-grey-700 colors.$blue-grey-50,
 );
 
-// Any custom colors to create. Each key is the class name suffix for the avatar
-// and each value should be an ordered list of: `background-color color`.
-//
-// This will automatically be merged with the {@link default-colors} so you can
-// set any value to `null` to remove it or provide the same key with different
-// values to override.
-//
-// @type Map
+/// Any custom colors to create. Each key is the class name suffix for the avatar
+/// and each value should be an ordered list of: `background-color color`.
+///
+/// This will automatically be merged with the `$default-colors` so you can
+/// set any value to `null` to remove it or provide the same key with different
+/// values to override.
+///
+/// @type Map
 $custom-colors: () !default;
 
-// The default colors that can be created for an avatar. This can be set to an
-// empty Map to create no color styles, a completely custom map, or merge with
-// the existing.
-//
-// @type Map
+/// The default colors that can be created for an avatar. This can be set to an
+/// empty Map to create no color styles, a completely custom map, or merge with
+/// the existing.
+///
+/// @type Map
 $colors: map.merge($default-colors, $custom-colors) !default;
 
-// The available configurable css variables and mostly used internally for the
-// `get-var`, `set-var`, and `use-var` utils.
-// @type List
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   background-color,
   color,
@@ -121,9 +125,9 @@ $variables: (
   font-size
 );
 
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value
-// @returns {string} a `var()` statement
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "avatar");
   @if $fallback {
@@ -133,32 +137,32 @@ $variables: (
   @return var(#{$var});
 }
 
-// @param {string} name - The supported variable name
-// @param {any} value - The value to set the variable to. Supports `null` which
-// will just be a no-op.
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "avatar")}: #{$value};
   }
 }
 
-// @param {string} property - The css property to apply the variable to
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value if the variable has not
-// been set
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
-// NOTE: You will need to enforce an acceptable color contrast yourself between
-// the background and foreground colors.
-//
-// @param {string} name - This will be used for the class name when
-// `$disable-prefix` is set to true, otherwise as `.rmd-avatar--${name}`.
-// @param {Color} color - The text color to use.
-// @param {Color} background-color - The background color to use
-// @param {boolean} disable-prefix - Set to `true` to disable the
-// `.rmd-avatar--` prefix for the class name
+/// NOTE: You will need to enforce an acceptable color contrast yourself between
+/// the background and foreground colors.
+///
+/// @param {String} name - This will be used for the class name when
+/// `$disable-prefix` is set to true, otherwise as `.rmd-avatar--${Name}`.
+/// @param {Color} color - The text color to use.
+/// @param {Color} background-color - The background color to use
+/// @param {Boolean} disable-prefix [false] - Set to `true` to disable the
+/// `.rmd-avatar--` prefix for the class name
 @mixin custom-color($name, $color, $background-color, $disable-prefix: false) {
   $class-name: if($disable-prefix, $name, ".rmd-avatar--#{$name}");
 
@@ -168,7 +172,7 @@ $variables: (
   }
 }
 
-// Conditionally applies the css variables based on feature flags
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(background-color, $background-color);
@@ -180,11 +184,11 @@ $variables: (
   }
 }
 
-// Generates all the styles for the `Autocomplete` components based on feature
-// flags.
-//
-// @param {boolean} disable-layer - Set this to `true` to disable the
-// layer behavior
+/// Generates all the styles for the `Autocomplete` components based on feature
+/// flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(avatar, $disable-layer) {

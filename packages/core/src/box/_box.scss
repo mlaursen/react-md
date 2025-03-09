@@ -1,100 +1,104 @@
+////
+/// @group box
+////
+
 @use "sass:map";
 @use "../utils";
 
-// Set to `true` to disable all the styles
-// @type boolean
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
 
-// Set to `true` to disable all the styles for stacking items using
-// `flex-direction: column` and `flex-direction: column-reverse`.
-// @type boolean
+/// Set to `true` to disable all the styles for stacking items using
+/// `flex-direction: column` and `flex-direction: column-reverse`.
+/// @type Boolean
 $disable-stacked: false !default;
 
-// Set to `true` to disable all the `flex-direction: row-reverse` and
-// `flex-direction: column-reverse` styles.
-// @type boolean
+/// Set to `true` to disable all the `flex-direction: row-reverse` and
+/// `flex-direction: column-reverse` styles.
+/// @type Boolean
 $disable-reversed: false !default;
 
-// Set to `true` to disable the css grid behavior for the box.
-// @type boolean
+/// Set to `true` to disable the css grid behavior for the box.
+/// @type Boolean
 $disable-grid: false !default;
 
-// Set to `true` to disable the styles for the auto grid columns behavior and
-// anything related to the {@link $item-min-size}.
-// @type boolean
+/// Set to `true` to disable the styles for the auto grid columns behavior and
+/// anything related to the `$item-min-size`.
+/// @type Boolean
 $disable-grid-columns: false !default;
 
-// Set to `true` to disable the styles for the `grid-auto-rows` behavior.
-// @type boolean
+/// Set to `true` to disable the styles for the `grid-auto-rows` behavior.
+/// @type Boolean
 $disable-grid-auto-rows: false !default;
 
-// This is the default `align-items` property value to set if you don't like
-// everything being centered by default. This value is always overridable using
-// the `alignItems` prop on the `Box` component.
-// @type string
+/// This is the default `align-items` property value to set if you don't like
+/// everything being centered by default. This value is always overridable using
+/// the `alignItems` prop on the `Box` component.
+/// @type String
 $default-align-items: center !default;
 
-// The additional class names to create for the `align-items` property. It
-// creates classes like:
-//
-// ```scss
-// .rmd-box--align-start {
-//   align-items: start;
-// }
-// ```
-//
-// @type List
+/// The additional class names to create for the `align-items` property. It
+/// creates classes like:
+///
+/// ```scss
+/// .rmd-box--align-start {
+///   align-items: start;
+/// }
+/// ```
+///
+/// @type List
 $align-items: (start end stretch) !default;
 
-// The additional class names to create for the `justify-content` property. It
-// creates classes like:
-//
-// ```scss
-// .rmd-box--justify-start {
-//   justify-content: start;
-// }
-// ```
-//
-// @type List
+/// The additional class names to create for the `justify-content` property. It
+/// creates classes like:
+///
+/// ```scss
+/// .rmd-box--justify-start {
+///   justify-content: start;
+/// }
+/// ```
+///
+/// @type List
 $justify-content: (
   start center end stretch space-around space-between space-evenly
 ) !default;
 
-// The default flex and grid gap to apply between each item
-// @type number
+/// The default flex and grid gap to apply between each item
+/// @type Number
 $gap: 1rem !default;
 
-// The default padding to apply to the container.
-// @type number
+/// The default padding to apply to the container.
+/// @type Number
 $padding: $gap !default;
 
-// The default minimum size for each grid item
-// @type number
+/// The default minimum size for each grid item
+/// @type Number
 $item-min-size: 8rem !default;
 
-// This is used to create custom reusable grid configurations throughout the
-// app. The custom grid can be used through the `gridName` prop.
-//
-// @example Simple Example
-// ```scss
-// $grids: (
-//   small: (
-//     min: 5rem
-//   ),
-//   medium: (
-//     min: 7rem,
-//     padding: 2rem,
-//     gap: 0.5rem
-//   )
-// );
-// ```
-//
-// @type Map
+/// This is used to create custom reusable grid configurations throughout the
+/// app. The custom grid can be used through the `gridName` prop.
+///
+/// @example scss - Simple Example<!-- no-compile -->
+///   @use "@react-md/core" with (
+///     $box-grids: (
+///       small: (
+///         min: 5rem
+///       ),
+///       medium: (
+///         min: 7rem,
+///         padding: 2rem,
+///         gap: 0.5rem
+///       )
+///     )
+///   );
+///
+/// @type Map
 $grids: () !default;
 
-// The available configurable css variables and mostly used internally for the
-// `get-var`, `set-var`, and `use-var` utils.
-// @type List
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   gap,
   padding,
@@ -105,9 +109,9 @@ $variables: (
   auto-rows-height
 );
 
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value
-// @returns {string} a `var()` statement
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "box");
   @if $fallback {
@@ -117,41 +121,37 @@ $variables: (
   @return var(#{$var});
 }
 
-// @param {string} name - The supported variable name
-// @param {any} value - The value to set the variable to. Supports `null` which
-// will just be a no-op.
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "box")}: #{$value};
   }
 }
 
-// @param {string} property - The css property to apply the variable to
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value if the variable has not
-// been set
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
-// Generates the styles for a custom grid by updating the css variables.
-//
-// @example Simple Example
-// ```scss
-// @use "@react-md/core";
-//
-// .container {
-//   @include core.box-custom-grid(
-//     $min: 20rem,
-//     $padding: 0.25rem,
-//     $gap: 0.725rem
-//   );
-// }
-// ```
-//
-// @param {number} min - An optional item min size to override
-// @param {number} padding - An optional container padding to override
-// @param {number} gap - An optional gap between each item to override
+/// Generates the styles for a custom grid by updating the css variables.
+///
+/// @example scss - Simple Example
+///   .container {
+///     @include custom-grid(
+///       $min: 20rem,
+///       $padding: 0.25rem,
+///       $gap: 0.725rem
+///     );
+///   }
+///
+/// @param {Number} min [null] - An optional item min size to override
+/// @param {Number} padding [null] - An optional container padding to override
+/// @param {Number} gap [null] - An optional gap between each item to override
 @mixin custom-grid($min: null, $padding: null, $gap: null) {
   @if $min {
     @include set-var(item-min-size, $min);
@@ -166,33 +166,29 @@ $variables: (
   }
 }
 
-// Generates the styles for a custom grid by updating the css variables.
-//
-// @example Simple Example
-// ```scss
-// @use "@react-md/core";
-//
-// .container {
-//   @include core.box-custom-grid-class(
-//     $selector: '&--custom',
-//     $min: 20rem,
-//     $padding: 0.25rem,
-//     $gap: 0.725rem
-//   );
-// }
-// ```
-//
-// @param {string} selector - The selector to use to update the grid styles.
-// @param {number} min - An optional item min size to override
-// @param {number} padding - An optional container padding to override
-// @param {number} gap - An optional gap between each item to override
+/// Generates the styles for a custom grid by updating the css variables.
+///
+/// @example scss - Simple Example
+///   .container {
+///     @include custom-grid-class(
+///       $selector: '&--custom',
+///       $min: 20rem,
+///       $padding: 0.25rem,
+///       $gap: 0.725rem
+///     );
+///   }
+///
+/// @param {String} selector - The selector to use to update the grid styles.
+/// @param {Number} min [null] - An optional item min size to override
+/// @param {Number} padding [null] - An optional container padding to override
+/// @param {Number} gap [null] - An optional gap between each item to override
 @mixin custom-grid-class($selector, $min: null, $padding: null, $gap: null) {
   #{$selector} {
     @include custom-grid($min, $padding, $gap);
   }
 }
 
-// Conditionally applies the css variables based on feature flags
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(gap, $gap);
@@ -202,10 +198,10 @@ $variables: (
   }
 }
 
-// Generates all the styles based on feature flags.
-//
-// @param {boolean} disable-layer - Set this to `true` to disable the
-// layer behavior
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(box, $disable-layer) {

@@ -1,0 +1,479 @@
+////
+/// @group core.base
+////
+
+@use "app-bar/app-bar";
+@use "autocomplete/autocomplete";
+@use "avatar/avatar";
+@use "box/box";
+@use "button/button";
+@use "segmented-button/segmented-button";
+@use "badge/badge";
+@use "card/card";
+@use "divider/divider";
+@use "draggable/draggable";
+@use "expansion-panel/expansion-panel";
+@use "icon/icon";
+@use "media-queries/media-queries";
+@use "snackbar/snackbar";
+@use "interaction/interaction";
+@use "link/link";
+@use "list/list";
+@use "tree/tree";
+@use "tooltip/tooltip";
+@use "overlay/overlay";
+@use "progress/progress";
+@use "responsive-item/responsive-item";
+@use "tabs/tabs";
+@use "chip/chip";
+@use "table/table";
+@use "theme/theme";
+@use "dialog/dialog";
+@use "sheet/sheet";
+@use "transition/transition";
+@use "typography/typography";
+@use "window-splitter/window-splitter";
+@use "menu/menu";
+@use "form/form";
+@use "files/files";
+@use "layout/layout";
+@use "navigation/navigation";
+@use "object-fit";
+@use "utils";
+
+/// The css layer order so that styles can easily overridden ignoring css
+/// import order
+/// @access private
+/// @type Map
+$_layer-order: (
+  typography,
+  transition,
+  interaction,
+  box,
+  icon,
+  divider,
+  button,
+  badge,
+  tabs,
+  chip,
+  progress,
+  responsive,
+  overlay,
+  card,
+  avatar,
+  link,
+  list,
+  tree,
+  dialog,
+  sheet,
+  tooltip,
+  table,
+  app-bar,
+  expansion-panel,
+  draggable,
+  window-splitter,
+  menu,
+  form,
+  files,
+  autocomplete,
+  layout,
+  navigation,
+  snackbar,
+  segmented-button,
+  object-fit,
+  utils
+);
+
+/// A simple CSS reset for react-md that:
+/// - applies box-sizing: border-box to everything for easier positioning and
+///   calculations
+/// - updates the `html` and `body` to be full height without any padding or
+///   margin to ensure your app can utilize the full viewport
+/// - applies the root background, text color, and typography to the `html`
+///   element
+/// - ensures touch events are bubbleable to the `body` element on iOS for
+///   "close on outside click" behavior
+/// - remove the `-webkit-tap-highlight-color` for touch devices
+///
+/// This should not be used when using the `styles` mixin since it is
+/// included by default.
+@mixin css-reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    &:has(body.rmd-touch-mode) {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+  }
+
+  body {
+    @include theme.theme-use-var(background-color);
+    @include theme.theme-use-var(color, text-primary-color);
+    @include typography.typography-html-body-styles;
+
+    &:where(.rmd-touch-mode) {
+      // this allows for click events to be bubbleable on iOS to the root
+      // document
+      cursor: pointer;
+    }
+  }
+}
+
+/// Provides all the css utility classes for react-md. Not including these styles
+/// will cause most components to look incorrect.
+///
+/// This should not be used when using the `styles` mixin since it is
+/// included by default.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to prevent the
+/// css utils from being wrapped in `@layer utils { ...styles... }`
+@mixin css-utils($disable-layer: false) {
+  @include utils.optional-layer(utils, $disable-layer) {
+    .rmd-display-none {
+      display: none !important;
+    }
+
+    .rmd-sr-only {
+      @include utils.sr-only(true);
+    }
+
+    .rmd-phone-sr-only {
+      @include media-queries.phone-media {
+        @include utils.sr-only;
+      }
+    }
+
+    .rmd-outline {
+      // inset box-shadow is faded on the lower right half? use outline instead
+      outline: theme.theme-get-var(outline-width) solid
+        theme.theme-get-var(outline-color);
+      outline-offset: utils.negate-var(theme.theme-get-var(outline-width));
+    }
+
+    .rmd-greyscale-outline {
+      @include theme.theme-set-var(outline-color, outline-grey-color);
+    }
+
+    .rmd-background-container {
+      @include theme.theme-use-var(background-color);
+      @include theme.theme-use-var(color, on-background-color, currentcolor);
+    }
+
+    @each $color in (primary, secondary, warning, success, error) {
+      $theme-name: $color + "-color";
+      $on-theme-name: "on-" + $theme-name;
+
+      .rmd-#{$color}-container {
+        @include theme.theme-set-var(background-color, $theme-name);
+        @include theme.theme-set-var(on-background-color, $on-theme-name);
+      }
+
+      .rmd-#{$theme-name} {
+        @include theme.theme-use-var(color, $theme-name);
+      }
+
+      .rmd-#{$on-theme-name} {
+        @include theme.theme-use-var(color, $on-theme-name);
+      }
+
+      .rmd-#{$color}-outline {
+        @include theme.theme-set-var(outline-color, $theme-name);
+      }
+    }
+
+    @each $color in (primary, secondary, hint, disabled) {
+      .rmd-text-#{$color}-color {
+        @include theme.theme-use-var(color, text-#{$color}-color);
+      }
+    }
+
+    .rmd-light-surface {
+      @include interaction.use-light-surface;
+      @include theme.theme-set-var(
+        text-primary-color,
+        theme.$light-theme-text-primary-color
+      );
+      @include theme.theme-set-var(
+        text-secondary-color,
+        theme.$light-theme-text-secondary-color
+      );
+      @include theme.theme-set-var(
+        text-hint-color,
+        theme.$light-theme-text-hint-color
+      );
+      @include theme.theme-set-var(
+        text-disabled-color,
+        theme.$dark-theme-text-disabled-color
+      );
+    }
+
+    .rmd-dark-surface {
+      @include interaction.use-dark-surface;
+      @include theme.theme-set-var(
+        text-primary-color,
+        theme.$dark-theme-text-primary-color
+      );
+      @include theme.theme-set-var(
+        text-secondary-color,
+        theme.$dark-theme-text-secondary-color
+      );
+      @include theme.theme-set-var(
+        text-hint-color,
+        theme.$dark-theme-text-hint-color
+      );
+      @include theme.theme-set-var(
+        text-disabled-color,
+        theme.$dark-theme-text-disabled-color
+      );
+    }
+
+    .rmd-no-margin {
+      margin: 0;
+    }
+
+    .rmd-no-margin-top {
+      margin-top: 0;
+    }
+
+    .rmd-no-margin-bottom {
+      margin-bottom: 0;
+    }
+
+    .rmd-centered {
+      margin: 0 auto;
+    }
+
+    .rmd-nowrap {
+      white-space: nowrap;
+    }
+
+    .rmd-ellipsis {
+      @include typography.text-overflow(null);
+    }
+
+    @each $alignment in typography.$text-alignments {
+      .rmd-align-#{$alignment} {
+        text-align: $alignment;
+
+        @if $alignment != center {
+          @include utils.rtl {
+            text-align: utils.swap-position($alignment);
+          }
+        }
+      }
+    }
+
+    @each $decoration in typography.$text-decorations {
+      .rmd-#{$decoration} {
+        text-decoration: $decoration;
+      }
+    }
+
+    @each $transform in typography.$text-transforms {
+      .rmd-#{$transform} {
+        text-transform: $transform;
+      }
+    }
+
+    @each $font-style in typography.$font-styles {
+      .rmd-#{$font-style} {
+        font-style: $font-style;
+      }
+    }
+
+    @each $name, $font-weight in typography.$font-weights {
+      .rmd-#{$name} {
+        font-weight: $font-weight;
+      }
+    }
+  }
+}
+
+/// Used to apply all the light theme variables at once and will only include
+/// features/components that have not been disabled.
+///
+/// @example scss
+///   .light-theme {
+///     @include use-light-theme;
+///   }
+///
+@mixin use-light-theme {
+  @include theme.use-light-theme-colors;
+  @include interaction.use-light-surface;
+  @include transition.transition-use-light-theme;
+  @include icon.use-light-theme;
+  @include chip.use-light-theme;
+  @include app-bar.use-light-theme;
+  @include divider.use-light-theme;
+  @include card.use-light-theme;
+  @include form.form-use-light-theme;
+  @include table.use-light-theme;
+  @include segmented-button.use-light-theme;
+  @include badge.use-light-theme;
+}
+
+/// Used to apply all the dark theme variables at once and will only include
+/// features/components that have not been disabled.
+///
+/// @example scss
+///   .dark-theme {
+///     @include use-dark-theme;
+///   }
+///
+@mixin use-dark-theme {
+  @include theme.use-dark-theme-colors;
+  @include interaction.use-dark-surface;
+  @include transition.transition-use-dark-theme;
+  @include icon.use-dark-theme;
+  @include chip.use-dark-theme;
+  @include app-bar.use-dark-theme;
+  @include divider.use-dark-theme;
+  @include card.use-dark-theme;
+  @include form.form-use-dark-theme;
+  @include table.use-dark-theme;
+  @include segmented-button.use-dark-theme;
+  @include badge.use-dark-theme;
+}
+
+/// Used to apply all the variables at once and will only include
+/// features/components that have not been disabled.
+///
+/// This should only be used when `$disable-default-root-theme` has been set to
+/// `true` since it is included in the `styles` mixin by default.
+///
+/// @example scss - Example Usage SCSS<!-- no-compile -->
+///   @use "@react-md/core" with (
+///     $disable-default-root-theme: true
+///   );
+///
+///   @include core.styles;
+///
+///   :root {
+///     @include core.variables;
+///   }
+///
+@mixin variables {
+  @include theme.theme-variables;
+  @include app-bar.variables;
+  @include autocomplete.variables;
+  @include avatar.variables;
+  @include badge.variables;
+  @include box.variables;
+  @include button.variables;
+  @include card.variables;
+  @include chip.variables;
+  @include dialog.variables;
+  @include divider.variables;
+  @include form.form-variables;
+  @include icon.variables;
+  @include interaction.variables;
+  @include layout.variables;
+  @include link.variables;
+  @include list.variables;
+  @include menu.variables;
+  @include navigation.variables;
+  @include overlay.variables;
+  @include progress.variables;
+  @include segmented-button.variables;
+  @include sheet.variables;
+  @include snackbar.variables;
+  @include table.variables;
+  @include tabs.variables;
+  @include tooltip.variables;
+  @include transition.transition-variables;
+  @include tree.variables;
+  @include typography.typography-variables;
+}
+
+/// Generates all the styles for react-md respecting all feature flags.
+///
+/// @example scss - Example Usage SCSS<!-- no-compile -->
+///   @include styles;
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` if all the
+/// react-md styles should not be wrapped in a
+/// [css layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer). You
+/// normally want this so it is easier to override react-md styles.
+/// @param {Boolean} disable-layer-order [$disable-layer] - Set this to `true`
+/// to remove the layer ordering.
+/// @param {Boolean} disable-reset [false] - Set this to `true` to prevent the
+/// `css-reset` from being applied. This is only useful if you want
+/// to call the `css-reset` yourself since most components will not work
+/// correctly without this reset.
+/// @param {Boolean} disable-css-utils [false] - Set this to `true` to prevent
+/// the `css-utils` from being applied. This is only useful if you
+/// want to call the `css-utils` yourself since most components will not
+/// work correctly without this reset.
+@mixin styles(
+  $disable-layer: false,
+  $disable-layer-order: $disable-layer,
+  $disable-reset: false,
+  $disable-css-utils: false
+) {
+  @if not $disable-layer-order {
+    @layer #{$_layer-order};
+  }
+  @if not $disable-reset {
+    @include css-reset;
+  }
+  @if not $disable-css-utils {
+    @include css-utils($disable-layer);
+  }
+
+  @include app-bar.styles($disable-layer);
+  @include autocomplete.styles($disable-layer);
+  @include avatar.styles($disable-layer);
+  @include badge.styles($disable-layer);
+  @include box.styles($disable-layer);
+  @include button.styles($disable-layer);
+  @include card.styles($disable-layer);
+  @include chip.styles($disable-layer);
+  @include dialog.styles($disable-layer);
+  @include divider.styles($disable-layer);
+  @include draggable.styles($disable-layer);
+  @include expansion-panel.styles($disable-layer);
+  @include form.form-styles($disable-layer);
+  @include files.styles($disable-layer);
+  @include icon.styles($disable-layer);
+  @include interaction.styles($disable-layer);
+  @include layout.styles($disable-layer);
+  @include link.styles($disable-layer);
+  @include list.styles($disable-layer);
+  @include menu.styles($disable-layer);
+  @include navigation.styles($disable-layer);
+  @include object-fit.styles($disable-layer);
+  @include overlay.styles($disable-layer);
+  @include progress.styles($disable-layer);
+  @include responsive-item.styles($disable-layer);
+  @include segmented-button.styles($disable-layer);
+  @include sheet.styles($disable-layer);
+  @include snackbar.styles($disable-layer);
+  @include table.styles($disable-layer);
+  @include tabs.styles($disable-layer);
+  @include tooltip.styles($disable-layer);
+  @include transition.transition-styles($disable-layer);
+  @include tree.styles($disable-layer);
+  @include typography.typography-styles($disable-layer);
+  @include window-splitter.styles($disable-layer);
+
+  @if not theme.$disable-default-root-theme {
+    :root {
+      @include variables;
+
+      @if theme.$color-scheme == system {
+        @media (prefers-color-scheme: dark) {
+          @include use-dark-theme;
+        }
+      }
+    }
+  }
+}

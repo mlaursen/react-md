@@ -1,16 +1,40 @@
+////
+/// @group navigation
+////
+
 @use "sass:list";
 @use "sass:map";
 @use "../utils";
 @use "../tree/tree";
 @use "../interaction/interaction";
 
+/// Set to `true` to disable all the styles.
+/// @type Boolean
 $disable-everything: false !default;
+
+/// The default border-radius.
+/// @type Number
 $border-radius: 3rem !default;
+
+/// The default horizontal padding.
+/// @type Number
 $horizontal-padding: 0.25rem !default;
+
+/// This is used to continually add more padding to the start of the
+/// `NavigationItem` the deeper within the nested lists it appears.
+///
+/// @see $increasing-padding
+/// @type Number
 $padding-incrementor: 0.75rem !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (border-radius, horizontal-padding, padding-incrementor);
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "navigation");
   @if $fallback {
@@ -20,16 +44,24 @@ $variables: (border-radius, horizontal-padding, padding-incrementor);
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "navigation")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(border-radius, $border-radius);
@@ -38,12 +70,22 @@ $variables: (border-radius, horizontal-padding, padding-incrementor);
   }
 }
 
-@mixin styles($disable-layer: false) {
-  $increasing-padding: calc(
-    tree.get-var(depth) * get-var(padding-incrementor) +
-      get-var(horizontal-padding)
-  );
+/// This is the `calc` string for adding more padding the deeper within the
+/// `Navigation` tree a link appears.
+///
+/// @ignore NOTE: This has to be defined here since it relies on the `get-var` function.
+///
+/// @type String
+$increasing-padding: calc(
+  tree.get-var(depth) * get-var(padding-incrementor) +
+    get-var(horizontal-padding)
+);
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(navigation, $disable-layer) {
       .rmd-nav-group {

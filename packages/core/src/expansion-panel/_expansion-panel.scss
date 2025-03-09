@@ -1,21 +1,66 @@
+////
+/// @group expansion-panel
+////
+
 @use "../utils";
 @use "../transition/transition";
 @use "../icon/icon";
 @use "../button/button";
 @use "../theme/theme";
 
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable the transition when panels are expanded in a
+/// group.
+///
+/// @type Boolean
 $disable-margin-top-transition: false !default;
 
+/// The amount of padding to apply to the clickable area in the
+/// `ExpansionPanel`.
+///
+/// @type Number
 $padding: 1rem !default;
+
+/// The `margin-top` to apply between expanded expansion panels
+///
+/// @type Number
 $spacing: 1rem !default;
+
+/// The `gap` to apply between elements in the clickable area in the
+/// `ExpansionPanel`.
+///
+/// @type Number
 $button-spacing: icon.$spacing !default;
+
+/// The degrees to start the rotation animation for the expansion panel icon.
+///
+/// @type Number
 $rotate-from: icon.$rotate-from !default;
+
+/// The degrees to end the rotation animation for the expansion panel icon.
+///
+/// @type Number
 $rotate-to: icon.$rotate-to !default;
 
+/// Change this value if borders/box-shadow are visible while the
+/// `ExpansionPanel` component is collapsed in a group.
+///
+/// @type Number
 $box-shadow-overlay-height: 10px !default;
+
+/// Change this value if borders/box-shadow are visible while the
+/// `ExpansionPanel` component is collapsed in a group.
+///
+/// @type Number
 $box-shadow-overlay-bottom: -6px !default;
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(expansion-panel, $disable-layer) {

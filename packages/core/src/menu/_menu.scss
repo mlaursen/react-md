@@ -1,3 +1,7 @@
+////
+/// @group menu
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../box-shadows";
@@ -5,22 +9,55 @@
 @use "../interaction/interaction";
 @use "../icon/icon";
 
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` if the `MenuItem` component won't be used for some reason.
+/// @type Boolean
 $disable-menu-item: false !default;
+
+/// Set to `true` to if the `MenuItemGroup` component will not be used.
+/// @type Boolean
 $disable-menu-item-group: false !default;
+
+/// Set to `true` to disable the dark mode elevation colors for the `Menu`.
+/// @type Boolean
 $disable-elevation-colors: theme.$disable-dark-elevation !default;
 
+/// This should be a number between 0-24 representing the box-shadow elevation
+/// of the `Menu`.
+/// @type Number
 $elevation: 8 !default;
+
+/// The default background color to apply to a `Menu`.
+/// @type Color
 $background-color: theme.theme-get-var(surface-color) !default;
+
+/// The default text color to apply to a `Menu`.
+/// @type Color
 $color: theme.theme-get-var(text-primary-color) !default;
 
+/// The default `z-index` for a `Menu.
+/// @type Number
 $z-index: utils.$temporary-element-z-index !default;
+
+/// The min width for a `Menu`.
+/// @type Number
 $min-width: 7rem !default;
 
+/// The `gap` to apply to elements within the `MenuItem`.
+/// @type Number
 $spacing: 1rem !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (background-color, color, min-width, spacing);
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "menu");
   @if $fallback {
@@ -30,16 +67,27 @@ $variables: (background-color, color, min-width, spacing);
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "menu")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Generates the `Menu` component styles.
+///
+/// NOTE: This should only be used if not using the `styles` mixin.
+/// @see {mixin} styles
 @mixin menu-styles {
   .rmd-menu {
     outline: none;
@@ -62,6 +110,10 @@ $variables: (background-color, color, min-width, spacing);
   }
 }
 
+/// Generates the `MenuItem` component styles.
+///
+/// NOTE: This should only be used if not using the `styles` mixin.
+/// @see {mixin} styles
 @mixin menu-item-styles {
   .rmd-menu-item {
     @include icon.set-var(spacing, get-var(spacing));
@@ -84,12 +136,17 @@ $variables: (background-color, color, min-width, spacing);
   }
 }
 
+/// Generates the `MenuItemGroup` component styles.
+///
+/// NOTE: This should only be used if not using the `styles` mixin.
+/// @see {mixin} styles
 @mixin menu-item-group-styles {
   .rmd-menu-item-group {
     padding: 0;
   }
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(background-color, $background-color);
@@ -99,6 +156,10 @@ $variables: (background-color, color, min-width, spacing);
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(menu, $disable-layer) {

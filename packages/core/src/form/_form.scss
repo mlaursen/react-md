@@ -1,3 +1,7 @@
+////
+/// @group core.form
+////
+
 @use "sass:map";
 @use "sass:math";
 @use "sass:color";
@@ -15,84 +19,304 @@
 @use "../typography/typography";
 @use "../interaction/interaction";
 
-$form-disable-everything: false !default;
-$disable-fieldset: $form-disable-everything !default;
-$disable-message: $form-disable-everything !default;
-$disable-label: $form-disable-everything !default;
-$disable-floating-label: $form-disable-everything !default;
-$disable-label-gap: $form-disable-everything !default;
-$disable-label-reversed: $form-disable-everything !default;
-$disable-label-stacked: $form-disable-everything !default;
-$disable-label-stacked-reversed: $form-disable-everything !default;
-$disable-text-field: $form-disable-everything !default;
-$disable-textarea: $form-disable-everything !default;
-$disable-password: $disable-text-field !default;
-$disable-text-field-addon: $disable-text-field and $disable-password and
-  $disable-textarea !default;
-$disable-placeholder-ellipsis: false !default;
-$disable-text-field-container-dense: false !default;
-$disable-select: $form-disable-everything !default;
-$disable-option: $disable-select !default;
-$disable-native-select: $form-disable-everything !default;
-$disable-native-select-multiple: $form-disable-everything !default;
-$disable-checkbox: $form-disable-everything !default;
-$disable-radio: $form-disable-everything !default;
-$disable-uncontrolled-input-toggles: false !default;
-$disable-switch: $form-disable-everything !default;
-$disable-switch-circular-progress: progress.$disable-circular !default;
-$disable-switch-icon: false !default;
-$disable-menu-item-checkbox: $disable-checkbox !default;
-$disable-menu-item-radio: $disable-radio !default;
-$disable-menu-item-switch: $disable-switch !default;
-$disable-slider: $form-disable-everything !default;
-$disable-horizontal-slider: $form-disable-everything !default;
-$disable-vertical-slider: $form-disable-everything !default;
-$disable-range-slider: $form-disable-everything !default;
-$disable-discrete-slider: $form-disable-everything !default;
-$disable-discrete-slider-marks: $disable-discrete-slider !default;
-$disable-discrete-slider-marks-labels: $disable-discrete-slider-marks !default;
-
-// Note: enabling the filled theme forces the underlined theme to be used since it depends on the same styles
-$disable-text-field-filled-theme: $form-disable-everything !default;
-$disable-text-field-outlined-theme: $form-disable-everything !default;
-$disable-text-field-underlined-theme: $form-disable-everything !default;
-$disable-text-field-counter: $form-disable-everything !default;
-$disable-text-field-underline-left: $form-disable-everything !default;
-$disable-text-field-underline-center: $form-disable-everything !default;
-$disable-text-field-underline-right: $form-disable-everything !default;
-
-$disable-textarea-resizing-rows: $form-disable-everything !default;
-$disable-textarea-resizing-mask: $disable-textarea-resizing-rows !default;
-$disable-textarea-resize-horizontal: $form-disable-everything !default;
-$disable-textarea-resize-vertical: $form-disable-everything !default;
-
-$form-active-color: theme.theme-get-var(primary-color) !default;
+/// The color to use while the form elements are focused. This would
+/// apply to things like the border-color/box-shadow and text color.
+///
+/// @type Color
 $form-focus-color: interaction.$focus-color !default;
 
+/// The color to apply to form elements while they are active/checked.
+///
+/// @type Color
+$form-active-color: theme.theme-get-var(primary-color) !default;
+
+/// Set to `true` to disable all form styles.
+/// @type Boolean
+$form-disable-everything: false !default;
+
+/// Set to `true` to disable the `Formset` component styles
+/// @type Boolean
+$disable-fieldset: $form-disable-everything !default;
+
+/// Set to `true` to disable the `FormMessage`/`FormMessageContainer` component
+/// styles. This also includes the `messageProps` on other form components.
+///
+/// @type Boolean
+$disable-message: $form-disable-everything !default;
+
+/// Set to `true` to disable all the `Label` styles
+/// @type Boolean
+$disable-label: $form-disable-everything !default;
+
+/// Set to `true` to disable only the floating `Label` styles
+/// @type Boolean
+$disable-floating-label: $form-disable-everything !default;
+
+/// Set to `true` to disable the `gap` property on a `Label`.
+/// @type Boolean
+$disable-label-gap: $form-disable-everything !default;
+
+/// Set to `true` to disable the `reversed` styles on a `Label`.
+/// @type Boolean
+$disable-label-reversed: $form-disable-everything !default;
+
+/// Set to `true` to disable the `stacked` styles for a `Label`.
+/// @type Boolean
+$disable-label-stacked: $form-disable-everything !default;
+
+/// Set to `true` to disable the `stacked` and `reversed` styles for a `Label`.
+/// @type Boolean
+$disable-label-stacked-reversed: $form-disable-everything !default;
+
+/// Set to `true` to disable the `TextField` styles
+/// @type Boolean
+$disable-text-field: $form-disable-everything !default;
+
+/// Set to `true` to disable the `TextArea` styles
+/// @type Boolean
+$disable-textarea: $form-disable-everything !default;
+
+/// Set to `true` to disable the `Password` styles
+/// @type Boolean
+$disable-password: $disable-text-field !default;
+
+/// Set to `true` if the addon props will not be used with the `TextField` or
+/// `TextArea` components or the `visibilityIcon` prop for the `Password`
+/// component.
+/// @type Boolean
+$disable-text-field-addon: $disable-text-field and $disable-password and
+  $disable-textarea !default;
+
+/// Set to `true` if the `::placeholder` text should not automatically ellipsis
+/// when there is text overflow.
+/// @type Boolean
+$disable-placeholder-ellipsis: false !default;
+
+/// Set to `true` to disable the `TextFieldContainer` dense styles.
+/// @type Boolean
+$disable-text-field-container-dense: false !default;
+
+/// Set to `true` to disable the `Select` styles.
+/// @type Boolean
+$disable-select: $form-disable-everything !default;
+
+/// Set to `true` to disable the `Option` styles.
+/// @type Boolean
+$disable-option: $disable-select !default;
+
+/// Set to `true` to disable the `NativeSelect` styles.
+/// @type Boolean
+$disable-native-select: $form-disable-everything !default;
+
+/// Set to `true` to disable the `multiselect` styles for the `NativeSelect`.
+/// @type Boolean
+$disable-native-select-multiple: $form-disable-everything !default;
+
+/// Set to `true` to disable the `Checkbox` styles.
+/// @type Boolean
+$disable-checkbox: $form-disable-everything !default;
+
+/// Set to `true` to disable the `Radio` styles.
+/// @type Boolean
+$disable-radio: $form-disable-everything !default;
+
+/// Set to `true` to if the `Checkbox` and `Radio` components will always
+/// be controlled providing a `checked` prop. This feature flag adds a few more
+/// styles to support switching between the icons based on the `input` checked
+/// state without JS.
+///
+/// @type Boolean
+$disable-uncontrolled-input-toggles: false !default;
+
+/// Set to `true` to disable the `Switch` styles.
+/// @type Boolean
+$disable-switch: $form-disable-everything !default;
+
+/// Set to `true` to disable the `CircularProgress` rendered within a `Switch`
+/// styles.
+/// @type Boolean
+$disable-switch-circular-progress: progress.$disable-circular !default;
+
+/// Set to `true` to disable the icon rendered within a `Switch` styles.
+/// @type Boolean
+$disable-switch-icon: false !default;
+
+/// Set to `true` to disable the `MenuItemCheckbox` styles.
+/// @type Boolean
+$disable-menu-item-checkbox: $disable-checkbox !default;
+
+/// Set to `true` to disable the `MenuItemRadio` styles.
+/// @type Boolean
+$disable-menu-item-radio: $disable-radio !default;
+
+/// Set to `true` to disable the `MenuItemSwitch` styles.
+/// @type Boolean
+$disable-menu-item-switch: $disable-switch !default;
+
+/// Set to `true` to disable the `Slider` styles.
+/// @type Boolean
+$disable-slider: $form-disable-everything !default;
+
+/// Set to `true` to disable the horizontal `Slider` styles.
+/// @type Boolean
+$disable-horizontal-slider: $form-disable-everything !default;
+
+/// Set to `true` to disable the vertical `Slider` styles.
+/// @type Boolean
+$disable-vertical-slider: $form-disable-everything !default;
+
+/// Set to `true` to disable the two-thumb `Slider` styles.
+/// @type Boolean
+$disable-range-slider: $form-disable-everything !default;
+
+/// Set to `true` to disable the `Slider` styles show the current value in a
+/// tooltip.
+/// @type Boolean
+$disable-discrete-slider: $form-disable-everything !default;
+
+/// Set to `true` to disable the `Slider` styles that show the tick marks below
+/// the slider track.
+/// @type Boolean
+$disable-discrete-slider-marks: $disable-discrete-slider !default;
+
+/// Set to `true` to disable the `Slider` styles that display a label with each
+/// tick mark below the slider track.
+/// @type Boolean
+$disable-discrete-slider-marks-labels: $disable-discrete-slider-marks !default;
+
+/// Set to `true` if the `theme="filled"` will not be used in the app.
+///
+/// @type Boolean
+$disable-text-field-filled-theme: $form-disable-everything !default;
+
+/// Set to `true` if the `theme="outline"` will not be used in the app.
+///
+/// NOTE: This would require updating the `FORM_CONFIG.theme` value since this
+/// is the default theme.
+///
+/// @type Boolean
+$disable-text-field-outlined-theme: $form-disable-everything !default;
+
+/// Set to `true` if the `theme="underline"` will not be used in the app.
+///
+/// NOTE: If the `$form-theme` is set to `filled`, this will always be `true`
+/// since it they depend on the same styles.
+///
+/// @type Boolean
+$disable-text-field-underlined-theme: $form-disable-everything !default;
+
+/// Set to `true` if the inline counter for `TextField`/`TextArea`/`Password`
+/// will not be used.
+///
+/// @type Boolean
+$disable-text-field-counter: $form-disable-everything !default;
+
+/// Set to `true` if the underlined theme will not animate from the left.
+///
+/// NOTE: This would require updating the `FORM_CONFIG.underlineDirection`
+/// value since this is the default.
+///
+/// @type Boolean
+$disable-text-field-underline-left: $form-disable-everything !default;
+
+/// Set to `true` if the underlined theme will not animate from the center.
+///
+/// @type Boolean
+$disable-text-field-underline-center: $form-disable-everything !default;
+
+/// Set to `true` if the underlined theme will not animate from the right.
+///
+/// @type Boolean
+$disable-text-field-underline-right: $form-disable-everything !default;
+
+/// Set to `true` if the `TextArea` does not need to support the
+/// `resize="auto"` behavior.
+///
+/// @type Boolean
+$disable-textarea-resizing-rows: $form-disable-everything !default;
+
+/// Set to `true` if the `resize="horizontal"` will not be used for the
+/// `TextArea`.
+/// @type Boolean
+$disable-textarea-resize-horizontal: $form-disable-everything !default;
+
+/// Set to `true` if the `resize="vertical"` will not be used for the
+/// `TextArea`.
+/// @type Boolean
+$disable-textarea-resize-vertical: $form-disable-everything !default;
+
+/// The spacing between elements in a `Label`.
+///
+/// @see $disable-label-gap
+/// @type Number
 $label-gap: icon.$spacing !default;
+
+/// The default `Label` font size.
+///
+/// @type Number
 $label-font-size: 1em !default;
+
+/// The default `Label` typography.
+///
+/// @type Map
 $label-typography: map.merge(
   typography.$body-1-styles,
   (
     font-size: $label-font-size,
   )
 ) !default;
+
+/// The distance from the top of the floating label container to position the `Label`
+/// while not active.
+///
+/// @type Number
 $label-floating-top: 1rem !default;
+
+/// The distance from the top of the floating label container to position the `Label`
+/// while not active and the `dense` prop was enabled.
+///
+/// @type Number
 $label-floating-top-dense: 0.9rem !default;
+
+/// The `transform: scale()` value to apply to the floating label while not active.
+/// @type Number
 $label-floating-scale: 0.75 !default;
+
+/// The amount of padding to apply to a floating label. This is used to "cover"
+/// the outline and add some general spacing.
+///
+/// @type Number
 $label-floating-padding: 0.25rem !default;
 
+/// The default typography for the `FormMessage` component.
+/// @type Map
 $form-message-typography-styles: map.merge(
   typography.$body-2-styles,
   (
     font-size: 0.75rem,
   )
 ) !default;
+
+/// The `gap` between elements in the `FormMessageCounter` component .
+///
+/// @type Number
 $form-message-counter-spacing: icon.$spacing !default;
+
+/// The  `margin-top` for the `FormMessage` component.
+/// @type Number
 $form-message-margin-top: 0.5rem !default;
+
+/// The `margin-bottom` for the `FormMessage` component.
+///
+/// @type Number
 $form-message-margin-bottom: 1rem !default;
+
+/// The `min-height` for the `FormMessage` component.
+/// @type Number
 $form-message-min-height: 2rem !default;
 
+/// The default `TextField` typography
+/// @type Map
 $text-field-typography: map.merge(
   typography.$base-font-styles,
   map.merge(
@@ -102,171 +326,589 @@ $text-field-typography: map.merge(
     )
   )
 ) !default;
+
+/// The default `TextField` height.
+/// @type Number
 $text-field-height: 3rem !default;
+
+/// The default `TextField` height when the `dense` prop is enabled.
+/// @type Number
 $text-field-dense-height: 2.5rem !default;
+
+/// The default `TextField` height when there is a `label` prop.
+/// @type Number
 $text-field-label-height: 3.5rem !default;
+
+/// The default `TextField` height when there is a `label` and `dense` prop.
+/// @type Number
 $text-field-label-dense-height: 3.25rem !default;
+
+/// The `border-radius` for a `TextField`.
+/// @type Number
 $text-field-border-radius: 0.25rem !default;
+
+/// The `border-width` for a `TextField`.
+/// @type Number
 $text-field-border-width: 1px !default;
+
+/// The `border-width` for a `TextField` while active or focused.
+/// @type Number
 $text-field-border-width-active: 2px !default;
+
+/// The amount of horizontal padding to apply to a `TextField` with the
+/// `theme="filled"`.
+/// @type Number
 $text-field-filled-padding: 0.75rem !default;
+
+/// The amount of horizontal padding to apply to a `TextField` with the
+/// `theme="outline"`.
+/// @type Number
 $text-field-outlined-padding: 1rem !default;
+
+/// The amount of horizontal padding to apply to a `TextField` with the
+/// `theme="underline"`.
+///
+/// @type Number
 $text-field-underlined-padding: null !default;
-// set this to null to remove this style
+
+/// The amount of height to apply to a `TextField` while the
+/// `theme="underline"` and a `label` has not been provided.
+///
+/// Set this to `null` to disable these styles.
+///
+/// @type Number
 $text-field-underlined-placeholder-height: 2.5rem !default;
+
+/// The amount of padding-top to apply to a `TextField` while the
+/// `theme="underline"` and a `label` has not been provided.
+///
+/// This will be ignored if the `$text-field-underlined-placeholder-height` is
+/// `null`.
+///
+/// @type Number
 $text-field-underlined-placeholder-padding-top: 0.5rem !default;
+
+/// The amount of padding-top to apply to addons in a `TextField` while the
+/// `theme="underline"`.
+///
+/// This will be ignored if the `$text-field-underlined-placeholder-height` is
+/// `null`.
+///
+/// @type Number
 $text-field-underlined-placeholder-addon-padding-top: 0.25rem !default;
-// this is the default height of the label with line-height
+
+/// The amount of padding-top to apply to the `TextFieldContainer` while the
+/// `theme="underline"` and a `label` was provided.
+///
+/// NOTE: This is the default height of the label with line-height
+///
+/// @type Number
 $text-field-underlined-label-padding-top: 1.5rem !default;
+
+/// The position in the `TextFieldContainer` for a `Label` while the
+/// `theme="underline"`.
+///
+/// @type Number
 $text-field-underlined-label-left-offset: icon.$spacing !default;
+
+/// Set this to `null` if not using `<TextField type="color" />` since this is
+/// used to apply a `min-width` to color inputs.
+///
+/// @type Number
 $text-field-color-min-width: 5rem !default;
 
+/// The gap to apply between addon elements if multiple were provided.
+/// i.e. `leftAddon={<><FavoriteIcon /><CloseIcon /></>}`
+///
+/// @type Number
 $text-field-addon-gap: 0.25rem !default;
+
+/// The amount of margin to apply to addons when the `TextField`
+/// `theme="underline"`.
+/// @type Number
 $text-field-addon-margin: icon.$spacing !default;
+
+/// The amount of spacing between a `TextField` addon and the `<input>`
+/// element.
+///
+/// @type Number
 $text-field-addon-spacing: icon.get-var(spacing) !default;
 
+/// The border-color for a `theme="outline"` `TextField` in the light theme.
+/// @type Color
 $text-field-light-border-color: rgba(#000, 0.12) !default;
+
+/// The border-color for a `theme="outline"` `TextField` in the dark theme.
+/// @type Color
 $text-field-dark-border-color: rgba(#fff, 0.5) !default;
+
+/// The default border-color for a `theme="outline"` `TextField`.
+/// @type Color
 $text-field-border-color: theme.get-default-color(
   $text-field-light-border-color,
   $text-field-dark-border-color
 ) !default;
 
+/// The border-color for a `theme="outline"` `TextField` in the light theme
+/// while hovering.
+///
+/// @type Color
 $text-field-light-hover-border-color: rgba(#000, 0.87) !default;
+
+/// The border-color for a `theme="outline"` `TextField` in the dark theme
+/// while hovering.
+///
+/// @type Color
 $text-field-dark-hover-border-color: rgba(#fff, 0.87) !default;
+
+/// The default border-color for a `theme="outline"` `TextField` while
+/// hovering.
+///
+/// @type Color
 $text-field-hover-border-color: theme.get-default-color(
   $text-field-light-hover-border-color,
   $text-field-dark-hover-border-color
 ) !default;
 
+/// The background color for `theme="filled"` `TextField` in the light theme.
+/// @type Color
 $text-field-light-filled-background-color: colors.$grey-100 !default;
+
+/// The background color for `theme="filled"` `TextField` in the dark theme.
+/// @type Color
 $text-field-dark-filled-background-color: #424242 !default;
-// $text-field-dark-filled-background-color: core.$grey-700 !default;
+
+/// The default background color for `theme="filled"` `TextField`.
+/// @type Color
 $text-field-filled-background-color: theme.get-default-color(
   $text-field-light-filled-background-color,
   $text-field-dark-filled-background-color
 ) !default;
 
+/// The default position for addons within a `TextArea`.
+/// @type Number
 $textarea-addon-top: 1rem !default;
+
+/// The default vertical padding to apply to `TextArea` which is useful when
+/// there is a scrollbar visible. This should normally be enough so that the
+/// floating label does not cover the content.
+///
+/// @type Number
 $textarea-vertical-padding: 0.75rem !default;
 
+/// The `padding-left` to apply to a `Password` when there is a visibility
+/// icon.
+/// @type Number
 $password-visibility-toggle-spacing: 0.25rem !default;
 
+/// The addon position within a `NativeSelect`.
+/// @type Number
 $native-select-addon-top: 1rem !default;
+
+/// The padding to apply to a multiselect `NativeSelect`.
+/// @type Number
 $native-select-multiple-padding: 0.75rem !default;
+
+/// The padding to apply to a multiselect `NativeSelect` when the
+/// `theme="underline"`.
+///
+/// @type Number
 $native-select-multiple-underline-padding: 1.5rem !default;
 
+/// The default icon size for a selected `Option`.
+/// @type Number
 $option-selected-icon-size: 1rem !default;
+
+/// The default `Option` styles while selected.
+/// @type Map
 $option-selected-styles: (
   --rmd-icon-color: currentcolor,
   background-color: colors.$blue-900,
   color: colors.$white,
 ) !default;
+
+/// The `padding-left` to apply to an `Option` when the `disableSelectedIcon`
+/// prop has not been enabled.
+///
+/// @type Number
 $option-padding-left: list.$item-horizontal-padding - math.div(
     icon.$size - $option-selected-icon-size,
     2
   ) !default;
+
+/// The spacing between the selected icon and the `Option` content.
+/// @type Number
 $option-selected-icon-spacing: $option-padding-left !default;
 
+/// The default border-radius for `Checkbox` and `Radio` components.
+/// @type Number
 $input-toggle-border-radius: 50% !default;
+
+/// The amount of padding to apply around the `Checkbox` and `Radio` icons
+/// @type Number
 $input-toggle-padding: 0.5em !default;
+
+/// The `Checkbox` and `Radio` size to use when `size="small"`.
+///
+/// @type Number
 $input-toggle-small-size: 1rem !default;
+
+/// The `Checkbox` and `Radio` size to use when `size="dense"`.
+///
+/// @type Number
 $input-toggle-dense-size: icon.$dense-size !default;
+
+/// The `Checkbox` and `Radio` size to use when `size="normal"`.
+///
+/// @type Number
 $input-toggle-normal-size: icon.$size !default;
+
+/// The `Checkbox` and `Radio` size to use when `size="large"`.
+///
+/// @type Number
 $input-toggle-large-size: 2rem !default;
 
+/// The opacity to apply to a `Switch` while disabled.
+/// @type Number
 $switch-disabled-opacity: 0.5 !default;
+
+/// The `Switch` ball size.
+/// @type Number
 $switch-ball-size: 1.25em !default;
+
+/// The `Switch` border radius.
+/// @type Number
 $switch-ball-border-radius: 50% !default;
+
+/// The distance from the `left` and `right` of the `Switch` track to display
+/// the ball.
+///
+/// @type Number
 $switch-ball-offset: 0.25em !default;
+
+/// The default `Switch` ball background color.
+/// @type Color
 $switch-ball-background-color: color.adjust(
   colors.$white,
   $lightness: -5%
 ) !default;
+
+/// The height of the `Switch` clickable area.
+/// @type Number
 $switch-track-height: 1em !default;
+
+/// The width of the `Switch` clickable area.
+/// @type Number
 $switch-track-width: 2.25em !default;
+
+/// The border radius for the `Switch` clickable area.
+/// @type Number
 $switch-track-border-radius: 0.5em !default;
+
+/// The amount of vertical padding to apply to the `Switch` component.
+/// @type Number
 $switch-track-vertical-padding: 0.75em !default;
+
+/// The amount of horizontal padding to apply to the `Switch` component.
+/// @type Number
 $switch-track-horizontal-padding: 0.875em !default;
+
+/// The background color to apply to the `SwitchTrack` in the light theme.
+/// @type Color
 $switch-track-light-background-color: colors.$grey-400 !default;
+
+/// The background color to apply to the `SwitchTrack` in the dark theme.
+/// @type Color
 $switch-track-dark-background-color: if(
   theme.$disable-dark-elevation,
   $switch-track-light-background-color,
   map.get(theme.$dark-elevation-colors, 24)
 ) !default;
+
+/// The default background color to apply to the `SwitchTrack`.
+/// @type Color
 $switch-track-background-color: theme.get-default-color(
   $switch-track-light-background-color,
   $switch-track-dark-background-color
 ) !default;
+
+/// The default size for an icon within the `Switch` ball.
+/// @type Number
 $switch-icon-size: 1em !default;
+
+/// The `circular-stroke-width` to use for a `CircularProgress` rendered within
+/// a `Switch` ball.
+///
+/// @type Number
 $switch-circular-progress-width: 12 !default;
+
+/// The `circular-size` to use for a `CircularProgress` rendered within a
+/// `Switch` ball.
+///
+/// @type Number
 $switch-circular-progress-size: 1em !default;
 
+/// The `height` of the `Slider`'s track while horizontal or the `width` while
+/// vertical.
+///
+/// @type Number
 $slider-size: 2rem !default;
+
+/// The default `height` for a vertical `Slider`.
+/// @type Number
 $slider-vertical-size: 15rem !default;
+
+/// The default color for a `Slider` and is applied to:
+/// - The Slider "thumb",
+/// - The active slider track
+/// - The inactive slider track (with opacity applied)
+///
+/// If more color customization is required, set this to `null` and configure
+/// the `$slider-track-active-color`, `$slider-track-active-opacity`,
+/// `$slider-track-inactive-color`, and `$slider-track-inactive-opacity`
+/// instead.
+///
+/// @see $slider-track-active-color
+/// @see $slider-track-active-opacity
+/// @see $slider-track-inactive-color
+/// @see $slider-track-inactive-opacity
+/// @type Color
 $slider-track-color: theme.theme-get-var(primary-color) !default;
+
+/// The height/width of the `Slider` track representing the current value. This
+/// should normally be greater than or equal to the `$slider-size`.
+///
+/// @see $slider-size
+/// @type Number
 $slider-track-active-size: 0.375rem !default;
+
+/// Set this value if additional control is required or the `Slider` active
+/// color.
+///
+/// @see $slider-track-color
+/// @type Color
 $slider-track-active-color: null !default;
+
+/// An optional opacity value to apply to the active `Slider` color.
+///
+/// @see $slider-track-color
+/// @type Color
 $slider-track-active-opacity: null !default;
+
+/// The `z-index` for the active `Slider` track. This normally shouldn't need
+/// to be changed but should be greater than the
+/// `$slider-track-inactive-z-index`.
+///
+/// @see $slider-track-inactive-z-index
+/// @type Number
 $slider-track-active-z-index: 2 !default;
+
+/// The height/width for the inactive `Slider` track.
+///
+/// @type Number
 $slider-track-inactive-size: 0.25rem !default;
+
+/// Set this value if additional control is required or the `Slider` inactive
+/// color.
+///
+/// @see $slider-track-color
+/// @type Number
 $slider-track-inactive-color: null !default;
+
+/// The opacity to apply to the `Slider` inactive track background color.
+///
+/// @see $slider-track-color
+/// @type Number
 $slider-track-inactive-opacity: 0.5 !default;
+
+/// The `z-index` for the inactive `Slider` track. This normally shouldn't need
+/// to be changed but should be less than the `$slider-track-active-z-index`
+///
+/// @see $slider-track-active-z-index
+/// @type Number
 $slider-track-inactive-z-index: 1 !default;
+
+/// The background-color to apply to a `Slider` track while disabled.
+///
+/// @type Color
 $slider-track-disabled-color: theme.theme-get-var(text-disabled-color) !default;
 
+/// The default height of a discrete `Slider` tick mark.
+/// @type Number
 $slider-mark-height: $slider-track-inactive-size !default;
+
+/// The default width of a discrete `Slider` tick mark.
+/// @type Number
 $slider-mark-width: $slider-track-inactive-size !default;
+
+/// The default border-radius for a discrete `Slider` tick mark.
+/// @type Number
 $slider-mark-border-radius: 50% !default;
+
+/// The light theme `Slider` tick mark color.
+/// @type Color
 $slider-mark-light-active-color: theme.theme-get-var(on-primary-color) !default;
+
+/// The dark theme `Slider` tick mark color.
+/// @type Color
 $slider-mark-dark-active-color: $slider-mark-light-active-color !default;
+
+/// The light theme `Slider` tick mark opacity.
+/// @type Number
 $slider-mark-light-active-opacity: 0.38 !default;
+
+/// The dark theme `Slider` tick mark opacity.
+/// @type Number
 $slider-mark-dark-active-opacity: 0.38 !default;
+
+/// The default `Slider` tick mark color.
+/// @type Color
 $slider-mark-active-color: theme.get-default-color(
   $slider-mark-light-active-color,
   $slider-mark-dark-active-color
 ) !default;
+
+/// The default `Slider` tick mark opacity.
+/// @type Number
 $slider-mark-active-opacity: theme.get-default-color(
   $slider-mark-light-active-opacity,
   $slider-mark-dark-active-opacity
 ) !default;
 
+/// The light theme color for a `Slider` mark that is not covered by the active
+/// `Slider` track.
+/// @type Color
 $slider-mark-light-inactive-color: colors.$black !default;
+
+/// The dark theme color for a `Slider` mark that is not covered by the active
+/// `Slider` track.
+/// @type Color
 $slider-mark-dark-inactive-color: colors.$white !default;
+
+/// The default color for a `Slider` mark that is not covered by the active
+/// `Slider` track.
+///
+/// @type Color
 $slider-mark-inactive-color: theme.get-default-color(
   $slider-mark-light-inactive-color,
   $slider-mark-dark-inactive-color
 ) !default;
+
+/// The default opacity to apply to the light theme `Slider` mark.
+/// @type Number
 $slider-mark-light-inactive-opacity: 1 !default;
+
+/// The default opacity to apply to the dark theme `Slider` mark.
+/// @type Number
 $slider-mark-dark-inactive-opacity: 0.8 !default;
+
+/// The default opacity to apply to the `Slider` mark.
+/// @type Number
 $slider-mark-inactive-opacity: theme.get-default-color(
   $slider-mark-light-inactive-opacity,
   $slider-mark-dark-inactive-opacity
 ) !default;
+
+/// The z-index for an inactive `Slider` mark.
+/// @type Number
 $slider-mark-inactive-z-index: 1 !default;
+
+/// The z-index for an active `Slider` mark.
+/// @type Number
 $slider-mark-active-z-index: $slider-track-active-z-index + 1 !default;
 
+/// The size for the `Slider` thumb.
+/// @type Number
 $slider-thumb-size: 1.25rem !default;
+
+/// The `border-radius` for the `Slider` thumb.
+/// @type Number
 $slider-thumb-border-radius: 50% !default;
+
+/// The amount of opacity to apply to the focused/active state of the `Slider`
+/// thumb.
+///
+/// @see $slider-thumb-focus-scale
+/// @see $slider-thumb-active-scale
+/// @type Number
 $slider-thumb-bubble-opacity: 0.3 !default;
+
+/// The `z-index` for the `Slider` thumb.
+/// @type Number
 $slider-thumb-z-index: $slider-track-active-z-index !default;
+
+/// The size of the focused state for a `Slider` thumb.
+///
+/// @see $slider-thumb-bubble-opacity
+/// @type Number
 $slider-thumb-focus-scale: 2 !default;
+
+/// The size of the active state for a `Slider` thumb.
+///
+/// @see $slider-thumb-bubble-opacity
+/// @type Number
 $slider-thumb-active-scale: 2.5 !default;
+
+/// The size of a disabled `Slider` thumb.
+///
+/// @see $slider-thumb-mask-scale
+/// @type Number
 $slider-thumb-disabled-scale: 0.5 !default;
+
+/// The size of a disabled `Slider` thumb which is used to apply the spacing
+/// between the track and thumb. This should be larger than the
+/// `$slider-thumb-disabled-scale`
+///
+/// @see $slider-thumb-disabled-scale
+/// @type Number
 $slider-thumb-mask-scale: 0.8 !default;
+
+/// The disabled color for a `Slider` thumb.
+/// @type Color
 $slider-thumb-disabled-color: $slider-track-disabled-color !default;
+
+/// The discrete `Slider` tooltip caret size which is generated using `border`.
+/// @type Number
 $slider-tooltip-caret-size: 0.3rem !default;
+
+/// The top/left for the discrete `Slider` tooltip.
+/// @type Number
 $slider-tooltip-offset: -($slider-thumb-size + icon.$spacing) !default;
+
+/// The `z-index` for the discrete `Slider` tooltip.
+/// @type Number
 $slider-tooltip-z-index: 0 !default;
+
+/// The amount of padding to apply around the `Slider` component and also the
+/// "touch" area for the `Slider`. This should generally be at least 1/2 the
+/// `$slider-thumb-size` so it does not overlap other elements.
+///
+/// @type Number
 $slider-container-padding: $slider-thumb-size * 0.5 !default;
+
+/// The amount of spacing between a `Slider` addon and the `SliderTrack`.
+/// @type Number
 $slider-container-addon-spacing: $slider-thumb-size !default;
+
+/// The `transition-duration` to apply to the `Slider` while the next value
+/// should animate.
+/// @type Number
 $slider-transition-duration: transition.$linear-duration !default;
+
+/// The `transition-timing-function` to apply to the `Slider` while the next
+/// value should animate.
+/// @type Number
 $slider-transition-timing-function: transition.$linear-timing-function !default;
 
-// internal variable helpers
+/// internal variable helpers
+/// @access private
+/// @type Boolean
 $_disable-text-field-container: $disable-text-field and $disable-password and
   $disable-textarea and $disable-select and $disable-native-select;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $form-variables: (
   active-color,
   focus-color,
@@ -311,6 +953,9 @@ $form-variables: (
   slider-mark-inactive-opacity
 );
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function form-get-var($name, $fallback: null) {
   $var: utils.get-var-name($form-variables, $name, "form");
   @if $fallback {
@@ -320,16 +965,24 @@ $form-variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin form-set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($form-variables, $name, "form")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin form-use-var($property, $name: $property, $fallback: null) {
   #{$property}: form-get-var($name, $fallback);
 }
 
+/// Applies the light the variables based on feature flags
 @mixin form-use-light-theme {
   @if not $form-disable-everything {
     @include form-set-var(
@@ -386,6 +1039,7 @@ $form-variables: (
   }
 }
 
+/// Applies the dark the variables based on feature flags
 @mixin form-use-dark-theme {
   @if not $form-disable-everything {
     @include form-set-var(
@@ -442,6 +1096,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin form-message-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-form-message-container {
@@ -501,6 +1159,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin label-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-label {
@@ -654,6 +1316,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin text-field-container-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-text-field-container {
@@ -936,6 +1602,7 @@ $form-variables: (
   }
 }
 
+/// @access private
 @mixin _text-field-base-styles {
   @include utils.map-to-styles($text-field-typography);
   @include form-use-var(padding-left, text-field-padding-left);
@@ -951,6 +1618,10 @@ $form-variables: (
   width: 100%;
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin text-field-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-text-field {
@@ -1002,6 +1673,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin password-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-password {
@@ -1033,6 +1708,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin textarea-container-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-textarea-container {
@@ -1095,6 +1774,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin textarea-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-textarea {
@@ -1126,7 +1809,7 @@ $form-variables: (
         overflow: auto;
       }
 
-      @if not $disable-textarea-resizing-mask {
+      @if not $disable-textarea-resizing-rows {
         &--mask {
           height: auto;
           left: 0;
@@ -1142,6 +1825,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin select-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-select-container {
@@ -1199,6 +1886,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin option-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-option {
@@ -1224,6 +1915,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin native-select-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     @if not $disable-native-select-multiple {
@@ -1276,6 +1971,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin text-field-addon-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-text-field-addon {
@@ -1323,6 +2022,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin hidden-input-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-hidden-input {
@@ -1341,6 +2044,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin input-toggle-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-input-toggle {
@@ -1428,6 +2135,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin switch-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-switch {
@@ -1559,6 +2270,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin menu-item-input-toggle-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-menu-item-input-toggle {
@@ -1608,6 +2323,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin slider-styles($disable-layer: false) {
   @include utils.optional-layer(form, $disable-layer) {
     .rmd-slider-container {
@@ -2112,6 +2831,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin form-variables {
   @if not $form-disable-everything {
     @include form-set-var(active-color, $form-active-color);
@@ -2241,6 +2964,10 @@ $form-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin form-styles($disable-layer: false) {
   @if not $form-disable-everything {
     @include utils.optional-layer(form, $disable-layer) {

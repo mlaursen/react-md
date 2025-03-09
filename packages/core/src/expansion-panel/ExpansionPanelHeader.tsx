@@ -1,4 +1,3 @@
-import { cnb } from "cnbuilder";
 import {
   type ButtonHTMLAttributes,
   type MouseEventHandler,
@@ -12,6 +11,10 @@ import { getIcon } from "../icon/config.js";
 import { type PropsWithRef } from "../types.js";
 import { Typography, type TypographyProps } from "../typography/Typography.js";
 import { type TypographyType } from "../typography/typographyStyles.js";
+import {
+  expansionPanelButton,
+  expansionPanelHeading,
+} from "./expansionPanelStyles.js";
 
 /**
  * @since 6.0.0 Updated to include additional heading/Typography
@@ -154,14 +157,14 @@ export const ExpansionPanelHeader = forwardRef<
       type={headingType}
       margin="none"
       {...headingProps}
-      className={cnb("rmd-expansion-panel__heading", headingProps?.className)}
+      className={expansionPanelHeading(headingProps)}
     >
       {beforeChildren}
       <ButtonUnstyled
         {...remaining}
         aria-expanded={expanded}
         id={id}
-        className={cnb("rmd-expansion-panel__button", className)}
+        className={expansionPanelButton({ className })}
       >
         {children}
         {icon && (

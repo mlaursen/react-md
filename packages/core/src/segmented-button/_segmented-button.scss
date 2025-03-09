@@ -1,3 +1,7 @@
+////
+/// @group segmented-button
+////
+
 @use "sass:map";
 @use "sass:color";
 @use "../utils";
@@ -9,24 +13,24 @@
 @use "../theme/colors";
 @use "../theme/theme";
 
-// Set to `true` to disable all the styles
-// @type boolean
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
 
-// Set to `true` to disable the styles to display an icon while selected
-// @type boolean
+/// Set to `true` to disable the styles to display an icon while selected
+/// @type Boolean
 $disable-selected-icon: false !default;
 
-// The light theme text color
-// @type Color
+/// The light theme text color
+/// @type Color
 $light-theme-color: colors.$black !default;
 
-// The light theme outline color
-// @type Color
+/// The light theme outline color
+/// @type Color
 $light-theme-outline-color: #79747e !default;
 
-// The light theme background color while selected
-// @type Color
+/// The light theme background color while selected
+/// @type Color
 $light-theme-selected-background-color: theme.get-swatch(
   theme.$secondary-color,
   700,
@@ -34,22 +38,22 @@ $light-theme-selected-background-color: theme.get-swatch(
   color.adjust(theme.$secondary-color, $lightness: -20%)
 ) !default;
 
-// The light theme text color while selected
-// @type Color
+/// The light theme text color while selected
+/// @type Color
 $light-theme-selected-color: a11y.contrast-color(
   $light-theme-selected-background-color
 ) !default;
 
-// The dark theme text color
-// @type Color
+/// The dark theme text color
+/// @type Color
 $dark-theme-color: colors.$white !default;
 
-// The dark theme outline color
-// @type Color
+/// The dark theme outline color
+/// @type Color
 $dark-theme-outline-color: #938f99 !default;
 
-// The dark theme background color while selected
-// @type Color
+/// The dark theme background color while selected
+/// @type Color
 $dark-theme-selected-background-color: theme.get-swatch(
   theme.$secondary-color,
   300,
@@ -57,38 +61,73 @@ $dark-theme-selected-background-color: theme.get-swatch(
   color.adjust(theme.$secondary-color, $lightness: 20%)
 ) !default;
 
-// The dark theme text color while selected
-// @type Color
+/// The dark theme text color while selected
+/// @type Color
 $dark-theme-selected-color: a11y.contrast-color(
   $dark-theme-selected-background-color
 ) !default;
 
+/// The default gap to apply between the elements in the `SegmentedButton`.
+/// @type Number
 $gap: icon.$spacing !default;
+
+/// The default border-radius to apply `SegmentedButton` that appear at the
+/// edges.
+/// @type Number
 $border-radius: 2.5rem !default;
+
+/// The default min-height for a `SegmentedButton`.
+/// @type Number
 $min-height: 2.5rem !default;
+
+/// The default min-width for a `SegmentedButton`.
+/// @type Number
 $min-width: 3rem !default;
+
+/// The default horizontal padding for a `SegmentedButton`.
+/// @type Number
 $horizontal-padding: 0.75rem !default;
+
+/// The default vertical padding for a `SegmentedButton`.
+/// @type Number
 $vertical-padding: 0 !default;
+
+/// The default outline width for a `SegmentedButton`.
+/// @type Number
 $outline-width: 0.0625rem !default;
+
+/// The default outline color.
+/// @type Color
 $outline-color: theme.get-default-color(
   $light-theme-outline-color,
   $dark-theme-outline-color
 ) !default;
+
+/// The default text color
+/// @type Color
 $color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
+
+/// The default selected text color
+/// @type Color
 $selected-color: theme.get-default-color(
   $light-theme-selected-color,
   $dark-theme-selected-color
 ) !default;
+
+/// The default selected background-color
+/// @type Color
 $selected-background-color: theme.get-default-color(
   $light-theme-selected-background-color,
   $dark-theme-selected-background-color
 ) !default;
 
+/// The default typography styles.
+/// @type Map
 $typography-styles: typography.$button-styles !default;
 
-// The available configurable css variables and mostly used internally for the
-// `get-var`, `set-var`, and `use-var` utils.
-// @type List
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   outline-width,
   outline-color,
@@ -97,9 +136,9 @@ $variables: (
   selected-color
 );
 
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value
-// @returns {string} a `var()` statement
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "segmented-button");
   @if $fallback {
@@ -109,23 +148,24 @@ $variables: (
   @return var(#{$var});
 }
 
-// @param {string} name - The supported variable name
-// @param {any} value - The value to set the variable to. Supports `null` which
-// will just be a no-op.
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "segmented-button")}: #{$value};
   }
 }
 
-// @param {string} property - The css property to apply the variable to
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value if the variable has not
-// been set
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Applies the light the variables based on feature flags
 @mixin use-light-theme {
   @if not $disable-everything {
     @if $light-theme-outline-color != $dark-theme-outline-color {
@@ -147,6 +187,7 @@ $variables: (
   }
 }
 
+/// Applies the dark the variables based on feature flags
 @mixin use-dark-theme {
   @if not $disable-everything {
     @if $light-theme-outline-color != $dark-theme-outline-color {
@@ -168,6 +209,7 @@ $variables: (
   }
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(outline-width, $outline-width);
@@ -178,6 +220,10 @@ $variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(segmented-button, $disable-layer) {

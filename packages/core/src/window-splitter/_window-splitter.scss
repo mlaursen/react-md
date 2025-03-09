@@ -1,21 +1,56 @@
+////
+/// @group window-splitter
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../interaction/interaction";
 @use "../transition/transition";
 
+/// Set to `true` to disable generating any styles
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable the horizontal `WindowSplitter` styles.
+/// @type Boolean
 $disable-horizontal: false !default;
+
+/// Set to `true` to disable the vertical `WindowSplitter` styles.
+/// @type Boolean
 $disable-vertical: false !default;
+
+/// Set to `true` to disable the reversed `WindowSplitter` styles.
+/// @type Boolean
 $disable-reversed: false !default;
+
+/// Set to `true` to disable the `position: absolute` styles
+/// @type Boolean
 $disable-absolute-position: false !default;
 
+/// The default `WindowSplitter` draggable area.
+/// @type Number
 $size: 1rem !default;
+
+/// The default `WindowSplitter` visible size (`background-color`).
+/// @type Number
 $background-size: 0.25rem !default;
+
+/// The default `background-color` for the `WindowSplitter`.
+/// @type Color
 $background-color: interaction.get-var(focus-color) !default;
+
+/// The default `z-index` for the `WindowSplitter`.
+/// @type Number
 $z-index: 30 !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (top, right, bottom, left, opacity, position);
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "window-splitter");
   // window-splitter variables don't make much sense to set globally
@@ -27,16 +62,27 @@ $variables: (top, right, bottom, left, opacity, position);
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "window-splitter")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(window-splitter, $disable-layer) {

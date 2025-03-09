@@ -1,3 +1,7 @@
+////
+/// @group progress
+////
+
 @use "sass:color";
 @use "sass:map";
 @use "../utils";
@@ -5,35 +9,111 @@
 @use "../theme/theme";
 @use "../transition/transition";
 
+/// Set to `true` to disable all the styles.
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable the `LinearProgress` styles.
+/// @type Boolean
 $disable-linear: $disable-everything !default;
+
+/// Set to `true` to disable the `LinearProgress` vertical styles.
+/// @type Boolean
 $disable-linear-vertical: false !default;
+
+/// Set to `true` to disable the `LinearProgress` horizontal styles.
+/// @type Boolean
 $disable-linear-horizontal: false !default;
+
+/// Set to `true` to disable the `LinearProgress` reversed styles.
+/// @type Boolean
 $disable-linear-reverse: false !default;
+
+/// Set to `true` to only disable the `CircularProgress` styles.
+/// @type Boolean
 $disable-circular: $disable-everything !default;
+
+/// Set to `true` to disable the `CircularProgress` centered styles.
+/// @type Boolean
 $disable-circular-centered-styles: false !default;
+
+/// Set this to `true` if the rotate-only animation is not needed for the
+/// `CircularProgress`.
+/// @type Boolean
+$disable-circular-rotate-only: false !default;
+
+/// Set to `true` to disable only the determinate progress styles.
+/// @type Boolean
 $disable-determinate: false !default;
+
+/// Set to `true` to disable only the indeterminate progress styles.
+/// @type Boolean
 $disable-indeterminate: false !default;
 
+/// This is the default prominent color for the `LinearProgress` component
+/// that helps indicate the current progress. This covers the
+/// `$background-color`.
+///
+/// @see $background-color
+/// @type Color
 $color: theme.theme-get-var(primary-color) !default;
-$background-color: color-mix(in srgb, currentcolor 66%, colors.$white) !default;
-// $background-color: theme.get-swatch(
-//   theme.$primary-color,
-//   300,
-//   false,
-//   rgba(theme.$primary-color, 0.4)
-// ) !default;
 
+/// This is the default background-color/secondary color for the
+/// `LinearProgress` component that is used as the full track color. This is
+/// covered by the `$color`.
+///
+/// @see $color
+/// @type Color
+$background-color: color-mix(in srgb, currentcolor 66%, colors.$white) !default;
+
+/// The default `CircularProgress` size.
+/// @type Number
 $circular-size: 3rem !default;
+
+/// The default dense `CircularProgress` size.
+/// @type Number
 $circular-dense-size: 1.5rem !default;
+
+/// The default svg `stroke-width` for the `CircularProgress`.
+/// @type Number
 $circular-stroke-width: 6 !default;
+
+/// The default svg `stroke-dasharray` for the `CircularProgress`.
+/// @type Number
 $circular-dasharray: 187 !default;
+
+/// The default transition duration for the determinate `CircularProgress` to
+/// animate to new values.
+/// @type Number
 $circular-transition-duration: transition.$enter-duration !default;
+
+/// The default transition duration for the indeterminate `CircularProgress`.
+/// @type Number
 $circular-indeterminate-transition-duration: 2.4s !default;
+
+/// The default transition duration for the indeterminate `CircularProgress`
+/// that only rotates to improve performance.
+/// @type Number
 $circular-rotate-only-transition-duration: 1.2s !default;
+
+/// The default svg `stroke-dashoffset` for the indeterminate
+/// `CircularProgress` that only rotates to improve performance.
+/// @type Number
 $circular-rotate-only-dashoffset: $circular-dasharray * 0.4 !default;
+
+/// The default starting `stroke-dashoffset` for the `CircularProgress`
+/// animation.
+/// @type Number
 $circular-start-offset: $circular-dasharray !default;
+
+/// The default ending `stroke-dashoffset` for the `CircularProgress`
+/// animation.
+/// @type Number
 $circular-end-offset: $circular-dasharray * 0.25 !default;
+
+/// Used to generate the `@keyframes rmd-progress-rotate` for the indeterminate
+/// `CircularProgress`.
+/// @type Map
 $circular-rotate-styles: (
   0%: (
     transform: rotate(0deg),
@@ -48,6 +128,10 @@ $circular-rotate-styles: (
     transform: rotate(720deg),
   ),
 ) !default;
+
+/// Used to generate the `@keyframes rmd-circular-progress-size` for the
+/// indeterminate `CircularProgress`.
+/// @type Map
 $circular-dash-styles: (
   0%: (
     stroke-dashoffset: $circular-start-offset,
@@ -60,9 +144,23 @@ $circular-dash-styles: (
   ),
 ) !default;
 
+/// The default height/width for the `LinearProgress`.
+/// @type Number
 $linear-size: 0.25rem !default;
+
+/// The default transition duration for the `LinearProgress` keyframes
+/// animation.
+/// @type Number
 $linear-transition-duration: 2.4s !default;
+
+/// The default transition duration for the `LinearProgress` keyframes
+/// animation that is a bit quicker.
+/// @type Number
 $linear-short-animation-delay: 0.75s !default;
+
+/// Used to generate the `@keyframes rmd-progress-bar` for the
+/// indeterminate `LinearProgress`.
+/// @type Map
 $linear-styles: (
   0%: (
     left: -35%,
@@ -77,6 +175,10 @@ $linear-styles: (
     right: -90%,
   ),
 ) !default;
+
+/// Used to generate the `@keyframes rmd-progress-bar-short` for the
+/// indeterminate `LinearProgress`.
+/// @type Map
 $linear-short-styles: (
   0%: (
     left: -200%,
@@ -92,9 +194,8 @@ $linear-short-styles: (
   ),
 ) !default;
 
-/// The linear progress bar styles to apply for the transition. Each key in this
-/// map will be set immediately at the root of the `keyframes` and then each
-/// child map will be considered a map of property: value.
+/// Used to generate the `@keyframes rmd-progress-bar-reverse` for the
+/// reversed indeterminate `LinearProgress`.
 /// @type Map
 $linear-reverse-styles: (
   0%: (
@@ -111,9 +212,8 @@ $linear-reverse-styles: (
   ),
 ) !default;
 
-/// The linear progress bar styles to apply for the shorter transition. Each key
-/// in this map will be set immediately at the root of the `keyframes` and then
-/// each child map will be considered a map of property: value.
+/// Used to generate the `@keyframes rmd-progress-bar-reverse-short` for the
+/// reversed indeterminate `LinearProgress` that is a bit quicker.
 /// @type Map
 $linear-reverse-short-styles: (
   0%: (
@@ -130,9 +230,8 @@ $linear-reverse-short-styles: (
   ),
 ) !default;
 
-/// The linear progress bar styles to apply for the vertical transition. Each
-/// key in this map will be set immediately at the root of the `keyframes` and
-/// then each child map will be considered a map of property: value.
+/// Used to generate the `@keyframes rmd-progress-bar-vertical` for the
+/// vertical indeterminate `LinearProgress`.
 /// @type Map
 $linear-vertical-styles: (
   0%: (
@@ -149,9 +248,8 @@ $linear-vertical-styles: (
   ),
 ) !default;
 
-/// The linear progress bar styles to apply for the shorter vertical transition.
-/// Each key in this map will be set immediately at the root of the `keyframes`
-/// and then each child map will be considered a map of property: value.
+/// Used to generate the `@keyframes rmd-progress-bar-vertical-short` for the
+/// vertical indeterminate `LinearProgress` that is a bit quicker.
 /// @type Map
 $linear-vertical-short-styles: (
   0%: (
@@ -168,9 +266,8 @@ $linear-vertical-short-styles: (
   ),
 ) !default;
 
-/// The linear progress bar styles to apply for the vertical transition. Each
-/// key in this map will be set immediately at the root of the `keyframes` and
-/// then each child map will be considered a map of property: value.
+/// Used to generate the `@keyframes rmd-progress-bar-vertical-reversed` for the
+/// vertical reversed indeterminate `LinearProgress`.
 /// @type Map
 $linear-vertical-reverse-styles: (
   0%: (
@@ -187,9 +284,9 @@ $linear-vertical-reverse-styles: (
   ),
 ) !default;
 
-/// The linear progress bar styles to apply for the shorter vertical transition.
-/// Each key in this map will be set immediately at the root of the `keyframes`
-/// and then each child map will be considered a map of property: value.
+/// Used to generate the `@keyframes rmd-progress-bar-vertical-reversed-short`
+/// for the vertical reversed indeterminate `LinearProgress` that is a bit
+/// quicker.
 /// @type Map
 $linear-vertical-reverse-short-styles: (
   0%: (
@@ -206,6 +303,9 @@ $linear-vertical-reverse-short-styles: (
   ),
 ) !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   background-color,
   color,
@@ -214,6 +314,9 @@ $variables: (
   linear-size
 );
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "progress");
   @if $fallback {
@@ -223,16 +326,25 @@ $variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "progress")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// @param {Map} styles - The styles map to convert to keyframes
+/// @access private
 @mixin _animation($styles) {
   @if $styles {
     @each $percentage, $style in $styles {
@@ -243,6 +355,7 @@ $variables: (
   }
 }
 
+/// @access private
 @mixin _circular-progress {
   .rmd-circular-progress {
     @include use-var(height, circular-size);
@@ -286,11 +399,13 @@ $variables: (
             infinite;
         }
 
-        &--rotate-only {
-          animation: rmd-progress-rotate-only
-            $circular-rotate-only-transition-duration
-            linear
-            infinite;
+        @if not $disable-circular-rotate-only {
+          &--rotate-only {
+            animation: rmd-progress-rotate-only
+              $circular-rotate-only-transition-duration
+              linear
+              infinite;
+          }
         }
       }
     }
@@ -319,20 +434,24 @@ $variables: (
             infinite;
         }
 
-        &--rotate-only {
-          animation: none;
-          stroke-dashoffset: $circular-rotate-only-dashoffset;
+        @if not $disable-circular-rotate-only {
+          &--rotate-only {
+            animation: none;
+            stroke-dashoffset: $circular-rotate-only-dashoffset;
+          }
         }
       }
     }
   }
 
-  @keyframes rmd-progress-rotate-only {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
+  @if not $disable-circular-rotate-only {
+    @keyframes rmd-progress-rotate-only {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
   }
 
@@ -347,6 +466,7 @@ $variables: (
   }
 }
 
+/// @access private
 @mixin _linear-progress-bar {
   @if not $disable-linear-horizontal {
     &--horizontal {
@@ -485,6 +605,7 @@ $variables: (
   }
 }
 
+/// @access private
 @mixin _linear-progress {
   .rmd-linear-progress {
     @include use-var(background-color);
@@ -555,6 +676,7 @@ $variables: (
   }
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-circular {
     @include set-var(circular-size, $circular-size);
@@ -568,6 +690,10 @@ $variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @include utils.optional-layer(
     progress,

@@ -1,3 +1,7 @@
+////
+/// @group tree
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../icon/icon";
@@ -5,25 +9,76 @@
 @use "../typography/typography";
 @use "../interaction/interaction";
 
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable displaying the `TreeItem` expander to the left
+/// instead of the right.
+/// @type Boolean
 $disable-expander-left: false !default;
+
+/// Set to `true` to disable displaying the `TreeItem` expander to the left
+/// instead of the right.
+/// @type Boolean
 $disable-expander-left-as-media: false !default;
+
+/// Set to `true` if the `TreeItem` will never need to set the `leftAddonType`
+/// to `media` or `large-media`.
+/// @type Boolean
 $disable-expander-left-as-media-offset: false !default;
+
+/// Set to `true` to disable applying the default interaction selected
+/// background color while a `TreeItem` is selected.
+///
+/// @type Boolean
 $disable-selected-background-color: false !default;
 
+/// The default horizontal padding to apply to a `TreeItem`
+/// @type Number
 $item-padding-base: list.$item-horizontal-padding !default;
+
+/// The additional amount of padding to apply to each `TreeItem` that is not
+/// rendered at the root.
+///
+/// @see $item-padding
+/// @type Number
 $item-padding-incrementor: list.$item-horizontal-padding * 1.5 !default;
+
+/// The default `TreeItemExpander` rotation starting position when rendered as
+/// a `rightAddon`.
+/// @type Number
 $expander-right-from: icon.$rotate-from !default;
+
+/// The default `TreeItemExpander` rotation ending position when rendered as a
+/// `rightAddon`.
+/// @type Number
 $expander-right-to: 90deg !default;
+
+/// The default `TreeItemExpander` rotation starting position when rendered as
+/// a `leftAddon`.
+/// @type Number
 $expander-left-from: 0deg !default;
+
+/// The default `TreeItemExpander` rotation ending position when rendered as a
+/// `leftAddon`.
+/// @type Number
 $expander-left-to: -90deg !default;
 
+/// The default styles to apply when a `TreeItem` has been selected.
+/// @type Map
 $selected-styles: (
   font-weight: typography.$font-weight-bold,
 ) !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (depth, item-padding, item-padding-base, item-padding-incrementor);
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "tree");
   @if $fallback {
@@ -33,22 +88,33 @@ $variables: (depth, item-padding, item-padding-base, item-padding-incrementor);
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "tree")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
-// must be defined after the `get-var` function
+/// The padding-left to apply to each `TreeItem`.
+///
+/// @ignore Must be defined after the `get-var` function
+/// @type String
 $item-padding: calc(
   get-var(depth) * get-var(item-padding-incrementor) +
     get-var(item-padding-base)
 ) !default;
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(depth, 0);
@@ -58,6 +124,10 @@ $item-padding: calc(
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(tree, $disable-layer) {

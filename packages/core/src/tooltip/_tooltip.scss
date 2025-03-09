@@ -1,52 +1,144 @@
+////
+/// @group tooltip
+////
+
 @use "sass:map";
 @use "../utils";
+@use "../theme/a11y";
 @use "../theme/colors";
 @use "../transition/transition";
 @use "../typography/typography";
 
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable both the `above` and `below` styles.
+/// @type Boolean
 $disable-vertical: false !default;
+
+/// Set to `true` to disable both the `left` and `right` styles.
+/// @type Boolean
 $disable-horizontal: false !default;
+
+/// Set to `true` to disable the `position="above"` styles.
+/// @type Boolean
 $disable-above: $disable-vertical !default;
+
+/// Set to `true` to disable the `position="below"` styles.
+/// @type Boolean
 $disable-below: $disable-vertical !default;
+
+/// Set to `true` to disable the `position="left"` styles.
+/// @type Boolean
 $disable-left: $disable-horizontal !default;
+
+/// Set to `true` to disable the `position="right"` styles.
+/// @type Boolean
 $disable-right: $disable-horizontal !default;
+
+/// Set to `true` to disable the dense styles.
+/// @type Boolean
 $disable-dense: false !default;
 
+/// The default `Tooltip` background-color.
+/// @type Color
 $background-color: #616161 !default;
-$color: colors.$white !default;
 
+/// The default `Tooltip` text color
+/// @type Color
+$color: a11y.contrast-color($background-color) !default;
+
+/// The default `Tooltip` typography styles.
+/// @type Map
 $typography: map.merge(
   typography.$body-1-styles,
   (
     letter-spacing: null,
   )
 ) !default;
-$border-radius: 0.25rem !default;
-$z-index: utils.$temporary-element-z-index + 20 !default;
-$max-width: 15rem !default;
-$min-height: 2rem !default;
-$horizontal-padding: 1rem !default;
-$vertical-padding: 0.5625rem !default;
-$spacing: 1.5rem !default;
 
-$dense-spacing: 0.875rem !default;
+/// The default dense `Tooltip` typography styles which is applied
+/// on top of the `$typography` styles.
+///
+/// @type Map
 $dense-typography: (
   font-size: 0.625rem,
   line-height: 0.825rem,
 ) !default;
+
+/// The default `Tooltip` border radius.
+/// @type Number
+$border-radius: 0.25rem !default;
+
+/// The default `Tooltip` z-index.
+/// @type Number
+$z-index: utils.$temporary-element-z-index + 20 !default;
+
+/// The default `max-width` for a `Tooltip`>
+/// @type Number
+$max-width: 15rem !default;
+
+/// The default `min-height` for a `Tooltip`>
+/// @type Number
+$min-height: 2rem !default;
+
+/// The default horizontal padding for a `Tooltip`>
+/// @type Number
+$horizontal-padding: 1rem !default;
+
+/// The default vertical padding for a `Tooltip`>
+/// @type Number
+$vertical-padding: 0.5625rem !default;
+
+/// The default spacing between a tooltipped element and the `Tooltip`.
+/// @type Number
+$spacing: 1.5rem !default;
+
+/// The default dense spacing between a tooltipped element and the `Tooltip`.
+/// @type Number
+$dense-spacing: 0.875rem !default;
+
+/// The default min-height for a dense `Tooltip`.
+/// @type Number
 $dense-min-height: 1.375rem !default;
+
+/// The default horizontal padding for a dense `Tooltip`.
+/// @type Number
 $dense-horizontal-padding: 0.5rem !default;
+
+/// The default vertical padding for a dense `Tooltip`.
+/// @type Number
 $dense-vertical-padding: 0.375rem !default;
 
+/// The default `Tooltip` enter transition duration.
+/// @type Number
 $enter-duration: transition.$linear-duration !default;
+
+/// The default `Tooltip` enter transition timing function.
+/// @type Number
 $enter-timing-function: transition.$deceleration-timing-function !default;
+
+/// The default `Tooltip` leave transition duration.
+/// @type Number
 $leave-duration: transition.$linear-duration !default;
+
+/// The default `Tooltip` leave transition timing function.
+/// @type Number
 $leave-timing-function: transition.$acceleration-timing-function !default;
+
+/// The default `Tooltip` /nter/leave animation distance.
+/// @type Number
 $transition-distance: 0.5rem !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (background-color, color, spacing);
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "tooltip");
   @if $fallback {
@@ -56,16 +148,24 @@ $variables: (background-color, color, spacing);
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "tooltip")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(background-color, $background-color);
@@ -75,6 +175,10 @@ $variables: (background-color, color, spacing);
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(tooltip, $disable-layer) {

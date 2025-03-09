@@ -1,60 +1,68 @@
+////
+/// @group core.utils
+////
+
 @use "sass:list";
 @use "sass:map";
 @use "sass:meta";
 @use "sass:string";
 
-// Set this to `true` if you do not need to support RTL languages
+/// Set this to `true` if you do not need to support RTL languages
+/// @type Boolean
 $disable-rtl: false !default;
 
-// Set this to `true` if you want to disable build-time validation for
-// overriding react-md values. No idea why you would want this though.
+/// Set this to `true` if you want to disable build-time validation for
+/// overriding react-md values. No idea why you would want this though.
+/// @type Boolean
 $disable-validation: false !default;
 
-// Set this to `true` to remove the `:has` selectors in the code if you need to
-// support older browsers even though I don't really support older browsers.
+/// Set this to `true` to remove the `:has` selectors in the code if you need to
+/// support older browsers even though I don't really support older browsers.
+/// @type Boolean
 $disable-has-selectors: false !default;
 
-// Set this to `true` if focus styles should be applied with
-// `.rmd-keyboard-mode :focus` instead of `:focus-visible`.
+/// Set this to `true` if focus styles should be applied with
+/// `.rmd-keyboard-mode :focus` instead of `:focus-visible`.
+/// @type Boolean
 $disable-focus-visible: false !default;
 
-// The default z-index to use for temporary elements
+/// The default z-index to use for temporary elements
+/// @type Boolean
 $temporary-element-z-index: 30 !default;
 
-// @internal
+/// @access private
+/// @type List
 $_swappable-positions: top right bottom left;
-// @internal
+/// @access private
+/// @type List
 $_swappable-position-prefixes: border margin padding;
-// @internal
+/// @access private
+/// @type List
 $_swappable-properties: text-align;
 
-// This function can be used to offset `position: fixed` or `position: absolute`
-// elements by the current scrollbar size. The variable will only be set while
-// the `useScrollLock` hook has been triggered.
-//
-// @example
-// ```scss
-// @use "@react-md/core";
-//
-// .selector {
-//   margin-right: core.scrollbar-size();
-// }
-// ```
-//
-// @returns {string} `var(--rmd-scrollbar-size, 0px)`}
+/// This function can be used to offset `position: fixed` or `position: absolute`
+/// elements by the current scrollbar size. The variable will only be set while
+/// the `useScrollLock` hook has been triggered.
+///
+/// @example scss - Example Usage SCSS
+///   .selector {
+///     margin-right: scrollbar-size();
+///   }
+///
+/// @returns {String} a `var` string
 @function scrollbar-size() {
   @return var(--rmd-scrollbar-size, 0px);
 }
 
-// Replace `$search` with `$replace` in `$string`
-//
-// @author Hugo Giraudel
-// @internal
-// @param {string} string - Initial string
-// @param {string} search - Substring to replace
-// @param {string} replace - New value
-// @returns {string} Updated string
-// @link https://css-tricks.com/snippets/sass/str-replace-function Source from CSS Tricks
+/// Replace `$search` with `$replace` in `$string`
+///
+/// @author Hugo Giraudel
+/// @access private
+/// @param {String} string - Initial string
+/// @param {String} search - Substring to replace
+/// @param {String} replace - New value
+/// @returns {String} Updated string
+/// @link https://css-tricks.com/snippets/sass/str-replace-function Source from CSS Tricks
 @function str-replace($string, $search, $replace) {
   $index: string.index($string, $search);
 
@@ -70,22 +78,22 @@ $_swappable-properties: text-align;
   @return $string;
 }
 
-// Used to negate a number or a variable that might be a `var` statement.
-//
-// @param {string} css-variable - The `var()` or number to negate.
-// @returns {string} `calc(-1 * #{$css-variable})`}
+/// Used to negate a number or a variable that might be a `var` statement.
+///
+/// @param {String} css-variable - The `var()` or number to negate.
+/// @returns {String} the calc string
 @function negate-var($css-variable) {
   @return calc(-1 * #{$css-variable});
 }
 
-// Internal validation function to ensure the user overrides variables with
-// accepted values.
-//
-// @param {List|Map} list-or-map - The list or map to validate against
-// @param {string|number} key-or-value - Either the map key or list value to
-// check if exists
-// @param {string} error-message - The additional error message to display
-// @returns {any} the value from the list or map
+/// Internal validation function to ensure the user overrides variables with
+/// accepted values.
+///
+/// @param {List|Map} list-or-map - The list or map to validate against
+/// @param {String|Number} key-or-value - Either the map key or list value to
+/// check if exists
+/// @param {String} error-message - The additional error message to display
+/// @returns {any} the value from the list or map
 @function validate($list-or-map, $key-or-value, $error-message) {
   $type: meta.type-of($list-or-map);
   $is-map: $type == map;
@@ -107,13 +115,13 @@ $_swappable-properties: text-align;
   @return if($is-list, $key-or-value, map.get($list-or-map, $key-or-value));
 }
 
-// Used to get a custom property variable name.
-//
-// @internal
-// @param {List} variables - The list of available variables
-// @param {string} name - The variable name
-// @param {string} group - The variable group. i.e. button, form, app-bar
-// @returns {string} the name to be used in a `var()`
+/// Used to get a custom property variable name.
+///
+/// @access private
+/// @param {List} variables - The list of available variables
+/// @param {String} name - The variable name
+/// @param {String} group - The variable group. i.e. button, form, app-bar
+/// @returns {String} the name to be used in a `var()`
 @function get-var-name($variables, $name, $group) {
   @if $group == icon {
     @if $name == symbol-grade {
@@ -171,40 +179,36 @@ $_swappable-properties: text-align;
   @return "--rmd-" + $prefix + validate($variables, $name, $group + " var");
 }
 
-// Converts a `property: value` map into styles. Also supports custom selectors.
-//
-// Note: If the styles include complex selectors like `.parent &`, it will need
-// to be the last mixin in the current block or wrap other styles in `& {}`
-//
-// @example Simple Example
-// ```scss
-// $styles: (
-//   background-color: red,
-//   color: blue,
-//   padding: 0.25rem,
-// );
-// .container {
-//   @include core.map-to-styles($styles);
-// }
-// ```
-//
-// @example Selectors
-// ```scss
-// $styles: (
-//   background-color: red,
-//
-//   '&:hover': (
-//     background-color: orange,
-//     color: red,
-//   ),
-// );
-//
-// .container {
-//   @include core.map-to-styles($styles);
-// }
-// ```
-//
-// @param {Map} map - the map of styles to generate
+/// Converts a `property: value` map into styles. Also supports custom selectors.
+///
+/// Note: If the styles include complex selectors like `.parent &`, it will need
+/// to be the last mixin in the current block or wrap other styles in `& {}`
+///
+/// @example scss - Simple Example
+///   $styles: (
+///     background-color: red,
+///     color: blue,
+///     padding: 0.25rem,
+///   );
+///   .container {
+///     @include map-to-styles($styles);
+///   }
+///
+/// @example scss - Selectors
+///   $styles: (
+///     background-color: red,
+///
+///     '&:hover': (
+///       background-color: orange,
+///       color: red,
+///     ),
+///   );
+///
+///   .container {
+///     @include map-to-styles($styles);
+///   }
+///
+/// @param {Map} map - the map of styles to generate
 @mixin map-to-styles($map) {
   @each $property, $value in $map {
     @if meta.type-of($value) == map {
@@ -217,31 +221,29 @@ $_swappable-properties: text-align;
   }
 }
 
-// Used to convert a map into a css animation
-//
-// @example
-// ```scss
-// $animation: (
-//   0%: (
-//     opacity: 0.06,
-//   ),
-//   60%: (
-//     opacity: 0.1,
-//   ),
-//   80%: (
-//     opacity: 0.08,
-//   ),
-//   100%: (
-//     opacity: 0.06,
-//   ),
-// );
-//
-// @include core.keyframes(my-animation) {
-//   @include core.map-to-animation($animation);
-// }
-// ```
-//
-// @param {Map} map - the map of animation styles to generate
+/// Used to convert a map into a css animation
+///
+/// @example scss
+///   $animation: (
+///     0%: (
+///       opacity: 0.06,
+///     ),
+///     60%: (
+///       opacity: 0.1,
+///     ),
+///     80%: (
+///       opacity: 0.08,
+///     ),
+///     100%: (
+///       opacity: 0.06,
+///     ),
+///   );
+///
+///   @keyframes my-animation {
+///     @include map-to-animation($animation);
+///   }
+///
+/// @param {Map} map - the map of animation styles to generate
 @mixin map-to-animation($map) {
   @each $percentage, $styles in $map {
     #{$percentage} {
@@ -250,24 +252,22 @@ $_swappable-properties: text-align;
   }
 }
 
-// Generates a pseudo element with most used styles.
-//
-// @example
-// ```scss
-// .container {
-//   @include core.pseudo-element;
-//
-//   position: relative;
-// }
-// ```
-//
-// @param {number} z-index - The z-index for the pseudo element.
-// @param {boolean} fixed - Set to `true` to change from `position: absolute`
-// to `position: fixed`
-// @param {number} inset - Used to apply any inset styles from the parent
-// element.
-// @param {string} border-radius - You normally want to inherit the
-// `border-radius`, but it can be configured with this param if needed.
+/// Generates a pseudo element with most used styles.
+///
+/// @example scss
+///   .container {
+///     @include pseudo-element;
+///
+///     position: relative;
+///   }
+///
+/// @param {Number} z-index [0] - The z-index for the pseudo element.
+/// @param {Boolean} fixed [false] - Set to `true` to change from `position:
+/// absolute` to `position: fixed`
+/// @param {Number} inset [0] - Used to apply any inset styles from the parent
+/// element.
+/// @param {String} border-radius [inherit] - You normally want to inherit the
+/// `border-radius`, but it can be configured with this param if needed.
 @mixin pseudo-element(
   $z-index: 0,
   $fixed: false,
@@ -282,7 +282,7 @@ $_swappable-properties: text-align;
   z-index: $z-index;
 }
 
-// @internal
+/// @access private
 @mixin _sr-only-focusable {
   &:active,
   &:focus {
@@ -296,16 +296,16 @@ $_swappable-properties: text-align;
   }
 }
 
-// Generates styles to create a screen-reader only visible element but can also
-// allow the element to be visible to everyone while focused.
-//
-// You'll normally just want to use the `SrOnly` component or `cssUtils` instead
-// of this mixin.
-//
-// @param {boolean} focusable - Set to `true` to update the element so
-// it will become visible to everyone while focused
-// @param {string} focus-selector - A selector to show that the
-// element has been focused
+/// Generates styles to create a screen-reader only visible element but can also
+/// allow the element to be visible to everyone while focused.
+///
+/// You'll normally just want to use the `SrOnly` component or `cssUtils` instead
+/// of this mixin.
+///
+/// @param {Boolean} focusable [false] - Set to `true` to update the element so
+/// it will become visible to everyone while focused
+/// @param {String} focus-selector ["&--focusable"] - A selector to show that
+/// the element has been focused
 @mixin sr-only($focusable: false, $focus-selector: "&--focusable") {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
@@ -329,10 +329,10 @@ $_swappable-properties: text-align;
   }
 }
 
-// Used to hide the scrollbar for an element while still remaining scrollable.
-//
-// NOTE: This is generally not recommended for accessibility since most users do
-// not know how to scroll without a visible scrollbar
+/// Used to hide the scrollbar for an element while still remaining scrollable.
+///
+/// NOTE: This is generally not recommended for accessibility since most users do
+/// not know how to scroll without a visible scrollbar
 @mixin hide-scrollbar {
   scrollbar-width: none;
 
@@ -342,15 +342,16 @@ $_swappable-properties: text-align;
   }
 }
 
-// Mostly an internal mixin for generating styles that might be created from a CSS
-// module. This really just wraps the provided selector in `:global` and
-// wrapping the rest of the content in `:local`.
-//
-// @param {string} selector - The selector that should not be affected by CSS
-// module behavior
-// @param {boolean} css-modules - Set to `true` when used within a CSS Module
-// @param {boolean} parent-selector - Updates the selector to end with ` &` so
-// it inherits the current scope
+/// Mostly an internal mixin for generating styles that might be created from a CSS
+/// module. This really just wraps the provided selector in `:global` and
+/// wrapping the rest of the content in `:local`.
+///
+/// @param {String} selector - The selector that should not be affected by CSS
+/// module behavior
+/// @param {Boolean} css-modules [false] - Set to `true` when used within a CSS
+/// Module
+/// @param {Boolean} parent-selector [true] - Updates the selector to end with
+/// ` &` so it inherits the current scope
 @mixin optional-css-modules(
   $selector,
   $css-modules: false,
@@ -364,23 +365,21 @@ $_swappable-properties: text-align;
   }
 }
 
-// Used to apply styles when using rtl behavior
-//
-// Note: This will need to be included at the end of a block with the new Sass
-// rules or prefix styles with `& {}`
-//
-// @example
-// ```scss
-// .selector {
-//   margin-right: 1rem;
-//
-//   // swap the margin in RTL
-//   @include core.rtl {
-//     margin-left: 1rem;
-//     margin-right: auto;
-//   }
-// }
-// ```
+/// Used to apply styles when using rtl behavior
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @example scss
+///   .selector {
+///     margin-right: 1rem;
+///
+///     // swap the margin in RTL
+///     @include rtl {
+///       margin-left: 1rem;
+///       margin-right: auto;
+///     }
+///   }
 @mixin rtl {
   @if not $disable-rtl {
     [dir="rtl"] & {
@@ -389,12 +388,12 @@ $_swappable-properties: text-align;
   }
 }
 
-// This isn't really used anymore after the latest Sass changes since CSS will
-// natively support nesting.
-//
-// @internal
-// @param {string} property - The property to swap
-// @returns {string} the swapped property
+/// This isn't really used anymore after the latest Sass changes since CSS will
+/// natively support nesting.
+///
+/// @access private
+/// @param {String} property - The property to swap
+/// @returns {String} the swapped property
 @function swap-position($property) {
   $prefix: "";
   $position: $property;
@@ -421,15 +420,16 @@ $_swappable-properties: text-align;
   @return #{$prefix}#{$next-position};
 }
 
-// Used to apply styles only while the user is using a keyboard. This relies on
-// the `UserInteractionModeProvider` to work correctly.
-//
-// Note: This will need to be included at the end of a block with the new Sass
-// rules or prefix styles with `& {}`
-//
-// @param {boolean} css-modules - Set to `true` when used within a CSS Module
-// @param {boolean} parent-selector - Updates the selector to end with ` &` so
-// it inherits the current scope
+/// Used to apply styles only while the user is using a keyboard. This relies on
+/// the `UserInteractionModeProvider` to work correctly.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @param {Boolean} css-modules [false] - Set to `true` when used within a CSS
+/// Module
+/// @param {Boolean} parent-selector [true] - Updates the selector to end with
+/// ` &` so it inherits the current scope
 @mixin keyboard-only($css-modules: false, $parent-selector: true) {
   @include optional-css-modules(
     ".rmd-keyboard-mode",
@@ -440,15 +440,16 @@ $_swappable-properties: text-align;
   }
 }
 
-// Used to apply styles only while the user is using a mouse. This relies on
-// the `UserInteractionModeProvider` to work correctly.
-//
-// Note: This will need to be included at the end of a block with the new Sass
-// rules or prefix styles with `& {}`
-//
-// @param {boolean} css-modules - Set to `true` when used within a CSS Module
-// @param {boolean} parent-selector - Updates the selector to end with ` &` so
-// it inherits the current scope
+/// Used to apply styles only while the user is using a mouse. This relies on
+/// the `UserInteractionModeProvider` to work correctly.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @param {Boolean} css-modules [false] - Set to `true` when used within a CSS
+/// Module
+/// @param {Boolean} parent-selector [true] - Updates the selector to end with
+/// ` &` so it inherits the current scope
 @mixin mouse-only($css-modules: false, $parent-selector: true) {
   @include optional-css-modules(
     ".rmd-mouse-mode",
@@ -459,15 +460,16 @@ $_swappable-properties: text-align;
   }
 }
 
-// Used to apply styles only while the user is using a touch device. This relies
-// on the `UserInteractionModeProvider` to work correctly.
-//
-// Note: This will need to be included at the end of a block with the new Sass
-// rules or prefix styles with `& {}`
-//
-// @param {boolean} css-modules - Set to `true` when used within a CSS Module
-// @param {boolean} parent-selector - Updates the selector to end with ` &` so
-// it inherits the current scope
+/// Used to apply styles only while the user is using a touch device. This relies
+/// on the `UserInteractionModeProvider` to work correctly.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @param {Boolean} css-modules [false] - Set to `true` when used within a CSS
+/// Module
+/// @param {Boolean} parent-selector [true] - Updates the selector to end with
+/// ` &` so it inherits the current scope
 @mixin touch-only($css-modules: false, $parent-selector: true) {
   @include optional-css-modules(
     ".rmd-touch-mode",
@@ -478,22 +480,20 @@ $_swappable-properties: text-align;
   }
 }
 
-// A helper mixin to apply hover styles only when the user is using a mouse. If
-// you just use `:hover`, the styles will also be applied after touching an
-// element on touch screens until another element is focused.
-//
-// @example
-// ```scss
-// .selector {
-//
-//   @include core.mouse-hover {
-//     background-color: red;
-//   }
-// }
-// ```
-//
-// @param {boolean} wrap-in-hover - Set this to `false` if the content should
-// not automatically be wrapped in `&:hover`
+/// A helper mixin to apply hover styles only when the user is using a mouse. If
+/// you just use `:hover`, the styles will also be applied after touching an
+/// element on touch screens until another element is focused.
+///
+/// @example scss
+///   .selector {
+///
+///     @include mouse-hover {
+///       background-color: red;
+///     }
+///   }
+///
+/// @param {Boolean} wrap-in-hover [true] - Set this to `false` if the content
+/// should not automatically be wrapped in `&:hover`
 @mixin mouse-hover($wrap-in-hover: true) {
   @media (hover: hover) and (pointer: fine) {
     @if $wrap-in-hover {
@@ -506,11 +506,11 @@ $_swappable-properties: text-align;
   }
 }
 
-// An internal helper to dynamically wrap the CSS in a `@layer`.
-//
-// @param {string} name - The layer name to use
-// @param {boolean} disabled - Set to `true` if the content should not be
-// wrapped in the layer.
+/// An internal helper to dynamically wrap the CSS in a `@layer`.
+///
+/// @param {String} name - The layer name to use
+/// @param {Boolean} disabled - Set to `true` if the content should not be
+/// wrapped in the layer.
 @mixin optional-layer($name, $disabled) {
   @if $disabled {
     @content;

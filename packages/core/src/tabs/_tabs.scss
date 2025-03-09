@@ -1,3 +1,7 @@
+////
+/// @group tabs
+////
+
 @use "sass:map";
 
 @use "../utils";
@@ -8,45 +12,151 @@
 @use "../icon/icon";
 @use "../button/button";
 
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable the icon support within a `Tab`.
+/// @type Boolean
 $disable-icon: false !default;
+
+/// Set to `true` to disable the stacked `Tab` styles.
+/// @type Boolean
 $disable-stacked: false !default;
+
+/// Set to `true` to disable the reversed `Tab` styles.
+/// @type Boolean
 $disable-reversed: false !default;
+
+/// Set to `true` to disable the padded `TabList` styles.
+/// @type Boolean
 $disable-tablist-padded: false !default;
+
+/// Set to `true` to disable the vertical `TabList` styles.
+/// @type Boolean
 $disable-tablist-vertical: false !default;
+
+/// Set to `true` if the active tab indicator animation is not required due to
+/// all `TabList` components enabling the `disableTransition` prop and all
+/// `Tab` components enable the `tabIndicator` prop.
+/// @type Boolean
 $disable-tablist-indicator: false !default;
+
+/// Set to `true` to disable the hidden scrollbar styles on the `TabList`.
+/// @type Boolean
 $disable-tablist-hidden-scrollbar: false !default;
+
+/// Set to `true` to disable the styles for the scroll buttons within the
+/// `TabList`.
+/// @type Boolean
 $disable-tablist-scroll-button: false !default;
-$disable-tablist-active-indicator-transition: false !default;
+
+/// Set to `true` to disable the active tab indicator animation from the
+/// `TabList` component.
+///
+/// @type Boolean
+$disable-tablist-active-indicator-transition: $disable-tablist-indicator !default;
+
+/// Set to `true` to disable the icon support within a `Tab`.
+/// @type Boolean
 $disable-tablist-scroll-button-vertical: $disable-tablist-vertical !default;
+
+/// Set to `true` to disable the active tab indicator styles.
+/// @type Boolean
 $disable-indicator: false !default;
+
+/// Set to `true` to disable the vertical active tab indicator styles.
+/// @type Boolean
 $disable-indicator-vertical: $disable-tablist-vertical !default;
 
+/// The default `Tab` typography.
+/// @type Map
 $typography: map.remove(typography.$button-styles, line-height) !default;
+
+/// The default gap between the `Tab` icon and children.
+/// @type Number
 $gap: icon.$spacing !default;
+
+/// The default `Tab` height.
+/// @type Number
 $height: 3rem !default;
+
+/// The default `Tab` stacked height.
+/// @type Number
 $stacked-height: 4.5rem !default;
+
+/// The default `Tab` horizontal padding.
+/// @type Number
 $horizontal-padding: 1rem !default;
+
+/// The default `Tab` vertical padding while `stacked`.
+/// @type Number
 $vertical-padding: 0.75rem !default;
+
+/// The `Tab` min width.
+/// @type Number
 $min-width: 5.625rem !default;
+
+/// The `Tab` max width.
+/// @type Number
 $max-width: 20rem !default;
+
+/// The default height for the active tab indicator.
+/// @type Number
 $indicator-height: 0.125rem !default;
+
+/// The default background-color for the active tab indicator.
+/// @type Color
 $indicator-background: theme.theme-get-var(primary-color) !default;
+
+/// The default text color for an active `Tab`.
+/// @type Color
 $active-color: theme.theme-get-var(text-primary-color) !default;
+
+/// The default text color for an inactive `Tab`.
+/// @type Color
 $inactive-color: theme.theme-get-var(text-secondary-color) !default;
+
+/// The default text color for a disabled `Tab`.
+/// @type Color
 $disabled-color: theme.theme-get-var(text-disabled-color) !default;
+
+/// The default transition duration for the active tab indicator.
+/// @type Number
 $transition-duration: transition.$linear-duration !default;
+
+/// The default transition timing function for the active tab indicator.
+/// @type Number
 $transition-timing-function: transition.$linear-timing-function !default;
 
+/// The default padding for a `TabList` with the `padded` prop enabled.
+/// @type Number
 $tablist-padding-left: 3.25rem !default;
-$tablist-scroller-z-index: 2 !default;
-$tablist-scroller-background-color: theme.theme-get-var(
+
+/// The default z-index for a `TabList` scroll button.
+/// @type Number
+$tablist-scroll-button-z-index: 2 !default;
+
+/// The default background color for a `TabList` scroll button.
+/// @type Number
+$tablist-scroll-button-background-color: theme.theme-get-var(
   background-color,
   inherit
 ) !default;
+
+/// The default `top` or `left` position for the active tab indicator relative
+/// to the `TabList` container.
+///
+/// @type Number
 $tablist-vertical-indicator-position: 0 !default;
+
+/// The `border-radius` for the `TabListScrollButton`.
+/// @type Number
 $tablist-button-border-radius: 0 !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   color,
   active-color,
@@ -62,6 +172,9 @@ $variables: (
   stacked-padding
 );
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "tab");
   @if $fallback {
@@ -71,16 +184,26 @@ $variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "tab")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// This should only be used if not using the `tab-styles` mixin.
+///
+/// @see {mixin} styles
 @mixin indicator-styles {
   .rmd-tab-indicator {
     &::after {
@@ -137,6 +260,9 @@ $variables: (
   }
 }
 
+/// This should only be used if not using the `tab-styles` mixin.
+///
+/// @see {mixin} styles
 @mixin tablist-styles {
   .rmd-tablist {
     display: inline-flex;
@@ -188,18 +314,21 @@ $variables: (
   }
 }
 
+/// This should only be used if not using the `tab-styles` mixin.
+///
+/// @see {mixin} styles
 @mixin tablist-button-styles {
   .rmd-tablist-button {
     @include button.set-var(icon-border-radius, $tablist-button-border-radius);
 
     align-items: center;
-    background-color: $tablist-scroller-background-color;
+    background-color: $tablist-scroll-button-background-color;
     display: inline-flex;
     flex-shrink: 0;
     justify-content: center;
     max-width: $max-width;
     position: sticky;
-    z-index: $tablist-scroller-z-index;
+    z-index: $tablist-scroll-button-z-index;
 
     &--left {
       left: 0;
@@ -256,6 +385,9 @@ $variables: (
   }
 }
 
+/// This should only be used if not using the `tab-styles` mixin.
+///
+/// @see {mixin} styles
 @mixin tab-styles {
   .rmd-tab {
     @include utils.map-to-styles($typography);
@@ -308,6 +440,7 @@ $variables: (
   }
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(color, $inactive-color);
@@ -330,6 +463,10 @@ $variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(tabs, $disable-layer) {

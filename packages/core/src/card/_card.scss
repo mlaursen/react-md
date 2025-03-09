@@ -1,3 +1,7 @@
+////
+/// @group card
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../theme/theme";
@@ -6,116 +10,117 @@
 @use "../divider/divider";
 @use "../interaction/interaction";
 
-// Set to `true` to disable all the styles
-// @type boolean
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
 
-// Set to `true` to disable the bordered styles since cards use box-shadow by
-// default.
-// @type boolean
+/// Set to `true` to disable the bordered styles since cards use box-shadow by
+/// default.
+/// @type Boolean
 $disable-bordered: false !default;
 
-// Set to `true` to disable the box-shadow styles if you want to rely on the
-// border styles instead.
-// @type boolean
+/// Set to `true` to disable the box-shadow styles if you want to rely on the
+/// border styles instead.
+/// @type Boolean
 $disable-shadowed: false !default;
 
-// Set to `true` to disable the raisable card styles where hovering a card
-// increases the elevation/box-shadow.
-//
-// @type boolean
+/// Set to `true` to disable the raisable card styles where hovering a card
+/// increases the elevation/box-shadow.
+///
+/// @type Boolean
 $disable-raisable: $disable-shadowed !default;
 
-// Set to `true` to disable the clickable card styles
-// @type boolean
+/// Set to `true` to disable the clickable card styles
+/// @type Boolean
 $disable-clickable: false !default;
 
-// Set to `true` to disable the styles for adding additional padding to the
-// last `CardContent` that exists
-// @type boolean
+/// Set to `true` to disable the styles for adding additional padding to the
+/// last `CardContent` that exists
+/// @type Boolean
 $disable-content-last-child-padding: false !default;
 
-// The default card box-shadow elevation
-// @type number
+/// The default card box-shadow elevation
+/// @type Number
 $elevation: 2 !default;
 
-// The default card raisable starting box-shadow elevation
-// @type number
+/// The default card raisable starting box-shadow elevation
+/// @type Number
 $raisable-start-elevation: 1 !default;
 
-// The default card raisable ending (hovering) box-shadow elevation
-// @type number
+/// The default card raisable ending (hovering) box-shadow elevation
+/// @type Number
 $raisable-end-elevation: 8 !default;
 
-// The background color to use when using the global light theme
-// @type Color
+/// The background color to use when using the global light theme
+/// @type Color
 $light-theme-background-color: theme.theme-get-var(surface-color) !default;
 
-// The background color to use when using the global dark theme
-// @type Color
+/// The background color to use when using the global dark theme
+/// @type Color
 $dark-theme-background-color: if(
   theme.$disable-dark-elevation,
   theme.$dark-theme-surface-color,
   map.get(theme.$dark-elevation-colors, $elevation)
 ) !default;
 
-// The default card background color
-// @type Color
+/// The default card background color
+/// @type Color
 $background-color: theme.get-default-color(
   $light-theme-background-color,
   $dark-theme-background-color
 ) !default;
 
-// The default card text color
-// @type Color
+/// The default card text color
+/// @type Color
 $color: theme.theme-get-var(text-primary-color) !default;
 
-// The default border-color for bordered cards
-// @type Color
+/// The default border-color for bordered cards
+/// @type Color
 $border-color: divider.get-var(color) !default;
 
-// The default border-width for bordered cards
-// @type number
+/// The default border-width for bordered cards
+/// @type Number
 $border-width: divider.get-var(size) !default;
 
-// The default border-radius for bordered cards
-// @type number
+/// The default border-radius for bordered cards
+/// @type Number
 $border-radius: 0.25rem !default;
 
-// The default padding to apply to `CardHeader`
-// @type number
+/// The default padding to apply to `CardHeader`
+/// @type Number
 $header-padding: 1rem !default;
 
-// The default padding-top to apply to `CardHeader`
-// @type number
+/// The default padding-top to apply to `CardHeader`
+/// @type Number
 $header-padding-top: 1.5rem !default;
 
-// The default `column-gap` to apply to the `CardHeader`
-// @type number
+/// The default `column-gap` to apply to the `CardHeader`
+/// @type Number
 $header-spacing: 1rem !default;
 
-// The default padding to apply to the `CardContent`
-// @type number
+/// The default padding to apply to the `CardContent`
+/// @type Number
 $content-padding: 1rem !default;
 
-// The default padding-bottom to apply to the `CardContent` when it is the last
-// child and the {@link $disable-content-last-child-padding} feature flag has
-// not been disabled.
-//
-// @type number
+/// The default padding-bottom to apply to the `CardContent` when it is the last
+/// child and the `$disable-content-last-child-padding` feature flag has
+/// not been disabled.
+///
+/// @type Number
 $content-padding-bottom: 1.5rem !default;
 
-// The default padding to apply to the `CardFooter`
+/// The default padding to apply to the `CardFooter`
+/// @type Number
 $footer-padding: 0.5rem !default;
 
-// The available configurable css variables and mostly used internally for the
-// `get-var`, `set-var`, and `use-var` utils.
-// @type List
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (background-color, color, secondary-color);
 
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value
-// @returns {string} a `var()` statement
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "card");
   @if $fallback {
@@ -125,38 +130,38 @@ $variables: (background-color, color, secondary-color);
   @return var(#{$var});
 }
 
-// @param {string} name - The supported variable name
-// @param {any} value - The value to set the variable to. Supports `null` which
-// will just be a no-op.
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "card")}: #{$value};
   }
 }
 
-// @param {string} property - The css property to apply the variable to
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value if the variable has not
-// been set
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
-// Applies the light the variables based on feature flags
+/// Applies the light the variables based on feature flags
 @mixin use-light-theme {
   @if not $disable-everything {
     @include set-var(background-color, $light-theme-background-color);
   }
 }
 
-// Applies the dark the variables based on feature flags
+/// Applies the dark the variables based on feature flags
 @mixin use-dark-theme {
   @if not $disable-everything {
     @include set-var(background-color, $dark-theme-background-color);
   }
 }
 
-// Conditionally applies the css variables based on feature flags
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(background-color, $background-color);
@@ -164,10 +169,10 @@ $variables: (background-color, color, secondary-color);
   }
 }
 
-// Generates all the styles based on feature flags.
-//
-// @param {boolean} disable-layer - Set this to `true` to disable the
-// layer behavior
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(card, $disable-layer) {

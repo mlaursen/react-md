@@ -1,79 +1,116 @@
+////
+/// @group core.typography
+////
+
 @use "sass:math";
 @use "sass:map";
 @use "../media-queries/media-queries";
 @use "../utils";
 
-// Set this to `true` to disable the styles for the `TextContainer` component
+/// Set this to `true` to disable the styles for the `TextContainer` component
+/// @type Boolean
 $disable-text-container: false !default;
 
-// Set this to `true` to disable the `headline-1` typography styles
+/// Set this to `true` to disable the `headline-1` typography styles
+/// @type Boolean
 $disable-headline-1: false !default;
 
-// Set this to `true` to disable the `headline-2` typography styles
+/// Set this to `true` to disable the `headline-2` typography styles
+/// @type Boolean
 $disable-headline-2: false !default;
 
-// Set this to `true` to disable the `headline-3` typography styles
+/// Set this to `true` to disable the `headline-3` typography styles
+/// @type Boolean
 $disable-headline-3: false !default;
 
-// Set this to `true` to disable the `headline-4` typography styles
+/// Set this to `true` to disable the `headline-4` typography styles
+/// @type Boolean
 $disable-headline-4: false !default;
 
-// Set this to `true` to disable the `headline-5` typography styles
+/// Set this to `true` to disable the `headline-5` typography styles
+/// @type Boolean
 $disable-headline-5: false !default;
 
-// Set this to `true` to disable the `headline-6` typography styles
+/// Set this to `true` to disable the `headline-6` typography styles
+/// @type Boolean
 $disable-headline-6: false !default;
 
-// Set this to `true` to disable the `subtitle-1` typography styles
+/// Set this to `true` to disable the `subtitle-1` typography styles
+/// @type Boolean
 $disable-subtitle-1: false !default;
 
-// Set this to `true` to disable the `subtitle-2` typography styles
+/// Set this to `true` to disable the `subtitle-2` typography styles
+/// @type Boolean
 $disable-subtitle-2: false !default;
 
-// Set this to `true` to disable the `body-1` typography styles
+/// Set this to `true` to disable the `body-1` typography styles
+/// @type Boolean
 $disable-body-1: false !default;
 
-// Set this to `true` to disable the `body-2` typography styles
+/// Set this to `true` to disable the `body-2` typography styles
+/// @type Boolean
 $disable-body-2: false !default;
 
-// Set this to `true` to disable the `caption` typography styles
+/// Set this to `true` to disable the `caption` typography styles
+/// @type Boolean
 $disable-caption: false !default;
 
-// Set this to `true` to disable the `overline` typography styles
+/// Set this to `true` to disable the `overline` typography styles
+/// @type Boolean
 $disable-overline: false !default;
 
-// A small utility function to get the letter spacing based on tracking and
-// font-size
-//
-// @internal
-// @param {number} tracking - The tracking to use
-// @param {number} font-size - The font size to use
-// @returns {number} the letter spacing value in em
+/// A small utility function to get the letter spacing based on tracking and
+/// font-size
+///
+/// @access private
+/// @param {Number} tracking - The tracking to use
+/// @param {Number} font-size - The font size to use
+/// @returns {Number} the letter spacing value in em
 @function get-letter-spacing($tracking, $font-size) {
   @return math.div($tracking, $font-size * 16) * 1em;
 }
 
+/// The thin `font-weight`.
+/// @type Number
 $font-weight-thin: 100 !default;
+
+/// The light `font-weight`.
+/// @type Number
 $font-weight-light: 300 !default;
+
+/// The regular `font-weight`.
+/// @type Number
 $font-weight-regular: 400 !default;
+
+/// The medium `font-weight`.
+/// @type Number
 $font-weight-medium: 500 !default;
+
+/// The bold `font-weight`.
+/// @type Number
 $font-weight-bold: 700 !default;
+
+/// The semi-bold `font-weight`.
+/// @type Number
 $font-weight-semi-bold: 800 !default;
+
+/// The black `font-weight`.
+/// @type Number
 $font-weight-black: 900 !default;
 
-// A Map of all the font weights.
-//
-// @type Map
-// @prop {number} thin [$font-weight-thin] - The thin font weight value.
-// @prop {number} light [$font-weight-light] - The light font weight value.
-// @prop {number} regular [$font-weight-regular] - The regular font weight
-// value.
-// @prop {number} medium [$font-weight-medium] - The medium font weight
-// value.
-// @prop {number} bold [$font-weight-bold] - The bold font weight value.
-// @prop {number} semi-bold [$font-weight-semi-bold] - The semi-bold font
-// weight value.
-// @prop {number} black [$font-weight-black] - The black font weight value.
+/// A Map of all the font weights.
+///
+/// @type Map
+/// @prop {Number} thin [$font-weight-thin] - The thin font weight value.
+/// @prop {Number} light [$font-weight-light] - The light font weight value.
+/// @prop {Number} regular [$font-weight-regular] - The regular font weight
+/// value.
+/// @prop {Number} medium [$font-weight-medium] - The medium font weight
+/// value.
+/// @prop {Number} bold [$font-weight-bold] - The bold font weight value.
+/// @prop {Number} semi-bold [$font-weight-semi-bold] - The semi-bold font
+/// weight value.
+/// @prop {Number} black [$font-weight-black] - The black font weight value.
 $font-weights: (
   thin: $font-weight-thin,
   light: $font-weight-light,
@@ -84,30 +121,53 @@ $font-weights: (
   "black": $font-weight-black,
 ) !default;
 
+/// Use to generate the `cssUtils({ textAlignment })` styles and is applied to
+/// `text-align`.
+/// @type List
 $text-alignments: left center right !default;
+
+/// Use to generate the `cssUtils({ textDecoration })` styles and is applied to
+/// `text-decoration`.
+/// @type List
 $text-decorations: underline overline line-through none !default;
+
+/// Use to generate the `cssUtils({ textTransform })` styles and is applied to
+/// `text-transform`.
+/// @type List
 $text-transforms: capitalize uppercase lowercase !default;
+
+/// Use to generate the `cssUtils({ fontStyle })` styles and is applied to
+/// `font-style`.
+/// @type List
 $font-styles: normal italic oblique !default;
 
-// The font family to use throughout the entire application.
-//
-// @example Changing the Font
-// ```scss
-// @use "react-md" with (
-//   $font-family: string.unquote("'Open Sans', Koulen, 'Roboto Flex', sans-serif")
-// ):
-//
-// @include react-md.typography;
-// ```
-//
-// @type string
+/// The font family to use throughout the entire application.
+///
+/// @example scss - Changing the Font<!-- no-compile -->
+///   @use "@react-md/core" with (
+///     $font-family: string.unquote("'Open Sans', Koulen, 'Roboto Flex', sans-serif")
+///   ):
+///
+/// @type String
 $font-family: Roboto, sans-serif !default;
+
+/// The default font-size to use throughout the app. This probably shouldn't
+/// change.
+///
+/// @type Number
 $font-size: 1rem !default;
+
+/// The default font-weight to use throughout the app. This probably
+/// shouldn't change.
+/// @type Number
 $font-weight: $font-weight-regular !default;
+
+/// The default `line-height` to use throughout the app.
+/// @type Number
 $line-height: 1.5rem !default;
 
-// The base styles for typography.
-// @type Map
+/// The base styles for typography.
+/// @type Map
 $base-recommended-font-styles: (
   font-family: var(--rmd-font-family),
   overflow: inherit,
@@ -116,144 +176,325 @@ $base-recommended-font-styles: (
   -moz-osx-font-smoothing: grayscale,
   -webkit-font-smoothing: antialiased,
 );
+
+/// An optional Map of styles that will be applied to all `Typography` styles.
+/// If a key is provided in this Map, it will override the
+/// `$base-recommended-font-styles` value.
+///
+/// @type Map
 $base-custom-font-styles: () !default;
+
+/// The default typography styles.
+///
+/// @type Map
 $base-font-styles: map.merge(
   $base-recommended-font-styles,
   $base-custom-font-styles
 );
 
+/// The default recommended headline-1 typography styles.
+///
+/// @type Map
 $headline-1-recommended-styles: (
   font-size: 6rem,
   line-height: 6rem,
   font-weight: map.get($font-weights, light),
   letter-spacing: get-letter-spacing(-1.5, 6),
 );
+
+/// An optional Map of styles that will be applied to all headline-1 styles. If
+/// a key is provided in this Map, it will override the
+/// `$headline-1-recommended-styles` value.
+///
+/// @type Map
 $headline-1-custom-styles: () !default;
+
+/// The default headline-1 typography styles.
+///
+/// @type Map
 $headline-1-styles: map.merge(
   $headline-1-recommended-styles,
   $headline-1-custom-styles
 ) !default;
+
+/// The default recommended headline-2 typography styles.
+///
+/// @type Map
 $headline-2-recommended-styles: (
   font-size: 3.75rem,
   line-height: 3.75rem,
   font-weight: map.get($font-weights, light),
   letter-spacing: get-letter-spacing(-0.5, 3.75),
 );
+
+/// An optional Map of styles that will be applied to all headline-2 styles. If
+/// a key is provided in this Map, it will override the
+/// `$headline-2-recommended-styles` value.
+///
+/// @type Map
 $headline-2-custom-styles: () !default;
+
+/// The default headline-2 typography styles.
+///
+/// @type Map
 $headline-2-styles: map.merge(
   $headline-2-recommended-styles,
   $headline-2-custom-styles
 ) !default;
+
+/// The default recommended headline-3 typography styles.
+///
+/// @type Map
 $headline-3-recommended-styles: (
   font-size: 3rem,
   line-height: 3.125rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: normal,
 );
+
+/// An optional Map of styles that will be applied to all headline-3 styles. If
+/// a key is provided in this Map, it will override the
+/// `$headline-3-recommended-styles` value.
+///
+/// @type Map
 $headline-3-custom-styles: () !default;
+
+/// The default headline-3 typography styles.
+///
+/// @type Map
 $headline-3-styles: map.merge(
   $headline-3-recommended-styles,
   $headline-3-custom-styles
 ) !default;
+
+/// The default recommended headline-4 typography styles.
+///
+/// @type Map
 $headline-4-recommended-styles: (
   font-size: 2.125rem,
   line-height: 2.5rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: get-letter-spacing(0.25, 2.125),
 );
+
+/// An optional Map of styles that will be applied to all headline-4 styles. If
+/// a key is provided in this Map, it will override the
+/// `$headline-4-recommended-styles` value.
+///
+/// @type Map
 $headline-4-custom-styles: () !default;
+
+/// The default headline-4 typography styles.
+///
+/// @type Map
 $headline-4-styles: map.merge(
   $headline-4-recommended-styles,
   $headline-4-custom-styles
 ) !default;
+
+/// The default recommended headline-5 typography styles.
+///
+/// @type Map
 $headline-5-recommended-styles: (
   font-size: 1.5rem,
   line-height: 2rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: normal,
 );
+
+/// An optional Map of styles that will be applied to all headline-5 styles. If
+/// a key is provided in this Map, it will override the
+/// `$headline-5-recommended-styles` value.
+///
+/// @type Map
 $headline-5-custom-styles: () !default;
+
+/// The default headline-5 typography styles.
+///
+/// @type Map
 $headline-5-styles: map.merge(
   $headline-5-recommended-styles,
   $headline-5-custom-styles
 ) !default;
+
+/// The default recommended headline-6 typography styles.
+///
+/// @type Map
 $headline-6-recommended-styles: (
   font-size: 1.25rem,
   line-height: 2rem,
   font-weight: map.get($font-weights, medium),
   letter-spacing: get-letter-spacing(0.25, 1.25),
 );
+
+/// An optional Map of styles that will be applied to all headline-6 styles. If
+/// a key is provided in this Map, it will override the
+/// `$headline-6-recommended-styles` value.
+///
+/// @type Map
 $headline-6-custom-styles: () !default;
+
+/// The default headline-6 typography styles.
+///
+/// @type Map
 $headline-6-styles: map.merge(
   $headline-6-recommended-styles,
   $headline-6-custom-styles
 ) !default;
+
+/// The default recommended subtitle-1 typography styles.
+///
+/// @type Map
 $subtitle-1-recommended-styles: (
   font-size: 1rem,
   line-height: 1.75rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: get-letter-spacing(0.15, 1),
 );
+
+/// An optional Map of styles that will be applied to all subtitle-1 styles. If
+/// a key is provided in this Map, it will override the
+/// `$subtitle-1-recommended-styles` value.
+///
+/// @type Map
 $subtitle-1-custom-styles: () !default;
+
+/// The default subtitle-1 typography styles.
+///
+/// @type Map
 $subtitle-1-styles: map.merge(
   $subtitle-1-recommended-styles,
   $subtitle-1-custom-styles
 ) !default;
+
+/// The default recommended subtitle-2 typography styles.
+///
+/// @type Map
 $subtitle-2-recommended-styles: (
   font-size: 0.875rem,
   line-height: 1.375rem,
   font-weight: map.get($font-weights, medium),
   letter-spacing: get-letter-spacing(0.1, 0.875),
 );
+
+/// An optional Map of styles that will be applied to all subtitle-2 styles. If
+/// a key is provided in this Map, it will override the
+/// `$subtitle-2-recommended-styles` value.
+///
+/// @type Map
 $subtitle-2-custom-styles: () !default;
+
+/// The default subtitle-2 typography styles.
+///
+/// @type Map
 $subtitle-2-styles: map.merge(
   $subtitle-2-recommended-styles,
   $subtitle-2-custom-styles
 ) !default;
+
+/// The default recommended body-1 typography styles.
+///
+/// @type Map
 $body-1-recommended-styles: (
   font-size: 1rem,
   line-height: 1.5rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: get-letter-spacing(0.5, 0.875),
 );
+
+/// An optional Map of styles that will be applied to all body-1 styles. If
+/// a key is provided in this Map, it will override the
+/// `$body-1-recommended-styles` value.
+///
+/// @type Map
 $body-1-custom-styles: () !default;
+
+/// The default body-1 typography styles.
+///
+/// @type Map
 $body-1-styles: map.merge(
   $body-1-recommended-styles,
   $body-1-custom-styles
 ) !default;
+
+/// The default recommended body-2 typography styles.
+///
+/// @type Map
 $body-2-recommended-styles: (
   font-size: 0.875rem,
   line-height: 1.25rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: get-letter-spacing(0.25, 0.875),
 );
+
+/// An optional Map of styles that will be applied to all body-2 styles. If
+/// a key is provided in this Map, it will override the
+/// `$body-2-recommended-styles` value.
+///
+/// @type Map
 $body-2-custom-styles: () !default;
+
+/// The default body-2 typography styles.
+///
+/// @type Map
 $body-2-styles: map.merge(
   $body-2-recommended-styles,
   $body-2-custom-styles
 ) !default;
+
+/// The default recommended caption typography styles.
+///
+/// @type Map
 $caption-recommended-styles: (
   font-size: 0.75rem,
   line-height: 1.25rem,
   font-weight: map.get($font-weights, regular),
   letter-spacing: get-letter-spacing(0.4, 0.75),
 );
+
+/// An optional Map of styles that will be applied to all caption styles. If
+/// a key is provided in this Map, it will override the
+/// `$caption-recommended-styles` value.
+///
+/// @type Map
 $caption-custom-styles: () !default;
+
+/// The default caption typography styles.
+///
+/// @type Map
 $caption-styles: map.merge(
   $caption-recommended-styles,
   $caption-custom-styles
 ) !default;
+
+/// The default recommended overline typography styles.
+///
+/// @type Map
 $overline-recommended-styles: (
   font-size: 0.75rem,
   line-height: 2rem,
   font-weight: map.get($font-weights, medium),
   letter-spacing: get-letter-spacing(2, 0.75),
 );
+
+/// An optional Map of styles that will be applied to all overline styles. If
+/// a key is provided in this Map, it will override the
+/// `$overline-recommended-styles` value.
+///
+/// @type Map
 $overline-custom-styles: () !default;
+
+/// The default overline typography styles.
+///
+/// @type Map
 $overline-styles: map.merge(
   $overline-recommended-styles,
   $overline-custom-styles
 ) !default;
+
+/// The default recommended button typography styles.
+///
+/// @type Map
 $button-recommended-styles: map.merge(
   $base-font-styles,
   (
@@ -267,17 +508,36 @@ $button-recommended-styles: map.merge(
     line-wrap: nowrap,
   )
 );
+
+/// An optional Map of styles that will be applied to all button styles. If
+/// a key is provided in this Map, it will override the
+/// `$button-recommended-styles` value.
+///
+/// @type Map
 $button-custom-styles: () !default;
+
+/// The default button typography styles.
+///
+/// @type Map
 $button-styles: map.merge(
   $button-recommended-styles,
   $button-custom-styles
 ) !default;
 
+/// The default padding to apply to the `TextContainer`.
+/// @type Number
 $text-container-padding: 1rem !default;
-// since everything has `box-sizing: border-box`, make sure the width is 65
-// characters + left and right padding so the text is _really_ 65ch
+
+/// The `TextContainer` line length. Since everything has `box-sizing:
+/// border-box`, make sure the width is 65 characters + left and right padding
+/// so the text is _really_ 65ch.
+///
+/// @type Number
 $text-line-length: calc(65ch + $text-container-padding * 2) !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $typography-variables: (
   line-length,
   text-container-padding,
@@ -287,6 +547,9 @@ $typography-variables: (
   line-height
 );
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function typography-get-var($name, $fallback: null) {
   $var: utils.get-var-name($typography-variables, $name, "typography");
   @if $fallback {
@@ -296,16 +559,30 @@ $typography-variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin typography-set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($typography-variables, $name, "typography")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin typography-use-var($property, $name: $property, $fallback: null) {
   #{$property}: typography-get-var($name, $fallback);
 }
 
+/// This should only be used if not using the `typography-styles` mixin.
+///
+/// @param {Boolean} disabled [$disable-text-container] - Set to `true` to
+/// prevent any styles from being generated.
+/// @param {Boolean} disable-layer [false] - Set to `true` to prevent the
+/// styles from being wrapped in a `@layer` declaration.
+/// @see {mixin} typography-styles
 @mixin typography-text-container-styles(
   $disabled: $disable-text-container,
   $disable-layer: false
@@ -324,6 +601,11 @@ $typography-variables: (
   }
 }
 
+/// This should only be used if not using the `typography-styles` mixin.
+///
+/// @see {mixin} typography-styles
+/// @param {Boolean} disable-layer [false] - Set to `true` to prevent the
+/// styles from being wrapped in a `@layer` declaration.
 @mixin typography-base-styles($disable-layer: false) {
   @include utils.optional-layer(typography, $disable-layer) {
     .rmd-typography {
@@ -404,6 +686,9 @@ $typography-variables: (
   }
 }
 
+/// Used to enable `text-overflow` for an element.
+///
+/// @param {String} $white-space [nowrap] - the `white-space` value.
 @mixin text-overflow($white-space: nowrap) {
   overflow: hidden;
   overflow-wrap: anywhere;
@@ -411,6 +696,10 @@ $typography-variables: (
   white-space: $white-space;
 }
 
+///  Used to apply `line-clamp` to an element.
+///
+/// @param {Number} $lines [2] - The max number of lines before applying the
+/// text-overflow behavior.
 @mixin line-clamp($lines: 2) {
   // stylelint-disable order/properties-alphabetical-order
   -webkit-box-orient: vertical;
@@ -418,6 +707,7 @@ $typography-variables: (
   display: -webkit-box;
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin typography-variables {
   @include typography-set-var(font-family, $font-family);
   @if $font-size {
@@ -441,6 +731,8 @@ $typography-variables: (
   }
 }
 
+/// This should only be used if not using the `core.styles` and
+/// `core.css-reset` mixins.
 @mixin typography-html-body-styles {
   @include typography-use-var(font-family);
   @include typography-use-var(font-size);
@@ -448,6 +740,10 @@ $typography-variables: (
   @include typography-use-var(line-height);
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set to `true` to prevent the
+/// styles from being wrapped in a `@layer` declaration.
 @mixin typography-styles($disable-layer: false) {
   @include utils.optional-layer(typography, $disable-layer) {
     @include typography-text-container-styles($disable-layer: true);

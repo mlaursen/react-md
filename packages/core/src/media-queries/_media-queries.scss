@@ -1,54 +1,163 @@
+////
+/// @group core.media-queries
+////
+
+@use "../utils";
+
+/// The default phone max width media query. This should match the
+/// `phoneMaxWidth` value on the `AppSizeProvider`.
+///
+/// @type String|Number
 $phone-max-width: 47.9375em !default;
+
+/// The default tablet min width media query. This should match the
+/// `tabletMinWidth` value on the `AppSizeProvider`.
+///
+/// @type String|Number
 $tablet-min-width: 48em !default;
+
+/// The default tablet max width media query. This should match the
+/// `tabletMaxWidth` value on the `AppSizeProvider`.
+///
+/// @type String|Number
 $tablet-max-width: 64em !default;
+
+/// The default desktop min width media query. This should match the
+/// `desktopMinWidth` value on the `AppSizeProvider`.
+///
+/// @type String|Number
 $desktop-min-width: 64.0625em !default;
+
+/// The default large desktop min width media query. This should match the
+/// `largeDesktopMinWidth` value on the `AppSizeProvider`.
+///
+/// @type String|Number
 $large-desktop-min-width: 80em !default;
 
+/// @access private
+/// @type List
+$_media-types: (phone, tablet, tablet-only, desktop, large-desktop);
+
+/// Applies styles for phones only.
+///
 /// Note: This will need to be included at the end of a block with the new Sass
 /// rules or prefix styles with `& {}`
+///
+/// @example scss - Example Usage SCSS
+///   .example {
+///     background-color: red;
+///
+///     @include phone-media {
+///       color: blue;
+///     }
+///   }
+///
+/// @content
 @mixin phone-media {
   @media screen and (max-width: #{$phone-max-width}) {
     @content;
   }
 }
 
+/// Applies styles when the viewport is at least as wide as a tablet's min
+/// width.
+///
 /// Note: This will need to be included at the end of a block with the new Sass
 /// rules or prefix styles with `& {}`
+///
+/// @example scss
+///   .example {
+///     display: flex;
+///     flex-direction: column;
+///
+///     @include tablet-media {
+///       flex-direction: row;
+///     }
+///   }
+///
+/// @content
 @mixin tablet-media {
   @media screen and (min-width: #{$tablet-min-width}) {
     @content;
   }
 }
 
+/// Applies styles for tablets only.
+///
 /// Note: This will need to be included at the end of a block with the new Sass
 /// rules or prefix styles with `& {}`
+///
+/// @example scss
+///   .example {
+///     background-color: red;
+///
+///     @include tablet-only-media {
+///       color: blue;
+///     }
+///   }
+///
+/// @content
 @mixin tablet-only-media {
   @media screen and (min-width: #{$tablet-min-width}) and (max-width: #{$tablet-max-width}) {
     @content;
   }
 }
 
+/// Applies styles when the viewport is at least as wide as a desktop's min
+/// width.
+///
 /// Note: This will need to be included at the end of a block with the new Sass
 /// rules or prefix styles with `& {}`
+///
+/// @example scss
+///   .example {
+///     width: 100%;
+///
+///     @include desktop-media {
+///       width: 33%;
+///     }
+///   }
+///
+/// @content
 @mixin desktop-media {
   @media screen and (min-width: #{$desktop-min-width}) {
     @content;
   }
 }
 
+/// Applies styles when the viewport is at least as wide as a large desktop's
+/// min width.
+///
 /// Note: This will need to be included at the end of a block with the new Sass
 /// rules or prefix styles with `& {}`
-/// Creates a media query so that screen sizes matching at least the min width
-/// for a large desktop will gain these styles.
+///
+/// @example scss
+///   .example {
+///     width: 100%;
+///
+///     @include large-desktop-media {
+///       width: 33%;
+///     }
+///   }
+///
+/// @content
 @mixin large-desktop-media {
   @media screen and (min-width: #{$large-desktop-min-width}) {
     @content;
   }
 }
 
+/// Applies one of the media queries.
+///
 /// Note: This will need to be included at the end of a block with the new Sass
 /// rules or prefix styles with `& {}`
+///
+/// @param {String} $type - This should be one of `phone`, `tablet`,
+/// `tablet-only`, `desktop`, or `large-desktop`
+/// @content
 @mixin media($type) {
+  $type: utils.validate($_media-types, $type, "media type");
+
   @if $type == phone {
     @include phone-media {
       @content;
@@ -69,7 +178,5 @@ $large-desktop-min-width: 80em !default;
     @include large-desktop-media {
       @content;
     }
-  } @else {
-    @error "invalid media type: #{$type}";
   }
 }

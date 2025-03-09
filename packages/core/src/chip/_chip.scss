@@ -1,3 +1,7 @@
+////
+/// @group chip
+////
+
 @use "sass:color";
 @use "sass:map";
 @use "../utils";
@@ -12,105 +16,288 @@
 @use "../avatar/avatar";
 @use "../progress/progress";
 
+/// Set to true to disable all the chip styles
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to true to disable the icon styles within a chip
+/// @type Boolean
 $disable-icon: false !default;
-$disable-avatar: false !default;
-$disable-progress: false !default;
+
+/// Set to true to disable the avatar styles within a chip
+/// @type Boolean
+$disable-avatar: avatar.$disable-everything !default;
+
+/// Set to true to disable the circular progress styles within a chip
+/// @type Boolean
+$disable-progress: progress.$disable-everything or progress.$disable-circular !default;
+
+/// Set to `true` if all `Chip` components have been updated to enable
+/// `disableContentWrap`
+///
+/// @type Boolean
 $disable-content: false !default;
-$disable-solid-theme: $disable-everything !default;
+
+/// Set to `true` if all `Chip` components will only use `theme="outline"`.
+/// @type Boolean
+$disable-solid-theme: false !default;
+
+/// Set to `true` if all `Chip` components will never enable the `raisable`
+/// prop while the `theme="solid"`.
+///
+/// @type Boolean
 $disable-solid-raisable: false !default;
+
+/// Set to `true` if all `Chip` components will never set `theme="outline"`
+/// @type Boolean
 $disable-outline-theme: $disable-everything !default;
+
+/// Set to `true` if all `Chip` components will never enable the `raisable`
+/// prop while the `theme="outline"`.
+///
+/// @type Boolean
 $disable-outline-raisable: false !default;
+
+/// Set to `true` if the `leftAddon` prop will never be provided to the `Chip`
+/// component.
+///
+/// @type Boolean
 $disable-left-addon: false !default;
+
+/// Set to `true` if the `rightAddon` prop will never be provided to the `Chip`
+/// component.
+///
+/// @type Boolean
 $disable-right-addon: false !default;
+
+/// Set to `true` if the `selectedThemed` prop will never be enabled on the
+/// `Chip` component.
+///
+/// @type Boolean
 $disable-selected-theme: false !default;
+
+/// Set to `true` if the `disableIconTransition` will always be enabled for the
+/// `Chip` component
+///
+/// @type Boolean
 $disable-selected-icon-transition: false !default;
 
+/// The `gap` between items in the `Chip`.
+///
+/// @type Number
 $gap: icon.$spacing !default;
+
+/// The default `Chip` height.
+/// @type Number
 $height: 2rem !default;
+
+/// The default `Chip` border radius.
+///
+/// @type Number
 $border-radius: 1rem !default;
+
+/// The default size for icons that are rendered within a `Chip` normally as
+/// the `leftAddon` or `rightAddon` props.
+///
+/// @type Number
 $icon-size: 1.125rem !default;
+
+/// The default size for avatars that are rendered within a `Chip` normally as
+/// the `leftAddon` or `rightAddon` props.
+///
+/// @type Number
 $avatar-size: 1.5rem !default;
+
+/// The default size for circular progress components that are rendered within
+/// a `Chip` normally as the `leftAddon` or `rightAddon` props.
+///
+/// @type Number
 $progress-size: $icon-size !default;
+
+/// The default `progress.$circular-stroke-width` to apply to circular progress
+/// components rendered within a `Chip` normally as the `leftAddon` or
+/// `rightAddon` props.
+///
+/// @type Number
 $progress-width: 12 !default;
+
+/// The default `Chip` typography
+/// @type Map
 $typography: map.merge(
   typography.$base-font-styles,
   typography.$body-2-styles
 ) !default;
+
+/// The default horizontal padding on `Chip`s.
+///
+/// @type Number
 $horizontal-padding: 0.75rem !default;
+
+/// The default vertical padding on `Chip`s.
+///
+/// @type Number
 $vertical-padding: 0 !default;
+
+/// The amount of `padding-left` to apply to the `Chip` if a `leftAddon` prop
+/// was provided.
+///
+/// @type Number
 $addon-left-padding: 0.25rem !default;
+
+/// The amount of `padding-right` to apply to the `Chip` if a `rightAddon` prop
+/// was provided.
+///
+/// @type Number
 $addon-right-padding: 0.5rem !default;
 
-$selected-transition-duration: transition.$linear-duration;
-$selected-transition-timing-function: transition.$linear-timing-function !default;
+/// The background-color to apply when the `themed` prop is enabled.
+///
+/// @type Color
 $theme-background-color: theme.get-swatch(
   theme.$primary-color,
   300,
   false,
   color.adjust(theme.$primary-color, $lightness: -20%)
 ) !default;
+
+/// The text color to apply when the `themed` prop is enabled.
+///
+/// @type Color
 $theme-color: a11y.contrast-color($theme-background-color) !default;
 
+/// The light theme background color for the `theme="solid"`
+/// @type Color
 $solid-light-background-color: colors.$grey-300 !default;
+
+/// The light theme background color for the `theme="solid"` and the `Chip` is
+/// disabled.
+/// @type Color
 $solid-light-disabled-background-color: colors.$grey-100 !default;
+
+/// The light theme text color for the `theme="solid"`
+/// @type Color
 $solid-light-color: a11y.contrast-color($solid-light-background-color) !default;
+
+/// The dark theme background color for the `theme="solid"`
+/// @type Color
 $solid-dark-background-color: if(
   theme.$disable-dark-elevation,
   colors.$grey-900,
   map.get(theme.$dark-elevation-colors, 12)
 ) !default;
+
+/// The dark theme background color for the `theme="solid"` and the `Chip` is
+/// disabled.
+/// @type Color
 $solid-dark-disabled-background-color: color.adjust(
   colors.$grey-900,
   $lightness: 2%
 ) !default;
+
+/// The dark theme text color for the `theme="solid"`
+/// @type Color
 $solid-dark-color: a11y.contrast-color($solid-dark-background-color) !default;
+
+/// The default `theme="solid"` background-color
+/// @type Color
 $solid-background-color: theme.get-default-color(
   $solid-light-background-color,
   $solid-dark-background-color
 ) !default;
+
+/// The default `theme="solid"` disabled background-color
+/// @type Color
 $solid-disabled-background-color: theme.get-default-color(
   $solid-light-disabled-background-color,
   $solid-dark-disabled-background-color
 ) !default;
+
+/// The default `theme="solid"` text color
+/// @type Color
 $solid-color: theme.get-default-color(
   $solid-light-color,
   $solid-dark-color
 ) !default;
+
+/// A number between 0-24 representing the box-shadow elevation when the user
+/// is pressing the `Chip` with a `theme="solid"` and `raisable`.
+///
+/// @type Color
 $solid-raisable-box-shadow-z-value: 4 !default;
+
+/// The raisable transition duration while `theme="solid"`
+/// @type Number
 $solid-raisable-transition-duration: transition.$linear-duration !default;
 
+/// @type Number
 $outline-width: 0.0625rem !default;
+
+/// A number between 0-24 representing the box-shadow elevation when the user
+/// is pressing the `Chip` with a `theme="outline"` and `raisable`.
+///
+/// @type Number
 $outline-raisable-box-shadow-z-value: 8 !default;
+
+/// The box-shadow color to use in light themes when `theme="outline"`
+/// @type Color
 $outline-light-color: colors.$grey-300 !default;
+
+/// The background-color to use in light themes when `theme="outline"`
+/// @type Color
 $outline-light-background-color: theme.$light-theme-surface-color !default;
+
+/// The text color to use in light themes when `theme="outline"`
+/// @type Color
 $outline-light-text-color: a11y.contrast-color(
   $outline-light-background-color
 ) !default;
+
+/// The box-shadow color to use in dark themes when `theme="outline"`
+/// @type Color
 $outline-dark-color: $outline-light-color !default;
+
+/// The background-color to use in dark themes when `theme="outline"`
+/// @type Color
 $outline-dark-background-color: if(
   theme.$disable-dark-elevation,
   theme.$dark-theme-surface-color,
   map.get(theme.$dark-elevation-colors, $outline-raisable-box-shadow-z-value)
 ) !default;
+
+/// The text color to use in dark themes when `theme="outline"`
+/// @type Color
 $outline-dark-text-color: a11y.contrast-color(
   $outline-dark-background-color
 ) !default;
 
+/// The box-shadow color to use when `theme="outline"`
+/// @type Color
 $outline-color: theme.get-default-color(
   $outline-light-color,
   $outline-dark-color
 ) !default;
+
+/// The background-color to use when `theme="outline"`
+/// @type Color
 $outline-background-color: theme.get-default-color(
   $outline-light-background-color,
   $outline-dark-background-color
 ) !default;
+
+/// The text color to use when `theme="outline"`
+/// @type Color
 $outline-text-color: theme.get-default-color(
   $outline-light-text-color,
   $outline-dark-text-color
 ) !default;
+
+/// The raisable transition duration while `theme="outline"`
+/// @type Number
 $outline-raisable-transition-duration: transition.$linear-duration !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   gap,
   height,
@@ -128,6 +315,9 @@ $variables: (
   outline-text-color
 );
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "chip");
   @if $fallback {
@@ -137,54 +327,74 @@ $variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "chip")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Applies the light the variables based on feature flags
 @mixin use-light-theme {
-  @if not $disable-solid-theme {
-    @include set-var(solid-background-color, $solid-light-background-color);
-    @include set-var(
-      solid-disabled-background-color,
-      $solid-light-disabled-background-color
-    );
-    @include set-var(solid-color, $solid-light-color);
-  }
-
-  @if not $disable-outline-theme {
-    @if $outline-light-color != $outline-dark-color {
-      @include set-var(outline-color, $outline-light-color);
+  @if not $disable-everything {
+    @if not $disable-solid-theme {
+      @include set-var(solid-background-color, $solid-light-background-color);
+      @include set-var(
+        solid-disabled-background-color,
+        $solid-light-disabled-background-color
+      );
+      @include set-var(solid-color, $solid-light-color);
     }
-    @include set-var(outline-background-color, $outline-light-background-color);
-    @include set-var(outline-text-color, $outline-light-text-color);
+
+    @if not $disable-outline-theme {
+      @if $outline-light-color != $outline-dark-color {
+        @include set-var(outline-color, $outline-light-color);
+      }
+      @include set-var(
+        outline-background-color,
+        $outline-light-background-color
+      );
+      @include set-var(outline-text-color, $outline-light-text-color);
+    }
   }
 }
 
+/// Applies the dark the variables based on feature flags
 @mixin use-dark-theme {
-  @if not $disable-solid-theme {
-    @include set-var(solid-background-color, $solid-dark-background-color);
-    @include set-var(
-      solid-disabled-background-color,
-      $solid-dark-disabled-background-color
-    );
-    @include set-var(solid-color, $solid-dark-color);
-  }
-
-  @if not $disable-outline-theme {
-    @if $outline-light-color != $outline-dark-color {
-      @include set-var(outline-color, $outline-dark-color);
+  @if not $disable-everything {
+    @if not $disable-solid-theme {
+      @include set-var(solid-background-color, $solid-dark-background-color);
+      @include set-var(
+        solid-disabled-background-color,
+        $solid-dark-disabled-background-color
+      );
+      @include set-var(solid-color, $solid-dark-color);
     }
-    @include set-var(outline-background-color, $outline-dark-background-color);
-    @include set-var(outline-text-color, $outline-dark-text-color);
+
+    @if not $disable-outline-theme {
+      @if $outline-light-color != $outline-dark-color {
+        @include set-var(outline-color, $outline-dark-color);
+      }
+      @include set-var(
+        outline-background-color,
+        $outline-dark-background-color
+      );
+      @include set-var(outline-text-color, $outline-dark-text-color);
+    }
   }
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(solid-background-color, $solid-background-color);
@@ -207,6 +417,10 @@ $variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(chip, $disable-layer) {
@@ -317,7 +531,7 @@ $variables: (
             padding-left: $addon-left-padding;
 
             @include utils.rtl {
-              padding-left: $horizontal-padding;
+              padding-left: get-var(horizontal-padding);
               padding-right: $addon-left-padding;
             }
           }
@@ -329,7 +543,7 @@ $variables: (
 
             @include utils.rtl {
               padding-left: $addon-right-padding;
-              padding-right: $horizontal-padding;
+              padding-right: get-var(horizontal-padding);
             }
           }
         }

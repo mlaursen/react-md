@@ -1,3 +1,7 @@
+////
+/// @group core.box-shadows
+////
+
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
@@ -7,16 +11,16 @@
 @use "transition/transition";
 @use "utils";
 
-// The default box-shadow color to use for all material design box shadows.
-// @type Color
+/// The default box-shadow color to use for all material design box shadows.
+/// @type Color
 $box-shadow-color: #000 !default;
 
-// The opacity to apply for the first box shadow
-// @type number
+/// The opacity to apply for the first box shadow
+/// @type Number
 $box-shadow-1-opacity: 0.2 !default;
 
-// The box shadow values to apply based on elevation for the first box shadow.
-// @type Map
+/// The box shadow values to apply based on elevation for the first box shadow.
+/// @type Map
 $box-shadow-1-layers: (
   0: "0px 0px 0px 0px",
   1: "0px 2px 1px -1px",
@@ -45,12 +49,12 @@ $box-shadow-1-layers: (
   24: "0px 11px 15px -7px",
 ) !default;
 
-// The opacity to apply for the second box shadow
-// @type number
+/// The opacity to apply for the second box shadow
+/// @type Number
 $box-shadow-2-opacity: 0.14 !default;
 
-// The box shadow values to apply based on elevation for the second box shadow.
-// @type Map
+/// The box shadow values to apply based on elevation for the second box shadow.
+/// @type Map
 $box-shadow-2-layers: (
   0: "0px 0px 0px 0px",
   1: "0px 1px 1px 0px",
@@ -79,12 +83,12 @@ $box-shadow-2-layers: (
   24: "0px 24px 38px 3px",
 ) !default;
 
-// The opacity to apply for the third box shadow
-// @type number
+/// The opacity to apply for the third box shadow
+/// @type Number
 $box-shadow-3-opacity: 0.12 !default;
 
-// The box shadow values to apply based on elevation for the third box shadow.
-// @type Map
+/// The box shadow values to apply based on elevation for the third box shadow.
+/// @type Map
 $box-shadow-3-layers: (
   0: "0px 0px 0px 0px",
   1: "0px 1px 3px 0px",
@@ -113,15 +117,16 @@ $box-shadow-3-layers: (
   24: "0px 9px 46px 8px",
 ) !default;
 
-// Creates a `box-shadow` string based on the material design guidelines and
-// elevation.
-//
-// @param {number} z-value - This should be a number from 0 to 24 representing
-// the box shadow elevation.
-// @param {Color} color - The color to use for the box shadow
-// @param {number} opacity-boost - This will be applied to each shadow value
-// opacity if needed.
-// @returns {string} The generated box shadow
+/// Creates a `box-shadow` string based on the material design guidelines and
+/// elevation.
+///
+/// @param {Number} z-value - This should be a number from 0 to 24 representing
+/// the box shadow elevation.
+/// @param {Color} color [$box-shadow-color] - The color to use for the box
+/// shadow
+/// @param {Number} opacity-boost [0] - This will be applied to each shadow
+/// value opacity if needed.
+/// @returns {String} The generated box shadow
 @function box-shadow($z-value, $color: $box-shadow-color, $opacity-boost: 0) {
   @if meta.type-of($z-value) != "number" or not math.is-unitless($z-value) {
     @error "$z-value must be a unitless number, but received '#{$z-value}'";
@@ -145,15 +150,16 @@ $box-shadow-3-layers: (
     #{"#{$shadow-3-value} #{$shadow-3-color}"};
 }
 
-// Generates styles for a new elevated surface with box shadow.
-//
-// @param {number} z-value - This should be a number from 0 to 24 representing
-// the box shadow elevation.
-// @param {Color} color - The color to use for the box shadow
-// @param {number} opacity-boost - This will be applied to each shadow value
-// opacity if needed.
-// @param {boolean} disable-colors - Set to `true` to prevent the background
-// color and text color from being updated as well.
+/// Generates styles for a new elevated surface with box shadow.
+///
+/// @param {Number} z-value - This should be a number from 0 to 24 representing
+/// the box shadow elevation.
+/// @param {Color} color [$box-shadow-color] - The color to use for the box shadow
+/// @param {Number} opacity-boost [0] - This will be applied to each shadow
+/// value opacity if needed.
+/// @param {Boolean} disable-colors [theme.$disable-dark-elevation] - Set to
+/// `true` to prevent the background color and text color from being updated as
+/// well.
 @mixin box-shadow(
   $z-value,
   $color: $box-shadow-color,
@@ -165,25 +171,26 @@ $box-shadow-3-layers: (
   box-shadow: box-shadow($z-value, $color, $opacity-boost);
 }
 
-// Used to create a performant box-shadow transition using a pseudo element.
-//
-// @param {string} start-shadow - The starting box shadow. This can be `null` if
-// there should be no box shadow by default.
-// @param {string} end-shadow - The ending box shadow. It is not possible to go
-// from shadow -> no shadow.
-// @param {string|List} active-selectors - The selectors that cause the shadow
-// to change to the `$end-shadow`.
-// @param {number} duration - The transition duration
-// @param {boolean} pseudo-before - Set this to `false` to use the `::after`
-// pseudo element instead of `::before`.
-// @param {number} pseudo-z-index - Optional z-index to set to the pseudo
-// element.
-// @param {boolean} pseudo-fixed - Set to `true` if the pseudo element should
-// use `position: fixed` instead of `position: absolute`.
-// @param {boolean} create-pseudo - Set to `false` if the pseudo element should
-// not be created.
-// @param {boolean} position-relative - Set this to `false` if the element
-// should not gain `position: relative` styles through this mixin
+/// Used to create a performant box-shadow transition using a pseudo element.
+///
+/// @param {String} start-shadow - The starting box shadow. This can be `null` if
+/// there should be no box shadow by default.
+/// @param {String} end-shadow - The ending box shadow. It is not possible to go
+/// from shadow -> no shadow.
+/// @param {List|String} active-selectors - The selectors that cause the shadow
+/// to change to the `$end-shadow`.
+/// @param {Number} duration [transition.$linear-duration] - The transition
+/// duration
+/// @param {Boolean} pseudo-before [true] - Set this to `false` to use the
+/// `::after` pseudo element instead of `::before`.
+/// @param {Number} pseudo-z-index [0] - Optional z-index to set to the pseudo
+/// element.
+/// @param {Boolean} pseudo-fixed [false] - Set to `true` if the pseudo element
+/// should use `position: fixed` instead of `position: absolute`.
+/// @param {Boolean} create-pseudo [true] - Set to `false` if the pseudo
+/// element should not be created.
+/// @param {Boolean} position-relative [true] - Set this to `false` if the
+/// element should not gain `position: relative` styles through this mixin
 @mixin box-shadow-transition(
   $start-shadow,
   $end-shadow,
@@ -241,26 +248,28 @@ $box-shadow-3-layers: (
   }
 }
 
-// Convenience helper to animate between two different material design box
-// shadow values.
-//
-// Note: This will need to be included at the end of a block with the new Sass
-// rules or prefix styles with `& {}`
-//
-// @param {number} start-z-value - The starting elevation (a number from 0 to 24)
-// @param {number} end-z-value - The ending elevation (a number from 0 to 24)
-// @param {string|List} active-selectors - The selectors that cause the shadow
-// to change to the `$end-shadow`.
-// @param {boolean} pseudo-before - Set this to `false` to use the `::after`
-// pseudo element instead of `::before`.
-// @param {number} pseudo-z-index - Optional z-index to set to the pseudo
-// element.
-// @param {number} duration - The transition duration
-// @param {Color} color - The color to use for the box shadow
-// @param {number} opacity-boost - This will be applied to each shadow value
-// opacity if needed.
-// @param {boolean} position-relative - Set this to `false` if the element
-// should not gain `position: relative` styles through this mixin
+/// Convenience helper to animate between two different material design box
+/// shadow values.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @param {Number} start-z-value - The starting elevation (a number from 0 to 24)
+/// @param {Number} end-z-value - The ending elevation (a number from 0 to 24)
+/// @param {List|String} active-selectors - The selectors that cause the shadow
+/// to change to the `$end-shadow`.
+/// @param {Boolean} pseudo-before [true] - Set this to `false` to use the
+/// `::after` pseudo element instead of `::before`.
+/// @param {Number} pseudo-z-index [0] - Optional z-index to set to the pseudo
+/// element.
+/// @param {Number} duration [transition.$linear-duration] - The transition
+/// duration
+/// @param {Color} color [$box-shadow-color] - The color to use for the box
+/// shadow
+/// @param {Number} opacity-boost [0] - This will be applied to each shadow
+/// value opacity if needed.
+/// @param {Boolean} position-relative [true] - Set this to `false` if the
+/// element should not gain `position: relative` styles through this mixin
 @mixin elevation-transition(
   $start-z-value,
   $end-z-value,

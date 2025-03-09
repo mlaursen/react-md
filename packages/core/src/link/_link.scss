@@ -1,3 +1,7 @@
+////
+/// @group link
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../theme/colors";
@@ -7,16 +11,41 @@
 @use "../typography/typography";
 @use "../transition/transition";
 
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable the `SkipToMainContent` component styles.
+/// @type Boolean
 $disable-skip-to-main: false !default;
+
+/// Set to `true` to disable the `display: inline-flex` styles for the link.
+/// @type Boolean
 $disable-flex: false !default;
 
+/// The transition duration for changing the link's color while hovered or
+/// visited.
+/// @type Number
 $transition-duration: transition.$linear-duration !default;
+
+/// The link's default text color
+/// @type Color
 $color: colors.$blue-500 !default;
+
+/// The link's default visited text color
+/// @type Color
 $visited-color: colors.$blue-600 !default;
+
+/// The link's default hover text color
+/// @type Color
 $hover-color: colors.$blue-400 !default;
 
+/// The `z-index` for the `SkipToMainContent` component.
+/// @type Number
 $skip-to-main-z-index: 10000 !default;
+
+/// A custom map of styles to apply to the `SkipToMainContent` component.
+/// @type Map
 $skip-to-main-styles: (
   color: theme.theme-get-var(on-primary-color),
   left: 50%,
@@ -25,12 +54,24 @@ $skip-to-main-styles: (
   transform: translateX(-50%),
   z-index: $skip-to-main-z-index,
 ) !default;
+
+/// A custom map of styles to apply to the `SkipToMainContent` component while
+/// it is focused. This will be applied on top of the `$skip-to-main-styles`.
+///
+/// @see $skip-to-main-styles
+/// @type Map
 $skip-to-main-active-styles: (
   outline: 0.25rem dashed currentcolor,
 ) !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (color, visited-color, hover-color);
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "link");
   @if $fallback {
@@ -40,30 +81,34 @@ $variables: (color, visited-color, hover-color);
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "link")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Applies the light the variables based on feature flags
 @mixin use-light-theme {
   @include set-var(color, $light-theme-color);
 }
 
+/// Applies the dark the variables based on feature flags
 @mixin use-dark-theme {
   @include set-var(color, $dark-theme-color);
 }
 
-@mixin style($position) {
-  $property: "border-#{$position}";
-
-  #{$property}: get-var(size) inset get-var(color);
-}
-
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(color, $color);
@@ -72,6 +117,10 @@ $variables: (color, visited-color, hover-color);
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(link, $disable-layer) {

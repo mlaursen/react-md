@@ -1,3 +1,7 @@
+////
+/// @group responsive-item
+////
+
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
@@ -5,34 +9,104 @@
 @use "../theme/colors";
 @use "../theme/theme";
 
+/// Set to `true` to disable all the styles.
+///
+/// NOTE: You most likely want to disable these styles and use the
+/// `object-fit` styles instead.
+///
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable automatically adding the `height: auto` and
+/// `width: 100%` to each selector in the `$selectors` list.
+///
+/// @see $selectors
+/// @type Boolean
 $disable-auto: false !default;
+
+/// Set to `true` to disable the full width styles.
+/// @type Boolean
 $disable-full-width: false !default;
+
+/// Set to `true` to disable the `ResponsiveItemOverlay` styles.
+/// @type Boolean
 $disable-overlay: false !default;
+
+/// Set to `true` to disable the `ResponsiveItemOverlay` `position="top"`
+/// styles.
+/// @type Boolean
 $disable-overlay-top: false !default;
+
+/// Set to `true` to disable the `ResponsiveItemOverlay` `position="right"`
+/// styles.
+/// @type Boolean
 $disable-overlay-right: false !default;
+
+/// Set to `true` to disable the `ResponsiveItemOverlay` `position="bottom"`
+/// styles.
+/// @type Boolean
 $disable-overlay-bottom: false !default;
+
+/// Set to `true` to disable the `ResponsiveItemOverlay` `position="left"`
+/// styles.
+/// @type Boolean
 $disable-overlay-left: false !default;
+
+/// Set to `true` to disable the `ResponsiveItemOverlay` `position="middle"`
+/// styles.
+/// @type Boolean
 $disable-overlay-middle: false !default;
+
+/// Set to `true` to disable the `ResponsiveItemOverlay` `position="center"`
+/// styles.
+/// @type Boolean
 $disable-overlay-center: false !default;
+
+/// Set to `true` to disable the `ResponsiveItemOverlay`
+/// `position="absolute-center"` styles.
+/// @type Boolean
 $disable-overlay-absolute-center: false !default;
 
+/// The default selectors to automatically apply the responsive item styles.
+/// @type List
 $selectors: (img ">svg" iframe video embed object) !default;
 
+/// The default `ResponsiveItemOverlay` background color.
+/// @type Color
 $overlay-background-color: rgba(colors.$black, 0.54) !default;
+
+/// The default `ResponsiveItemOverlay` text color.
+/// @type Color
 $overlay-color: theme.$dark-theme-text-primary-color !default;
+
+/// The default `ResponsiveItemOverlay` z-index.
+/// @type Number
 $overlay-z-index: 0 !default;
+
+/// The default `ResponsiveItemOverlay` padding.
+/// @type Number
 $overlay-padding: 1rem !default;
+
+/// The default width to apply to the `position="left"`, `"position="right"`,
+/// `position="center"`, or `position="absolute-center"`
+/// `ResponsiveItemOverlay`.
+/// @type Number
 $overlay-horizontal-width: 30% !default;
 
+/// The default aspect ratios to support which will be available on the
+/// `ResponsiveItem` component.
+/// @type Map
 $aspect-ratios: (
   "16-9": 16 9,
   "4-3": 4 3,
   "1-1": 1 1,
 ) !default;
 
+/// Set to `true` to disable the custom aspect ratios.
+/// @type Boolean
 $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
 
+/// This mixin should really only be used if the ``
 @mixin forced-aspect-ratio {
   height: 100%;
   inset: 0;
@@ -40,10 +114,18 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
   width: 100%;
 }
 
+/// Create a custom aspect ratio using `padding-bottom`.
+///
+/// @link https://css-tricks.com/aspect-ratio-boxes/
+/// @param {Number} $width -
+/// @param {Number} $height -
 @mixin aspect-ratio($width, $height) {
   padding-bottom: math.percentage(math.div($height, $width));
 }
 
+/// This should only be used if not using the `responsive-item-styles` mixin.
+///
+/// @see {mixin} styles
 @mixin base-styles {
   .rmd-responsive-item {
     display: inline-block;
@@ -93,6 +175,9 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
   }
 }
 
+/// This should only be used if not using the `responsive-item-styles` mixin.
+///
+/// @see {mixin} styles
 @mixin overlay-styles {
   .rmd-responsive-item-overlay {
     background-color: $overlay-background-color;
@@ -163,6 +248,10 @@ $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(responsive-item, $disable-layer) {

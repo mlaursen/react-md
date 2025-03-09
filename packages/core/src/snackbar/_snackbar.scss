@@ -1,3 +1,7 @@
+////
+/// @group snackbar
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../box-shadows";
@@ -10,59 +14,171 @@
 @use "../typography/typography";
 @use "../transition/transition";
 
+/// Set to `true` to disable all the styles.
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` if the `position: absolute` styles are not required where a
+/// `Snackbar` is rendered within another `position: relative` container.
+///
+/// @type Boolean
 $disable-absolute: false !default;
+
+/// Set to `true` to disable the styles for a `Snackbar` positioned at the top
+/// of the page/container.
+/// @type Boolean
 $disable-top: false !default;
+
+/// Set to `true` to disable the styles for a `Snackbar` positioned at the
+/// bottom of the page/container.
+/// @type Boolean
 $disable-bottom: false !default;
+
+/// Set to `true` to disable the styles for a `Snackbar` positioned at the
+/// top-right of the page/container.
+/// @type Boolean
 $disable-top-right: $disable-top !default;
+
+/// Set to `true` to disable the styles for a `Snackbar` positioned at the
+/// top-left of the page/container.
+/// @type Boolean
 $disable-top-left: $disable-top !default;
+
+/// Set to `true` to disable the styles for a `Snackbar` positioned at the
+/// bottom-left of the page/container.
+/// @type Boolean
 $disable-bottom-left: $disable-bottom !default;
+
+/// Set to `true` to disable the styles for a `Snackbar` positioned at the
+/// bottom-right of the page/container.
+/// @type Boolean
 $disable-bottom-right: $disable-bottom !default;
+
+/// Set to `true` to disable the `ToastCloseButton` styles.
+/// @type Boolean
 $disable-close-button: false !default;
+
+/// Set to `true` to disable the `ToastActionButton` styles.
+/// @type Boolean
 $disable-action-button: false !default;
+
+/// Set to `true` to disable the stacked `Snackbar` styles.
+/// @type Boolean
 $disable-stacked: false !default;
 
+/// The default `align-items` for a `Snackbar`.
+/// @type String
 $default-align-items: center !default;
+
+/// The default `gap` for a `Snackbar`.
+/// @type Number
 $gap: 1rem !default;
+
+/// The default `gap` for a `Toast`.
+/// @type Number
 $toast-gap: 1rem !default;
+
+/// The default `gap` for a stacked `Toast`.
+/// @type Number
 $toast-gap-stacked: 0.5rem !default;
+
+/// The default `gap` for a toast that has both a `ToastActionButton` and
+/// `ToastCloseButton`.
+/// @type Number
 $toast-gap-both-buttons: 0.25rem !default;
+
+/// The viewport margin to apply to all `Toast` rendered within the `Snackbar`.
+/// @type Number
 $margin: 1rem !default;
-$box-shadow: 6 !default;
+
+/// A number between 0-24 representing the box-shadow elevation for a `Toast`.
+/// @type Number
+$elevation: 6 !default;
+
+/// The default border-radius for a `Toast`.
+/// @type Number
 $border-radius: 0.25rem !default;
+
+/// The default vertical padding for a `Toast`.
+/// @type Number
 $vertical-padding: 0.75em !default;
+
+/// The default horizontal padding for a `Toast`.
+/// @type Number
 $horizontal-padding: 1rem !default;
+
+/// The default horizontal padding for a `Toast` that has an
+/// `ToastActionButton`.
+/// @type Number
 $action-horizontal-padding: 0.5rem !default;
+
+/// The default horizontal padding for a `Toast` that has an
+/// `ToastCloseButton`.
+/// @type Number
 $close-button-horizontal-padding: 0 !default;
 
+/// The min-height for a `Toast`.
+/// @type Number
 $min-height: 3rem !default;
+
+/// The min-width for a `Toast` when the viewport is tablet or above.
+/// @type Number
 $min-width: 21.5rem !default;
+
+/// The max-width for a `Toast`.
+/// @type Number
 $max-width: 35.5rem !default;
+
+/// The default `z-index` for a `Toast`.
+/// @type Number
 $z-index: utils.$temporary-element-z-index + 10 !default;
 
+/// The default `Toast` typography styles.
+/// @type Map
 $typography: map.merge(
   typography.$base-font-styles,
   typography.$subtitle-2-styles
 ) !default;
 
+/// The background-color to use in the light theme.
+/// @type Color
 $light-theme-background-color: #323232 !default;
+
+/// The text color to use in the light theme.
+/// @type Color
 $light-theme-color: a11y.contrast-color($light-theme-background-color) !default;
 
+/// The background-color to use in the dark theme.
+/// @type Color
 $dark-theme-background-color: if(
   theme.$disable-dark-elevation,
   $light-theme-background-color,
-  map.get(theme.$dark-elevation-colors, $box-shadow)
+  map.get(theme.$dark-elevation-colors, $elevation)
 ) !default;
+
+/// The text color to use in the dark theme.
+/// @type Color
 $dark-theme-color: a11y.contrast-color($dark-theme-background-color) !default;
 
+/// The default background-color for a `Toast`.
+/// @type Color
 $background-color: theme.get-default-color(
   $light-theme-background-color,
   $dark-theme-background-color
 ) !default;
+
+/// The default text color for a `Toast`.
+/// @type Color
 $color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (background-color, color, offset);
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "snackbar");
   @if $fallback {
@@ -72,16 +188,24 @@ $variables: (background-color, color, offset);
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "snackbar")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(background-color, $background-color);
@@ -90,6 +214,10 @@ $variables: (background-color, color, offset);
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(snackbar, $disable-layer) {
@@ -145,7 +273,7 @@ $variables: (background-color, color, offset);
       }
 
       .rmd-toast {
-        @include box-shadows.box-shadow($box-shadow, $disable-colors: true);
+        @include box-shadows.box-shadow($elevation, $disable-colors: true);
         @include utils.map-to-styles($typography);
         @include use-var(background-color);
         @include use-var(color);

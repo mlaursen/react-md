@@ -1,3 +1,7 @@
+////
+/// @group interaction
+////
+
 @use "sass:map";
 @use "sass:list";
 @use "../utils";
@@ -5,22 +9,71 @@
 @use "../theme/theme";
 @use "../transition/transition";
 
-/// ripple | press | both | none
+/// This should be one of:
+/// - `ripple`
+/// - `press`
+/// - `both`
+/// - `none`
+///
+/// @type String
 $mode: ripple !default;
-$disable-surface: false !default;
-$disable-outline-offset: false !default;
-$disable-focus-background: false !default;
-$disable-ripple-inset-var: false !default;
-$disable-ripple-border-radius-var: false !default;
-$disable-surface-inset-var: $disable-surface !default;
-$disable-surface-border-radius-var: $disable-surface !default;
 
-$_disable-ripple: not
+/// Convenience feature flag check for ripples
+/// @type Boolean
+$disable-ripple: not
   list.index(
     (ripple, both),
     utils.validate((ripple, press, both, none), $mode, "interaction mode")
   );
 
+/// Set to `true` if the interaction surface styles should not be created. This
+/// includes the:
+///
+/// - `.rmd-interaction-surface` class
+/// - `use-light-surface` and `use-dark-surface` mixins
+/// - `hover-background-color`
+/// - `focus-background-color`
+/// - `press-background-color`
+/// - `selected-background-color`
+///
+/// @type Boolean
+$disable-surface: false !default;
+
+/// Set to `true` if the `outline` styles should not also apply an
+/// `outline-offset`.
+/// @type Boolean
+$disable-outline-offset: false !default;
+
+/// Set to `true` if the default focus styles should not also change the
+/// background color of the element.
+///
+/// @type Boolean
+$disable-focus-background: false !default;
+
+/// Set to `true` if not using the interaction ripple behavior.
+/// @type Boolean
+$disable-ripple-inset-var: $disable-ripple !default;
+
+/// Set to `true` if not using the interaction ripple behavior.
+/// @type Boolean
+$disable-ripple-border-radius-var: $disable-ripple !default;
+
+/// Set this to `true` if the interaction surface background inset should not
+/// be configurable through custom CSS properties.
+///
+/// @type Boolean
+$disable-surface-inset-var: $disable-surface !default;
+
+/// Set this to `true` if the interaction surface border-radius should not be
+/// configurable through custom CSS properties.
+///
+/// @type Boolean
+$disable-surface-border-radius-var: $disable-surface !default;
+
+/// The class name to apply while an element is pressed and using the
+/// `useElementInteraction` hook.
+///
+/// @type String
 $pressed-class-name: "rmd-pressed";
 
 /// Setting this value to `true` will update the styles for all interactable
@@ -36,88 +89,192 @@ $pressed-class-name: "rmd-pressed";
 /// This helps improve the legibility of the content since the normal
 /// interaction states apply an overlay with some opacity for the different
 /// states.
+///
+/// @type Boolean
 $disable-higher-contrast: false !default;
+
+/// The base interaction background color to apply when an element is on a
+/// light surface.
+/// @type Color
 $light-surface-base-background-color: #000 !default;
+
+/// The base interaction background color to apply when an element is on a
+/// dark surface.
+/// @type Color
 $dark-surface-base-background-color: #fff !default;
 
+/// The default color to use while elements are focused.
+/// @type Color
 $focus-color: colors.$blue-500 !default;
+
+/// The default outline/box-shadow width while elements are focused.
+/// @type Number
 $focus-width: 0.125rem !default;
+
+/// Set to `true` if focus behavior should use `box-shadow` instead of
+/// `outline`.
+/// @type Boolean
 $focus-box-shadow: false !default;
 
+/// The base interaction background color to apply when an element is on a
+/// light surface.
+/// @type Color
 $light-surface-ripple-background-color: rgba(
   $light-surface-base-background-color,
   0.08
 ) !default;
+/// The base interaction background color to apply when an element is on a
+/// light surface.
+/// @type Color
 $dark-surface-ripple-background-color: rgba(
   $dark-surface-base-background-color,
   0.12
 ) !default;
+
+/// The default background color for interaction ripples.
+/// @type Color
 $ripple-background-color: theme.get-default-color(
   $light-surface-ripple-background-color,
   $dark-surface-ripple-background-color
 ) !default;
+
+/// The ripple animation duration.
+/// @type Number
 $ripple-transform-duration: 0.45s !default;
+
+/// The ripple opacity animation duration. This should normally be shorter than
+/// the `$ripple-transform-duration` so the ripple is fully visible before the
+/// transition completes.
+///
+/// @type Number
 $ripple-opacity-duration: 0.3s !default;
 
+/// The `opacity` to apply while hovering an element on a light surface.
+/// @see $light-surface-hover-background-color
+/// @type Number
 $light-surface-hover-opacity: 0.08 !default;
+
+/// The `opacity` to apply while focusing an element on a light surface.
+/// @see $light-surface-focus-background-color
+/// @type Number
 $light-surface-focus-opacity: 0.24 !default;
+
+/// The `opacity` to apply while pressing an element on a light surface.
+/// @see $light-surface-press-background-color
+/// @type Number
 $light-surface-press-opacity: 0.32 !default;
+
+/// The `opacity` to apply while an element is selected on a light surface.
+/// @see $light-surface-selected-background-color
+/// @type Number
 $light-surface-selected-opacity: 0.16 !default;
+
+/// The background color for an element while hovered on a light surface.
+/// @type Color
 $light-surface-hover-background-color: rgba(
   $light-surface-base-background-color,
   $light-surface-hover-opacity
 ) !default;
+
+/// The background color for an element while focused on a light surface.
+/// @type Color
 $light-surface-focus-background-color: rgba(
   $light-surface-base-background-color,
   $light-surface-focus-opacity
 ) !default;
+
+/// The background color for an element while pressed on a light surface.
+/// @type Color
 $light-surface-press-background-color: rgba(
   $light-surface-base-background-color,
   $light-surface-press-opacity
 ) !default;
+
+/// The background color for a selected element on a light surface.
+/// @type Color
 $light-surface-selected-background-color: rgba(
   $light-surface-base-background-color,
   $light-surface-selected-opacity
 ) !default;
 
+/// The `opacity` to apply while hovering an element on a dark surface.
+/// @see $dark-surface-hover-background-color
+/// @type Number
 $dark-surface-hover-opacity: 0.1 !default;
+
+/// The `opacity` to apply while focusing an element on a dark surface.
+/// @see $dark-surface-hover-background-color
+/// @type Number
 $dark-surface-focus-opacity: 0.12 !default;
+
+/// The `opacity` to apply while pressing an element on a dark surface.
+/// @see $dark-surface-hover-background-color
+/// @type Number
 $dark-surface-press-opacity: 0.24 !default;
+/// The `opacity` to apply while hovering an element on a dark surface.
+/// @see $dark-surface-hover-background-color
+/// @type Number
 $dark-surface-selected-opacity: 0.12 !default;
+
+/// The background color for an element while hovered on a dark surface.
+/// @type Color
 $dark-surface-hover-background-color: rgba(
   $dark-surface-base-background-color,
   $dark-surface-hover-opacity
 ) !default;
+
+/// The background color for an element while focused on a dark surface.
+/// @type Color
 $dark-surface-focus-background-color: rgba(
   $dark-surface-base-background-color,
   $dark-surface-focus-opacity
 ) !default;
+
+/// The background color for an element while pressed on a dark surface.
+/// @type Color
 $dark-surface-press-background-color: rgba(
   $dark-surface-base-background-color,
   $dark-surface-press-opacity
 ) !default;
+
+/// The background color for a selected element on a dark surface.
+/// @type Color
 $dark-surface-selected-background-color: rgba(
   $dark-surface-base-background-color,
   $dark-surface-selected-opacity
 ) !default;
 
+/// The default background color for an element while hovered.
+/// @type Color
 $hover-background-color: theme.get-default-color(
   $light-surface-hover-background-color,
   $dark-surface-hover-background-color
 ) !default;
+
+/// The default background color for an element while focused.
+/// @type Color
 $focus-background-color: theme.get-default-color(
   $light-surface-focus-background-color,
   $dark-surface-focus-background-color
 ) !default;
+
+/// The default background color for an element while pressed.
+/// @type Color
 $press-background-color: theme.get-default-color(
   $light-surface-press-background-color,
   $dark-surface-press-background-color
 ) !default;
+
+/// The default background color for an element while selected.
+/// @type Color
 $selected-background-color: theme.get-default-color(
   $light-surface-selected-background-color,
   $dark-surface-selected-background-color
 ) !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   background-color,
   hover-background-color,
@@ -133,6 +290,11 @@ $variables: (
   surface-border-radius
 );
 
+/// Used to check if a variable is disabled based on feature flags.
+///
+/// @access private
+/// @param {String} name - The var name
+/// @returns {Boolean} true if the variable is disabled
 @function _is-var-disabled($name) {
   @if $name == ripple-inset {
     @return $disable-ripple-inset-var;
@@ -153,6 +315,9 @@ $variables: (
   @return false;
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   // cannot set a custom property to `inherit` for some reason. It will not be parsed.
   @if not
@@ -175,6 +340,9 @@ $variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if _is-var-disabled($name) {
     @error '"#{$name}" is currently disabled and cannot be changed. Set "$disable-#{$name}-var" to `true` or remove it from the Sass module overrides.';
@@ -185,10 +353,24 @@ $variables: (
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// This mixin is used to apply interaction state colors that are visible on
+/// a light surface color.
+///
+/// @example scss - Example Usage SCSS
+///   .container {
+///     background-color: #fff;
+///
+///     @include use-light-surface;
+///   }
+///
 @mixin use-light-surface {
   @if not $disable-surface {
     @include set-var(
@@ -209,7 +391,7 @@ $variables: (
     );
   }
 
-  @if not $_disable-ripple {
+  @if not $disable-ripple {
     @include set-var(
       ripple-background-color,
       $light-surface-ripple-background-color
@@ -217,6 +399,16 @@ $variables: (
   }
 }
 
+/// This mixin is used to apply interaction state colors that are visible on
+/// a dark surface color.
+///
+/// @example scss - Example Usage SCSS
+///   .container {
+///     background-color: #000;
+///
+///     @include use-dark-surface;
+///   }
+///
 @mixin use-dark-surface {
   @if not $disable-surface {
     @include set-var(
@@ -237,7 +429,7 @@ $variables: (
     );
   }
 
-  @if not $_disable-ripple {
+  @if not $disable-ripple {
     @include set-var(
       ripple-background-color,
       $dark-surface-ripple-background-color
@@ -245,6 +437,21 @@ $variables: (
   }
 }
 
+/// This mixin should only be used when not using the `surface`
+/// mixin.
+///
+/// @example scss - Example Usage SCSS
+///   .link {
+///     @include outline;
+///   }
+///
+/// @param {Boolean} box-shadow [$focus-box-shadow] - Set this to `true` to
+/// disable the `outline` styles when using `box-shadow` instead.
+/// @param {Color} color [transparent] - The outline color to use by default
+/// @param {Boolean} outline-offset [not $disable-outline-offset] - Set to
+/// `true` if the `outline-offset` property should also be set to match how
+/// box shadow would have been applied.
+/// @see surface
 @mixin outline(
   $box-shadow: $focus-box-shadow,
   $color: transparent,
@@ -263,6 +470,22 @@ $variables: (
   }
 }
 
+/// This mixin should only be used when not using the `surface`
+/// mixin.
+///
+/// @example scss - Example Usage SCSS
+///   .link {
+///     &:focus-visible {
+///       @Include focus-styles($disable-background: true);
+///     }
+///   }
+///
+/// @param {Boolean} $box-shadow [$focus-box-shadow] - Set to `true` if using
+/// `box-shadow` instead of `outline` styles for focus states.
+/// @param {Boolean} $disable-background [$disable-focus-background] - Set to
+/// `true` if the `background-color` should not change while the element is
+/// focused.
+/// @see surface
 @mixin focus-styles(
   $box-shadow: $focus-box-shadow,
   $disable-background: $disable-focus-background
@@ -278,6 +501,13 @@ $variables: (
   }
 }
 
+/// This mixin should only be used when not using the `surface`
+/// mixin.
+///
+/// @param {Boolean} $clickable [true] - Set to `false` if the `cursor: auto`
+/// styles should not be applied.
+/// @param {Boolean} $hoverable [true] - Set to `false` if the element was not
+/// hoverable.
 @mixin surface-disabled($clickable: true, $hoverable: true) {
   @if $clickable {
     cursor: auto;
@@ -290,6 +520,37 @@ $variables: (
   }
 }
 
+/// Creates a "surface" for an interactable element that:
+/// - applies a focus outline/box-shadow
+/// - applies different background colors based on the `focus` and `hover` states
+/// - applies styles based on if the element is clickable
+/// - applies styles if the element is disabled
+///
+/// @example scss - Example Usage SCSS
+///   .container {
+///     display: flex;
+///
+///     @include surface;
+///   }
+///
+/// @param {String} $focus-selector ["&:focus" + if(utils.disable-focus-visible, "", "-visible")] -
+/// The selector to use indicating the element has been focused.
+/// @param {Boolean} $keyboard-only-focus [utils.$disable-focus-visible] -
+/// @param {String} $disabled-selector ["&:disabled"] - The selector to use
+/// indicating the element is disabled.
+/// @param {Boolean} $clickable [true] - Set to `false` if the element should
+/// not gain the `cursor: pointer` styles.
+/// @param {Boolean} $hoverable [true] - Set to `false` if the element should
+/// not apply styles for changing the background color while hovering.
+/// @param {Boolean} $css-modules [false] - Set to `true` if this mixin is
+/// being used within CSS modules to fix the global name spacing of classes.
+/// @param {Boolean} $higher-contrast [true] - Set to `false` if all child
+/// elements should no longer gain a `z-index: 1` to appear above the
+/// background styles.
+/// @param {Boolean} $box-shadow [$focus-box-shadow] - Set to `true` if using
+/// focus box shadow behavior instead of outlines
+/// @param {Boolean} $disable-background [$disable-focus-background] - Set to
+/// `true` to disable the focus background color styles.
 @mixin surface(
   $focus-selector: "&:focus" + if(utils.$disable-focus-visible, "", "-visible"),
   $keyboard-only-focus: utils.$disable-focus-visible,
@@ -364,6 +625,7 @@ $variables: (
   }
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @include set-var(focus-color, $focus-color);
   @include set-var(focus-width, $focus-width);
@@ -375,7 +637,7 @@ $variables: (
     @include set-var(selected-background-color, $selected-background-color);
   }
 
-  @if not $_disable-ripple {
+  @if not $disable-ripple {
     @include set-var(ripple-background-color, $ripple-background-color);
     @include set-var(ripple-inset, 0);
   }
@@ -385,9 +647,13 @@ $variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @include utils.optional-layer(interaction, $disable-layer) {
-    @if not $_disable-ripple {
+    @if not $disable-ripple {
       .rmd-ripple-container {
         @include use-var(border-radius, ripple-border-radius);
         @include use-var(inset, ripple-inset);

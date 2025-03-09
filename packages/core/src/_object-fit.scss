@@ -1,47 +1,51 @@
+////
+/// @group object-fit
+////
+
 @use "sass:list";
 @use "./utils";
 
-// Set to `true` to disable generating any styles
-// @type boolean
+/// Set to `true` to disable generating any styles
+/// @type Boolean
 $disable-everything: false !default;
 
-// Set to `true` to only disable the `object-fit: cover` styles
-// @type boolean
+/// Set to `true` to only disable the `object-fit: cover` styles
+/// @type Boolean
 $disable-cover: false !default;
 
-// Set to `true` to only disable the `object-fit: fill` styles
-// @type boolean
+/// Set to `true` to only disable the `object-fit: fill` styles
+/// @type Boolean
 $disable-fill: false !default;
 
-// Set to `true` to only disable the `object-fit: none` styles
-// @type boolean
+/// Set to `true` to only disable the `object-fit: none` styles
+/// @type Boolean
 $disable-none: false !default;
 
-// Set to `true` to only disable the `object-fit: scale-down` styles
-// @type boolean
+/// Set to `true` to only disable the `object-fit: scale-down` styles
+/// @type Boolean
 $disable-scale-down: false !default;
 
-// The default display property value. This could be `flex`, `grid`, etc if it
-// should be applied globally.
-//
-// @type string
+/// The default display property value. This could be `flex`, `grid`, etc if it
+/// should be applied globally.
+///
+/// @type String
 $display: block !default;
 
-// The default set of aspect ratios to support. The map key should be the class
-// name suffix and the value a space separate list.
-//
-// @type Map
+/// The default set of aspect ratios to support. The map key should be the class
+/// name suffix and the value a space separate list.
+///
+/// @type Map
 $aspect-ratios: (
   "16-9": 16 9,
   "4-3": 4 3,
   "1-1": 1 1,
 ) !default;
 
-// Generates all the styles for the `objectFit` class name utility and should
-// not be used if calling `@include core.styles`.
-//
-// @param {boolean} disable-layer - Set this to `true` to disable the
-// layer behavior
+/// Generates all the styles for the `objectFit` class name utility and should
+/// not be used if calling `@include core.styles`.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(object-fit, $disable-layer) {

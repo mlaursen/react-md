@@ -1,17 +1,40 @@
+////
+/// @group overlay
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../theme/colors";
 @use "../transition/transition";
 
+/// Set to `true` to disable all the styles.
+/// @type Boolean
 $disable-everything: false !default;
+
+/// The default `Overlay` background color.
+/// @type Color
 $background-color: rgba(colors.$black, 0.4) !default;
+
+/// The default `Overlay` z-index.
+/// @type Number
 $z-index: utils.$temporary-element-z-index !default;
 
+/// The default `Overlay` enter/exit transition duration
+/// @type Number
 $transition-duration: transition.$linear-duration !default;
+
+/// The default `Overlay` enter/exit transition timing function
+/// @type Number
 $transition-timing-function: transition.$linear-timing-function !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (background-color, z-index);
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "overlay");
   @if $fallback {
@@ -21,16 +44,24 @@ $variables: (background-color, z-index);
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "overlay")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(background-color, $background-color);
@@ -38,6 +69,10 @@ $variables: (background-color, z-index);
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(overlay, $disable-layer) {

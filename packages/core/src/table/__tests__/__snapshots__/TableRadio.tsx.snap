@@ -2,7 +2,7 @@
 
 exports[`TableRadio should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <td
-  class="rmd-table-cell rmd-table-cell--input-toggle rmd-table-cell--no-wrap rmd-align-left"
+  class="rmd-table-cell rmd-table-cell--input-toggle rmd-align-left rmd-nowrap rmd-ellipsis"
 >
   <label
     class="rmd-label rmd-label--gap rmd-label--reversed"
@@ -36,7 +36,7 @@ exports[`TableRadio should apply the correct styling, HTML attributes, and allow
 
 exports[`TableRadio should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <td
-  class="rmd-table-cell rmd-table-cell--input-toggle rmd-table-cell--no-wrap rmd-align-left custom-class-name"
+  class="rmd-table-cell rmd-table-cell--input-toggle rmd-align-left rmd-nowrap rmd-ellipsis custom-class-name"
   style="pointer-events: none;"
 >
   <label
@@ -71,7 +71,7 @@ exports[`TableRadio should apply the correct styling, HTML attributes, and allow
 
 exports[`TableRadio should handle the aria-label/aria-labelledby props correctly 1`] = `
 <td
-  class="rmd-table-cell rmd-table-cell--input-toggle rmd-table-cell--no-wrap rmd-align-left"
+  class="rmd-table-cell rmd-table-cell--input-toggle rmd-align-left rmd-nowrap rmd-ellipsis"
 >
   <label
     class="rmd-label rmd-label--gap rmd-label--reversed"
@@ -105,7 +105,7 @@ exports[`TableRadio should handle the aria-label/aria-labelledby props correctly
 
 exports[`TableRadio should handle the aria-label/aria-labelledby props correctly 2`] = `
 <td
-  class="rmd-table-cell rmd-table-cell--input-toggle rmd-table-cell--no-wrap rmd-align-left"
+  class="rmd-table-cell rmd-table-cell--input-toggle rmd-align-left rmd-nowrap rmd-ellipsis"
 >
   <label
     class="rmd-label rmd-label--gap rmd-label--reversed"

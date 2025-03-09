@@ -32,3 +32,36 @@ export function expansionPanel(
 
   return cnb(styles({ expanded, animate: !disableTransition }), className);
 }
+
+/**
+ * @since 6.0.0
+ */
+export interface ExpansionPanelHeadingClassNameOptions {
+  className?: string;
+}
+
+/**
+ * @since 6.0.0
+ */
+export function expansionPanelHeading(
+  options: ExpansionPanelHeadingClassNameOptions = {}
+): string {
+  const { className } = options;
+  return cnb(styles("heading"), className);
+}
+/**
+ * @since 6.0.0
+ */
+export interface ExpansionPanelButtonClassNameOptions {
+  className?: string;
+}
+
+/**
+ * @since 6.0.0
+ */
+export function expansionPanelButton(
+  options: ExpansionPanelButtonClassNameOptions = {}
+): string {
+  const { className } = options;
+  return cnb(styles("button"), className);
+}

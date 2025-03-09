@@ -1,3 +1,7 @@
+////
+/// @group table
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../box-shadows";
@@ -8,43 +12,126 @@
 @use "../transition/transition";
 @use "../divider/divider";
 
+/// Set to `true` to disable all the styles.
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable the `TableContainer` styles.
+/// @type Boolean
 $disable-container: false !default;
+
+/// Set to `true` to disable the dense `Table` styles.
+/// @type Boolean
 $disable-dense: false !default;
+
+/// Set to `true` to disable the `fullWidth` behavior for the `Table`
+/// component.
+///
+/// @type Boolean
 $disable-full-width: false !default;
+
+/// Set to `true` to disable the `align="top"` styles for the `TableCell`.
+/// @type Boolean
 $disable-cell-align-top: false !default;
+
+/// Set to `true` to disable the `align="bottom"` styles for the `TableCell`.
+/// @type Boolean
 $disable-cell-align-bottom: false !default;
+
+/// Set to `true` to disable border styles for the `TableRow`.
+/// @type Boolean
 $disable-bordered: false !default;
+
+/// Set to `true` to allow the last `TableRow` to also gain the border styles.
+/// @type Boolean
 $disable-bordered-except-last: false !default;
+
+/// Set to `true` to disable the `TableRow` selected styles.
+///
+/// @see $row-selected-styles
+/// @type Boolean
 $disable-selected: false !default;
+
+/// Set to `true` to disable the clickable `TableRow` styles.
+/// @type Boolean
 $disable-clickable: false !default;
+
+/// Set to `true` to disable the hoverable `TableRow` styles.
+/// @type Boolean
 $disable-hoverable: false !default;
-// convenience variable to disable all sticky behavior
+
+/// Set to `true` to disable all sticky table styles.
+/// @type Boolean
 $disable-sticky: false !default;
-// disable the sticky cells (within tbody)
+
+/// Set to `true` to disable all the sticky cell styles within the `TableBody`.
+/// @type Boolean
 $disable-sticky-cell: $disable-sticky !default;
+
+/// Set to `true` to disable the sticky `TableHeader` styles.
+/// @type Boolean
 $disable-sticky-header: $disable-sticky !default;
+
+/// Set to `true` to disable the sticky `TableFooter` styles.
+/// @type Boolean
 $disable-sticky-footer: $disable-sticky !default;
+
+/// Set to `true` to disable the `TableCheckbox` and `TableRadio` styles.
+/// @type Boolean
 $disable-input-toggle: false !default;
-$disable-cell-no-wrap: false !default;
+
+/// Set to `true` to disable the `TableCell` `grow` styles.
+/// @type Boolean
 $disable-cell-grow: false !default;
+
+/// Set to `true` to disable the `padding="none"` `TableCell` styles.
+/// @type Boolean
 $disable-cell-no-padding: false !default;
+
+/// Set to `true` to disable the `TableCell` sort behavior styles.
+/// @type Boolean
 $disable-cell-sort: false !default;
+
+/// Set to `true` to disable the `padding="vertical"` `TableCell` styles.
+/// @type Boolean
 $disable-cell-vertical-padding: false !default;
 
-// defaults to `null` so it just inherits the background color
+/// An optional light theme background color to apply to the `Table`. This
+/// defaults to `null` so it just inherits the background color.
+///
+/// @type Color
 $light-theme-background-color: null !default;
+
+/// An optional dark theme background color to apply to the `Table`. This
+/// defaults to `null` so it just inherits the background color.
+///
+/// @type Color
 $dark-theme-background-color: null !default;
+
+/// The default `background-color` to apply to the `Table` component.
+/// @type Color
 $background-color: theme.get-default-color(
   $light-theme-background-color,
   $dark-theme-background-color
 ) !default;
+
+/// The light theme border-color to apply to each `TableRow`.
+/// @type Color
 $light-theme-border-color: #e0e0e0 !default;
+
+/// The dark theme border-color to apply to each `TableRow`.
+/// @type Color
 $dark-theme-border-color: #2f2f2f !default;
+
+/// The default border-color to apply to each `TableRow`.
+/// @type Color
 $border-color: theme.get-default-color(
   $light-theme-border-color,
   $dark-theme-border-color
 ) !default;
+
+/// The default border-width to apply to each `TableRow`.
+/// @type Number
 $border-size: divider.$size !default;
 
 $light-theme-header-background-color: null !default;
@@ -54,31 +141,97 @@ $header-background-color: theme.get-default-color(
   $dark-theme-header-background-color
 ) !default;
 
+/// The default `TableCell` typography styles.
+/// @type Map
 $cell-typography: typography.$body-2-styles !default;
+
+/// The default `TableCell` text color.
+/// @type Color
 $cell-color: theme.theme-get-var(text-primary-color) !default;
+
+/// The default `TableCell` height.
+/// @type Number
 $cell-height: 3.25rem !default;
+
+/// The default dense `TableCell` height.
+/// @type Number
 $cell-dense-height: 2rem !default;
+
+/// The default header (th) `TableCell` text color.
+/// @type Color
 $cell-header-color: $cell-color !default;
+
+/// The default header (th) `TableCell` typography styles.
+/// @type Map
 $cell-header-typography: (
   font-weight: map.get(typography.$subtitle-2-styles, font-weight),
   letter-spacing: map.get(typography.$subtitle-2-styles, letter-spacing),
   line-height: map.get(typography.$subtitle-2-styles, line-height),
 ) !default;
+
+/// The default header (th) `TableCell` height.
+/// @type Number
 $cell-header-height: 3.5rem !default;
+
+/// The default header (th) dense `TableCell` height.
+/// @type Number
 $cell-header-dense-height: 2.125rem !default;
+
+/// The default `TableCell` horizontal padding.
+/// @type Number
 $cell-horizontal-padding: 1rem !default;
+
+/// The default `TableCell` vertical padding.
+/// @type Number
 $cell-vertical-padding: 0.375rem !default;
+
+/// The default `TableCheckbox` and `TableRadio` horizontal padding.
+/// @type Number
+///
 $cell-input-toggle-horizontal-padding: 0.5rem !default;
+
+/// The default `gap` between items in a sortable `TableCell`.
+/// @type Number
 $cell-content-gap: icon.$spacing !default;
 
+/// This is the default position of a row based sticky `TableCell`.
+/// @type Number
 $sticky-cell-position: 0 !default;
+
+/// This is the default position of a column based sticky `TableCell`.
+/// @type Number
 $sticky-header-position: 0 !default;
+
+/// The default z-index for a sticky header (th) `TableCell`.
+/// @type Number
 $sticky-header-z-index: 2 !default;
+
+/// The default z-index for a `TableCheckbox` or `TableRadio` that is acting as
+/// a sticky table header for a column.
+/// @type Number
 $sticky-header-cell-z-index: $sticky-header-z-index + 1 !default;
+
+/// The default z-index for a sticky row-based `TableCell`.
+/// @type Number
 $sticky-cell-z-index: $sticky-header-z-index - 1 !default;
+
+/// The default position for a sticky `TableFooter`.
+/// @type Number
 $sticky-footer-position: 0 !default;
+
+/// The default z-index for a sticky `TableFooter`.
+/// @type Number
 $sticky-footer-z-index: $sticky-header-z-index - 1 !default;
+
+/// The background color to apply to a sticky table cell. This is required so
+/// that the other cells will not be visible below the cell.
+/// @type Color
 $sticky-background-color: theme.theme-get-var(background-color) !default;
+
+/// A map of styles to apply when using the `StickyTableSection` component with
+/// `type="header"`.
+///
+/// @type Map
 $sticky-header-inactive-styles: (
   transition: background transition.$linear-duration
     transition.$linear-timing-function,
@@ -94,6 +247,13 @@ $sticky-header-inactive-styles: (
     z-index: 0,
   ),
 ) !default;
+
+/// A map of styles to apply when using the `StickyTableSection` component with
+/// `type="header"`. These are the styles that are applied once the
+/// `IntersectionObserver` considers the `StickyTableSection` to be covering
+/// other content within the table due to scrolling.
+///
+/// @type Map
 $sticky-header-active-styles: (
   "--rmd-background-color": theme.get-dark-elevation-color(4),
   background-color: theme.theme-get-var(background-color),
@@ -101,12 +261,32 @@ $sticky-header-active-styles: (
     opacity: 1,
   ),
 ) !default;
+
+/// A map of styles to apply when using the `StickyTableSection` component with
+/// `type="footer"`.
+///
+/// @type Map
 $sticky-footer-inactive-styles: $sticky-header-inactive-styles !default;
+
+/// A map of styles to apply when using the `StickyTableSection` component with
+/// `type="footer"`. These are the styles that are applied once the
+/// `IntersectionObserver` considers the `StickyTableSection` to be covering
+/// other content within the table due to scrolling.
+///
+/// @type Map
 $sticky-footer-active-styles: $sticky-header-active-styles !default;
 
+/// The default `TableRow` hover background-color.
+/// @type Color
 $row-hover-color: interaction.get-var(hover-background-color) !default;
+
+/// The default `TableRow` selected background-color.
+/// @type Color
 $row-selected-color: interaction.get-var(selected-background-color) !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   background-color,
   border-size,
@@ -125,6 +305,9 @@ $variables: (
   sticky-background-color
 );
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "table");
   @if $fallback {
@@ -134,24 +317,39 @@ $variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "table")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
-// these have to be initialized after the css-var stuff to work
+/// The default `TableRow` hover styles.
+///
+/// @ignore These have to be initialized after the css-var stuff to work
+/// @type Map
 $row-hover-styles: (
   background-color: get-var(hover-color),
 ) !default;
+
+/// The default `TableRow` selected styles.
+///
+/// @type Map
 $row-selected-styles: (
   background-color: get-var(selected-color),
 ) !default;
 
+/// Applies the light the variables based on feature flags
 @mixin use-light-theme {
   @if not $disable-everything {
     @include set-var(border-color, $light-theme-border-color);
@@ -165,6 +363,7 @@ $row-selected-styles: (
   }
 }
 
+/// Applies the dark the variables based on feature flags
 @mixin use-dark-theme {
   @if not $disable-everything {
     @include set-var(border-color, $dark-theme-border-color);
@@ -178,6 +377,7 @@ $row-selected-styles: (
   }
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(background-color, $background-color);
@@ -211,6 +411,10 @@ $row-selected-styles: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(table, $disable-layer) {
@@ -409,12 +613,6 @@ $row-selected-styles: (
         @if not $disable-cell-grow {
           &--grow {
             width: 100%;
-          }
-        }
-
-        @if not $disable-cell-no-wrap {
-          &--no-wrap {
-            @include typography.text-overflow;
           }
         }
 

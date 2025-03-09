@@ -1,27 +1,31 @@
+////
+/// @group core.a11y
+////
+
 @use "sass:color";
 @use "sass:list";
 @use "sass:math";
 
-// Precomputed linear color channel values, for use in contrast calculations.
-// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
-//
-// Algorithm:
-//
-// ```
-// for c in 0 to 255:
-// f(c) {
-//   c = c / 255;
-//   return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-// }
-// ```
-//
-// This lookup table is needed since there is no `pow` in SCSS/Sass. You _can_
-// make your own, but it is recommended to pass the computed values from a
-// 'more complete' layer (like node) as a lookup table to speed up compilation
-// time.
-//
-// @internal
-// @type List
+/// Precomputed linear color channel values, for use in contrast calculations.
+/// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+///
+/// Algorithm:
+///
+/// ```markup
+/// for c in 0 to 255:
+/// f(c) {
+///   c = c / 255;
+///   return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+/// }
+/// ```
+///
+/// This lookup table is needed since there is no `pow` in SCSS/Sass. You _can_
+/// make your own, but it is recommended to pass the computed values from a
+/// 'more complete' layer (like node) as a lookup table to speed up compilation
+/// time.
+///
+/// @access private
+/// @type List
 $_linear-channel-values: (
   0 0.0003035269835488375 0.000607053967097675 0.0009105809506465125
     0.00121410793419535 0.0015176349177441874 0.001821161901293025
@@ -102,12 +106,12 @@ $_linear-channel-values: (
     1
 );
 
-// Calculate the luminance for a color.
-//
-// @internal
-// @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
-// @param {Color} color - The color to check
-// @returns {number} A number representing the luminance for the color.
+/// Calculate the luminance for a color.
+///
+/// @access private
+/// @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+/// @param {Color} color - The color to check
+/// @returns {Number} A number representing the luminance for the color.
 @function _luminance($color) {
   $red: list.nth(
     $_linear-channel-values,
@@ -129,14 +133,14 @@ $_linear-channel-values: (
     ($blue * $blue-multiplier);
 }
 
-// Gets the contrast between two colors.
-//
-// @access private
-// @param {Color} back - The background color
-// @param {Color} front - The foreground color that should be compared to the
-// background color for contrast ratio.
-// @returns {number} The contrast ratio between the background and foreground
-// colors
+/// Gets the contrast between two colors.
+///
+/// @access private
+/// @param {Color} back - The background color
+/// @param {Color} front - The foreground color that should be compared to the
+/// background color for contrast ratio.
+/// @returns {Number} The contrast ratio between the background and foreground
+/// colors
 @function _contrast($back, $front) {
   $back-luminance: _luminance($back) + 0.05;
   $front-luminance: _luminance($front) + 0.05;
@@ -147,34 +151,30 @@ $_linear-channel-values: (
   );
 }
 
-// Gets the contrast between two colors. The contrast ratios between background
-// and foreground colors should be:
-// - 3 for large text (18pt normal or 14pt bold)
-// - 4.5 for normal text
-// - 7.1 for Level AAA requirements.
-//
-// NOTE: This does not account for font size or font weight but should be good
-// enough for most cases.
-//
-// @example
-// ```scss
-// @use "@react-md/core";
-//
-// $background-color: #fafafa;
-//
-// .container {
-//   background-color: $background-color;
-//   color: core.contrast-color($background-color);
-// }
-// ```
-//
-// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
-// @param {Color} background-color - The background color to check
-// @param {Color} light-color - The light text color to use if it has a better
-// contrast ratio.
-// @param {Color} dark-color - The dark text color to use if it has a better
-// contrast ratio.
-// @returns {Color} The color with the highest contrast ratio
+/// Gets the contrast between two colors. The contrast ratios between background
+/// and foreground colors should be:
+/// - 3 for large text (18pt normal or 14pt bold)
+/// - 4.5 for normal text
+/// - 7.1 for Level AAA requirements.
+///
+/// NOTE: This does not account for font size or font weight but should be good
+/// enough for most cases.
+///
+/// @example scss
+///   $background-color: #fafafa;
+///
+///   .container {
+///     background-color: $background-color;
+///     color: contrast-color($background-color);
+///   }
+///
+/// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
+/// @param {Color} background-color - The background color to check
+/// @param {Color} light-color - The light text color to use if it has a better
+/// contrast ratio.
+/// @param {Color} dark-color - The dark text color to use if it has a better
+/// contrast ratio.
+/// @returns {Color} The color with the highest contrast ratio
 @function contrast-color(
   $background-color,
   $light-color: #fff,

@@ -6,7 +6,7 @@ exports[`TableRow should apply the correct styling, HTML attributes, and allow a
   data-testid="row"
 >
   <td
-    class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
+    class="rmd-table-cell rmd-align-left rmd-nowrap rmd-ellipsis"
   >
     Content
   </td>
@@ -20,7 +20,7 @@ exports[`TableRow should apply the correct styling, HTML attributes, and allow a
   style="cursor: pointer;"
 >
   <td
-    class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
+    class="rmd-table-cell rmd-align-left rmd-nowrap rmd-ellipsis"
   >
     Content
   </td>
@@ -34,7 +34,7 @@ exports[`TableRow should apply the correct styling, HTML attributes, and allow a
   style=""
 >
   <td
-    class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
+    class="rmd-table-cell rmd-align-left rmd-nowrap rmd-ellipsis"
   >
     Content
   </td>
@@ -48,7 +48,7 @@ exports[`TableRow should apply the correct styling, HTML attributes, and allow a
   style=""
 >
   <td
-    class="rmd-table-cell rmd-table-cell--no-wrap rmd-align-left"
+    class="rmd-table-cell rmd-align-left rmd-nowrap rmd-ellipsis"
   >
     Content
   </td>

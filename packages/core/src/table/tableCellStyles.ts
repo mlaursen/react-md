@@ -77,11 +77,11 @@ export function tableCell(options: TableCellClassNameOptions = {}): string {
     sticky && isInTableHeader && `${p}sticky-header`,
     sticky && isInTableHeader && inputToggle && `${p}header-cell`,
     vAlign && vAlign !== "middle" && `${p}${vAlign}`,
-    !lineWrap && `${p}no-wrap`,
     padding === "vertical" && `${p}v-padding`,
     padding === "none" && `${p}no-padding`,
     cssUtils({
       textAlign: hAlign,
+      textOverflow: lineWrap ? undefined : "ellipsis",
     }),
     className
   );

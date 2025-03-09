@@ -160,6 +160,7 @@ export function useResizableLayout(
     pathname,
     appBarPosition = "fixed",
     fullHeightNav = false,
+    temporaryUntil,
     defaultVisible,
     defaultExpanded,
     ...splitterOptions
@@ -170,6 +171,7 @@ export function useResizableLayout(
   const expandableLayout = useExpandableLayout({
     pathname,
     appBarPosition,
+    temporaryUntil,
     fullHeightNav,
     defaultExpanded,
     defaultVisible,

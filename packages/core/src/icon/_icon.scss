@@ -1,170 +1,179 @@
+////
+/// @group icon
+////
+
 @use "sass:color";
 @use "../theme/theme";
 @use "../transition/transition";
 @use "../utils";
 
-// Set to `true` to disable the font icon styles. You normally want to only have
-// one icon type enabled.
-//
-// @example Font Icons Only
-// ```scss
-// @use "@react-md/core" with (
-//   $disable-svg: true,
-//   $disable-symbol: true
-// );
-// ```
-// @type boolean
+/// Set to `true` to disable the font icon styles. You normally want to only have
+/// one icon type enabled.
+///
+/// @example scss - Font Icons Only<!-- no-compile -->
+///   @use "@react-md/core" with (
+///     $disable-svg: true,
+///     $disable-symbol: true
+///   );
+///
+/// @type Boolean
 $disable-font: false !default;
 
-// Set to `true` to disable the svg icon styles. You normally want to only have
-// one icon type enabled.
-//
-// @example SVG Icons Only
-// ```scss
-// @use "@react-md/core" with (
-//   $disable-font: true,
-//   $disable-symbol: true
-// );
-// ```
-// @type boolean
+/// Set to `true` to disable the svg icon styles. You normally want to only have
+/// one icon type enabled.
+///
+/// @example scss - SVG Icons Only<!-- no-compile -->
+///   @use "@react-md/core" with (
+///     $disable-font: true,
+///     $disable-symbol: true
+///   );
+///
+/// @type Boolean
 $disable-svg: false !default;
 
-// Set to `true` to disable the symbol icon styles. You normally want to only have
-// one icon type enabled.
-//
-// @example Material Symbols Icons Only
-// ```scss
-// @use "@react-md/core" with (
-//   $disable-font: true,
-//   $disable-svg: true
-// );
-// ```
-// @type boolean
+/// Set to `true` to disable the symbol icon styles. You normally want to only have
+/// one icon type enabled.
+///
+/// @example scss - Material Symbols Icons Only<!-- no-compile -->
+///   @use "@react-md/core" with (
+///     $disable-font: true,
+///     $disable-svg: true
+///   );
+///
+/// @type Boolean
 $disable-symbol: false !default;
 
-// Set to `true` to disable the dense icon sizes
-// @type boolean
+/// Set to `true` to disable the dense icon sizes
+/// @type Boolean
 $disable-dense: false !default;
 
-// Set to `true` to disable the styles for aligning icons within inline text
-// blocks (like paragraphs).
-// @type boolean
+/// Set to `true` to disable the styles for aligning icons within inline text
+/// blocks (like paragraphs).
+/// @type Boolean
 $disable-inline: false !default;
 
-// Set to `true` to disable the `.rmd-icon--before` styles with the
-// `TextIconSpacing` component.
-// @type boolean
+/// Set to `true` to disable the `.rmd-icon--before` styles with the
+/// `TextIconSpacing` component.
+/// @type Boolean
 $disable-spacing-before: false !default;
 
-// Set to `true` to disable the `.rmd-icon--after` styles with the
-// `TextIconSpacing` component.
-// @type boolean
+/// Set to `true` to disable the `.rmd-icon--after` styles with the
+/// `TextIconSpacing` component.
+/// @type Boolean
 $disable-spacing-after: false !default;
 
-// Set to `true` to disable the `.rmd-icon--above` styles with the
-// `TextIconSpacing` component.
-// @type boolean
+/// Set to `true` to disable the `.rmd-icon--above` styles with the
+/// `TextIconSpacing` component.
+/// @type Boolean
 $disable-spacing-above: false !default;
 
-// Set to `true` to disable the `.rmd-icon--below` styles with the
-// `TextIconSpacing` component.
-// @type boolean
+/// Set to `true` to disable the `.rmd-icon--below` styles with the
+/// `TextIconSpacing` component.
+/// @type Boolean
 $disable-spacing-below: false !default;
 
-// Set to `true` to disable the icon rotator styles
-// @type boolean
+/// Set to `true` to disable the icon rotator styles
+/// @type Boolean
 $disable-rotator: false !default;
 
-// The default icon color when using the global light theme
-// @type Color
+/// The default icon color when using the global light theme
+/// @type Color
 $light-theme-color: color.adjust(#000, $lightness: 46%) !default;
 
-// The default icon color when using the global dark theme
-// @type Color
+/// The default icon color when using the global dark theme
+/// @type Color
 $dark-theme-color: color.adjust(#fff, $lightness: -30%) !default;
 
-// The default icon color
-// @type Color
+/// The default icon color
+/// @type Color
 $color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
 
-// The default icon size
-// @type number
+/// The default icon size
+/// @type Number
 $size: 1.5rem !default;
 
-// The default icon dense size
-// @type number
+/// The default icon dense size
+/// @type Number
 $dense-size: 1.25rem !default;
 
-// This is the default material symbol fill value. It should be one of:
-// - `0`
-// - `1`
-//
-// @type number
+/// This is the default material symbol fill value. It should be one of:
+/// - `0`
+/// - `1`
+///
+/// @type Number
 $symbol-fill: 0 !default;
 
-// This is the default material symbol weight value. It should be one of:
-// - `100`
-// - `200`
-// - `300`
-// - `400`
-// - `500`
-// - `600`
-// - `700`
-//
-// @type number
+/// This is the default material symbol weight value. It should be one of:
+/// - `100`
+/// - `200`
+/// - `300`
+/// - `400`
+/// - `500`
+/// - `600`
+/// - `700`
+///
+/// @type Number
 $symbol-weight: 400 !default;
 
-// This is the default material symbol grade value. It should be one of:
-// - `-25`
-// - `0`
-// - `200`
-//
-// @type number
+/// This is the default material symbol grade value. It should be one of:
+/// - `-25`
+/// - `0`
+/// - `200`
+///
+/// @type Number
 $symbol-grade: 0 !default;
 
-// This is the default material symbol fill value. It should be one of:
-// - `20`
-// - `24`
-// - `40`
-// - `48`
-//
-// @type number
+/// This is the default material symbol fill value. It should be one of:
+/// - `20`
+/// - `24`
+/// - `40`
+/// - `48`
+///
+/// @type Number
 $symbol-optical-size: 48 !default;
 
+/// @access private
+/// @type Number
 $_validated-fill: utils.validate((0, 1), $symbol-fill, "$symbol-fill");
+/// @access private
+/// @type Number
 $_validated_weight: utils.validate(
   (100 200 300 400 500 600 700),
   $symbol-weight,
   "$symbol-weight"
 );
+/// @access private
+/// @type Number
 $_validated_grade: utils.validate((-25 0 200), $symbol-grade, "$symbol-grade");
+/// @access private
+/// @type Number
 $_validated_optical-size: utils.validate(
   (20 24 40 48),
   $symbol-optical-size,
   "$symbol-optical-size"
 );
 
-// The default spacing for the `TextIconSpacing` component or anytime icons
-// should be separated from other content.
-//
-// @type number
+/// The default spacing for the `TextIconSpacing` component or anytime icons
+/// should be separated from other content.
+///
+/// @type Number
 $spacing: 0.5rem !default;
 
-// The default `IconRotator` starting position
-// @type string
+/// The default `IconRotator` starting position
+/// @type String
 $rotate-from: 0deg !default;
 
-// The default `IconRotator` ending position
-// @type string
+/// The default `IconRotator` ending position
+/// @type String
 $rotate-to: 180deg !default;
 
-// The default `IconRotator` transition duration
-// @type number
+/// The default `IconRotator` transition duration
+/// @type Number
 $rotate-duration: transition.$linear-duration !default;
 
-// The available configurable css variables and mostly used internally for the
-// `get-var`, `set-var`, and `use-var` utils.
-// @type List
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   color,
   size,
@@ -177,12 +186,14 @@ $variables: (
   symbol-optical-size
 );
 
-// shouldn't really use react-md without icons though...
+/// shouldn't really use react-md without icons though...
+/// @access private
+/// @type Boolean
 $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
 
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value
-// @returns {string} a `var()` statement
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "icon");
   @if $fallback {
@@ -192,45 +203,45 @@ $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
   @return var(#{$var});
 }
 
-// @param {string} name - The supported variable name
-// @param {any} value - The value to set the variable to. Supports `null` which
-// will just be a no-op.
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "icon")}: #{$value};
   }
 }
 
-// @param {string} property - The css property to apply the variable to
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value if the variable has not
-// been set
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable has not
+/// been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
-// Applies the light the variables based on feature flags
+/// Applies the light the variables based on feature flags
 @mixin use-light-theme {
   @if not $_disable-icons {
     @include set-var(color, $light-theme-color);
   }
 }
 
-// Applies the dark the variables based on feature flags
+/// Applies the dark the variables based on feature flags
 @mixin use-dark-theme {
   @if not $_disable-icons {
     @include set-var(color, $dark-theme-color);
   }
 }
 
-// Applies the dense height variables
+/// Applies the dense height variables
 @mixin dense {
-  @if $dense-size {
+  @if not $_disable-icons and $dense-size {
     @include set-var(size, $dense-size);
   }
 }
 
-// Conditionally applies the css variables based on feature flags
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $_disable-icons {
     @include set-var(color, $color);
@@ -251,10 +262,10 @@ $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
   }
 }
 
-// Generates all the styles based on feature flags.
-//
-// @param {boolean} disable-layer - Set this to `true` to disable the
-// layer behavior
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $_disable-icons {
     @include utils.optional-layer(icon, $disable-layer) {

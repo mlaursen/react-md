@@ -1,3 +1,7 @@
+////
+/// @group layout
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../media-queries/media-queries";
@@ -11,27 +15,92 @@
 @use "../typography/typography";
 @use "../window-splitter/window-splitter";
 
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
-$disable-resizable: false !default;
+
+/// Set this to `true` if an expandable layout will not be used and instead
+/// using a temporary or full height navigation only.
+/// @type Boolean
+$disable-expandable: false !default;
+
+/// Set to `true` to disable resizable layout styles with the `WindowSplitter`.
+/// @type Boolean
+$disable-resizable: $disable-expandable !default;
+
+/// Set to `true` to disable the full height navigation styles.
+/// @type Boolean
 $disable-full-height-navigation: false !default;
 
+/// The `z-index` for the box-shadow applied `Main` component while focused.
+/// @type Number
 $main-focus-z-index: 999 !default;
 
+/// The default `LayoutAppBar` height.
+/// @type Number
 $header-height: app-bar.$height !default;
 
+/// The default `LayoutNav` z-index.
+/// @type Number
 $navigation-z-index: app-bar.$fixed-z-index !default;
+
+/// The width for the `LayoutNav` when it is rendered inline with other content
+/// on the page.
+/// @type Number
 $navigation-static-width: sheet.$static-width !default;
+
+/// Set this to `null` if the `LayoutNav` should not gain the `container`
+/// property.
+///
+/// @link https://developer.mozilla.org/en-US/docs/Web/CSS/@container
+/// @type String
 $navigation-container-name: nav !default;
 
+/// The breakpoint for switching between a temporary navigation to a
+/// persistent/toggleable layout. This should match the `temporaryUntil` option
+/// for the `useExpandableLayout`/`useResizableLayout` hooks.
+///
+/// This should be one of:
+/// - `phone`
+/// - `tablet`
+/// - `desktop`
+/// - `large-desktop`
+///
+/// @type String
 $navigation-breakpoint: tablet !default;
 
+/// The margin animation duration for the `Main` element while the expandable
+/// navigation is appearing. This should match the `sheet.$enter-duration` so
+/// the two elements animate together.
+/// @type Number
 $enter-duration: sheet.$enter-duration !default;
+
+/// The margin animation timing function for the `Main` element while the
+/// expandable navigation is appearing. This should match the
+/// `sheet.$enter-timing-function` so the two elements animate together.
+/// @type String
 $enter-timing-function: sheet.$enter-timing-function !default;
+
+/// The margin animation duration for the `Main` element while the expandable
+/// navigation is disappearing. This should match the `sheet.$leave-duration`
+/// so the two elements animate together.
+/// @type Number
 $leave-duration: sheet.$leave-duration !default;
+
+/// The margin animation timing function for the `Main` element while the
+/// expandable navigation is disappearing. This should match the
+/// `sheet.$leave-timing-function` so the two elements animate together.
+/// @type String
 $leave-timing-function: sheet.$leave-timing-function !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (size, header-height);
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "layout");
   @if $fallback {
@@ -41,16 +110,24 @@ $variables: (size, header-height);
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "layout")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(size, $navigation-static-width);
@@ -58,6 +135,10 @@ $variables: (size, header-height);
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(layout, $disable-layer) {
@@ -122,39 +203,41 @@ $variables: (size, header-height);
         }
       }
 
-      /// This class is used to transition when the nav expands/collapses on
-      /// larger screen sizes
-      .rmd-layout-h {
-        will-change: margin;
+      @if not $disable-expandable {
+        /// This class is used to transition when the nav expands/collapses on
+        /// larger screen sizes
+        .rmd-layout-h {
+          will-change: margin;
 
-        &--active {
-          @include media-queries.media($navigation-breakpoint) {
-            @include use-var(margin-left, size);
-
-            &::before {
-              @include use-var(left, size);
-            }
-
-            @include utils.rtl {
-              @include use-var(margin-right, size);
-
-              margin-left: 0;
+          &--active {
+            @include media-queries.media($navigation-breakpoint) {
+              @include use-var(margin-left, size);
 
               &::before {
-                @include use-var(right, size);
+                @include use-var(left, size);
+              }
 
-                left: auto;
+              @include utils.rtl {
+                @include use-var(margin-right, size);
+
+                margin-left: 0;
+
+                &::before {
+                  @include use-var(right, size);
+
+                  left: auto;
+                }
               }
             }
           }
-        }
 
-        &--enter {
-          transition: margin $enter-duration $enter-timing-function;
-        }
+          &--enter {
+            transition: margin $enter-duration $enter-timing-function;
+          }
 
-        &--exit {
-          transition: margin $leave-duration $leave-timing-function;
+          &--exit {
+            transition: margin $leave-duration $leave-timing-function;
+          }
         }
       }
 

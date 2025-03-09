@@ -6,6 +6,23 @@ import { useTabs } from "@react-md/core/tabs/useTabs";
 import { type ReactElement } from "react";
 
 function DisableActiveTabTransitionExample(): ReactElement {
+  const { getTabProps, getTabListProps } = useTabs({ disableTransition: true });
+
+  return (
+    <div>
+      <TabList {...getTabListProps()}>
+        <Tab {...getTabProps(0)}>Tab 1</Tab>
+        <Tab {...getTabProps(1)}>Tab 2</Tab>
+        <Tab {...getTabProps(2)}>Tab 3</Tab>
+      </TabList>
+    </div>
+  );
+}
+
+// This behaves the same as the component above but does not disable the
+// transitions for the tab panels (if they were defined). Try setting `VERBOSE`
+// to `true`
+function DisableActiveTabTransitionExample2(): ReactElement {
   const { getTabProps, getTabListProps } = useTabs();
 
   return (
@@ -25,23 +42,7 @@ function DisableActiveTabTransitionExample(): ReactElement {
   );
 }
 
-//.This behaves the same as the component above but also disables transitions
-// for the tabs. Try setting `VERBOSE` to `false`
-function DisableActiveTabTransitionExample2(): ReactElement {
-  const { getTabProps, getTabListProps } = useTabs({ disableTransition: true });
-
-  return (
-    <div>
-      <TabList {...getTabListProps()}>
-        <Tab {...getTabProps(0)}>Tab 1</Tab>
-        <Tab {...getTabProps(1)}>Tab 2</Tab>
-        <Tab {...getTabProps(2)}>Tab 3</Tab>
-      </TabList>
-    </div>
-  );
-}
-
-const VERBOSE = true;
+const VERBOSE = false;
 
 export default VERBOSE
   ? DisableActiveTabTransitionExample

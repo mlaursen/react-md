@@ -1,45 +1,136 @@
+////
+/// @group core.transition
+////
+
 @use "sass:color";
 @use "sass:map";
 @use "../utils";
 @use "../theme/colors";
 @use "../theme/theme";
 
+/// Set to `true` to disable all transition styles.
+/// @type Boolean
 $disable-transitions: false !default;
+
+/// Set to `true` to disable the collapse transition styles.
+/// @type Boolean
 $disable-collapse-transition: $disable-transitions !default;
+
+/// Set to `true` to disable the cross-fade transition styles.
+/// @type Boolean
 $disable-cross-fade-transition: $disable-transitions !default;
+
+/// Set to `true` to disable the scale transition styles.
+/// @type Boolean
 $disable-scale-transition: $disable-transitions !default;
+
+/// Set to `true` to disable the scale-y transition styles.
+/// @type Boolean
 $disable-scale-y-transition: $disable-scale-transition !default;
+
+/// Set to `true` to disable the skeleton placeholder transition styles.
+/// @type Boolean
 $disable-skeleton-placeholder: $disable-transitions !default;
+
+/// Set to `true` to disable the slide transition styles.
+/// @type Boolean
 $disable-slide-transition: $disable-transitions !default;
+
+/// Set to `true` to disable the max-width transition styles.
+/// @type Boolean
 $disable-max-width-transition: $disable-transitions !default;
+
+/// Set to `true` to disable the max-width transition gap styles.
+/// @type Boolean
 $disable-max-width-transition-gap: $disable-max-width-transition !default;
 
+/// The default transition duration for linear transitions. i.e. a transition
+/// that has the same enter and leave duration.
+/// @type Number
 $linear-duration: 0.15s !default;
+
+/// The default transition duration when an element enters less quickly than it
+/// leaves.
+/// @type Number
 $enter-duration: 0.2s !default;
+
+/// The default transition duration when an element leaves more quickly than it
+/// enters.
+/// @type Number
 $leave-duration: 0.15s !default;
 
+/// A default transition-timing-function to use when an element should appear quickly.
+/// @type String
 $sharp-timing-function: cubic-bezier(0.4, 0, 0.6, 1) !default;
+
+/// A default transition-timing-function to use when an element should appear
+/// and exit at the same speed.
+/// @type String
 $linear-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
+
+/// A default transition-timing-function to use when an element should
+/// accelerate during the transition.
+/// @type String
 $acceleration-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
+
+/// A default transition-timing-function to use when an element should
+/// decelerate during the transition.
+/// @type String
 $deceleration-timing-function: cubic-bezier(0, 0, 0.2, 1) !default;
 
+/// The starting position for the `CrossFade` transition.
+/// @type Number
 $cross-fade-translate-distance: -1rem !default;
+
+/// The cross fade transition duration.
+/// @type Number
 $cross-fade-transition-duration: 0.3s !default;
 
+/// The scale transition enter duration.
+/// @type Number
 $scale-transition-enter-duration: $enter-duration !default;
+
+/// The scale transition leave duration.
+/// @type Number
 $scale-transition-leave-duration: $leave-duration !default;
+
+/// The scale transition y (vertical) enter duration.
+/// @type Number
 $scale-y-transition-enter-duration: $enter-duration !default;
+
+/// The scale transition y (vertical) leave duration.
+/// @type Number
 $scale-y-transition-leave-duration: $leave-duration !default;
 
+/// The default skeleton placeholder height.
+/// @type Number
 $skeleton-placeholder-height: 1.125em !default;
+
+/// The default skeleton placeholder width`.
+/// @type Number
 $skeleton-placeholder-width: 43% !default;
+
+/// The default skeleton placeholder border-radius.
+/// @type Number
 $skeleton-placeholder-border-radius: 0.25rem !default;
+
+/// The default light theme skeleton placeholder background color.
+/// @type Color
 $skeleton-placeholder-light-background-color: #000 !default;
+
+/// The default dark theme skeleton placeholder background color.
+/// @type Color
 $skeleton-placeholder-dark-background-color: colors.$grey-300 !default;
+
+/// The default skeleton placeholder background color
+/// @type Color
 $skeleton-placeholder-background-color: theme.get-default-color(
   $skeleton-placeholder-dark-background-color,
   $skeleton-placeholder-light-background-color
 ) !default;
+
+/// The default skeleton placeholder `@keyframes` styles.
+/// @type Map
 $skeleton-placeholder-animation: (
   0%: (
     opacity: 0.06,
@@ -54,16 +145,38 @@ $skeleton-placeholder-animation: (
     opacity: 0.06,
   ),
 ) !default;
+
+/// The default skeleton placeholder animation duration.
+/// @type Number
 $skeleton-placeholder-animation-duration: 1.8s !default;
+
+/// The default skeleton placeholder animation timing function.
+/// @type String
 $skeleton-placeholder-animation-timing-function: ease-in-out !default;
 
+/// The default slide transition duration.
+/// @type Number
 $slide-duration: $linear-duration !default;
+
+/// The default slide transition timing function.
+/// @type String
 $slide-timing-function: $linear-timing-function !default;
 
+/// The default max width transition duration.
+/// @type Number
 $max-width-transition-duration: $linear-duration !default;
+
+/// The default max width transition timing function.
+/// @type Number
 $max-width-transition-timing-function: $linear-timing-function !default;
+
+/// The default max width transition's `max-width`
+/// @type Number
 $max-width-transition-default: 100% !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $transition-variables: (
   skeleton-placeholder-background-color,
   skeleton-placeholder-height,
@@ -73,6 +186,9 @@ $transition-variables: (
   max-width-gap
 );
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function transition-get-var($name, $fallback: null) {
   $var: utils.get-var-name($transition-variables, $name, "transition");
   @if $fallback {
@@ -82,16 +198,24 @@ $transition-variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin transition-set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($transition-variables, $name, "transition")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin transition-use-var($property, $name: $property, $fallback: null) {
   #{$property}: transition-get-var($name, $fallback);
 }
 
+/// Applies the light the variables based on feature flags
 @mixin transition-use-light-theme {
   @if not $disable-skeleton-placeholder {
     @include transition-set-var(
@@ -101,6 +225,7 @@ $transition-variables: (
   }
 }
 
+/// Applies the dark the variables based on feature flags
 @mixin transition-use-dark-theme {
   @if not $disable-skeleton-placeholder {
     @include transition-set-var(
@@ -111,12 +236,19 @@ $transition-variables: (
 }
 
 /// Note: This was only added because there was an issue with stylelint using @include as the only child within a keyframes
+///
+/// @param {String} name - the keyframes animation name.
+/// @content The keyframes content.
+/// @access private
 @mixin keyframes($name) {
   @keyframes #{$name} {
     @content;
   }
 }
 
+/// This should only be used if not using the `transition-styles` mixin.
+///
+/// @see {mixin} transition-styles
 @mixin collapse-transition {
   .rmd-collapse {
     transition-property: max-height, padding-bottom, padding-top;
@@ -136,6 +268,9 @@ $transition-variables: (
   }
 }
 
+/// This should only be used if not using the `transition-styles` mixin.
+///
+/// @see {mixin} transition-styles
 @mixin cross-fade-transition {
   .rmd-cross-fade {
     opacity: 0;
@@ -151,6 +286,9 @@ $transition-variables: (
   }
 }
 
+/// This should not be used if the `transition-styles` mixin is used.
+///
+/// @see {mixin} transition-styles
 @mixin scale-transition {
   .rmd-scale-transition--enter {
     opacity: 0;
@@ -179,6 +317,9 @@ $transition-variables: (
   }
 }
 
+/// This should not be used if the `transition-styles` mixin is used.
+///
+/// @see {mixin} transition-styles
 @mixin scale-y-transition {
   .rmd-scale-transition--y-enter {
     transform: scaleY(0);
@@ -205,6 +346,9 @@ $transition-variables: (
   }
 }
 
+/// This should not be used if the `transition-styles` mixin is used.
+///
+/// @see {mixin} transition-styles
 @mixin skeleton-placeholder-animation {
   .rmd-skeleton-placeholder {
     @include transition-use-var(
@@ -228,6 +372,9 @@ $transition-variables: (
   }
 }
 
+/// This should not be used if the `transition-styles` mixin is used.
+///
+/// @see {mixin} transition-styles
 @mixin slide-transition {
   .rmd-slide-container {
     --p1-start-x: var(--p1-start);
@@ -301,6 +448,7 @@ $transition-variables: (
   }
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin transition-variables {
   @if not $disable-skeleton-placeholder {
     @include transition-set-var(
@@ -326,6 +474,10 @@ $transition-variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin transition-styles($disable-layer: false) {
   @include utils.optional-layer(
     transition,

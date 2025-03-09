@@ -1,3 +1,7 @@
+////
+/// @group list
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../theme/theme";
@@ -7,33 +11,119 @@
 @use "../interaction/interaction";
 @use "../typography/typography";
 
+/// Set to `true` to disable all the styles.
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable the horizontal list styles.
+/// @type Boolean
 $disable-horizontal: false !default;
+
+/// Set to `true` if the `ListItem` will always enable the `disabledOpacity`
+/// prop.
+/// @see $disable-item-disabled-opacity
+/// @type Boolean
 $disable-item-disabled-color: false !default;
+
+/// Set to `true` if the `ListItem` will never enable the `disabledOpacity`
+/// prop.
+/// @type Boolean
 $disable-item-disabled-opacity: false !default;
+
+/// Set to `true` if the `ListItem` will never use an `Avatar` as an addon.
+///
+/// @type Boolean
 $disable-item-avatar: false;
+
+/// Set to `true` if the `ListItem` will never use a media addon.
+///
+/// @type Boolean
 $disable-item-media: false !default;
+
+/// Set to `true` if the `ListItem` will never use a large media addon.
+///
+/// @type Boolean
 $disable-item-media-large: false !default;
+
+/// Set to `true` if the `ListItem` will never use `height="medium"`or an icon
+/// addon.
+/// @type Boolean
 $disable-medium-height: false !default;
+
+/// Set to `true` if the `ListItem` will never use `height="large"`or an avatar
+/// addon.
+/// @type Boolean
 $disable-large-height: false !default;
+
+/// Set to `true` if the `ListItem` will never use `height="extra-large"`,
+/// secondary text or a media addon.
+///
+/// @type Boolean
 $disable-extra-large-height: false !default;
+
+/// Set to `true` if the `ListItem` will never enable the `multiline` prop for
+/// `secondaryText`.
+/// @type Boolean
 $disable-multiline-clamp: false !default;
+
+/// Set to `true` if the `ListItem` will never enable the `multiline` prop for
+/// `secondaryText`.
+/// @type Boolean
 $disable-multiline-height: true !default;
+
+/// Set to `true` if the `ListItemLink` component will not be used.
+/// @type Boolean
 $disable-item-link-styles: false !default;
 
+/// Set to `true` if the `ListSubheader` component will not be used.
+/// @type Boolean
 $disable-subheader: false !default;
+
+/// Set to `true` if the `inset` prop will never be enabled on the
+/// `ListSubheader` component.
+/// @type Boolean
 $disable-subheader-inset: false !default;
 
+/// Set to `true` if a `Divider` will never enable the `inset` prop within a
+/// `List`.
+/// @type Boolean
+$disable-divider-inset: divider.$disable-everything !default;
+
+/// The `line-height` to apply to the secondary text within a `ListItem`.
+/// @type Number
 $item-secondary-text-line-height: 1.42857 !default;
+
+/// The `max-height` to apply to the `ListItem` secondary text which enables
+/// the line-clamp behavior.
+///
+/// @type Number
 $item-secondary-text-multiline-max-height: 3rem !default;
 
+/// The vertical padding to apply to the `List` component.
+/// @type Number
 $vertical-padding: 0.5rem !default;
+
+/// The vertical padding to apply to a dense `List` component.
+/// @type Number
 $dense-vertical-padding: 0.25rem !default;
 
+/// The horizontal padding to apply to the `List` component.
+/// @type Number
 $horizontal-padding: 0 !default;
+
+/// The horizontal padding to apply to a dense `List` component.
+/// @type Number
 $dense-horizontal-padding: $horizontal-padding !default;
 
+/// The default font-size to apply to a dense `List` component. This will be
+/// applied after the `$typography-styles`.
+///
+/// @see $typography-styles
+/// @type Number
 $dense-font-size: 0.8125rem !default;
+
+/// The default typography to apply to the `List` component.
+/// @type List
 $typography-styles: map.merge(
   typography.$subtitle-1-styles,
   (
@@ -41,27 +131,108 @@ $typography-styles: map.merge(
   )
 ) !default;
 
+/// The amount of opacity to apply to a disabled `ListItem` and the
+/// `disableOpacity` prop has been enabled.
+///
+/// @type Number
 $item-disabled-opacity: 0.5 !default;
+
+/// The vertical padding to apply to `ListItem`.
+/// @type Number
 $item-vertical-padding: 0.5rem !default;
+
+/// The horizontal padding to apply to `ListItem`.
+/// @type Number
 $item-horizontal-padding: 1rem !default;
+
+/// The default height for a `ListItem` that has no addons or secondary text.
+/// @type Number
 $item-height: 3rem !default;
+
+/// The default height for a dense `ListItem` that has no addons or secondary
+/// text.
+/// @type Number
 $item-dense-height: 2.5rem !default;
+
+/// The default height for a `ListItem` that set `height="medium"` or has an
+/// icon addon with no secondary text.
+///
+/// @type Number
 $item-medium-height: 3.5rem !default;
+
+/// The default height for a dense `ListItem` that set `height="medium"` or has
+/// an icon addon with no secondary text.
+///
+/// @type Number
 $item-dense-medium-height: 3rem !default;
+
+/// The default height for a `ListItem` that set `height="large"` or has an
+/// avatar addon with no secondary text.
+///
+/// @type Number
 $item-large-height: 4rem !default;
+
+/// The default height for a dense `ListItem` that set `height="large"` or has
+/// an avatar addon with no secondary text.
+///
+/// @type Number
 $item-dense-large-height: 3.5rem !default;
+
+/// The default height for a `ListItem` that set `height="extra-large"` or has
+/// secondary text or a media addon
+///
+/// @type Number
 $item-extra-large-height: 4.5rem !default;
+
+/// The default height for a dense `ListItem` that set `height="extra-large"`
+/// or has secondary text or a media addon
+///
+/// @type Number
 $item-dense-extra-large-height: 4rem !default;
+
+/// The default `line-clamp` for a `ListItem` when the `multiline` prop is
+/// enabled and `secondaryText` was provided.
+///
+/// @type Number
 $item-multiline-clamp: 2 !default;
+
+/// The default height for a `ListItem` that has the `multiline` prop enabled.
+/// @type Number
 $item-multiline-height: 5.5rem !default;
+
+/// The default height for a `ListItem` that has the `multiline` and `dense`
+/// props enabled.
+///
+/// @type Number
 $item-dense-multiline-height: 5rem !default;
 
+/// The amount of spacing between a media addon and the `ListItem` content.
+///
+/// @type Number
 $item-media-spacing: 1rem !default;
+
+/// The default size for a media addon in the `ListItem` component.
+///
+/// @type Number
 $item-media-size: 3.5rem !default;
+
+/// The default size for a large media addon in the `ListItem` component.
+///
+/// @type Number
 $item-media-large-size: 6.25rem !default;
 
+/// The default keyline to apply to text content in a `ListItem` when an icon
+/// or `Avatar` are provided as addons. In other words, the text will be this
+/// distance from the left of the `ListItem`.
+///
+/// This will also be the `Divider` inset distance.
+///
+/// @type Number
 $item-keyline: 4.5rem !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   horizontal-padding,
   vertical-padding,
@@ -79,6 +250,9 @@ $variables: (
   item-multiline-clamp
 );
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "list");
   @if $fallback {
@@ -88,16 +262,27 @@ $variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "list")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Sets the icon spacing variable with additional spacing.
+/// @access private
+/// @param {String|Number} $subtract - The additional icon spacing to subtract
+/// in the `calc` expression.
 @mixin _addon-spacing($subtract) {
   $keyline: get-var(item-keyline);
   $padding: get-var(item-horizontal-padding);
@@ -108,6 +293,7 @@ $variables: (
   );
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(horizontal-padding, $horizontal-padding);
@@ -144,12 +330,18 @@ $variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(list, $disable-layer) {
       .rmd-list {
         @include utils.map-to-styles($typography-styles);
-        @include divider.set-var(inset, get-var(item-keyline));
+        @if not $disable-divider-inset {
+          @include divider.set-var(inset, get-var(item-keyline));
+        }
 
         list-style: none;
         margin: 0;

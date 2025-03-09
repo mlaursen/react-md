@@ -1,24 +1,73 @@
+////
+/// @group divider
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../theme/theme";
 @use "../theme/colors";
 
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` if the `vertical` prop will never be enabled on the `Divider`
+/// component.
+///
+/// @type Boolean
 $disable-vertical: false !default;
+
+/// Set to `true` if the `inset` prop will never be enabled on the `Divider`
+/// component.
+///
+/// @type Boolean
 $disable-inset: false !default;
 
+/// The default `height` while horizontal or `width` while vertical.
+///
+/// @type Number
 $size: 0.0625em !default;
+
+/// The default `border-width` when using the `divider-border-style` mixin.
+///
+/// @type Number
 $border-size: $size * 2 !default;
+
+/// The `max-width` while horizontal or `max-height` while vertical.
+///
+/// @type Number
 $max-size: 100% !default;
+
+/// The default `margin-left` to apply when the `inset` prop is enabled.
+///
+/// @type Number
 $inset: 4rem !default;
+
+/// The default margin to apply to the horizontal `Divider`.
+///
+/// @type Number
 $spacing: 0.25rem auto !default;
+
+/// The default margin to apply to the vertical `Divider`.
+///
+/// @type Number
 $vertical-spacing: auto 0.25rem !default;
 
+/// The `Divider` color in light themes.
+/// @type Color
 $light-theme-color: rgba(colors.$black, 0.12) !default;
+
+/// The `Divider` color in dark themes.
+/// @type Color
 $dark-theme-color: rgba(colors.$white, 0.12) !default;
 
+/// The default `Divider` color
+/// @type Color
 $color: theme.get-default-color($light-theme-color, $dark-theme-color) !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   size,
   border-size,
@@ -29,6 +78,9 @@ $variables: (
   max-size
 );
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "divider");
   @if $fallback {
@@ -38,28 +90,39 @@ $variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "divider")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Applies the light the variables based on feature flags
 @mixin use-light-theme {
   @if not $disable-everything {
     @include set-var(color, $light-theme-color);
   }
 }
 
+/// Applies the dark the variables based on feature flags
 @mixin use-dark-theme {
   @if not $disable-everything {
     @include set-var(color, $dark-theme-color);
   }
 }
 
+/// @param {String} position [null] - This should be one of `left`, `right`,
+/// `top`, `bottom`
 @mixin border-style($position: null) {
   $property: if(not $position, border, "border-#{$position}");
   $var-name: if(not $position, size, border-size);
@@ -67,6 +130,7 @@ $variables: (
   #{$property}: get-var($var-name) solid get-var(color);
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(size, $size);
@@ -85,6 +149,10 @@ $variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(divider, $disable-layer) {

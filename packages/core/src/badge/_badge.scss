@@ -1,3 +1,7 @@
+////
+/// @group badge
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../theme/a11y";
@@ -5,61 +9,61 @@
 @use "../theme/theme";
 @use "../typography/typography";
 
-// Set to `true` to disable all the styles
-// @type boolean
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
 
-// Set to `true` to disable the styles for the greyscale theme only
-// @type boolean
+/// Set to `true` to disable the styles for the greyscale theme only
+/// @type Boolean
 $disable-greyscale-theme: false !default;
 
-// Set to `true` to disable the styles for the primary theme only
-// @type boolean
+/// Set to `true` to disable the styles for the primary theme only
+/// @type Boolean
 $disable-primary-theme: false !default;
 
-// Set to `true` to disable the styles for the secondary theme only
-// @type boolean
+/// Set to `true` to disable the styles for the secondary theme only
+/// @type Boolean
 $disable-secondary-theme: false !default;
 
-// The default height and width
-// @type number
+/// The default height and width
+/// @type Number
 $size: 1.5rem !default;
 
-// The default font size which is merged into the {@link $typography} map.
-// @type number
+/// The default font size which is merged into the `$typography` map.
+/// @type Number
 $font-size: 0.625rem !default;
 
-// The default `top` and `right` offset applied to badges that are positioned
-// absolutely in a relative container.
-//
-// The styles are setup like:
-//
-// ```scss
-// top: var(--rmd-badge-offset-top, var(--rmd-badge-offset))
-// right: var(--rmd-badge-offset-right, var(--rmd-badge-offset))
-// ```
-//
-// @type number
+/// The default `top` and `right` offset applied to badges that are positioned
+/// absolutely in a relative container.
+///
+/// The styles are setup like:
+///
+/// ```scss
+/// top: var(--rmd-badge-offset-top, var(--rmd-badge-offset))
+/// right: var(--rmd-badge-offset-right, var(--rmd-badge-offset))
+/// ```
+///
+/// @type Number
 $offset: 0 !default;
 
-// An optional `top` offset override. When this is `null` or equal to the
-// {@link offset}, it will not be set and fallback to the {@link offset}
-// instead.
-// @type number
+/// An optional `top` offset override. When this is `null` or equal to the
+/// `offset`, it will not be set and fallback to the `offset`
+/// instead.
+/// @type Number
 $offset-top: $offset !default;
 
-// An optional `right` offset override. When this is `null` or equal to the
-// {@link offset}, it will not be set and fallback to the {@link offset}
-// instead.
-// @type number
+/// An optional `right` offset override. When this is `null` or equal to the
+/// `offset`, it will not be set and fallback to the `offset`
+/// instead.
+/// @type Number
 $offset-right: $offset !default;
 
-// The default border radius
-// @type number
+/// The default border radius
+/// @type Number
 $border-radius: 50% !default;
 
-// The default typography to use
-// @type Map
+/// The default typography to use
+/// @type Map
 $typography: map.merge(
   map.remove(typography.$body-1-styles, line-height, font-size),
   (
@@ -67,44 +71,44 @@ $typography: map.merge(
   )
 ) !default;
 
-// The background color for the greyscale theme when using the global light
-// theme
-// @type Color
+/// The background color for the greyscale theme when using the global light
+/// theme
+/// @type Color
 $light-theme-greyscale-background-color: #ccc !default;
 
-// The text color for the greyscale theme when using the global light theme
-// @type Color
+/// The text color for the greyscale theme when using the global light theme
+/// @type Color
 $light-theme-greyscale-color: a11y.contrast-color(
   $light-theme-greyscale-background-color
 ) !default;
 
-// The background color for the greyscale theme when using the global dark theme
-// @type Color
+/// The background color for the greyscale theme when using the global dark theme
+/// @type Color
 $dark-theme-greyscale-background-color: colors.$grey-700 !default;
 
-// The text color for the greyscale theme when using the global dark theme
-// @type Color
+/// The text color for the greyscale theme when using the global dark theme
+/// @type Color
 $dark-theme-greyscale-color: a11y.contrast-color(
   $dark-theme-greyscale-background-color
 ) !default;
 
-// The default greyscale background color
-// @type Color
+/// The default greyscale background color
+/// @type Color
 $greyscale-background-color: theme.get-default-color(
   $light-theme-greyscale-background-color,
   $dark-theme-greyscale-background-color
 ) !default;
 
-// The default greyscale text color
-// @type Color
+/// The default greyscale text color
+/// @type Color
 $greyscale-color: theme.get-default-color(
   $light-theme-greyscale-color,
   $dark-theme-greyscale-color
 ) !default;
 
-// The available configurable css variables and mostly used internally for the
-// `get-var`, `set-var`, and `use-var` utils.
-// @type List
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   greyscale-background-color,
   greyscale-color,
@@ -114,9 +118,9 @@ $variables: (
   offset-right
 );
 
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value
-// @returns {string} a `var()` statement
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "badge");
   @if $fallback {
@@ -126,24 +130,24 @@ $variables: (
   @return var(#{$var});
 }
 
-// @param {string} name - The supported variable name
-// @param {any} value - The value to set the variable to. Supports `null` which
-// will just be a no-op.
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "badge")}: #{$value};
   }
 }
 
-// @param {string} property - The css property to apply the variable to
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value if the variable has not
-// been set
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
-// Applies the light the variables based on feature flags
+/// Applies the light the variables based on feature flags
 @mixin use-light-theme {
   @if not $disable-everything {
     @if $light-theme-greyscale-background-color !=
@@ -160,7 +164,7 @@ $variables: (
   }
 }
 
-// Applies the dark the variables based on feature flags
+/// Applies the dark the variables based on feature flags
 @mixin use-dark-theme {
   @if not $disable-everything {
     @if $light-theme-greyscale-background-color !=
@@ -178,7 +182,7 @@ $variables: (
   }
 }
 
-// Conditionally applies the css variables based on feature flags
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(greyscale-background-color, $greyscale-background-color);
@@ -194,10 +198,10 @@ $variables: (
   }
 }
 
-// Generates all the styles based on feature flags.
-//
-// @param {boolean} disable-layer - Set this to `true` to disable the
-// layer behavior
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(badge, $disable-layer) {

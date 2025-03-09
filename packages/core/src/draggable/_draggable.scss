@@ -1,9 +1,25 @@
+////
+/// @group draggable
+////
+
 @use "../utils";
 
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable the horizontal draggable styles
+/// @type Boolean
 $disable-horizontal: false !default;
+
+/// Set to `true` to disable the vertical draggable styles
+/// @type Boolean
 $disable-vertical: false !default;
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(draggable, $disable-layer) {

@@ -1,3 +1,7 @@
+////
+/// @group autocomplete
+////
+
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
@@ -10,96 +14,106 @@
 @use "../form/form";
 @use "../progress/progress";
 
-// Set to `true` to disable all the styles
-// @type boolean
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
 
-// Set to `true` to disable the clear button styles
-// @type boolean
+/// Set to `true` to disable the clear button styles
+/// @type Boolean
 $disable-clear-button: false !default;
 
-// Set to `true` to disable the dropdown button styles
-// @type boolean
+/// Set to `true` to disable the dropdown button styles
+/// @type Boolean
 $disable-dropdown-button: false !default;
 
-// Set to `true` to disable the circular progress styles
-// @type boolean
+/// Set to `true` to disable the circular progress styles
+/// @type Boolean
 $disable-circular-progress: false !default;
 
-// Set to `true` to disable setting `text-overflow: ellipsis` on the input
-// @type boolean
+/// Set to `true` to disable setting `text-overflow: ellipsis` on the input
+/// @type Boolean
 $disable-text-overflow-ellipsis: false !default;
 
-// Set to `true` to disable the inline chip styles
-// @type boolean
+/// Set to `true` to disable the inline chip styles
+/// @type Boolean
 $disable-inline-chips: chip.$disable-everything !default;
 
-// This is the min width for the input when there are inline chips. This causes
-// the input to wrap to the next line.
-// @type number
+/// This is the min width for the input when there are inline chips. This causes
+/// the input to wrap to the next line.
+/// @type Number
 $inline-min-width: 5rem !default;
 
-// The amount of spacing between each inline chip
-// @type number
+/// The amount of spacing between each inline chip
+/// @type Number
 $inline-chips-gap: icon.get-var(spacing) !default;
 
-// The vertical padding to apply to the text field when using inline chips and
-// the outline theme. This is used so that the chips and floating label look
-// nice.
-// @type number
+/// The vertical padding to apply to the text field when using inline chips and
+/// the outline theme. This is used so that the chips and floating label look
+/// nice.
+/// @type Number
 $inline-outlined-vertical-padding: calc(
   (form.form-get-var(text-field-height) - chip.get-var(height)) / 2 -
     form.$text-field-border-width
 ) !default;
 
-// The amount of padding to apply to the text field when there is at least one
-// chip visible. The default behavior makes it so the text in the input matches
-// with a chip if they were stacked.
-//
-// @type number
+/// The amount of padding to apply to the text field when there is at least one
+/// chip visible. The default behavior makes it so the text in the input matches
+/// with a chip if they were stacked.
+///
+/// @type Number
 $inline-input-leading-padding: chip.get-var(horizontal-padding) !default;
 
-// Updates all the icon button sizes that appear within the autocomplete to use
-// this new size
-// @type number
+/// Updates all the icon button sizes that appear within the autocomplete to use
+/// this new size
+/// @type Number
 $button-size: button.$icon-small-size !default;
 
-// The size of the circular progress and used to generate the correct padding
-// for all the inline addons
-// @type number
+/// The size of the circular progress and used to generate the correct padding
+/// for all the inline addons
+/// @type Number
 $circular-progress-size: button.$icon-small-size !default;
 
-// The amount of gap between the circular progress, clear button, and dropdown
-// button (when they exist).
-//
-// @type number
+/// The amount of gap between the circular progress, clear button, and dropdown
+/// button (when they exist).
+///
+/// @type Number
 $addon-gap: form.$text-field-addon-gap !default;
 
-// The spacing between the input and the circular progress/clear button/dropdown
-// button addons.
-//
-// @type number
+/// The spacing between the input and the circular progress/clear button/dropdown
+/// button addons.
+///
+/// @type Number
 $addon-spacing: form.form-get-var(addon-spacing) !default;
 
-// The size of the clear button and used to generate the correct padding for all
-// the inline addons
-// @type number
+/// The size of the clear button and used to generate the correct padding for all
+/// the inline addons
+/// @type Number
 $clear-button-size: calc(button.get-var(icon-font-size) * 2) !default;
 
-// The size of the dropdown button and used to generate the correct padding for all
-// the inline addons
-// @type number
+/// The size of the dropdown button and used to generate the correct padding for all
+/// the inline addons
+/// @type Number
 $dropdown-button-size: calc(button.get-var(icon-font-size) * 2) !default;
 
+/// @access private
+/// @type String
 $_chip-selector: ".rmd-autocomplete__chip";
+/// @access private
+/// @type String
 $_clear-button-selector: ".rmd-autocomplete__clear-button";
+/// @access private
+/// @type String
 $_dropdown-button-selector: ".rmd-autocomplete__dropdown-button";
+/// @access private
+/// @type String
 $_outline-selector: ".rmd-text-field-container--outline";
+/// @access private
+/// @type String
 $_underline-selector: ".rmd-text-field-container--underline";
 
-// The available configurable css variables and mostly used internally for the
-// `get-var`, `set-var`, and `use-var` utils.
-// @type List
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   clear-button-size,
   dropdown-button-size,
@@ -111,9 +125,9 @@ $variables: (
   addon-spacing
 );
 
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value
-// @returns {string} a `var()` statement
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "autocomplete");
   @if $fallback {
@@ -123,24 +137,24 @@ $variables: (
   @return var(#{$var});
 }
 
-// @param {string} name - The supported variable name
-// @param {any} value - The value to set the variable to. Supports `null` which
-// will just be a no-op.
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "autocomplete")}: #{$value};
   }
 }
 
-// @param {string} property - The css property to apply the variable to
-// @param {string} name - The supported variable name
-// @param {any} fallback - An optional fallback value if the variable has not
-// been set
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
-// Conditionally applies the css variables based on feature flags
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(addon-gap, $addon-gap);
@@ -152,7 +166,10 @@ $variables: (
   }
 }
 
-// @internal
+/// Used to create a `calc` expression for the right addons.
+///
+/// @access private
+/// @returns {String} A `calc` string
 @function _right-addon-calc() {
   $calc-spacing: get-var(addon-spacing);
   $calc-total-gap: calc(get-var(gap-count, 0) * get-var(addon-gap));
@@ -177,18 +194,23 @@ $variables: (
   @return calc($calc-spacing + #{$calc-total-gap + $calc-addon-size});
 }
 
-// @internal
+/// Used to create a `:has` selector for the different addons.
+///
+/// @access private
+/// @param {String} appending-selector
+/// @param {String} addon-selector
+/// @returns {String} a class name selector
 @function _add-has-selector($appending-selector, $addon-selector) {
   $prefix: if(string.length($appending-selector), "", "&");
 
   @return $appending-selector + $prefix + ":has(" + $addon-selector + ")";
 }
 
-// Generates all the styles for the `Autocomplete` components based on feature
-// flags.
-//
-// @param {boolean} disable-layer - Set this to `true` to disable the
-// layer behavior
+/// Generates all the styles for the `Autocomplete` components based on feature
+/// flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   // disclaimer: this is the first component where I'm trying to utilize more of
   // the `:has`, `:where`, `:is`, etc selectors to require less javascript and

@@ -1,8 +1,17 @@
+////
+/// @group files
+////
 @use "../utils";
 @use "../interaction/interaction";
 
+/// Set to `true` to disable all the styles
+/// @type Boolean
 $disable-everything: false !default;
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(files, $disable-layer) {

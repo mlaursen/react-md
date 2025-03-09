@@ -1,35 +1,104 @@
+////
+/// @group sheet
+////
+
 @use "sass:map";
 @use "../utils";
 @use "../box-shadows";
 @use "../media-queries/media-queries";
 @use "../transition/transition";
 
+/// Set to `true` to disable all the styles.
+/// @type Boolean
 $disable-everything: false !default;
+
+/// Set to `true` to disable `position="left"` for the `Sheet`.
+/// @type Boolean
 $disable-position-left: false !default;
+
+/// Set to `true` to disable `position="right"` for the `Sheet`.
+/// @type Boolean
 $disable-position-right: false !default;
+
+/// Set to `true` to disable `position="bottom"` for the `Sheet`.
+/// @type Boolean
 $disable-position-bottom: false !default;
+
+/// Set to `true` to disable `position="top"` for the `Sheet`.
+/// @type Boolean
 $disable-position-top: false !default;
 
+/// This should be a number between 0-24 representing the box-shadow elevation
+/// of the `Sheet` while rendered without an `Overlay`.
+/// @type Number
 $elevation: 2 !default;
+
+/// This should be a number between 0-24 representing the box-shadow elevation
+/// of the `Sheet` while rendered with an `Overlay`.
+/// @type Number
 $raised-elevation: 16 !default;
 
+/// The default enter transition duration.
+/// @type Number
 $enter-duration: transition.$enter-duration !default;
+
+/// The default enter transition timing function.
+/// @type String
 $enter-timing-function: transition.$deceleration-timing-function !default;
+
+/// The default leave transition duration.
+/// @type Number
 $leave-duration: transition.$leave-duration !default;
+
+/// The default leave transition timing function.
+/// @type String
 $leave-timing-function: transition.$acceleration-timing-function !default;
 
+/// The default `z-index` while rendered without an `Overlay`.
+/// @type Number
 $z-index: 5 !default;
+
+/// The default `z-index` while rendered with an `Overlay`.
+/// @type Number
 $raised-z-index: utils.$temporary-element-z-index !default;
 
+/// The default width for a `Sheet`.
+/// @type Number
 $static-width: 16rem !default;
+
+/// The amount of margin between the `Sheet` and the viewport edge which is
+/// used to create the `$touch-width` and `$touch-max-height`
+///
+/// @see $touch-width
+/// @see $touch-max-height
+/// @type Number
 $touch-margin: 3.5rem !default;
+
+/// The default width for a `Sheet` on touch/phone devices.
+/// @type Number
 $touch-width: calc(100vw - #{$touch-margin}) !default;
 
+/// The default max-height for a `Sheet`.
+/// @type Number
 $max-height: 100% !default;
+
+/// The default `max-height` for a `Sheet` that has `position="top"` or
+/// `position="bottom"`.
+///
+/// @type Number
 $touch-max-height: calc(100% - #{$touch-margin}) !default;
+
+/// The default `min-height` for a `Sheet` when `verticalSize="recommended"`.
+/// @type Number
 $recommended-min-height: 3.5rem !default;
+
+/// The default `max-height` for a `Sheet` when `verticalSize="recommended"`.
+/// @type Number
 $recommended-max-height: 50% !default;
 
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
 $variables: (
   height,
   width,
@@ -41,6 +110,9 @@ $variables: (
   z-index
 );
 
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "sheet");
   @if $fallback {
@@ -50,16 +122,24 @@ $variables: (
   @return var(#{$var});
 }
 
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
 @mixin set-var($name, $value) {
   @if $value {
     #{utils.get-var-name($variables, $name, "sheet")}: #{$value};
   }
 }
 
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
   #{$property}: get-var($name, $fallback);
 }
 
+/// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
     @include set-var(touch-width, $touch-width);
@@ -69,6 +149,10 @@ $variables: (
   }
 }
 
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
     @include utils.optional-layer(sheet, $disable-layer) {
