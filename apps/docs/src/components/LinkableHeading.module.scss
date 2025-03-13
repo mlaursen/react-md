@@ -11,8 +11,11 @@
   // NOTE: This was moved to the root layout.scss
   // scroll-margin-top: calc(0.5rem + everything.layout-get-var(header-height));
 
-  &:hover .link {
-    opacity: 1;
+  @include everything.mouse-hover {
+    .link {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 
   &::after {
@@ -36,6 +39,7 @@
   color: inherit;
   left: 0;
   opacity: 0;
+  pointer-events: none;
   position: absolute;
   text-decoration: none;
   top: 50%;

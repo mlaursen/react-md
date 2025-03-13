@@ -21,7 +21,7 @@ $tree-padding: calc(everything.tree-get-var(depth) * 1.125rem + 1rem);
     text-decoration: none;
   }
 
-  &:hover {
+  @include everything.mouse-hover {
     @include everything.link-use-var(color);
   }
 

@@ -74,7 +74,7 @@ export const navItems: readonly NavigationItem[] = [
       {
         type: "route",
         href: "/autocomplete",
-        children: "AutoComplete",
+        children: "Autocomplete",
       },
       {
         type: "route",

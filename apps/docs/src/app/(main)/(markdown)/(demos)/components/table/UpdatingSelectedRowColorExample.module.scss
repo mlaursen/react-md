@@ -3,13 +3,11 @@
 .selected {
   @include everything.table-set-var(cell-color, currentcolor);
 
-  @include everything.mouse-only(true) {
-    &:hover {
-      background-color: color-mix(
-        in srgb,
-        everything.theme-get-var(primary-color) 80%,
-        everything.theme-get-var(on-primary-color)
-      );
-    }
+  @include everything.mouse-hover {
+    background-color: color-mix(
+      in srgb,
+      everything.theme-get-var(primary-color) 80%,
+      everything.theme-get-var(on-primary-color)
+    );
   }
 }
