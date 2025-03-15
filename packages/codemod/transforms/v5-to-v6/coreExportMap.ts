@@ -294,8 +294,10 @@ export const TYPES: ReadonlySet<string> = new Set([
   "ExpansionListHookOptions",
   "ExpansionListImplementation",
   "ExpansionListProps",
+  "ExpansionPanelButtonClassNameOptions",
   "ExpansionPanelClassNameOptions",
   "ExpansionPanelHeaderProps",
+  "ExpansionPanelHeadingClassNameOptions",
   "ExpansionPanelHookOptions",
   "ExpansionPanelImplementation",
   "ExpansionPanelProps",
@@ -386,6 +388,7 @@ export const TYPES: ReadonlySet<string> = new Set([
   "GetPositionOptions",
   "GetRadioGroupProps",
   "GetStorageSerializers",
+  "GetTableOfContentsHeadingsOptions",
   "GetTabListScrollToOptions",
   "HandleAsyncFunction",
   "HeadingReference",
@@ -1250,7 +1253,9 @@ export const VARIABLES: ReadonlySet<string> = new Set([
   "ExpansionList",
   "ExpansionPanel",
   "expansionPanel",
+  "expansionPanelButton",
   "ExpansionPanelHeader",
+  "expansionPanelHeading",
   "extractOptionsFromChildren",
   "fab",
   "Fieldset",
@@ -1333,6 +1338,7 @@ export const VARIABLES: ReadonlySet<string> = new Set([
   "getSearchText",
   "getSplitFileUploads",
   "getStorageSerializers",
+  "getTableOfContentsHeadings",
   "getTabListScrollToOptions",
   "getTabPanelRoleOnly",
   "getTabRoleOnly",
@@ -2526,11 +2532,17 @@ export const EXPORT_MAP: Record<string, string> = {
   ExpansionListProps: "@react-md/core/expansion-panel/ExpansionList",
   ExpansionPanel: "@react-md/core/expansion-panel/ExpansionPanel",
   expansionPanel: "@react-md/core/expansion-panel/expansionPanelStyles",
+  expansionPanelButton: "@react-md/core/expansion-panel/expansionPanelStyles",
+  ExpansionPanelButtonClassNameOptions:
+    "@react-md/core/expansion-panel/expansionPanelStyles",
   ExpansionPanelClassNameOptions:
     "@react-md/core/expansion-panel/expansionPanelStyles",
   ExpansionPanelHeader: "@react-md/core/expansion-panel/ExpansionPanelHeader",
   ExpansionPanelHeaderProps:
     "@react-md/core/expansion-panel/ExpansionPanelHeader",
+  expansionPanelHeading: "@react-md/core/expansion-panel/expansionPanelStyles",
+  ExpansionPanelHeadingClassNameOptions:
+    "@react-md/core/expansion-panel/expansionPanelStyles",
   ExpansionPanelHookOptions:
     "@react-md/core/expansion-panel/useExpansionPanels",
   ExpansionPanelImplementation:
@@ -2710,6 +2722,10 @@ export const EXPORT_MAP: Record<string, string> = {
   getSplitFileUploads: "@react-md/core/files/utils",
   GetStorageSerializers: "@react-md/core/storage/internalUtils",
   getStorageSerializers: "@react-md/core/storage/internalUtils",
+  getTableOfContentsHeadings:
+    "@react-md/core/navigation/getTableOfContentsHeadings",
+  GetTableOfContentsHeadingsOptions:
+    "@react-md/core/navigation/getTableOfContentsHeadings",
   GetTabListScrollToOptions: "@react-md/core/tabs/getTabListScrollToOptions",
   getTabListScrollToOptions: "@react-md/core/tabs/getTabListScrollToOptions",
   getTabPanelRoleOnly: "@react-md/core/tabs/utils",
@@ -2746,8 +2762,8 @@ export const EXPORT_MAP: Record<string, string> = {
   grey800: "@react-md/core/theme/colors",
   grey900: "@react-md/core/theme/colors",
   HandleAsyncFunction: "@react-md/core/useAsyncFunction",
-  HeadingReference: "@react-md/core/navigation/useActiveHeadingId",
-  HeadingReferenceWithChildren: "@react-md/core/navigation/useActiveHeadingId",
+  HeadingReference: "@react-md/core/navigation/types",
+  HeadingReferenceWithChildren: "@react-md/core/navigation/types",
   hexToRGB: "@react-md/core/theme/utils",
   HorizontalLayoutTransitionOptions:
     "@react-md/core/layout/useHorizontalLayoutTransition",
@@ -3545,14 +3561,10 @@ export const EXPORT_MAP: Record<string, string> = {
   tableHeader: "@react-md/core/table/tableHeaderStyles",
   TableHeaderClassNameOptions: "@react-md/core/table/tableHeaderStyles",
   TableHeaderProps: "@react-md/core/table/TableHeader",
-  TableOfContentsHeading:
-    "@react-md/core/navigation/useTableOfContentsHeadings",
-  TableOfContentsHeadingItem:
-    "@react-md/core/navigation/useTableOfContentsHeadings",
-  TableOfContentsHeadings:
-    "@react-md/core/navigation/useTableOfContentsHeadings",
-  TableOfContentsHeadingsOptions:
-    "@react-md/core/navigation/useTableOfContentsHeadings",
+  TableOfContentsHeading: "@react-md/core/navigation/types",
+  TableOfContentsHeadingItem: "@react-md/core/navigation/types",
+  TableOfContentsHeadings: "@react-md/core/navigation/types",
+  TableOfContentsHeadingsOptions: "@react-md/core/navigation/types",
   TableProps: "@react-md/core/table/Table",
   TableRadio: "@react-md/core/table/TableRadio",
   TableRadioProps: "@react-md/core/table/TableRadio",

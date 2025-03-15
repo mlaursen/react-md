@@ -1,4 +1,4 @@
-import { type TableOfContentsHeadings } from "@react-md/core/navigation/useTableOfContentsHeadings";
+import { type TableOfContentsHeadings } from "@react-md/core/navigation/types";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
 

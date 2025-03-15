@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { compile } from "@mdx-js/mdx";
-import { type TableOfContentsHeadings } from "@react-md/core/navigation/useTableOfContentsHeadings";
+import { type TableOfContentsHeadings } from "@react-md/core/navigation/types";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import rehypeSlug from "rehype-slug";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useReducer, useRef, useState } from "react";
 
 import { useSsr } from "../SsrProvider.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
@@ -162,7 +162,7 @@ export function useTransition<E extends HTMLElement>(
   const isFirstRender = useRef(true);
   const isRehydrateAppear = useRef(ssr && !transitionIn);
   const defaultTransitionIn = useRef(transitionIn);
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const {
       timeout,
       reflow,

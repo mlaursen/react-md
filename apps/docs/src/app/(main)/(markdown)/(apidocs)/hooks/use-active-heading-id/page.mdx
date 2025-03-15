@@ -28,10 +28,8 @@ dynamic table of contents in a client-side app.
 "use client";
 
 import { useSsr } from "@react-md/core/SsrProvider";
-import {
-  type HeadingReferenceWithChildren,
-  useActiveHeadingId,
-} from "@react-md/core/navigation/useActiveHeadingId";
+import { type HeadingReferenceWithChildren } from "@react-md/core/navigation/types";
+import { useActiveHeadingId } from "@react-md/core/navigation/useActiveHeadingId";
 import { useTableOfContentsHeadings } from "@react-md/core/navigation/useTableOfContentsHeadings";
 import { Typography } from "@react-md/core/typography/Typography";
 import { RenderRecursively } from "@react-md/core/utils/RenderRecursively";

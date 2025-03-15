@@ -1,7 +1,7 @@
 "use client";
 
+import { type TableOfContentsHeadings } from "@react-md/core/navigation/types";
 import { useActiveHeadingId } from "@react-md/core/navigation/useActiveHeadingId";
-import { type TableOfContentsHeadings } from "@react-md/core/navigation/useTableOfContentsHeadings";
 import { Typography } from "@react-md/core/typography/Typography";
 import { RenderRecursively } from "@react-md/core/utils/RenderRecursively";
 import { type ReactElement, useId } from "react";

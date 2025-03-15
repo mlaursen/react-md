@@ -7,13 +7,6 @@ import {
 } from "./textFieldStyles.js";
 import { type TextAreaResize } from "./useResizingTextArea.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-textarea-height"?: string | number;
-    "--rmd-textarea-padding"?: string | number;
-  }
-}
-
 const styles = bem("rmd-textarea");
 const containerStyles = bem("rmd-textarea-container");
 

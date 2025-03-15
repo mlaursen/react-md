@@ -215,3 +215,60 @@ export interface NavItemContentProps {
     keyof TooltippedElementEventHandlers<HTMLAnchorElement>
   >;
 }
+
+/**
+ * @since 6.0.0
+ */
+export interface HeadingReference {
+  id: string;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface HeadingReferenceWithChildren extends HeadingReference {
+  items?: readonly HeadingReferenceWithChildren[];
+}
+
+/** @since 6.0.0 */
+export interface TableOfContentsHeadingsOptions {
+  /**
+   * This should be a `document.querySelectorAll` query that returns elements
+   * to display in a table of contents component that have a valid id.
+   *
+   * @see {@link DEFAULT_HEADING_SELECTOR}
+   * @defaultValue `main :where(:not(nav *)):where(h1[id],h2[id],h3[id],h4[id],h5[id],h6[id])`
+   */
+  selector?: string;
+
+  /**
+   * @see {@link DEFAULT_GET_HEADING_DEPTH}
+   * @defaultValue `(element) => parseInt(element.tagName.substring(1))`
+   */
+  getDepth?: (element: Element) => number;
+
+  /**
+   * This is used to get the text to display in a table of contents from each
+   * heading element.
+   *
+   * @see {@link DEFAULT_GET_HEADING_TEXT}
+   * @defaultValue `(element) => element.textContent || ""`
+   */
+  getHeadingText?: (element: Element) => string;
+}
+
+/** @since 6.0.0 */
+export interface TableOfContentsHeading extends HeadingReference {
+  depth: number;
+  children: string;
+}
+
+/** @since 6.0.0 */
+export interface TableOfContentsHeadingItem
+  extends TableOfContentsHeading,
+    HeadingReferenceWithChildren {
+  items?: TableOfContentsHeadingItem[];
+}
+
+/** @since 6.0.0 */
+export type TableOfContentsHeadings = readonly TableOfContentsHeadingItem[];

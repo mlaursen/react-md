@@ -9,20 +9,7 @@ import {
   useIntersectionObserver,
 } from "../useIntersectionObserver.js";
 import { parseCssLengthUnit } from "../utils/parseCssLengthUnit.js";
-
-/**
- * @since 6.0.0
- */
-export interface HeadingReference {
-  id: string;
-}
-
-/**
- * @since 6.0.0
- */
-export interface HeadingReferenceWithChildren extends HeadingReference {
-  items?: readonly HeadingReferenceWithChildren[];
-}
+import { type HeadingReferenceWithChildren } from "./types.js";
 
 /**
  * @defaultValue `[0.0, 1.0]`
@@ -62,7 +49,7 @@ export const DEFAULT_ACTIVE_HEADING_GET_ROOT_MARGIN = (): string => {
  */
 function getHeadingElements(
   items: readonly HeadingReferenceWithChildren[]
-): HTMLElement[] {
+): readonly HTMLElement[] {
   const headings: HTMLElement[] = [];
   items.forEach((item) => {
     const heading = document.getElementById(item.id);

@@ -202,6 +202,7 @@ export * from "@react-md/core/movement/useKeyboardMovementProvider";
 export * from "@react-md/core/movement/utils";
 export * from "@react-md/core/navigation/CollapsibleNavGroup";
 export * from "@react-md/core/navigation/DefaultNavigationRenderer";
+export * from "@react-md/core/navigation/getTableOfContentsHeadings";
 export * from "@react-md/core/navigation/NavGroup";
 export * from "@react-md/core/navigation/navGroupStyles";
 export * from "@react-md/core/navigation/Navigation";

@@ -1,4 +1,4 @@
-import { type TableOfContentsHeadingItem } from "@react-md/core/navigation/useTableOfContentsHeadings";
+import { type TableOfContentsHeadingItem } from "@react-md/core/navigation/types";
 import { type RenderRecursiveItemsProps } from "@react-md/core/utils/RenderRecursively";
 import { type ReactElement, useEffect, useRef } from "react";
 
