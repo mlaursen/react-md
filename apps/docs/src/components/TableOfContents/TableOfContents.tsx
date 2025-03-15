@@ -21,7 +21,12 @@ export function TableOfContents(props: TableOfContentsProps): ReactElement {
   const activeHeadingId = useActiveHeadingId({ headings: toc });
   return (
     <nav aria-labelledby={headingId} className={styles.container}>
-      <Typography id={headingId} type="headline-5" margin="none">
+      <Typography
+        id={headingId}
+        type="headline-5"
+        margin="none"
+        className={styles.sticky}
+      >
         Table of Contents
       </Typography>
       <TableOfContentsGroup root>

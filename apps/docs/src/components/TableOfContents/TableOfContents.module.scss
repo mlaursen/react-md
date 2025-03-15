@@ -4,7 +4,7 @@
   @include everything.layout-use-var(top, header-height);
 
   display: none;
-  padding: 1rem;
+  padding: 0 1rem;
   position: fixed;
   right: everything.scrollbar-size();
   width: var(--toc-width);
@@ -18,4 +18,13 @@
     max-height: calc(100dvh - everything.layout-get-var(header-height));
     overflow: auto;
   }
+}
+
+.sticky {
+  @include everything.theme-use-var(background-color);
+
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
