@@ -9,7 +9,7 @@ export const FILE_URL = "file://";
 
 const canonicalize: Importer<"sync">["canonicalize"] = (url) => {
   // The documentation site will either "enter" through
-  // `@use "everyting";` or `@use "@react-md/core";`
+  // `@use "everything";` or `@use "@react-md/core";`
   if (url === "everything") {
     return new URL("_everything.scss", `${FILE_URL}/docs/`);
   }

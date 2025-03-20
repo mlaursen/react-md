@@ -10,5 +10,11 @@ const typescript = strict
 
 export default config(
   gitignore(join(import.meta.url, "..", "..")),
-  ...typescript
+  ...typescript,
+  {
+    files: ["src/scripts/**"],
+    rules: {
+      "no-console": "off",
+    },
+  }
 );
