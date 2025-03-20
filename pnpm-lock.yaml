@@ -111,9 +111,6 @@ importers:
       '@mlaursen/eslint-config':
         specifier: ^6.1.0
         version: 6.1.0(@testing-library/dom@10.4.0)(@typescript-eslint/eslint-plugin@8.27.0(@typescript-eslint/parser@8.27.0(eslint@9.22.0)(typescript@5.8.2))(eslint@9.22.0)(typescript@5.8.2))(eslint@9.22.0)(jest@29.7.0(@types/node@22.13.10)(ts-node@10.9.2(@swc/core@1.11.11(@swc/helpers@0.5.12))(@types/node@22.13.10)(typescript@5.8.2)))(typescript@5.8.2)
-      '@types/autosuggest-highlight':
-        specifier: ^3.2.3
-        version: 3.2.3
       '@types/js-cookie':
         specifier: ^3.0.6
         version: 3.0.6
@@ -2536,9 +2533,6 @@ packages:
 
   '@types/aria-query@5.0.4':
     resolution: {integrity: sha512-rfT93uj5s0PRL7EzccGMs3brplhcrghnDoV26NqKhCAS1hVo+WdNsPvE/yb6ilfr5hi2MEk6d5EWJTKdxg8jVw==}
-
-  '@types/autosuggest-highlight@3.2.3':
-    resolution: {integrity: sha512-8Mb21KWtpn6PvRQXjsKhrXIcxbSloGqNH50RntwGeJsGPW4xvNhfml+3kKulaKpO/7pgZfOmzsJz7VbepArlGQ==}
 
   '@types/babel__core@7.20.2':
     resolution: {integrity: sha512-pNpr1T1xLUc2l3xJKuPtsEky3ybxN3m4fJkknfIpTCTfIZCDW57oAg+EfCgIIp2rvCe0Wn++/FfodDS4YXxBwA==}
@@ -9273,8 +9267,6 @@ snapshots:
   '@types/argparse@1.0.38': {}
 
   '@types/aria-query@5.0.4': {}
-
-  '@types/autosuggest-highlight@3.2.3': {}
 
   '@types/babel__core@7.20.2':
     dependencies:
