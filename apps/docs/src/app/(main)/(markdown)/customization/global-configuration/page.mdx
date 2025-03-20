@@ -55,6 +55,75 @@ configureIcons({
 });
 ```
 
+# Forms
+
+Some of the form behavior can be configured globally using the `FORM_CONFIG` object.
+
+## Theme
+
+The `TextField`, `Autocomplete`, `TextArea`, `Select`, `NativeSelect`,
+`FormMessage`, and `FormMessageContainer` can configure the `theme` prop globally
+using the `FORM_CONFIG.theme` property. This should be set to one of:
+`underline`, `filled`, or `outline` (default).
+
+```tsx
+"use client";
+
+import { FORM_CONFIG } from "@react-md/core/form/formConfig";
+
+// this is the default -- there is an outline/border around form elements
+FORM_CONFIG.theme = "outline";
+
+// Or make it so that form elements have a background color, no border, and
+// an animating underline state
+FORM_CONFIG.theme = "filled";
+
+// Or make it so that form elements do only have an animating underline state
+FORM_CONFIG.theme = "underline";
+
+// this should rarely be used. this is if you just want to implement your own
+// styles for all form elements since overriding the styles are too difficult
+FORM_CONFIG.theme = "none";
+```
+
+## Underline Direction
+
+This is only used when the `theme` is set to `"underline"` using the `FORM_CONFIG` or
+the `theme` property.
+
+```tsx
+"use client";
+
+import { FORM_CONFIG } from "@react-md/core/form/formConfig";
+
+// this is the default -- animate from left to right
+FORM_CONFIG.underlineDirection = "left";
+
+// Or make it so the animation appears from the center and spreads outwards
+FORM_CONFIG.underlineDirection = "center";
+
+// Or make it so it animates from right to left
+FORM_CONFIG.underlineDirection = "right";
+```
+
+## Uncontrolled Toggles
+
+This is a micro-optimization that can be set if every `Checkbox` and `Radio`
+component in the app will be controlled by providing the `checked` and
+`onChange` props. This updates the `Checkbox` and `Radio` components to no
+longer render all icons and use CSS to show/hide the correct icon instead.
+
+> !Info! When setting `uncontrolledToggles` to `false`, the
+> `$disable-uncontrolled-input-toggles` sass variable should be set to `true`.
+
+```tsx
+"use client";
+
+import { FORM_CONFIG } from "@react-md/core/form/formConfig";
+
+FORM_CONFIG.uncontrolledToggles = false;
+```
+
 # Interaction Behavior
 
 ReactMD defaults to displaying a ripple effect when elements are clicked and
