@@ -8,9 +8,9 @@ export default function Example() {
   const [prominent, setProminent] = useState(false);
 
   return (
-    (<div
+    <div
       className={cn(styles.content, {})}
     >content
-          </div>)
+          </div>
   );
 }

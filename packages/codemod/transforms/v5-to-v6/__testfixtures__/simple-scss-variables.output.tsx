@@ -15,11 +15,11 @@ const aspectRatio = "16 9";
 
 function Example() {
   return (
-    (<div
+    <div
       style={{
         backgroundColor:
           "var(--rmd-theme-primary, #9c27b0)",
       }}
-    />)
+    />
   );
 }

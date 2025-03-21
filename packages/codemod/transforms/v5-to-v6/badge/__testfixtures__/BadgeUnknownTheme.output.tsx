@@ -8,21 +8,23 @@ import styles from "./SimpleExamples.module.scss";
 const themes: BadgeTheme[] = ["primary", "secondary", "default", "clear"];
 
 export default function ThemedBadges(): ReactElement {
-  return (<>
-    {themes.map((theme) => (
-      <Badge
-        key={theme}
-        id={`badged-button-${theme}`}
-        theme={_toBadgeTheme(theme)}
-        className={styles.container}
-      >
-        {theme.length}
-      </Badge>
-    ))}
-    <Badge theme={_toBadgeTheme(someFlag && somethingElse ? "greyscale" : undefined)} />
-    <Badge theme={_toBadgeTheme(somethingElse ? "greyscale" : theme)} />
-    <Badge theme={_toBadgeTheme(somethingElse ? boop : theme)} />
-  </>);
+  return (
+    <>
+      {themes.map((theme) => (
+        <Badge
+          key={theme}
+          id={`badged-button-${theme}`}
+          theme={_toBadgeTheme(theme)}
+          className={styles.container}
+        >
+          {theme.length}
+        </Badge>
+      ))}
+      <Badge theme={_toBadgeTheme(someFlag && somethingElse ? "greyscale" : undefined)} />
+      <Badge theme={_toBadgeTheme(somethingElse ? "greyscale" : theme)} />
+      <Badge theme={_toBadgeTheme(somethingElse ? boop : theme)} />
+    </>
+  );
 }
 
 function _toBadgeTheme(theme: BadgeTheme | "default" | undefined): BadgeTheme | undefined {

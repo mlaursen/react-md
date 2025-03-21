@@ -12,7 +12,7 @@ import styles from "./DefaultStyles.module.scss";
 
 export default function DefaultStyles(): ReactElement {
   return (
-    (<Table className={styles.centered}>
+    <Table className={styles.centered}>
       <Typography type="caption">This is a caption</Typography>
       <TableHeader>
         <TableRow>
@@ -38,6 +38,6 @@ export default function DefaultStyles(): ReactElement {
           <TableCell>Cell 3-3</TableCell>
         </TableRow>
       </TableBody>
-    </Table>)
+    </Table>
   );
 }

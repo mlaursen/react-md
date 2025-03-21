@@ -34,46 +34,48 @@ export default function Demo(): ReactElement {
     disableTransition: disableTransition || customTransition
   });
 
-  return (<>
-    <ConfigurationForm {...configuration} />
-    <div className={styles.container}>
-      <>
-        <TabList
-          {...getTabListProps()}
-          activationMode={automatic ? "automatic" : "manual"}
-          padded={padded}
-          className={cn(styles.tabs, {
-            [styles.themed]: themed,
-          })}>{tabs.map((tab, i) => {
-            const tabProps = getTabProps(i);
-            let children: ReactNode;
-            let overrides: TabProps | undefined;
+  return (
+    <>
+      <ConfigurationForm {...configuration} />
+      <div className={styles.container}>
+        <>
+          <TabList
+            {...getTabListProps()}
+            activationMode={automatic ? "automatic" : "manual"}
+            padded={padded}
+            className={cn(styles.tabs, {
+              [styles.themed]: themed,
+            })}>{tabs.map((tab, i) => {
+              const tabProps = getTabProps(i);
+              let children: ReactNode;
+              let overrides: TabProps | undefined;
 
-            if (typeof tab !== "string" && "children" in tab) {
-              children = tab.children;
+              if (typeof tab !== "string" && "children" in tab) {
+                children = tab.children;
 
-              const {
-                children: _c,
-                contentStyle: _cs,
-                contentClassName: _ccn,
-                ...stillValidProps
-              } = tab;
+                const {
+                  children: _c,
+                  contentStyle: _cs,
+                  contentClassName: _ccn,
+                  ...stillValidProps
+                } = tab;
 
-              overrides = stillValidProps;
-            } else {
-              children = tab;
-            }
+                overrides = stillValidProps;
+              } else {
+                children = tab;
+              }
 
-            return <Tab {...tabProps} {...overrides} key={tabProps.id}>{children}</Tab>;
-          })}</TabList>
-        <SlideContainer {...getTabPanelsProps()}>
-          {tabs.map((_, i) => (
-            <Slide {...getTabPanelProps(i)} key={i} className={styles.content}>
-              <PanelContent i={i} customTransition={customTransition} />
-            </Slide>
-          ))}
-        </SlideContainer>
-      </>
-    </div>
-  </>);
+              return <Tab {...tabProps} {...overrides} key={tabProps.id}>{children}</Tab>;
+            })}</TabList>
+          <SlideContainer {...getTabPanelsProps()}>
+            {tabs.map((_, i) => (
+              <Slide {...getTabPanelProps(i)} key={i} className={styles.content}>
+                <PanelContent i={i} customTransition={customTransition} />
+              </Slide>
+            ))}
+          </SlideContainer>
+        </>
+      </div>
+    </>
+  );
 }

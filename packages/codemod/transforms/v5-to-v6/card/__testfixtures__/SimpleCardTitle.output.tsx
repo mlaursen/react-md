@@ -7,14 +7,16 @@ export interface ExampleProps {
 
 export default function Example(props: ExampleProps): ReactElement {
   const { children } = props;
-  return (<>
-    <CardTitle>{children}</CardTitle>
-    <CardTitle type="subtitle-1">{children}</CardTitle>
-    <CardTitle>{children}</CardTitle>
-    <CardTitle textOverflow="nowrap">{children}</CardTitle>
-    <CardTitle>{children}</CardTitle>
-    <CardTitle type="subtitle-1" textOverflow="nowrap">
-      {children}
-    </CardTitle>
-  </>);
+  return (
+    <>
+      <CardTitle>{children}</CardTitle>
+      <CardTitle type="subtitle-1">{children}</CardTitle>
+      <CardTitle>{children}</CardTitle>
+      <CardTitle textOverflow="nowrap">{children}</CardTitle>
+      <CardTitle>{children}</CardTitle>
+      <CardTitle type="subtitle-1" textOverflow="nowrap">
+        {children}
+      </CardTitle>
+    </>
+  );
 }

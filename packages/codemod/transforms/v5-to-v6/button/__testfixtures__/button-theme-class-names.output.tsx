@@ -15,7 +15,7 @@ function LinkStyledButton({
   ...props
 }: ButtonThemeProps & LinkProps): ReactElement {
   return (
-    (<Link
+    <Link
       {...props}
       className={button({
         disabled,
@@ -26,7 +26,7 @@ function LinkStyledButton({
       })}
     >
       {children}
-    </Link>)
+    </Link>
   );
 }
 

@@ -17,16 +17,18 @@ const fruits = [
 ];
 
 export default function InvalidAutocomplete(): ReactElement {
-  return (<>
-    <Autocomplete
-      id="simple-autocomplete-3"
-      label="Fuzzy filter"
-      placeholder="Apple"
-      options={fruits} />
-    <Autocomplete
-      id="simple-autocomplete-4"
-      label="Fuzzy filter"
-      placeholder="Apple"
-      options={fruits} />
-  </>);
+  return (
+    <>
+      <Autocomplete
+        id="simple-autocomplete-3"
+        label="Fuzzy filter"
+        placeholder="Apple"
+        options={fruits} />
+      <Autocomplete
+        id="simple-autocomplete-4"
+        label="Fuzzy filter"
+        placeholder="Apple"
+        options={fruits} />
+    </>
+  );
 }

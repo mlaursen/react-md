@@ -9,7 +9,7 @@ import styles from "./NonInteractable.module.scss";
 
 export default function Demo(): ReactElement {
   return (
-    (<Container>
+    <Container>
       <List>
         {people.slice(0, 10).map((name) => (
           <li key={name} className={cn(styles.item, styles.dotted, styles.margin)}><ListItemChildren>
@@ -35,6 +35,6 @@ export default function Demo(): ReactElement {
             rightAddonType="media">Other children
                     </ListItemChildren></li>
       </List>
-    </Container>)
+    </Container>
   );
 }

@@ -14,7 +14,7 @@ const columns = Array.from({ length: 10 }, (_, i) => `Column ${i + 1}`);
 
 export default function StickyColumnsPart3(): ReactElement {
   return (
-    (<TableContainer style={{ maxHeight: "20rem" }}>
+    <TableContainer style={{ maxHeight: "20rem" }}>
       <Table fullWidth>
         <TableHeader sticky>
           <TableRow>
@@ -42,6 +42,6 @@ export default function StickyColumnsPart3(): ReactElement {
           </TableRow>
         </TableFooter>
       </Table>
-    </TableContainer>)
+    </TableContainer>
   );
 }

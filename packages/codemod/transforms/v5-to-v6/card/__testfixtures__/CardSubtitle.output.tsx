@@ -12,14 +12,16 @@ export default function Example({
   children,
   disableSecondaryColor,
 }: ExampleProps): ReactElement {
-  return (<>
-    <CardSubtitle textOverflow="nowrap">{children}</CardSubtitle>
-    <CardSubtitle textColor={null}>{children}</CardSubtitle>
-    <CardSubtitle
-      textOverflow={noWrap ? "nowrap" : undefined}
-      textColor={disableSecondaryColor ? null : undefined}
-    >
-      {children}
-    </CardSubtitle>
-  </>);
+  return (
+    <>
+      <CardSubtitle textOverflow="nowrap">{children}</CardSubtitle>
+      <CardSubtitle textColor={null}>{children}</CardSubtitle>
+      <CardSubtitle
+        textOverflow={noWrap ? "nowrap" : undefined}
+        textColor={disableSecondaryColor ? null : undefined}
+      >
+        {children}
+      </CardSubtitle>
+    </>
+  );
 }

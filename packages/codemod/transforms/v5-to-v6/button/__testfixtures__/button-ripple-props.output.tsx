@@ -3,10 +3,10 @@ import styles from "./styles.module.scss";
 
 export default function Example() {
   return (
-    (<Button
+    <Button
       onClick={() => {
         // do something
       }}>Hello, world!
-          </Button>)
+          </Button>
   );
 }

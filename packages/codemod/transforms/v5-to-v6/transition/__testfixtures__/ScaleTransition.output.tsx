@@ -10,18 +10,20 @@ export default function Example({
   portal?: boolean;
   transitionIn: boolean;
 }): ReactElement {
-  return (<>
-    <ScaleTransition transitionIn={transitionIn}>
-      <SomeComponent />
-    </ScaleTransition>
-    <Portal><ScaleTransition transitionIn={transitionIn}>
+  return (
+    <>
+      <ScaleTransition transitionIn={transitionIn}>
         <SomeComponent />
-      </ScaleTransition></Portal>
-    <ScaleTransition transitionIn={transitionIn}>
-      <SomeComponent />
-    </ScaleTransition>
-    <Portal disabled={!portal}><ScaleTransition transitionIn={transitionIn}>
+      </ScaleTransition>
+      <Portal><ScaleTransition transitionIn={transitionIn}>
+          <SomeComponent />
+        </ScaleTransition></Portal>
+      <ScaleTransition transitionIn={transitionIn}>
         <SomeComponent />
-      </ScaleTransition></Portal>
-  </>);
+      </ScaleTransition>
+      <Portal disabled={!portal}><ScaleTransition transitionIn={transitionIn}>
+          <SomeComponent />
+        </ScaleTransition></Portal>
+    </>
+  );
 }

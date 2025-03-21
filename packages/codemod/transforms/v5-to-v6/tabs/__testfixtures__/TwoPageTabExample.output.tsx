@@ -29,7 +29,7 @@ function Header(): ReactElement {
   const { isTablet } = useAppSize();
 
   return (
-    (<AppBar theme="default" height="none">
+    <AppBar theme="default" height="none">
       <AppBar>
         <AppBarNav aria-label="Menu">
           <MenuSVGIcon />
@@ -61,7 +61,7 @@ function Header(): ReactElement {
 
           return <Tab {...tabProps} {...overrides} key={tabProps.id}>{children}</Tab>;
         })}</TabList>
-    </AppBar>)
+    </AppBar>
   );
 }
 
@@ -101,8 +101,10 @@ export default function Demo(): ReactElement {
     baseId: "simple-two-page-tabs"
   });
 
-  return <>
-    <Header />
-    <Panels />
-  </>;
+  return (
+    <>
+      <Header />
+      <Panels />
+    </>
+  );
 }

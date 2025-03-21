@@ -99,7 +99,7 @@ export function Configuration({
   menuConfiguration,
 }: ConfigurationProps): ReactElement {
   return (
-    (<Dir defaultDir={defaultDir}>
+    <Dir defaultDir={defaultDir}>
       <AppSizeListener
         defaultSize={defaultSize}
         onChange={onAppResize}
@@ -130,6 +130,6 @@ export function Configuration({
           </UserInteractionModeListener>
         </>
       </AppSizeListener>
-    </Dir>)
+    </Dir>
   );
 }

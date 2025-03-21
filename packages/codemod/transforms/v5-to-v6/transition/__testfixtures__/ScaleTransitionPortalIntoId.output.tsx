@@ -4,9 +4,11 @@ import { Portal, ScaleTransition } from "react-md";
 import SomeComponent from "./SomeComponent";
 
 export default function Example(): ReactElement {
-  return (<>
-    <Portal><ScaleTransition transitionIn={transitionIn}>
-        <SomeComponent />
-      </ScaleTransition></Portal>
-  </>);
+  return (
+    <>
+      <Portal><ScaleTransition transitionIn={transitionIn}>
+          <SomeComponent />
+        </ScaleTransition></Portal>
+    </>
+  );
 }

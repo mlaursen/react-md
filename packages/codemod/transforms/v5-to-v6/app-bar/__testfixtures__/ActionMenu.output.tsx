@@ -24,7 +24,7 @@ const options = {
 
 export default function ActionMenu(): ReactElement {
   return (
-    (<DropdownMenu
+    <DropdownMenu
       id="main-app-actions"
       aria-label="Actions"
       menuLabel="Actions"
@@ -44,6 +44,6 @@ export default function ActionMenu(): ReactElement {
       >
         <PreviousDocsMenuItems />
       </DropdownMenu>
-    </DropdownMenu>)
+    </DropdownMenu>
   );
 }

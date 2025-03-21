@@ -38,7 +38,7 @@ export default function SimpleExample(): ReactElement {
   }, []);
 
   return (
-    (<div className={styles.container}>
+    <div className={styles.container}>
       <Button
         id="portal-button"
         theme="secondary"
@@ -90,6 +90,6 @@ export default function SimpleExample(): ReactElement {
         volutpat pharetra tortor. Cras ipsum mi, posuere eu diam a, cursus
         euismod mi. Ut vitae eros nibh.
       </Typography>
-    </div>)
+    </div>
   );
 }

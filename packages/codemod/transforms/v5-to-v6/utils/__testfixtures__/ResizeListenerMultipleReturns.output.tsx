@@ -18,8 +18,10 @@ export default function Example({
     return <Typography>This is some stuff</Typography>;
   }
 
-  return (<>
-    <Typography>Some other stuff</Typography>
+  return (
+    <>
+      <Typography>Some other stuff</Typography>
 
-  </>);
+    </>
+  );
 }

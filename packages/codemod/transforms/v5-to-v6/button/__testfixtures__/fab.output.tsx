@@ -10,8 +10,8 @@ export function Custom(props: CustomProps): ReactElement {
   const { children, altPosition, ...remaining } = props;
 
   return (
-    (<FloatingActionButton {...remaining} position={altPosition}>
+    <FloatingActionButton {...remaining} position={altPosition}>
       {children}
-    </FloatingActionButton>)
+    </FloatingActionButton>
   );
 }

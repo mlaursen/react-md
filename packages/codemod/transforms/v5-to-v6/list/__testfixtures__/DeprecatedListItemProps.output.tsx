@@ -4,10 +4,10 @@ import styles from "./styles.module.scss";
 
 export default function Example(): ReactElement {
   return (
-    (<ListItem
+    <ListItem
       onClick={() => {
         // do something
       }}>Hello, world!
-          </ListItem>)
+          </ListItem>
   );
 }

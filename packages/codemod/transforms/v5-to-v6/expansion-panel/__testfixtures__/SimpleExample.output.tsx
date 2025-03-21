@@ -16,7 +16,7 @@ export default function Demo(): ReactElement {
   });
 
   return (
-    (<ExpansionList>
+    <ExpansionList>
       <ExpansionPanel
         {...getPanelProps(0)}
         header="Personal Information"
@@ -98,6 +98,6 @@ export default function Demo(): ReactElement {
           />
         </Grid>
       </ExpansionPanel>
-    </ExpansionList>)
+    </ExpansionList>
   );
 }

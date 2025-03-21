@@ -3,7 +3,7 @@ import { CardFooter } from "react-md";
 
 export default function Example(): ReactElement {
   return (
-    (<CardFooter justify="start" className="example">Content
-          </CardFooter>)
+    <CardFooter justify="start" className="example">Content
+          </CardFooter>
   );
 }

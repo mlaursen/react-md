@@ -3,7 +3,7 @@ import { TableCell } from "react-md";
 
 export default function Example(): ReactElement {
   return (
-    (<TableCell padding="none" className="example">Content
-          </TableCell>)
+    <TableCell padding="none" className="example">Content
+          </TableCell>
   );
 }

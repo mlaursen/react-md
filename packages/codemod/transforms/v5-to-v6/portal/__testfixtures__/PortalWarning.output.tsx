@@ -4,10 +4,12 @@ import { type ReactElement } from "react";
 import { Portal } from "react-md";
 
 export default function Example(): ReactElement {
-  return (<>
-    <Portal>Content</Portal>
-    <Portal>Content</Portal>
-    <Portal>Content</Portal>
-    <Portal>Content</Portal>
-  </>);
+  return (
+    <>
+      <Portal>Content</Portal>
+      <Portal>Content</Portal>
+      <Portal>Content</Portal>
+      <Portal>Content</Portal>
+    </>
+  );
 }

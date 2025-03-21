@@ -24,7 +24,7 @@ export default function Example(): ReactElement {
   const expandedIds = [...TODO_1_EXPANDED_IDS];
 
   return (
-    (<ExpansionList>
+    <ExpansionList>
       <ExpansionPanel header="Panel 1" {...getPanelProps(0)}>
         Panel 1 Content
       </ExpansionPanel>
@@ -34,6 +34,6 @@ export default function Example(): ReactElement {
       <ExpansionPanel header="Panel 3" {...getPanelProps(2)}>
         Panel 3 Content
       </ExpansionPanel>
-    </ExpansionList>)
+    </ExpansionList>
   );
 }

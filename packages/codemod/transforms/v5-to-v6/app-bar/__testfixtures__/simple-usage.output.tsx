@@ -15,7 +15,7 @@ const themes: AppBarTheme[] = ["primary", "secondary", "default", "clear"];
 
 export default function Demo(): ReactElement {
   return (
-    (<Container>
+    <Container>
       {themes.map((theme, i) => (
         <AppBar id={`simple-usage-app-bar-${i}`} theme={theme} key={theme}>
           <Button id={`simple-usage-nav-${i}`} aria-label="Navigation">
@@ -35,6 +35,6 @@ export default function Demo(): ReactElement {
           </Button>
         </AppBar>
       ))}
-    </Container>)
+    </Container>
   );
 }

@@ -15,22 +15,24 @@ const fruits = [
 ];
 
 export default function CustomFilterFunction(): ReactElement {
-  return (<>
-    <Autocomplete
-      id="simple-autocomplete-1"
-      label="Case insensitive"
-      placeholder="Apple"
-      options={fruits}
-      filter={(
-        {
-          query,
-          list: data,
-          ...options
-        }
-      ) => {
-        return data
-      }}
-    />
-  </>);
+  return (
+    <>
+      <Autocomplete
+        id="simple-autocomplete-1"
+        label="Case insensitive"
+        placeholder="Apple"
+        options={fruits}
+        filter={(
+          {
+            query,
+            list: data,
+            ...options
+          }
+        ) => {
+          return data
+        }}
+      />
+    </>
+  );
 }
 

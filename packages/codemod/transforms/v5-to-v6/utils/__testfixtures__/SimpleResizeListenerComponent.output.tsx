@@ -21,23 +21,25 @@ export default function Demo(): ReactElement {
     disabled: !enabled
   });
 
-  return (<>
-    <Checkbox
-      id="resize-enabled"
-      name="resizeOptions"
-      checked={enabled}
-      onChange={handleEnabledChange}
-      label="Enable Listener"
-    />
-    <Checkbox
-      id="toggle-resize-listener"
-      name="resizeOptions"
-      checked={immediate}
-      onChange={handleImmediateChange}
-      label="Invoke on mount"
-    />
+  return (
+    <>
+      <Checkbox
+        id="resize-enabled"
+        name="resizeOptions"
+        checked={enabled}
+        onChange={handleEnabledChange}
+        label="Enable Listener"
+      />
+      <Checkbox
+        id="toggle-resize-listener"
+        name="resizeOptions"
+        checked={immediate}
+        onChange={handleImmediateChange}
+        label="Invoke on mount"
+      />
 
-    <Typography>The current app size is:</Typography>
-    <CodeBlock suppressHydrationWarning>{size}px</CodeBlock>
-  </>);
+      <Typography>The current app size is:</Typography>
+      <CodeBlock suppressHydrationWarning>{size}px</CodeBlock>
+    </>
+  );
 }

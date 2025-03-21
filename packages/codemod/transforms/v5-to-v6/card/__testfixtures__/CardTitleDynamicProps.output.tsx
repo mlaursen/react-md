@@ -8,8 +8,8 @@ interface ExampleProps {
 
 export default function Example({ small, noWrap }: ExampleProps): ReactElement {
   return (
-    (<CardTitle type={small ? "subtitle-1" : undefined} textOverflow={noWrap ? "nowrap" : undefined}>
+    <CardTitle type={small ? "subtitle-1" : undefined} textOverflow={noWrap ? "nowrap" : undefined}>
       {children}
-    </CardTitle>)
+    </CardTitle>
   );
 }

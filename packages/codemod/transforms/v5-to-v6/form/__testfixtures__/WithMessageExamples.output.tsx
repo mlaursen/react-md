@@ -88,7 +88,7 @@ export default function Demo(): ReactElement | null {
   });
 
   return (
-    (<Form>
+    <Form>
       <TextField
         {...nameFieldProps}
         label="Name"
@@ -126,6 +126,6 @@ export default function Demo(): ReactElement | null {
       >
         Submit
       </Button>
-    </Form>)
+    </Form>
   );
 }

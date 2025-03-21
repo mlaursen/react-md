@@ -15,13 +15,15 @@ const fruits = [
 ];
 
 export default function DefaultAutocomplete(): ReactElement {
-  return (<>
-    <Autocomplete
-      id="simple-autocomplete-2"
-      label="Fuzzy filter"
-      placeholder="Apple"
-      options={fruits}
-      filter={fuzzySearch}
-    />
-  </>);
+  return (
+    <>
+      <Autocomplete
+        id="simple-autocomplete-2"
+        label="Fuzzy filter"
+        placeholder="Apple"
+        options={fruits}
+        filter={fuzzySearch}
+      />
+    </>
+  );
 }

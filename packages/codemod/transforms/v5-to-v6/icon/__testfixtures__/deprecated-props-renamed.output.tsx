@@ -9,11 +9,13 @@ const CONSTANT_ICON = (
 );
 
 export function Example(): ReactElement {
-  return (<>
-    <FontIcon forceSize forceFontSize />
-    <SpecialIcon>
-      example
-    </SpecialIcon>
-    {CONSTANT_ICON}
-  </>);
+  return (
+    <>
+      <FontIcon forceSize forceFontSize />
+      <SpecialIcon>
+        example
+      </SpecialIcon>
+      {CONSTANT_ICON}
+    </>
+  );
 }

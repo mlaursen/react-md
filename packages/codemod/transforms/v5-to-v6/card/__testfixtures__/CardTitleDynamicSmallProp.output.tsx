@@ -12,8 +12,10 @@ export default function Example({
   children,
   anotherProp,
 }: ExampleProps): ReactElement {
-  return (<>
-    <CardTitle type={small ? "subtitle-1" : undefined}>{children}</CardTitle>
-    <CardTitle type={small && anotherProp ? "subtitle-1" : undefined}>{children}</CardTitle>
-  </>);
+  return (
+    <>
+      <CardTitle type={small ? "subtitle-1" : undefined}>{children}</CardTitle>
+      <CardTitle type={small && anotherProp ? "subtitle-1" : undefined}>{children}</CardTitle>
+    </>
+  );
 }

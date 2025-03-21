@@ -38,7 +38,7 @@ function Example({
   });
 
   return (
-    (<ExpansionList>
+    <ExpansionList>
       <ExpansionPanel {...getPanelProps(0)} header="Panel 1">
         Nam lorem est, porta id tincidunt et, consectetur in nulla. Morbi cursus
         at massa a feugiat. Mauris eu convallis elit, ac mollis metus. Quisque
@@ -67,7 +67,7 @@ function Example({
         Pellentesque mattis libero mauris, quis vehicula sapien porttitor at.
         Morbi laoreet lacus sed sodales fermentum.
       </ExpansionPanel>
-    </ExpansionList>)
+    </ExpansionList>
   );
 }
 

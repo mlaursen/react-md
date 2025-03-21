@@ -4,11 +4,11 @@ import styles from "./styles.module.scss";
 
 export default function Example(): ReactElement {
   return (
-    (<ListItemLink
+    <ListItemLink
       to="/example"
       onClick={() => {
         // do something
       }}>Hello, world!
-          </ListItemLink>)
+          </ListItemLink>
   );
 }

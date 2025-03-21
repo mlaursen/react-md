@@ -25,8 +25,10 @@ export default function GithubLink({ as }: GithubLinkProps): ReactElement {
       </MenuItemLink>
     );
   }
-  return (<>
-    <GithubLinkOriginal {...elementProps} inherit />
-    <Tooltip {...tooltipProps}>View GitHub</Tooltip>
-  </>);
+  return (
+    <>
+      <GithubLinkOriginal {...elementProps} inherit />
+      <Tooltip {...tooltipProps}>View GitHub</Tooltip>
+    </>
+  );
 }
