@@ -17,6 +17,7 @@
     "clean-dist": "TURBO_TELEMETRY_DISABLED=1 turbo run clean-dist",
     "clean-root": "rm -rf .turbo coverage node_modules",
     "test": "TURBO_TELEMETRY_DISABLED=1 turbo run test",
+    "test-coverage": "TURBO_TELEMETRY_DISABLED=1 turbo run test -- --coverage",
     "test-core": "pnpm --filter core test",
     "test-core-watch": "pnpm --filter core test --watch",
     "test-core-coverage": "pnpm --filter core test --coverage",
