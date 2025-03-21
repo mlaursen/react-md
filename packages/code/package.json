@@ -58,7 +58,7 @@
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@jest/types": "^29.6.3",
-    "@mlaursen/eslint-config": "^6.1.0",
+    "@mlaursen/eslint-config": "^7.0.0",
     "@swc/cli": "^0.6.0",
     "@swc/core": "^1.11.11",
     "@swc/jest": "^0.2.37",
@@ -67,7 +67,7 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^22.13.10",
+    "@types/node": "^22.13.11",
     "@types/prismjs": "^1.26.5",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
