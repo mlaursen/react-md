@@ -1,0 +1,43 @@
+{
+  "name": "@types/sassdoc",
+  "version": "0.0.1",
+  "description": "A custom types definition for the sassdoc package",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "pnpm": ">=9",
+    "node": ">=20"
+  },
+  "engineStrict": true,
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/@types__sassdoc"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^22.13.1",
+    "prettier": "^3.5.0",
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "sassdoc": "^2.7.4"
+  },
+  "peerDependenciesMeta": {
+    "sassdoc": {
+      "optional": false
+    }
+  },
+  "volta": {
+    "node": "22.13.1",
+    "pnpm": "10.5.2"
+  }
+}
