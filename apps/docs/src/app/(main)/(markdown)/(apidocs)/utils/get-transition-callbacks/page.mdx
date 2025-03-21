@@ -1,0 +1,155 @@
+# getTransitionCallbacks [$SOURCE](packages/core/src/transitions/getTransitionCallbacks.ts)
+
+```ts disableTransform
+function getTransitionCallbacks(
+  options: GetTransitionCallbacksOptions
+): Required<TransitionCallbacks>;
+```
+
+This is a helper function for applying specific effects to the transition
+callbacks when transitions might be disabled. This is probably an internal only
+function, but might be useful externally as well. Here are a few examples for
+it's usage internally.
+
+## Examples
+
+See one of the following internal examples:
+
+- [useAutocomplete]($GITHUB/packages/core/src/autocomplete/useAutocomplete.ts#L352)
+- [useCombobox]($GITHUB/packages/core/src/form/useCombobox.ts#L488)
+- [useFocusContainer]($GITHUB/packages/core/src/focus/useFocusContainer.ts#L183)
+
+## Parameters
+
+- `options` - an object with the following definition:
+
+```ts disableTransform
+export interface GetTransitionCallbacksOptions extends TransitionCallbacks {
+  /**
+   * Set this to `true` if the `onEnterOnce` callback should be triggered for
+   * the `onEnter` callback instead of `onEntering`.
+   *
+   * @defaultValue `false`
+   */
+  enter?: boolean;
+
+  /**
+   * If this function is provided, it will be called:
+   *
+   * - `onEntered` if `disableTransition` is `true` or
+   *   `TRANSITION_CONFIG.disabled` is `true`
+   * - otherwise:
+   *   - `onEnter` if `enter` is `true`
+   *   - `onEntering` if `enter` is `false` or not provided
+   */
+  onEnterOnce?: TransitionEnterHandler;
+
+  /**
+   * Set this to `true` if the `onExitOnce` callback should be triggered for
+   * the `onExit` callback instead of `onExiting`.
+   *
+   * @defaultValue `false`
+   */
+  exit?: boolean;
+
+  /**
+   * If this function is provided, it will be called:
+   *
+   * - `onExited` if `disableTransition` is `true` or
+   *   `TRANSITION_CONFIG.disabled` is `true`
+   * - otherwise:
+   *   - `onExit` if `enter` is `true`
+   *   - `onExiting` if `enter` is `false` or not provided
+   */
+  onExitOnce?: TransitionExitHandler;
+
+  /**
+   * Set this to `true` if the component has manually disabled transitions.
+   *
+   * @defaultValue `false`
+   */
+  disableTransition?: boolean;
+}
+
+export interface TransitionCallbacks {
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"enter"`.
+   *
+   * NOTE: This callback will be skipped when transitions are disabled. Use the
+   * `getTransitionCallbacks` helper if something should only be called once
+   * while entering.
+   */
+  onEnter?: TransitionEnterHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"enter"`.
+   *
+   * NOTE: This callback will be skipped when transitions are disabled. Use the
+   * `getTransitionCallbacks` helper if something should only be called once
+   * while entering.
+   */
+  onEntering?: TransitionEnterHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"entering"`.
+   */
+  onEntered?: TransitionEnterHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"entered"`.
+   *
+   * NOTE: This callback will be skipped when transitions are disabled. Use the
+   * `getTransitionCallbacks` helper if something should only be called once
+   * while exiting.
+   */
+  onExit?: TransitionExitHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"exiting"`.
+   *
+   * NOTE: This callback will be skipped when transitions are disabled. Use the
+   * `getTransitionCallbacks` helper if something should only be called once
+   * while exiting.
+   */
+  onExiting?: TransitionExitHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"exited"`.
+   */
+  onExited?: TransitionExitHandler;
+}
+
+export type TransitionEnterStage = "enter" | "entering" | "entered";
+export type TransitionExitStage = "exit" | "exiting" | "exited";
+export type TransitionStage = TransitionEnterStage | TransitionExitStage;
+
+/**
+ * This function is called at each `"enter"` {@link TransitionStage}. If a
+ * {@link TransitionOptions.nodeRef} was provided, the DOM node should be
+ * available in `nodeRef.current` by this point if the transition requires DOM
+ * calculations.
+ *
+ * @param appearing - Boolean if this is the initial `appear` flow.
+ */
+export type TransitionEnterHandler = (appearing: boolean) => void;
+
+/**
+ * This function is called at each `"exit"` {@link TransitionStage}. If a
+ * {@link TransitionOptions.nodeRef} was provided, the DOM node should be
+ * available in `nodeRef.current` by this point if the transition requires DOM
+ * calculations.
+ *
+ * @since 4.0.0
+ */
+export type TransitionExitHandler = () => void;
+```
+
+## Returns
+
+An object of `TransitionCallbacks` to pass to the transitional component.

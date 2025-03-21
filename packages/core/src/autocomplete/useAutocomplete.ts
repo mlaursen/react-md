@@ -9,8 +9,7 @@ import {
 } from "../form/utils.js";
 import { getIcon } from "../icon/config.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
-import { TRANSITION_CONFIG } from "../transition/config.js";
-import { type TransitionEnterHandler } from "../transition/types.js";
+import { getTransitionCallbacks } from "../transition/getTransitionCallbacks.js";
 import { useEnsuredState } from "../useEnsuredState.js";
 import {
   defaultAutocompleteExtractor,
@@ -286,27 +285,6 @@ export function useAutocomplete<
         ...listboxProps
       } = getMenuProps(overrides);
 
-      const isTransitionCompleteSkipped =
-        !disableTransition && !TRANSITION_CONFIG.disabled;
-
-      const handleEntering =
-        (callback: TransitionEnterHandler = noop, skipped: boolean) =>
-        (appearing: boolean) => {
-          callback(appearing);
-
-          if (skipped) {
-            return;
-          }
-
-          onOpen();
-
-          // when the listbox is opened, need to flag the entered state to show
-          // that new `query` values should be accepted. Also store the initial
-          // query.
-          entered.current = true;
-          initialQuery.current = query;
-        };
-
       let selectedIcon = propSelectedIcon;
       let unselectedIcon = propUnselectedIcon;
       let disableSelectedIcon = propDisableSelectedIcon;
@@ -371,8 +349,21 @@ export function useAutocomplete<
             updateQueryOnSelect === "clear" ? "" : getOptionLabel(option);
           triggerManualChangeEvent(comboboxRef.current, nextQuery);
         },
-        onEnter: handleEntering(onEnter, false),
-        onEntered: handleEntering(onEntered, isTransitionCompleteSkipped),
+        ...getTransitionCallbacks({
+          enter: true,
+          onEnter,
+          onEntered,
+          onEnterOnce: () => {
+            onOpen();
+
+            // when the listbox is opened, need to flag the entered state to show
+            // that new `query` values should be accepted. Also store the initial
+            // query.
+            entered.current = true;
+            initialQuery.current = query;
+          },
+          disableTransition,
+        }),
         onExited() {
           onExited();
 

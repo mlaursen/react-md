@@ -55,20 +55,25 @@ export type TransitionTimeoutObject = {
 export type TransitionTimeout = number | Readonly<TransitionTimeoutObject>;
 
 /**
+ * @since 6.0.0
+ */
+export type TransitionEnterStage = "enter" | "entering" | "entered";
+
+/**
+ * @since 6.0.0
+ */
+export type TransitionExitStage = "exit" | "exiting" | "exited";
+
+/**
  * The way the transition works is by flowing through the different stages and
  * assigning waiting for a timeout to occur. Setting the `stage` to `enter` will
  * begin the enter transition going from `enter -> entering -> entered` while
  * setting the stage to `exit` will transition from `exit -> exiting -> exited`.
  *
  * @since 4.0.0
+ * @since 6.0.0 Type union between `TransitionEnterStage` and `TransitionExitStage`
  */
-export type TransitionStage =
-  | "enter"
-  | "entering"
-  | "entered"
-  | "exit"
-  | "exiting"
-  | "exited";
+export type TransitionStage = TransitionEnterStage | TransitionExitStage;
 
 /**
  * This function is called at each `"enter"` {@link TransitionStage}. If a
@@ -99,6 +104,10 @@ export interface TransitionCallbacks {
    * This function will be called once the {@link TransitionStage} has been set
    * to `"enter"`.
    *
+   * NOTE: This callback will be skipped when transitions are disabled. Use the
+   * `getTransitionCallbacks` helper if something should only be called once
+   * while entering.
+   *
    * @see {@link TransitionEnterHandler}
    */
   onEnter?: TransitionEnterHandler;
@@ -106,6 +115,10 @@ export interface TransitionCallbacks {
   /**
    * This function will be called once the {@link TransitionStage} has been set
    * to `"enter"`.
+   *
+   * NOTE: This callback will be skipped when transitions are disabled. Use the
+   * `getTransitionCallbacks` helper if something should only be called once
+   * while entering.
    *
    * @see {@link TransitionEnterHandler}
    */
@@ -123,6 +136,10 @@ export interface TransitionCallbacks {
    * This function will be called once the {@link TransitionStage} has been set
    * to `"entered"`.
    *
+   * NOTE: This callback will be skipped when transitions are disabled. Use the
+   * `getTransitionCallbacks` helper if something should only be called once
+   * while exiting.
+   *
    * @see {@link TransitionEnterHandler}
    */
   onExit?: TransitionExitHandler;
@@ -130,6 +147,10 @@ export interface TransitionCallbacks {
   /**
    * This function will be called once the {@link TransitionStage} has been set
    * to `"exiting"`.
+   *
+   * NOTE: This callback will be skipped when transitions are disabled. Use the
+   * `getTransitionCallbacks` helper if something should only be called once
+   * while exiting.
    *
    * @see {@link TransitionExitHandler}
    */

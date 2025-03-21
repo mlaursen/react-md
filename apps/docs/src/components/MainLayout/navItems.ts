@@ -850,6 +850,11 @@ export const navItems: readonly NavigationItem[] = [
       { type: "subheader", children: "Other" },
       {
         type: "route",
+        href: "/get-transition-callbacks",
+        children: "getTransitionCallbacks",
+      },
+      {
+        type: "route",
         href: "/identity",
         children: "identity",
       },

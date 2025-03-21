@@ -28,12 +28,8 @@ import {
   type PositionAnchor,
   type PositionWidth,
 } from "../positioning/types.js";
-import { TRANSITION_CONFIG } from "../transition/config.js";
-import {
-  type TransitionCallbacks,
-  type TransitionEnterHandler,
-  type TransitionExitHandler,
-} from "../transition/types.js";
+import { getTransitionCallbacks } from "../transition/getTransitionCallbacks.js";
+import { type TransitionCallbacks } from "../transition/types.js";
 import {
   type NonNullMutableRef,
   type UseStateInitializer,
@@ -302,9 +298,6 @@ export interface ComboboxImplementation<
   getMenuProps: (
     overrides?: ConfigurableComboboxMenuProps
   ) => ComboboxMenuProps<PopupEl>;
-  getTransitionCallbacks: (
-    options: ComboboxTransitionOptions
-  ) => Required<ComboboxTransitionCallbacks>;
 }
 
 /**
@@ -435,78 +428,6 @@ export function useCombobox<
     isNegativeOneAllowed,
     getDefaultFocusedIndex,
   });
-  const getTransitionCallbacks = (
-    options: ComboboxTransitionOptions = {}
-  ): Required<ComboboxTransitionCallbacks> => {
-    const { onEntered, onEntering, onExiting, onExited, disableTransition } =
-      options;
-
-    const handleEntering =
-      (callback: TransitionEnterHandler = noop, skipped: boolean) =>
-      (appearing: boolean) => {
-        callback(appearing);
-
-        const popup = popupRef.current;
-        if (!popup || skipped) {
-          // Chrome does not trigger the scrollIntoView behavior correctly while
-          // using a scale transition, so need to trigger this on the entered
-          // flow to really make sure the item is in view.
-          // An alternative would be to implement a custom scrollIntoView
-          // behavior again like the previous versions of react-md, but this is
-          // less lines of code
-          const activeOption = document.getElementById(activeDescendantId);
-          if (activeOption) {
-            activeOption.scrollIntoView({ block: "nearest" });
-          }
-          return;
-        }
-
-        const focusables = getFocusableElements(popup, true);
-        const index = getEnterDefaultFocusedIndex({
-          focusLast: focusLast.current,
-          focusables,
-          currentFocusIndex: currentFocusIndex.current,
-        });
-        focusLast.current = false;
-        currentFocusIndex.current = index;
-
-        const option = focusables[index];
-        if (!option) {
-          return;
-        }
-
-        onFocusChange({
-          index,
-          element: option,
-        });
-
-        option.scrollIntoView({ block: "nearest" });
-        setActiveDescendantId(option.id || "");
-      };
-    const handleExiting =
-      (callback: TransitionExitHandler = noop, skipped: boolean) =>
-      (): void => {
-        callback();
-
-        if (!skipped) {
-          // since the menu is unmounted or set to hidden while not visible, need
-          // to clear the aria-activedescendant and current focus index when
-          // hiding
-          currentFocusIndex.current = -1;
-          setActiveDescendantId("");
-        }
-      };
-
-    const isTransitionCompleteSkipped =
-      !disableTransition && !TRANSITION_CONFIG.disabled;
-
-    return {
-      onEntering: handleEntering(onEntering, false),
-      onEntered: handleEntering(onEntered, isTransitionCompleteSkipped),
-      onExiting: handleExiting(onExiting, false),
-      onExited: handleExiting(onExited, isTransitionCompleteSkipped),
-    };
-  };
 
   const popupProps: ComboboxWidgetPopupProps<PopupEl> = {
     "aria-multiselectable": multiselect || undefined,
@@ -539,9 +460,30 @@ export function useCombobox<
     currentFocusIndex,
     activeDescendantId,
     setActiveDescendantId,
-    getTransitionCallbacks,
     getMenuProps(props = {}) {
-      const { sheetProps, disableTransition } = props;
+      const {
+        sheetProps,
+        disableTransition,
+        onEnter,
+        onEntering,
+        onEntered = noop,
+        onExited,
+        onExiting,
+        onExit,
+      } = props;
+
+      // Chrome does not trigger the scrollIntoView behavior correctly while
+      // using a scale transition, so need to trigger this on the entered flow
+      // to really make sure the item is in view. An alternative would be to
+      // implement a custom scrollIntoView behavior again like the previous
+      // versions of react-md, but this is less lines of code
+      const attemptScroll = (): void => {
+        const activeOption = document.getElementById(activeDescendantId);
+        if (activeOption) {
+          activeOption.scrollIntoView({ block: "nearest" });
+        }
+      };
+
       return {
         anchor: BELOW_CENTER_ANCHOR,
         width: "min",
@@ -550,7 +492,54 @@ export function useCombobox<
         ...popupProps,
         visible,
         onRequestClose: hide,
-        ...getTransitionCallbacks(props),
+        ...getTransitionCallbacks({
+          disableTransition,
+          onEnter,
+          onEntered: (appearing) => {
+            onEntered(appearing);
+            attemptScroll();
+          },
+          onEntering,
+          onEnterOnce: () => {
+            const popup = popupRef.current;
+            if (!popup) {
+              attemptScroll();
+              return;
+            }
+
+            const focusables = getFocusableElements(popup, true);
+            const index = getEnterDefaultFocusedIndex({
+              focusLast: focusLast.current,
+              focusables,
+              currentFocusIndex: currentFocusIndex.current,
+            });
+            focusLast.current = false;
+            currentFocusIndex.current = index;
+
+            const option = focusables[index];
+            if (!option) {
+              return;
+            }
+
+            onFocusChange({
+              index,
+              element: option,
+            });
+
+            option.scrollIntoView({ block: "nearest" });
+            setActiveDescendantId(option.id || "");
+          },
+          onExit,
+          onExiting,
+          onExited,
+          onExitOnce: () => {
+            // since the menu is unmounted or set to hidden while not visible, need
+            // to clear the aria-activedescendant and current focus index when
+            // hiding
+            currentFocusIndex.current = -1;
+            setActiveDescendantId("");
+          },
+        }),
         sheetProps: {
           ...sheetProps,
           ...getTransitionCallbacks({

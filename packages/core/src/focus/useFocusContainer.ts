@@ -8,12 +8,8 @@ import {
   useRef,
 } from "react";
 
-import { TRANSITION_CONFIG } from "../transition/config.js";
-import {
-  type TransitionCallbacks,
-  type TransitionEnterHandler,
-  type TransitionExitHandler,
-} from "../transition/types.js";
+import { getTransitionCallbacks } from "../transition/getTransitionCallbacks.js";
+import { type TransitionCallbacks } from "../transition/types.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import {
   type FocusElementWithinType,
@@ -180,49 +176,39 @@ export function useFocusContainer<E extends HTMLElement>(
     prevFocus.current = document.activeElement;
   }, [activate]);
 
-  const handleMountFocus =
-    (callback: TransitionEnterHandler, skipped: boolean) =>
-    (appearing: boolean) => {
-      callback(appearing);
-      const instance = ref.current;
-      if (
-        instance &&
-        !skipped &&
-        !isFocusTypeDisabled("mount") &&
-        (!document.activeElement || !instance.contains(document.activeElement))
-      ) {
-        instance.focus();
-      }
-    };
-
-  const handleUnmountFocus =
-    (callback: TransitionExitHandler, skipped: boolean) => (): void => {
-      callback();
-      if (skipped || isFocusTypeDisabled("unmount")) {
-        return;
-      }
-
-      // For some reason, the `"Enter"` keydown event fires at a different timing
-      // than the Space  keydown event.
-      window.requestAnimationFrame(() => {
-        prevFocus.current?.focus();
-      });
-    };
-
   return {
     nodeRef: ref,
     transitionOptions: {
       nodeRef: refCallback,
-      onEntering: handleMountFocus(onEntering, false),
-      onEntered: handleMountFocus(
+      ...getTransitionCallbacks({
+        onEnterOnce: () => {
+          const instance = ref.current;
+          if (
+            instance &&
+            !isFocusTypeDisabled("mount") &&
+            (!document.activeElement ||
+              !instance.contains(document.activeElement))
+          ) {
+            instance.focus();
+          }
+        },
+        onEntering,
         onEntered,
-        !disableTransition && !TRANSITION_CONFIG.disabled
-      ),
-      onExiting: handleUnmountFocus(onExiting, false),
-      onExited: handleUnmountFocus(
+        onExitOnce: () => {
+          if (isFocusTypeDisabled("unmount")) {
+            return;
+          }
+
+          // For some reason, the `"Enter"` keydown event fires at a different timing
+          // than the Space  keydown event.
+          window.requestAnimationFrame(() => {
+            prevFocus.current?.focus();
+          });
+        },
+        onExiting,
         onExited,
-        !disableTransition && !TRANSITION_CONFIG.disabled
-      ),
+        disableTransition,
+      }),
     },
     eventHandlers: {
       onKeyDown(event) {
