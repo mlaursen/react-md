@@ -10,6 +10,7 @@ $is_production: $env == production;
   :root {
     @if everything.$disable-default-root-theme {
       @include everything.variables;
+      @include everything.code-variables;
 
       @if everything.$color-scheme ==
         system and

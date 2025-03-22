@@ -3,9 +3,12 @@ import { type HTMLAttributes, type ReactElement } from "react";
 
 import { InlineCode, type InlineCodeProps } from "./InlineCode.js";
 
+const NBSP = "\u00A0";
+
 export interface ColorPreviewProps extends HTMLAttributes<HTMLSpanElement> {
   color: string;
   codeProps?: InlineCodeProps;
+  disableCode?: boolean;
 }
 
 /**
@@ -13,15 +16,19 @@ export interface ColorPreviewProps extends HTMLAttributes<HTMLSpanElement> {
  * hovered for a slightly larger preview.
  */
 export function ColorPreview(props: ColorPreviewProps): ReactElement {
-  const { color, className, codeProps, ...remaining } = props;
+  const { color, className, codeProps, disableCode, ...remaining } = props;
 
   return (
     <span
       {...remaining}
       style={{ "--color": color }}
-      className={cnb("color-preview", className)}
+      className={cnb(
+        "color-preview",
+        disableCode && "color-preview--color-only",
+        className
+      )}
     >
-      <InlineCode {...codeProps}>{color}</InlineCode>
+      {disableCode ? NBSP : <InlineCode {...codeProps}>{color}</InlineCode>}
     </span>
   );
 }

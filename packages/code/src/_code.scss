@@ -2,10 +2,46 @@
 @use "@react-md/core";
 
 $max-height: 50rem !default;
-$color-preview-inline-size: 1em;
-$color-preview-display-size: 2.5em;
-$color-preview-outer-width: 0.25em;
-$color-preview-border-width: $color-preview-outer-width + 0.0625em;
+$tablet-max-height: min(60vh, $max-height) !default;
+$color-preview-offset: 0.25em !default;
+$color-preview-border-radius: 0.25em !default;
+$color-preview-inline-size: 1em !default;
+$color-preview-display-size: 2.5em !default;
+$color-preview-outer-width: 0.25em !default;
+$color-preview-border-width: $color-preview-outer-width + 0.0625em !default;
+
+@mixin variables {
+  --code-max-height: #{$max-height};
+  --code-tablet-max-height: #{$tablet-max-height};
+  --code-margin: 0;
+  --code-padding: 1rem;
+  --code-preview-border-radius: #{core.$card-border-radius};
+  --color-preview-size: #{$color-preview-display-size};
+  --color-preview-large-offset: 50%;
+  --color-preview-border-radius: #{$color-preview-border-radius};
+  --color-preview-inline-size: #{$color-preview-inline-size};
+  --color-preview-offset: #{$color-preview-offset};
+  --color-preview-outer-width: #{$color-preview-outer-width};
+  --color-preview-border-width: #{$color-preview-border-width};
+  --color-preview-inline-offset: #{calc(
+      var(--color-preview-inline-size) + var(--color-preview-offset) * 2
+    )};
+  --color-preview-popup-offset: -0.25em;
+  --color-preview-popup-transform: #{calc(
+      var(--color-preview-inline-size) - 50%
+    )};
+  --color-preview-popup-transform-rtl: #{calc(
+      50% - var(--color-preview-inline-size)
+    )};
+}
+
+@mixin color-preview-box-shadow {
+  box-shadow:
+    inset 0 0 0 var(--color-preview-outer-width)
+      var(--color-preview-background-color),
+    inset 0 0 0 var(--color-preview-border-width)
+      var(--color-preview-border-color);
+}
 
 @mixin styles {
   .code-block {
@@ -20,10 +56,10 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
     &__scroll-container {
       @include core.interaction-outline($outline-offset: false);
       @include core.tablet-media {
-        --code-max-height: min(60vh, #{$max-height});
+        --code-max-height: var(--code-tablet-max-height);
       }
 
-      max-height: var(--code-max-height, $max-height);
+      max-height: var(--code-max-height);
       overflow: auto;
 
       &:focus-visible,
@@ -40,7 +76,7 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
     }
 
     &__pre {
-      margin: var(--code-margin, 0);
+      margin: var(--code-margin);
       white-space: pre;
 
       &--wrap {
@@ -56,7 +92,7 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
     @include core.divider-border-style;
 
     background-color: var(--code-preview-bg);
-    border-radius: var(--code-preview-border-radius, core.$card-border-radius);
+    border-radius: var(--code-preview-border-radius);
     padding: 3rem;
     position: relative;
 
@@ -115,10 +151,10 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
       height: 100%;
       left: 0;
       line-height: var(--code-line-height);
-      margin: var(--code-margin, 0);
+      margin: var(--code-margin);
       overflow: hidden;
       overflow-wrap: break-word;
-      padding: var(--code-padding, 1rem);
+      padding: var(--code-padding);
       position: absolute;
       resize: none;
       tab-size: var(--code-tab-size);
@@ -218,41 +254,46 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
 
   .color-preview {
     display: inline-block;
-    padding-left: 1.5em;
+    padding-left: var(--color-preview-inline-offset);
     position: relative;
+
+    &--color-only {
+      --color-preview-popup-transform: #{calc(
+          -50% - var(--color-preview-offset) / 2
+        )};
+    }
 
     &::before,
     &::after {
       background: var(--color);
-      border-radius: 0.25em;
+      border-radius: var(--color-preview-border-radius);
       content: "";
       display: inline-block;
-      height: $color-preview-inline-size;
+      height: var(--color-preview-inline-size);
       pointer-events: none;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: $color-preview-inline-size;
+      width: var(--color-preview-inline-size);
       z-index: 2;
     }
 
     &::before {
-      left: 0.25em;
+      left: var(--color-preview-offset);
     }
 
     &::after {
-      box-shadow:
-        inset 0 0 0 $color-preview-outer-width core.$white,
-        inset 0 0 0 $color-preview-border-width core.$black;
-      height: var(--color-preview-size, $color-preview-display-size);
-      left: 50%;
+      @include color-preview-box-shadow;
+
+      height: var(--color-preview-size);
+      left: var(--color-preview-large-offset);
       opacity: 0;
       pointer-events: none;
       position: absolute;
-      top: -0.25em;
-      transform: translate3d(-50%, -100%, 0);
+      top: var(--color-preview-popup-offset);
+      transform: translate3d(var(--color-preview-popup-transform), -100%, 0);
       transition: opacity core.$linear-duration;
-      width: var(--color-preview-size, $color-preview-display-size);
+      width: var(--color-preview-size);
     }
 
     &:hover::after {
@@ -260,8 +301,26 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
     }
 
     @include core.rtl {
+      --color-preview-popup-transform: var(--color-preview-popup-transform-rtl);
+
+      &--color-only {
+        --color-preview-popup-transform-rtl: #{calc(
+            50% + var(--color-preview-offset) / 2
+          )};
+      }
+
       padding-left: 0;
-      padding-right: 1.25em;
+      padding-right: var(--color-preview-inline-offset);
+
+      &::before {
+        left: auto;
+        right: var(--color-preview-offset);
+      }
+
+      &::after {
+        left: auto;
+        right: var(--color-preview-large-offset);
+      }
     }
   }
 }
@@ -269,9 +328,13 @@ $color-preview-border-width: $color-preview-outer-width + 0.0625em;
 @mixin use-light-theme {
   --code-color: #{core.$pink-600};
   --code-preview-bg: #{core.$white};
+  --color-preview-background-color: #{core.$black};
+  --color-preview-border-color: #{core.$white};
 }
 
 @mixin use-dark-theme {
   --code-color: #{core.$pink-400};
   --code-preview-bg: #{core.$dark-theme-background-color};
+  --color-preview-background-color: #{core.$white};
+  --color-preview-border-color: #{core.$black};
 }
