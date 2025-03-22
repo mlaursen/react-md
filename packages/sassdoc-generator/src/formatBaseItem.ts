@@ -50,9 +50,11 @@ export async function formatBaseItem(
   } = item;
 
   const group = getItemGroup(item);
+  const name = getItemPublicName(originalName, group);
   const examples = await formatExamples({
     src,
-    name: originalName,
+    name,
+    originalName,
     path,
     examples: example,
   });
@@ -72,11 +74,6 @@ export async function formatBaseItem(
 
   if (line.start !== line.end && typeof line.end === "number") {
     source += `-L${line.end}`;
-  }
-
-  let name = originalName;
-  if (!group.startsWith("core.")) {
-    name = `${group}-${originalName}`;
   }
 
   return {

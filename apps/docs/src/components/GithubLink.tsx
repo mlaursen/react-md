@@ -56,6 +56,7 @@ export function GithubLink(props: GithubLinkProps): ReactElement {
     children = <GithubIcon />,
     buttonType = typeof children === "string" ? "text" : "icon",
     tooltipOptions,
+    target = file ? "_blank" : undefined,
     ...remaining
   } = props;
 
@@ -71,6 +72,7 @@ export function GithubLink(props: GithubLinkProps): ReactElement {
         {...remaining}
         {...elementProps}
         aria-label={label}
+        target={target}
         href={href}
         className={cnb(
           buttonType !== "text" &&

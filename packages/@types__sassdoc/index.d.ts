@@ -328,7 +328,7 @@ declare module "sassdoc" {
   }
 
   // aliases
-  export type ItemReturns = ItemReturn;
+  export type ItemReturns<T extends string = ItemDataType> = ItemReturn;
 
   /**
    * The `@since` annotation.

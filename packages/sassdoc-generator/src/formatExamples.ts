@@ -33,6 +33,10 @@ async function compileExampleCode({
       path,
       getCurrentPathContents: (contents) => `${contents}\n\n${code}`,
     });
+    // fix typos...
+    if (/(@(use|include)|\$)/i.test(css)) {
+      throw new Error("Demo code was not compiled correctly");
+    }
 
     return await format(css, { parser: "css" });
   } catch (e) {
@@ -68,6 +72,7 @@ function removeUncompilableCode(code: string): string {
 export interface FormatExamplesOptions {
   src: string;
   name: string;
+  originalName: string;
   path: string;
   examples: readonly ItemExample[] | undefined;
 }
@@ -75,6 +80,7 @@ export interface FormatExamplesOptions {
 export async function formatExamples({
   src,
   name,
+  originalName,
   path,
   examples,
 }: FormatExamplesOptions): Promise<readonly CompiledExample[] | undefined> {
@@ -82,6 +88,7 @@ export async function formatExamples({
     return;
   }
 
+  const regex = new RegExp(`(\\$)?\\b${originalName}\\b`, "g");
   return await Promise.all(
     examples.map(async ({ code: rawCode, type, description = "" }) => {
       const code = removeUncompilableCode(rawCode);
@@ -91,21 +98,28 @@ export async function formatExamples({
         compiled = await compileExampleCode({
           src,
           code,
-          name,
+          name: originalName,
           path,
         });
       }
 
-      const formattedExampleCode = await format(
-        `@use "@react-md/core";
+      let prefix = "";
+      let demoCode = code;
+      if (!code.includes('@use "@react-md/core"')) {
+        prefix = '@use "@react-md/core";\n';
+        demoCode = code.replace(regex, "core.$1" + name);
+      }
 
-${code}
+      const formattedExampleCode = await format(
+        `${prefix}
+
+${demoCode}
 `,
         { parser: "scss" }
       );
 
       return {
-        code: formattedExampleCode,
+        code: formattedExampleCode.trim(),
         compiled,
         type,
         description: formatDescription(description),

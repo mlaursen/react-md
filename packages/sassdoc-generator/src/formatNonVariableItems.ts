@@ -45,7 +45,8 @@ async function formatParameterizedItem(
       ...param,
       description: formatDescription(description),
     })),
-    throws,
+    // wrap interpolation error message strings in code to work with mdx
+    throws: throws?.map((s) => s.replace(/(#{.+})/g, "`$1`")),
   };
 }
 

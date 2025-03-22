@@ -1,0 +1,16 @@
+@use "everything";
+
+.spacing {
+  margin-bottom: 1.5em;
+}
+
+.color {
+  font-size: 2rem;
+
+  &::before {
+    --color-preview-outer-width: 0.125em;
+    --color-preview-border-width: 0.15625em;
+
+    @include everything.code-color-preview-box-shadow;
+  }
+}

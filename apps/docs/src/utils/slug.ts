@@ -6,7 +6,7 @@
  * ```tsx
  * const content = "This is Some Title";
  *
- * <LinkableHeading id={slug()} level={1}>{content}</LinkableHeading>
+ * <LinkableHeading id={slug(content)} level={1}>{content}</LinkableHeading>
  *
  * // id === "this-is-some-title"
  * ```

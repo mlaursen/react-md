@@ -3,7 +3,7 @@
 .container {
   --spacing: 1em;
 
-  margin-bottom: 0.5em;
+  margin-bottom: var(--heading-margin-bottom, 0.5em);
   margin-left: everything.negate-var(var(--spacing));
   margin-top: 1.25em;
   padding-left: var(--spacing);
