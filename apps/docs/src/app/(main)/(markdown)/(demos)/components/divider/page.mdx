@@ -14,16 +14,17 @@ Create a divider using the `Divider` component.
 
 ## Customizing Divider
 
-The color can be configured by the
-`core.$divider-light-theme-color`/`core.$divider-dark-theme-color`/`core.$divider-color`
-Sass variables or the `--rmd-divider-color` custom property. The default
-behavior will be to use the correct light or dark theme color.
+The color can be configured by the [$SASSDOC](divider-light-theme-color) /
+[$SASSDOC](divider-dark-theme-color) / [$SASSDOC](divider-color) Sass variables
+or the `--rmd-divider-color` custom property. The default behavior will be to
+use the correct light or dark theme color.
 
-The height can be configured by the `core.$divider-size` Sass variable or
-`--rmd-divider-size` custom property.
+The height can be configured by the [$SASSDOC](divider-size) Sass variable or
+using the [$SASSDOC](<divider-set-var(size, NEW_SIZE)>) mixin.
 
-The spacing around the divider can be configured by the `core.$divider-spacing` Sass
-variable or the `--rmd-divider-spacing` custom property.
+The spacing around the divider can be configured by the
+[$SASSDOC](divider-spacing) Sass variable or using the
+[$SASSDOC](<divider-set-var(spacing, NEW_SIZE)>) mixin.
 
 ```demo source="./CustomizingDivider.tsx"
 
@@ -33,8 +34,8 @@ variable or the `--rmd-divider-spacing` custom property.
 
 Enable the `inset` prop to apply additional `margin-left` so it is inset with a
 list of items. The inset amount can be configured by the
-`core.$divider-inset` Sass variable or `--rmd-divider-inset` custom
-property.
+[$SASSDOC](divider-inset) Sass variable or using the
+[$SASSDOC](<divider-set-var(inset, NEW_VALUE)>) mixin.
 
 ```demo source="./InsetDivider.tsx"
 
@@ -46,13 +47,16 @@ A divider can be rendered vertically instead of horizontally by enabling the
 `vertical` prop.
 
 The height will be set to `100%` but can be configured by setting the `height`
-through CSS or `--rmd-divider-max-size` custom property.
+through CSS or applying a new `max-size` using the
+[$SASSDOC](<divider-set-var(max-size, NEW_SIZE)>) mixin.
 
-The width can be configured by the `core.$divider-vertical-size` Sass
-variable or the `--rmd-divider-vertical-size` custom property.
+The width will be set to [$SASSDOC](divider-size) but can be configured by
+setting the `width` through CSS or applying a new `size` using the
+[$SASSDOC](<divider-set-var(size, NEW_SIZE)>) mixin.
 
-The margin can be configured by the `core.$divider-vertical-spacing` Sass
-variable or the `--rmd-divider-vertical-spacing` custom property.
+The margin can be configured by the [$SASSDOC](divider-vertical-spacing) Sass
+variable or using the [$SASSDOC](<divider-set-var(vertical-spacing, NEW_SIZE)>)
+mixin.
 
 ```demo source="./VerticalDivider.tsx"
 

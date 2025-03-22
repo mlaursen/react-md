@@ -5,7 +5,7 @@ import {
   type ItemReferenceLink,
 } from "sassdoc-generator/types";
 
-import { getGroupName } from "./utils.js";
+import { getGroupName, getSassDocLink } from "./utils.js";
 
 export interface SassDocReferenceLinkListProps
   extends HTMLAttributes<HTMLUListElement> {
@@ -30,7 +30,7 @@ export const SassDocReferenceLinkList = forwardRef<
           href = link.href;
           children = link.name || href;
         } else {
-          const { name, type, group } = link;
+          const { name, type } = link;
           switch (type) {
             case "mixin":
               children = `@mixin ${name}`;
@@ -42,7 +42,7 @@ export const SassDocReferenceLinkList = forwardRef<
               children = `$${name}`;
           }
 
-          href = `/sassdoc/${getGroupName(group)}#${type}s-${name}`;
+          href = getSassDocLink(link);
         }
 
         return (

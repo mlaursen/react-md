@@ -135,9 +135,7 @@ function createTOC(
   return toc;
 }
 
-export async function generateStaticParams(): Promise<
-  readonly { group: string }[]
-> {
+export async function generateStaticParams(): Promise<{ group: string }[]> {
   return SASSDOC_GROUP_NAMES.map((group) => ({ group }));
 }
 

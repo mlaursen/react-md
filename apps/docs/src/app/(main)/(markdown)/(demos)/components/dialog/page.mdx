@@ -36,10 +36,14 @@ The `Dialog` can be updated to enforce a specific width instead of relying on
 the size of the content using the `width` prop. The available values are:
 
 - `"auto"` (default) - width is based on content
-- `"small"` - uses `var(--rmd-dialog-small-width)` and configured by `core.$dialog-small-width`
-- `"medium"` - uses `var(--rmd-dialog-medium-width)` and configured by `core.$dialog-medium-width`
-- `"large"` - uses `var(--rmd-dialog-large-width)` and configured by `core.$dialog-large-width`
-- `"extra-large"` - uses `var(--rmd-dialog-extra-large-width)` and configured by `core.$dialog-extra-large-width`
+- `"small"` - uses `var(--rmd-dialog-small-width)` and configured by
+  [$SASSDOC](dialog-small-width) or [$SASSDOC](<dialog-set-var(small-width, NEW_VALUE)>)
+- `"medium"` - uses `var(--rmd-dialog-medium-width)` and configured by
+  [$SASSDOC](dialog-medium-width) or [$SASSDOC](<dialog-set-var(medium-width, NEW_VALUE)>)
+- `"large"` - uses `var(--rmd-dialog-large-width)` and configured by
+  [$SASSDOC](dialog-large-width) or [$SASSDOC](<dialog-set-var(large-width, NEW_VALUE)>)
+- `"extra-large"` - uses `var(--rmd-dialog-extra-large-width)` and configured
+  by [$SASSDOC](dialog-extra-large-width) or [$SASSDOC](<dialog-set-var(extra-large-width, NEW_VALUE)>)
 
 ```demo source="./DialogWidths.tsx"
 

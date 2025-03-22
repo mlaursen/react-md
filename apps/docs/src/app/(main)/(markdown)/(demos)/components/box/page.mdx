@@ -12,7 +12,7 @@ The `Box` defaults to using `display: flex`, `align-items: center`,
 `justify-content: center`, `padding: 1rem`, and `gap: 1rem`.
 
 > !Info! The `padding` and `gap` can be configured globally by changing the
-> `$box-gap` and `$box-padding` Sass variables.
+> [$SASSDOC](box-gap) and [$SASSDOC](box-padding) Sass variables.
 
 ```demo source="./FlexExample.tsx"
 
@@ -50,7 +50,7 @@ Enable the `grid` prop to render equal width dynamic columns that will be at
 least `8rem` wide.
 
 > !Info! The min width can be configured globally by changing the
-> `$box-item-min-size` Sass variable.
+> [$SASSDOC](box-item-min-size) Sass variable.
 
 ```demo source="./GridExample.tsx" disableBox
 
@@ -60,7 +60,7 @@ least `8rem` wide.
 
 As the app grows it might be useful to define different grid variants that
 provide different min item size, gap, and/or padding. The variants can be
-configured by setting the `$box-grids` variable when `@forward`-ing or
+configured by setting the [$SASSDOC](box-grids) variable when `@forward`-ing or
 `@use`-ing `@react-md/core`. Each mapped name will be available as a `gridName`
 on the `Box` component.
 
@@ -71,7 +71,7 @@ on the `Box` component.
 ## Customizing Gap, Padding, and Min Item Size
 
 The `gap`, `padding`, and min item size for part of the DOM using the
-`box-set-var` mixin or a custom class name on the `Box` component.
+[$SASSDOC](box-set-var) mixin or a custom class name on the `Box` component.
 
 > !Success! The `gap` and `padding` are also available for the `flex` version
 > of the `Box`.

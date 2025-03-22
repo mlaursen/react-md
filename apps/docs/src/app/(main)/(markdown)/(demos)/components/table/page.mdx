@@ -96,8 +96,8 @@ used instead.
 ## Updating Selected Row Color
 
 The selected background color defaults to
-`core.interaction-get-var(selected-background-color)`. This can be configured by
-the `core.$table-row-selected-color` Sass variable or the
+[$SASSDOC](<interaction-get-var(selected-background-color)>). This can be
+configured by the [$SASSDOC](table-row-selected-color) Sass variable or the
 `--rmd-table-selected-background-color` custom property.
 
 If the text color and hover colors also need to change while selected, it is
@@ -200,10 +200,10 @@ When the `TableHeader`/`TableFooter` have the `sticky` prop enabled, some magic
 happens behind the scenes to automatically raise the elevation for the
 `TableHeader`/`TableFooter` when covering rows of content by scroll position.
 These styles can be configured globally by the
-`core.$table-sticky-header-inactive-styles`,
-`core.$table-sticky-header-active-styles`,
-`core.$table-sticky-footer-inactive-styles`, and
-`core.$table-sticky-footer-active-styles` Sass variables.
+[$SASSDOC](table-sticky-header-inactive-styles),
+[$SASSDOC](table-sticky-header-active-styles),
+[$SASSDOC](table-sticky-footer-inactive-styles), and
+[$SASSDOC](table-sticky-footer-active-styles) Sass variables.
 
 If the styles should not be configured globally, provide a custom
 `stickyActiveClassName` and optionally `className` to override the styling.

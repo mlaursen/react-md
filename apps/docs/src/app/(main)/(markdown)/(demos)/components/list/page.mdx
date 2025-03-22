@@ -47,9 +47,8 @@ The `secondaryText` can also span multiple lines by enabling the `multiline`
 prop. The default behavior will be to allow two lines of text and use
 [-webkit-line-clamp](https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp)
 to truncate the trailing text with ellipsis. The number of lines can be
-configured by the `core.$list-item-multiline-clamp` Sass variable or the
-`--rmd-list-item-multiline-clamp` custom property using the `core.list-set-var`
-mixin.
+configured by the [$SASSDOC](list-item-multiline-clamp) Sass variable or
+using the [$SASSDOC](<list-set-var(item-multiline-clamp, NEW_SIZE)>) mixin.
 
 ```demo source="./MultipleLinesOfSecondaryTextExample.tsx"
 
@@ -90,8 +89,8 @@ the `leftAddonType` or `rightAddonType` to `"avatar"` to modify the positioning.
 
 When an addon should be an image or something around `3.5rem` (`56px`), set the
 `leftAddonType` or `rightAddonType` to `"media"`. The media size and spacing can
-be configured by the `core.$list-item-media-size` and
-`core.$list-item-media-spacing` Sass variables.
+be configured by the [$SASSDOC](list-item-media-size) and
+[$SASSDOC](list-item-media-spacing) Sass variables.
 
 ```demo source="./MediaAddonsExample.tsx"
 
@@ -100,9 +99,9 @@ be configured by the `core.$list-item-media-size` and
 ## Large Media Addons
 
 The `ListItem` also supports large media that are `6.25rem` (`100px`) wide by
-setting the `leftAddonType` or `rightAddonType` to `"large-media"`. The width of
-the large media can be configured by the `core.$list-item-large-media-size` Sass
-variable.
+setting the `leftAddonType` or `rightAddonType` to `"large-media"`. The width
+of the large media can be configured by the
+[$SASSDOC](list-item-media-large-size) Sass variable.
 
 ```demo source="./LargeMediaAddonsExample.tsx"
 

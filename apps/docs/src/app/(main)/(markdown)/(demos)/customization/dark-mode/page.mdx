@@ -15,7 +15,7 @@ web application:
 > "Light Only" theme since that is the default behavior. Check out the
 > [theme customization documentation](./theme) for more theme behavior.
 
-If the application should only use a dark theme, set the `$color-scheme`
+If the application should only use a dark theme, set the [$SASSDOC](color-scheme)
 variable to `dark` when importing the `react-md` styles which will generate all
 styles with the dark theme variants.
 
@@ -54,8 +54,8 @@ temporary elements. Here is a list of components in `react-md` and their elevati
 ## Configuring Elevation Colors
 
 The different elevation colors can be changed by modifying the
-`$dark-elevation-colors` map. The next demo shows all 25 elevation colors and
-allows the values to be modified to see how they behave.
+[$SASSDOC](dark-elevation-colors) map. The next demo shows all 25 elevation
+colors and allows the values to be modified to see how they behave.
 
 ```demo source="./DarkElevationColors.tsx" disableBox startOnScss forceDarkMode disablePadding
 
@@ -64,9 +64,9 @@ allows the values to be modified to see how they behave.
 # System Mode
 
 If the application should use the dark theme only if the user has set their
-system preference to dark, set the `$color-scheme` to `system`. The generated
-styles will default to the light theme but add a media query to use the dark
-theme when the `@media (prefers-color-scheme: dark)` matches.
+system preference to dark, set the [$SASSDOC](color-scheme) to `system`. The
+generated styles will default to the light theme but add a media query to use
+the dark theme when the `@media (prefers-color-scheme: dark)` matches.
 
 ```scss
 @use "@react-md/core" with (
@@ -80,8 +80,8 @@ theme when the `@media (prefers-color-scheme: dark)` matches.
 
 If the application allows the user to select the current color scheme, generate
 the styles as normal with the default color scheme and create a global class
-name with the alternative theme using the `core.light-theme` or
-`core.dark-theme` mixins.
+name with the alternative theme using the [$SASSDOC](use-light-theme) or
+[$SASSDOC](use-dark-theme) mixins.
 
 Once the styles are generated, the app should be wrapped in the
 [LocalStorageColorSchemeProvider](/components/color-scheme-provider#local-storage-example)
@@ -90,9 +90,9 @@ or a custom
 and apply the light or dark theme class name to the root html as needed. The
 following examples will use the `LocalStorageColorSchemeProvider` to keep it simple.
 
-Start by configuring the default `$color-scheme` and creating a class name for
-the other color scheme. This example will default to a `light` theme and allow
-the user to configure it to be `dark`.
+Start by configuring the default [$SASSDOC](color-scheme) and creating a class
+name for the other color scheme. This example will default to a `light` theme
+and allow the user to configure it to be `dark`.
 
 ```scss
 @use "@react-md/core" with (
@@ -161,7 +161,7 @@ function ApplyTheme() {
 # Light or Dark or System Mode
 
 The style setup will be about the same as the previous examples. Start by
-defining the default `$color-scheme` and create additional classes for the
+defining the default [$SASSDOC](color-scheme) and create additional classes for the
 other color schemes.
 
 ```scss
