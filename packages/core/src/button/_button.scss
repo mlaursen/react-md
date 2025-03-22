@@ -264,16 +264,17 @@ $variables: (
 
 /// Used to apply the text button styles to an element and most likely an
 /// internal only mixin.
-///   @example scss - Example SCSS Usage
-///     .button {
-///       @include text-styles;
 ///
-///       align-items: center;
-///       border-width: 0;
-///       display: inline-flex;
-///       flex-shrink: 0;
-///       justify-content: center;
-///     }
+/// @example scss - Example SCSS Usage
+///   .button {
+///     @include text-styles;
+///
+///     align-items: center;
+///     border-width: 0;
+///     display: inline-flex;
+///     flex-shrink: 0;
+///     justify-content: center;
+///   }
 @mixin text-styles {
   @include icon.set-var(size, $text-icon-size);
   @include set-var(border-radius, $text-border-radius);

@@ -476,7 +476,7 @@ $variables: (
 /// @example scss - Example Usage SCSS
 ///   .link {
 ///     &:focus-visible {
-///       @Include focus-styles($disable-background: true);
+///       @include focus-styles($disable-background: true);
 ///     }
 ///   }
 ///

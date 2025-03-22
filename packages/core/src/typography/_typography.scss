@@ -146,7 +146,7 @@ $font-styles: normal italic oblique !default;
 /// @example scss - Changing the Font<!-- no-compile -->
 ///   @use "@react-md/core" with (
 ///     $font-family: string.unquote("'Open Sans', Koulen, 'Roboto Flex', sans-serif")
-///   ):
+///   );
 ///
 /// @type String
 $font-family: Roboto, sans-serif !default;

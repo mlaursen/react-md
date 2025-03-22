@@ -774,6 +774,8 @@ $white: #fff;
 /// programmatically get variables with the neat sass-map functions.
 ///
 /// @example scss - Example Usage SCSS
+///   @use "sass:map";
+///
 ///   .error-field {
 ///     background: map.get($color-map, red-50);
 ///   }
