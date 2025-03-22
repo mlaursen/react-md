@@ -282,6 +282,8 @@ declare module "sassdoc" {
      * The required item's type. This should **not** be the data type.
      */
     type: SassDocItemType;
+    autofill: boolean;
+    item: Item;
 
     /**
      * The description for the required item.
@@ -563,11 +565,7 @@ declare module "sassdoc" {
      * An optional list of items that uses this item. This is auto-generated
      * for functions and mixins.
      */
-    // usedBy?: ItemReference[];
-    usedBy?: {
-      description?: string;
-      context: ItemContext;
-    }[];
+    usedBy?: ItemQuickReference[];
 
     /**
      * An optional list of errors that are thrown by the item. This is actually

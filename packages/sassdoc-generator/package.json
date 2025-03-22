@@ -1,0 +1,58 @@
+{
+  "name": "sassdoc-generator",
+  "version": "0.0.1",
+  "description": "A custom wrapper around the sassdoc package for generating docs for the website",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./dist/generate.js",
+    "./types": "./dist/types.d.ts",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "pnpm run watch",
+    "watch": "npm-run-all --parallel build-esm-watch build-types-watch",
+    "build": "npm-run-all build-esm build-types",
+    "build-esm": "swc -d ./dist --strip-leading-paths src",
+    "build-esm-watch": "pnpm run build-esm --watch",
+    "build-types": "tsc -P tsconfig.types.json",
+    "build-types-watch": "pnpm run build-types --watch",
+    "clean-dist": "rm -rf dist",
+    "clean": "rm -rf .turbo dist node_modules",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\""
+  },
+  "engines": {
+    "pnpm": ">=9",
+    "node": ">=20"
+  },
+  "engineStrict": true,
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/sassdoc-generator"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "prettier": "^3.5.0",
+    "pretty-ms": "^9.2.0",
+    "sass": "^1.84.0"
+  },
+  "devDependencies": {
+    "@mlaursen/eslint-config": "^7.0.0",
+    "@swc/cli": "^0.6.0",
+    "@swc/core": "^1.10.15",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^22.13.1",
+    "@types/sassdoc": "workspace:*",
+    "eslint": "^9.20.0",
+    "npm-run-all": "^4.1.5",
+    "sassdoc": "^2.7.4",
+    "typescript": "^5.7.3"
+  },
+  "volta": {
+    "node": "22.13.1",
+    "pnpm": "10.5.2"
+  }
+}
