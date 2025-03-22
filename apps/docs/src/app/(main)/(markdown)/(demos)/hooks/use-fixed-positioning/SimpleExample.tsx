@@ -6,8 +6,8 @@ import { CardContent } from "@react-md/core/card/CardContent";
 import { useFixedPositioning } from "@react-md/core/positioning/useFixedPositioning";
 import { useCSSTransition } from "@react-md/core/transition/useCSSTransition";
 import {
-  SCALE_CLASSNAMES,
-  SCALE_TIMEOUT,
+  DEFAULT_SCALE_CLASSNAMES,
+  DEFAULT_SCALE_TIMEOUT,
 } from "@react-md/core/transition/useScaleTransition";
 import { type ReactElement, useRef, useState } from "react";
 
@@ -22,8 +22,8 @@ export default function SimpleExample(): ReactElement {
     transitionIn,
     temporary: true,
     // any transition could be used
-    timeout: SCALE_TIMEOUT,
-    classNames: SCALE_CLASSNAMES,
+    timeout: DEFAULT_SCALE_TIMEOUT,
+    classNames: DEFAULT_SCALE_CLASSNAMES,
   });
 
   return (

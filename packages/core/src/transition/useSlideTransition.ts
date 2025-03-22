@@ -2,25 +2,25 @@
 
 import { cnb } from "cnbuilder";
 
-import type {
-  CSSTransitionClassNames,
-  CSSTransitionHookReturnValue,
-  PreconfiguredCSSTransitionOptions,
-  TransitionTimeout,
+import {
+  type CSSTransitionClassNames,
+  type CSSTransitionHookReturnValue,
+  type PreconfiguredCSSTransitionOptions,
+  type TransitionTimeout,
 } from "./types.js";
 import { useCSSTransition } from "./useCSSTransition.js";
 
 /** @since 6.0.0 */
-export const DEFAULT_SLIDE_TRANSITION_TIMEOUT: Readonly<TransitionTimeout> = 150;
+export const DEFAULT_SLIDE_TRANSITION_TIMEOUT =
+  150 as const satisfies TransitionTimeout;
 
 /** @since 6.0.0 */
-export const DEFAULT_SLIDE_TRANSITION_CLASSNAMES: Readonly<CSSTransitionClassNames> =
-  {
-    enter: "rmd-slide--enter",
-    enterActive: "rmd-slide--enter-active rmd-slide--animate",
-    exit: "rmd-slide--exit",
-    exitActive: "rmd-slide--exit-active rmd-slide--animate",
-  };
+export const DEFAULT_SLIDE_TRANSITION_CLASSNAMES = {
+  enter: "rmd-slide--enter",
+  enterActive: "rmd-slide--enter-active rmd-slide--animate",
+  exit: "rmd-slide--exit",
+  exitActive: "rmd-slide--exit-active rmd-slide--animate",
+} as const satisfies CSSTransitionClassNames;
 
 /** @since 6.0.0 */
 export type SlideTransitionOptions<E extends HTMLElement> =

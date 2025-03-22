@@ -4,7 +4,7 @@ import { cnb } from "cnbuilder";
 import { type MouseEvent, type ReactNode, forwardRef } from "react";
 
 import { type BoxAlignItems } from "../box/styles.js";
-import { overlay } from "../overlay/overlayStyles.js";
+import { overlay } from "../overlay/styles.js";
 import {
   CircularProgress,
   type CircularProgressProps,

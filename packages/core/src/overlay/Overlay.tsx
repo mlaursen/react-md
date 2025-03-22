@@ -14,7 +14,7 @@ import {
   DEFAULT_OVERLAY_CLASSNAMES,
   DEFAULT_OVERLAY_TIMEOUT,
   overlay,
-} from "./overlayStyles.js";
+} from "./styles.js";
 
 declare module "react" {
   interface CSSProperties {

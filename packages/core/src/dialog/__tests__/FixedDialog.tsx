@@ -12,7 +12,7 @@ import {
 } from "../../test-utils/index.js";
 import { testImmediateRaf } from "../../test-utils/jest-globals/timers.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
-import { SCALE_CLASSNAMES } from "../../transition/useScaleTransition.js";
+import { DEFAULT_SCALE_CLASSNAMES } from "../../transition/useScaleTransition.js";
 import { Typography } from "../../typography/Typography.js";
 import { useToggle } from "../../useToggle.js";
 import { DialogContent } from "../DialogContent.js";
@@ -124,20 +124,20 @@ describe("FixedDialog", () => {
 
     await user.click(screen.getByRole("button", { name: "Button" }));
     const dialog = screen.getByRole("dialog", { name: "Hello, world!" });
-    expect(dialog).toHaveClass(SCALE_CLASSNAMES.enter);
-    expect(dialog).toHaveClass(SCALE_CLASSNAMES.enterActive);
+    expect(dialog).toHaveClass(DEFAULT_SCALE_CLASSNAMES.enter);
+    expect(dialog).toHaveClass(DEFAULT_SCALE_CLASSNAMES.enterActive);
     act(() => {
       jest.runOnlyPendingTimers();
     });
-    expect(dialog).not.toHaveClass(SCALE_CLASSNAMES.enter);
-    expect(dialog).not.toHaveClass(SCALE_CLASSNAMES.enterActive);
+    expect(dialog).not.toHaveClass(DEFAULT_SCALE_CLASSNAMES.enter);
+    expect(dialog).not.toHaveClass(DEFAULT_SCALE_CLASSNAMES.enterActive);
 
     act(() => {
       jest.runOnlyPendingTimers();
     });
     await user.click(screen.getByTestId("overlay"));
-    expect(dialog).toHaveClass(SCALE_CLASSNAMES.exit);
-    expect(dialog).toHaveClass(SCALE_CLASSNAMES.exitActive);
+    expect(dialog).toHaveClass(DEFAULT_SCALE_CLASSNAMES.exit);
+    expect(dialog).toHaveClass(DEFAULT_SCALE_CLASSNAMES.exitActive);
     act(() => {
       jest.runOnlyPendingTimers();
     });

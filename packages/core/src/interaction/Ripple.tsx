@@ -11,19 +11,19 @@ import { useCSSTransition } from "../transition/useCSSTransition.js";
 import { type RippleState, type RippleTransitionCallbacks } from "./types.js";
 
 /** @internal */
-export const DEFAULT_RIPPLE_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
+export const DEFAULT_RIPPLE_CLASSNAMES = {
   enter: "rmd-ripple--animating",
   enterActive: "rmd-ripple--scaling",
   enterDone: "rmd-ripple--animating rmd-ripple--scaling",
   exit: "rmd-ripple--animating rmd-ripple--scaling",
   exitActive: "rmd-ripple--fading",
-};
+} as const satisfies CSSTransitionClassNames;
 
 /** @internal */
-export const DEFAULT_RIPPLE_TIMEOUT: Readonly<TransitionTimeout> = {
+export const DEFAULT_RIPPLE_TIMEOUT = {
   enter: 150,
   exit: 300,
-};
+} as const satisfies TransitionTimeout;
 
 /** @internal */
 export interface RippleProps extends RippleTransitionCallbacks {

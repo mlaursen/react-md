@@ -9,14 +9,27 @@ import type {
 import { useCSSTransition } from "./useCSSTransition.js";
 
 /**
+ * The default {@link TransitionTimeout} to use for horizontal and vertical
+ * scale transitions.
+ *
+ * @since 2.0.0
+ * @since 6.0.0 Renamed from `SCALE_TIMEOUT` to `DEFAULT_SCALE_TIMEOUT`.
+ */
+export const DEFAULT_SCALE_TIMEOUT = {
+  enter: 200,
+  exit: 150,
+} as const satisfies TransitionTimeout;
+
+/**
  * The default {@link CSSTransitionClassNames} for a horizontal scale
  * transition.
  *
  * @since 2.0.0
  * @since 6.0.0 The class names were updated to be prefixed with
- * `rmd-scale-transition`
+ * `rmd-scale-transition` and renamed from `SCALE_CLASSNAMES` to
+ * `DEFAULT_SCALE_CLASSNAMES`.
  */
-export const SCALE_CLASSNAMES = {
+export const DEFAULT_SCALE_CLASSNAMES = {
   appear: "rmd-scale-transition--enter",
   appearActive: "rmd-scale-transition--enter-active",
   enter: "rmd-scale-transition--enter",
@@ -31,9 +44,11 @@ export const SCALE_CLASSNAMES = {
  *
  * @since 2.0.0
  * @since 6.0.0 The class names were updated to be prefixed with
- * `rmd-scale-y-transition` and merged with the {@link SCALE_CLASSNAMES}
+ * `rmd-scale-y-transition` and merged with the {@link DEFAULT_SCALE_CLASSNAMES}.
+ * It was also renamed from `SCALE_Y_CLASSNAMES` to
+ * `DEFAULT_SCALE_Y_CLASSNAMES`.
  */
-export const SCALE_Y_CLASSNAMES = {
+export const DEFAULT_SCALE_Y_CLASSNAMES = {
   appear: "rmd-scale-transition--enter rmd-scale-transition--y-enter",
   appearActive:
     "rmd-scale-transition--enter-active rmd-scale-transition--y-enter-active",
@@ -45,17 +60,6 @@ export const SCALE_Y_CLASSNAMES = {
   exitActive:
     "rmd-scale-transition--exit-active rmd-scale-transition--y-exit-active",
 } as const satisfies CSSTransitionClassNames;
-
-/**
- * The default {@link TransitionTimeout} to use for horizontal and vertical
- * scale transitions.
- *
- * @since 2.0.0
- */
-export const SCALE_TIMEOUT = {
-  enter: 200,
-  exit: 150,
-} as const satisfies TransitionTimeout;
 
 /**
  * @typeParam E - The HTMLElement type used or the ref required for the
@@ -80,8 +84,8 @@ export interface ScaleTransitionHookOptions<E extends HTMLElement>
 
   /**
    * @see {@link vertical}
-   * @see {@link SCALE_CLASSNAMES}
-   * @see {@link SCALE_Y_CLASSNAMES}
+   * @see {@link DEFAULT_SCALE_CLASSNAMES}
+   * @see {@link DEFAULT_SCALE_Y_CLASSNAMES}
    * @defaultValue `vertical ? SCALE_Y_CLASSNAMES : SCALE_CLASSNAMES`
    */
   classNames?: CSSTransitionClassNames;
@@ -133,11 +137,13 @@ export function useScaleTransition<E extends HTMLElement>(
   options: ScaleTransitionHookOptions<E>
 ): CSSTransitionHookReturnValue<E> {
   const {
-    timeout = SCALE_TIMEOUT,
+    timeout = DEFAULT_SCALE_TIMEOUT,
     vertical = false,
     temporary = true,
     exitedHidden = true,
-    classNames = vertical ? SCALE_Y_CLASSNAMES : SCALE_CLASSNAMES,
+    classNames = vertical
+      ? DEFAULT_SCALE_Y_CLASSNAMES
+      : DEFAULT_SCALE_CLASSNAMES,
     ...transitionOptions
   } = options;
 

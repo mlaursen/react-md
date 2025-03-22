@@ -18,7 +18,7 @@ import { ListItem } from "@react-md/core/list/ListItem";
 import {
   DEFAULT_OVERLAY_CLASSNAMES,
   DEFAULT_OVERLAY_TIMEOUT,
-} from "@react-md/core/overlay/overlayStyles";
+} from "@react-md/core/overlay/styles";
 import { LinearProgress } from "@react-md/core/progress/LinearProgress";
 import { CSSTransition } from "@react-md/core/transition/CSSTransition";
 import { Typography } from "@react-md/core/typography/Typography";

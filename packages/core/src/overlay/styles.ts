@@ -27,6 +27,7 @@ export interface OverlayClassNameOptions {
 
   /** @defaultValue `false` */
   absolute?: boolean;
+
   /** @defaultValue `"center"` */
   align?: BoxAlignItems;
 

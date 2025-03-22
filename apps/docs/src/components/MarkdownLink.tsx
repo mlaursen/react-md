@@ -14,6 +14,7 @@ import { LinkUnstyled, type LinkUnstyledProps } from "./LinkUnstyled.jsx";
 
 export type MarkdownLinkProps = LinkUnstyledProps;
 
+const GITHUB = "$GITHUB";
 const SOURCE = "$SOURCE";
 const SASSDOC = "$SASSDOC";
 
@@ -24,6 +25,14 @@ export function MarkdownLink(props: MarkdownLinkProps): ReactElement {
   let children = propChildren;
   if (children === SOURCE) {
     return <GithubLink file={href} float {...remaining} />;
+  }
+
+  if (href.startsWith(GITHUB)) {
+    return (
+      <GithubLink href={href.replace(GITHUB, GITHUB_LINK_URL)} {...remaining}>
+        {children}
+      </GithubLink>
+    );
   }
 
   if (children === SASSDOC) {
@@ -55,7 +64,7 @@ export function MarkdownLink(props: MarkdownLinkProps): ReactElement {
   return (
     <LinkUnstyled
       {...remaining}
-      href={href.replace("$GITHUB", GITHUB_LINK_URL)}
+      href={href.replace(GITHUB, GITHUB_LINK_URL)}
       className={link()}
     >
       {children}

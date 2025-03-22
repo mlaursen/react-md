@@ -4,7 +4,7 @@ import { AsyncButton } from "@react-md/core/button/AsyncButton";
 import { Snackbar } from "@react-md/core/snackbar/Snackbar";
 import { ToastManager } from "@react-md/core/snackbar/ToastManager";
 import { ToastManagerProvider } from "@react-md/core/snackbar/ToastManagerProvider";
-import { SCALE_TIMEOUT } from "@react-md/core/transition/useScaleTransition";
+import { DEFAULT_SCALE_TIMEOUT } from "@react-md/core/transition/useScaleTransition";
 import { type UseStateSetter } from "@react-md/core/types";
 import { type ReactElement, useEffect, useState } from "react";
 
@@ -87,7 +87,7 @@ function ActiveTime(): ReactElement {
       interval = window.setInterval(() => {
         setTime((prevTime) => prevTime + 1);
       }, 1000);
-    }, SCALE_TIMEOUT.enter);
+    }, DEFAULT_SCALE_TIMEOUT.enter);
 
     return () => {
       window.clearTimeout(timeout);

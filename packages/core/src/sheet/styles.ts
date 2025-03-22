@@ -8,12 +8,18 @@ import {
 } from "../transition/types.js";
 import { bem } from "../utils/bem.js";
 
-export const DEFAULT_SHEET_TIMEOUT: Readonly<TransitionTimeout> = {
+/**
+ * @since 6.0.0 Uses `as const satisfies TransitionTimeout`
+ */
+export const DEFAULT_SHEET_TIMEOUT = {
   enter: 200,
   exit: 150,
-};
+} as const satisfies TransitionTimeout;
 
-export const DEFAULT_SHEET_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
+/**
+ * @since 6.0.0 Uses `as const satisfies CSSTransitionClassNames`
+ */
+export const DEFAULT_SHEET_CLASSNAMES = {
   appear: "rmd-sheet--offscreen",
   appearActive: "rmd-sheet--enter rmd-sheet--visible",
   enter: "rmd-sheet--offscreen",
@@ -21,7 +27,7 @@ export const DEFAULT_SHEET_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
   exit: "rmd-sheet--exit",
   exitActive: "rmd-sheet--offscreen",
   exitDone: "rmd-sheet--offscreen rmd-sheet--hidden",
-};
+} as const satisfies CSSTransitionClassNames;
 
 const styles = bem("rmd-sheet");
 

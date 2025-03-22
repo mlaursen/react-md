@@ -8,7 +8,7 @@ import {
   type PositionAnchor,
 } from "../positioning/types.js";
 import { useFixedPositioning } from "../positioning/useFixedPositioning.js";
-import { SCALE_CLASSNAMES } from "../transition/useScaleTransition.js";
+import { DEFAULT_SCALE_CLASSNAMES } from "../transition/useScaleTransition.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { type BaseDialogProps, Dialog } from "./Dialog.js";
 
@@ -91,7 +91,7 @@ export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
     const {
       fixedTo,
       style: propStyle,
-      classNames = SCALE_CLASSNAMES,
+      classNames = DEFAULT_SCALE_CLASSNAMES,
       children,
       anchor = TOP_INNER_RIGHT_ANCHOR,
       options,

@@ -2,36 +2,38 @@
 
 import type {
   CSSTransitionClassNames,
-  CSSTransitionClassNamesObject,
   CSSTransitionHookReturnValue,
   PreconfiguredCSSTransitionInDefaultedOptions,
   TransitionTimeout,
-  TransitionTimeoutObject,
 } from "./types.js";
 import { useCSSTransition } from "./useCSSTransition.js";
-
-/**
- * The default cross fade transition classes to use.
- *
- * @since 2.0.0
- */
-export const CROSS_FADE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
-  appear: "rmd-cross-fade",
-  appearActive: "rmd-cross-fade--active",
-  enter: "rmd-cross-fade",
-  enterActive: "rmd-cross-fade--active",
-};
 
 /**
  * The default cross fade transition timeout.
  *
  * @since 2.0.0
+ * @since 6.0.0 Renamed from `CROSS_FADE_TIMEOUT` to
+ * `DEFAULT_CROSS_FADE_TIMEOUT`
  */
-export const CROSS_FADE_TIMEOUT: Readonly<TransitionTimeoutObject> = {
+export const DEFAULT_CROSS_FADE_TIMEOUT = {
   appear: 300,
   enter: 300,
   exit: 0,
-};
+} as const satisfies TransitionTimeout;
+
+/**
+ * The default cross fade transition classes to use.
+ *
+ * @since 2.0.0
+ * @since 6.0.0 Renamed from `CROSS_FADE_CLASSNAMES` to
+ * `DEFAULT_CROSS_FADE_CLASSNAMES`.
+ */
+export const DEFAULT_CROSS_FADE_CLASSNAMES = {
+  appear: "rmd-cross-fade",
+  appearActive: "rmd-cross-fade--active",
+  enter: "rmd-cross-fade",
+  enterActive: "rmd-cross-fade--active",
+} as const satisfies CSSTransitionClassNames;
 
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the
@@ -42,14 +44,14 @@ export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
   extends PreconfiguredCSSTransitionInDefaultedOptions<E> {
   /**
    * @see {@link TransitionTimeout}
-   * @see {@link CROSS_FADE_TIMEOUT}
+   * @see {@link DEFAULT_CROSS_FADE_TIMEOUT}
    * @defaultValue `CROSS_FADE_TIMEOUT`
    */
   timeout?: TransitionTimeout;
 
   /**
    * @see {@link CSSTransitionClassNames}
-   * @see {@link CROSS_FADE_CLASSNAMES}
+   * @see {@link DEFAULT_CROSS_FADE_CLASSNAMES}
    * @defaultValue `CROSS_FADE_CLASSNAMES`
    */
   classNames?: CSSTransitionClassNames;
@@ -77,8 +79,8 @@ export function useCrossFadeTransition<E extends HTMLElement>(
   const {
     appear = false,
     transitionIn = true,
-    timeout = CROSS_FADE_TIMEOUT,
-    classNames = CROSS_FADE_CLASSNAMES,
+    timeout = DEFAULT_CROSS_FADE_TIMEOUT,
+    classNames = DEFAULT_CROSS_FADE_CLASSNAMES,
     ...cssOptions
   } = options;
 

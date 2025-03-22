@@ -49,8 +49,8 @@ import { Slide } from "@react-md/core/transition/Slide";
 import { SlideContainer } from "@react-md/core/transition/SlideContainer";
 import { useCSSTransition } from "@react-md/core/transition/useCSSTransition";
 import {
-  SCALE_CLASSNAMES,
-  SCALE_TIMEOUT,
+  DEFAULT_SCALE_CLASSNAMES,
+  DEFAULT_SCALE_TIMEOUT,
 } from "@react-md/core/transition/useScaleTransition";
 import ErrorIcon from "node_modules/@react-md/material-icons/src/ErrorIcon.jsx";
 import { type ReactElement, useEffect, useRef, useState } from "react";
@@ -189,8 +189,8 @@ export default function AdvancedConfiguration(): ReactElement {
     transitionIn,
     temporary: true,
     // any transition could be used
-    timeout: SCALE_TIMEOUT,
-    classNames: SCALE_CLASSNAMES,
+    timeout: DEFAULT_SCALE_TIMEOUT,
+    classNames: DEFAULT_SCALE_CLASSNAMES,
   });
 
   useEffect(() => {

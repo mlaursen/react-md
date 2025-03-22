@@ -20,7 +20,7 @@ export const DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES = {
   enterActive: "rmd-layout-h--active",
   enterDone: "rmd-layout-h--active",
   exit: "rmd-layout-h--exit",
-} satisfies Readonly<CSSTransitionClassNames>;
+} as const satisfies CSSTransitionClassNames;
 
 /**
  * @since 6.0.0

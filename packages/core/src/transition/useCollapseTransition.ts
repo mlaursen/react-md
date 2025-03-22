@@ -11,7 +11,6 @@ import {
   type CSSTransitionHookReturnValue,
   type PreconfiguredCSSTransitionOptions,
   type TransitionTimeout,
-  type TransitionTimeoutObject,
 } from "./types.js";
 import { useTransition } from "./useTransition.js";
 import { getElementSizing, getTransitionTimeout } from "./utils.js";
@@ -23,10 +22,10 @@ const noop = (): void => {
 /**
  * @since 2.0.0
  */
-export const DEFAULT_COLLAPSE_TIMEOUT: Readonly<TransitionTimeoutObject> = {
+export const DEFAULT_COLLAPSE_TIMEOUT = {
   enter: 250,
   exit: 200,
-};
+} as const satisfies TransitionTimeout;
 
 /**
  * @since 4.0.0

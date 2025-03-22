@@ -1,10 +1,16 @@
-import type {
-  CSSTransitionClassNames,
-  TransitionTimeout,
+import {
+  type CSSTransitionClassNames,
+  type TransitionTimeout,
 } from "../transition/types.js";
 
 /** @since 2.0.0 */
-export const DEFAULT_TOOLTIP_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
+export const DEFAULT_TOOLTIP_TIMEOUT = {
+  enter: 200,
+  exit: 150,
+} as const satisfies TransitionTimeout;
+
+/** @since 2.0.0 */
+export const DEFAULT_TOOLTIP_CLASSNAMES = {
   appear: "rmd-tooltip--enter",
   appearActive: "rmd-tooltip--visible",
   enter: "rmd-tooltip--enter",
@@ -12,13 +18,7 @@ export const DEFAULT_TOOLTIP_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
   enterDone: "rmd-tooltip--visible",
   exit: "rmd-tooltip--visible rmd-tooltip--exit",
   exitActive: "rmd-tooltip--exit-active",
-};
-
-/** @since 2.0.0 */
-export const DEFAULT_TOOLTIP_TIMEOUT: Readonly<TransitionTimeout> = {
-  enter: 200,
-  exit: 150,
-};
+} as const satisfies CSSTransitionClassNames;
 
 /** @since 2.0.0 */
 export const DEFAULT_TOOLTIP_DELAY = 1000;

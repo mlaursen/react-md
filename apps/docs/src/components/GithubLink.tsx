@@ -56,7 +56,7 @@ export function GithubLink(props: GithubLinkProps): ReactElement {
     children = <GithubIcon />,
     buttonType = typeof children === "string" ? "text" : "icon",
     tooltipOptions,
-    target = file ? "_blank" : undefined,
+    target = file || href.startsWith(GITHUB_LINK_URL) ? "_blank" : undefined,
     ...remaining
   } = props;
 
