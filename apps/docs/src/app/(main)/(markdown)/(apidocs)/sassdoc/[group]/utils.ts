@@ -1,7 +1,7 @@
 import {
   type FormattedItem,
-  FormattedSassDocItem,
-  ItemReferenceLink,
+  type FormattedSassDocItem,
+  type ItemReferenceLink,
 } from "sassdoc-generator/types";
 
 export const getGroupName = (itemOrGroup: FormattedItem | string): string => {
@@ -13,7 +13,8 @@ export const getGroupName = (itemOrGroup: FormattedItem | string): string => {
 export function getSassDocLink(
   item: FormattedSassDocItem | ItemReferenceLink
 ): string {
-  let { name, type, group } = item;
+  let { type } = item;
+  const { name, group } = item;
   if (
     "originalName" in item &&
     item.type !== "function" &&

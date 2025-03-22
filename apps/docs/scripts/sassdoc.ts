@@ -1,7 +1,7 @@
 import { getProjectRootDir } from "docs-generator/utils/getProjectRootDir";
 import { log, logComplete } from "docs-generator/utils/log";
 import { existsSync } from "node:fs";
-import { writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { format } from "prettier";
 import { type GeneratedSassDoc, generate } from "sassdoc-generator";
@@ -21,9 +21,11 @@ async function createSassDocFile(generated: GeneratedSassDoc): Promise<void> {
 
 import { type FormattedMixinItem, type FormattedVariableItem, type FormattedFunctionItem } from "sassdoc-generator/types";
 
-export const SASSDOC_MIXINS: Record<string, FormattedMixinItem> = ${JSON.stringify(Object.fromEntries(mixins.entries()))};
-export const SASSDOC_FUNCTIONS: Record<string, FormattedFunctionItem> = ${JSON.stringify(Object.fromEntries(functions.entries()))};
-export const SASSDOC_VARIABLES: Record<string, FormattedVariableItem> = ${JSON.stringify(Object.fromEntries(variables.entries()))};
+// adding \`| undefined\` since i don't have the \`noUncheckedIndexedAccess\`
+// ts option enabled and causes invalid types when using \`||\`
+export const SASSDOC_MIXINS: Record<string, FormattedMixinItem | undefined> = ${JSON.stringify(Object.fromEntries(mixins.entries()))};
+export const SASSDOC_FUNCTIONS: Record<string, FormattedFunctionItem | undefined> = ${JSON.stringify(Object.fromEntries(functions.entries()))};
+export const SASSDOC_VARIABLES: Record<string, FormattedVariableItem | undefined> = ${JSON.stringify(Object.fromEntries(variables.entries()))};
 `;
 
   await writeFile(
@@ -38,6 +40,10 @@ if (process.argv.includes("--touch")) {
       `Skipped generting ${ALIASED_SASSDOC_FILE} since it already exists`
     );
   } else {
+    if (!existsSync(GENERATED_DIR)) {
+      await mkdir(GENERATED_DIR, { recursive: true });
+    }
+
     await log(
       createSassDocFile({
         mixins: new Map(),
@@ -54,60 +60,6 @@ if (process.argv.includes("--touch")) {
 
 async function run(): Promise<void> {
   await createSassDocFile(await generate({ src: CORE_SRC }));
-
-  // function getGroupName(item: FormattedItem): string {
-  //   const { group } = item;
-  //   if (group === "core.form") {
-  //     return "form";
-  //   }
-  //
-  //   if (group.startsWith("core.")) {
-  //     return "core";
-  //   }
-  //
-  //   return group;
-  // }
-  //
-  // interface SassDocGroup {
-  //   mixins: Map<string, FormattedMixinItem>;
-  //   functions: Map<string, FormattedFunctionItem>;
-  //   variables: Map<string, FormattedVariableItem>;
-  // }
-  //
-  // const grouped = new Map<string, SassDocGroup>();
-  //
-  // function getByGroupName(groupName: string): SassDocGroup {
-  //   return (
-  //     grouped.get(groupName) || {
-  //       mixins: new Map(),
-  //       functions: new Map(),
-  //       variables: new Map(),
-  //     }
-  //   );
-  // }
-  //
-  // logPending("Generating lookups and constants from sassdoc");
-  //
-  // mixins.forEach((item) => {
-  //   const groupName = getGroupName(item);
-  //   const group = getByGroupName(groupName);
-  //   group.mixins.set(item.name, item);
-  //   grouped.set(groupName, group);
-  // });
-  // functions.forEach((item) => {
-  //   const groupName = getGroupName(item);
-  //   const group = getByGroupName(groupName);
-  //   group.functions.set(item.name, item);
-  //   grouped.set(groupName, group);
-  // });
-  // variables.forEach((item) => {
-  //   const groupName = getGroupName(item);
-  //   const group = getByGroupName(groupName);
-  //   group.variables.set(item.name, item);
-  //   grouped.set(groupName, group);
-  // });
-  //
-  // await createSassDocFile(grouped);
 }
 
 await log(run(), "", `Created ${ALIASED_SASSDOC_FILE}`);

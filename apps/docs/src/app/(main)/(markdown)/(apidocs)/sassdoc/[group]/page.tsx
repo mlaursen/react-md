@@ -40,7 +40,7 @@ function getByGroupName(groupName: string): SassDocGroup {
   );
 }
 Object.values(SASSDOC_MIXINS).forEach((item) => {
-  if (item.private) {
+  if (!item || item.private) {
     return;
   }
   const groupName = getGroupName(item);
@@ -49,7 +49,7 @@ Object.values(SASSDOC_MIXINS).forEach((item) => {
   SASSDOC_GROUP.set(groupName, group);
 });
 Object.values(SASSDOC_FUNCTIONS).forEach((item) => {
-  if (item.private) {
+  if (!item || item.private) {
     return;
   }
   const groupName = getGroupName(item);
@@ -58,7 +58,7 @@ Object.values(SASSDOC_FUNCTIONS).forEach((item) => {
   SASSDOC_GROUP.set(groupName, group);
 });
 Object.values(SASSDOC_VARIABLES).forEach((item) => {
-  if (item.private) {
+  if (!item || item.private) {
     return;
   }
   const groupName = getGroupName(item);

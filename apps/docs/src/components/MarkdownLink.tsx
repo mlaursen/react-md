@@ -1,6 +1,5 @@
 import { link } from "@react-md/core/link/styles";
 import { type ReactElement } from "react";
-import { FormattedSassDocItem } from "sassdoc-generator/types";
 
 import { getSassDocLink } from "@/app/(main)/(markdown)/(apidocs)/sassdoc/[group]/utils.js";
 import { GITHUB_LINK_URL } from "@/constants/env.js";
