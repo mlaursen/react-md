@@ -132,7 +132,13 @@ export interface DialogHeaderClassNameOptions {
   className?: string;
 }
 
-/** @since 6.0.0 */
+/**
+ * NOTE: The default `DialogHeader` component uses the `Box` component so the
+ * `box` class name utility function or `Box` component will probably be
+ * required if using this util
+ *
+ * @since 6.0.0
+ */
 export function dialogHeader(
   options: DialogHeaderClassNameOptions = {}
 ): string {

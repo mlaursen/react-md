@@ -5,6 +5,7 @@
 @use "sass:map";
 @use "../utils";
 @use "../box-shadows";
+@use "../box/box";
 @use "../transition/transition";
 @use "../interaction/interaction";
 @use "../theme/theme";
@@ -398,11 +399,9 @@ $variables: (
 
         @if not $disable-header {
           &__header {
-            @include use-var(padding, header-padding);
+            @include box.set-var(padding, get-var(header-padding));
             @include use-var(padding-bottom, header-padding-bottom);
 
-            align-items: center;
-            display: flex;
             flex: 0 0 auto;
           }
         }

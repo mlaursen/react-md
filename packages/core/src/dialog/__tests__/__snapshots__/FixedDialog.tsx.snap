@@ -10,7 +10,7 @@ exports[`FixedDialog should apply the correct styling, HTMLAttributes, and allow
   tabindex="-1"
 >
   <div
-    class="rmd-dialog__header"
+    class="rmd-box rmd-box--gap rmd-box--padded rmd-box--align-center rmd-dialog__header"
   >
     <h2
       class="rmd-typography rmd-typography--headline-4 rmd-no-margin rmd-dialog__title"
@@ -53,7 +53,7 @@ exports[`FixedDialog should apply the correct styling, HTMLAttributes, and allow
   tabindex="-1"
 >
   <div
-    class="rmd-dialog__header"
+    class="rmd-box rmd-box--gap rmd-box--padded rmd-box--align-center rmd-dialog__header"
   >
     <h2
       class="rmd-typography rmd-typography--headline-4 rmd-no-margin rmd-dialog__title"
