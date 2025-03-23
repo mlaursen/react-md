@@ -7,7 +7,7 @@ export default forwardRef<SVGSVGElement, SVGIconProps>(
   function CasesIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>
-        <path d="M18 6V4l-2-2h-5L9 4v2H5v11s1 2 2 2h13s2-.98 2-2V6zM4 9H2v11c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2H4zm7-4c0-.55.53-1 1-1h3c.46 0 1 .54 1 1v1h-5zM5 6h17v11c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2z" />
+        <path d="M18 5V3c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H5v11c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5zm-2 0h-4V3h4zM3 9H1v11c0 1.11.89 2 2 2h16v-2H3z" />
       </SVGIcon>
     );
   }
