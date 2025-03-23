@@ -1,3 +1,5 @@
+"use client";
+
 import { CodeEditor } from "@react-md/code/CodeEditor";
 import { CodeEditorCopyToClipboard } from "@react-md/code/CodeEditorCopyToClipboard";
 import { CodeEditorProgress } from "@react-md/code/CodeEditorProgress";

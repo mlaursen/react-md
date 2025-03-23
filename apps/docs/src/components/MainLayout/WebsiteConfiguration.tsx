@@ -72,6 +72,7 @@ export function WebsiteConfiguration(): ReactElement {
                   theme: "secondary",
                   themeType: "contained",
                 })}
+                onClick={disable}
               >
                 Edit Website Colors
               </Link>

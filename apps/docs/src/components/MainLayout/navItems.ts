@@ -961,23 +961,6 @@ export const navItems: readonly NavigationItem[] = [
   },
   {
     type: "group",
-    href: "/styling",
-    children: "Styling",
-    items: [
-      {
-        type: "route",
-        href: "/class-name-functions",
-        children: "Class Name Functions",
-      },
-      {
-        type: "route",
-        href: "/css-modules",
-        children: "CSS Modules",
-      },
-    ],
-  },
-  {
-    type: "group",
     href: "/utils",
     children: "Utils",
     items: [
