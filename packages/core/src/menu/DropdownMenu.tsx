@@ -113,6 +113,7 @@ export type DropdownMenuProps = DropdownMenuButtonProps &
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/menu|Menu Demos}
  * @since 5.0.0
  * @since 6.0.0 Updated to use the latest menu API.
  */

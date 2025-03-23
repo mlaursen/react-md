@@ -39,6 +39,7 @@ export interface ToastContentProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * **Client Component**
  *
+ * @see {@link https://next.react-md.dev/components/snackbar|Snackbar Demos}
  * @since 6.0.0
  */
 export const ToastContent = forwardRef<HTMLDivElement, ToastContentProps>(

@@ -29,6 +29,8 @@ export interface TableFooterProps
  * disable the hover effect and line wrapping by default, but the hover effect
  * and line-wrapping can be re-enabled if desired through the `hoverable` and
  * `disableNoWrap` props.
+ *
+ * @see {@link https://next.react-md.dev/components/table|Table Demos}
  */
 export const TableFooter = forwardRef<
   HTMLTableSectionElement,

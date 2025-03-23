@@ -84,6 +84,7 @@ export type SlideTransitionOptions<E extends HTMLElement> =
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/slide|Slide Demos}
  * @see {@link SlideContainer} and {@link Slide} for convenient default
  * implementations.
  * @since 6.0.0

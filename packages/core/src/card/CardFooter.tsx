@@ -16,6 +16,7 @@ export interface CardFooterProps extends BoxProps {
  * A simple wrapper around the {@link Box} component that applies additional
  * padding and applies `justify-content: flex-end;` by default.
  *
+ * @see {@link https://next.react-md.dev/components/card|Card Demos}
  * @since 6.0.0
  */
 export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(

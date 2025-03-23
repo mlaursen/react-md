@@ -29,22 +29,102 @@ import { useAutocomplete } from "./useAutocomplete.js";
 const noop = (): undefined => undefined;
 
 /**
- * This is the single select autocomplete implementation.
+ * An `Autocomplete` is a component that allows for real-time suggestions from
+ * a pre-determined list as the user types by filtering data based on the
+ * current value. It can also be used to interact with an API that handles the
+ * sorting, filtering, matching, etc as well.
  *
+ * An `Autocomplete` always requires the following props:
+ *
+ * - `options` - a list of available options that can be a list of strings,
+ *   a list of objects with a `{ label: string }`, or any list of objects
+ *   - if the list of objects do not have a `label`, the
+ *     {@link AutocompleteProps.getOptionLabel} **must** be provided to allow
+ *     filtering
+ * - `label` or `aria-label` to describe the textbox for accessibility
+ * - `listboxLabel` or `listboxLabelledBy` for an accessible label describing the options
+ *
+ * @example Simple Example
+ * ```tsx
+ * "use client";
+ *
+ * import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
+ * import { type ReactElement } from "react";
+ *
+ * export default function SimpleExample(): ReactElement {
+ *   return (
+ *     <Autocomplete
+ *       label="Fruit"
+ *       placeholder="Apple"
+ *       listboxLabel="Fruits"
+ *       options={[
+ *         "Apple",
+ *         "Apricot",
+ *         "Banana",
+ *         "Blueberry",
+ *         "Cranberry",
+ *         "Kiwi",
+ *         "Mango",
+ *         "Orange",
+ *         "Peach",
+ *         "Plum",
+ *         "Strawberry",
+ *       ]}
+ *     />
+ *   );
+ * }
+ * ```
+ *
+ * @see {@link https://next.react-md.dev/components/autocomplete|Autocomplete Demos}
  * @since 6.0.0
  */
 export function Autocomplete<Option extends AutocompleteOption>(
   props: AutocompleteSingleSelectProps<Option>
 ): ReactElement;
 /**
- * This is the multiselect autocomplete implementation.
+ * To create an `Autocomplete` that can have multiple values selected at once,
+ * either provide an array `value` or `defaultValue`.
  *
+ * @example Simple Example
+ * ```tsx
+ * "use client";
+ *
+ * import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
+ * import { type ReactElement, useState } from "react";
+ *
+ * export default function SimpleExample(): ReactElement {
+ *   const [value, setValue] = useState<readonly Dessert[]>([]);
+ *   return (
+ *     <Autocomplete
+ *       label="Fruit"
+ *       placeholder="Apple"
+ *       listboxLabel="Fruits"
+ *       options={[
+ *         "Apple",
+ *         "Apricot",
+ *         "Banana",
+ *         "Blueberry",
+ *         "Cranberry",
+ *         "Kiwi",
+ *         "Mango",
+ *         "Orange",
+ *         "Peach",
+ *         "Plum",
+ *         "Strawberry",
+ *       ]}
+ *     />
+ *   );
+ * }
+ * ```
+ *
+ * @see {@link https://next.react-md.dev/components/autocomplete|Autocomplete Demos}
  * @since 6.0.0
  */
 export function Autocomplete<Option extends AutocompleteOption>(
   props: AutocompleteMultiSelectProps<Option>
 ): ReactElement;
 /**
+ * @see {@link https://next.react-md.dev/components/autocomplete|Autocomplete Demos}
  * @since 6.0.0
  * @internal
  */

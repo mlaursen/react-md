@@ -329,6 +329,7 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/slider|Slider Demos}
  * @since 2.5.0
  * @since 6.0.0 The `Slider` and `RangeSlider` have been combined into the
  * single `Slider` component and removed the `label` support.

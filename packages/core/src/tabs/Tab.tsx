@@ -121,8 +121,8 @@ export type TabProps = TabButtonProps | TabLinkProps;
  * This component should usually be used with the `TabsList` component and
  * `useTabs` hook.
  *
+ * @see {@link https://next.react-md.dev/components/tabs|Tabs Demos}
  * @see {@link useTabs}
- *
  * @since 6.0.0
  */
 export function Tab(props: TabProps): ReactElement {

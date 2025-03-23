@@ -48,6 +48,28 @@ export interface SkipToMainContentProps
 /**
  * **Client Component**
  *
+ * This component is used to allow keyboard users a quick way to skip directly
+ * to the main content instead of needing to tab through all navigation items.
+ *
+ * This component should not be used if using the LayoutAppBar component since
+ * it is already built-in.
+ *
+ * @example Simple Example
+ * ```tsx
+ * import { AppBar } from "@react-md/core/app-bar/AppBar";
+ * import { SkipToMainContent } from "@react-md/core/link/SkipToMainContent";
+ * import { type ReactElement } from "react";
+ *
+ * export default function SimpleSkipToMainContentExample(): ReactElement {
+ *   return (
+ *     <AppBar style={{ position: "relative" }}>
+ *       <SkipToMainContent />
+ *     </AppBar>
+ *   );
+ * }
+ * ```
+ *
+ * @see {@link https://next.react-md.dev/components/skip-to-main-content|SkipToMainContent Demos}
  * @since 6.0.0 Changed the default `id` from `"skip-to-main-content"` to
  * `"skip-to-main"`.
  * @since 6.0.0 The `mainId` prop is optional

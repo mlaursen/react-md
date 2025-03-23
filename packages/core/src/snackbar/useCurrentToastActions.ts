@@ -34,6 +34,7 @@ export const { Provider: CurrentToastActionsProvider } = context;
  * This is only required if you have multiple `Snackbar` implementations in your
  * app.
  *
+ * @see {@link https://next.react-md.dev/components/snackbar|Snackbar Demos}
  * @since 6.0.0
  */
 export function useCurrentToastActions(): CurrentToastActions {

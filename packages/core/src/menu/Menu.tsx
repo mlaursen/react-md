@@ -267,6 +267,7 @@ export interface MenuProps
  *
  * @see The `useContextMenu` hook for an example.
  *
+ * @see {@link https://next.react-md.dev/components/menu|Menu Demos}
  * @since 5.0.0
  * @since 6.0.0 Updated this component to implement all the `Menu`
  * functionality instead of requiring the `useMenu` hook and `MenuWidget`

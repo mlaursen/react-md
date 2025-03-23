@@ -61,6 +61,7 @@ export interface CardProps
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/card|Card Demos}
  * @since 6.0.0 Removed the deprecated `raiseable` prop
  * @since 6.0.0 Uses the `Box` component and displays as `flex` instead of
  * `block`/`inline-block`.

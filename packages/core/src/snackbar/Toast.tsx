@@ -145,6 +145,7 @@ export interface ToastProps extends ConfigurableToastProps {
  * This component is just used for toast styling and does not implement any of
  * the visibility behavior.
  *
+ * @see {@link https://next.react-md.dev/components/snackbar|Snackbar Demos}
  * @since 6.0.0
  */
 export const Toast = forwardRef<HTMLDivElement, ToastProps>(

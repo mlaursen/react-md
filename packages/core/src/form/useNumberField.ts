@@ -338,6 +338,8 @@ export function useNumberField(
  * ```
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
+ * @see {@link https://next.react-md.dev/components/text-field#number|Number TextField Demos}
+ * @see {@link https://next.react-md.dev/hooks/use-number-field|useNumberField Demos}
  * @see {@link useTextField}
  */
 export function useNumberField(
@@ -346,6 +348,8 @@ export function useNumberField(
 
 /**
  * @internal
+ * @see {@link https://next.react-md.dev/components/text-field#number|Number TextField Demos}
+ * @see {@link https://next.react-md.dev/hooks/use-number-field|useNumberField Demos}
  * @see {@link useTextField}
  * @see {@link useNumberField} overrides for other examples.
  */

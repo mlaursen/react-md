@@ -62,6 +62,7 @@ export interface PortalContainerProviderProps {
  * `<div id="rmd-portal-container"></div>` will be added as the last child to
  * the `document.body` and be used as the container element.
  *
+ * @see {@link https://next.react-md.dev/components/portal|Portal Demos}
  * @see {@link Portal}
  * @since 6.0.0
  */

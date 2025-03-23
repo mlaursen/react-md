@@ -135,6 +135,8 @@ export interface PasswordProps
  *   );
  * }
  * ```
+ *
+ * @see {@link https://next.react-md.dev/components/password|Password Demos}
  */
 export const Password = forwardRef<HTMLInputElement, PasswordProps>(
   function Password(props, ref) {

@@ -64,6 +64,7 @@ export type ExpansionListImplementation<E extends HTMLElement> =
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/expansion-panel|ExpansionPanel Demos}
  * @since 6.0.0
  */
 export function useExpansionList<E extends HTMLElement>(

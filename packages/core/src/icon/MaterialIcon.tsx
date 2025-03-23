@@ -34,6 +34,8 @@ export interface MaterialIconProps
  * <MaterialIcon name="wifi" family="two-tone" dense theme="warning" />
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/icon|Icon Demos}
+ * @see {@link https://next.react-md.dev/components/material-icons|Available Material Icons}
  * @since 6.0.0
  */
 export const MaterialIcon = forwardRef<HTMLSpanElement, MaterialIconProps>(

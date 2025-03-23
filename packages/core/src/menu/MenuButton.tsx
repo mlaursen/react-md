@@ -59,6 +59,7 @@ export interface MenuButtonProps extends ButtonProps, BaseMenuButtonProps {}
  * An internal component that handles rendering a button for the `DropdownMenu`
  * while implementing the correct accessibility and keyboard movement.
  *
+ * @see {@link https://next.react-md.dev/components/menu|Menu Demos}
  * @since 5.0.0
  * @since 6.0.0 See {@link BaseMenuButtonProps} for breaking changes.
  */

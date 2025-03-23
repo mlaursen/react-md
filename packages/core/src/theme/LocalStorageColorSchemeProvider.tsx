@@ -100,6 +100,8 @@ export interface LocalStorageColorSchemeProviderProps {
  * );
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/color-scheme-provider|ColorSchemeProvider Demos}
+ * @see {@link https://next.react-md.dev/customization/dark-mode|Dark Mode Setup}
  * @since 6.0.0
  */
 export function LocalStorageColorSchemeProvider(

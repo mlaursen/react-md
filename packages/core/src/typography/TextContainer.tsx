@@ -47,6 +47,7 @@ export interface TextContainerProps
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/text-container|TextContainer Demos}
  * @see {@link textContainer} If you only want to apply this class to an
  * element.
  * @since 6.0.0 Removed the `size` option since there is no longer a

@@ -187,6 +187,7 @@ export interface ExpansionPanelImplementation {
  * ```
  *
  *
+ * @see {@link https://next.react-md.dev/components/expansion-panel|ExpansionPanel Demos}
  * @since 6.0.0 The hook was renamed from `usePanels` to `useExpansionPanels`,
  * the API changed to return `getPanelProps` instead of a generated list of
  * panel props based on the provided `count`, and the hook no longer supports

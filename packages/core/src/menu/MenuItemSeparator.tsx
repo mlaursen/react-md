@@ -18,6 +18,7 @@ export interface MenuItemSeparatorProps
  * will also automatically render itself vertically instead of horizontally if
  * the menu is rendering horizontally.
  *
+ * @see {@link https://next.react-md.dev/components/menu|Menu Demos}
  * @since 5.0.0 Renders as an `<li>` instead of a `<div>` or `<hr />`.
  */
 export const MenuItemSeparator = forwardRef<

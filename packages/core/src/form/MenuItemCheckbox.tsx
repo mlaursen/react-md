@@ -38,6 +38,7 @@ import {
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/menu#menuitemcheckbox-example|DropdownMenu Demos}
  * @since 2.8.0
  */
 export const MenuItemCheckbox = forwardRef<

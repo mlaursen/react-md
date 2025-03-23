@@ -114,6 +114,7 @@ export interface ActiveHeadingIdOptions {
  * This is heavily inspired by:
  * @see https://github.com/mdn/yari/blob/231d6aab8f1c8efe159d268c261446c5b7ae12d9/client/src/document/hooks.ts#L171
  *
+ * @see {@link https://next.react-md.dev/hooks/use-active-heading-id|useActiveHeadingId Demos}
  * @since 6.0.0
  */
 export function useActiveHeadingId(options: ActiveHeadingIdOptions): string {

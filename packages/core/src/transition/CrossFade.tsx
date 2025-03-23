@@ -87,6 +87,7 @@ export interface CrossFadeProps<E extends HTMLElement>
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/cross-fade|CrossFade Demos}
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
  * @since 2.0.0

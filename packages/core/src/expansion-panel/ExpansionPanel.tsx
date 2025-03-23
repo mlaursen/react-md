@@ -168,6 +168,38 @@ export interface ExpansionPanelProps extends CardProps {
 /**
  * **Client Component**
  *
+ * An expansion panel enables content to be either collapsed (hidden) or
+ * expanded (visible) following the disclosure pattern.
+ *
+ * @example Simple Example
+ * ```tsx
+ * "use client";
+ *
+ * import { ExpansionList } from "@react-md/core/expansion-panel/ExpansionList";
+ * import { ExpansionPanel } from "@react-md/core/expansion-panel/ExpansionPanel";
+ * import { useExpansionPanels } from "@react-md/core/expansion-panel/useExpansionPanels";
+ * import { type ReactElement } from "react";
+ *
+ * export default function ExpansionPanelGroupExample(): ReactElement {
+ *   const { getPanelProps } = useExpansionPanels();
+ *
+ *   return (
+ *     <ExpansionList style={{ width: "100%" }}>
+ *       <ExpansionPanel {...getPanelProps(0)} headerChildren="Panel 1">
+ *         Panel 1 Contents
+ *       </ExpansionPanel>
+ *       <ExpansionPanel {...getPanelProps(1)} headerChildren="Panel 2">
+ *         Panel 2 Contents
+ *       </ExpansionPanel>
+ *       <ExpansionPanel {...getPanelProps(2)} headerChildren="Panel 3">
+ *         Panel 3 Contents
+ *       </ExpansionPanel>
+ *     </ExpansionList>
+ *   );
+ * }
+ * ```
+ *
+ * @see {@link https://next.react-md.dev/components/expansion-panel|ExpansionPanel Demos}
  * @see `useExpansionPanels` for examples.
  * @since 6.0.0 The content will be persistent and invisible using `display: none`
  * instead of unmounting and also animate the `margin-top` style.

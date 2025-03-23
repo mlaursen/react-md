@@ -9,6 +9,7 @@ import { type AutocompleteChipProps } from "./types.js";
  * A small wrapper around the `Chip` that defaults the `rightAddon` to the
  * remove icon and adds a default `aria-description`.
  *
+ * @see {@link https://next.react-md.dev/components/autocomplete|Autocomplete Demos}
  * @since 6.0.0
  */
 export const AutocompleteChip = forwardRef<

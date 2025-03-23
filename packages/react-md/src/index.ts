@@ -193,6 +193,7 @@ export * from "@react-md/core/menu/MenuItemSeparator";
 export * from "@react-md/core/menu/MenuSheet";
 export * from "@react-md/core/menu/MenuVisibilityProvider";
 export * from "@react-md/core/menu/MenuWidget";
+export * from "@react-md/core/menu/styles";
 export * from "@react-md/core/menu/useContextMenu";
 export * from "@react-md/core/menu/useMenuBarProvider";
 export * from "@react-md/core/movement/constants";

@@ -15,6 +15,7 @@ export type NavSubheaderProps = ListSubheaderProps;
  * A simple wrapper around the {@link ListSubheader} that updates the padding
  * based on the current navigation item depth to match the other items.
  *
+ * @see {@link https://next.react-md.dev/components/navigation|Navigation Demos}
  * @since 6.0.0
  */
 export const NavSubheader = forwardRef<HTMLLIElement, NavSubheaderProps>(

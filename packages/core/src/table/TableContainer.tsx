@@ -18,6 +18,8 @@ export type TableContainerProps = HTMLAttributes<HTMLDivElement>;
  * component if you want to make a responsive table within the page. If you
  * don't want to use this component, you can just apply `overflow: auto` to a
  * parent element of the table.
+ *
+ * @see {@link https://next.react-md.dev/components/table|Table Demos}
  */
 export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
   function TableContainer(props, ref) {

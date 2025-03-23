@@ -213,6 +213,8 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
  * labels, you will need to manually set the `header={false}` prop for that cell
  * since it is invalid to have a `<th>` without any readable content for screen
  * readers.
+ *
+ * @see {@link https://next.react-md.dev/components/table|Table Demos}
  */
 export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
   function TableCell(props, ref) {

@@ -133,6 +133,7 @@ export type MenuItemInputToggleProps =
  * instead the `MenuItemCheckbox`, `MenuItemRadio`, or `MenuItemSwitch` should
  * be used instead.
  *
+ * @see {@link https://next.react-md.dev/components/menu|DropdownMenu Demos}
  * @see {@link MenuItemCheckbox} for checkbox examples
  * @see {@link MenuItemRadio} for radio examples
  * @see {@link MenuItemSwitch} for switch examples

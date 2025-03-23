@@ -204,6 +204,7 @@ export interface ChipProps
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/chip|Chip Demos}
  * @since 6.0.0 Renamed the `noninteractable` prop to
  * `noninteractive`.
  */

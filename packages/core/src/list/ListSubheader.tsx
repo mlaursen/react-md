@@ -51,6 +51,8 @@ export interface ListSubheaderProps
 /**
  * The `ListSubheader` is a wrapper for the `<li>` element to apply subheader
  * typography styles and {@link ListItemText} layout.
+ *
+ * @see {@link https://next.react-md.dev/components/list|List Demos}
  */
 export const ListSubheader = forwardRef<HTMLLIElement, ListSubheaderProps>(
   function ListSubheader(props, ref) {

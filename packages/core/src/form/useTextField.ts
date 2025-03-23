@@ -361,6 +361,9 @@ export interface ValidatedTextFieldImplementation<
  * ```
  *
  * Look at the other {@link useTextField} override for additional examples.
+ *
+ * @see {@link https://next.react-md.dev/components/text-field|TextField Demos}
+ * @see {@link https://next.react-md.dev/hooks/use-text-field|useTextField Demos}
  */
 export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
   options: TextFieldHookOptions<E> & { disableMessage: true }
@@ -470,6 +473,8 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/text-field|TextField Demos}
+ * @see {@link https://next.react-md.dev/hooks/use-text-field|useTextField Demos}
  * @see https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
  * @since 2.5.6
  * @since 6.0.0 This hook returns an object instead of an ordered list. Also
@@ -479,6 +484,11 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
 export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
   options: TextFieldHookOptions<E>
 ): TextFieldWithMessageImplementation<E>;
+/**
+ * @see {@link https://next.react-md.dev/components/text-field|TextField Demos}
+ * @see {@link https://next.react-md.dev/hooks/use-text-field|useTextField Demos}
+ * @since 6.0.0
+ */
 export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
   options: TextFieldHookOptions<E>
 ): ValidatedTextFieldImplementation<E> {

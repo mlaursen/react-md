@@ -122,6 +122,8 @@ export interface TextAreaProps
  *   );
  * }
  * ```
+ *
+ * @see {@link https://next.react-md.dev/components/text-field#simple-textarea|TextArea Demos}
  */
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea(props, ref) {

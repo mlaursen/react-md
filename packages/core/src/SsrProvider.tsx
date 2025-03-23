@@ -31,6 +31,7 @@ export interface SsrProviderProps {
 /**
  * **Client Component**
  *
+ * @see {@link https://next.react-md.dev/components/ssr-provider|SsrProvider Demos}
  * @since 6.0.0
  */
 export function SsrProvider(props: SsrProviderProps): ReactElement {

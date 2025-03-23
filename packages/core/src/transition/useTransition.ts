@@ -29,6 +29,7 @@ const noop = (): void => {
  * since this is just a low-level hook that can be used to transition using
  * timeouts.
  *
+ * @see {@link https://next.react-md.dev/hooks/use-transition|useTransition Demos}
  * @typeParam E - The HTMLElement type used or the ref required for the
  * transition.
  * @since 4.0.0

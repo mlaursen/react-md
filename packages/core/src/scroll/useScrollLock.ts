@@ -19,6 +19,7 @@ let isLocked = false;
 /**
  * Used to enable scroll locking on the entire page.
  *
+ * @see {@link https://next.react-md.dev/hooks/use-scroll-lock|useScrollLock Demos}
  * @since 6.0.0 No longer support scroll locking elements other than
  * the `document.body` since it's more reliable to scroll lock with an overlay.
  * @since 6.0.0 Now applies `paddingRight` equal to the current OS's

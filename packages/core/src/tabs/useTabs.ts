@@ -181,6 +181,7 @@ export interface TabsImplementation<TabValue extends string | number = number> {
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/tabs|Tabs Demos}
  * @since 6.0.0
  */
 export function useTabs(): TabsImplementation & {
@@ -234,6 +235,7 @@ export function useTabs(): TabsImplementation & {
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/tabs|Tabs Demos}
  * @since 6.0.0
  */
 export function useTabs<TabValue extends number>(
@@ -301,6 +303,7 @@ export function useTabs<TabValue extends number>(
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/tabs|Tabs Demos}
  * @since 6.0.0
  */
 export function useTabs<TabValue extends string>(
@@ -410,6 +413,7 @@ export function useTabs<TabValue extends string>(
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/tabs|Tabs Demos}
  * @since 6.0.0
  */
 export function useTabs<TabValue extends string>(
@@ -424,6 +428,7 @@ export function useTabs<TabValue extends string>(
  * This hook can be uncontrolled/controlled and supports strongly typing the tab
  * values if needed. Check out the overloads for examples.
  *
+ * @see {@link https://next.react-md.dev/components/tabs|Tabs Demos}
  * @since 6.0.0
  */
 export function useTabs<TabValue extends string | number>(

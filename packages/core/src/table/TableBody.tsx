@@ -18,6 +18,8 @@ export interface TableBodyProps
  *
  * Creates a `<tbody>` element that also allows for overriding all the child
  * `TableCell` components with additional styling behavior.
+ *
+ * @see {@link https://next.react-md.dev/components/table|Table Demos}
  */
 export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
   function TableBody(props, ref) {

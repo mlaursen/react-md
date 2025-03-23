@@ -217,6 +217,9 @@ export interface SkeletonPlaceholderStylingProps {
  *   return <div style={style} className={className} />;
  * }
  * ```
+ *
+ * @see {@link https://next.react-md.dev/hooks/use-skeleton-placeholder-transition|useSkeletonPlaceholder Demos}
+ * @see {@link https://next.react-md.dev/components/skeleton-placeholder|SkeletonPlaceholder Demos}
  * @since 6.0.0
  */
 export function useSkeletonPlaceholder(

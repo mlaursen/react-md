@@ -85,6 +85,8 @@ const noop = (): void => {
  *   );
  * }
  * ```
+ *
+ * @see {@link https://next.react-md.dev/components/dialog#fixed-dialog|FixedDialog Demos}
  */
 export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
   function FixedDialog(props, nodeRef) {

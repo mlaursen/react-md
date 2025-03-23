@@ -65,6 +65,50 @@ export interface NavigationProps<
 /**
  * **Client Component**
  *
+ * The `Navigation` component can be used to create a list of links to
+ * different pages within the app and generally used within a `Sheet` or
+ * `LayoutNav`.
+ *
+ * @example Simple Example
+ * ```tsx
+ * "use client";
+ *
+ * import { Navigation } from "@react-md/core/navigation/Navigation";
+ * import { type NavigationItem } from "@react-md/core/navigation/types";
+ * import { useNavigationExpansion } from "@react-md/core/navigation/useNavigationExpansion";
+ * import { usePathname } from "next/navigation.js";
+ * import { type ReactElement } from "react";
+ *
+ * import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
+ *
+ * const items: readonly NavigationItem[] = [
+ *   {
+ *     type: "route",
+ *     href: "/",
+ *     children: "Home",
+ *   },
+ *   {
+ *     type: "route",
+ *     href: "/page-1",
+ *     children: "Page 1",
+ *   },
+ * ];
+ *
+ * export function MainNavigation(): ReactElement {
+ *   const pathname = usePathname();
+ *   const { data } = useNavigationExpansion({
+ *     pathname,
+ *     linkComponent: LinkUnstyled,
+ *   });
+ *   return (
+ *     <nav aria-label="Navigation">
+ *       <Navigation data={data} items={items} />
+ *     </nav>
+ *   );
+ * }
+ * ```
+ *
+ * @see {@link https://next.react-md.dev/components/navigation|Navigation Demos}
  * @since 6.0.0
  */
 export function Navigation<

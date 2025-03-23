@@ -97,6 +97,7 @@ export interface OverlayProps
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/overlay|Overlay Demos}
  * @since 6.0.0 Removed the `onRequestClose` prop in favor of using
  * the `onClick` prop instead.
  */

@@ -17,6 +17,8 @@ import { type CheckboxProps, InputToggle } from "./InputToggle.js";
  *   return <Checkbox label="Checkbox" value="a" />;
  * }
  * ```
+ *
+ * @see {@link https://next.react-md.dev/components/checkbox|Checkbox Demos}
  */
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox(props, ref) {

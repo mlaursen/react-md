@@ -82,37 +82,42 @@ export interface AutocompleteGetOptionPropsOptions<
 }
 
 /**
- * This can be used to add additional props to each option.
- *
- * @example Simple Example
- * ```tsx
- * getOptionProps={({ option }) => {
- *   return {
- *     disabled: option === "",
- *     className: cnb(option === "a" && styles.blue),
- *     leftAddon: option === value && <CheckIcon />,
- *   };
- * }}
- * ```
+ * @see {@link AutocompleteGetOptionProps.getOptionProps}
  * @since 6.0.0
  */
-export type AutocompleteGetOptionProps<Option extends AutocompleteOption> = (
+export type AutocompleteGetOptionPropsCallback<
+  Option extends AutocompleteOption,
+> = (
   options: AutocompleteGetOptionPropsOptions<Option>
 ) => ConfigurableAutocompleteOptionProps | undefined;
 
 /**
- * This can be used to add additional props to each inline chip for multiselect
- * autocompletes.
- *
- * @example Simple Example
- * ```tsx
- * getChipProps={({ option, index }) => {
- *   return {
- *     disabled: index < 3,
- *     className: cnb(option === "a" && styles.blue)<
- *   };
- * }}
- * ```
+ * @since 6.0.0
+ */
+export interface AutocompleteGetOptionProps<Option extends AutocompleteOption> {
+  /**
+   * This can be used to add additional props to each option.
+   *
+   * @example Simple Example
+   * ```tsx
+   * getOptionProps={({ option }) => {
+   *   return {
+   *     disabled: option === "",
+   *     className: cnb(option === "a" && styles.blue),
+   *     leftAddon: option === value && <CheckIcon />,
+   *   };
+   * }}
+   * ```
+   *
+   * @see {@link AutocompleteGetOptionPropsOptions}
+   * @see {@link AutocompleteGetOptionPropsCallback}
+   * @since 6.0.0
+   */
+  getOptionProps?: AutocompleteGetOptionPropsCallback<Option>;
+}
+
+/**
+ * @see {@link AutocompleteBaseProps.getChipProps}
  * @since 6.0.0
  */
 export type AutocompleteGetChipProps<Option extends AutocompleteOption> = (
@@ -120,41 +125,52 @@ export type AutocompleteGetChipProps<Option extends AutocompleteOption> = (
 ) => Partial<AutocompleteChipProps> | undefined;
 
 /**
- * If the list of options contain an object that doesn't have a
- * `label: string`, this prop must be provided to extract a string to display
- * in the text field once selected.
- *
- * @example No Getter Required
- * ```tsx
- * const options1 = ['a', 'b', 'c', 'd'];
- * const options2 = [{ label: 'a' }, { label: 'b' }, { label: 'c' }, { label: 'd' }];
- *
- * <Autocomplete options={options1} />
- * <Autocomplete options={options2} />
- * ```
- *
- * @example Getter Required
- * ```tsx
- * const options = [
- *   {
- *     name: "Alaska",
- *     abbr: "AK",
- *   },
- *   {
- *     name: "Arizona",
- *     abbr: "AZ",
- *   }
- * ];
- *
- * <Autocomplete options={options} getOptionLabel={(state) => state.name} />
- * ```
- *
- * @defaultValue `defaultAutocompleteExtractor`
+ * @see {@link AutocompleteGetOptionLabel}
  * @since 6.0.0
  */
-export type AutocompleteGetOptionLabel<Option extends AutocompleteOption> = (
-  option: Option
-) => string;
+export type AutocompleteGetOptionLabelCallback<
+  Option extends AutocompleteOption,
+> = (option: Option) => string;
+
+/**
+ * @since 6.0.0
+ */
+export interface AutocompleteGetOptionLabel<Option extends AutocompleteOption> {
+  /**
+   * If the list of options contain an object that doesn't have a
+   * `label: string`, this prop must be provided to extract a string to display
+   * in the text field once selected.
+   *
+   * @example No Getter Required
+   * ```tsx
+   * const options1 = ['a', 'b', 'c', 'd'];
+   * const options2 = [{ label: 'a' }, { label: 'b' }, { label: 'c' }, { label: 'd' }];
+   *
+   * <Autocomplete options={options1} />
+   * <Autocomplete options={options2} />
+   * ```
+   *
+   * @example Getter Required
+   * ```tsx
+   * const options = [
+   *   {
+   *     name: "Alaska",
+   *     abbr: "AK",
+   *   },
+   *   {
+   *     name: "Arizona",
+   *     abbr: "AZ",
+   *   }
+   * ];
+   *
+   * <Autocomplete options={options} getOptionLabel={(state) => state.name} />
+   * ```
+   *
+   * @defaultValue `defaultAutocompleteExtractor`
+   * @since 6.0.0
+   */
+  getOptionLabel?: AutocompleteGetOptionLabelCallback<Option>;
+}
 
 /**
  * @since 6.0.0
@@ -259,23 +275,19 @@ export interface AutocompleteUnknownQueryAndValueOptions<
 export type AutocompleteOptionLabelExtractor<
   Option extends AutocompleteOption,
 > = Option extends AutocompleteLabeledOption
-  ? { getOptionLabel?: AutocompleteGetOptionLabel<Option> }
-  : { getOptionLabel: AutocompleteGetOptionLabel<Option> };
+  ? AutocompleteGetOptionLabel<Option>
+  : Required<AutocompleteGetOptionLabel<Option>>;
 
 /**
  * @since 6.0.0
  */
-export interface AutocompleteFilteringOptions<
-  Option extends AutocompleteOption,
-> {
+export interface AutocompleteFilteringOptions<Option extends AutocompleteOption>
+  extends AutocompleteGetOptionLabel<Option> {
   /**
    * The list of options that can be shown within the autocomplete and filtered
    * based on the current query.
    */
   options: readonly Option[];
-
-  /** @see {@link AutocompleteGetOptionLabel} */
-  getOptionLabel?: AutocompleteGetOptionLabel<Option>;
 
   /**
    * The function that filters the {@link options} based on the current query
@@ -359,6 +371,7 @@ export interface AutocompleteFilteringOptions<
 export interface AutocompleteFilterAndListboxOptions<
   Option extends AutocompleteOption,
 > extends AutocompleteFilteringOptions<Option>,
+    AutocompleteGetOptionProps<Option>,
     OptionSelectedIconProps {
   /**
    * Set this to `true` when using a multiselect autocomplete to update each
@@ -387,9 +400,6 @@ export interface AutocompleteFilterAndListboxOptions<
    * @defaultValue `checkboxes`
    */
   disableCloseOnSelect?: boolean;
-
-  /** @see {@link AutocompleteGetOptionProps} */
-  getOptionProps?: AutocompleteGetOptionProps<Option>;
 }
 
 /**
@@ -569,7 +579,9 @@ export interface AutocompleteWithQueryImplementation<
   Option extends AutocompleteOption,
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> extends EditableComboboxImplementation<ComboboxEl, PopupEl> {
+> extends EditableComboboxImplementation<ComboboxEl, PopupEl>,
+    Required<AutocompleteGetOptionProps<Option>>,
+    Required<AutocompleteGetOptionLabel<Option>> {
   query: string;
   setQuery: Dispatch<string>;
   comboboxProps: AutocompleteComboboxProps<ComboboxEl>;
@@ -609,11 +621,6 @@ export interface AutocompleteWithQueryImplementation<
   getDropdownButtonProps: (
     overrides?: ConfigurableAutocompleteDropdownButtonProps
   ) => AutocompleteDropdownButtonProps;
-
-  /** @see {@link AutocompleteGetOptionLabel} */
-  getOptionLabel: AutocompleteGetOptionLabel<Option>;
-  /** @see {@link AutocompleteGetOptionProps} */
-  getOptionProps: AutocompleteGetOptionProps<Option>;
 }
 
 /**
@@ -683,9 +690,6 @@ export interface AutocompleteBaseProps<Option extends AutocompleteOption>
     HTMLDivElement
   >;
 
-  /** @see {@link AutocompleteGetOptionProps} */
-  getOptionProps?: AutocompleteGetOptionProps<Option>;
-
   /**
    * This can be used to add any custom styling, change the icon, change the
    * label, etc for the dropdown button.
@@ -722,12 +726,19 @@ export interface AutocompleteBaseProps<Option extends AutocompleteOption>
    */
   loadingProps?: AutocompleteCircularProgressProps;
 
+  /**
+   * This will do nothing if {@link disableClearButton} is `true`.
+   */
   clearButtonProps?: PropsWithRef<
     ConfigurableAutocompleteClearButtonProps,
     HTMLButtonElement
   >;
 
   /**
+   * Set to `true` to hide the clear button that appears when hovering an
+   * `Autocomplete` that has a value. The user will still be able to clear the
+   * value quickly using the `Escape` key.
+   *
    * @defaultValue `false`
    */
   disableClearButton?: boolean;
@@ -758,7 +769,20 @@ export interface AutocompleteBaseProps<Option extends AutocompleteOption>
    */
   disableInlineChips?: boolean;
 
-  /** @see {@link AutocompleteGetChipProps} */
+  /**
+   * This can be used to add additional props to each inline chip for multiselect
+   * autocompletes.
+   *
+   * @example Simple Example
+   * ```tsx
+   * getChipProps={({ option, index }) => {
+   *   return {
+   *     disabled: index < 3,
+   *     className: cnb(option === "a" && styles.blue)<
+   *   };
+   * }}
+   * ```
+   */
   getChipProps?: AutocompleteGetChipProps<Option>;
 }
 

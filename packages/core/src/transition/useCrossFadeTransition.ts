@@ -69,6 +69,8 @@ export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
  * distance. This is generally used for full page transitions when a route
  * changes.
  *
+ * @see {@link https://next.react-md.dev/hooks/use-cross-fade-transition|useCrossFadeTransition Demos}
+ * @see {@link https://next.react-md.dev/components/cross-fade|CrossFade Demos}
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
  * @since 4.0.0

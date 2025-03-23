@@ -45,6 +45,7 @@ export interface ToastCloseButtonProps extends ButtonProps {
  * This button will automatically close the toast when clicked unless
  * `event.stopPropagation()` is called from the `onClick` prop.
  *
+ * @see {@link https://next.react-md.dev/components/snackbar|Snackbar Demos}
  * @since 6.0.0
  */
 export const ToastCloseButton = forwardRef<

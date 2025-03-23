@@ -16,7 +16,8 @@ import {
  * @since 6.0.0
  * @internal
  */
-export interface GetDefaultValueOptions<Option extends AutocompleteOption> {
+export interface GetDefaultValueOptions<Option extends AutocompleteOption>
+  extends Required<AutocompleteGetOptionLabel<Option>> {
   query: string | undefined;
   multiselect?: boolean;
   defaultQuery: UseStateInitializer<string> | undefined;
@@ -24,7 +25,6 @@ export interface GetDefaultValueOptions<Option extends AutocompleteOption> {
     | UseStateInitializer<Option | null | readonly Option[]>
     | undefined;
   options: readonly Option[];
-  getOptionLabel: AutocompleteGetOptionLabel<Option>;
   filter: (options: AutocompleteFilterOptions<Option>) => readonly Option[];
 }
 
@@ -86,9 +86,9 @@ export function getDefaultValue<Option extends AutocompleteOption>(
  * @since 6.0.0
  * @internal
  */
-interface GetDefaultQueryOptions<Option extends AutocompleteOption> {
+interface GetDefaultQueryOptions<Option extends AutocompleteOption>
+  extends Required<AutocompleteGetOptionLabel<Option>> {
   value: Option | null | readonly Option[];
-  getOptionLabel: AutocompleteGetOptionLabel<Option>;
   defaultQuery?: UseStateInitializer<string>;
 }
 
@@ -122,15 +122,13 @@ export function getDefaultQuery<Option extends AutocompleteOption>(
  * @since 6.0.0
  * @internal
  */
-export interface EnforceSelectedValueOptions<
-  Option extends AutocompleteOption,
-> {
+export interface EnforceSelectedValueOptions<Option extends AutocompleteOption>
+  extends Required<AutocompleteGetOptionLabel<Option>> {
   value: Option | readonly Option[] | null;
   visible: boolean;
   container: HTMLElement | null;
   popupRef: RefObject<HTMLElement>;
   comboboxRef: RefObject<EditableHTMLElement>;
-  getOptionLabel: AutocompleteGetOptionLabel<Option>;
   availableOptions: readonly Option[];
   prevAvailableOptions: NonNullMutableRef<readonly Option[] | null>;
 }

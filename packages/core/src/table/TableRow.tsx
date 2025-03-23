@@ -31,6 +31,8 @@ export interface TableRowProps
  *
  * Creates a `<tr>` element with some general styles that are inherited from the
  * base table configuration.
+ *
+ * @see {@link https://next.react-md.dev/components/table|Table Demos}
  */
 export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
   function TableRow(props, ref) {

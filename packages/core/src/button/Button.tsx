@@ -115,6 +115,8 @@ export interface ButtonProps
  *   );
  * }
  * ```
+ *
+ * @see {@link https://next.react-md.dev/components/button|Button Demos}
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(props, ref) {

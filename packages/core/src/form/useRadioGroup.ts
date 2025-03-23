@@ -148,6 +148,9 @@ export interface CombinedRadioGroupReturnValue<V extends string | number> {
  *   </>
  * );
  * ```
+ *
+ * @see {@link https://next.react-md.dev/components/radio|Radio Demos}
+ * @see {@link https://next.react-md.dev/hooks/use-radio-group|useRadioGroup Demos}
  * @since 6.0.0
  */
 export function useRadioGroup<V extends number>(
@@ -206,6 +209,9 @@ export function useRadioGroup<V extends number>(
  *   </>
  * );
  * ```
+ *
+ * @see {@link https://next.react-md.dev/components/radio|Radio Demos}
+ * @see {@link https://next.react-md.dev/hooks/use-radio-group|useRadioGroup Demos}
  * @since 6.0.0
  */
 export function useRadioGroup<V extends string>(
@@ -248,6 +254,9 @@ export function useRadioGroup<V extends string>(
  *   </>
  * );
  * ```
+ *
+ * @see {@link https://next.react-md.dev/components/radio|Radio Demos}
+ * @see {@link https://next.react-md.dev/hooks/use-radio-group|useRadioGroup Demos}
  * @since 6.0.0
  */
 export function useRadioGroup<V extends string | number>(

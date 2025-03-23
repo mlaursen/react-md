@@ -227,6 +227,8 @@ export type InputToggleProps = CheckboxInputToggleProps | RadioInputToggleProps;
 /**
  * **Client Component**
  *
+ * @see {@link https://next.react-md.dev/components/checkbox|Checkbox Demos}
+ * @see {@link https://next.react-md.dev/components/radio|Radio Demos}
  * @since 6.0.0 Now supports the `FormMessage` behavior and requires
  * different icons for each checked state.
  */

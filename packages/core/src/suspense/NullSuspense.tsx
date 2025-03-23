@@ -27,6 +27,7 @@ export interface NullSuspenseProps {
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/suspense|Suspense Demos}
  * @since 6.0.0
  */
 export function NullSuspense(props: NullSuspenseProps): ReactElement {

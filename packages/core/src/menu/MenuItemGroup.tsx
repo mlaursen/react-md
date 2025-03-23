@@ -76,6 +76,7 @@ export type MenuItemGroupProps = LabelRequiredForA11y<
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/menu|Menu Demos}
  * @since 5.0.0
  */
 export const MenuItemGroup = forwardRef<ListElement, MenuItemGroupProps>(

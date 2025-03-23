@@ -37,8 +37,8 @@ export interface ResponsiveItemOverlayProps
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/responsive-item|ResponsiveItem Demos}
  * @see {@link ResponsiveItemOverlayPosition}
- *
  * @since 6.0.0 Renamed from `MediaOverlay` to `ResponsiveItemOverlay`
  * and renders as a `<span>` instead of a `<div>`.
  */

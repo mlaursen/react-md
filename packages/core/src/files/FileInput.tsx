@@ -125,6 +125,7 @@ export interface FileInputProps
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/file-input|FileInput Demos}
  * @since 6.0.0 Added additional support for `iconSize` and
  * `responsive`. Also removed the `disableIconSpacing` prop since it is no
  * longer required.

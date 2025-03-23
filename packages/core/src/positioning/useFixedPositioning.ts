@@ -228,6 +228,7 @@ export interface FixedPositioningImplementation<E extends HTMLElement> {
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/hooks/use-fixed-positioning|useFixedPositioning Demos}
  * @typeParam FixedToElement - An HTMLElement type for the static element.
  * @typeParam FixedElement - An HTMLElement type for the fixed element.
  * @since 4.0.0

@@ -1,43 +1,23 @@
 "use client";
 
-import { cnb } from "cnbuilder";
 import { type HTMLAttributes, forwardRef, useRef, useState } from "react";
 
 import { List } from "../list/List.js";
 import { type GetDefaultFocusedIndex } from "../movement/types.js";
 import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import { type NonNullMutableRef } from "../types.js";
-import { bem } from "../utils/bem.js";
 import { type MenuListConvenienceProps } from "./Menu.js";
 import { MenuWidgetKeyboardProvider } from "./MenuWidgetKeyboardProvider.js";
+import { menu } from "./styles.js";
 import {
   MenuBarProvider,
   useMenuBarContext,
   useMenuBarProvider,
 } from "./useMenuBarProvider.js";
 
-const styles = bem("rmd-menu");
 const noop = (): void => {
   // do nothing
 };
-
-/**
- * @since 6.0.0
- */
-export interface MenuClassNameOptions {
-  className?: string;
-  horizontal?: boolean;
-  elevated?: boolean;
-}
-
-/**
- * @since 6.0.0
- */
-export function menu(options: MenuClassNameOptions = {}): string {
-  const { className, horizontal, elevated } = options;
-
-  return cnb(styles({ horizontal, elevated }), className);
-}
 
 /**
  * @internal

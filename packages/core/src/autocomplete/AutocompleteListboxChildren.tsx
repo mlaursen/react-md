@@ -16,11 +16,10 @@ import {
  */
 export interface AutocompleteListboxChildrenProps<
   Option extends AutocompleteOption,
-> {
+> extends Required<AutocompleteGetOptionProps<Option>>,
+    Required<AutocompleteGetOptionLabel<Option>> {
   query: string;
   options: readonly Option[];
-  getOptionLabel: AutocompleteGetOptionLabel<Option>;
-  getOptionProps: AutocompleteGetOptionProps<Option>;
   children: ReactNode;
   noOptionsChildren: ReactNode;
 }

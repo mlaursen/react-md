@@ -76,6 +76,8 @@ export interface TableProps
  *   );
  * }
  * ```
+ *
+ * @see {@link https://next.react-md.dev/components/table|Table Demos}
  */
 export const Table = forwardRef<HTMLTableElement, TableProps>(
   function Table(props, ref) {

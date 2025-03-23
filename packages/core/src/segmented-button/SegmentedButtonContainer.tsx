@@ -37,6 +37,7 @@ export interface SegmentedButtonContainerProps
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/components/segmented-button|SegmentedButton Demos}
  * @since 6.0.0
  */
 export const SegmentedButtonContainer = forwardRef<

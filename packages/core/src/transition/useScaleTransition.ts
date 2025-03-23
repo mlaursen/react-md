@@ -129,6 +129,8 @@ export interface ScaleTransitionHookOptions<E extends HTMLElement>
  * }
  * ```
  *
+ * @see {@link https://next.react-md.dev/hooks/use-scale-transition|useScaleTransition Demos}
+ * @see {@link https://next.react-md.dev/components/scale|Scale Demos}
  * @typeParam E - The HTMLElement type used or the ref required for the
  * transition.
  * @since 4.0.0

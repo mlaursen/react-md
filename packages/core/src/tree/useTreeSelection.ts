@@ -19,6 +19,7 @@ export interface TreeSelection {
 }
 
 /**
+ * @see {@link https://next.react-md.dev/components/tree|Tree Demos}
  * @since 6.0.0 Renamed from `useTreeItemSelection` and uses a Set
  * instead of a list to increase performance.
  */

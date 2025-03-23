@@ -88,6 +88,8 @@ export interface AppSizeProviderProps extends AppSizeQueries {
  * This component should be mounted near the root of your app to determine the
  * current app size based on different media queries.
  *
+ * @see {@link https://next.react-md.dev/components/core-providers|CoreProviders Demos}
+ * @see {@link https://next.react-md.dev/components/app-size-provider|AppSizeProvider Demos}
  * @since 6.0.0 Renamed from `AppSizeListener`
  */
 export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
