@@ -27,10 +27,14 @@ import {
 interface FormatItemOptions {
   src: string;
   item: Item;
+  index: number;
   mixins: Map<string, FormattedMixinItem>;
   functions: Map<string, FormattedFunctionItem>;
   variables: Map<string, FormattedVariableItem>;
   references: Map<string, FullItemReferenceLink>;
+  mixinsOrder: Map<string, number>;
+  functionsOrder: Map<string, number>;
+  variablesOrder: Map<string, number>;
   originalMixins: Map<string, MixinItem>;
   originalFunctions: Map<string, FunctionItem>;
   originalVariables: Map<string, VariableItem>;
@@ -40,10 +44,14 @@ async function formatItem(options: FormatItemOptions): Promise<void> {
   const {
     src,
     item,
+    index,
     mixins,
     functions,
     variables,
     references,
+    mixinsOrder,
+    functionsOrder,
+    variablesOrder,
     originalMixins,
     originalFunctions,
     originalVariables,
@@ -54,6 +62,7 @@ async function formatItem(options: FormatItemOptions): Promise<void> {
   if (isVariableItem(item)) {
     type = "variable";
     const formatted = await formatVariableItem(src, baseItem, item);
+    variablesOrder.set(formatted.name, index);
     if (variables.has(formatted.name)) {
       throw new Error(`Duplicate variables with ${formatted.name}`);
     }
@@ -63,6 +72,7 @@ async function formatItem(options: FormatItemOptions): Promise<void> {
   } else if (isFunctionItem(item)) {
     type = "function";
     const formatted = await formatFunctionItem(baseItem, item);
+    functionsOrder.set(formatted.name, index);
     if (functions.has(formatted.name)) {
       throw new Error(`Duplicate functions with ${formatted.name}`);
     }
@@ -72,6 +82,7 @@ async function formatItem(options: FormatItemOptions): Promise<void> {
   } else if (isMixinItem(item)) {
     type = "mixin";
     const formatted = await formatMixinItem(baseItem, item);
+    mixinsOrder.set(formatted.name, index);
     if (mixins.has(formatted.name)) {
       throw new Error(`Duplicate mixins with ${formatted.name}`);
     }
@@ -122,7 +133,16 @@ export interface GeneratedSassDoc {
   variables: ReadonlyMap<string, FormattedVariableItem>;
 }
 
-async function run(src: string, isChunked = false): Promise<GeneratedSassDoc> {
+export interface GeneratedSassDocWithOrder extends GeneratedSassDoc {
+  mixinsOrder: ReadonlyMap<string, number>;
+  functionsOrder: ReadonlyMap<string, number>;
+  variablesOrder: ReadonlyMap<string, number>;
+}
+
+async function run(
+  src: string,
+  chunkSize?: number
+): Promise<GeneratedSassDocWithOrder> {
   const items = await log(parse(src), "", "Parsed sass items");
   const mixins = new Map<string, FormattedMixinItem>();
   const functions = new Map<string, FormattedFunctionItem>();
@@ -130,34 +150,44 @@ async function run(src: string, isChunked = false): Promise<GeneratedSassDoc> {
   const originalMixins = new Map<string, MixinItem>();
   const originalFunctions = new Map<string, FunctionItem>();
   const originalVariables = new Map<string, VariableItem>();
+  const mixinsOrder = new Map<string, number>();
+  const functionsOrder = new Map<string, number>();
+  const variablesOrder = new Map<string, number>();
 
   const references = new Map<string, FullItemReferenceLink>();
 
-  const format = (item: Item): Promise<void> =>
+  const format = (item: Item, index: number): Promise<void> =>
     formatItem({
       src,
       item,
+      index,
       mixins,
       functions,
       variables,
       references,
+      mixinsOrder,
+      functionsOrder,
+      variablesOrder,
       originalMixins,
       originalFunctions,
       originalVariables,
     });
 
-  if (isChunked) {
+  if (typeof chunkSize === "number") {
     const start = Date.now();
     logPending("Formatting the SassDoc items");
-    const chunks = chunk(items, 40);
-    for (const chunk of chunks) {
-      await Promise.all(chunk.map((item) => format(item)));
+    const chunks = chunk(items, chunkSize);
+    for (let i = 0; i < chunks.length; i++) {
+      const chunk = chunks[i];
+      const addition = i * chunkSize;
+
+      await Promise.all(chunk.map((item, i) => format(item, i + addition)));
     }
     const end = Date.now();
     logComplete("Formatted the SassDoc items", end - start);
   } else {
     await log(
-      Promise.all(items.map((item) => format(item))),
+      Promise.all(items.map((item, i) => format(item, i))),
       "Formatting the SassDoc items",
       "Formatted the SassDoc items"
     );
@@ -186,26 +216,29 @@ async function run(src: string, isChunked = false): Promise<GeneratedSassDoc> {
     mixins,
     functions,
     variables,
+    mixinsOrder,
+    functionsOrder,
+    variablesOrder,
   };
 }
 
 export interface GenerateOptions {
   src: string;
   clear?: boolean;
-  isChunked?: boolean;
+  chunkSize?: number;
 }
 
 export async function generate(
   options: GenerateOptions
-): Promise<GeneratedSassDoc> {
-  const { src, clear, isChunked } = options;
+): Promise<GeneratedSassDocWithOrder> {
+  const { src, clear, chunkSize } = options;
 
   if (clear) {
     clearScssCache();
   }
 
   return await log(
-    run(src, isChunked),
+    run(src, chunkSize),
     "Generating sassdoc",
     "Generated sassdoc"
   );

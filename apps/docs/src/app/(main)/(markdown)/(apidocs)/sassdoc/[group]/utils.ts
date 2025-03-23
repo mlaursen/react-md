@@ -1,8 +1,14 @@
 import {
+  type TableOfContentsHeading,
+  type TableOfContentsHeadings,
+} from "@react-md/core/navigation/types";
+import {
   type FormattedItem,
   type FormattedSassDocItem,
   type ItemReferenceLink,
 } from "sassdoc-generator/types";
+
+import { slug } from "@/utils/slug.js";
 
 export const getGroupName = (itemOrGroup: FormattedItem | string): string => {
   const group =
@@ -24,4 +30,70 @@ export function getSassDocLink(
   }
 
   return `/sassdoc/${getGroupName(group)}#${type}s-${name}`;
+}
+
+export function createTOC(
+  lookup: ReadonlyMap<string, FormattedSassDocItem>,
+  children: string
+): TableOfContentsHeadings {
+  const toc: TableOfContentsHeading[] = [];
+  if (!lookup.size) {
+    return toc;
+  }
+
+  const baseId = slug(children);
+  toc.push({ id: baseId, depth: 1, children });
+  lookup.forEach((item) => {
+    const itemId = slug(`${baseId}-${item.name}`);
+    toc.push({
+      id: itemId,
+      depth: 2,
+      children: item.name,
+    });
+    if ("returns" in item && item.returns) {
+      toc.push({
+        id: `${itemId}-returns`,
+        depth: 3,
+        children: "Returns",
+      });
+    }
+
+    if ("parameters" in item && item.parameters?.length) {
+      toc.push({
+        id: `${itemId}-parameters`,
+        depth: 3,
+        children: "Parameters",
+      });
+    }
+
+    if ("throws" in item && item.throws?.length) {
+      toc.push({
+        id: `${itemId}-throws`,
+        depth: 3,
+        children: "Throws",
+      });
+    }
+
+    if (item.examples?.length) {
+      toc.push({
+        id: `${itemId}-examples`,
+        depth: 3,
+        children: "Examples",
+      });
+
+      item.examples.forEach((example) => {
+        if (!example.description) {
+          return;
+        }
+
+        toc.push({
+          id: slug(`${itemId}-example-${example.description}`),
+          depth: 4,
+          children: example.description,
+        });
+      });
+    }
+  });
+
+  return toc;
 }
