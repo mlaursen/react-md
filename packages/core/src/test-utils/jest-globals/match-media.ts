@@ -2,9 +2,10 @@ import { jest } from "@jest/globals";
 
 import {
   type MatchMediaChangeViewport,
-  createMatchMediaSpy,
-} from "../mocks/match-media-implementation.js";
-import { type MatchMediaMatcher, matchDesktop } from "../mocks/match-media.js";
+  type MatchMediaMatcher,
+  matchDesktop,
+} from "../mocks/match-media.js";
+import { createMatchMediaSpy } from "../utils/createMatchMediaSpy.js";
 
 /**
  * @example Default Behavior

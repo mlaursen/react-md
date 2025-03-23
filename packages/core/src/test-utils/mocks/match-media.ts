@@ -5,6 +5,38 @@ import {
   DEFAULT_TABLET_MIN_WIDTH,
 } from "../../media-queries/appSize.js";
 
+/**
+ * @since 6.0.0
+ */
+export interface MatchMediaChangeViewport {
+  /**
+   * @example Default Behavior
+   * ```tsx
+   * const matchMedia = spyOnMatchMedia();
+   * render(<Test />);
+   *
+   * // expect desktop results
+   *
+   * matchMedia.changeViewport(matchPhone);
+   * // expect phone results
+   * ```
+   *
+   * @example Custom Act Behavior
+   * ```tsx
+   * const matchMedia = spyOnMatchMedia();
+   * const { rerender } = render(<Test />);
+   *
+   * // expect desktop results
+   *
+   * matchMedia.changeViewport(matchPhone, false);
+   * rerender(<Test key="new-key" />);
+   *
+   * // expect phone results
+   * ```
+   */
+  changeViewport: (matcher: MatchMediaMatcher, disableAct?: boolean) => void;
+}
+
 const noop = (): void => {
   // do nothing
 };
