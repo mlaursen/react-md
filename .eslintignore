@@ -9,6 +9,7 @@ node_modules
 
 /prev
 /public
+/examples
 
 *.cjs
 packages/material-icons/*.mjs

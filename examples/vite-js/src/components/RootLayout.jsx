@@ -5,14 +5,9 @@ import { LayoutNav } from "@react-md/core/layout/LayoutNav"
 import { Main } from "@react-md/core/layout/Main"
 import { useExpandableLayout } from "@react-md/core/layout/useExpandableLayout"
 import { Sheet } from "@react-md/core/sheet/Sheet"
-import { type ReactElement, type ReactNode } from "react"
 import { MainNavigation } from "./MainNavigation.jsx"
 
-export interface RootLayoutProps {
-  children: ReactNode
-}
-
-export function RootLayout({ children }: RootLayoutProps): ReactElement {
+export function RootLayout({ children }) {
   const {
     temporary,
     appBarProps,
@@ -25,25 +20,23 @@ export function RootLayout({ children }: RootLayoutProps): ReactElement {
     defaultExpanded: true,
   })
 
-  return (
-    <>
-      <LayoutAppBar {...appBarProps}>
-        <Button {...navToggleProps} />
-        <AppBarTitle>react-md with vite</AppBarTitle>
-      </LayoutAppBar>
-      {!temporary && (
-        <LayoutNav {...expandableNavProps}>
-          <MainNavigation />
-        </LayoutNav>
-      )}
-      {temporary && (
-        <Sheet {...temporaryNavProps}>
-          <MainNavigation />
-        </Sheet>
-      )}
-      <Main {...mainProps}>
-        {children}
-      </Main>
-    </>
-  )
+  return <>
+    <LayoutAppBar {...appBarProps}>
+      <Button {...navToggleProps} />
+      <AppBarTitle>react-md with vite</AppBarTitle>
+    </LayoutAppBar>
+    {!temporary && (
+      <LayoutNav {...expandableNavProps}>
+        <MainNavigation />
+      </LayoutNav>
+    )}
+    {temporary && (
+      <Sheet {...temporaryNavProps}>
+        <MainNavigation />
+      </Sheet>
+    )}
+    <Main {...mainProps}>
+      {children}
+    </Main>
+  </>
 }
