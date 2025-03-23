@@ -1,5 +1,5 @@
 import { getProjectRootDir } from "docs-generator/utils/getProjectRootDir";
-import { log, logComplete } from "docs-generator/utils/log";
+import { log } from "docs-generator/utils/log";
 import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
@@ -57,29 +57,6 @@ export const SASSDOC_VARIABLES: Record<string, FormattedVariableItem | undefined
 async function run(): Promise<void> {
   if (!existsSync(GENERATED_DIR)) {
     await mkdir(GENERATED_DIR, { recursive: true });
-  }
-
-  if (process.argv.includes("--touch")) {
-    if (existsSync(GENERATED_SASSDOC_FILE)) {
-      logComplete(
-        `Skipped generting ${ALIASED_SASSDOC_FILE} since it already exists`
-      );
-    } else {
-      await log(
-        createSassDocFile({
-          mixins: new Map(),
-          functions: new Map(),
-          variables: new Map(),
-          mixinsOrder: new Map(),
-          variablesOrder: new Map(),
-          functionsOrder: new Map(),
-        }),
-        "",
-        `Created an empty ${ALIASED_SASSDOC_FILE}`
-      );
-    }
-
-    process.exit(0);
   }
 
   await createSassDocFile(await generate({ src: CORE_SRC }));
