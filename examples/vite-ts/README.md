@@ -2,21 +2,12 @@
 
 This template provides a minimal setup to get ReactMD working in Vite with HMR and some ESLint rules.
 
-## What's Included
-
-This example will setup an example Create React App + ReactMD app that has the following features:
-
-- [\_everything.scss](./src/_everything.scss) to override the default `react-md` theme and feature toggles
-- [RootLayout](./src/components/RootLayout.tsx) that initializes a base layout for the app
-  - [MainNavigation](./src/components/MainNavigation.tsx) as an example navigation panel
-- [rmdConfig](./src/rmdConfig.tsx) to configure icons and other global settings in `react-md`
-
 ## How to Use
 
 Download the example:
 
 ```bash
-curl https://codeload.github.com/mlaursen/react-md/tar.gz/main | tar -xz --strip=2 react-md-main/examples/vite-ts
+curl https://codeload.github.com/mlaursen/react-md/tar.gz/next | tar -xz --strip=2 react-md-next/examples/vite-ts
 cd vite-ts
 ```
 
@@ -34,6 +25,21 @@ git init
 git add .
 git commit -m "Initial commit"
 ```
+
+or:
+
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mlaursen/react-md/tree/next/examples/vite-ts)
+
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mlaursen/react-md/tree/next/examples/vite-ts)
+
+## What's Included
+
+This example will setup an example Create React App + ReactMD app that has the following features:
+
+- [\_everything.scss](./src/_everything.scss) to override the default `react-md` theme and feature toggles
+- [RootLayout](./src/components/RootLayout.tsx) that initializes a base layout for the app
+  - [MainNavigation](./src/components/MainNavigation.tsx) as an example navigation panel
+- [rmdConfig](./src/rmdConfig.tsx) to configure icons and other global settings in `react-md`
 
 ## Vite
 

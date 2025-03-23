@@ -9,7 +9,7 @@ export default function App() {
       <TextContainer>
         <Typography>
           This is a simple app bootstrapped with{" "}
-          <Link href="https://react-md.dev">react-md</Link>{" "}
+          <Link href="https://next.react-md.dev">react-md</Link>{" "}
           and <Link href="https://vite.dev">vite</Link>.
         </Typography>
       </TextContainer>
