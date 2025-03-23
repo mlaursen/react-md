@@ -14,13 +14,11 @@ export interface DialogContentProps
  * @see {@link https://next.react-md.dev/components/dialog|Dialog Demos}
  */
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
-  function DialogContent(
-    { children, className, disablePadding = false, ...props },
-    ref
-  ) {
+  function DialogContent(props, ref) {
+    const { children, className, disablePadding = false, ...remaining } = props;
     return (
       <div
-        {...props}
+        {...remaining}
         ref={ref}
         className={dialogContent({
           className,

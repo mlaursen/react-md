@@ -13,10 +13,11 @@ export interface DialogFooterProps
  * @see {@link https://next.react-md.dev/components/dialog|Dialog Demos}
  */
 export const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
-  function DialogFooter({ children, className, align = "end", ...props }, ref) {
+  function DialogFooter(props, ref) {
+    const { children, className, align = "end", ...remaining } = props;
     return (
       <footer
-        {...props}
+        {...remaining}
         ref={ref}
         className={dialogFooter({
           align,

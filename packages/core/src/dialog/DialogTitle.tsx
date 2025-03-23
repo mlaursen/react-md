@@ -32,20 +32,19 @@ export interface DialogTitleProps extends TypographyProps {
  * @see {@link https://next.react-md.dev/components/dialog|Dialog Demos}
  */
 export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
-  function DialogTitle(
-    {
+  function DialogTitle(props, ref) {
+    const {
       as = "h2",
       type = "headline-4",
       margin = "none",
       children,
       className,
-      ...props
-    },
-    ref
-  ) {
+      ...remaining
+    } = props;
+
     return (
       <Typography
-        {...props}
+        {...remaining}
         ref={ref}
         as={as}
         type={type}
