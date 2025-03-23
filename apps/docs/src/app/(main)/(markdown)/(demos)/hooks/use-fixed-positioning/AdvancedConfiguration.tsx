@@ -52,7 +52,7 @@ import {
   DEFAULT_SCALE_CLASSNAMES,
   DEFAULT_SCALE_TIMEOUT,
 } from "@react-md/core/transition/useScaleTransition";
-import ErrorIcon from "node_modules/@react-md/material-icons/src/ErrorIcon.jsx";
+import ErrorIcon from "@react-md/material-icons/ErrorIcon";
 import { type ReactElement, useEffect, useRef, useState } from "react";
 
 export default function AdvancedConfiguration(): ReactElement {

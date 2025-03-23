@@ -26,12 +26,12 @@ import { useAsyncFunction } from "@react-md/core/useAsyncFunction";
 import { useDropzone } from "@react-md/core/useDropzone";
 import { randomInt } from "@react-md/core/utils/randomInt";
 import { wait } from "@react-md/core/utils/wait";
+import CheckCircleIcon from "@react-md/material-icons/CheckCircleIcon";
+import CloseIcon from "@react-md/material-icons/CloseIcon";
 import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
+import WatchIcon from "@react-md/material-icons/WatchIcon";
 import { cnb } from "cnbuilder";
 import { filesize } from "filesize";
-import CheckCircleIcon from "node_modules/@react-md/material-icons/src/CheckCircleIcon.jsx";
-import CloseIcon from "node_modules/@react-md/material-icons/src/CloseIcon.jsx";
-import WatchIcon from "node_modules/@react-md/material-icons/src/WatchIcon.jsx";
 import { type ReactElement, useState } from "react";
 
 import { FileUploadErrorModal } from "@/components/FileUploadErrorModal/FileUploadErrorModal.jsx";

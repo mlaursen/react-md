@@ -1,19 +1,17 @@
-import { getProjectRootDir } from "docs-generator/utils/getProjectRootDir";
 import { log } from "docs-generator/utils/log";
 import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
-import { join } from "node:path";
 import { format } from "prettier";
 import { type GeneratedSassDocWithOrder, generate } from "sassdoc-generator";
 import { type FormattedSassDocItem } from "sassdoc-generator/types";
 
-import { GENERATED_FILE_BANNER } from "./constants.js";
-
-const PROJECT_ROOT = getProjectRootDir();
-const CORE_SRC = join(PROJECT_ROOT, "packages", "core", "src");
-const GENERATED_DIR = join(PROJECT_ROOT, "apps", "docs", "src", "generated");
-const GENERATED_SASSDOC_FILE = join(GENERATED_DIR, "sassdoc.ts");
-const ALIASED_SASSDOC_FILE = GENERATED_SASSDOC_FILE.replace(/^.+src\//, "@/");
+import {
+  ALIASED_SASSDOC_FILE,
+  CORE_SRC,
+  GENERATED_DIR,
+  GENERATED_FILE_BANNER,
+  GENERATED_SASSDOC_FILE,
+} from "./constants.js";
 
 function stringify(
   map: ReadonlyMap<string, FormattedSassDocItem>,

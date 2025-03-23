@@ -5,8 +5,8 @@ import { useFileUpload } from "@react-md/core/files/useFileUpload";
 import { LinearProgress } from "@react-md/core/progress/LinearProgress";
 import { Typography } from "@react-md/core/typography/Typography";
 import { useDropzone } from "@react-md/core/useDropzone";
+import UploadIcon from "@react-md/material-icons/UploadIcon";
 import { cnb } from "cnbuilder";
-import UploadIcon from "node_modules/@react-md/material-icons/src/UploadIcon.jsx";
 import { type ReactElement } from "react";
 
 import styles from "./SimpleExample.module.scss";

@@ -1,7 +1,7 @@
 "use client";
 
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
-import FavoriteIcon from "node_modules/@react-md/material-icons/src/FavoriteIcon.jsx";
+import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 
 import { type Dessert, desserts } from "@/constants/desserts.js";
