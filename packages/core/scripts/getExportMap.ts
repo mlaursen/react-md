@@ -5,10 +5,11 @@ import { format } from "prettier";
 import { Node, Project } from "ts-morph";
 
 import { alphaNumericSort } from "../src/utils/alphaNumericSort.js";
+import { PRIVATE_FILES } from "./constants.js";
 
 const files = await glob("src/**/*.{ts,tsx}", {
   cwd: process.cwd(),
-  ignore: ["**/__tests__/**", "**/test-utils/**"],
+  ignore: ["**/__tests__/**", "**/test-utils/**", ...PRIVATE_FILES],
 });
 const project = new Project({
   tsConfigFilePath: "./tsconfig.types.json",
@@ -23,6 +24,7 @@ files.forEach((file) => {
   const exportPath = file
     .replace("src", "@react-md/core")
     .replace(/\.tsx?$/, "");
+
   project.addSourceFileAtPath(file);
   const sourceFile = project.getSourceFileOrThrow(file);
   const exportDeclarations = sourceFile.getExportedDeclarations();

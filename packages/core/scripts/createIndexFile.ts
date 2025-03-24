@@ -4,31 +4,8 @@ import { join, resolve } from "node:path";
 import { format } from "prettier";
 
 import { alphaNumericSort } from "../src/utils/alphaNumericSort.js";
+import { PRIVATE_FILES } from "./constants.js";
 
-const PRIVATE_FILES = [
-  "**/autocomplete/AutocompleteListboxChildren*",
-  "**/autocomplete/utils*",
-  "**/draggable/utils*",
-  "**/form/InputToggleIcon*",
-  "**/form/ResizingTextAreaWrapper*",
-  "**/form/useResizingTextArea*",
-  "**/form/useSliderDraggable*",
-  "**/form/SliderTrack*",
-  "**/form/selectUtils*",
-  "**/form/sliderUtils*",
-  "**/interaction/utils*",
-  "**/menu/MenuWidgetKeyboardProvider*",
-  "**/menu/utils*",
-  "**/positioning/createHorizontalPosition*",
-  "**/positioning/createVerticalPosition*",
-  "**/storage/internalUtils*",
-  "**/tabs/useTabList*",
-  "**/tabs/utils*",
-  "**/tooltip/useTooltipPosition*",
-  "**/tooltip/utils*",
-  "**/transition/utils*",
-  "**/tree/useTreeMovement*",
-];
 const files = await glob("**/*.{ts,tsx}", {
   cwd: join(process.cwd(), "src"),
   ignore: ["**/__tests__/**", "**/test-utils/**", ...PRIVATE_FILES],
