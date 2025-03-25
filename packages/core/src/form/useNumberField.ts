@@ -184,6 +184,7 @@ export interface ValidatedNumberFieldImplementation
  *
  *   return <TextField {...fieldProps} label="Label" />;
  * }
+ * ```
  *
  * @see {@link useTextField}
  * @see {@link useNumberField} overrides for other examples.

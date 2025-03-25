@@ -563,7 +563,7 @@ export interface AutocompleteCircularProgressProps
  */
 export interface AutocompleteChipProps extends ChipProps {
   /**
-   * @defaultValue `typeof children === "string" && \`Remove "${children}"\`
+   * @defaultValue `typeof children === "string" ? \`Remove "${children}"\` : undefined`
    */
   "aria-description"?: string;
 

@@ -65,11 +65,6 @@ export interface GetTransitionCallbacksOptions extends TransitionCallbacks {
  * only function, but might be useful externally as well. Here are a few
  * examples for it's usage internally:
  *
- * @example Focus Behavior
- * ```tsx
- *
- * ```
- *
  * @example Autocomplete Behavior
  * ```tsx
  *   listboxProps={{
