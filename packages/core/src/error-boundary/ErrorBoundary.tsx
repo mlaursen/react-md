@@ -29,7 +29,6 @@ export interface ErrorBoundaryProps {
  *
  * @example Main Use Case
  * ```tsx
- *
  * import { Button } from "@react-md/core/button/Button";
  * import { ErrorBoundary } from "@react-md/core/error-boundary/ErrorBoundary";
  * import { useErrorBoundary } from "@react-md/core/error-boundary/useErrorBoundary";

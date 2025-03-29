@@ -1,0 +1,36 @@
+# ErrorBoundary
+
+The `ErrorBoundary` is a minimal fork of the
+[react-error-boundary](https://github.com/bvaughn/react-error-boundary/tree/5.0.0)
+package that only includes things I consider useful. Use the
+`react-error-boundary` if more complex behavior is required.
+
+# Simple Example
+
+The `ErrorBoundary` is a client component and requires `fallback` (any `ReactNode`) content to be
+displayed.
+
+The example below shows how the error boundary can catch run-time errors and
+display the fallback content without crashing the entire app. The demo must be
+reset to try again.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+# Resettable Example
+
+To help with cases where the app can be recovered after an error, the
+`ErrorBoundary` can also be reset using the `useErrorBoundary` hook in the
+`fallback` content. The hook returns an object with:
+
+- `error` - the `Error` or `null`
+- `errored` - boolean if there is an error
+- `reset` - a function to reset the error boundary
+
+> !Info! The `errored` flag should always be `true` when this hook is called
+> from the `fallback` component and will assert the `error` is an `Error`.
+
+```demo source="./ResettableExample.tsx"
+
+```

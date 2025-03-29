@@ -304,6 +304,11 @@ export const navItems: readonly NavigationItem[] = [
       { type: "subheader", children: "Utils" },
       {
         type: "route",
+        href: "/error-boundary",
+        children: "ErrorBoundary",
+      },
+      {
+        type: "route",
         href: "/render-recursively",
         children: "RenderRecursively",
       },
