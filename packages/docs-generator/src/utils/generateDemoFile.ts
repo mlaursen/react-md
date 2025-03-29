@@ -7,6 +7,7 @@ import { format } from "prettier";
 import { type Project, VariableDeclarationKind } from "ts-morph";
 
 import { type InlineDemoProps } from "./createDemo.js";
+import { getProjectRootDir } from "./getProjectRootDir.js";
 import { getReadOnlyFiles } from "./getReadonlyFiles.js";
 import {
   type ParseCompleteDemoFileOptions,
@@ -204,6 +205,9 @@ export async function generateDemoFile(
     declarationKind: VariableDeclarationKind.Const,
   });
 
+  // allow hot reloading in dev mode with the `watch-demos` script
+  const devKey =
+    process.env.NODE_ENV !== "production" ? `key={${Date.now()}}` : "";
   const stringifiedProps = Object.entries(props).reduce<string>(
     (s, [name, value]) => {
       if (typeof value === "boolean" && value) {
@@ -216,9 +220,9 @@ export async function generateDemoFile(
 
       return s;
     },
-    // allow hot reloading in dev mode with the `watch-demos` script
-    process.env.NODE_ENV !== "production" ? `key={${Date.now()}}` : ""
+    ""
   );
+
   sourceFile.addFunction({
     name: clientDemoName,
     parameters: readOnlyFilesProp
@@ -230,7 +234,19 @@ export async function generateDemoFile(
         ]
       : [],
     // ts-morph does not support tsx at this time
-    statements: `return <DemoCodeEditor scope={scope} demoName="${demoName}" tsCodeFile={tsCodeFile} ${scssCodeFileProp} ${readOnlyFilesProp} ${stringifiedProps} />`,
+    statements: `return (
+  <DemoCodeEditor
+    ${devKey}
+    scope={scope}
+    source={"${demoSourcePath.replace(getProjectRootDir(), "").replace(/^\/+/, "")}"}
+    demoName="${demoName}"
+    tsCodeFile={tsCodeFile}
+    ${scssCodeFileProp}
+    ${readOnlyFilesProp}
+    ${stringifiedProps}
+  />
+);
+`,
     returnType: "ReactElement",
     isDefaultExport: !readOnlyFilesProp,
     isExported: true,

@@ -8,6 +8,7 @@ import {
   type TypescriptCodeFile,
 } from "@react-md/code/types";
 import { useCodeEditHistory } from "@react-md/code/useCodeEditHistory";
+import { Box } from "@react-md/core/box/Box";
 import { TooltippedButton } from "@react-md/core/button/TooltippedButton";
 import { Chip } from "@react-md/core/chip/Chip";
 import { MenuConfigurationProvider } from "@react-md/core/menu/MenuConfigurationProvider";
@@ -22,7 +23,9 @@ import EditOffIcon from "@react-md/material-icons/EditOffIcon";
 import RefreshOutlinedIcon from "@react-md/material-icons/RefreshOutlinedIcon";
 import { type ReactElement, useMemo, useRef } from "react";
 
+import { GithubLink } from "../GithubLink.jsx";
 import { ConfigureTypescriptEnabled } from "../MainLayout/ConfigureTypescriptEnabled.jsx";
+import styles from "./DemoCodeEditor.module.scss";
 import { DemoCodePreview } from "./DemoCodePreview.jsx";
 import { type PreviewContainerOptions } from "./PreviewContainer.jsx";
 import { ScssCodeEditor } from "./ScssCodeEditor.jsx";
@@ -30,6 +33,7 @@ import { TypescriptCodeEditor } from "./TypescriptCodeEditor.jsx";
 
 export interface DemoCodeEditorProps extends PreviewContainerOptions {
   scope: RunnableCodeScope;
+  source: string;
   demoName: string;
   tsCodeFile: TypescriptCodeFile;
   disableBox?: boolean;
@@ -48,6 +52,7 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
     phone,
     scope,
     demoName,
+    source,
     tsCodeFile,
     disableBox,
     transparent,
@@ -119,17 +124,24 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
               Show CSS
             </Chip>
           )}
-          <TooltippedButton
-            tooltip="Reset the demo"
-            onClick={() => {
-              resetPreview();
-              setCode(
-                isTypescriptEnabled ? tsCodeFile.code : tsCodeFile.compiled
-              );
-            }}
-          >
-            <RefreshOutlinedIcon />
-          </TooltippedButton>
+          <Box className={styles.end} disablePadding disableWrap>
+            <GithubLink
+              file={source}
+              iconSize="small"
+              tooltipOptions={{ defaultPosition: "below" }}
+            />
+            <TooltippedButton
+              tooltip="Reset the demo"
+              onClick={() => {
+                resetPreview();
+                setCode(
+                  isTypescriptEnabled ? tsCodeFile.code : tsCodeFile.compiled
+                );
+              }}
+            >
+              <RefreshOutlinedIcon />
+            </TooltippedButton>
+          </Box>
         </CodeBlockAppBar>
         {isMultiFile && (
           <TabList

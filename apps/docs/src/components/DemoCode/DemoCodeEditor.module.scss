@@ -1,0 +1,10 @@
+@use "everything";
+
+.end {
+  margin-left: auto;
+
+  @include everything.rtl {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
