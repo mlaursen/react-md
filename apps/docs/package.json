@@ -22,14 +22,14 @@
     "watch-demos": "pnpm run run-script scripts/watchDemos.ts",
     "watch-scss-lookup": "pnpm create-scss-lookup -- --watch",
     "generator-dev": "nodemon --config scripts/nodemon.docs-generator.json",
-    "build-env": "npm-run-all --parallel create-env sassdoc create-scss-lookup create-stackblitz-template",
+    "build-env": "npm-run-all --parallel create-env create-scss-lookup create-stackblitz-template",
+    "build-full-env": "npm-run-all --parallel build-env sassdoc build-typedoc",
     "build-typedoc": "pnpm run run-script scripts/typedoc.ts",
     "next-dev": "next dev",
     "next-build": "next build",
     "dev": "npm-run-all build-env dev-tasks",
-    "dev-tasks": "npm-run-all --parallel watch-demos watch-scss-lookup generator-dev",
-    "build-parallel": "npm-run-all --parallel build-typedoc next-build",
-    "build": "npm-run-all build-env build-parallel",
+    "dev-tasks": "npm-run-all --parallel watch-demos \"sassdoc --touch\" watch-scss-lookup generator-dev",
+    "build": "npm-run-all build-full-env next-build",
     "start": "next start"
   },
   "repository": {

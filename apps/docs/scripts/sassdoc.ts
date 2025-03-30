@@ -1,4 +1,5 @@
-import { log } from "docs-generator/utils/log";
+import { log, logComplete } from "docs-generator/utils/log";
+import { existsSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { format } from "prettier";
 import { type GeneratedSassDocWithOrder, generate } from "sassdoc-generator";
@@ -51,9 +52,32 @@ export const SASSDOC_VARIABLES: Record<string, FormattedVariableItem | undefined
   );
 }
 
+if (process.argv.includes("--touch")) {
+  if (!existsSync(GENERATED_SASSDOC_FILE)) {
+    await log(
+      createSassDocFile({
+        mixins: new Map(),
+        functions: new Map(),
+        variables: new Map(),
+        mixinsOrder: new Map(),
+        functionsOrder: new Map(),
+        variablesOrder: new Map(),
+      }),
+      "",
+      `Created an empty "${ALIASED_SASSDOC_FILE}". Run \`pnpm --filter docs sassdoc\` to update.`
+    );
+  } else {
+    logComplete(
+      `Skipped creating "${ALIASED_SASSDOC_FILE}" since it already exists. Run \`pnpm --filter docs sassdoc\` to update.`
+    );
+  }
+
+  process.exit(0);
+}
+
 async function run(): Promise<void> {
   await ensureGeneratedDir();
   await createSassDocFile(await generate({ src: CORE_SRC }));
 }
 
-await log(run(), "", `Created ${ALIASED_SASSDOC_FILE}`);
+await log(run(), "", `Created "${ALIASED_SASSDOC_FILE}"`);
