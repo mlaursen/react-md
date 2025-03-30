@@ -20,5 +20,9 @@
   "exclude": ["**/__tests__/**"],
   "readme": "../../packages/core/README.md",
   "entryPoints": ["../../packages/core/src"],
-  "entryPointStrategy": "expand"
+  "entryPointStrategy": "expand",
+  "validation": {
+    "invalidLink": false,
+    "notExported": false
+  }
 }
