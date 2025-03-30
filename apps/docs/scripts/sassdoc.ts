@@ -1,6 +1,5 @@
 import { log } from "docs-generator/utils/log";
-import { existsSync } from "node:fs";
-import { mkdir, writeFile } from "node:fs/promises";
+import { writeFile } from "node:fs/promises";
 import { format } from "prettier";
 import { type GeneratedSassDocWithOrder, generate } from "sassdoc-generator";
 import { type FormattedSassDocItem } from "sassdoc-generator/types";
@@ -8,10 +7,10 @@ import { type FormattedSassDocItem } from "sassdoc-generator/types";
 import {
   ALIASED_SASSDOC_FILE,
   CORE_SRC,
-  GENERATED_DIR,
   GENERATED_FILE_BANNER,
   GENERATED_SASSDOC_FILE,
 } from "./constants.js";
+import { ensureGeneratedDir } from "./ensureGeneratedDir.js";
 
 function stringify(
   map: ReadonlyMap<string, FormattedSassDocItem>,
@@ -53,10 +52,7 @@ export const SASSDOC_VARIABLES: Record<string, FormattedVariableItem | undefined
 }
 
 async function run(): Promise<void> {
-  if (!existsSync(GENERATED_DIR)) {
-    await mkdir(GENERATED_DIR, { recursive: true });
-  }
-
+  await ensureGeneratedDir();
   await createSassDocFile(await generate({ src: CORE_SRC }));
 }
 

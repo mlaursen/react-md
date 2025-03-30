@@ -118,6 +118,12 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
           const parsed = JSON.parse(value.value);
           assertStringArray(parsed);
           parsed.forEach((item) => {
+            if (/\.tsx?$/.test(item)) {
+              throw new Error(
+                `readOnlyImports must import jsx extensions but ${item} was found`
+              );
+            }
+
             readOnlyImports.add(item);
           });
         } catch (e) {

@@ -21,7 +21,7 @@ import { Slide } from "@react-md/core/transition/Slide";
 import { useToggle } from "@react-md/core/useToggle";
 import EditOffIcon from "@react-md/material-icons/EditOffIcon";
 import RefreshOutlinedIcon from "@react-md/material-icons/RefreshOutlinedIcon";
-import { type ReactElement, useMemo, useRef } from "react";
+import { type ReactElement, type ReactNode, useMemo, useRef } from "react";
 
 import { GithubLink } from "../GithubLink.jsx";
 import { ConfigureTypescriptEnabled } from "../MainLayout/ConfigureTypescriptEnabled.jsx";
@@ -44,6 +44,7 @@ export interface DemoCodeEditorProps extends PreviewContainerOptions {
   startOnScss?: boolean;
   readOnlyFiles?: readonly ReactElement[];
   readOnlyFileNames?: readonly string[];
+  beforeSourceLinkChildren?: ReactNode;
 }
 
 export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
@@ -60,6 +61,7 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
     scssCodeFile,
     forceDarkMode,
     disablePadding,
+    beforeSourceLinkChildren,
     readOnlyFiles = [],
     readOnlyFileNames = [],
   } = props;
@@ -125,6 +127,7 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
             </Chip>
           )}
           <Box className={styles.end} disablePadding disableWrap>
+            {beforeSourceLinkChildren}
             <GithubLink
               file={source}
               iconSize="small"

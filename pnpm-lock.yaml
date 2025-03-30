@@ -64,7 +64,7 @@ importers:
         version: 14.2.15(@mdx-js/loader@3.1.0(acorn@8.14.1)(webpack@5.94.0(@swc/core@1.11.11(@swc/helpers@0.5.12))))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@18.3.1))
       '@next/third-parties':
         specifier: ^14.2.15
-        version: 14.2.15(next@14.2.15(@babel/core@7.26.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.86.0))(react@18.3.1)
+        version: 14.2.15(next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.86.0))(react@18.3.1)
       '@react-md/code':
         specifier: workspace:*
         version: link:../../packages/code
@@ -94,7 +94,7 @@ importers:
         version: 3.0.5
       next:
         specifier: ^14.2.15
-        version: 14.2.15(@babel/core@7.26.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.86.0)
+        version: 14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.86.0)
       next-mdx-remote:
         specifier: ^5.0.0
         version: 5.0.0(@types/react@18.3.12)(acorn@8.14.1)(react@18.3.1)
@@ -562,6 +562,9 @@ importers:
       hast-util-properties-to-mdx-jsx-attributes:
         specifier: ^1.0.1
         version: 1.0.1
+      lz-string:
+        specifier: ^1.5.0
+        version: 1.5.0
       mdast-util-from-markdown:
         specifier: ^2.0.2
         version: 2.0.2
@@ -9640,9 +9643,9 @@ snapshots:
   '@next/swc-win32-x64-msvc@14.2.15':
     optional: true
 
-  '@next/third-parties@14.2.15(next@14.2.15(@babel/core@7.26.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.86.0))(react@18.3.1)':
+  '@next/third-parties@14.2.15(next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.86.0))(react@18.3.1)':
     dependencies:
-      next: 14.2.15(@babel/core@7.26.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.86.0)
+      next: 14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.86.0)
       react: 18.3.1
       third-party-capital: 1.0.20
 
@@ -14263,7 +14266,7 @@ snapshots:
       - acorn
       - supports-color
 
-  next@14.2.15(@babel/core@7.26.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.86.0):
+  next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.86.0):
     dependencies:
       '@next/env': 14.2.15
       '@swc/helpers': 0.5.5
@@ -14273,7 +14276,7 @@ snapshots:
       postcss: 8.4.31
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      styled-jsx: 5.1.1(@babel/core@7.26.10)(react@18.3.1)
+      styled-jsx: 5.1.1(react@18.3.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.2.15
       '@next/swc-darwin-x64': 14.2.15
@@ -15827,12 +15830,10 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.4
 
-  styled-jsx@5.1.1(@babel/core@7.26.10)(react@18.3.1):
+  styled-jsx@5.1.1(react@18.3.1):
     dependencies:
       client-only: 0.0.1
       react: 18.3.1
-    optionalDependencies:
-      '@babel/core': 7.26.10
 
   stylehacks@7.0.4(postcss@8.5.3):
     dependencies:

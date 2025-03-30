@@ -1,8 +1,12 @@
-import { type CodeFile } from "@react-md/code/types";
+import {
+  type CodeFile,
+  type ScssCodeFile,
+  type TypescriptCodeFile,
+} from "@react-md/code/types";
 import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
 import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
-import { basename } from "node:path";
+import { basename, dirname } from "node:path";
 import { format } from "prettier";
 import { type Project, VariableDeclarationKind } from "ts-morph";
 
@@ -14,78 +18,203 @@ import {
   parseCompleteDemoFile,
 } from "./parseDemoFile.js";
 
-const TEMPLATE = `"use client";
-import { DemoCodeEditor } from "@/components/DemoCode/DemoCodeEditor.jsx";
+const CLIENT_TEMPLATE = `"use client";
+import { DemoCodeEditor, type DemoCodeEditorProps } from "@/components/DemoCode/DemoCodeEditor.jsx";
+import { type RunnableCodeScope } from "@react-md/code/types";
+import { type ReactElement } from "react";
+
+type Props = Omit<DemoCodeEditorProps, 'scope'>;
+`;
+
+const SERVER_TEMPLATE = `
+import { CreateStackBlitzProject } from "@/components/StackBlitz/CreateStackBlitzProject.jsx";
 import {
-  type RunnableCodeScope,
   type ScssCodeFile,
   type TypescriptCodeFile,
 } from "@react-md/code/types";
 import { type ReactElement } from "react";
 `;
 
-const SERVER_TEMPLATE = `
-import { type ReadonlyCodeFile } from "@react-md/code/types";
-import { type ReactElement } from "react";
-import { MarkdownCode } from "@/components/MarkdownCode.jsx";
-import { TypescriptCodeBlock } from "@/components/TypescriptCodeBlock.jsx";
-`;
+const upperFirst = <S extends string>(s: S): Capitalize<S> =>
+  (s.slice(0, 1).toUpperCase() + s.slice(1)) as Capitalize<S>;
+
+const titleCase = (s: string): string =>
+  s.split(/(?=[A-Z])/).reduce((result, part, i) => {
+    return result + (i ? " " : "") + upperFirst(part);
+  }, "");
+
+function getStackBlitzDemoName(demoOutPath: string, demoName: string): string {
+  const parent = basename(dirname(demoOutPath))
+    .split("-")
+    .map((part) => upperFirst(part))
+    .join(" ");
+
+  return `${parent} - ${titleCase(demoName)}`;
+}
+
+const toPropString = (
+  props: Record<string, number | boolean | string | undefined>
+): string =>
+  Object.entries(props).reduce<string>((s, [name, value]) => {
+    if (typeof value === "boolean" && value) {
+      return `${s} ${name}`;
+    }
+
+    if (typeof value === "string") {
+      return `${s} ${name}="${value}"`;
+    }
+
+    if (typeof value === "number") {
+      return `${s} ${name}={${value}}`;
+    }
+
+    return s;
+  }, "");
 
 interface GetServerComponentSourceOptions {
+  source: string;
   project: Project;
   demoName: string;
   demoOutPath: string;
+  demoProps: InlineDemoProps;
   readOnlyFiles: readonly CodeFile[];
+  readOnlyImports: ReadonlySet<string>;
+  tsCodeFile: TypescriptCodeFile;
+  scssCodeFile: ScssCodeFile | undefined;
+  dependencies: ReadonlySet<string>;
   clientDemoName: string;
   clientImportName: string;
 }
 
 async function getServerComponentSource({
+  source,
   project,
   demoName,
   demoOutPath,
+  demoProps,
+  tsCodeFile,
+  dependencies,
+  scssCodeFile,
   readOnlyFiles,
+  readOnlyImports,
   clientDemoName,
   clientImportName,
 }: GetServerComponentSourceOptions): Promise<string> {
+  const stringifiedProps = toPropString({
+    // allow hot reloading in dev mode with the `watch-demos` script
+    key: process.env.NODE_ENV !== "production" ? Date.now() : undefined,
+    demoName,
+    ...demoProps,
+  });
+  const { disableBox, disablePadding, forceDarkMode } = demoProps;
+
   const sourceFile = project.createSourceFile(demoOutPath, SERVER_TEMPLATE, {
     overwrite: true,
   });
+
+  let readOnlyFilesProps = "";
+  let readOnlyImportsProps = "";
+  if (readOnlyFiles.length) {
+    sourceFile.addImportDeclaration({
+      namedImports: [{ name: "ReadonlyCodeFile", isTypeOnly: true }],
+      moduleSpecifier: "@react-md/code/types",
+    });
+    sourceFile.addImportDeclaration({
+      namedImports: [{ name: "ReadOnlyFile" }],
+      moduleSpecifier: "@/components/DemoCode/ReadOnlyFile.jsx",
+    });
+
+    sourceFile.addVariableStatement({
+      declarations: [
+        {
+          name: "readOnlyFiles",
+          type: "readonly ReadonlyCodeFile[]",
+          initializer: JSON.stringify(readOnlyFiles),
+        },
+      ],
+      declarationKind: VariableDeclarationKind.Const,
+    });
+
+    sourceFile.addVariableStatement({
+      declarations: [
+        {
+          name: "readOnlyImports",
+          type: "Readonly<Record<string, string>>",
+          initializer: JSON.stringify(
+            Object.fromEntries(
+              [...readOnlyImports].map((name) => [basename(name), name])
+            )
+          ),
+        },
+      ],
+      declarationKind: VariableDeclarationKind.Const,
+    });
+
+    readOnlyFilesProps = `
+      readOnlyFiles={readOnlyFiles.map((file) => <ReadOnlyFile key={file.name} file={file} />)}
+      readOnlyFileNames={readOnlyFiles.map((file) => file.name.replace(/\\.j/, '.ts'))}
+`;
+    readOnlyImportsProps = `
+      readOnlyFiles={readOnlyFiles}
+      readOnlyImports={readOnlyImports}
+`;
+  }
+  sourceFile.addImportDeclaration({
+    defaultImport: clientDemoName,
+    moduleSpecifier: `./${clientImportName}`,
+  });
+
   sourceFile.addVariableStatement({
     declarations: [
       {
-        name: "readOnlyFiles",
-        type: "readonly ReadonlyCodeFile[]",
-        initializer: JSON.stringify(readOnlyFiles),
+        name: "tsCodeFile",
+        type: "TypescriptCodeFile",
+        initializer: JSON.stringify(tsCodeFile),
       },
     ],
     declarationKind: VariableDeclarationKind.Const,
   });
-  sourceFile.addImportDeclaration({
-    namedImports: [{ name: clientDemoName }],
-    moduleSpecifier: `./${clientImportName}`,
-  });
+
+  let scssCodeFileProp = "";
+  if (scssCodeFile) {
+    scssCodeFileProp = "scssCodeFile={scssCodeFile}";
+    sourceFile.addVariableStatement({
+      declarations: [
+        {
+          name: "scssCodeFile",
+          type: "ScssCodeFile",
+          initializer: JSON.stringify(scssCodeFile),
+        },
+      ],
+      declarationKind: VariableDeclarationKind.Const,
+    });
+  }
 
   sourceFile.addFunction({
     name: demoName,
     statements: `
   return (
     <${clientDemoName}
-      readOnlyFiles={readOnlyFiles.map((file) => {
-        if ("compiled" in file) {
-          return (
-            <TypescriptCodeBlock
-              key={file.name}
-              isTsx={file.name.endsWith(".tsx")}
-              tsCode={file.code}
-              jsCode={file.compiled}
-              disableAppBar
-            />
-          );
-        }
-        return <MarkdownCode key={file.name} language={file.lang}>{file.code}</MarkdownCode>;
-      })}
-      readOnlyFileNames={readOnlyFiles.map((file) => file.name.replace(/\\.j/, '.ts'))}
+      tsCodeFile={tsCodeFile}
+      ${scssCodeFileProp}
+      ${readOnlyFilesProps}
+      ${stringifiedProps}
+      source="${source}"
+      beforeSourceLinkChildren={
+        <CreateStackBlitzProject
+          tsCodeFile={tsCodeFile}
+          ${scssCodeFileProp}
+          ${readOnlyImportsProps}
+          ${toPropString({
+            title: getStackBlitzDemoName(demoOutPath, demoName),
+            demoName,
+            disableBox,
+            disablePadding,
+            forceDarkMode,
+          })}
+          dependencies={${JSON.stringify([...dependencies])}}
+        />
+      }
     />
   );
 `,
@@ -135,66 +264,45 @@ export async function generateDemoFile(
   });
   const readOnlyFiles = await getReadOnlyFiles({ aliasDir, readOnlyImports });
 
-  const sourceFile = project.createSourceFile(demoOutPath, TEMPLATE, {
-    overwrite: true,
-  });
+  const clientSourceFile = project.createSourceFile(
+    demoOutPath,
+    CLIENT_TEMPLATE,
+    { overwrite: true }
+  );
+  const dependencies = new Set<string>();
   const importScope: Record<string, string> = {};
   [...imports.entries()].forEach(([name, values]) => {
     const sortedValues = alphaNumericSort([...values]);
     const key = sortedValues.join("_");
     importScope[name] = key;
+    if (!name.startsWith("@react-md") && !name.startsWith("@/")) {
+      dependencies.add(
+        // autosuggest-highlight/parse -> autosuggest-highlight
+        // @reduxjs/toolkit/react -> @reduxjs/toolkit
+        name
+          .split("/")
+          .slice(0, name.startsWith("@") ? 2 : 1)
+          .join("/")
+      );
+    }
 
     if (isCjsOnly(name)) {
-      sourceFile.addImportDeclaration({
+      clientSourceFile.addImportDeclaration({
         defaultImport: key,
         moduleSpecifier: name,
       });
     } else {
-      sourceFile.addImportDeclaration({
+      clientSourceFile.addImportDeclaration({
         namespaceImport: key,
         moduleSpecifier: name,
       });
     }
   });
 
-  sourceFile.addVariableStatement({
-    declarations: [
-      {
-        name: "tsCodeFile",
-        type: "TypescriptCodeFile",
-        initializer: JSON.stringify(tsCodeFile),
-      },
-    ],
-    declarationKind: VariableDeclarationKind.Const,
-  });
-
-  let scssCodeFileProp = "";
-  if (scssCodeFile) {
-    scssCodeFileProp = "scssCodeFile={scssCodeFile}";
-    sourceFile.addVariableStatement({
-      declarations: [
-        {
-          name: "scssCodeFile",
-          type: "ScssCodeFile",
-          initializer: JSON.stringify(scssCodeFile),
-        },
-      ],
-      declarationKind: VariableDeclarationKind.Const,
-    });
-  }
-
-  let readOnlyFilesProp = "";
-  let clientDemoName = demoName;
-  if (readOnlyFiles.length) {
-    readOnlyFilesProp =
-      "readOnlyFiles={readOnlyFiles} readOnlyFileNames={readOnlyFileNames}";
-    clientDemoName = demoName + "Client";
-  }
-
   const scope = Object.entries(importScope)
     .map(([name, value]) => `"${name}": ${value}`)
     .join(",");
-  sourceFile.addVariableStatement({
+  clientSourceFile.addVariableStatement({
     declarations: [
       {
         name: "scope",
@@ -205,50 +313,16 @@ export async function generateDemoFile(
     declarationKind: VariableDeclarationKind.Const,
   });
 
-  // allow hot reloading in dev mode with the `watch-demos` script
-  const devKey =
-    process.env.NODE_ENV !== "production" ? `key={${Date.now()}}` : "";
-  const stringifiedProps = Object.entries(props).reduce<string>(
-    (s, [name, value]) => {
-      if (typeof value === "boolean" && value) {
-        return `${s} ${name}`;
-      }
-
-      if (typeof value === "string") {
-        return `${s} ${name}="${value}"`;
-      }
-
-      return s;
-    },
-    ""
-  );
-
-  sourceFile.addFunction({
+  const clientDemoName = `${demoName}Client`;
+  const clientDemoOutPath = demoOutPath.replace(/(\..+)$/, "Client$1");
+  const clientImportName = basename(clientDemoOutPath).replace(/\.t/, ".j");
+  clientSourceFile.addFunction({
     name: clientDemoName,
-    parameters: readOnlyFilesProp
-      ? [
-          {
-            name: "{ readOnlyFiles, readOnlyFileNames }",
-            type: "{ readOnlyFiles: readonly ReactElement[]; readOnlyFileNames: readonly string[] }",
-          },
-        ]
-      : [],
+    parameters: [{ name: "props", type: "Props" }],
     // ts-morph does not support tsx at this time
-    statements: `return (
-  <DemoCodeEditor
-    ${devKey}
-    scope={scope}
-    source={"${demoSourcePath.replace(getProjectRootDir(), "").replace(/^\/+/, "")}"}
-    demoName="${demoName}"
-    tsCodeFile={tsCodeFile}
-    ${scssCodeFileProp}
-    ${readOnlyFilesProp}
-    ${stringifiedProps}
-  />
-);
-`,
+    statements: "return <DemoCodeEditor {...props} scope={scope} />",
     returnType: "ReactElement",
-    isDefaultExport: !readOnlyFilesProp,
+    isDefaultExport: true,
     isExported: true,
   });
 
@@ -256,28 +330,27 @@ export async function generateDemoFile(
     await mkdir(demoOutDir, { recursive: true });
   }
 
-  let demoOutPathClient = demoOutPath;
-  let clientImportName: string | undefined;
-  if (readOnlyFilesProp) {
-    demoOutPathClient = demoOutPath.replace(/(\..+)$/, "Client$1");
-    clientImportName = basename(demoOutPathClient).replace(/\.t/, ".j");
-  }
-
   await writeFile(
-    demoOutPathClient,
-    await format(sourceFile.getFullText(), { parser: "typescript" })
+    clientDemoOutPath,
+    await format(clientSourceFile.getFullText(), { parser: "typescript" })
   );
-  if (clientImportName) {
-    await writeFile(
+  await writeFile(
+    demoOutPath,
+    await getServerComponentSource({
+      project,
+      demoName,
       demoOutPath,
-      await getServerComponentSource({
-        project,
-        demoName,
-        demoOutPath,
-        readOnlyFiles,
-        clientDemoName,
-        clientImportName,
-      })
-    );
-  }
+      demoProps: props,
+      source: demoSourcePath
+        .replace(getProjectRootDir(), "")
+        .replace(/^\/+/, ""),
+      tsCodeFile,
+      scssCodeFile,
+      readOnlyFiles,
+      readOnlyImports,
+      dependencies,
+      clientDemoName,
+      clientImportName,
+    })
+  );
 }
