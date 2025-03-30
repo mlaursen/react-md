@@ -1,5 +1,7 @@
 import { type NavigationItem } from "@react-md/core/navigation/types";
 
+import { SASSDOC_NAV_ITEMS } from "@/generated/sassdocNavItems.js";
+
 export const navItems: readonly NavigationItem[] = [
   {
     type: "group",
@@ -410,6 +412,12 @@ export const navItems: readonly NavigationItem[] = [
   },
   {
     type: "group",
+    href: "/component-api",
+    children: "Component API",
+    items: [],
+  },
+  {
+    type: "group",
     href: "/hooks",
     children: "Hooks",
     items: [
@@ -723,220 +731,7 @@ export const navItems: readonly NavigationItem[] = [
       },
     ],
   },
-  {
-    type: "group",
-    href: "/sassdoc",
-    children: "Sass API Docs",
-    items: [
-      { type: "subheader", children: "Core" },
-      {
-        type: "route",
-        href: "/theme",
-        children: "Theme",
-      },
-      {
-        type: "route",
-        href: "/colors",
-        children: "Colors",
-      },
-      {
-        type: "route",
-        href: "/typography",
-        children: "Typography",
-      },
-      {
-        type: "route",
-        href: "/base",
-        children: "Base",
-      },
-      {
-        type: "route",
-        href: "/box-shadows",
-        children: "Box Shadows",
-      },
-      {
-        type: "route",
-        href: "/object-fit",
-        children: "objectFit",
-      },
-      {
-        type: "route",
-        href: "/a11y",
-        children: "A11y",
-      },
-      {
-        type: "route",
-        href: "/utils",
-        children: "Utils",
-      },
-      {
-        type: "route",
-        href: "/core",
-        children: "Core, Utils, & Theming",
-      },
-      { type: "subheader", children: "Components" },
-      {
-        type: "route",
-        href: "/app-bar",
-        children: "App Bar",
-      },
-      {
-        type: "route",
-        href: "/autocomplete",
-        children: "Autocomplete",
-      },
-      {
-        type: "route",
-        href: "/avatar",
-        children: "Avatar",
-      },
-      {
-        type: "route",
-        href: "/badge",
-        children: "Badge",
-      },
-      {
-        type: "route",
-        href: "/box",
-        children: "Box",
-      },
-      {
-        type: "route",
-        href: "/button",
-        children: "Button",
-      },
-      {
-        type: "route",
-        href: "/card",
-        children: "Card",
-      },
-      {
-        type: "route",
-        href: "/dialog",
-        children: "Dialog",
-      },
-      {
-        type: "route",
-        href: "/divider",
-        children: "Divider",
-      },
-      {
-        type: "route",
-        href: "/draggable",
-        children: "Draggable",
-      },
-      {
-        type: "route",
-        href: "/expansion-panel",
-        children: "ExpansionPanel",
-      },
-      {
-        type: "route",
-        href: "/files",
-        children: "Files",
-      },
-      {
-        type: "route",
-        href: "/form",
-        children: "Form",
-      },
-      {
-        type: "route",
-        href: "/icon",
-        children: "Icon",
-      },
-      {
-        type: "route",
-        href: "/interaction",
-        children: "Interaction",
-      },
-      {
-        type: "route",
-        href: "/layout",
-        children: "Layout",
-      },
-      {
-        type: "route",
-        href: "/link",
-        children: "Link",
-      },
-      {
-        type: "route",
-        href: "/list",
-        children: "List",
-      },
-      {
-        type: "route",
-        href: "/menu",
-        children: "Menu",
-      },
-      {
-        type: "route",
-        href: "/navigation",
-        children: "Navigation",
-      },
-      {
-        type: "route",
-        href: "/overlay",
-        children: "Overlay",
-      },
-      {
-        type: "route",
-        href: "/progress",
-        children: "Progress",
-      },
-      {
-        type: "route",
-        href: "/responsive-item",
-        children: "ResponsiveItem",
-      },
-      {
-        type: "route",
-        href: "/segmented-button",
-        children: "SegmentedButton",
-      },
-      {
-        type: "route",
-        href: "/sheet",
-        children: "Sheet",
-      },
-      {
-        type: "route",
-        href: "/snackbar",
-        children: "Snackbar",
-      },
-      {
-        type: "route",
-        href: "/table",
-        children: "Table",
-      },
-      {
-        type: "route",
-        href: "/tabs",
-        children: "Tabs",
-      },
-      {
-        type: "route",
-        href: "/tooltip",
-        children: "Tooltip",
-      },
-      {
-        type: "route",
-        href: "/transition",
-        children: "Transition",
-      },
-      {
-        type: "route",
-        href: "/tree",
-        children: "Tree",
-      },
-      {
-        type: "route",
-        href: "/window-splitter",
-        children: "WindowSplitter",
-      },
-    ],
-  },
+  ...SASSDOC_NAV_ITEMS,
   {
     type: "group",
     href: "/testing",

@@ -17,7 +17,14 @@ export const GENERATED_DIR = join(
   "generated"
 );
 export const GENERATED_SASSDOC_FILE = join(GENERATED_DIR, "sassdoc.ts");
+export const GENERATED_SASSDOC_NAV_ITEMS_FILE = join(
+  GENERATED_DIR,
+  "sassdocNavItems.ts"
+);
 export const ALIASED_SASSDOC_FILE = aliased(GENERATED_SASSDOC_FILE);
+export const ALIASED_SASSDOC_NAV_ITEMS_FILE = aliased(
+  GENERATED_SASSDOC_NAV_ITEMS_FILE
+);
 
 export const GENERATED_STACKBLITZ_FILE = join(GENERATED_DIR, "stackblitz.ts");
 export const ALIASED_STACKBLITZ_FILE = aliased(GENERATED_SASSDOC_FILE);

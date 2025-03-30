@@ -1,15 +1,24 @@
+import { type NavigationItem } from "@react-md/core/navigation/types";
+import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
 import { log, logComplete } from "docs-generator/utils/log";
 import { existsSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { format } from "prettier";
-import { type GeneratedSassDocWithOrder, generate } from "sassdoc-generator";
+import {
+  type GeneratedSassDoc,
+  type GeneratedSassDocWithOrder,
+  generate,
+} from "sassdoc-generator";
 import { type FormattedSassDocItem } from "sassdoc-generator/types";
 
+import { titleCase } from "../src/utils/strings.js";
 import {
   ALIASED_SASSDOC_FILE,
+  ALIASED_SASSDOC_NAV_ITEMS_FILE,
   CORE_SRC,
   GENERATED_FILE_BANNER,
   GENERATED_SASSDOC_FILE,
+  GENERATED_SASSDOC_NAV_ITEMS_FILE,
 } from "./constants.js";
 import { ensureGeneratedDir } from "./ensureGeneratedDir.js";
 
@@ -50,25 +59,104 @@ export const SASSDOC_VARIABLES: Record<string, FormattedVariableItem | undefined
     GENERATED_SASSDOC_FILE,
     await format(contents, { parser: "typescript" })
   );
+  logComplete(`Generated "${ALIASED_SASSDOC_FILE}"`);
+}
+
+async function generateNavItems(options: GeneratedSassDoc): Promise<void> {
+  const { mixins, functions, variables } = options;
+  const groups = new Set<string>();
+  mixins.forEach((item) => groups.add(item.group));
+  functions.forEach((item) => groups.add(item.group));
+  variables.forEach((item) => groups.add(item.group));
+
+  const components: (NavigationItem & { children: string })[] = [];
+  const remainingItems: (NavigationItem & { children: string })[] = [];
+  groups.forEach((group) => {
+    if (group.startsWith("core.")) {
+      const withoutCore = group.replace("core.", "");
+      if (withoutCore === "form") {
+        components.push({
+          type: "route",
+          href: "/form",
+          children: "Form",
+        });
+      } else {
+        remainingItems.push({
+          type: "route",
+          href: `/${withoutCore}`,
+          children: titleCase(withoutCore, "-"),
+        });
+      }
+    } else {
+      components.push({
+        type: "route",
+        href: `/${group}`,
+        children: titleCase(group, "-"),
+      });
+    }
+  });
+
+  await writeFile(
+    GENERATED_SASSDOC_NAV_ITEMS_FILE,
+    await format(
+      `${GENERATED_FILE_BANNER}
+import { type NavigationItem } from "@react-md/core/navigation/types";
+
+export const SASSDOC_NAV_ITEMS: readonly NavigationItem[] = [
+  {
+    type: "group",
+    href: "/sassdoc",
+    children: "Sass API Docs",
+    items: [
+      { type: "subheader", children: "Core" },
+      ${alphaNumericSort(remainingItems, { extractor: (item) => item.children })
+        .map((item) => JSON.stringify(item))
+        .join(",")},
+      { type: "subheader", children: "Components" },
+      ${alphaNumericSort(components, { extractor: (item) => item.children })
+        .map((item) => JSON.stringify(item))
+        .join(",")},
+    ]
+  },
+]
+`,
+      { filepath: GENERATED_SASSDOC_NAV_ITEMS_FILE }
+    )
+  );
+  logComplete(`Generated "${ALIASED_SASSDOC_NAV_ITEMS_FILE}"`);
 }
 
 if (process.argv.includes("--touch")) {
-  if (!existsSync(GENERATED_SASSDOC_FILE)) {
+  const empty: GeneratedSassDocWithOrder = {
+    mixins: new Map(),
+    functions: new Map(),
+    variables: new Map(),
+    mixinsOrder: new Map(),
+    functionsOrder: new Map(),
+    variablesOrder: new Map(),
+  };
+  const update = "Run `pnpm --filter docs sassdoc` to update.";
+
+  if (!existsSync(GENERATED_SASSDOC_NAV_ITEMS_FILE)) {
     await log(
-      createSassDocFile({
-        mixins: new Map(),
-        functions: new Map(),
-        variables: new Map(),
-        mixinsOrder: new Map(),
-        functionsOrder: new Map(),
-        variablesOrder: new Map(),
-      }),
+      generateNavItems(empty),
       "",
-      `Created an empty "${ALIASED_SASSDOC_FILE}". Run \`pnpm --filter docs sassdoc\` to update.`
+      `Created an empty "${ALIASED_SASSDOC_NAV_ITEMS_FILE}". ${update}`
     );
   } else {
     logComplete(
-      `Skipped creating "${ALIASED_SASSDOC_FILE}" since it already exists. Run \`pnpm --filter docs sassdoc\` to update.`
+      `Skipped creating "${ALIASED_SASSDOC_NAV_ITEMS_FILE}" since it already exists. ${update}`
+    );
+  }
+  if (!existsSync(GENERATED_SASSDOC_FILE)) {
+    await log(
+      createSassDocFile(empty),
+      "",
+      `Created an empty "${ALIASED_SASSDOC_FILE}". ${update}`
+    );
+  } else {
+    logComplete(
+      `Skipped creating "${ALIASED_SASSDOC_FILE}" since it already exists. ${update}`
     );
   }
 
@@ -77,7 +165,11 @@ if (process.argv.includes("--touch")) {
 
 async function run(): Promise<void> {
   await ensureGeneratedDir();
-  await createSassDocFile(await generate({ src: CORE_SRC }));
+  const generated = await generate({ src: CORE_SRC });
+  await Promise.all([
+    createSassDocFile(generated),
+    generateNavItems(generated),
+  ]);
 }
 
-await log(run(), "", `Created "${ALIASED_SASSDOC_FILE}"`);
+await log(run(), "", "sassdoc script completed");

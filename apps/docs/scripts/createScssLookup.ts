@@ -3,7 +3,10 @@ import { watch } from "chokidar";
 import { createScssLookup } from "docs-generator/scripts/create-scss-lookup";
 import { logComplete } from "docs-generator/utils/log";
 
+import { ensureGeneratedDir } from "./ensureGeneratedDir.js";
+
 if (!process.argv.includes("--watch")) {
+  await ensureGeneratedDir();
   await createScssLookup();
   process.exit(0);
 }
