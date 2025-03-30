@@ -61,7 +61,7 @@ export interface LayoutAppBarProps extends AppBarProps {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/getting-started/layout|Layout Demos}
+ * @see {@link https://next.react-md.dev/getting-started/layout | Layout Demos}
  * @since 6.0.0 This component no longer renders the `LayoutNavToggle` and
  * `LayoutAppBarTitle` since they no longer exist. The only purpose of this
  * component is to dynamically set the `--rmd-layout-header-height` variable.

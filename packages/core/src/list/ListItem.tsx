@@ -144,7 +144,7 @@ export interface ListItemProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/list|List Demos}
+ * @see {@link https://next.react-md.dev/components/list | List Demos}
  */
 export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
   function ListItem(props, ref) {

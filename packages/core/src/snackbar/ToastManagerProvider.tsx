@@ -94,7 +94,7 @@ export interface ToastManagerProviderProps {
  * the default {@link addToast}, {@link removeToast}, and {@link clearToasts}
  * implementation.
  *
- * @see {@link https://next.react-md.dev/components/snackbar|Snackbar Demos}
+ * @see {@link https://next.react-md.dev/components/snackbar | Snackbar Demos}
  * @see {@link ToastManager} for example usage.
  * @since 6.0.0
  */

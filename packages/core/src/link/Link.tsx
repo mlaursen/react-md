@@ -66,7 +66,7 @@ export interface LinkProps
  * ```
  *
  *
- * @see {@link https://next.react-md.dev/components/link|Link Demos}
+ * @see {@link https://next.react-md.dev/components/link | Link Demos}
  * @since 6.0.0 Removed the `preventMaliciousTarget` prop since browsers
  * default to `rel=noopener` after updating the {@link https://github.com/whatwg/html/issues/4078|spec}.
  * @since 6.0.0 Removed the `component` prop since all you need for link

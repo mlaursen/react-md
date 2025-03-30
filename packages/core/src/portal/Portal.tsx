@@ -37,7 +37,7 @@ export interface PortalProps {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/portal|Portal Demos}
+ * @see {@link https://next.react-md.dev/components/portal | Portal Demos}
  * @see {@link PortalContainerProvider}
  * @see {@link usePortalContainer}
  */

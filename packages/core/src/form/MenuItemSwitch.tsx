@@ -35,7 +35,7 @@ import {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/menu#menuitemswitch-example|DropdownMenu Demos}
+ * @see {@link https://next.react-md.dev/components/menu#menuitemswitch-example | DropdownMenu Demos}
  * @since 2.8.0
  */
 export const MenuItemSwitch = forwardRef<HTMLLIElement, MenuItemSwitchProps>(

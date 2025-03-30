@@ -14,7 +14,7 @@ export interface NavItemProps extends LiHTMLAttributes<HTMLLIElement> {
  * and should not be used on its own. See the `CollapsibleNavGroup` and
  * `NavItemLink` instead.
  *
- * @see {@link https://next.react-md.dev/components/navigation|Navigation Demos}
+ * @see {@link https://next.react-md.dev/components/navigation | Navigation Demos}
  * @since 6.0.0
  */
 export const NavItem = forwardRef<HTMLLIElement, NavItemProps>(

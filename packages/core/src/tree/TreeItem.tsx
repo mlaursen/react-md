@@ -87,7 +87,7 @@ export interface TreeItemProps
 /**
  * **Client Component**
  *
- * @see {@link https://next.react-md.dev/components/tree|Tree Demos}
+ * @see {@link https://next.react-md.dev/components/tree | Tree Demos}
  * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/treeview/}
  * @since 6.0.0 No longer forwards refs. The ref must be provided using
  * `contentRef` instead.

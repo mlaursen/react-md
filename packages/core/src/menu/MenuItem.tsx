@@ -29,7 +29,7 @@ export interface MenuItemProps extends Omit<ListItemProps, "role"> {
  * implements some keyboard focus behavior. This component should generally have
  * an `onClick` event handler.
  *
- * @see {@link https://next.react-md.dev/components/menu|Menu Demos}
+ * @see {@link https://next.react-md.dev/components/menu | Menu Demos}
  * @since 5.0.0
  */
 export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(

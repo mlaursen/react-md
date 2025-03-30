@@ -89,7 +89,7 @@ export interface LayoutWindowSplitterProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/getting-started/layout|Layout Demos}
+ * @see {@link https://next.react-md.dev/getting-started/layout | Layout Demos}
  * @since 6.0.0
  */
 export const LayoutWindowSplitter = forwardRef<

@@ -132,7 +132,7 @@ export interface OptionProps extends MenuItemProps, OptionSelectedIconProps {
  * This component is a wrapper around the {@link MenuItem} to implement custom
  * select option behavior.
  *
- * @see {@link https://next.react-md.dev/components/select|Select Demos}
+ * @see {@link https://next.react-md.dev/components/select | Select Demos}
  * @since 6.0.0 removed the `selected` and `focused` props.
  * @since 6.0.0 Added the `value`, `selectedIcon`, `unselectedIcon`,
  * `selectedIconAfter`, `iconSpacingProps`, and `selectedClassName` props.

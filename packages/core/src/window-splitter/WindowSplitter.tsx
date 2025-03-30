@@ -92,7 +92,7 @@ export type WindowSplitterProps = LabelRequiredForA11y<BaseWindowSplitterProps>;
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/window-splitter|WindowSplitter Demos}
+ * @see {@link https://next.react-md.dev/components/window-splitter | WindowSplitter Demos}
  * @since 6.0.0
  */
 export const WindowSplitter = forwardRef<

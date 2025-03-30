@@ -22,7 +22,7 @@ export interface DividerProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/divider|Divider Demos}
+ * @see {@link https://next.react-md.dev/components/divider | Divider Demos}
  */
 export const Divider = forwardRef<DividerElement, DividerProps>(
   function Divider(props, ref) {

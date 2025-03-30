@@ -278,8 +278,8 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/hooks/use-collapse-transition|useCollapseTransition Demos}
- * @see {@link https://next.react-md.dev/components/collapse|Collapse Demos}
+ * @see {@link https://next.react-md.dev/hooks/use-collapse-transition | useCollapseTransition Demos}
+ * @see {@link https://next.react-md.dev/components/collapse | Collapse Demos}
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
  * @since 4.0.0

@@ -65,7 +65,7 @@ export interface ResponsiveItemProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/responsive-item|ResponsiveItem Demos}
+ * @see {@link https://next.react-md.dev/components/responsive-item | ResponsiveItem Demos}
  * @since 6.0.0 Renamed from `MediaContainer` to
  * `ResponsiveItem` and renders a `<span>` instead of a `<div>`.
  */

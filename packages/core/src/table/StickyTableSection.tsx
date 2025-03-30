@@ -35,8 +35,8 @@ export interface StickyTableSectionProps
  * dynamically applies styles whenever the `<thead>`/`<tfoot>` are covering
  * content in the table.
  *
- * @see {@link https://next.react-md.dev/components/table|Table Demos}
- * @see {@link https://next.react-md.dev/components/table#sticky-tables|Sticky Table Demos}
+ * @see {@link https://next.react-md.dev/components/table | Table Demos}
+ * @see {@link https://next.react-md.dev/components/table#sticky-tables | Sticky Table Demos}
  * @since 6.0.0
  */
 export const StickyTableSection = forwardRef<

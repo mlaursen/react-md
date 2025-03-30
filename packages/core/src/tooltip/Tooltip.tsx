@@ -118,7 +118,7 @@ export interface TooltipProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/tooltip|Tooltip Demos}
+ * @see {@link https://next.react-md.dev/components/tooltip | Tooltip Demos}
  */
 export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
   function Tooltip(props, nodeRef) {

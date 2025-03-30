@@ -189,7 +189,7 @@ export interface AsyncButtonProps extends ButtonProps {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/button#async-button|AsyncButton Demos}
+ * @see {@link https://next.react-md.dev/components/button#async-button | AsyncButton Demos}
  * @since 6.0.0
  */
 export const AsyncButton = forwardRef<HTMLButtonElement, AsyncButtonProps>(

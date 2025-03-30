@@ -137,7 +137,7 @@ export interface TextIconSpacingProps {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/text-icon-spacing|TextIconSpacing Demos}
+ * @see {@link https://next.react-md.dev/components/text-icon-spacing | TextIconSpacing Demos}
  */
 export function TextIconSpacing(props: TextIconSpacingProps): ReactElement {
   const {

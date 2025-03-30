@@ -51,7 +51,7 @@ export interface TreeImplementation extends TreeSelection, TreeExpansion {}
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/tree|Tree Demos}
+ * @see {@link https://next.react-md.dev/components/tree | Tree Demos}
  * @since 6.0.0
  */
 export function useTree(options: TreeHookOptions = {}): TreeImplementation {

@@ -244,7 +244,7 @@ export interface RenderRecursivelyProps<
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/render-recursively|RenderRecursively Demos}
+ * @see {@link https://next.react-md.dev/components/render-recursively | RenderRecursively Demos}
  * @since 6.0.0
  */
 export function RenderRecursively<Item, Data>(

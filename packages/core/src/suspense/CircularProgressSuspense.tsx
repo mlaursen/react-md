@@ -37,7 +37,7 @@ export interface CircularProgressSuspenseProps extends CircularProgressProps {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/suspense|Suspense Demos}
+ * @see {@link https://next.react-md.dev/components/suspense | Suspense Demos}
  * @since 6.0.0
  */
 export function CircularProgressSuspense(

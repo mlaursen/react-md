@@ -135,7 +135,7 @@ export interface SkeletonPlaceholderProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/skeleton-placeholder|SkeletonPlaceholder Demos}
+ * @see {@link https://next.react-md.dev/components/skeleton-placeholder | SkeletonPlaceholder Demos}
  * @since 6.0.0
  */
 export const SkeletonPlaceholder = forwardRef<

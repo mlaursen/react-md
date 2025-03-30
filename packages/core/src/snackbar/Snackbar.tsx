@@ -141,7 +141,7 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/snackbar|Snackbar Demos}
+ * @see {@link https://next.react-md.dev/components/snackbar | Snackbar Demos}
  * @see {@link SnackbarProps.renderToast} for creating a custom toast
  * implementation.
  * @since 6.0.0 Rewritten to use a new API that supports adding toasts

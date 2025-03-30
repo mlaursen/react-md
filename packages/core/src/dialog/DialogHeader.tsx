@@ -20,7 +20,7 @@ export interface DialogHeaderProps extends BoxProps {
  * and generally contains the `DialogTitle`. Look at the `Dialog` or
  * `FixedDialog` components for example usage.
  *
- * @see {@link https://next.react-md.dev/components/dialog|Dialog Demos}
+ * @see {@link https://next.react-md.dev/components/dialog | Dialog Demos}
  * @since 6.0.0 Extends the `Box` component.
  */
 export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(

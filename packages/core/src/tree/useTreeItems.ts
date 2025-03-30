@@ -106,7 +106,7 @@ export interface TreeItems<T extends TreeItemNode> {
  * This is mostly an internal hook, but can be used to build tree-like
  * data structures without the need of the `Tree` component.
  *
- * @see {@link https://next.react-md.dev/components/tree|Tree Demos}
+ * @see {@link https://next.react-md.dev/components/tree | Tree Demos}
  * @since 6.0.0 converted to use an object argument instead of
  * multiple arguments. Also logs any orphaned items that do not have a parent
  */

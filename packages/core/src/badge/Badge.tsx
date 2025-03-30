@@ -46,7 +46,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/badge|Badge Demos}
+ * @see {@link https://next.react-md.dev/components/badge | Badge Demos}
  * @since 6.0.0 Removed the `disableNullOnZero` feature since it's
  * easier just to use condition rendering yourself.
  */

@@ -107,7 +107,7 @@ import {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/menu#menuitemradio-example|DropdownMenu Demos}
+ * @see {@link https://next.react-md.dev/components/menu#menuitemradio-example | DropdownMenu Demos}
  * @since 2.8.0
  */
 export const MenuItemRadio = forwardRef<HTMLLIElement, MenuItemRadioProps>(

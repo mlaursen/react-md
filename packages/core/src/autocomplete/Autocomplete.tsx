@@ -75,7 +75,7 @@ const noop = (): undefined => undefined;
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/autocomplete|Autocomplete Demos}
+ * @see {@link https://next.react-md.dev/components/autocomplete | Autocomplete Demos}
  * @since 6.0.0
  */
 export function Autocomplete<Option extends AutocompleteOption>(
@@ -117,14 +117,14 @@ export function Autocomplete<Option extends AutocompleteOption>(
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/autocomplete|Autocomplete Demos}
+ * @see {@link https://next.react-md.dev/components/autocomplete | Autocomplete Demos}
  * @since 6.0.0
  */
 export function Autocomplete<Option extends AutocompleteOption>(
   props: AutocompleteMultiSelectProps<Option>
 ): ReactElement;
 /**
- * @see {@link https://next.react-md.dev/components/autocomplete|Autocomplete Demos}
+ * @see {@link https://next.react-md.dev/components/autocomplete | Autocomplete Demos}
  * @since 6.0.0
  * @internal
  */

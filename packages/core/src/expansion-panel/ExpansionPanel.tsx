@@ -199,7 +199,7 @@ export interface ExpansionPanelProps extends CardProps {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/expansion-panel|ExpansionPanel Demos}
+ * @see {@link https://next.react-md.dev/components/expansion-panel | ExpansionPanel Demos}
  * @see `useExpansionPanels` for examples.
  * @since 6.0.0 The content will be persistent and invisible using `display: none`
  * instead of unmounting and also animate the `margin-top` style.

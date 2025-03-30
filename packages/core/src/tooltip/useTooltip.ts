@@ -381,7 +381,7 @@ export interface TooltipImplementation<
  * The tooltip will now remain visible allowing you to find it within the
  * "Inspector" tab in the dev tools.
  *
- * @see {@link https://next.react-md.dev/components/tooltip|Tooltip Demos}
+ * @see {@link https://next.react-md.dev/components/tooltip | Tooltip Demos}
  * @since 2.8.0
  * @since 6.0.0 Uses a separate `TooltipHoverModeProvider`.
  *

@@ -81,7 +81,7 @@ export interface ListItemLinkProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/list|List Demos}
+ * @see {@link https://next.react-md.dev/components/list | List Demos}
  */
 export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
   function ListItemLink(props, ref) {

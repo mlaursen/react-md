@@ -242,7 +242,7 @@ export interface SelectProps<Value extends string>
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/select|Select Demos}
+ * @see {@link https://next.react-md.dev/components/select | Select Demos}
  * @since 6.0.0 Rewritten with a new API.
  */
 export function Select<Value extends string>(

@@ -29,7 +29,7 @@ export interface MenuItemTextFieldProps extends TextFieldProps {
  * hard to style nicely within menus. You'd most likely want to use another menu
  * for displaying errors.
  *
- * @see {@link https://next.react-md.dev/components/menu#menuitemtextfield-example|DropdownMenu Demos}
+ * @see {@link https://next.react-md.dev/components/menu#menuitemtextfield-example | DropdownMenu Demos}
  * @since 5.0.0
  */
 export const MenuItemTextField = forwardRef<

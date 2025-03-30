@@ -82,7 +82,7 @@ export interface ListProps extends HTMLAttributes<ListElement> {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/list|List Demos}
+ * @see {@link https://next.react-md.dev/components/list | List Demos}
  */
 export const List = forwardRef<ListElement, ListProps>(
   function List(props, ref) {

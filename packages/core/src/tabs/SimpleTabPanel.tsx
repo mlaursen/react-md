@@ -19,7 +19,7 @@ export interface SimpleTabPanelProps
  *
  * This should generally be used along with the `SimpleTabPanels` component.
  *
- * @see {@link https://next.react-md.dev/components/tabs|Tabs Demos}
+ * @see {@link https://next.react-md.dev/components/tabs | Tabs Demos}
  * @see {@link https://next.react-md.dev/components/tabs#disable-tab-panel-transition|Disable Tab Panel Transition Demo}
  * @since 6.0.0
  */

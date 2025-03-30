@@ -19,9 +19,9 @@ declare module "react" {
  * you need to separate the label from an existing form component or you need to
  * create a custom implementation of a form component.
  *
- * @see {@link https://next.react-md.dev/components/select|Select Demos}
- * @see {@link https://next.react-md.dev/components/text-field|TextField Demos}
- * @see {@link https://next.react-md.dev/components/text-field#simple-textarea|TextArea Demos}
+ * @see {@link https://next.react-md.dev/components/select | Select Demos}
+ * @see {@link https://next.react-md.dev/components/text-field | TextField Demos}
+ * @see {@link https://next.react-md.dev/components/text-field#simple-textarea | TextArea Demos}
  * @since 6.0.0 Updated to be usable externally and combines the
  * floating label styles instead of having separate components.
  */

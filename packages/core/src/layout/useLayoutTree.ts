@@ -168,9 +168,9 @@ export interface LayoutTreeImplementation<
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/getting-started/layout|Layout Demos}
- * @see {@link https://next.react-md.dev/components/tree|Tree Demos}
- * @see {@link https://next.react-md.dev/hooks/use-layout-tree|useLayoutTree Demos}
+ * @see {@link https://next.react-md.dev/getting-started/layout | Layout Demos}
+ * @see {@link https://next.react-md.dev/components/tree | Tree Demos}
+ * @see {@link https://next.react-md.dev/hooks/use-layout-tree | useLayoutTree Demos}
  * @since 6.0.0 Renamed from `useLayoutNavigation`.
  */
 export function useLayoutTree(

@@ -18,7 +18,7 @@ export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
  * This component is only used to implement the keyboard movement behavior for
  * the `ExpansionPanel` components.
  *
- * @see {@link https://next.react-md.dev/components/expansion-panel|ExpansionPanel Demos}
+ * @see {@link https://next.react-md.dev/components/expansion-panel | ExpansionPanel Demos}
  * @see {@link useExpansionList} for a custom implementation example if you do
  * not want to use a `<div>` for this wrapper component.
  * @since 6.0.0 Uses the new keyboard movement API and does not

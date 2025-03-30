@@ -108,7 +108,7 @@ export interface NavigationProps<
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/navigation|Navigation Demos}
+ * @see {@link https://next.react-md.dev/components/navigation | Navigation Demos}
  * @since 6.0.0
  */
 export function Navigation<

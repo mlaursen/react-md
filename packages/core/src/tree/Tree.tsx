@@ -222,7 +222,7 @@ export interface TreeProps<T extends TreeItemNode>
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/tree|Tree Demos}
+ * @see {@link https://next.react-md.dev/components/tree | Tree Demos}
  * @see {@link TreeProps.renderer} for a custom tree item example.
  * @since 6.0.0 There was a major API change and the `id` is now `optional`.
  * In addition, the following props were removed:

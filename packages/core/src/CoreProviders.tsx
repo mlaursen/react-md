@@ -87,7 +87,7 @@ export interface CoreProvidersProps extends ReactMDCoreConfiguration {
  * - {@link Snackbar} - This isn't a provider but this is how you can display
  *   alerts in your app
  *
- * @see {@link https://next.react-md.dev/components/core-providers|CoreProviders Demos}
+ * @see {@link https://next.react-md.dev/components/core-providers | CoreProviders Demos}
  * @since 6.0.0
  */
 export function CoreProviders(props: CoreProvidersProps): ReactElement {

@@ -30,7 +30,7 @@ export interface TableFooterProps
  * and line-wrapping can be re-enabled if desired through the `hoverable` and
  * `disableNoWrap` props.
  *
- * @see {@link https://next.react-md.dev/components/table|Table Demos}
+ * @see {@link https://next.react-md.dev/components/table | Table Demos}
  */
 export const TableFooter = forwardRef<
   HTMLTableSectionElement,

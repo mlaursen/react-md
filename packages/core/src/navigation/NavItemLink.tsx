@@ -64,7 +64,7 @@ export interface NavItemLinkProps
 /**
  * **Client Component**
  *
- * @see {@link https://next.react-md.dev/components/navigation|Navigation Demos}
+ * @see {@link https://next.react-md.dev/components/navigation | Navigation Demos}
  * @since 6.0.0
  */
 export const NavItemLink = forwardRef<HTMLAnchorElement, NavItemLinkProps>(

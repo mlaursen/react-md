@@ -140,7 +140,7 @@ export interface TableCheckboxProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/table|Table Demos}
+ * @see {@link https://next.react-md.dev/components/table | Table Demos}
  * @since 6.0.0 The `id` prop is no longer required since the checkbox's id
  * will automatically be generated as `"checkbox" + useId()`. Use the {@link checkboxProps}
  * to set an `id` manually for the checkbox.

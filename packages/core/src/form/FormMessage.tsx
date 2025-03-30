@@ -18,7 +18,7 @@ import {
  * This component can also be used to create form-level validation messages by
  * setting the `role` prop to `"alert"`.
  *
- * @see {@link https://next.react-md.dev/components/form-message|FormMessage Demos}
+ * @see {@link https://next.react-md.dev/components/form-message | FormMessage Demos}
  */
 export const FormMessage = forwardRef<
   HTMLDivElement,

@@ -136,7 +136,7 @@ export interface TypographyProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/typography|Typography Demos}
+ * @see {@link https://next.react-md.dev/components/typography | Typography Demos}
  * @since 6.0.0 Removed the children render function behavior . Use the
  * `typography` class name utility instead.
  */

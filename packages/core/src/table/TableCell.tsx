@@ -214,7 +214,7 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
  * since it is invalid to have a `<th>` without any readable content for screen
  * readers.
  *
- * @see {@link https://next.react-md.dev/components/table|Table Demos}
+ * @see {@link https://next.react-md.dev/components/table | Table Demos}
  */
 export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
   function TableCell(props, ref) {

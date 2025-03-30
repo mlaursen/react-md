@@ -30,7 +30,7 @@ export interface CardSubtitleProps extends TypographyProps {
 }
 
 /**
- * @see {@link https://next.react-md.dev/components/card|Card Demos}
+ * @see {@link https://next.react-md.dev/components/card | Card Demos}
  * @since 6.0.0 Extends the {@link Typography} component and removed the
  * `noWrap`/`disableSecondaryColor` props.
  */

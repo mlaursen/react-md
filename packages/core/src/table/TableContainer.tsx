@@ -19,7 +19,7 @@ export type TableContainerProps = HTMLAttributes<HTMLDivElement>;
  * don't want to use this component, you can just apply `overflow: auto` to a
  * parent element of the table.
  *
- * @see {@link https://next.react-md.dev/components/table|Table Demos}
+ * @see {@link https://next.react-md.dev/components/table | Table Demos}
  */
 export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
   function TableContainer(props, ref) {

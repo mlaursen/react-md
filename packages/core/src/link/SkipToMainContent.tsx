@@ -69,7 +69,7 @@ export interface SkipToMainContentProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/skip-to-main-content|SkipToMainContent Demos}
+ * @see {@link https://next.react-md.dev/components/skip-to-main-content | SkipToMainContent Demos}
  * @since 6.0.0 Changed the default `id` from `"skip-to-main-content"` to
  * `"skip-to-main"`.
  * @since 6.0.0 The `mainId` prop is optional

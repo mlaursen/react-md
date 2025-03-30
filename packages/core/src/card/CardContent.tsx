@@ -11,7 +11,7 @@ export interface CardContentProps
     CardContentClassNameOptions {}
 
 /**
- * @see {@link https://next.react-md.dev/components/card|Card Demos}
+ * @see {@link https://next.react-md.dev/components/card | Card Demos}
  * @since 6.0.0 Renamed `disableExtraPadding` to `disableLastChildPadding` and
  * removed the `disableParagraphMargin` prop.
  */

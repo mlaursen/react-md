@@ -15,7 +15,7 @@ export interface NavGroupProps extends ListProps {
  * A simple wrapper around the {@link Link} component that ads the
  * `--rmd-tree-depth: depth` custom property to allow for incremented padding.
  *
- * @see {@link https://next.react-md.dev/components/navigation|Navigation Demos}
+ * @see {@link https://next.react-md.dev/components/navigation | Navigation Demos}
  * @since 6.0.0
  */
 export const NavGroup = forwardRef<HTMLUListElement, NavGroupProps>(

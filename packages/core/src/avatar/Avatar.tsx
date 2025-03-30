@@ -96,7 +96,7 @@ export interface AvatarProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/avatar|Avatar Demos}
+ * @see {@link https://next.react-md.dev/components/avatar | Avatar Demos}
  * @since 6.0.0 `aria-hidden` is set to `true` by default.
  */
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(

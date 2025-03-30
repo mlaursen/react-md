@@ -41,7 +41,7 @@ export interface SlideProps
  * A reasonable default for handling a slide transition using
  * {@link useSlideTransition}.
  *
- * @see {@link https://next.react-md.dev/components/slide|Slide Demos}
+ * @see {@link https://next.react-md.dev/components/slide | Slide Demos}
  * @see {@link SlideContainer} for example usage.
  * @since 6.0.0
  */

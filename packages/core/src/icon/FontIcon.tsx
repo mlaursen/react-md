@@ -33,7 +33,7 @@ export interface FontIconProps
  * The default is to use the `material-icons` library, but others can be used as
  * well.
  *
- * @see {@link https://next.react-md.dev/components/icon|Icon Demos}
+ * @see {@link https://next.react-md.dev/components/icon | Icon Demos}
  * @since 6.0.0 Switched from `<i>` to `<span>` element and removed
  * the `forceSize`/`forceFontSize` props.
  */
