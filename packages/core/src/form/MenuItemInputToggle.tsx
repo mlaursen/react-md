@@ -19,8 +19,8 @@ import {
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import {
+  type ConfigurableInputToggleIconProps,
   type IndeterminateCheckboxProps,
-  type InputToggleIconProps,
 } from "./InputToggle.js";
 import { InputToggleIcon } from "./InputToggleIcon.js";
 import { SwitchTrack } from "./SwitchTrack.js";
@@ -47,7 +47,7 @@ export type MenuItemInputToggleCheckedCallback = (
 /** @since 2.8.0 */
 export interface BaseMenuItemInputToggleProps
   extends HTMLAttributes<HTMLLIElement>,
-    InputToggleIconProps,
+    ConfigurableInputToggleIconProps,
     ListItemChildrenTextProps {
   checked: boolean;
   onCheckedChange: MenuItemInputToggleCheckedCallback;

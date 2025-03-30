@@ -22,7 +22,7 @@ interface XPosition {
 /**
  * @internal
  */
-export interface FixConfig extends XCoordConfig {
+export interface HorizontalFixConfig extends XCoordConfig {
   vwMargin: number;
   screenRight: number;
   disableSwapping: boolean;
@@ -55,7 +55,7 @@ export interface CreateHorizontalPositionOptions
  *
  * @internal
  */
-export function createAnchoredLeft(config: FixConfig): XPosition {
+export function createAnchoredLeft(config: HorizontalFixConfig): XPosition {
   const { vwMargin, screenRight, elWidth, disableSwapping } = config;
 
   let left = getLeftCoord(config);
@@ -85,7 +85,9 @@ export function createAnchoredLeft(config: FixConfig): XPosition {
  *
  * @internal
  */
-export function createAnchoredInnerLeft(config: FixConfig): XPosition {
+export function createAnchoredInnerLeft(
+  config: HorizontalFixConfig
+): XPosition {
   const { vwMargin, screenRight, elWidth, disableSwapping } = config;
 
   let left = getInnerLeftCoord(config);
@@ -127,7 +129,9 @@ export function createAnchoredInnerLeft(config: FixConfig): XPosition {
  *
  * @internal
  */
-export function createAnchoredCenter(config: FixConfig): XPosition {
+export function createAnchoredHorizontalCenter(
+  config: HorizontalFixConfig
+): XPosition {
   const { vwMargin, screenRight, elWidth } = config;
   let left = getCenterXCoord(config);
   if (left < vwMargin) {
@@ -149,7 +153,9 @@ export function createAnchoredCenter(config: FixConfig): XPosition {
  *
  * @internal
  */
-export function createAnchoredInnerRight(config: FixConfig): XPosition {
+export function createAnchoredInnerRight(
+  config: HorizontalFixConfig
+): XPosition {
   const { screenRight, vwMargin, elWidth, disableSwapping } = config;
 
   let left = getInnerRightCoord(config);
@@ -179,7 +185,7 @@ export function createAnchoredInnerRight(config: FixConfig): XPosition {
  *
  * @internal
  */
-export function createAnchoredRight(config: FixConfig): XPosition {
+export function createAnchoredRight(config: HorizontalFixConfig): XPosition {
   const { screenRight, vwMargin, elWidth, disableSwapping } = config;
 
   let left = getRightCoord(config);
@@ -305,7 +311,7 @@ export function createHorizontalPosition(
     });
   }
 
-  const config: FixConfig = {
+  const config: HorizontalFixConfig = {
     vwMargin,
     xMargin,
     elWidth,
@@ -321,7 +327,7 @@ export function createHorizontalPosition(
     case "inner-left":
       return createAnchoredInnerLeft(config);
     case "center":
-      return createAnchoredCenter(config);
+      return createAnchoredHorizontalCenter(config);
     case "inner-right":
       return createAnchoredInnerRight(config);
     case "right":

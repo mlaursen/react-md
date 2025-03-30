@@ -18,7 +18,7 @@ interface YPosition {
 }
 
 /** @internal */
-export interface FixConfig extends YCoordConfig {
+export interface VerticalFixConfig extends YCoordConfig {
   vhMargin: number;
   screenBottom: number;
   preventOverlap: boolean;
@@ -55,7 +55,7 @@ export interface CreateVerticalPositionOptions
  *
  * @internal
  */
-export function createAnchoredAbove(config: FixConfig): YPosition {
+export function createAnchoredAbove(config: VerticalFixConfig): YPosition {
   const {
     yMargin,
     vhMargin,
@@ -113,7 +113,7 @@ export function createAnchoredAbove(config: FixConfig): YPosition {
  *
  * @internal
  */
-export function createAnchoredTop(config: FixConfig): YPosition {
+export function createAnchoredTop(config: VerticalFixConfig): YPosition {
   const { vhMargin, screenBottom, elHeight, disableSwapping, disableVHBounds } =
     config;
   let top = getTopCoord(config);
@@ -142,7 +142,9 @@ export function createAnchoredTop(config: FixConfig): YPosition {
  *
  * @internal
  */
-export function createAnchoredCenter(config: FixConfig): YPosition {
+export function createAnchoredVerticalCenter(
+  config: VerticalFixConfig
+): YPosition {
   const { vhMargin, screenBottom, elHeight, disableVHBounds } = config;
   let top = getCenterYCoord(config);
   const actualY: VerticalPosition = "center";
@@ -168,7 +170,7 @@ export function createAnchoredCenter(config: FixConfig): YPosition {
  *
  * @internal
  */
-export function createAnchoredBottom(config: FixConfig): YPosition {
+export function createAnchoredBottom(config: VerticalFixConfig): YPosition {
   const { vhMargin, screenBottom, elHeight, disableSwapping, disableVHBounds } =
     config;
   let top = getBottomCoord(config);
@@ -198,7 +200,7 @@ export function createAnchoredBottom(config: FixConfig): YPosition {
  *
  * @internal
  */
-export function createAnchoredBelow(config: FixConfig): YPosition {
+export function createAnchoredBelow(config: VerticalFixConfig): YPosition {
   const {
     yMargin,
     vhMargin,
@@ -277,7 +279,7 @@ export function createVerticalPosition(
     };
   }
 
-  const config: FixConfig = {
+  const config: VerticalFixConfig = {
     vhMargin,
     yMargin,
     elHeight,
@@ -295,7 +297,7 @@ export function createVerticalPosition(
     case "top":
       return createAnchoredTop(config);
     case "center":
-      return createAnchoredCenter(config);
+      return createAnchoredVerticalCenter(config);
     case "bottom":
       return createAnchoredBottom(config);
     case "below":

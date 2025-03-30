@@ -26,7 +26,7 @@ import {
 /**
  * @since 6.0.0
  */
-export interface InputToggleIconProps {
+export interface ConfigurableInputToggleIconProps {
   /**
    * @see {@link InputToggleSize}
    * @defaultValue `"normal"`
@@ -153,7 +153,7 @@ export interface BaseInputToggleProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
     FormMessageContainerExtension,
     FormComponentStates,
-    InputToggleIconProps,
+    ConfigurableInputToggleIconProps,
     InputToggleLabelProps,
     ComponentWithRippleProps {
   /**

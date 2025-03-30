@@ -2,8 +2,8 @@ import { describe, expect, it } from "@jest/globals";
 
 import {
   type EqualWidthOptions,
-  type FixConfig,
-  createAnchoredCenter,
+  type HorizontalFixConfig,
+  createAnchoredHorizontalCenter,
   createAnchoredInnerLeft,
   createAnchoredInnerRight,
   createAnchoredLeft,
@@ -42,7 +42,7 @@ const containerRect2: DOMRect = {
   y: 75,
   toJSON() {},
 };
-const config1: FixConfig = {
+const config1: HorizontalFixConfig = {
   xMargin: 0,
   vwMargin: 0,
   elWidth: 50,
@@ -51,33 +51,33 @@ const config1: FixConfig = {
   containerRect: containerRect1,
 };
 
-const config2: FixConfig = { ...config1, xMargin: 8 };
-const config3: FixConfig = { ...config1, vwMargin: 8 };
-const config4: FixConfig = { ...config1, xMargin: 16, vwMargin: 8 };
+const config2: HorizontalFixConfig = { ...config1, xMargin: 8 };
+const config3: HorizontalFixConfig = { ...config1, vwMargin: 8 };
+const config4: HorizontalFixConfig = { ...config1, xMargin: 16, vwMargin: 8 };
 
-const config5: FixConfig = {
+const config5: HorizontalFixConfig = {
   ...config1,
   elWidth: 100,
   containerRect: containerRect2,
 };
-const config6: FixConfig = {
+const config6: HorizontalFixConfig = {
   ...config2,
   elWidth: 100,
   containerRect: containerRect2,
 };
-const config7: FixConfig = {
+const config7: HorizontalFixConfig = {
   ...config3,
   elWidth: 100,
   containerRect: containerRect2,
 };
-const config8: FixConfig = {
+const config8: HorizontalFixConfig = {
   ...config4,
   elWidth: 100,
   containerRect: containerRect2,
 };
 
 const vw = 500;
-const leftBoundsConfig1: FixConfig = {
+const leftBoundsConfig1: HorizontalFixConfig = {
   xMargin: 0,
   vwMargin: 0,
   elWidth: 475,
@@ -97,8 +97,11 @@ const leftBoundsConfig1: FixConfig = {
     toJSON() {},
   },
 };
-const leftBoundsConfig2: FixConfig = { ...leftBoundsConfig1, vwMargin: 8 };
-const rightBoundsConfig1: FixConfig = {
+const leftBoundsConfig2: HorizontalFixConfig = {
+  ...leftBoundsConfig1,
+  vwMargin: 8,
+};
+const rightBoundsConfig1: HorizontalFixConfig = {
   xMargin: 0,
   vwMargin: 0,
   elWidth: 475,
@@ -118,7 +121,10 @@ const rightBoundsConfig1: FixConfig = {
     toJSON() {},
   },
 };
-const rightBoundsConfig2: FixConfig = { ...rightBoundsConfig1, vwMargin: 8 };
+const rightBoundsConfig2: HorizontalFixConfig = {
+  ...rightBoundsConfig1,
+  vwMargin: 8,
+};
 
 describe("createAnchoredLeft", () => {
   it("should return the calculated left coord and an actualX value of left", () => {
@@ -141,10 +147,22 @@ describe("createAnchoredLeft", () => {
   });
 
   it("should ignore the disableSwapping argument", () => {
-    const updatedConfig1: FixConfig = { ...config1, disableSwapping: true };
-    const updatedConfig2: FixConfig = { ...config2, disableSwapping: true };
-    const updatedConfig3: FixConfig = { ...config3, disableSwapping: true };
-    const updatedConfig4: FixConfig = { ...config4, disableSwapping: true };
+    const updatedConfig1: HorizontalFixConfig = {
+      ...config1,
+      disableSwapping: true,
+    };
+    const updatedConfig2: HorizontalFixConfig = {
+      ...config2,
+      disableSwapping: true,
+    };
+    const updatedConfig3: HorizontalFixConfig = {
+      ...config3,
+      disableSwapping: true,
+    };
+    const updatedConfig4: HorizontalFixConfig = {
+      ...config4,
+      disableSwapping: true,
+    };
 
     expect(createAnchoredLeft(updatedConfig1)).toEqual({
       left: getLeftCoord(updatedConfig1),
@@ -165,10 +183,22 @@ describe("createAnchoredLeft", () => {
   });
 
   it("should return the vwMargin value as the left value if swapping is disabled", () => {
-    const updatedConfig5: FixConfig = { ...config5, disableSwapping: true };
-    const updatedConfig6: FixConfig = { ...config6, disableSwapping: true };
-    const updatedConfig7: FixConfig = { ...config7, disableSwapping: true };
-    const updatedConfig8: FixConfig = { ...config8, disableSwapping: true };
+    const updatedConfig5: HorizontalFixConfig = {
+      ...config5,
+      disableSwapping: true,
+    };
+    const updatedConfig6: HorizontalFixConfig = {
+      ...config6,
+      disableSwapping: true,
+    };
+    const updatedConfig7: HorizontalFixConfig = {
+      ...config7,
+      disableSwapping: true,
+    };
+    const updatedConfig8: HorizontalFixConfig = {
+      ...config8,
+      disableSwapping: true,
+    };
     expect(createAnchoredLeft(updatedConfig5)).toEqual({
       left: 0,
       actualX: "left",
@@ -188,10 +218,22 @@ describe("createAnchoredLeft", () => {
   });
 
   it("should return the vwMargin value as the left value if swapping to the right will force it out of the viewport right bounds", () => {
-    const updatedConfig5: FixConfig = { ...config5, screenRight: 200 };
-    const updatedConfig6: FixConfig = { ...config6, screenRight: 200 };
-    const updatedConfig7: FixConfig = { ...config7, screenRight: 200 };
-    const updatedConfig8: FixConfig = { ...config8, screenRight: 200 };
+    const updatedConfig5: HorizontalFixConfig = {
+      ...config5,
+      screenRight: 200,
+    };
+    const updatedConfig6: HorizontalFixConfig = {
+      ...config6,
+      screenRight: 200,
+    };
+    const updatedConfig7: HorizontalFixConfig = {
+      ...config7,
+      screenRight: 200,
+    };
+    const updatedConfig8: HorizontalFixConfig = {
+      ...config8,
+      screenRight: 200,
+    };
     expect(createAnchoredLeft(updatedConfig5)).toEqual({
       left: 0,
       actualX: "left",
@@ -251,7 +293,7 @@ describe("createAnchoredInnerLeft", () => {
   });
 
   it("should just update the position to be within the viewport if swapping is disabled", () => {
-    const leftOutOfBounds1: FixConfig = {
+    const leftOutOfBounds1: HorizontalFixConfig = {
       ...leftBoundsConfig1,
       disableSwapping: true,
       containerRect: {
@@ -259,12 +301,12 @@ describe("createAnchoredInnerLeft", () => {
         left: -20,
       },
     };
-    const leftOutOfBounds2: FixConfig = {
+    const leftOutOfBounds2: HorizontalFixConfig = {
       ...leftOutOfBounds1,
       vwMargin: 8,
     };
 
-    const tooWideConfig1: FixConfig = {
+    const tooWideConfig1: HorizontalFixConfig = {
       ...rightBoundsConfig1,
       disableSwapping: true,
     };
@@ -286,14 +328,14 @@ describe("createAnchoredInnerLeft", () => {
   it("should return the vwMargin if the swapped inner right values are less than the vwMargin", () => {
     // need to move the container rect a bit more into the page so that the fixed element will
     // no longer be within the viewport
-    const updatedConfig1: FixConfig = {
+    const updatedConfig1: HorizontalFixConfig = {
       ...leftBoundsConfig1,
       containerRect: {
         ...leftBoundsConfig1.containerRect,
         left: 40,
       },
     };
-    const updatedConfig2: FixConfig = {
+    const updatedConfig2: HorizontalFixConfig = {
       ...leftBoundsConfig2,
       containerRect: {
         ...leftBoundsConfig2.containerRect,
@@ -320,7 +362,7 @@ describe("createAnchoredInnerLeft", () => {
       actualX: "inner-right",
     });
 
-    const scrolledOffscreenRight: FixConfig = {
+    const scrolledOffscreenRight: HorizontalFixConfig = {
       xMargin: 0,
       vwMargin: 0,
       elWidth: 100,
@@ -347,57 +389,57 @@ describe("createAnchoredInnerLeft", () => {
 
 describe("createAnchoredCenter", () => {
   it("should return the center x coord as the left value if it can fit within the viewport", () => {
-    expect(createAnchoredCenter(config1)).toEqual({
+    expect(createAnchoredHorizontalCenter(config1)).toEqual({
       left: getCenterXCoord(config1),
       actualX: "center",
     });
-    expect(createAnchoredCenter(config2)).toEqual({
+    expect(createAnchoredHorizontalCenter(config2)).toEqual({
       left: getCenterXCoord(config2),
       actualX: "center",
     });
-    expect(createAnchoredCenter(config3)).toEqual({
+    expect(createAnchoredHorizontalCenter(config3)).toEqual({
       left: getCenterXCoord(config3),
       actualX: "center",
     });
-    expect(createAnchoredCenter(config4)).toEqual({
+    expect(createAnchoredHorizontalCenter(config4)).toEqual({
       left: getCenterXCoord(config4),
       actualX: "center",
     });
   });
 
   it("should set the left value to the vwMargin when it can't fit due to the left bounds of the viewport", () => {
-    expect(createAnchoredCenter(leftBoundsConfig1)).toEqual({
+    expect(createAnchoredHorizontalCenter(leftBoundsConfig1)).toEqual({
       left: 0,
       actualX: "center",
     });
-    expect(createAnchoredCenter(leftBoundsConfig1)).not.toEqual({
+    expect(createAnchoredHorizontalCenter(leftBoundsConfig1)).not.toEqual({
       left: getCenterXCoord(leftBoundsConfig1),
       actualX: "center",
     });
-    expect(createAnchoredCenter(leftBoundsConfig2)).toEqual({
+    expect(createAnchoredHorizontalCenter(leftBoundsConfig2)).toEqual({
       left: 8,
       actualX: "center",
     });
-    expect(createAnchoredCenter(leftBoundsConfig2)).not.toEqual({
+    expect(createAnchoredHorizontalCenter(leftBoundsConfig2)).not.toEqual({
       left: getCenterXCoord(leftBoundsConfig2),
       actualX: "center",
     });
   });
 
   it("should set the left value as the screen right value minus the element width if it can't fit within the viewport", () => {
-    expect(createAnchoredCenter(rightBoundsConfig1)).toEqual({
+    expect(createAnchoredHorizontalCenter(rightBoundsConfig1)).toEqual({
       left: 25,
       actualX: "center",
     });
-    expect(createAnchoredCenter(rightBoundsConfig1)).not.toEqual({
+    expect(createAnchoredHorizontalCenter(rightBoundsConfig1)).not.toEqual({
       left: getCenterXCoord(rightBoundsConfig1),
       actualX: "center",
     });
-    expect(createAnchoredCenter(rightBoundsConfig2)).toEqual({
+    expect(createAnchoredHorizontalCenter(rightBoundsConfig2)).toEqual({
       left: 25,
       actualX: "center",
     });
-    expect(createAnchoredCenter(rightBoundsConfig2)).not.toEqual({
+    expect(createAnchoredHorizontalCenter(rightBoundsConfig2)).not.toEqual({
       left: getCenterXCoord(rightBoundsConfig2),
       actualX: "center",
     });
@@ -425,11 +467,11 @@ describe("createAnchoredInnerRight", () => {
   });
 
   it("should return the screenRight minus the element's width as the left value if swapping is disabled", () => {
-    const updatedConfig1: FixConfig = {
+    const updatedConfig1: HorizontalFixConfig = {
       ...leftBoundsConfig1,
       disableSwapping: true,
     };
-    const updatedConfig2: FixConfig = {
+    const updatedConfig2: HorizontalFixConfig = {
       ...leftBoundsConfig2,
       disableSwapping: true,
     };
@@ -447,14 +489,14 @@ describe("createAnchoredInnerRight", () => {
   it("should return the screenRight minus the element's width as the left value if the swapped inner left values are less than the vwMargin", () => {
     // need to move the container rect a bit more into the page so that the fixed element will
     // no longer be within the viewport
-    const updatedConfig1: FixConfig = {
+    const updatedConfig1: HorizontalFixConfig = {
       ...leftBoundsConfig1,
       containerRect: {
         ...leftBoundsConfig1.containerRect,
         left: 40,
       },
     };
-    const updatedConfig2: FixConfig = {
+    const updatedConfig2: HorizontalFixConfig = {
       ...leftBoundsConfig2,
       containerRect: {
         ...leftBoundsConfig2.containerRect,
@@ -504,10 +546,22 @@ describe("createAnchoredRight", () => {
   });
 
   it("should ignore the disableSwapping argument", () => {
-    const updatedConfig1: FixConfig = { ...config1, disableSwapping: true };
-    const updatedConfig2: FixConfig = { ...config2, disableSwapping: true };
-    const updatedConfig3: FixConfig = { ...config3, disableSwapping: true };
-    const updatedConfig4: FixConfig = { ...config4, disableSwapping: true };
+    const updatedConfig1: HorizontalFixConfig = {
+      ...config1,
+      disableSwapping: true,
+    };
+    const updatedConfig2: HorizontalFixConfig = {
+      ...config2,
+      disableSwapping: true,
+    };
+    const updatedConfig3: HorizontalFixConfig = {
+      ...config3,
+      disableSwapping: true,
+    };
+    const updatedConfig4: HorizontalFixConfig = {
+      ...config4,
+      disableSwapping: true,
+    };
 
     expect(createAnchoredRight(updatedConfig1)).toEqual({
       left: getRightCoord(updatedConfig1),
@@ -544,7 +598,7 @@ describe("createAnchoredRight", () => {
   });
 
   it("should return the left coord as the left value if the position can be swapped within the viewport", () => {
-    const config1: FixConfig = {
+    const config1: HorizontalFixConfig = {
       xMargin: 0,
       vwMargin: 0,
       elWidth: 50,
@@ -562,7 +616,7 @@ describe("createAnchoredRight", () => {
         toJSON() {},
       },
     };
-    const config2: FixConfig = { ...config1, xMargin: 8 };
+    const config2: HorizontalFixConfig = { ...config1, xMargin: 8 };
 
     expect(createAnchoredRight(config2)).toEqual({
       left: getLeftCoord(config2),

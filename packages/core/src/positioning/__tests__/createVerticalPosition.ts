@@ -2,7 +2,7 @@ import { describe, expect, it } from "@jest/globals";
 
 import type {
   CreateVerticalPositionOptions,
-  FixConfig,
+  VerticalFixConfig,
 } from "../createVerticalPosition.js";
 import {
   createAnchoredAbove,
@@ -32,7 +32,7 @@ const containerRect2: DOMRect = {
   y: 75,
   toJSON() {},
 };
-const config1: FixConfig = {
+const config1: VerticalFixConfig = {
   yMargin: 0,
   vhMargin: 0,
   elHeight: 50,
@@ -43,16 +43,16 @@ const config1: FixConfig = {
   preventOverlap: false,
 };
 
-const config2: FixConfig = { ...config1, yMargin: 8 };
-const config3: FixConfig = { ...config1, vhMargin: 8 };
-const config4: FixConfig = { ...config1, yMargin: 16, vhMargin: 8 };
-const outOfBoundsConfig: FixConfig = {
+const config2: VerticalFixConfig = { ...config1, yMargin: 8 };
+const config3: VerticalFixConfig = { ...config1, vhMargin: 8 };
+const config4: VerticalFixConfig = { ...config1, yMargin: 16, vhMargin: 8 };
+const outOfBoundsConfig: VerticalFixConfig = {
   ...config1,
   initialY: -400,
 };
 
 const vh = 500;
-const topBoundsConfig1: FixConfig = {
+const topBoundsConfig1: VerticalFixConfig = {
   yMargin: 0,
   vhMargin: 0,
   elHeight: 100,
@@ -74,7 +74,10 @@ const topBoundsConfig1: FixConfig = {
     toJSON() {},
   },
 };
-const topBoundsConfig2: FixConfig = { ...topBoundsConfig1, vhMargin: 8 };
+const topBoundsConfig2: VerticalFixConfig = {
+  ...topBoundsConfig1,
+  vhMargin: 8,
+};
 // const bottomBoundsConfig1: FixConfig = {
 //   yMargin: 0,
 //   vhMargin: 0,
@@ -147,10 +150,22 @@ describe("createAnchoredAbove", () => {
 
   describe("disableVHBounds option", () => {
     it("should return a top value greater than or equal to zero since browsers won't scroll upwards past the normal page top", () => {
-      const updatedConfig1: FixConfig = { ...config1, disableVHBounds: true };
-      const updatedConfig2: FixConfig = { ...config2, disableVHBounds: true };
-      const updatedConfig3: FixConfig = { ...config3, disableVHBounds: true };
-      const updatedConfig4: FixConfig = { ...config4, disableVHBounds: true };
+      const updatedConfig1: VerticalFixConfig = {
+        ...config1,
+        disableVHBounds: true,
+      };
+      const updatedConfig2: VerticalFixConfig = {
+        ...config2,
+        disableVHBounds: true,
+      };
+      const updatedConfig3: VerticalFixConfig = {
+        ...config3,
+        disableVHBounds: true,
+      };
+      const updatedConfig4: VerticalFixConfig = {
+        ...config4,
+        disableVHBounds: true,
+      };
 
       expect(createAnchoredAbove(updatedConfig1)).toEqual({
         top: 350,
