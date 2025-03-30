@@ -95,7 +95,7 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
   const startIndex = isScssFile ? 2 : 0;
   const isTypescriptFileActive =
     activeTab === 0 ||
-    /\.tsx?$/.test(readOnlyFileNames[activeTab - startIndex] || "");
+    /\.(j|t)sx?$/.test(readOnlyFileNames[activeTab - startIndex] || "");
 
   return (
     <ToastManagerProvider manager={toastManager}>
@@ -154,15 +154,21 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
               {tsCodeFile.name.replace(".t", isTypescriptEnabled ? ".t" : ".j")}
             </Tab>
             {scssCodeFile && <Tab {...getTabProps(1)}>{scssCodeFile.name}</Tab>}
-            {readOnlyFileNames.map((fileName, i) => (
-              <Tab
-                key={fileName}
-                {...getTabProps(i + startIndex)}
-                icon={<EditOffIcon />}
-              >
-                {fileName}
-              </Tab>
-            ))}
+            {readOnlyFileNames.map((fileName, i) => {
+              let name = fileName;
+              if (!isTypescriptEnabled) {
+                name = name.replace(/\.ts/, ".js");
+              }
+              return (
+                <Tab
+                  key={fileName}
+                  {...getTabProps(i + startIndex)}
+                  icon={<EditOffIcon />}
+                >
+                  {name}
+                </Tab>
+              );
+            })}
           </TabList>
         )}
         {!isMultiFile && (
