@@ -26,15 +26,10 @@ import { SassDocThrows } from "./SassDocThrows.jsx";
 import { VariableCodeBlock } from "./VariableCodeBlock.jsx";
 
 const RGB_REGEX = /^rgb\(((\b([01]?\d\d?|2[0-4]\d|25[0-5])\b),?){3}\)$/;
-const SHORTHAND_REGEX = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-const VERBOSE_REGEX = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+const VERBOSE_REGEX = /^#([a-f\d]{3})([a-f\d]{3})?$/i;
 
 function isColorValue(value: string): boolean {
-  return (
-    RGB_REGEX.test(value) ||
-    SHORTHAND_REGEX.test(value) ||
-    VERBOSE_REGEX.test(value)
-  );
+  return RGB_REGEX.test(value) || VERBOSE_REGEX.test(value);
 }
 
 export interface SassDocItemProps {
