@@ -1,5 +1,3 @@
-import { type NavigationItem } from "@react-md/core/navigation/types";
-import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
 import { log, logComplete } from "docs-generator/utils/log";
 import { existsSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
@@ -21,6 +19,11 @@ import {
   GENERATED_SASSDOC_NAV_ITEMS_FILE,
 } from "./constants.js";
 import { ensureGeneratedDir } from "./ensureGeneratedDir.js";
+import {
+  type NavigationItemStringChildrenRoute,
+  createNavItems,
+  sortNavItems,
+} from "./utils/createNavItems.js";
 
 function stringify(
   map: ReadonlyMap<string, FormattedSassDocItem>,
@@ -69,8 +72,8 @@ async function generateNavItems(options: GeneratedSassDoc): Promise<void> {
   functions.forEach((item) => groups.add(item.group));
   variables.forEach((item) => groups.add(item.group));
 
-  const components: (NavigationItem & { children: string })[] = [];
-  const remainingItems: (NavigationItem & { children: string })[] = [];
+  const components: NavigationItemStringChildrenRoute[] = [];
+  const remainingItems: NavigationItemStringChildrenRoute[] = [];
   groups.forEach((group) => {
     if (group.startsWith("core.")) {
       const withoutCore = group.replace("core.", "");
@@ -96,34 +99,17 @@ async function generateNavItems(options: GeneratedSassDoc): Promise<void> {
     }
   });
 
-  await writeFile(
-    GENERATED_SASSDOC_NAV_ITEMS_FILE,
-    await format(
-      `${GENERATED_FILE_BANNER}
-import { type NavigationItem } from "@react-md/core/navigation/types";
-
-export const SASSDOC_NAV_ITEMS: readonly NavigationItem[] = [
-  {
-    type: "group",
-    href: "/sassdoc",
-    children: "Sass API Docs",
+  await createNavItems({
+    name: "SASSDOC_NAV_ITEMS",
+    fileName: GENERATED_SASSDOC_NAV_ITEMS_FILE,
+    aliasedName: ALIASED_SASSDOC_NAV_ITEMS_FILE,
     items: [
       { type: "subheader", children: "Core" },
-      ${alphaNumericSort(remainingItems, { extractor: (item) => item.children })
-        .map((item) => JSON.stringify(item))
-        .join(",")},
+      ...sortNavItems(remainingItems),
       { type: "subheader", children: "Components" },
-      ${alphaNumericSort(components, { extractor: (item) => item.children })
-        .map((item) => JSON.stringify(item))
-        .join(",")},
-    ]
-  },
-]
-`,
-      { filepath: GENERATED_SASSDOC_NAV_ITEMS_FILE }
-    )
-  );
-  logComplete(`Generated "${ALIASED_SASSDOC_NAV_ITEMS_FILE}"`);
+      ...sortNavItems(components),
+    ],
+  });
 }
 
 if (process.argv.includes("--touch")) {
