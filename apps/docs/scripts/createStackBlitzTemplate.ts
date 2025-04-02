@@ -1,15 +1,14 @@
 import { getProjectRootDir } from "docs-generator/utils/getProjectRootDir";
 import { log } from "docs-generator/utils/log";
+import {
+  getAliasedFileName,
+  writeGeneratedFile,
+} from "docs-generator/utils/writeGeneratedFile";
 import { readFileSync, readdirSync, statSync } from "node:fs";
-import { writeFile } from "node:fs/promises";
 import { basename, join } from "node:path";
-import { format } from "prettier";
 
 import packageJson from "../package.json" with { type: "json" };
-import {
-  GENERATED_FILE_BANNER,
-  GENERATED_STACKBLITZ_FILE,
-} from "./constants.js";
+import { GENERATED_STACKBLITZ_FILE } from "./constants.js";
 import { ensureGeneratedDir } from "./ensureGeneratedDir.js";
 
 function getAllFiles(dir: string): readonly string[] {
@@ -73,25 +72,25 @@ async function run(): Promise<void> {
   const examplesRoot = join(getProjectRootDir(), "examples");
   const typescriptFiles = getAllFiles(join(examplesRoot, "vite-ts"));
   const javascriptFiles = getAllFiles(join(examplesRoot, "vite-js"));
-
-  const contents = `${GENERATED_FILE_BANNER}
-
+  await writeGeneratedFile({
+    log: false,
+    fileName: GENERATED_STACKBLITZ_FILE,
+    contents: `
 export const JS_STACKBLITZ_TEMPLATE = ${JSON.stringify(javascriptFiles.map((file) => toTemplateHiddenInputProps(file)))}
 export const TS_STACKBLITZ_TEMPLATE = ${JSON.stringify(typescriptFiles.map((file) => toTemplateHiddenInputProps(file)))}
 
 export const STACKBLITZ_DEPENDENCIES: Record<string, string> = ${JSON.stringify(
-    {
-      ...packageJson.dependencies,
-      ...packageJson.devDependencies,
-    }
-  )}
-`;
-
-  await writeFile(
-    GENERATED_STACKBLITZ_FILE,
-    await format(contents, { filepath: GENERATED_STACKBLITZ_FILE }),
-    "utf8"
-  );
+      {
+        ...packageJson.dependencies,
+        ...packageJson.devDependencies,
+      }
+    )}
+`,
+  });
 }
 
-await log(run(), "", `Created ${GENERATED_STACKBLITZ_FILE}`);
+await log(
+  run(),
+  "",
+  `Created ${getAliasedFileName(GENERATED_STACKBLITZ_FILE)}`
+);

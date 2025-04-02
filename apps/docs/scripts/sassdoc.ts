@@ -1,7 +1,14 @@
+import {
+  type NavigationItemStringChildrenRoute,
+  createNavItems,
+  sortNavItems,
+} from "docs-generator/utils/createNavItems";
 import { log, logComplete } from "docs-generator/utils/log";
+import {
+  getAliasedFileName,
+  writeGeneratedFile,
+} from "docs-generator/utils/writeGeneratedFile";
 import { existsSync } from "node:fs";
-import { writeFile } from "node:fs/promises";
-import { format } from "prettier";
 import {
   type GeneratedSassDoc,
   type GeneratedSassDocWithOrder,
@@ -11,19 +18,11 @@ import { type FormattedSassDocItem } from "sassdoc-generator/types";
 
 import { titleCase } from "../src/utils/strings.js";
 import {
-  ALIASED_SASSDOC_FILE,
-  ALIASED_SASSDOC_NAV_ITEMS_FILE,
   CORE_SRC,
-  GENERATED_FILE_BANNER,
   GENERATED_SASSDOC_FILE,
   GENERATED_SASSDOC_NAV_ITEMS_FILE,
 } from "./constants.js";
 import { ensureGeneratedDir } from "./ensureGeneratedDir.js";
-import {
-  type NavigationItemStringChildrenRoute,
-  createNavItems,
-  sortNavItems,
-} from "./utils/createNavItems.js";
 
 function stringify(
   map: ReadonlyMap<string, FormattedSassDocItem>,
@@ -47,8 +46,9 @@ async function createSassDocFile(
     functionsOrder,
   } = generated;
 
-  const contents = `${GENERATED_FILE_BANNER}
-
+  await writeGeneratedFile({
+    fileName: GENERATED_SASSDOC_FILE,
+    contents: `
 import { type FormattedMixinItem, type FormattedVariableItem, type FormattedFunctionItem } from "sassdoc-generator/types";
 
 // adding \`| undefined\` since i don't have the \`noUncheckedIndexedAccess\`
@@ -56,13 +56,9 @@ import { type FormattedMixinItem, type FormattedVariableItem, type FormattedFunc
 export const SASSDOC_MIXINS: Record<string, FormattedMixinItem | undefined> = ${stringify(mixins, mixinsOrder)};
 export const SASSDOC_FUNCTIONS: Record<string, FormattedFunctionItem | undefined> = ${stringify(functions, functionsOrder)};
 export const SASSDOC_VARIABLES: Record<string, FormattedVariableItem | undefined> = ${stringify(variables, variablesOrder)};
-`;
 
-  await writeFile(
-    GENERATED_SASSDOC_FILE,
-    await format(contents, { parser: "typescript" })
-  );
-  logComplete(`Generated "${ALIASED_SASSDOC_FILE}"`);
+`,
+  });
 }
 
 async function generateNavItems(options: GeneratedSassDoc): Promise<void> {
@@ -101,8 +97,9 @@ async function generateNavItems(options: GeneratedSassDoc): Promise<void> {
 
   await createNavItems({
     name: "SASSDOC_NAV_ITEMS",
+    href: "/sassdoc",
+    children: "Sass API Docs",
     fileName: GENERATED_SASSDOC_NAV_ITEMS_FILE,
-    aliasedName: ALIASED_SASSDOC_NAV_ITEMS_FILE,
     items: [
       { type: "subheader", children: "Core" },
       ...sortNavItems(remainingItems),
@@ -127,22 +124,22 @@ if (process.argv.includes("--touch")) {
     await log(
       generateNavItems(empty),
       "",
-      `Created an empty "${ALIASED_SASSDOC_NAV_ITEMS_FILE}". ${update}`
+      `Created an empty "${getAliasedFileName(GENERATED_SASSDOC_NAV_ITEMS_FILE)}". ${update}`
     );
   } else {
     logComplete(
-      `Skipped creating "${ALIASED_SASSDOC_NAV_ITEMS_FILE}" since it already exists. ${update}`
+      `Skipped creating "${getAliasedFileName(GENERATED_SASSDOC_NAV_ITEMS_FILE)}" since it already exists. ${update}`
     );
   }
   if (!existsSync(GENERATED_SASSDOC_FILE)) {
     await log(
       createSassDocFile(empty),
       "",
-      `Created an empty "${ALIASED_SASSDOC_FILE}". ${update}`
+      `Created an empty "${getAliasedFileName(GENERATED_SASSDOC_FILE)}". ${update}`
     );
   } else {
     logComplete(
-      `Skipped creating "${ALIASED_SASSDOC_FILE}" since it already exists. ${update}`
+      `Skipped creating "${getAliasedFileName(GENERATED_SASSDOC_FILE)}" since it already exists. ${update}`
     );
   }
 

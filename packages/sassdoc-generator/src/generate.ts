@@ -1,3 +1,4 @@
+import { log, logComplete, logPending } from "docs-generator/utils/log";
 import {
   type FunctionItem,
   type Item,
@@ -15,7 +16,6 @@ import {
   formatMixinItem,
 } from "./formatNonVariableItems.js";
 import { formatVariableItem } from "./formatVariableItem.js";
-import { log, logComplete, logPending } from "./log.js";
 import { getItemReferenceLinks } from "./references.js";
 import {
   type FormattedFunctionItem,

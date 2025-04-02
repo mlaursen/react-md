@@ -35,9 +35,11 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@types/sassdoc": "workspace:*",
+    "docs-generator": "workspace:*",
     "prettier": "^3.5.0",
-    "pretty-ms": "^9.2.0",
-    "sass": "^1.84.0"
+    "sass": "^1.84.0",
+    "sassdoc": "^2.7.4"
   },
   "devDependencies": {
     "@mlaursen/eslint-config": "^7.0.0",
@@ -45,10 +47,8 @@
     "@swc/core": "^1.10.15",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.13.1",
-    "@types/sassdoc": "workspace:*",
     "eslint": "^9.20.0",
     "npm-run-all": "^4.1.5",
-    "sassdoc": "^2.7.4",
     "typescript": "^5.7.3"
   },
   "volta": {

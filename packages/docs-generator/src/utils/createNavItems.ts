@@ -3,22 +3,12 @@ import {
   type NavigationItemRoute,
 } from "@react-md/core/navigation/types";
 import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
-import { logComplete } from "docs-generator/utils/log";
-import { writeFile } from "node:fs/promises";
-import { format } from "prettier";
 
-import { GENERATED_FILE_BANNER } from "../constants.js";
+import { writeGeneratedFile } from "./writeGeneratedFile.js";
 
 export type NavigationItemStringChildrenRoute = NavigationItemRoute & {
   children: string;
 };
-
-interface Options {
-  name: string;
-  fileName: string;
-  aliasedName: string;
-  items: readonly NavigationItem[];
-}
 
 export function sortNavItems(
   items: readonly NavigationItemStringChildrenRoute[]
@@ -26,27 +16,30 @@ export function sortNavItems(
   return alphaNumericSort(items, { extractor: (item) => item.children });
 }
 
-export async function createNavItems(options: Options): Promise<void> {
-  const { name, fileName, aliasedName, items } = options;
+interface Options {
+  name: string;
+  href: string;
+  children: string;
+  fileName: string;
+  items: readonly NavigationItem[];
+}
 
-  await writeFile(
+export async function createNavItems(options: Options): Promise<void> {
+  const { name, href, children, fileName, items } = options;
+
+  await writeGeneratedFile({
     fileName,
-    await format(
-      `${GENERATED_FILE_BANNER}
+    contents: `
 import { type NavigationItem } from "@react-md/core/navigation/types";
 
 export const ${name}: readonly NavigationItem[] = [
   {
     type: "group",
-    href: "/sassdoc",
-    children: "Sass API Docs",
+    href: "${href}",
+    children: "${children}",
     items: ${JSON.stringify(items)}
   },
 ]
 `,
-      { filepath: fileName }
-    )
-  );
-
-  logComplete(`Generated "${aliasedName}"`);
+  });
 }
