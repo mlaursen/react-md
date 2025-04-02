@@ -8,7 +8,7 @@ import {
 import { cardTitle } from "./styles.js";
 
 /**
- * @since 6,0.0 Extends the {@link TypographyProps} and removed the
+ * @since 6.0.0 Extends the {@link TypographyProps} and removed the
  * `small`/`noWrap` props.
  */
 export interface CardTitleProps extends TypographyProps {

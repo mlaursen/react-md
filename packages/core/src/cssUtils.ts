@@ -54,7 +54,7 @@ export type FontStyle = "italic" | "oblique" | "normal";
  * custom font.
  *
  * @see {@link https://www.google.com/search?q=web+safe+fonts | Web Safe Fonts}
- * @see {@link https://www.google.com/search?q=variable+fonts | Variable FOnts}
+ * @see {@link https://www.google.com/search?q=variable+fonts | Variable Fonts}
  * @since 6.0.0 This was `TextWeight` beforehand.
  */
 export type FontWeight =

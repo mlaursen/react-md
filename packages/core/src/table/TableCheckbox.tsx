@@ -44,7 +44,7 @@ export type TableCheckboxSupportedCheckboxProps = Pick<
  * will automatically be generated as `"checkbox" + useId()`. Use the {@link checkboxProps}
  * to set an `id` manually for the checkbox.
  * @since 6.0.0 The `cellId` prop was removed. Use the `id` prop instead.
- * @since 6,0.0 The default `aria-label` was changed from
+ * @since 6.0.0 The default `aria-label` was changed from
  * `"Toggle Row Selection"` to `"Select Row"`.
  */
 export interface TableCheckboxProps
@@ -145,7 +145,7 @@ export interface TableCheckboxProps
  * will automatically be generated as `"checkbox" + useId()`. Use the {@link checkboxProps}
  * to set an `id` manually for the checkbox.
  * @since 6.0.0 The `cellId` prop was removed. Use the `id` prop instead.
- * @since 6,0.0 The default `aria-label` was changed from
+ * @since 6.0.0 The default `aria-label` was changed from
  * `"Toggle Row Selection"` to `"Select Row"`.
  */
 export const TableCheckbox = forwardRef<
