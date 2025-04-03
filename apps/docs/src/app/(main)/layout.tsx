@@ -57,6 +57,7 @@ export default async function RootLayout(
       )}
       beforeBodyChildren={
         <head>
+          <meta name="algolia-site-verification" content="79AA8534DF1D7F64" />
           <link
             id={PRISM_THEMES_ID}
             rel="stylesheet"
