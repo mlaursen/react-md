@@ -43,6 +43,7 @@ export function LinkableHeading(props: LinkableHeadingProps): ReactElement {
 
   return (
     <Typography
+      as={`h${level}`}
       {...remaining}
       id={id}
       type={type}

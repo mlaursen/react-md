@@ -1,11 +1,17 @@
-export function assertString(value: unknown): asserts value is string {
+export function assertString(
+  value: unknown,
+  message = "value is not a string"
+): asserts value is string {
   if (typeof value !== "string") {
-    throw new Error("value is not a string");
+    throw new Error(message);
   }
 }
 
-export function assertStringArray(value: unknown): asserts value is string[] {
+export function assertStringArray(
+  value: unknown,
+  message = "value is not a string array"
+): asserts value is string[] {
   if (!value || typeof value !== "object" || !("length" in value)) {
-    throw new Error("value is not a string array");
+    throw new Error(message);
   }
 }

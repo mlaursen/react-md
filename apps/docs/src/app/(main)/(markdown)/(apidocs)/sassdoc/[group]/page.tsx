@@ -1,22 +1,62 @@
+import { type Metadata } from "next";
 import { notFound } from "next/navigation.js";
 import { type ReactElement } from "react";
 
 import { Markdown } from "@/components/Markdown.jsx";
 import { PageNotFound } from "@/components/PageNotFound/PageNotFound.jsx";
 import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
+import { titleCase } from "@/utils/strings.js";
 
 import { DevRegenDialog } from "./DevRegenDialog.jsx";
 import { SassDocSection } from "./SassDocSection.jsx";
 import { SASSDOC_GROUP, SASSDOC_GROUP_NAMES } from "./constants.js";
 import { createTOC } from "./utils.js";
 
-export async function generateStaticParams(): Promise<{ group: string }[]> {
-  return SASSDOC_GROUP_NAMES.map((group) => ({ group }));
-}
-
 export interface PageProps {
   params: { group: string };
   searchParams: Record<string, unknown>;
+}
+
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const { group } = props.params;
+  const lookup = SASSDOC_GROUP.get(group);
+  if (!lookup) {
+    return {};
+  }
+
+  const groupTitle = titleCase(group, "-");
+  const title = `${groupTitle} - Sass API Docs - react-md`;
+  const description = `Provides the Sass documentation for the ${groupTitle} group of items.`;
+  const keywords = ["sass", "sassdoc"];
+  if (lookup.variables.size) {
+    keywords.push("variables");
+  }
+  if (lookup.functions.size) {
+    keywords.push("functions");
+  }
+  if (lookup.mixins.size) {
+    keywords.push("mixins");
+  }
+
+  return {
+    title,
+    keywords,
+    description,
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    openGraph: {
+      type: "website",
+      title,
+      description,
+    },
+  };
+}
+
+export async function generateStaticParams(): Promise<{ group: string }[]> {
+  return SASSDOC_GROUP_NAMES.map((group) => ({ group }));
 }
 
 export default async function Page(props: PageProps): Promise<ReactElement> {
