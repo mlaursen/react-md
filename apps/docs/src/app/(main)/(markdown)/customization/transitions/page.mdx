@@ -13,7 +13,7 @@ All of the `react-md` components that have a transition use the
 transitions. If a component uses a CSS transition, it will expose a `timeout`
 and `classNames` prop to customize the transition behavior.
 
-## Transition Timeouts
+### Transition Timeouts
 
 `react-md` default to animating between `0.15s` to `0.2s` to ensure that
 animations only help show the user something is happening instead of blocking
@@ -25,7 +25,7 @@ These default timeouts can be configured through the
 [$SASSDOC](leave-duration), and [$SASSDOC](cross-fade-transition-duration) but
 would also need to be configured on the component level as well.
 
-## Transition Timing Functions
+### Transition Timing Functions
 
 There are a few `transition-timing-function`s available by default and can be configured.
 
@@ -34,7 +34,7 @@ There are a few `transition-timing-function`s available by default and can be co
 - [$SASSDOC](acceleration-timing-function) - start slow, then speed up
 - [$SASSDOC](deceleration-timing-function) - start fast, then slow down
 
-# Disabling All Transitions
+## Disabling All Transitions
 
 If all `react-md` transitions should be disabled, set the
 `TRANSITION_CONFIG.disabled` to true and include near the root of your app:
@@ -49,9 +49,9 @@ TRANSITION_CONFIG.disabled = true;
 > Configuration](/customization/global-configuration#transition) for testing
 > notes.
 
-# Default Component Transitions
+## Default Component Transitions
 
-## Collapse
+### Collapse
 
 The [Collapse](/components/collapse),
 [ExpansionPanel](/components/expansion-panel),
@@ -61,7 +61,7 @@ configured through Sass and instead only through the `timeout` prop. It
 defaults to
 [DEFAULT_COLLAPSE_TIMEOUT]($GITHUB/packages/core/src/transition/useCollapseTransition.ts#L25-L28).
 
-## CrossFade
+### CrossFade
 
 The [CrossFade](/components/cross-fade) component and
 [useCrossFadeTransition](/hooks/use-cross-fade-transition) hook use the
@@ -72,7 +72,7 @@ following defaults and configuration:
 - [$SASSDOC](cross-fade-translate-distance)
 - [$SASSDOC](cross-fade-transition-duration)
 
-## Dialog
+### Dialog
 
 The [Dialog](/components/dialog) component will animate with opacity and
 sliding upwards a short distance. It uses the following defaults and
@@ -86,7 +86,7 @@ configuration:
 - [$SASSDOC](dialog-leave-duration)
 - [$SASSDOC](dialog-leave-timing-function)
 
-## ScaleTransition
+### ScaleTransition
 
 The [ScaleTransition](/components/scale-transition), [Menu](/components/menu),
 [Autocomplete](/components/autocomplete), [Select](/components/select), and
@@ -101,7 +101,7 @@ hook use . It uses the following defaults and configuration:
 - [$SASSDOC](scale-y-transition-enter-duration)
 - [$SASSDOC](scale-y-transition-leave-duration)
 
-## Sheet
+### Sheet
 
 The [Sheet](/components/sheet) component will slide from outside the viewport
 and stick to the edge whenever it becomes visible. It uses the following
@@ -114,7 +114,7 @@ defaults and configuration:
 - [$SASSDOC](sheet-leave-duration)
 - [$SASSDOC](sheet-leave-timing-function)
 
-## SkeletonPlaceholder
+### SkeletonPlaceholder
 
 The [SkeletonPlaceholder](/components/skeleton-placeholder) component and
 [useSkeletonPlaceholder](/hooks/use-skeleton-placeholder) hook animate by
@@ -125,7 +125,7 @@ configuration:
 - [$SASSDOC](skeleton-placeholder-animation-duration)
 - [$SASSDOC](skeleton-placeholder-animation-timing-function)
 
-## Slide
+### Slide
 
 The [Slide](/components/slide) component and
 [useSlideTransition](/hooks/use-slide-transition) hook animate by sliding from
@@ -137,7 +137,7 @@ defaults and configuration:
 - [$SASSDOC](slide-duration)
 - [$SASSDOC](slide-timing-function)
 
-## Overlay
+### Overlay
 
 The [Overlay](/components/overlay) component uses a simple opacity transition
 from `0` to `1` whenever it becomes visible and uses the following defaults and

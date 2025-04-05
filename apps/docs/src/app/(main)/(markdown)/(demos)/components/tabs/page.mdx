@@ -13,7 +13,7 @@ components: [Tabs, TabList, SlideContainer, Slide]
 Tabs organize content across different screens, data sets, and other
 interactions.
 
-# Simple Example
+## Simple Example
 
 Tabs can be created by using the following components and hooks:
 
@@ -27,7 +27,7 @@ Tabs can be created by using the following components and hooks:
 
 ```
 
-## With Icons
+### With Icons
 
 The `Tab` component can also render an icon to the left, right, above, or below
 the content by using the `icon`, `iconAfter`, and `stacked` props.
@@ -36,7 +36,7 @@ the content by using the `icon`, `iconAfter`, and `stacked` props.
 
 ```
 
-# Controlling the Active Tab
+## Controlling the Active Tab
 
 If the active tab index needs to be controlled externally, the `activeTab` and
 `setActiveTab` returned values can be used.
@@ -45,7 +45,7 @@ If the active tab index needs to be controlled externally, the `activeTab` and
 
 ```
 
-## Custom Active Tab Index
+### Custom Active Tab Index
 
 For more complex flows, the `activeTab` can be controlled by providing the
 `activeTab` and `setActiveTab` options to the `useTabs` hook.
@@ -54,7 +54,7 @@ For more complex flows, the `activeTab` can be controlled by providing the
 
 ```
 
-## Custom Active Tab
+### Custom Active Tab
 
 If the active tab should be derived from a string value instead of an index, an
 ordered list of available tab values need to be provided to the hook so the
@@ -64,7 +64,7 @@ keyboard movement behavior can work correctly.
 
 ```
 
-# Link Tab Example
+## Link Tab Example
 
 Tabs can also be rendered as links by setting the `as` prop to `"a"` or a custom
 link component.
@@ -77,7 +77,7 @@ This example shows how the active tab could be derived from the current
 
 ```
 
-# Vertical Tabs
+## Vertical Tabs
 
 Tabs can be rendered vertically instead of horizontally by enabling the
 `vertical` prop on the `TabList` component.
@@ -86,7 +86,7 @@ Tabs can be rendered vertically instead of horizontally by enabling the
 
 ```
 
-# Disable Active Tab Transition
+## Disable Active Tab Transition
 
 The active tab indicator transition can be disabled by setting
 `disableTransition` to `true` on the `TabList` component and enabling the
@@ -99,7 +99,7 @@ The active tab indicator transition can be disabled by setting
 
 ```
 
-## Disable Vertical Active Tab Transition
+### Disable Vertical Active Tab Transition
 
 If the tabs are rendered vertically, the `verticalActiveIndicator` prop must
 also be enabled on each `Tab` for the correct styles to apply.
@@ -108,7 +108,7 @@ also be enabled on each `Tab` for the correct styles to apply.
 
 ```
 
-## Disable Tab Panel Transition
+### Disable Tab Panel Transition
 
 If the active tab panel should no longer animate while becoming active,
 the `Slide` could be updated to include `timeout={0}`. An alternative would be
@@ -120,7 +120,7 @@ only apply the required props and `ref`.
 
 ```
 
-# Scrollable Tabs
+## Scrollable Tabs
 
 When there are overflow issues due to rendering a lot of tabs, the overflown
 tabs will be hidden by default. The user can scroll the hidden tabs into view
@@ -138,7 +138,7 @@ be enabled instead that will scroll 1/10th the distance on each click.
 
 ```
 
-## Scrollable Tabs with Scrollbar
+### Scrollable Tabs with Scrollbar
 
 A scrollbar could also be shown with or without the scroll buttons by enabling
 the `scrollbar` prop.
@@ -147,7 +147,7 @@ the `scrollbar` prop.
 
 ```
 
-## Vertical Scrollable Tabs
+### Vertical Scrollable Tabs
 
 The scroll buttons and scrollbar are available for vertical tabs as well.
 
@@ -155,7 +155,7 @@ The scroll buttons and scrollbar are available for vertical tabs as well.
 
 ```
 
-## Custom Scroll Behavior
+### Custom Scroll Behavior
 
 The scroll distance can be configured by providing the `getScrollToOptions` to
 the `TabList` component.
@@ -164,7 +164,7 @@ the `TabList` component.
 
 ```
 
-# Static Panel Height
+## Static Panel Height
 
 When the tab panel content height is unknown, it can cause the entire layout to
 shift as different tab panels become active. There are a few ways to handle it:
@@ -188,7 +188,7 @@ either the `SlideContainer` or by setting it on each `Slide`.
 
 ```
 
-## Use Max Tab Panel Height
+### Use Max Tab Panel Height
 
 This example will use the `useMaxTabPanelHeight` hook provided through
 `react-md` to calculate the max tab panel height and set the height to that
@@ -201,7 +201,7 @@ value.
 
 ```
 
-# Custom Tab Panels
+## Custom Tab Panels
 
 The `SlideContainer` and `Slide` components are not required for rendering the
 different tab panels, but it will make it easier to use since most of the
@@ -217,12 +217,12 @@ and `Slide` components.
 
 ```
 
-# Accessibility
+## Accessibility
 
 The tab components and hooks implement the
 [tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
 
-## Keyboard Movement
+### Keyboard Movement
 
 - Using `Tab` and `Shift+Tab` will only focus the active tab
 - Once a tab has been focused, `ArrowLeft` and `ArrowRight` can be used to
@@ -232,7 +232,7 @@ The tab components and hooks implement the
 - `Home` - Move focus to the first tab
 - `End` - Move focus to the last tab
 
-## Activation Mode
+### Activation Mode
 
 When navigating between tabs with a keyboard, tabs must be activated manually by
 pressing `Space` or `Enter`. An alternative approach is to automatically select

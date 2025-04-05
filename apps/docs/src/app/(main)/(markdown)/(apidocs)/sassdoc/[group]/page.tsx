@@ -1,10 +1,13 @@
+import { type TableOfContentsHeadings } from "@react-md/core/navigation/types";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation.js";
 import { type ReactElement } from "react";
 
+import { LinkableHeading } from "@/components/LinkableHeading.jsx";
 import { Markdown } from "@/components/Markdown.jsx";
 import { PageNotFound } from "@/components/PageNotFound/PageNotFound.jsx";
 import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
+import { slug } from "@/utils/slug.js";
 import { titleCase } from "@/utils/strings.js";
 
 import { DevRegenDialog } from "./DevRegenDialog.jsx";
@@ -84,7 +87,9 @@ pnpm --filter docs sassdoc
     notFound();
   }
 
-  const toc = [
+  const groupTitle = titleCase(group, "-") + " Sass API";
+  const toc: TableOfContentsHeadings = [
+    { id: slug(group), children: groupTitle, depth: 1 },
     ...createTOC(lookup.variables, "Variables"),
     ...createTOC(lookup.mixins, "Mixins"),
     ...createTOC(lookup.functions, "Functions"),
@@ -93,6 +98,9 @@ pnpm --filter docs sassdoc
   return (
     <>
       <TableOfContents toc={toc} />
+      <LinkableHeading id={slug(group)} level={1}>
+        {groupTitle}
+      </LinkableHeading>
       <SassDocSection items={lookup.variables}>Variables</SassDocSection>
       <SassDocSection items={lookup.mixins}>Mixins</SassDocSection>
       <SassDocSection items={lookup.functions}>Functions</SassDocSection>

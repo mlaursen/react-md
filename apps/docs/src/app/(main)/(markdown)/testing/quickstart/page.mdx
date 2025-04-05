@@ -25,13 +25,13 @@ The test environment is handled through:
 - [Jest DOM](https://testing-library.com/docs/ecosystem-jest-dom/)
 - [User Event Testing](https://testing-library.com/docs/user-event/v13/)
 
-## Installing Dependencies
+### Installing Dependencies
 
 First, install `jest` or `vitest` along with the React Testing Library packages:
 
 <InstallDependenciesCodeBlock />
 
-## Setup Polyfills and Test Matchers
+### Setup Polyfills and Test Matchers
 
 Next, create a `src/testSetup.ts` that imports the polyfills and additional
 React Testing Library matchers:
@@ -44,7 +44,7 @@ or [vitest setupFiles](https://vitest.dev/config/#setupfiles) to include the
 
 <TestConfigCodeBlock />
 
-### Default Test Behavior
+#### Default Test Behavior
 
 To make testing easier, the `@react-md/core/test-utils/jest-globals/setup` and
 `@react-md/core/test-utils/vitest/setup` add the following code:
@@ -66,7 +66,7 @@ that specific test can just set the expected state instead using `.spyOn()`:
 
 <SpyOnCodeBlock />
 
-## Render Tests with `rmdRender`
+### Render Tests with `rmdRender`
 
 > !Success! It is recommended to jump to the next section to [create a custom test renderer](#create-a-custom-test-renderer)
 > for larger apps.
@@ -89,7 +89,7 @@ Now replace all `@testing-library/react` imports with `@react-md/core/test-utils
 
 The `rmdRender` function just automatically wraps each test in the [CoreProviders](/components/core-providers) to prevent any errors around missing context providers.
 
-# Create a Custom Test Renderer
+## Create a Custom Test Renderer
 
 My preferred method of making all the global context providers, data stores,
 `react-md` configuration, etc available for each test is to create a utility file

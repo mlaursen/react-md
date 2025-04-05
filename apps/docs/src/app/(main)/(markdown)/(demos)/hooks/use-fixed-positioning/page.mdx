@@ -23,7 +23,7 @@ to another element within the page. In other words, this is a way to have an
 element with `position: fixed` as if it were `position: absolute` to a parent
 element that had `position: relative`.
 
-## Example Usage
+### Example Usage
 
 The `useFixedPositioning` hook should generally be used with the
 `useCSStransition` component as it provides `transitionOptions` for that hook
@@ -33,7 +33,7 @@ to be able to render correctly.
 
 ```
 
-### Advanced Configuration
+#### Advanced Configuration
 
 The `useFixedPositioning` supports a lot of positioning behavior such as:
 
@@ -61,7 +61,7 @@ element.
 
 ```
 
-## Parameters
+### Parameters
 
 - `options` - An object with the following definition:
 
@@ -227,7 +227,7 @@ export interface CalculateFixedPositionOptions extends InitialCoords {
 }
 ```
 
-## Returns
+### Returns
 
 ```ts disableTransform
 export interface FixedPositioningImplementation<E extends HTMLElement> {
@@ -264,7 +264,7 @@ export interface FixedPositioningImplementation<E extends HTMLElement> {
 }
 ```
 
-## See Also
+### See Also
 
 - [useCSSTransition](./use-css-transition)
 - [useCSSTransition Example](/components/css-transition#simple-usecsstransition-example)

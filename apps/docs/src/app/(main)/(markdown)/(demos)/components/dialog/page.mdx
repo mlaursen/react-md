@@ -19,7 +19,7 @@ provide critical information or ask for a decision. Dialogs disable all app
 functionality when they appear, and remain on screen until confirmed, dismissed,
 or a required action has been taken.
 
-# Simple Example
+## Simple Example
 
 A dialog can be created using the `Dialog`, `DialogHeader`, `DialogTitle`,
 `DialogContent`, and `DialogFooter` components. The `Dialog` is a controlled
@@ -33,7 +33,7 @@ title would normally describe the purpose of the dialog.
 
 ```
 
-## Full Page Dialog
+### Full Page Dialog
 
 A dialog can span the entire viewport by setting the `type` to `"full-page"`.
 
@@ -41,7 +41,7 @@ A dialog can span the entire viewport by setting the `type` to `"full-page"`.
 
 ```
 
-# Dialog Widths
+## Dialog Widths
 
 The `Dialog` can be updated to enforce a specific width instead of relying on
 the size of the content using the `width` prop. The available values are:
@@ -60,7 +60,7 @@ the size of the content using the `width` prop. The available values are:
 
 ```
 
-# Modal Dialog
+## Modal Dialog
 
 The default behavior for the dialog is to allow the user to click the overlay to
 close the dialog. If the user should be forced to interact with the modal to
@@ -75,7 +75,7 @@ dialog to describe the alert.
 
 ```
 
-# Fixed Dialog
+## Fixed Dialog
 
 If a dialog should be positioned relative to another element, use the
 `FixedDialog` component. The `FixedDialog` component maintains the same API as
@@ -94,7 +94,7 @@ the `Dialog` component with a few changes:
 
 ```
 
-# Setting the Initial Focus
+## Setting the Initial Focus
 
 When the dialog gains visibility, the current focus will move to the dialog
 itself and trap focus within the dialog. If another element in the dialog should
@@ -104,7 +104,7 @@ gain focus instead, enable the `autoFocus` prop on that element.
 
 ```
 
-# Custom Transition
+## Custom Transition
 
 The `Dialog` uses the [useCSSTransition](/hooks/use-css-transition) to handle
 the visibility transitions and can be customized by providing the `timeout` and
@@ -114,7 +114,7 @@ the visibility transitions and can be customized by providing the `timeout` and
 
 ```
 
-# Nested Dialogs
+## Nested Dialogs
 
 Dialogs can be nested without any additional setup since the dialogs are
 portalled behind the scenes and only the topmost overlay will be shown at a
@@ -128,7 +128,7 @@ time.
 
 ```
 
-## Nested Dialogs Default Visible
+### Nested Dialogs Default Visible
 
 If nested dialogs should be visible by on initial page load or mount, trigger
 the `show` behavior into a `useEffect` instead of setting the initial state to

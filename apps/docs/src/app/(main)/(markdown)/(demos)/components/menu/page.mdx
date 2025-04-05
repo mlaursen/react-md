@@ -23,7 +23,7 @@ components:
 A menu displays a list of choices on a temporary surface. They appear when users
 interact with a button, action, or other control.
 
-# Simple Example
+## Simple Example
 
 A menu can be created by using the `DropdownMenu` and `MenuItem` components. The
 `DropdownMenu` requires the `buttonChildren` prop to render text, icons, or
@@ -33,7 +33,7 @@ other content in a button and the available `MenuItem`s as children.
 
 ```
 
-## Menu Item Actions
+### Menu Item Actions
 
 `MenuItem`s should normally provide an `onClick` event handler
 
@@ -41,7 +41,7 @@ other content in a button and the available `MenuItem`s as children.
 
 ```
 
-## Horizontal Menu
+### Horizontal Menu
 
 A menu can be rendered horizontally instead of vertically by enabling the
 `horizontal` prop.
@@ -50,7 +50,7 @@ A menu can be rendered horizontally instead of vertically by enabling the
 
 ```
 
-# Button Styling
+## Button Styling
 
 Most of the [Button](/components/button) props are available as top-level props
 on the `DropdownMenu`.
@@ -59,7 +59,7 @@ on the `DropdownMenu`.
 
 ```
 
-## Icon Button
+### Icon Button
 
 An icon button can be rendered by setting the `buttonType` to `"icon"`. This
 will also remove the default dropdown icon within the button.
@@ -71,7 +71,7 @@ will also remove the default dropdown icon within the button.
 
 ```
 
-## Floating Action Button
+### Floating Action Button
 
 A menu can be rendered in a floating action button by providing the `floating`
 prop. Just like the `Button` component, the button will default to an icon
@@ -81,7 +81,7 @@ button if the floating prop is defined instead of a text button.
 
 ```
 
-# Menu Item Addons
+## Menu Item Addons
 
 A `MenuItem` can render addons just like the [ListItem](/components/list-item).
 
@@ -89,14 +89,14 @@ A `MenuItem` can render addons just like the [ListItem](/components/list-item).
 
 ```
 
-# Configuring Menu Behavior
+## Configuring Menu Behavior
 
 > !Info! The `Menu` uses the `useFixedPositioning` hook to position itself
 > within the viewport. Check out the
 > [useFixedPositioning](/hooks/use-fixed-positioning) documentation page for
 > available options.
 
-## Controlling Menu Visibility
+### Controlling Menu Visibility
 
 If the menu's visibility must manually be controlled, provide the `visible` and
 `setVisible` props.
@@ -105,7 +105,7 @@ If the menu's visibility must manually be controlled, provide the `visible` and
 
 ```
 
-## Prevent Scroll Example
+### Prevent Scroll Example
 
 The default behavior is to reposition the `Menu` while the user scrolls the page
 until the menu is no longer in the viewport. Another approach is to prevent the
@@ -116,7 +116,7 @@ enable the `preventScroll` prop.
 
 ```
 
-## Close On Resize Example
+### Close On Resize Example
 
 The `Menu` will automatically reposition itself if the user resizes the browser.
 Another approach is to close the menu instead. Enable the `closeOnResize` prop
@@ -126,7 +126,7 @@ to opt into this behavior.
 
 ```
 
-## Disable Portal Example
+### Disable Portal Example
 
 The `Menu` will use the [Portal](/components/portal) by default to help with
 positioning issues within the viewport and temporary elements like
@@ -138,7 +138,7 @@ sibling of the menu toggle button.
 
 ```
 
-## Disable Conditional Rendering Example
+### Disable Conditional Rendering Example
 
 The `Menu` will only be mounted while `visible` which means any internal state
 is reset each time the `Menu` is opened. Set the `temporary` prop to `false` if
@@ -149,7 +149,7 @@ instead.
 
 ```
 
-# Context Menu
+## Context Menu
 
 To override the default right click behavior and display a custom context menu,
 use the `useContextMenu` hook and the `Menu` component. The `useContextMenu`
@@ -166,7 +166,7 @@ The context menu will also update the menu to have the following default props:
 
 ```
 
-# Nested Menus
+## Nested Menus
 
 Nested dropdown menus can be created by adding a `DropdownMenu` as a child of
 another `DropdownMenu`. The `DropdownMenu` will render as a `MenuItemButton`
@@ -176,7 +176,7 @@ instead of as a `MenuButton` and allow for all the correct keyboard behavior.
 
 ```
 
-# Rendering in a Sheet
+## Rendering in a Sheet
 
 It can sometimes be useful to render a `Menu` within a `Sheet` instead of a
 temporary popup element when on smaller viewports or dealing with large menu
@@ -192,7 +192,7 @@ instead.
 
 ```
 
-## Sheet Options
+### Sheet Options
 
 The `Sheet` can be configured further to support an optional header, an optional
 footer, the position within the viewport, and the vertical size. The optional
@@ -207,7 +207,7 @@ and `setVisible` function.
 
 ```
 
-# Hoverable Menu
+## Hoverable Menu
 
 The `DropdownMenu` can be updated to become visible after a specific hover
 timeout by wrapping a group of dropdown menus within the `MenuBar` component to
@@ -224,7 +224,7 @@ hovered for the duration in milliseconds.
 
 ```
 
-## Click-first Hoverable Menu
+### Click-first Hoverable Menu
 
 The `DropdownMenu` can also behave like the browser bookmarks toolbar where
 once a menu has been opened, all other menus within the group will immediately
@@ -235,7 +235,7 @@ this functionality.
 
 ```
 
-# Additional MenuItem Components
+## Additional MenuItem Components
 
 The following components have been provided to merge the functionality and
 accessibility into a `MenuItem`.
@@ -254,7 +254,7 @@ within a `DropdownMenu`.
 > !Info! Enable the `preventMenuHideOnClick` if the menu should not close after
 > clicking the menu item.
 
-## MenuItemCheckbox Example
+### MenuItemCheckbox Example
 
 The `MenuItemCheckbox` component can be used to render a checkbox within a
 `MenuItem` and is a controlled component requiring the `checked` and
@@ -266,7 +266,7 @@ involved since it also supports indeterminate checkboxes.
 
 ```
 
-## MenuItemRadio Example
+### MenuItemRadio Example
 
 The `MenuItemRadio` component can be used to render a radio within a `MenuItem`
 and is a controlled component requiring the `checked` and `onCheckedChange`
@@ -277,7 +277,7 @@ to control the group of radios.
 
 ```
 
-## MenuItemSwitch Example
+### MenuItemSwitch Example
 
 The `MenuItemSwitch` component can be used to render a `Switch` within a
 `MenuItem` and is a controlled component requiring the `checked` and
@@ -288,7 +288,7 @@ The `MenuItemSwitch` component can be used to render a `Switch` within a
 
 ```
 
-## MenuItemTextField Example
+### MenuItemTextField Example
 
 The `MenuItemTextField` can be used to render a `TextField` within a `MenuItem`.
 This component will update the menu keyboard behavior so that the menu keyboard
@@ -301,7 +301,7 @@ controlled by providing the `value` and `onChange` props.
 
 ```
 
-## MenuItemFileInput Example
+### MenuItemFileInput Example
 
 The `MenuItemFileInput` can be used to render `FileInput` components within a
 `MenuItem`. The main difference is that the upload icon will be rendered as a
@@ -315,7 +315,7 @@ children.
 
 ```
 
-## MenuItemSeparator and MenuItemGroup
+### MenuItemSeparator and MenuItemGroup
 
 Use the `MenuItemGroup` and `MenuItemSeparator` when rendering the
 `MenuItemRadio` with other groups of `MenuItem`s.
@@ -326,7 +326,7 @@ Use the `MenuItemGroup` and `MenuItemSeparator` when rendering the
 
 ```
 
-## Form MenuItem with Addons
+### Form MenuItem with Addons
 
 The form menu item components can also render an addon like the `MenuItem` using
 `addon`, `addonType`, `addonPosition` props.
@@ -338,7 +338,7 @@ text instead of before, the `iconAfter` prop can be enabled.
 
 ```
 
-# Menu within a Dialog
+## Menu within a Dialog
 
 Since menus use the [Portal](/components/portal) to render in a different part
 of the DOM and position within the viewport using
@@ -350,23 +350,23 @@ to view all the menu items.
 
 ```
 
-# Accessibility
+## Accessibility
 
 The menu components implement the
 [menu](https://www.w3.org/WAI/ARIA/apg/patterns/menu/) and
 [menu button](https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/)
 specifications.
 
-## Keyboard Movement
+### Keyboard Movement
 
 The following keyboard movement has been implemented:
 
-### Menu Button
+#### Menu Button
 
 - `ArrowUp` - opens the menu and focuses the last menu item
 - `ArrowDown`/`Space`/`Enter` - opens the menu and focuses the first menu item
 
-### Menu Item Button
+#### Menu Item Button
 
 - `ArrowRight` - opens the nested menu and moves focus to the first menu item in
   the newly opened menu
@@ -375,7 +375,7 @@ The following keyboard movement has been implemented:
   into the parent menu
   - `ArrowUp` is used for horizontal menus
 
-### Menu
+#### Menu
 
 - `ArrowUp`/`ArrowDown` - moves the focus to the previous/next menu item and
   loops
@@ -388,7 +388,7 @@ The following keyboard movement has been implemented:
   with the same letter.
 - `Escape` - Closes the **current** menu
 
-### MenuBar
+#### MenuBar
 
 - While no dropdown menus are visible:
   - `ArrowLeft`/`ArrowRight` will move focus to the previous/next dropdown menu

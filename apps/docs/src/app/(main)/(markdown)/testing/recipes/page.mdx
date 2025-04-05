@@ -35,14 +35,14 @@ This page will provide common testing recipes for components through ReactMD.
 > !Warn! All examples assume that fake timers are not enabled. Enable at your
 > own debugging risk!
 
-# Inputs
+## Inputs
 
-## Autocomplete
+### Autocomplete
 
 The following examples will use the [Autocomplete Simple Example](/components/autocomplete#simple-example)
 code.
 
-### Autocomplete Parts
+#### Autocomplete Parts
 
 The `Autocomplete` is broken up into a few accessible roles that can be found:
 
@@ -50,14 +50,14 @@ The `Autocomplete` is broken up into a few accessible roles that can be found:
 - `"listbox"` - The popup menu of suggestions
 - `"option"` - The available suggestions in the popup menu
 
-### Find and Change Value
+#### Find and Change Value
 
 For simple tests, it is recommended just to update the `Autocomplete` like
 a normal `TextField` using `user.type()` or `fireEvent.change()`
 
 <AutocompleteFindAndChangeValue />
 
-### Find and Change Value Through Suggestions
+#### Find and Change Value Through Suggestions
 
 If the test needs to verify specific suggestions are visible, filtering
 behavior, or anything else, open the listbox and select an option to change the
@@ -65,36 +65,36 @@ value.
 
 <AutocompleteFindAndChangeValueThroughSuggestions />
 
-## Checkbox
+### Checkbox
 
-### Find and Change Value
+#### Find and Change Value
 
 The `Checkbox` can be found like any other checkbox element:
 
 <CheckboxFindAndChangeValue />
 
-## FileInput
+### FileInput
 
-### Find and Change Value
+#### Find and Change Value
 
 The `FileInput` can be found like any other `<input type="file">` and updated
 using the [upload utility](https://testing-library.com/docs/user-event/utility#upload)
 
 <FileInputFindAndChangeValue />
 
-## Radio
+### Radio
 
-### Find and Change Value
+#### Find and Change Value
 
 The `Radio` can be found like any other radio element:
 
 <RadioFindAndChangeValue />
 
-## Select
+### Select
 
 The following examples will use the [Simple Select](/components/select#simple-select) code.
 
-### Find and Change Value
+#### Find and Change Value
 
 This example showcases how to:
 
@@ -104,7 +104,7 @@ This example showcases how to:
 
 <SelectFindAndChangeValue />
 
-### Verify the Display Value
+#### Verify the Display Value
 
 The `Select` display value cannot be found using a normal query and instead
 can be found as the `container.getByRole("combobox", { name: "LABEL" }).firstElementChild`.
@@ -117,9 +117,9 @@ to find the important `Select` element parts with the correct type definitions.
 
 <SelectVerifyTheDisplayValue />
 
-## Slider
+### Slider
 
-### Find and Change Value
+#### Find and Change Value
 
 Tests including the `Slider` are generally setup to include verifying the
 current value and optionally changing it. The slider element can be found
@@ -140,7 +140,7 @@ that can be used to get the `slider` element and the `sliderInput`.
 
 <SliderFindAndChangeValue />
 
-### Find and Change Value (Range Slider)
+#### Find and Change Value (Range Slider)
 
 ReactMD provides additioanl React Testing Library queries named
 [getRangeSliderTestElements]($GITHUB/packages/core/src/test-utils/queries/slider.ts#L186)
@@ -152,20 +152,20 @@ verified like the normal slider.
 
 <RangeSliderFindAndChangeValue />
 
-## Switch
+### Switch
 
-### Find and Toggle
+#### Find and Toggle
 
 The `Switch` is an extension of an `<input type="checkbox">` with
 `role="switch"`, so the element can be changed just like a `Checkbox`.
 
 <SwitchFindAndToggle />
 
-# Presentation
+## Presentation
 
-## Tooltip
+### Tooltip
 
-### Find and Verify Tooltip
+#### Find and Verify Tooltip
 
 A tooltip can be found using using `.getByRole("tooltip")` or
 `.findByRole("tooltip")` along with the `hover` event:
@@ -175,21 +175,21 @@ A tooltip can be found using using `.getByRole("tooltip")` or
 
 <TooltipFindAndVerifyTooltip />
 
-# Navigation
+## Navigation
 
-## Menu
+### Menu
 
-### Open and Click a `MenuItem`
+#### Open and Click a `MenuItem`
 
 <MenuOpenAndClickAMenuItem />
 
-### MenuItemCheckbox
+#### MenuItemCheckbox
 
 The `MenuitemCheckbox` can be found using the `"menuitemcheckbox"` role:
 
 <MenuItemCheckbox />
 
-### MenuItemFileInput
+#### MenuItemFileInput
 
 The `MenuItemFileInput` does not render an `<input type="file">` in the DOM, and instead
 dynamically creates the input when the menu item is clicked. To help test this flow,
@@ -198,21 +198,21 @@ or `@react-md/core/test-utils/vitest`:
 
 <MenuItemFileInput />
 
-### MenuItemRadio
+#### MenuItemRadio
 
 The `MenuItemRadio` can be found using the `menuitemradio` role:
 
 <MenuItemRadio />
 
-### MenuItemSwitch
+#### MenuItemSwitch
 
 The `MenuItemSwitch` can be found using the `"menuitemcheckbox"` role:
 
 <MenuItemSwitch />
 
-## Tabs
+### Tabs
 
-### Verify Selected Tab and Change Tabs
+#### Verify Selected Tab and Change Tabs
 
 Each tab can be found by using the `"tab"` role while the tab panel can be
 found using the `"tabpanel"` role. The inactive tab panels are hidden using
@@ -223,17 +223,17 @@ This test uses the [Tabs Simple Example](/components/tabs#simple-example).
 
 <TabVerifySelectedTabAndChangeTabs />
 
-## Tree
+### Tree
 
 The following examples use the [Single Select Tree Example](/components/tree#single-select-tree).
 
-### Find and Verify Selected Items
+#### Find and Verify Selected Items
 
 The top-level tree can be found using the `"tree"` role and each item with `"treeitem"`:
 
 <TreeFindAndVerifySelectedItems />
 
-### Find and Verify Expansion
+#### Find and Verify Expansion
 
 Unless the `temporaryChildItems` props are enabled, all tree items will be
 rendered but hidden using `display: none`. The expansion state can be verified
@@ -242,11 +242,11 @@ using the `aria-expanded` attribute on the tree item or using the
 
 <TreeFindAndVerifyExpansion />
 
-# Feedback
+## Feedback
 
-## Dialog/Sheet
+### Dialog/Sheet
 
-### Find and Toggle Visibility
+#### Find and Toggle Visibility
 
 Both the `Dialog` and `Sheet` can be found using the `"dialog"` role or `"alertdialog"` when
 the `modal` prop is enabled. Here's a simple test flow for the
@@ -254,13 +254,13 @@ the `modal` prop is enabled. Here's a simple test flow for the
 
 <DialogFindAndToggleVisibility />
 
-# Layout
+## Layout
 
-## Expansion Panel
+### Expansion Panel
 
 The following examples use the [Expansion Panel Group Example](/components/expansion-panel#expansion-panel-group).
 
-### Find and Verify Expansion
+#### Find and Verify Expansion
 
 Each expansion panel can be found using the `"button"` role while the panel
 contents can be found using the `"region"` role. The collapsed panel contents
@@ -269,7 +269,7 @@ using the [isElementVisible util](#%EF%B8%8F-iselementvisible-util).
 
 <ExpansionPanelFindAndVerifyExpansion />
 
-# ⚠️ isElementVisible util
+## ⚠️ isElementVisible util
 
 > !Warn! The `isElementVisible` util really only verifies that the element or
 > any parent elements do not contain the `"rmd-display-none"` class. A custom

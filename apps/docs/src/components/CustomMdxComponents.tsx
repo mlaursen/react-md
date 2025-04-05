@@ -61,11 +61,11 @@ export type CustomMDXComponents = Omit<
   RedefinedComponents;
 
 export const CUSTOM_MDX_COMPONENTS: CustomMDXComponents = {
-  h1: (props) => <LinkableHeading {...props} level={2} />,
-  h2: (props) => <LinkableHeading {...props} level={3} />,
-  h3: (props) => <LinkableHeading {...props} level={4} />,
-  h4: (props) => <LinkableHeading {...props} level={5} />,
-  h5: (props) => <LinkableHeading {...props} level={6} />,
+  h1: (props) => <LinkableHeading {...props} level={1} />,
+  h2: (props) => <LinkableHeading {...props} level={2} />,
+  h3: (props) => <LinkableHeading {...props} level={3} />,
+  h4: (props) => <LinkableHeading {...props} level={4} />,
+  h5: (props) => <LinkableHeading {...props} level={5} />,
   h6: (props) => <LinkableHeading {...props} level={6} />,
   p: (props) => <Typography {...props} margin="bottom" />,
   a: MarkdownLink,

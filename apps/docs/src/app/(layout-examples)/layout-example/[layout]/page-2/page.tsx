@@ -5,7 +5,9 @@ import { type ReactElement } from "react";
 export default function Page1(): ReactElement {
   return (
     <TextContainer>
-      <Typography type="headline-2">Hello, from Page 2!</Typography>
+      <Typography as="h1" type="headline-2">
+        Hello, from Page 2!
+      </Typography>
       <Typography>
         Praesent eu dictum enim, at semper massa. Praesent in lacus ut sapien
         interdum tempus eget sit amet urna. Cras ut mi et arcu lobortis

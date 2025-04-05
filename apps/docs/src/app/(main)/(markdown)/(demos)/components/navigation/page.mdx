@@ -18,7 +18,7 @@ pages within the app and generally used within a [Sheet](./sheet) or
 > will use a `FakeLink` with a hard-coded `pathname`. A "real-world" example is
 > available as the navigation for this website and some [example layouts](/layout-example/temporary).
 
-# Simple Example
+## Simple Example
 
 The `Navigation` component accepts a list of `items` defining all the routes to
 render and a `data` prop defining the current `pathname` and `linkComponent`.
@@ -33,7 +33,7 @@ styles.
 
 ```
 
-## Adding Icons
+### Adding Icons
 
 Icons can be added before or after the `children` by using the `beforeAddon` and
 `afterAddon` props respectively.
@@ -42,7 +42,7 @@ Icons can be added before or after the `children` by using the `beforeAddon` and
 
 ```
 
-## Adding Dividers and Subheaders
+### Adding Dividers and Subheaders
 
 Dividers and subheaders can be rendered by setting the `type` to `"divider"` or
 `"subheader"` respectively.
@@ -51,7 +51,7 @@ Dividers and subheaders can be rendered by setting the `type` to `"divider"` or
 
 ```
 
-## Collapsible Groups
+### Collapsible Groups
 
 A group of routes can be created by creating an item with `type: "group"`. If an
 `href` is also included in this item, all child routes' `href` will be prefixed
@@ -61,9 +61,9 @@ with the group `href`.
 
 ```
 
-# Routing Libraries and Frameworks
+## Routing Libraries and Frameworks
 
-## Nextjs Example
+### Nextjs Example
 
 It is recommended to create a simple `LinkUnstyled` component which can be
 customized and used throughout the app:
@@ -79,7 +79,7 @@ Then use the `LinkUnstyled` as the `linkComponent` and pass the current
 
 ```
 
-## React Router Example
+### React Router Example
 
 It is recommended to create a simple `LinkUnstyled` component which can be
 customized and used throughout the app:

@@ -22,7 +22,7 @@ components:
 
 Tables display sets of data across rows and columns.
 
-# Simple Example
+## Simple Example
 
 A table can be created using the following components:
 
@@ -44,7 +44,7 @@ can be added by using the `Typography` component.
 
 ```
 
-## Disable Hover Styles
+### Disable Hover Styles
 
 The row hover styles that appear on all the `TableRow` in the `TableBody` can be
 configured on the `Table`, `TableBody`, or `TableRow`components with
@@ -55,7 +55,7 @@ inherited value if defined.
 
 ```
 
-## Disable Border Styles
+### Disable Border Styles
 
 The bottom border that appears on all `TableRow` in the `TableBody` can be
 removed by enabling the `disableBorders` prop on the `Table`, `TableBody`, or
@@ -66,7 +66,7 @@ inherited value if defined.
 
 ```
 
-# Scrollable Tables
+## Scrollable Tables
 
 If a table should be scrollable, wrap it in a `TableContainer`. The
 `TableContainer` allows scrolling horizontally and vertically by adding:
@@ -82,7 +82,7 @@ If a table should be scrollable, wrap it in a `TableContainer`. The
 
 ```
 
-# Selectable Rows
+## Selectable Rows
 
 A common pattern with tables are to make the rows selectable so different
 actions can be applied. A `TableRow` can be updated to have a `selected` state
@@ -93,7 +93,7 @@ the cursor to be a pointer.
 
 ```
 
-## Selectable Rows with Checkbox
+### Selectable Rows with Checkbox
 
 It is recommended to use the `TableCheckbox` component as the first cell in each
 row to help show the row can be selected and the
@@ -104,7 +104,7 @@ state.
 
 ```
 
-## Selectable Rows with Radio
+### Selectable Rows with Radio
 
 If only one row can be selected at a time, the `TableRadio` component can be
 used instead.
@@ -113,7 +113,7 @@ used instead.
 
 ```
 
-## Updating Selected Row Color
+### Updating Selected Row Color
 
 The selected background color defaults to
 [$SASSDOC](<interaction-get-var(selected-background-color)>). This can be
@@ -128,7 +128,7 @@ quick example of using the primary color while selected.
 
 ```
 
-# Sortable Columns
+## Sortable Columns
 
 To create a sortable header cell, provide the `aria-sort` prop to a `TableCell`
 as one of the following values:
@@ -151,7 +151,7 @@ be.
 
 ```
 
-## Customizing Sort Icon
+### Customizing Sort Icon
 
 The sortable `TableCell` component will use the
 [sort](/customization/icon-config#sort) icon from the `ICON_CONFIG` by default
@@ -165,7 +165,7 @@ The sort icon can also be placed after the children by enabling the
 
 ```
 
-# Sticky Tables
+## Sticky Tables
 
 Tables within `react-md` can be updated to have sticky headers, footers, and
 columns by using
@@ -176,7 +176,7 @@ properties. If there are no parent elements that have `overflow: auto` or
 `overflow: scroll`, the sticky elements can be positioned relative to the
 entire document.
 
-## Container Based Sticky Table
+### Container Based Sticky Table
 
 To create a sticky `TableHeader` or `TableFooter`, use the `StickyTableSection`
 component with `type="header"` or `type="footer"` which will add `top: 0` and
@@ -187,7 +187,7 @@ footer are stuck to the top and bottom of the `TableContainer` component.
 
 ```
 
-## Viewport Based Sticky Table
+### Viewport Based Sticky Table
 
 To create a sticky `TableHeader` and `TableFooter` relative to the viewport, do
 not wrap the `Table` with the `TableContainer` and ensure no parent elements
@@ -200,7 +200,7 @@ setting the `top` style.
 
 ```
 
-## Sticky Columns Example
+### Sticky Columns Example
 
 A column of `TableCell` can also become sticky horizontally by enabling the
 `sticky` prop on each `TableCell` in that column. It defaults to using `left: 0`
@@ -214,7 +214,7 @@ header cell with sticky headers and footers.
 
 ```
 
-## Sticky Active Styles
+### Sticky Active Styles
 
 When the `TableHeader`/`TableFooter` have the `sticky` prop enabled, some magic
 happens behind the scenes to automatically raise the elevation for the
@@ -232,7 +232,7 @@ If the styles should not be configured globally, provide a custom
 
 ```
 
-## Disable Sticky Active Styles
+### Disable Sticky Active Styles
 
 The sticky active styles can also be disabled by enabling the
 `disableStickyStyles` or using the `TableHeader`/`TableFooter` components

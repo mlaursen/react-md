@@ -14,14 +14,14 @@ modifying configuration objects. The [Installation](/getting-started/installatio
 showcased how to modify the default icons, but this page will show the
 remaining features that can be configured.
 
-# Prerequisites
+## Prerequisites
 
 It is recommended to create a root `src/rmdConfig.tsx` file that handle
 all the ReactMD configuration changes and is imported once into either
 the main import for a client side app, or the base client component in
 a server side rendered app.
 
-# Icons
+## Icons
 
 The default icons used by ReactMD component can be configured using the
 `configureIcons` util. The default behavior uses the `material-icons` font
@@ -64,11 +64,11 @@ configureIcons({
 });
 ```
 
-# Forms
+## Forms
 
 Some of the form behavior can be configured globally using the `FORM_CONFIG` object.
 
-## Theme
+### Theme
 
 The `TextField`, `Autocomplete`, `TextArea`, `Select`, `NativeSelect`,
 `FormMessage`, and `FormMessageContainer` can configure the `theme` prop globally
@@ -95,7 +95,7 @@ FORM_CONFIG.theme = "underline";
 FORM_CONFIG.theme = "none";
 ```
 
-## Underline Direction
+### Underline Direction
 
 This is only used when the `theme` is set to `"underline"` using the `FORM_CONFIG` or
 the `theme` property.
@@ -115,7 +115,7 @@ FORM_CONFIG.underlineDirection = "center";
 FORM_CONFIG.underlineDirection = "right";
 ```
 
-## Uncontrolled Toggles
+### Uncontrolled Toggles
 
 This is a micro-optimization that can be set if every `Checkbox` and `Radio`
 component in the app will be controlled by providing the `checked` and
@@ -134,13 +134,13 @@ import { FORM_CONFIG } from "@react-md/core/form/formConfig";
 FORM_CONFIG.uncontrolledToggles = false;
 ```
 
-# Interaction Behavior
+## Interaction Behavior
 
 ReactMD defaults to displaying a ripple effect when elements are clicked and
 ensuring that text maintains a higher contrast ratio while hovering elements.
 This behavior can be modified by changing the `INTERACTION_CONFIG` object.
 
-## Interaction Mode
+### Interaction Mode
 
 > !Info! When changing the interaction mode, make sure to change the
 > [$SASSDOC](interaction-mode) to match.
@@ -160,7 +160,7 @@ INTERACTION_CONFIG.mode = "press";
 INTERACTION_CONFIG.mode = "none";
 ```
 
-## Higher Contrast
+### Higher Contrast
 
 ReactMD usually applies a general `rgba(0, 0, 0, .12)` overlay while hovering
 elements which can cause text content to be covered by that overlay and become
@@ -181,7 +181,7 @@ import { INTERACTION_CONFIG } from "@react-md/core/interaction/config";
 INTERACTION_CONFIG.higherContrast = false;
 ```
 
-# Transition
+## Transition
 
 ReactMD only supports disabling all transitions at this time using the
 `TRANSITION_CONFIG.disabled` property. It is recommended to disable transitions

@@ -412,12 +412,6 @@ export const navItems: readonly NavigationItem[] = [
   },
   {
     type: "group",
-    href: "/component-api",
-    children: "Component API",
-    items: [],
-  },
-  {
-    type: "group",
     href: "/hooks",
     children: "Hooks",
     items: [

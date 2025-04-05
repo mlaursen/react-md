@@ -23,7 +23,7 @@ The full interactive migration can be run with the following command:
 npx @react-md/codemod v5-to-v6
 ```
 
-# ✅ Update all imports to `react-md`
+## ✅ Update all imports to `react-md`
 
 > !Warn! This step is **required** for any other codemods to work. The codemods
 > only look for the `react-md` package name.
@@ -58,7 +58,7 @@ package imports (`@react-md/*`) into the `react-md` package import.
  import styles from "./FullPageExample.module.scss";
 ```
 
-# 🔧 Hardcode any scssVariables usage
+## 🔧 Hardcode any scssVariables usage
 
 ```sh
 npx @react-md/codemod v5-to-v6/hardcode-scss-variables
@@ -114,7 +114,7 @@ it no longer exists.
    );
 ```
 
-# ✅ Remove deprecated `FontIcon` props
+## ✅ Remove deprecated `FontIcon` props
 
 ```sh
 npx @react-md/codemod v5-to-v6/icon/remove-deprecated-font-icon-props
@@ -142,13 +142,13 @@ The `forceSize` and `forceFontSize` props were removed from the `FontIcon` compo
  }
 ```
 
-# ✅ Update Material Icons
+## ✅ Update Material Icons
 
 The `@react-md/material-icons` package was updated to support all the new icons
 and material symbols but only exports SVG icon component versions. Choose one of
 the following migrations:
 
-### ✅ to-svg
+#### ✅ to-svg
 
 ```sh
 npx @react-md/codemod v5-to-v6/material-icons/to-svg
@@ -224,7 +224,7 @@ Converts all material icons into the SVG components in v6.0.0.
  };
 ```
 
-### ✅ to-font
+#### ✅ to-font
 
 ```sh
 npx @react-md/codemod v5-to-v6/material-icons/to-font
@@ -290,7 +290,7 @@ Converts all material icons into the new `MaterialIcon` component.
  };
 ```
 
-### ✅ to-symbol
+#### ✅ to-symbol
 
 ```sh
 npx @react-md/codemod v5-to-v6/material-icons/to-symbol
@@ -355,9 +355,9 @@ Converts all material icons into the new `MaterialSymbol` component.
  };
 ```
 
-# Update the scoped packages
+## Update the scoped packages
 
-## Alert ❌
+### Alert ❌
 
 There are a lot of breaking changes for the alert components and API. There are
 some auto-migrations available, but it is recommended to change a few things
@@ -521,9 +521,9 @@ the v6 implementation:
  }
 ```
 
-## App Bar
+### App Bar
 
-### 🔧 remove-class-name-constants
+#### 🔧 remove-class-name-constants
 
 ```sh
 npx @react-md/codemod v5-to-v6/app-bar/remove-class-name-constants
@@ -588,7 +588,7 @@ If the content should still be offset by the app bar's height, apply the followi
 }
 ```
 
-### ✅ remove-use-action-class-name
+#### ✅ remove-use-action-class-name
 
 ```sh
 npx @react-md/codemod v5-to-v6/app-bar/remove-use-action-class-name
@@ -635,7 +635,7 @@ spacing within an `AppBar`.
      </>
 ```
 
-### ✅ replace-nav-and-action-with-button
+#### ✅ replace-nav-and-action-with-button
 
 ```sh
 npx @react-md/codemod v5-to-v6/app-bar/replace-nav-and-action-with-button
@@ -697,7 +697,7 @@ with a `Button`.
      </Container>
 ```
 
-### ✅ update-app-bar-props
+#### ✅ update-app-bar-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/app-bar/update-app-bar-props
@@ -735,7 +735,7 @@ The following props have changed for the `AppBar` component:
  }
 ```
 
-### ✅ update-app-bar-title-props
+#### ✅ update-app-bar-title-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/app-bar/update-app-bar-title-props
@@ -767,7 +767,7 @@ The following props have changed for the `AppBarTitle` component:
  }
 ```
 
-## Auto Complete ❌
+### Auto Complete ❌
 
 The `AutoComplete` has a completely new API and has been renamed to `Autocomplete`. It
 is recommended to check out the [Autocomplete Demos](/components/autocomplete) to see
@@ -808,19 +808,19 @@ The main breaking changes are:
 - The listbox style, className, and positioning options must now be passed to
   `listboxProps`:
 
-### 🔧 update-simple-props
+#### 🔧 update-simple-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/autocomplete/update-simple-props
 ```
 
-## Avatar 🎉
+### Avatar 🎉
 
 No breaking changes!
 
-## Badge
+### Badge
 
-### 🎨 remove-badge-container
+#### 🎨 remove-badge-container
 
 ```sh
 npx @react-md/codemod v5-to-v6/badge/remove-badge-container
@@ -966,7 +966,7 @@ The `BadgeContainer` was removed and custom styles must be used instead.
  }
 ```
 
-### 🔧 update-badge
+#### 🔧 update-badge
 
 ```sh
 npx @react-md/codemod v5-to-v6/badge/update-badge
@@ -1058,9 +1058,9 @@ a string.
 +}
 ```
 
-## Button
+### Button
 
-### ✅ remove-unused-props
+#### ✅ remove-unused-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/button/remove-unused-props
@@ -1095,7 +1095,7 @@ The `Button` no longer supports the ripple props.
  }
 ```
 
-### ✅ rename-button-theme-class-names
+#### ✅ rename-button-theme-class-names
 
 ```sh
 npx @react-md/codemod v5-to-v6/button/rename-button-theme-class-names
@@ -1124,7 +1124,7 @@ The `buttonThemeClassNames` utility function was renamed to `button`.
 
 ```
 
-### ✅ rename-fab
+#### ✅ rename-fab
 
 ```sh
 npx @react-md/codemod v5-to-v6/button/rename-fab
@@ -1161,7 +1161,7 @@ The `FAB` was renamed to `FloatingActionButton`.
  }
 ```
 
-### ✅ rename-unstyled-button
+#### ✅ rename-unstyled-button
 
 ```sh
 npx @react-md/codemod v5-to-v6/button/rename-unstyled-button
@@ -1204,9 +1204,9 @@ The `UnstyledButton` component was renamed to `ButtonUnstyled`.
  }
 ```
 
-## Card
+### Card
 
-### ✅ card-actions-to-card-footer
+#### ✅ card-actions-to-card-footer
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/card-actions-to-card-footer
@@ -1231,7 +1231,7 @@ was renamed to `justify`.
  }
 ```
 
-### ✅ remove-deprecated-card-props
+#### ✅ remove-deprecated-card-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/remove-deprecated-card-props
@@ -1250,7 +1250,7 @@ The deprecated `raiseable` prop was removed in favor of `raisable`.
      </>
 ```
 
-### ✅ update-card-content-props
+#### ✅ update-card-content-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/update-card-content-props
@@ -1274,7 +1274,7 @@ The `CardContent` component updated the following props:
        </CardContent>
 ```
 
-### ✅ update-card-header-props
+#### ✅ update-card-header-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/update-card-header-props
@@ -1322,7 +1322,7 @@ The `CardHeader` updated the following props:
      </>
 ```
 
-### ✅ update-card-subtitle-props
+#### ✅ update-card-subtitle-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/update-card-subtitle-props
@@ -1351,7 +1351,7 @@ The `CardSubtitle` updated the following props:
        </CardSubtitle>
 ```
 
-### ✅ update-card-title-props
+#### ✅ update-card-title-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/update-card-title-props
@@ -1381,9 +1381,9 @@ The `CardTitle` updated the following props:
      </>
 ```
 
-## Chip
+### Chip
 
-### ✅ update-chip-props
+#### ✅ update-chip-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/chip/update-chip-props
@@ -1402,9 +1402,9 @@ The `Chip` renamed the `noninteractable` prop to `noninteractive`.
  }
 ```
 
-## Dialog
+### Dialog
 
-### ✅ remove-nested-dialog-context-provider
+#### ✅ remove-nested-dialog-context-provider
 
 ```sh
 npx @react-md/codemod v5-to-v6/dialog/remove-nested-dialog-context-provider
@@ -1449,7 +1449,7 @@ The `NestedDialogContextProvider` has been removed and is no longer required.
  }
 ```
 
-### 🔧 update-dialog-props
+#### 🔧 update-dialog-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/dialog/update-dialog-props
@@ -1544,9 +1544,9 @@ The `Dialog` and `FixedDialog` components have the following prop changes:
          <DialogFooter>
 ```
 
-## Divider
+### Divider
 
-### 🎨 vertical-divider-to-divider
+#### 🎨 vertical-divider-to-divider
 
 ```sh
 npx @react-md/codemod v5-to-v6/divider/vertical-divider-to-divider
@@ -1598,9 +1598,9 @@ and there is no replacement.
  }
 ```
 
-## Expansion Panel
+### Expansion Panel
 
-### ✅ update-expansion-panel-props
+#### ✅ update-expansion-panel-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/expansion-panel/update-expansion-panel-props
@@ -1660,7 +1660,7 @@ The `ExpansionPanel` updated the following props:
  }
 ```
 
-### 🔧 use-panels-to-use-expansion-panel
+#### 🔧 use-panels-to-use-expansion-panel
 
 ```sh
 npx @react-md/codemod v5-to-v6/expansion-panel/use-panels-to-use-expansion-panel
@@ -1733,9 +1733,9 @@ The `usePanels` hook was renamed to `useExpansionPanels` with a new API:
          lacinia. Fusce vitae commodo nisl. Donec congue arcu ut porta feugiat.
 ```
 
-## Form
+### Form
 
-### replace-with-message-components 🔧
+#### replace-with-message-components 🔧
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/replace-with-message-components
@@ -1745,7 +1745,7 @@ The `TextFieldWithMessage`, `TextAreaWithMessage`, and `PasswordWithMessage` com
 have been removed and instead the default behavior for the `TextField`,
 `TextArea`, and `Password` components.
 
-### update-use-text-field-api 🔧
+#### update-use-text-field-api 🔧
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-use-text-field-api
@@ -1821,7 +1821,7 @@ The `useTextField` and `useNumberField` hooks have updated their api slightly:
 
 ```
 
-## Layout ❌
+### Layout ❌
 
 There is no longer a pre-built layout component so see the new
 [Layout component documentation](/getting-started/layout) for the new setup. For
@@ -2066,9 +2066,9 @@ from the v5 website.
  }
 ```
 
-## Link
+### Link
 
-### 🔧 update-link-props
+#### 🔧 update-link-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/link/update-link-props
@@ -2102,7 +2102,7 @@ The `Link` component updated the following props:
  }
 ```
 
-## List
+### List
 
 There are a few breaking changes for the list components:
 
@@ -2118,7 +2118,7 @@ There are a few breaking changes for the list components:
 > !Warn! For Typescript users, the `ListItemLink` no longer allows
 > `{ [key: string]: unknown }` when the `as` component is provided.
 
-### 🔧 update-list-item-props
+#### 🔧 update-list-item-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/list/update-list-item-props
@@ -2258,13 +2258,13 @@ Remove `SimpleListItem`:
    );
 ```
 
-## Media
+### Media
 
-## Menu
+### Menu
 
-## Overlay
+### Overlay
 
-### 🔧 update-overlay-props
+#### 🔧 update-overlay-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/overlay/update-overlay-props
@@ -2313,9 +2313,9 @@ The `Overlay` updated the following props:
          clickable
 ```
 
-## Portal
+### Portal
 
-### 🔧 use-new-portal-api
+#### 🔧 use-new-portal-api
 
 ```sh
 npx @react-md/codemod v5-to-v6/portal/use-new-portal-api
@@ -2392,9 +2392,9 @@ internal component. The changes are:
 
 In addition, the `ConditionalPortal` was removed.
 
-## Progress
+### Progress
 
-### ✅ update-circular-progress-props
+#### ✅ update-circular-progress-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/progress/update-circular-progress-props
@@ -2425,14 +2425,14 @@ The `CircularProgress` updated the following props:
  }
 ```
 
-## Sheet 🎉
+### Sheet 🎉
 
-## States ❌
+### States ❌
 
 The `@react-md/states` packages was _mostly_ internal so codemods will not be provided
 to update this package.
 
-### Replace `StatesConnfig` context provider
+#### Replace `StatesConnfig` context provider
 
 The `StatesConfig` context provider has been removed in favor of the new
 `INTERACTION_CONFIG` object. Here is an example on how to update the `disableRipple`
@@ -2454,7 +2454,7 @@ behavior:
  }
 ```
 
-### Replace `useInteractionStates` with `useElementInteraction`
+#### Replace `useInteractionStates` with `useElementInteraction`
 
 If the `useInteractionStates` hook was used, switch to the
 [useElementInteraction](/hooks/use-element-interaction) hook.
@@ -2541,9 +2541,9 @@ If the `useInteractionStates` hook was used, switch to the
  }
 ```
 
-## Table
+### Table
 
-### 🔧 update-table-cell-props
+#### 🔧 update-table-cell-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/table/update-table-cell-props
@@ -2576,7 +2576,7 @@ The `TableCell` updated the following props:
              </TableCell>
 ```
 
-### 🔧 update-table-checkbox-props
+#### 🔧 update-table-checkbox-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/table/update-table-checkbox-props
@@ -2595,7 +2595,7 @@ The `TableCheckbox` no longer supports the `cellId` prop in favor of the `id` pr
  }
 ```
 
-### ✅ caption-to-typography
+#### ✅ caption-to-typography
 
 ```sh
 npx @react-md/codemod v5-to-v6/table/caption-to-typography
@@ -2629,7 +2629,7 @@ component.
            <TableCell>Column 1</TableCell>
 ```
 
-## Tabs
+### Tabs
 
 There is a completely new tabs API which will require manual changes. First,
 the `TabsManager` and `Tabs` components have been removed and should be
@@ -2745,7 +2745,7 @@ To migrate to the new API, the step are as follows:
 
 ```
 
-### ❌ update-tabs-api
+#### ❌ update-tabs-api
 
 ```sh
 npx @react-md/codemod v5-to-v6/tabs/update-tabs-api
@@ -2834,9 +2834,9 @@ components were defined in the same file.
  }
 ```
 
-## Transition
+### Transition
 
-### 🔧 update-scale-transition
+#### 🔧 update-scale-transition
 
 ```sh
 npx @react-md/codemod v5-to-v6/transition/update-scale-transition
@@ -2869,7 +2869,7 @@ The `ScaleTransition` component no longer supports the `portal`, `portalInto`, a
  }
 ```
 
-## Tree
+### Tree
 
 There were a lot of breaking changes for the `Tree` API and cannot be fully
 converted automatically for complex implementations. The list of changes are:
@@ -3044,7 +3044,7 @@ npx @react-md/codemod v5-to-v6/tree/everything
      <Tree
 ```
 
-### 🔧 convert-get-item-props
+#### 🔧 convert-get-item-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/tree/convert-get-item-props
@@ -3140,7 +3140,7 @@ npx @react-md/codemod v5-to-v6/tree/convert-get-item-props
  };
 ```
 
-### 🔧 item-renderer-to-render-component
+#### 🔧 item-renderer-to-render-component
 
 ```sh
 npx @react-md/codemod v5-to-v6/tree/item-renderer-to-render-component
@@ -3169,7 +3169,7 @@ npx @react-md/codemod v5-to-v6/tree/item-renderer-to-render-component
  };
 ```
 
-### ✅ update-simple-types
+#### ✅ update-simple-types
 
 ```sh
 npx @react-md/codemod v5-to-v6/tree/update-simple-types
@@ -3190,7 +3190,7 @@ npx @react-md/codemod v5-to-v6/tree/update-simple-types
  }
 ```
 
-### 🔧 update-tree-props
+#### 🔧 update-tree-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/tree/update-tree-props
@@ -3223,7 +3223,7 @@ npx @react-md/codemod v5-to-v6/tree/update-tree-props
        />
 ```
 
-### 🔧 use-tree-hooks
+#### 🔧 use-tree-hooks
 
 ```sh
 npx @react-md/codemod v5-to-v6/tree/use-tree-hooks
@@ -3257,9 +3257,9 @@ npx @react-md/codemod v5-to-v6/tree/use-tree-hooks
      <Tree
 ```
 
-## Tooltip
+### Tooltip
 
-### 🔧 convert-use-tooltip
+#### 🔧 convert-use-tooltip
 
 ```sh
 npx @react-md/codemod v5-to-v6/tooltip/convert-use-tooltip
@@ -3339,7 +3339,7 @@ If the hover mode API was used, there will be a diff similar to:
      },
 ```
 
-### 🔧 remove-tooltipped-component
+#### 🔧 remove-tooltipped-component
 
 ```sh
 npx @react-md/codemod v5-to-v6/tooltip/remove-tooltipped-component
@@ -3358,7 +3358,7 @@ used instead.
    onClick?: (event: MouseEvent) => void;
 ```
 
-### 🔧 update-tooltip-props
+#### 🔧 update-tooltip-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/tooltip/update-tooltip-props
@@ -3397,9 +3397,9 @@ The `Tooltip` component updated the following props:
  }
 ```
 
-## Typography
+### Typography
 
-### ❌ remove-removed-types
+#### ❌ remove-removed-types
 
 ```sh
 npx @react-md/codemod v5-to-v6/typography/remove-removed-types
@@ -3421,7 +3421,7 @@ The following types were removed and cannot be migrated automatically.
  const y: TypographyRenderFunction = ({ className }) => <>{className}</>;
 ```
 
-### ✅ update-text-container-props
+#### ✅ update-text-container-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/typography/update-text-container-props
@@ -3448,7 +3448,7 @@ The `TextContainer` no longer supports the `size` prop and should be removed.
      </>
 ```
 
-### ✅ update-typography-props
+#### ✅ update-typography-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/typography/update-typography-props
@@ -3502,9 +3502,9 @@ class name utility functions instead.
  }
 ```
 
-## Utils
+### Utils
 
-### ✅ dir-to-writing-direction-provider
+#### ✅ dir-to-writing-direction-provider
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/dir-to-writing-direction-provider
@@ -3556,7 +3556,7 @@ Typescript only:
  export function Example3(): ReactElement {
 ```
 
-### ✅ nearest-parameters-to-object
+#### ✅ nearest-parameters-to-object
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/nearest-parameters-to-object
@@ -3590,7 +3590,7 @@ The `nearest` utility function was updated to accept a single object parameter i
 +).toBe(minValue);
 ```
 
-### ❌ remove-scroll-listener
+#### ❌ remove-scroll-listener
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/remove-scroll-listener
@@ -3639,7 +3639,7 @@ and must be implemented manually.
 
 ```
 
-### ✅ update-resize-listener
+#### ✅ update-resize-listener
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/update-resize-listener
@@ -3735,7 +3735,7 @@ In addition, the `ResizeListener` component has been removed in favor of using t
      </>
 ```
 
-### ✅ update-use-resize-observer
+#### ✅ update-use-resize-observer
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/update-use-resize-observer
@@ -3859,7 +3859,7 @@ If the `nodeRef` is dynamic, wrap with `useEnsuredRef`:
      if (ref.current) {
 ```
 
-### ✅ update-use-toggle-api
+#### ✅ update-use-toggle-api
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/update-use-toggle-api
@@ -3890,7 +3890,7 @@ The `useToggle` hook was updated to return an object instead of an ordered array
  }
 ```
 
-### ✅ within-range-parameters-to-object
+#### ✅ within-range-parameters-to-object
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/within-range-parameters-to-object
@@ -3918,7 +3918,7 @@ instead of multiple parameters.
 +).toBe(0);
 ```
 
-### 🔧 update-search-functions
+#### 🔧 update-search-functions
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/update-search-functions

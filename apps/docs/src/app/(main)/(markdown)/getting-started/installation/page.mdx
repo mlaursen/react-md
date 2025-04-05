@@ -18,7 +18,7 @@ Install `react-md` with one of the following commands.
 npm install @react-md/core sass
 ```
 
-# Generating the styles
+## Generating the styles
 
 `react-md` relies on [Sass] to generate the styles and the [@use rule] for
 importing modules. Create a top-level `.scss` file to include all the styles:
@@ -33,12 +33,12 @@ importing modules. Create a top-level `.scss` file to include all the styles:
 > colors. Check out the [color palette customization] page to configure the
 > global theme.
 
-# Including Fonts
+## Including Fonts
 
 `react-md` uses the [Roboto] font by default. Add it to your project via
 Fontsource, the Google Fonts CDN, or Next.js's recommendation.
 
-## Fontsource Example
+### Fontsource Example
 
 Install:
 
@@ -58,7 +58,7 @@ Include styles:
  @include core.styles;
 ```
 
-## Google Fonts CDN
+### Google Fonts CDN
 
 Update your `index.html` to include the stylesheet:
 
@@ -77,7 +77,7 @@ Update your `index.html` to include the stylesheet:
    </head>
 ```
 
-# Initialize Context Providers
+## Initialize Context Providers
 
 `react-md` uses [React context] for some of the client API. The most common
 providers are available through the [CoreProviders] which can be added near the
@@ -99,12 +99,12 @@ root of your app:
 +);
 ```
 
-# Configuring Icons
+## Configuring Icons
 
 Since there are many types of icons available, choose one of the examples below
 to get started.
 
-## Configuring Font Icons
+### Configuring Font Icons
 
 `react-md` will use [material icons] by default which requires [including the
 icon fonts through google fonts]:
@@ -128,7 +128,7 @@ icon fonts through google fonts]:
    </head>
 ```
 
-## Configuring Custom Icons
+### Configuring Custom Icons
 
 If it is not desired to load another stylesheet or custom branded icons are
 required for the application, the icons used throughout `react-md` can be

@@ -23,7 +23,7 @@ pre-determined list as the user types by filtering data based on the current
 value. It can also be used to interact with an API that handles the sorting,
 filtering, matching, etc as well.
 
-# Simple Example
+## Simple Example
 
 An `Autocomplete` requires a list of options which can be strings or an object
 with a `label` string so that the options can be filtered as the user types. In
@@ -34,7 +34,7 @@ accessibility to provide a label for the listbox.
 
 ```
 
-## Simple Label Example
+### Simple Label Example
 
 This is the same example as above, but using options as `{ label: string }`.
 
@@ -42,7 +42,7 @@ This is the same example as above, but using options as `{ label: string }`.
 
 ```
 
-# Object Options
+## Object Options
 
 The `Autocomplete` can support any object option by also providing an
 `getOptionLabel` prop that will return a string value for each option.
@@ -53,7 +53,7 @@ The `Autocomplete` can support any object option by also providing an
 
 ```
 
-# Option Props
+## Option Props
 
 The `Autocomplete` will automatically pass through common `Option` props that
 exist on each option.
@@ -62,7 +62,7 @@ exist on each option.
 
 ```
 
-## Get Option Props
+### Get Option Props
 
 Another way to pass props to each option is using the `getOptionProps` function.
 
@@ -70,7 +70,7 @@ Another way to pass props to each option is using the `getOptionProps` function.
 
 ```
 
-## Disabled Options
+### Disabled Options
 
 An option can be disabled by adding `disabled: true` to the option or using `getOptionProps`
 to return `disabled: true`.
@@ -79,7 +79,7 @@ to return `disabled: true`.
 
 ```
 
-# Controlling the Value
+## Controlling the Value
 
 If the current value is needed, provide a `value` and `setValue` prop.
 
@@ -87,7 +87,7 @@ If the current value is needed, provide a `value` and `setValue` prop.
 
 ```
 
-## Setting a default value
+### Setting a default value
 
 If the value does not need to be controlled but one of the options should
 be selected by default, set the `defaultValue` prop instead.
@@ -98,7 +98,7 @@ be selected by default, set the `defaultValue` prop instead.
 
 ```
 
-## Getting the current value
+### Getting the current value
 
 > !Warn! It is recommended to control the `value` instead of using this option.
 
@@ -109,7 +109,7 @@ actions, the `onValueChange` prop can be used.
 
 ```
 
-## Controlling the input value
+### Controlling the input value
 
 If the input value needs to be controlled, provide a `query` and `setQuery` prop.
 
@@ -117,7 +117,7 @@ If the input value needs to be controlled, provide a `query` and `setQuery` prop
 
 ```
 
-## Getting the current input value
+### Getting the current input value
 
 If the input value doesn't need to be controlled, the value can be retrieved
 with the normal `onChange` event handler.
@@ -126,7 +126,7 @@ with the normal `onChange` event handler.
 
 ```
 
-# Disable Filtering
+## Disable Filtering
 
 There are some cases where the available options should only be suggestions and
 not required value such as displaying the most recent searches. Set the `filter`
@@ -139,7 +139,7 @@ prop to `noopAutocompleteFilter` to enable this behavior which also enables the
 
 ```
 
-## Custom Filter Function
+### Custom Filter Function
 
 The `Autocomplete` uses the
 [caseInsensitiveSearch](/utils/case-insensitive-search) filter function by
@@ -157,7 +157,7 @@ This example will show how the filter function could be swapped out for the
 
 ```
 
-# Allow Any Value
+## Allow Any Value
 
 The `Autocomplete` normally behave like a searchable select component where it
 requires a specific option to be selected and will reject all other values. If
@@ -167,7 +167,7 @@ any value should be allowed, enable the `allowAnyValue` prop.
 
 ```
 
-## Creatable
+### Creatable
 
 An alternative to the `allowAnyValue` prop is to allow the user to create a new
 option with their typed value by manually selecting the dynamically generated
@@ -188,7 +188,7 @@ is selected, only the `query` will be inserted into the input.
 
 ```
 
-# Async Example
+## Async Example
 
 The `Autocomplete` supports rendering a `CircularProgress` after the input field to show
 async behavior. The `CircularProgress` will be shown while the `loading` prop is true.
@@ -199,7 +199,7 @@ This example below will "load" the options each time the autocomplete is opened.
 
 ```
 
-## Debounced Search Example
+### Debounced Search Example
 
 When the `Autocomplete` should be used as a `<input type="search" />` to send
 requests to an API as the user types to get the options, set the `type="search"`
@@ -219,7 +219,7 @@ show a throttled implementation.
 
 ```
 
-## Throttled Search Example
+### Throttled Search Example
 
 This is the same example as above, but using [useThrottledFunction](/hooks/use-throttled-function)
 instead.
@@ -228,7 +228,7 @@ instead.
 
 ```
 
-# Multiple Values
+## Multiple Values
 
 The `Autocomplete` supports multiple values by either:
 
@@ -243,7 +243,7 @@ new option is selected.
 
 ```
 
-## Disable Close On Select
+### Disable Close On Select
 
 To prevent the listbox from closing when an option is selected, enable the
 `disableCloseOnSelect` prop.
@@ -254,7 +254,7 @@ To prevent the listbox from closing when an option is selected, enable the
 
 ```
 
-## Checkboxes
+### Checkboxes
 
 The multiselect `Autocomplete` also supports updating all the options to use
 checkbox icons by enabling the `checkboxes` prop. This also enables the
@@ -270,7 +270,7 @@ The `Option` will use the `ICON_CONFIG.checkbox` and
 
 ```
 
-## Disable Inline Chips
+### Disable Inline Chips
 
 If the selected options should not be shown as inline chips, enable the
 `disableInlineChips` prop.
@@ -279,7 +279,7 @@ If the selected options should not be shown as inline chips, enable the
 
 ```
 
-## Filter Selected
+### Filter Selected
 
 The selected options can also be removed from the listbox by enabling the
 `filterSelected` prop. It is only recommended to enable this prop when the
@@ -289,7 +289,7 @@ The selected options can also be removed from the listbox by enabling the
 
 ```
 
-## Customizing Inline Chips
+### Customizing Inline Chips
 
 The inline chips can be customized using the `getChipProps` which provides the
 `index` and `option` being rendered. This can be used to disable chips, add
@@ -299,9 +299,9 @@ custom styles, change the theme, etc.
 
 ```
 
-# Customization
+## Customization
 
-## Highlights
+### Highlights
 
 The search query can be highlighted using the
 [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight)
@@ -312,7 +312,7 @@ option.
 
 ```
 
-## Disabling the Clear and Dropdown Buttons
+### Disabling the Clear and Dropdown Buttons
 
 The clear button and dropdown button can be removed by enabling the
 `disableClearButton` and `disableDropdownButton` props respectively. They do not
@@ -325,7 +325,7 @@ need to be used in tandem.
 
 ```
 
-## Github's Label Picker
+### Github's Label Picker
 
 > !Warn! This is a more complex example that will showcase most of the
 > customization options available in the `Autocomplete` component and other
@@ -372,7 +372,7 @@ with most of the same behavior. Here's a breakdown of how this was created:
 
 ```
 
-# Typescript Typing
+## Typescript Typing
 
 The `Autocomplete` option is defined as:
 
@@ -505,14 +505,14 @@ const [value, setValue] = useState<State | null>(null);
 />;
 ```
 
-# Accessibility
+## Accessibility
 
 The `Autocomplete` component implements the
 [combobox](https:://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_focus_activedescendant)
 so the `<input />` will remain focused while the options gain styles to show
 they are focused.
 
-## Labels
+### Labels
 
 - The listbox requires an `aria-label`/`aria-labelledby` by the
   `listboxLabel`/`listboxLabelledby` props respectively
@@ -520,11 +520,11 @@ they are focused.
   `listboxLabel`/`listboxLabelledby` props respectively
 - The inline circular progress bar defaults to an `aria-label="Loading"`
 
-## Keyboard Movement
+### Keyboard Movement
 
 The following keyboard movement has been implemented:
 
-### Closed Listbox
+#### Closed Listbox
 
 - Typing will open the listbox and keep focus on the input.
 - `ArrowDown` - Opens the listbox and focuses the first option.
@@ -533,7 +533,7 @@ The following keyboard movement has been implemented:
 - `Escape` - Clears the value.
 - `Home`/`End` - Moves cursor to the start and end of the input
 
-### Open Listbox
+#### Open Listbox
 
 - Typing will move focus back to the input
 - `ArrowDown` - Moves focus to the next option in the listbox. If focus was on

@@ -15,7 +15,7 @@ components: [SkeletonPlaceholder]
 The `SkeletonPlaceholder` component is a great way to show that content is
 loading instead of using a [circular or linear progress bar](/components/progress).
 
-# Simple Example
+## Simple Example
 
 The `SkeletonPlaceholder` component will default to a height of `1.125em` and
 use a random width between `40%` and `85%` of the container.
@@ -26,7 +26,7 @@ use a random width between `40%` and `85%` of the container.
 
 ```
 
-## Custom Min and Max Width
+### Custom Min and Max Width
 
 The random width can be customized by configuring the `minPercentage` and
 `maxPercentage` props.
@@ -35,7 +35,7 @@ The random width can be customized by configuring the `minPercentage` and
 
 ```
 
-## Static Width
+### Static Width
 
 If a random width should not be used, provide a `width` instead.
 
@@ -43,7 +43,7 @@ If a random width should not be used, provide a `width` instead.
 
 ```
 
-## Configuring the Height
+### Configuring the Height
 
 The height for the skeleton placeholder can be configured globally by changing
 the [$SASSDOC](skeleton-placeholder-height) Sass variable, providing a `height`
@@ -54,7 +54,7 @@ prop, or setting the `--rmd-skeleton-placeholder-height` custom property with
 
 ```
 
-# Using the Hook
+## Using the Hook
 
 If the skeleton placeholder animation needs to be applied to a different
 element, the `useSkeletonPlaceholder` hook can be used instead.
@@ -63,13 +63,13 @@ element, the `useSkeletonPlaceholder` hook can be used instead.
 
 ```
 
-## Replacing Content
+### Replacing Content
 
 ```demo source="./ReplacingContentExample.tsx"
 
 ```
 
-# Ssr Only
+## Ssr Only
 
 A skeleton layout can be created without any client-side javascript by using the
 `skeletonPlaceholder` class name utility function and

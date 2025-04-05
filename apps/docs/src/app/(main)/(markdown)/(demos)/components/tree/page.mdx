@@ -14,7 +14,7 @@ components: [Tree, TreeItem, DefaultTreeItemRenderer]
 A tree represents a hierarchical list of items that might have child items that
 can be expanded, collapsed, or selected.
 
-# Single Select Tree
+## Single Select Tree
 
 A tree can be created by using the `Tree` component, the `useTree` hook to
 control the state, and a set of `data`. The `data` must follow the following
@@ -35,7 +35,7 @@ The following example will show how to create a single-select tree.
 
 ```
 
-## Multiselect Tree
+### Multiselect Tree
 
 Multiple items within the tree can be selectable by enabling the `multiSelect`
 option on the `useTree` hook.
@@ -44,9 +44,9 @@ option on the `useTree` hook.
 
 ```
 
-# Customizations
+## Customizations
 
-## Expansion Mode
+### Expansion Mode
 
 When an expandable tree item is clicked, the default behavior is to select it
 and toggle the expansion of child items. An alternative approach would be to
@@ -58,7 +58,7 @@ set the `expansionMode` prop to `"manual"` instead of `"auto"` (default).
 
 ```
 
-## Expander Icon
+### Expander Icon
 
 The `TreeItem` component will use the
 [expander](/customization/icon-config#expander) icon from the `ICON_CONFIG` by
@@ -72,7 +72,7 @@ component.
 
 ```
 
-## Expander Icon Position
+### Expander Icon Position
 
 The expander icon defaults to rendering at the right of each `TreeItem` but can
 be set to the left by enabling the `expanderLeft` prop.
@@ -81,7 +81,7 @@ be set to the left by enabling the `expanderLeft` prop.
 
 ```
 
-## Decreasing Spacing
+### Decreasing Spacing
 
 The `padding-left` for each tree item increases the deeper within the tree it
 is rendered by using:
@@ -104,7 +104,7 @@ mixin.
 
 ```
 
-# Custom Tree Item Renderer
+## Custom Tree Item Renderer
 
 ```demo source="./CustomTreeItemRendererExample.tsx"
 

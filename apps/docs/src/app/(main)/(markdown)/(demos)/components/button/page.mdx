@@ -18,7 +18,7 @@ Buttons communicate actions that users can take. They are typically placed throu
 - Cards
 - Toolbars
 
-# Simple Button
+## Simple Button
 
 The `Button` comes in multiple theme types: `flat` (default), `outlined`, `contained`
 
@@ -26,7 +26,7 @@ The `Button` comes in multiple theme types: `flat` (default), `outlined`, `conta
 
 ```
 
-## Text Button
+### Text Button
 
 [Text buttons](https://m2.material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located:
 
@@ -39,7 +39,7 @@ In cards, text buttons help maintain an emphasis on card content.
 
 ```
 
-## Outlined Button
+### Outlined Button
 
 [Outlined buttons](https://m2.material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
 
@@ -47,7 +47,7 @@ In cards, text buttons help maintain an emphasis on card content.
 
 ```
 
-## Contained Button
+### Contained Button
 
 [Contained buttons](https://m2.material.io/components/buttons#contained-button) Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app.
 
@@ -55,7 +55,7 @@ In cards, text buttons help maintain an emphasis on card content.
 
 ```
 
-# Themed Button
+## Themed Button
 
 The `Button` can also be themed with different theme colors:
 
@@ -74,7 +74,7 @@ for `outlined` buttons, and the background color for `contained` buttons.
 
 ```
 
-# Icon Button
+## Icon Button
 
 An icon button can be used when space is limited like on mobile devices or when
 there are a lot of actions. Icon buttons support all the same theme behavior as
@@ -88,7 +88,7 @@ To create an icon button, set the `buttonType` prop to `"icon"` or `"icon-square
 
 ```
 
-## Icon Sizes
+### Icon Sizes
 
 The icon button's size can be easily changed by updating the `font-size` to a
 new value which will automatically scale the padding with it. There are a few
@@ -101,7 +101,7 @@ sizes by default: `small`, `normal` (default), and `large`.
 
 ```
 
-# Button with Text and Icon
+## Button with Text and Icon
 
 Text and icons can both exist within a `Button` by just including them in the `children`. Each element
 rendered in a button will automatically be separated using `gap` set to the [$SASSDOC](icon-spacing) amount.
@@ -112,7 +112,7 @@ rendered in a button will automatically be separated using `gap` set to the [$SA
 
 ```
 
-## Responsive Button
+### Responsive Button
 
 A common pattern is to have a button be icon only on phones due to the limited screen size
 and then include a label as well once there is enough space. This can be done by enabling
@@ -123,7 +123,7 @@ component with the `phoneOnly` prop enabled:
 
 ```
 
-# Floating Action Button
+## Floating Action Button
 
 [Floating action buttons](https://m2.material.io/components/buttons-floating-action-button#usage)
 performs the primary, or most common, action on a screen. It appears in front
@@ -140,7 +140,7 @@ the floating prop is defined, the button default props will be updated with
 
 ```
 
-# Async Button
+## Async Button
 
 The `AsyncButton` can be used to display a loading indicator inside a button
 while an async task completes. If the `onClick` handler is an async function,
@@ -150,7 +150,7 @@ the loading indicator will display until the promise resolves.
 
 ```
 
-## Manual Pending State
+### Manual Pending State
 
 When the pending state is derived by a separate action, the loading indicator
 can be shown by setting the `loading` prop to `true`:
@@ -159,7 +159,7 @@ can be shown by setting the `loading` prop to `true`:
 
 ```
 
-## Loading Indicator Types
+### Loading Indicator Types
 
 The `AsyncButton` supports the following loading indicator behaviors out of the box:
 
@@ -174,7 +174,7 @@ The `AsyncButton` supports the following loading indicator behaviors out of the 
 
 ```
 
-## Custom Loading Children
+### Custom Loading Children
 
 If the `children` should be swapped out along with the loading indicator,
 provide that content through the `loadingChildren` prop.

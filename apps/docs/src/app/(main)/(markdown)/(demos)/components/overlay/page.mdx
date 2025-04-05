@@ -13,7 +13,7 @@ components: [Overlay]
 An `Overlay` is an element that normally covers the entire screen and prevents
 content behind it from being interactable.
 
-# Simple Overlay
+## Simple Overlay
 
 An `Overlay` dynamically renders itself based on a `visible` prop with a simple
 opacity transition. An `Overlay` should normally have an `onClick` handler that
@@ -23,7 +23,7 @@ hide the overlay.
 
 ```
 
-## Invisible Overlay
+### Invisible Overlay
 
 If the `Overlay` should be rendered with another element and act as a way to
 "close on outside click" without clicking other elements, enable the `noOpacity`
@@ -33,7 +33,7 @@ prop.
 
 ```
 
-# Overlay with Content
+## Overlay with Content
 
 The `Overlay` can also render `children` if and supports the box `align-items`
 and `justify-content`.

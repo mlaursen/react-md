@@ -41,7 +41,7 @@ default theme colors are:
 
 <DarkModeColors />
 
-## Dark Elevation Colors
+### Dark Elevation Colors
 
 When the dark mode is enabled, the surface background color will become lighter
 as the `z-index`/`box-shadow` increases to enable more contrast between
@@ -59,7 +59,7 @@ temporary elements. Here is a list of components in `react-md` and their elevati
 | `Dialog`            | `16`      |
 | `Sheet` (normal)    | `16`      |
 
-## Configuring Elevation Colors
+### Configuring Elevation Colors
 
 The different elevation colors can be changed by modifying the
 [$SASSDOC](dark-elevation-colors) map. The next demo shows all 25 elevation
@@ -69,7 +69,7 @@ colors and allows the values to be modified to see how they behave.
 
 ```
 
-# System Mode
+## System Mode
 
 If the application should use the dark theme only if the user has set their
 system preference to dark, set the [$SASSDOC](color-scheme) to `system`. The
@@ -84,7 +84,7 @@ the dark theme when the `@media (prefers-color-scheme: dark)` matches.
 @include core.styles;
 ```
 
-# Light or Dark Mode
+## Light or Dark Mode
 
 If the application allows the user to select the current color scheme, generate
 the styles as normal with the default color scheme and create a global class
@@ -166,7 +166,7 @@ function ApplyTheme() {
 }
 ```
 
-# Light or Dark or System Mode
+## Light or Dark or System Mode
 
 The style setup will be about the same as the previous examples. Start by
 defining the default [$SASSDOC](color-scheme) and create additional classes for the
@@ -204,7 +204,7 @@ function ApplyTheme() {
 }
 ```
 
-## This Website's Implementation
+### This Website's Implementation
 
 If a real-world example is useful, here's this website's implementation
 with next.js:

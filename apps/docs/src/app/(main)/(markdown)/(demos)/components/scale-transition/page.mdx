@@ -14,7 +14,7 @@ The scale transition is generally used for temporary elements like dropdown
 menus and toasts. See the [CSSTransition](./css-transition) component and
 [useCSSTransition](/hooks/use-css-transition) for additional options.
 
-# Simple Example
+## Simple Example
 
 The transition can be enabled using the `ScaleTransition` component which
 defaults to:
@@ -30,7 +30,7 @@ The `ScaleTransition` requires a single child component that accepts the
 
 ```
 
-## Vertical Example
+### Vertical Example
 
 The transition can be updated to use `scaleY` by enabling the `vertical` prop.
 
@@ -38,7 +38,7 @@ The transition can be updated to use `scaleY` by enabling the `vertical` prop.
 
 ```
 
-# Hidden While Exited
+## Hidden While Exited
 
 The default behavior for the `ScaleTransition` is to unmount the component while
 not visible. Since this causes the state of these components to reset, this
@@ -50,7 +50,7 @@ instead by setting `temporary={false}`.
 
 ```
 
-# Scale Transition Hook Example
+## Scale Transition Hook Example
 
 The `useScaleTransition` can be used instead of the `ScaleTransition` component
 which exposes the full API.

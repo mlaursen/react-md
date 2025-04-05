@@ -18,7 +18,7 @@ Use radio buttons to:
 
 If available options can be collapsed, consider using a [Select](/components/select) or [NativeSelect](/components/native-select) instead, as it uses less space.
 
-# Simple Radio
+## Simple Radio
 
 A `Radio` should normally be placed within a `Form` and provide a `value`, `name`, and `label`.
 
@@ -26,7 +26,7 @@ A `Radio` should normally be placed within a `Form` and provide a `value`, `name
 
 ```
 
-## Icon After Label
+### Icon After Label
 
 The label can be placed before the radio icon by enabling the `iconAfter` prop.
 
@@ -34,7 +34,7 @@ The label can be placed before the radio icon by enabling the `iconAfter` prop.
 
 ```
 
-## Stacked Radio
+### Stacked Radio
 
 The label can be stacked above or below the radio by enabling the `stacked` prop.
 
@@ -42,7 +42,7 @@ The label can be stacked above or below the radio by enabling the `stacked` prop
 
 ```
 
-# Radio Sizes
+## Radio Sizes
 
 The `Radio` has multiple sizes: `normal` (default), `small`, `dense`,
 and `large`. The size can also be set to `auto` which will update the checkbox
@@ -52,7 +52,7 @@ to match the current font size.
 
 ```
 
-# Radio States
+## Radio States
 
 The `Radio` also has different states that can be applied. The most common
 will be the `error` or `disabled` states but also supports `active`.
@@ -61,7 +61,7 @@ will be the `error` or `disabled` states but also supports `active`.
 
 ```
 
-# Controlling Radios
+## Controlling Radios
 
 The state for the radio group will generally be controlled so that something can
 be done with the selected value. `react-md` provides a helper hook: `useRadioGroup`
@@ -75,7 +75,7 @@ to control the state.
 
 ```
 
-## Required Radio Group
+### Required Radio Group
 
 In the rare case where a list of available options must be presented to the user
 without an option being selected by default, the `required` option can be
@@ -85,7 +85,7 @@ enabled which will prevent form submission until one has been selected.
 
 ```
 
-# Custom Icons
+## Custom Icons
 
 The `Radio` component will use the
 [radio](/customization/icon-config#radio) and
@@ -96,7 +96,7 @@ The `Radio` component will use the
 
 ```
 
-# Radio with Messages
+## Radio with Messages
 
 The `Radio` component is wrapped in the
 [FormMessageContainer](/components/form-message#form-message-container) so additional

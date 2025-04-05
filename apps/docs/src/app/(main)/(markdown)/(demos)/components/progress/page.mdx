@@ -25,7 +25,7 @@ current screen.
 > - An `id` of a heading element
 > - etc
 
-# Circular Progress
+## Circular Progress
 
 Circular progress indicators display progress by animating an indicator along an
 invisible circular track in a clockwise direction. They can be applied directly
@@ -38,7 +38,7 @@ container element and spin indefinitely.
 
 ```
 
-## Determinate Circular Progress
+### Determinate Circular Progress
 
 If the progress state is quantifiable in a range from 0% - 100%, provide that
 value to the `CircularProgress` component to create a determinate progress bar.
@@ -49,7 +49,7 @@ user.
 
 ```
 
-## Circular Progress Sizes
+### Circular Progress Sizes
 
 The `CircularProgress` also supports a `dense` size:
 
@@ -57,7 +57,7 @@ The `CircularProgress` also supports a `dense` size:
 
 ```
 
-## Circular Progress Theme
+### Circular Progress Theme
 
 The `CircularProgress` bar supports all the different theme colors and the current text color.
 
@@ -65,7 +65,7 @@ The `CircularProgress` bar supports all the different theme colors and the curre
 
 ```
 
-## Performance Concerns
+### Performance Concerns
 
 When running CPU intensive tasks, the `CircularProgress` animation might appear
 sluggish because it animates using a rotate and a scaling stroke-dashoffset. It
@@ -78,7 +78,7 @@ enabling the `disableShrink` prop.
 
 ```
 
-# Linear Progress
+## Linear Progress
 
 Linear progress indicators support both determinate and indeterminate operations.
 
@@ -91,7 +91,7 @@ Linear progress indicators support both determinate and indeterminate operations
 
 ```
 
-## Linear Progress Theme
+### Linear Progress Theme
 
 The `LinearProgress` bar _kind of_ supports all the different theme colors and
 the current text color. The colors will probably need to be modified to be more
@@ -101,7 +101,7 @@ visible based on the background color.
 
 ```
 
-# Disable Determinate Transition
+## Disable Determinate Transition
 
 The determinate circular and linear progress bars animate to the next value after `200ms`
 which might cause a delay if the value updates more quickly than that. In those cases,
@@ -111,7 +111,7 @@ enable the `disableTransition` prop.
 
 ```
 
-# Within Buttons
+## Within Buttons
 
 Check out the [Async Button](/components/button#async-button) to see how
 circular and linear progress bars can be rendered within buttons.

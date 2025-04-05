@@ -23,7 +23,7 @@ export default function ExampleProjectsPage(): ReactElement {
   return (
     <>
       <MarkdownPage>
-        <LinkableHeading id="example-projects" level={2}>
+        <LinkableHeading id="example-projects" level={1}>
           Example Projects
         </LinkableHeading>
         <Typography>

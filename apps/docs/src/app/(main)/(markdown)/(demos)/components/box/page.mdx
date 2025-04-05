@@ -17,7 +17,7 @@ layouts or spacing items on the page.
 > !Warn! Most of these examples are only available on desktop due to limited
 > demo preview
 
-# Flex Example
+## Flex Example
 
 The `Box` defaults to using `display: flex`, `align-items: center`,
 `justify-content: center`, `padding: 1rem`, and `gap: 1rem`.
@@ -29,7 +29,7 @@ The `Box` defaults to using `display: flex`, `align-items: center`,
 
 ```
 
-## Disable Flex Wrap
+### Disable Flex Wrap
 
 Enable the `disableWrap` prop to prevent line wrapping and instead attempt to
 shrink each item to fit on a single line.
@@ -38,7 +38,7 @@ shrink each item to fit on a single line.
 
 ```
 
-## Additional Flex Options
+### Additional Flex Options
 
 The following flex options can be configured by props:
 
@@ -55,7 +55,7 @@ See the example below to see how these props can be used.
 
 ```
 
-# Grid Example
+## Grid Example
 
 Enable the `grid` prop to render equal width dynamic columns that will be at
 least `8rem` wide.
@@ -67,7 +67,7 @@ least `8rem` wide.
 
 ```
 
-## Custom Grid Name
+### Custom Grid Name
 
 As the app grows it might be useful to define different grid variants that
 provide different min item size, gap, and/or padding. The variants can be
@@ -79,7 +79,7 @@ on the `Box` component.
 
 ```
 
-## Customizing Gap, Padding, and Min Item Size
+### Customizing Gap, Padding, and Min Item Size
 
 The `gap`, `padding`, and min item size for part of the DOM using the
 [$SASSDOC](box-set-var) mixin or a custom class name on the `Box` component.
@@ -91,7 +91,7 @@ The `gap`, `padding`, and min item size for part of the DOM using the
 
 ```
 
-## Auto-fill Grid Columns
+### Auto-fill Grid Columns
 
 The grid defaults to using `auto-fit` but can be configured to `auto-fill`
 by setting `gridColumns="fill"`. To help explain the difference between the two:
@@ -107,7 +107,7 @@ Try changing the `ITEMS` value below to see the difference.
 
 ```
 
-## Custom Grid Columns
+### Custom Grid Columns
 
 If a specific number of columns should be enforced, set the `gridColumns` prop
 to that number.
@@ -116,7 +116,7 @@ to that number.
 
 ```
 
-## Grid Auto Rows
+### Grid Auto Rows
 
 To create rows with an equal height, enable the `gridAutoRows` restrict
 the height through CSS. This is most useful when handling unknown sized items
@@ -129,7 +129,7 @@ the height through CSS. This is most useful when handling unknown sized items
 
 ```
 
-## Additional Grid Options
+### Additional Grid Options
 
 The following grid options can be configured by props:
 
@@ -143,7 +143,7 @@ See the example below to see how these props can be used.
 
 ```
 
-# Box Class Name Function
+## Box Class Name Function
 
 The box styles can also be applied using the `box` class name function. It
 supports all the box styling options and can be applied to any element that

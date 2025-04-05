@@ -12,7 +12,7 @@ components: [Chip]
 
 Chips represent input, attributes, or actions.
 
-# Simple Example
+## Simple Example
 
 A chip can be created by using the `Chip` component and should normally have a
 `onClick` event handler.
@@ -21,7 +21,7 @@ A chip can be created by using the `Chip` component and should normally have a
 
 ```
 
-## Chip Themes
+### Chip Themes
 
 The chip supports two themes: `"solid"` (default) and `"outline"`.
 
@@ -29,7 +29,7 @@ The chip supports two themes: `"solid"` (default) and `"outline"`.
 
 ```
 
-## Disabled Chip
+### Disabled Chip
 
 A chip can be disabled by enabling the `disabled` prop which will update the
 styles and prevent click event handlers from working.
@@ -38,7 +38,7 @@ styles and prevent click event handlers from working.
 
 ```
 
-# Chip with Addons
+## Chip with Addons
 
 The `Chip`'s children can be any renderable element like icons, avatars, or
 text but might require additional styling. Instead of providing icons and
@@ -52,7 +52,7 @@ update the chip styles slightly.
 
 ```
 
-## Chip with Circular Progress
+### Chip with Circular Progress
 
 The `Chip` can also render the [CircularProgress](/components/progress#circular-progress)
 component since it updates the progress bar size to be the icon size by default.
@@ -63,7 +63,7 @@ This is configurable by the [$SASSDOC](chip-progress-size) and
 
 ```
 
-# Selectable Chips
+## Selectable Chips
 
 The `Chip` also supports a `selected` state which will render an icon when
 selected before the `children` by default.
@@ -72,7 +72,7 @@ selected before the `children` by default.
 
 ```
 
-## Selected Icon After Content
+### Selected Icon After Content
 
 Enable the `selectedIconAfter` prop if the selected icon should appear after the
 `children` instead of before the children.
@@ -81,7 +81,7 @@ Enable the `selectedIconAfter` prop if the selected icon should appear after the
 
 ```
 
-## Custom Selected Icon
+### Custom Selected Icon
 
 The `Chip` component will use the
 [selected](/customization/icon-config#selected) icon from the `ICON_CONFIG` by
@@ -92,7 +92,7 @@ default. The icon can also be changed on a single component by providing the
 
 ```
 
-## Themed Selected State
+### Themed Selected State
 
 The `Chip` can also gain a selected background color instead of rendering an
 icon while selected by enabling the `selectedThemed` prop.
@@ -101,7 +101,7 @@ icon while selected by enabling the `selectedThemed` prop.
 
 ```
 
-# Presentational Chips
+## Presentational Chips
 
 If a chip is only used to represent an input or attributes, enable the
 `noninteractive` prop to render the chip as a `span` instead of a `button`

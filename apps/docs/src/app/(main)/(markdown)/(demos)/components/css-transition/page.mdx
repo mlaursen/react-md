@@ -26,7 +26,7 @@ Some existing transitions can be found at:
 > !Info! Check out the [useTransition](/hooks/use-transition) hook for
 > additional options and info around the transition stages.
 
-# Simple CSSTransition Example
+## Simple CSSTransition Example
 
 To create a CSS Transition:
 
@@ -48,7 +48,7 @@ The transitionable component **must** accept a `ref` and a `className`.
 
 ```
 
-## Simple useCSSTransition Example
+### Simple useCSSTransition Example
 
 This is the same example as above, but using the `useCSSTransition` hook instead
 of the `CSSTransition` component.
@@ -57,7 +57,7 @@ of the `CSSTransition` component.
 
 ```
 
-# Temporary Elements Transitions
+## Temporary Elements Transitions
 
 The CSS Transition really shines for temporary elements that should have enter
 and exit transitions since it also returns a `rendered` flag that will be
@@ -68,7 +68,7 @@ the `CSSTransition` component or `useCSSTransition` hook to enable this feature.
 
 ```
 
-## Display None Example
+### Display None Example
 
 Instead of unmounting the component while `transitionIn` is false, another
 option is to hide it in the DOM by using `display: none`. Enable the
@@ -81,7 +81,7 @@ will not reset since it is never unmounted.
 
 ```
 
-# Appear Transition
+## Appear Transition
 
 The enter transition will not occur by default if a component mounts with
 `transitionIn` set to `true` since this is considered an "appear" transition. If
@@ -92,7 +92,7 @@ all the same styles and timeouts as the `enter` stages.
 
 ```
 
-## CSS-Only Appear Transition
+### CSS-Only Appear Transition
 
 If the component only requires a transition on first mount, it is recommended to
 use a CSS-only transition instead to reduce the javascript bundle size. Here is

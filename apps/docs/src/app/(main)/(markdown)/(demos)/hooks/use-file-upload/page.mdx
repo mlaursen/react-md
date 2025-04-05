@@ -22,7 +22,7 @@ different formats to be previewed `<img>`, `<video>`, `<embed>`, etc tags.
 However, it can also be used to upload the files as an `ArrayBuffer` and then
 uploaded to a server.
 
-## Example Usage
+### Example Usage
 
 This example will show how to handle simple validation and preview uploaded
 files. Only the `Demo` files are editable.
@@ -31,7 +31,7 @@ files. Only the `Demo` files are editable.
 
 ```
 
-### Server Uploads
+#### Server Uploads
 
 If the files should be uploaded to the server instead of previewed in the
 browser, it is recommended to set the `getFileParser` option to always
@@ -45,7 +45,7 @@ upload files to the server using this hook.
 
 ```
 
-## Parameters
+### Parameters
 
 - `options` (optional) - an object with the following definition:
 
@@ -128,7 +128,7 @@ export interface FileValidationOptions {
 }
 ````
 
-## Returns
+### Returns
 
 An object with the following definition:
 
@@ -223,9 +223,9 @@ export interface FileUploadActions {
 }
 ````
 
-# Errors
+## Errors
 
-## TooManyFilesError [$SOURCE](packages/core/src/files/validation.ts#L59)
+### TooManyFilesError [$SOURCE](packages/core/src/files/validation.ts#L59)
 
 This error will occur when the user attempts to upload more than the total
 number of files allowed. The `TooManyFilesError` error will contain:
@@ -234,7 +234,7 @@ number of files allowed. The `TooManyFilesError` error will contain:
 - `files` - a readonly list of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) that caused this error
 - `limit` - the max limit of files allowed
 
-## FileSizeError [$SOURCE](packages/core/src/files/validation.ts#L84)
+### FileSizeError [$SOURCE](packages/core/src/files/validation.ts#L84)
 
 This error will occur when the user attempts to upload a file that is either:
 
@@ -249,7 +249,7 @@ The `FileSizeError` error will contain:
 - `type` - either `"min"`, `"max"`, or `"total"` representing the file size error type
 - `limit` - the total number of bytes related to the file size error type
 
-## FileExtensionError [$SOURCE](packages/core/src/files/validation.ts#L107)
+### FileExtensionError [$SOURCE](packages/core/src/files/validation.ts#L107)
 
 This error will occur when the user attempts to upload a file that does not end with one
 of the supported `extensions`. The `FileExtensionError` error will contain:
@@ -257,7 +257,7 @@ of the supported `extensions`. The `FileExtensionError` error will contain:
 - `key` - a unique key that can be used as a `React` key
 - `files` - a readonly list of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) that caused this error
 
-## GenericFileError [$SOURCE](packages/core/src/files/validation.ts#L32)
+### GenericFileError [$SOURCE](packages/core/src/files/validation.ts#L32)
 
 This is a helper error class that is used by the other error types and
 probably won't be triggered. The `GenericFileError` error will contain:
@@ -265,14 +265,14 @@ probably won't be triggered. The `GenericFileError` error will contain:
 - `key` - a unique key that can be used as a `React` key
 - `files` - a readonly list of [File](https://developer.mozilla.org/en-US/docs/Web/API/File) that caused this error
 
-## FileAccessError [$SOURCE](packages/core/src/files/validation.ts#L10)
+### FileAccessError [$SOURCE](packages/core/src/files/validation.ts#L10)
 
 This error will occur if the user attempts to drag and drop a file from a shared directory
 that they do not have access to. This error is very uncommon.
 
-# Utils
+## Utils
 
-## validateFiles [$SOURCE](packages/core/src/files/validation.ts#L373)
+### validateFiles [$SOURCE](packages/core/src/files/validation.ts#L373)
 
 ```ts disableTransform
 function validateFiles<CustomError>(
@@ -284,7 +284,7 @@ function validateFiles<CustomError>(
 This is the default implementation for validating files with the
 `useFileUpload` hook.
 
-## getSplitFileUploads [$SOURCE](packages/core/src/files/utils.ts#L244)
+### getSplitFileUploads [$SOURCE](packages/core/src/files/utils.ts#L244)
 
 ```ts disableTransform
 function getSplitFileUploads(
@@ -296,7 +296,7 @@ The `getSplitFileUploads` can be used to split the `stats` returned by the
 `useFileUpload` hook into the `pending`, `uploading`, and `complete` groups
 to create a dynamic UI for file uploads.
 
-### Main Usage
+#### Main Usage
 
 ```tsx
 import { FileUpload } from "@react-md/core/files/FileUpload";
@@ -327,7 +327,7 @@ function Example() {
 }
 ```
 
-### Parameters
+#### Parameters
 
 - `stats` - a readonly list of objects with the following shape:
 
@@ -352,7 +352,7 @@ export interface BaseFileUploadStats {
 }
 ```
 
-### Returns
+#### Returns
 
 An object with the following definition:
 
@@ -364,7 +364,7 @@ export interface SplitFileUploads {
 }
 ```
 
-## isValidFileName [$SOURCE](packages/core/src/files/validation.ts#L228)
+### isValidFileName [$SOURCE](packages/core/src/files/validation.ts#L228)
 
 ```ts disableTransform
 export type IsValidFileName = (
@@ -379,7 +379,7 @@ export const isValidFileName: IsValidFileName;
 This is just the default implementation for checking if a provided file is
 valid based on the provided extensions.
 
-# File Type Checkers
+## File Type Checkers
 
 The file type checkers are not guaranteed to be 100% correct and all have the
 following signature:
@@ -394,7 +394,7 @@ type IsFileType = (file: File) => boolean;
 - [isVideoFile]($GITHUB/packages/core/src/files/utils.ts#L120)
 - [isMediaFile]($GITHUB/packages/core/src/files/utils.ts#L132)
 
-# Type Guards
+## Type Guards
 
 The following type guards are provided to determine how to display the errors and all
 have the following signature:

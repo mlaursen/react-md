@@ -18,7 +18,7 @@ Sliders can use icons on both ends of the bar to represent a numeric or relative
 scale. The range of values or the nature of the values, such as volume change,
 can be communicated with icons.
 
-# Horizontal Slider
+## Horizontal Slider
 
 The `Slider` is a fully controlled component requiring a `value` and a
 `setValue` function. `react-md` provides a hook to help implement this
@@ -28,7 +28,7 @@ functionality for most use cases: `useSlider`.
 
 ```
 
-## With Addons
+### With Addons
 
 Icons or other components can be rendered inline with the `Slider` by passing
 them to the `beforeAddon` and `afterAddon` props.
@@ -37,7 +37,7 @@ them to the `beforeAddon` and `afterAddon` props.
 
 ```
 
-# Configuring useSlider
+## Configuring useSlider
 
 The `useSlider` hook can configure the `min`, `max`, `step`, and `defaultValue`.
 
@@ -45,7 +45,7 @@ The `useSlider` hook can configure the `min`, `max`, `step`, and `defaultValue`.
 
 ```
 
-# Vertical Slider
+## Vertical Slider
 
 Set the `vertical` prop to `true` to render a `Slider` vertically instead of
 horizontally. The default height will be [$SASSDOC](slider-vertical-size) (`15rem`) but
@@ -56,7 +56,7 @@ style.
 
 ```
 
-## With Addons
+### With Addons
 
 Icons or other components can be rendered above or below the vertical `Slider`
 by passing them to the `beforeAddon` and `afterAddon` props.
@@ -65,7 +65,7 @@ by passing them to the `beforeAddon` and `afterAddon` props.
 
 ```
 
-# Slider States
+## Slider States
 
 Unlike other form components, the `Slider` only supports a `disabled` state.
 
@@ -73,7 +73,7 @@ Unlike other form components, the `Slider` only supports a `disabled` state.
 
 ```
 
-# Range Slider
+## Range Slider
 
 The `Slider` can support rendering with two thumbs that represent a range of
 values. The easiest way is to control the value with the `useRangeSlider` hook.
@@ -82,13 +82,13 @@ values. The easiest way is to control the value with the `useRangeSlider` hook.
 
 ```
 
-## Vertical Range Slider
+### Vertical Range Slider
 
 ```demo source="./VerticalRangeSlider.tsx"
 
 ```
 
-# Discrete Slider
+## Discrete Slider
 
 The current value can be shown in a tooltip by enabling the `discrete` prop
 which only appears while dragging or focused by default. The tooltip visibility
@@ -103,7 +103,7 @@ values:
 
 ```
 
-## Customizing the Discrete Slider Tooltip
+### Customizing the Discrete Slider Tooltip
 
 The discrete slider's tooltip props can be customized by using the `getTooltipProps`
 function and the children can be customized by the `getTooltipChildren`
@@ -113,7 +113,7 @@ function.
 
 ```
 
-# Slider Marks
+## Slider Marks
 
 Marks can be added to help show specific values within the `Slider` by using the
 `marks` prop. When set to `true`, a mark will be added for each step within the
@@ -123,7 +123,7 @@ range.
 
 ```
 
-## Customizing Slider Marks
+### Customizing Slider Marks
 
 Marks can also be defined by providing a list of specific values within the
 range and an optional value for each mark. If marks need additional
@@ -133,7 +133,7 @@ customization, the `getMarkLabelProps` can also be used.
 
 ```
 
-# Linked with a Text Field
+## Linked with a Text Field
 
 The `useSlider` hook is not required to control the state of a `Slider` and can
 be controlled as long as a `value` and `setValue` is provided. This allows the
@@ -144,7 +144,7 @@ or any other custom implementation.
 
 ```
 
-# Accessibility
+## Accessibility
 
 The `Slider` follows the [slider](https://www.w3.org/WAI/ARIA/apg/patterns/slider/)
 and [range slider](https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/)

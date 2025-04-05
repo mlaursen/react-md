@@ -15,22 +15,25 @@ function getHeadings(ast: Root): TableOfContentsHeadings {
   const headings: TableOfContentsHeading[] = [];
 
   visit(ast, "element", (node) => {
-    const level = headingRank(node);
-    if (level !== undefined) {
+    const rank = headingRank(node);
+    if (rank !== undefined) {
       const { id } = node.properties;
+      if (!id || typeof id !== "string") {
+        throw new Error(
+          "The rehype-slug plugin must be included before the rehype-toc plugin"
+        );
+      }
+
+      // I want h1 and h2 to be at the same level in toc
+      const level = Math.max(1, rank - 1);
       const heading: TableOfContentsHeading = {
-        id: typeof id === "string" ? id : "",
+        id,
         depth: level,
         // remove any [$SOURCE](path/to/file) from headings
         children: toString(node)
           .replace(/\$SOURCE/, "")
           .trim(),
       };
-      if (!heading.id) {
-        throw new Error(
-          "The rehype-slug plugin must be included before the rehype-toc plugin"
-        );
-      }
 
       headings.push(heading);
     }

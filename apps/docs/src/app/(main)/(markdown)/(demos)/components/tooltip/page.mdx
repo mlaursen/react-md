@@ -12,7 +12,7 @@ components: [Tooltip]
 
 Tooltips display informative text when users hover over, focus on, or tap an element.
 
-# Simple Example
+## Simple Example
 
 A tooltip can be created by using the `Tooltip` component and the `useTooltip`
 hook to handle controlling the visibility. The default behavior will be to show
@@ -22,7 +22,7 @@ the tooltip after hovering/focusing/touching for 1 second.
 
 ```
 
-## Dense Tooltip
+### Dense Tooltip
 
 The tooltip can be rendered with a smaller size and spacing from the tooltipped
 element by enabling the `dense` option.
@@ -31,7 +31,7 @@ element by enabling the `dense` option.
 
 ```
 
-## Long Text Tooltip
+### Long Text Tooltip
 
 Tooltips have a `max-width` set to `15rem` by default but can be configured by
 setting the [$SASSDOC](tooltip-max-width) Sass variable or through CSS on the
@@ -41,7 +41,7 @@ tooltip.
 
 ```
 
-# Tooltip Positioning
+## Tooltip Positioning
 
 The `Tooltip` will automatically attempt to render itself within the viewport
 either above or below the tooltipped element preferring below. The positioning
@@ -61,7 +61,7 @@ hook as one of the following:
 
 ```
 
-## Forced Tooltip Position
+### Forced Tooltip Position
 
 A specific position can be forced by setting the `position` option instead.
 
@@ -69,7 +69,7 @@ A specific position can be forced by setting the `position` option instead.
 
 ```
 
-# Tooltipped Button
+## Tooltipped Button
 
 Since `Tooltip`s are normally used with `Button`s, a simple helper component is
 available to automatically render a tooltip when a `tooltip` prop is provided. The
@@ -80,7 +80,7 @@ like normal buttons.
 
 ```
 
-# Enabling Hover Mode
+## Enabling Hover Mode
 
 Tooltips can also be updated to have a "hover mode" so that subsequent tooltips
 are shown immediately instead of requiring the default delay. After no tooltips
@@ -93,7 +93,7 @@ the components in the `TooltipHoverModeProvider`.
 
 ```
 
-# Configuring Tooltip Timeouts
+## Configuring Tooltip Timeouts
 
 The timeouts for showing and hiding the tooltips can be configured globally
 using the `TooltipHoverModeProvider` or a tooltip-by-tooltip basis with the
@@ -110,7 +110,7 @@ using the `TooltipHoverModeProvider` or a tooltip-by-tooltip basis with the
 
 ```
 
-# Overflow Only Tooltip
+## Overflow Only Tooltip
 
 The `useTooltip` hook also supports an `overflowOnly` option that will display
 the tooltip only while there is overflown content for the tooltipped element.
@@ -119,7 +119,7 @@ the tooltip only while there is overflown content for the tooltipped element.
 
 ```
 
-## Custom Overflow Element
+### Custom Overflow Element
 
 If the tooltipped element is a flex or grid container, a child element will most
 likely need to be updated to add the overflow styles. This would cause the
@@ -134,7 +134,7 @@ truncated element and the tooltip will correctly appear.
 
 ```
 
-# Custom Tooltip
+## Custom Tooltip
 
 A `Tooltip` can be rendered without the `useTooltip` hook but will require some
 additional styling for the correct positioning to work.
@@ -149,7 +149,7 @@ additional styling for the correct positioning to work.
 
 ```
 
-## Progressbar Tooltip Example
+### Progressbar Tooltip Example
 
 This demo just showcases a possible use-case for the custom tooltip by rendering
 it with a progressbar to show the current progress.
@@ -158,7 +158,7 @@ it with a progressbar to show the current progress.
 
 ```
 
-# Accessibility
+## Accessibility
 
 Tooltips follow the [tooltip pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
 and the [tooltip role](https://w3c.github.io/aria/#tooltip).

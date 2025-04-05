@@ -5,7 +5,7 @@ import { type ReactElement } from "react";
 export default function LayoutPage(): ReactElement {
   return (
     <TextContainer>
-      <Typography type="headline-2">
+      <Typography as="h1" type="headline-2">
         Hello, world! This is the home page.
       </Typography>
       <Typography>

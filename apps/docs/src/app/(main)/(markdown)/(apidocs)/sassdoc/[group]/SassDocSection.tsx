@@ -22,7 +22,7 @@ export function SassDocSection({
   const baseId = slug(children);
   return (
     <>
-      <LinkableHeading id={baseId} level={1}>
+      <LinkableHeading id={baseId} level={2}>
         {children}
       </LinkableHeading>
       {[...items.values()].map((item) => (

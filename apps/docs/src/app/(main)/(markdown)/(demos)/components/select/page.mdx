@@ -17,7 +17,7 @@ additional styling.
 > !Info! See the [AutoComplete](/components/autocomplete) component for
 > typeahead or fuzzy searching of options.
 
-# Simple Select
+## Simple Select
 
 A select can be created by using the `Select` and `Option` components together.
 Each option should have a unique `value` and some sort of text.
@@ -26,7 +26,7 @@ Each option should have a unique `value` and some sort of text.
 
 ```
 
-## Select Theme
+### Select Theme
 
 Just like other form components, the `Select` supports multiple themes:
 `outline` (default), `filled`, or `underline`.
@@ -35,7 +35,7 @@ Just like other form components, the `Select` supports multiple themes:
 
 ```
 
-## Controlled Select
+### Controlled Select
 
 The `value` for the select can be controlled by providing a `value` and
 `onChange` handler where the `value` should match one of the `Option`'s `value`s.
@@ -46,7 +46,7 @@ The `value` for the select can be controlled by providing a `value` and
 
 ```
 
-## Uncontrolled Select with a Default Value
+### Uncontrolled Select with a Default Value
 
 If the `Select` does not need to be controlled, a `defaultValue` can be provided
 instead.
@@ -55,7 +55,7 @@ instead.
 
 ```
 
-# Grouped Options
+## Grouped Options
 
 Related options can be wrapped in an `OptGroup` to provide additional context
 for the options. The `OptGroup` must have a label for accessibility.
@@ -64,7 +64,7 @@ for the options. The `OptGroup` must have a label for accessibility.
 
 ```
 
-# Custom Dropdown Icon
+## Custom Dropdown Icon
 
 The `Select` component will use the
 [dropdown](/customization/icon-config#dropdown) icon from the `ICON_CONFIG` by
@@ -76,7 +76,7 @@ for no rotation and animation.
 
 ```
 
-# Select with Addons
+## Select with Addons
 
 Just like the [TextField](/components/text-field), the `Select` supports
 rendering a `leftAddon`. It does not really support a `rightAddon` out of the
@@ -86,7 +86,7 @@ box since that is normally the dropdown icon.
 
 ```
 
-## Using Option Addons
+### Using Option Addons
 
 If an option provides the `leftAddon` prop, it will automatically be added as
 the `leftAddon` to the `Select` once it has been selected. This behavior can be
@@ -96,7 +96,7 @@ disabled by setting `disableOptionAddon` to `true`.
 
 ```
 
-## Removing Option Selected Icon
+### Removing Option Selected Icon
 
 The `Option` component will use the
 [selected](/customization/icon-config#selected) icon from the `ICON_CONFIG` by
@@ -107,7 +107,7 @@ setting `disableSelectedIcon` to `true` on the `Select` component.
 
 ```
 
-## Selected Icon After
+### Selected Icon After
 
 The selected icon can be rendered after the `children` by enabling the
 `selectedIconAfter` prop on each option.
@@ -116,7 +116,7 @@ The selected icon can be rendered after the `children` by enabling the
 
 ```
 
-## Adding an Unselected Icon
+### Adding an Unselected Icon
 
 An icon could also be added for the unselected state with the `unselectedIcon`
 prop on the `Option`.
@@ -125,7 +125,7 @@ prop on the `Option`.
 
 ```
 
-# Menu Options
+## Menu Options
 
 The `Select` uses the [Menu](/components/menu) behind the scenes and can pass
 additional props via the `menuProps`.
@@ -139,7 +139,7 @@ how the menu behaves.
 
 ```
 
-## Rendering in a Sheet
+### Rendering in a Sheet
 
 The options can be rendered within a sheet on mobile or other screen sizes if
 needed. Check out the
@@ -150,7 +150,7 @@ menu documentation for more information.
 
 ```
 
-# Accessibility
+## Accessibility
 
 The `Select` component implements everything for a [select only combobox](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
 which means:

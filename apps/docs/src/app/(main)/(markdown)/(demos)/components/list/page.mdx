@@ -13,7 +13,7 @@ components:
 
 Lists are continuous, vertical indexes of text or images that are normally interactable.
 
-# Simple List
+## Simple List
 
 A list can be created using the `List` and `ListItem` components.
 
@@ -21,7 +21,7 @@ A list can be created using the `List` and `ListItem` components.
 
 ```
 
-## Adding Click Handlers
+### Adding Click Handlers
 
 Each list item will normally have an `onClick` event handler to trigger an
 action.
@@ -30,7 +30,7 @@ action.
 
 ```
 
-# Different Sizes
+## Different Sizes
 
 The `ListItem` has different heights available and defaults to automatically
 determining the height based on the provided props but can be manually set as
@@ -40,7 +40,7 @@ well. Check out the following examples to see the heights in action.
 
 ```
 
-## Adding Secondary Text
+### Adding Secondary Text
 
 A `ListItem` normally contains primary content (`children`) and optionally
 secondary content using the `secondaryText` prop. The secondary text will gain
@@ -52,7 +52,7 @@ the `secondaryText` prop exists, the `height` will be automatically set to
 
 ```
 
-## Multiple Lines of Secondary Text
+### Multiple Lines of Secondary Text
 
 The `secondaryText` can also span multiple lines by enabling the `multiline`
 prop. The default behavior will be to allow two lines of text and use
@@ -65,7 +65,7 @@ using the [$SASSDOC](<list-set-var(item-multiline-clamp, NEW_SIZE)>) mixin.
 
 ```
 
-# List Item Addons
+## List Item Addons
 
 The `ListItem` also supports rendering addons before and after the `children`,
 `primaryText`, and `secondaryText` using the `leftAddon` and `rightAddon` props.
@@ -76,7 +76,7 @@ with the rest of the content.
 
 ```
 
-## Disabling Left Addon Spacing
+### Disabling Left Addon Spacing
 
 When there is a `leftAddon`, there will normally be additional `margin-right`
 applied so that the content align nicely with a hamburger menu and title in an
@@ -87,7 +87,7 @@ applied so that the content align nicely with a hamburger menu and title in an
 
 ```
 
-## Avatar Addons
+### Avatar Addons
 
 When an addon should be an [Avatar](/components/avatar) instead of an icon, set
 the `leftAddonType` or `rightAddonType` to `"avatar"` to modify the positioning.
@@ -96,7 +96,7 @@ the `leftAddonType` or `rightAddonType` to `"avatar"` to modify the positioning.
 
 ```
 
-## Media Addons
+### Media Addons
 
 When an addon should be an image or something around `3.5rem` (`56px`), set the
 `leftAddonType` or `rightAddonType` to `"media"`. The media size and spacing can
@@ -107,7 +107,7 @@ be configured by the [$SASSDOC](list-item-media-size) and
 
 ```
 
-## Large Media Addons
+### Large Media Addons
 
 The `ListItem` also supports large media that are `6.25rem` (`100px`) wide by
 setting the `leftAddonType` or `rightAddonType` to `"large-media"`. The width
@@ -118,7 +118,7 @@ of the large media can be configured by the
 
 ```
 
-# Disabled List Item
+## Disabled List Item
 
 The `ListItem` can be disabled by enabling the `disabled` prop which applies the
 `--rmd-text-disabled-color` and prevents user interaction. Since the text color
@@ -129,7 +129,7 @@ apply opacity to the entire `ListItem` instead to show it has been disabled.
 
 ```
 
-# Noninteractive List
+## Noninteractive List
 
 If the `ListItem` should be used to only display data, set the `role` to
 `"presentation"` removing all interaction behavior.
@@ -138,7 +138,7 @@ If the `ListItem` should be used to only display data, set the `role` to
 
 ```
 
-## Default List Styles
+### Default List Styles
 
 The `List` and `ListItem` components remove the default `<ol>` and `<ul>`
 styling, accessibility, and behavior to behave like a collection of actions
@@ -150,7 +150,7 @@ same typography.
 
 ```
 
-## List Item Children
+### List Item Children
 
 Since the `ListItem` has some nice functionality of separating content with
 addons, it might be tempting to use the `ListItem` for layouts instead of

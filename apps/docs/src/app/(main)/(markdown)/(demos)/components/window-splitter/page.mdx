@@ -20,7 +20,7 @@ used to set the `height` or `width` of panels and is used to set the
 > [Resizable Navigation Layout](http://localhost:3000/getting-started/layout#resizable-navigation-layout) and
 > [useResizableLayout](/hooks/use-resizable-layout) instead.
 
-# Horizontal Resizable Sheet Example
+## Horizontal Resizable Sheet Example
 
 This example will show how to create a resizable `Sheet` using the
 `WindowSplitter`. The `useWindowSplitter` hook requires a `min` and `max` value
@@ -34,7 +34,7 @@ the `max` value if the user resizes the window.
 
 ```
 
-## Reversed Horizontal Resizable Sheet Example
+### Reversed Horizontal Resizable Sheet Example
 
 If the panel size should increment when dragging from right-to-left instead of
 left-to-right, enable the `reversed` option for the `useWindowSplitter` hook.
@@ -47,7 +47,7 @@ left-to-right, enable the `reversed` option for the `useWindowSplitter` hook.
 
 ```
 
-# Vertical Resizable Sheet Example
+## Vertical Resizable Sheet Example
 
 The `WindowSplitter` and `useWindowSplitter` can be used to resize vertically
 as well. Just enable the `vertical` option for the `useWindowSplitter`.
@@ -56,7 +56,7 @@ as well. Just enable the `vertical` option for the `useWindowSplitter`.
 
 ```
 
-## Reversed Vertical Resizable Sheet Example
+### Reversed Vertical Resizable Sheet Example
 
 If the panel size should increment when dragging from down-to-up instead of
 up-to-down, enable the `reversed` option for the `useWindowSplitter` hook.
@@ -65,7 +65,7 @@ up-to-down, enable the `reversed` option for the `useWindowSplitter` hook.
 
 ```
 
-# Relative Horizontal Example
+## Relative Horizontal Example
 
 The `WindowSplitter` defaults to using `position: fixed` but can also be used
 within `position: relative` containers by enabling the `disableFixed` prop. The
@@ -76,7 +76,7 @@ can be done using the [useElementSize hook](/hooks/use-element-size) or another 
 
 ```
 
-## Relative Vertical Example
+### Relative Vertical Example
 
 This is the same as above, but just vertical instead of horizontal.
 
@@ -84,13 +84,13 @@ This is the same as above, but just vertical instead of horizontal.
 
 ```
 
-# Accessibility
+## Accessibility
 
 The window splitter implements the [window
 splitter](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)
 specifications and will require an `aria-label`/`aria-labelledby`.
 
-## Keyboard Behavior
+### Keyboard Behavior
 
 - The `Home` and `End` keys will move the splitter to the largest and smallest
   allowed size for both horizontal and vertical window splitters

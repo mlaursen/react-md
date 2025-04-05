@@ -15,7 +15,7 @@ An expansion panel enables content to be either collapsed (hidden) or expanded
 (visible) following the
 [disclosure pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/).
 
-# Simple Example
+## Simple Example
 
 An `ExpansionPanel` is a required component requiring an `expanded` state and
 `onExpandClick` function to toggle the expanded state. The children will be
@@ -26,7 +26,7 @@ can be defined using the `headerChildren` prop.
 
 ```
 
-# Expansion Panel Group
+## Expansion Panel Group
 
 If multiple `ExpansionPanel`s should be used together in a group, wrap them in
 the `ExpansionList` component to add additional keyboard accessibility. The
@@ -41,7 +41,7 @@ additional `useExpansionPanels` options.
 
 ```
 
-## Multiple Expanded Panels
+### Multiple Expanded Panels
 
 If multiple panels should be able to be expanded at the same time, enable the
 `multiple` option. This demo will also show how the `defaultExpandedIndex` can
@@ -51,7 +51,7 @@ be used to expand a single panel by default.
 
 ```
 
-## Prevent All Panels Collapsed
+### Prevent All Panels Collapsed
 
 The `preventAllCollapsed` option can be used to ensure at least one panel is
 always expanded and defaults to expanding the first panel.
@@ -60,7 +60,7 @@ always expanded and defaults to expanding the first panel.
 
 ```
 
-## String-based Panel Props
+### String-based Panel Props
 
 If the expansion panel should be identified by a unique id instead of an index,
 that unique id can be passed to `getPanelProps` instead. This also allows for
@@ -70,7 +70,7 @@ specific panels to be expanded by default.
 
 ```
 
-# Disable Transition
+## Disable Transition
 
 The collapse transition can be disabled by enabling the `disableTransition`
 prop.
@@ -79,7 +79,7 @@ prop.
 
 ```
 
-## Temporary Contents
+### Temporary Contents
 
 The `ExpansionPanel` will hide collapsed content by using `display: none` but
 can dynamically render it instead by enabling the `temporary` prop. Dynamically
