@@ -483,6 +483,35 @@ export function useCombobox<
           activeOption.scrollIntoView({ block: "nearest" });
         }
       };
+      const onEnterOnce = (): void => {
+        const popup = popupRef.current;
+        if (!popup) {
+          attemptScroll();
+          return;
+        }
+
+        const focusables = getFocusableElements(popup, true);
+        const index = getEnterDefaultFocusedIndex({
+          focusLast: focusLast.current,
+          focusables,
+          currentFocusIndex: currentFocusIndex.current,
+        });
+        focusLast.current = false;
+        currentFocusIndex.current = index;
+
+        const option = focusables[index];
+        if (!option) {
+          return;
+        }
+
+        onFocusChange({
+          index,
+          element: option,
+        });
+
+        option.scrollIntoView({ block: "nearest" });
+        setActiveDescendantId(option.id || "");
+      };
 
       return {
         anchor: BELOW_CENTER_ANCHOR,
@@ -500,35 +529,7 @@ export function useCombobox<
             attemptScroll();
           },
           onEntering,
-          onEnterOnce: () => {
-            const popup = popupRef.current;
-            if (!popup) {
-              attemptScroll();
-              return;
-            }
-
-            const focusables = getFocusableElements(popup, true);
-            const index = getEnterDefaultFocusedIndex({
-              focusLast: focusLast.current,
-              focusables,
-              currentFocusIndex: currentFocusIndex.current,
-            });
-            focusLast.current = false;
-            currentFocusIndex.current = index;
-
-            const option = focusables[index];
-            if (!option) {
-              return;
-            }
-
-            onFocusChange({
-              index,
-              element: option,
-            });
-
-            option.scrollIntoView({ block: "nearest" });
-            setActiveDescendantId(option.id || "");
-          },
+          onEnterOnce,
           onExit,
           onExiting,
           onExited,
@@ -544,6 +545,7 @@ export function useCombobox<
           ...sheetProps,
           ...getTransitionCallbacks({
             ...sheetProps,
+            onEnterOnce,
             disableTransition:
               sheetProps?.disableTransition ?? disableTransition,
           }),
