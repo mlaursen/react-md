@@ -18,6 +18,10 @@ const canonicalize: Importer<"sync">["canonicalize"] = (url) => {
     return new URL("_core.scss", `${FILE_URL}/@react-md/core/dist/`);
   }
 
+  if (url.endsWith("core/a11y")) {
+    return new URL("_a11y.scss", `${FILE_URL}/@react-md/core/dist/`);
+  }
+
   if (url.endsWith("core/colors") || url.endsWith("/dist/@react-md/core")) {
     return new URL("_colors.scss", `${FILE_URL}/@react-md/core/dist/`);
   }

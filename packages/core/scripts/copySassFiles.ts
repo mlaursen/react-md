@@ -4,7 +4,7 @@ import chokidar from "chokidar";
 import { glob } from "glob";
 import { existsSync } from "node:fs";
 import { copyFile, mkdir, rm } from "node:fs/promises";
-import { dirname } from "node:path";
+import { basename, dirname } from "node:path";
 
 let log = false;
 const pattern = "src/**/*.scss";
@@ -18,16 +18,17 @@ const ensureParentDirectories = async (filePath: string): Promise<void> => {
 };
 
 const cp = async (path: string, dest = replaceDist(path)): Promise<void> => {
-  const isColors = path.endsWith("_colors.scss");
+  const name = basename(path);
+  const isCopiedToRoot = name === "_colors.scss" || name === "_a11y.scss";
   await ensureParentDirectories(dest);
   await copyFile(path, dest);
-  if (isColors) {
-    await copyFile(path, "dist/_colors.scss");
+  if (isCopiedToRoot) {
+    await copyFile(path, `dist/${name}`);
   }
   if (log) {
     console.log(`Copied ${path} -> ${dest}`);
-    if (isColors) {
-      console.log(`Copied ${path} -> dist/colors.scss`);
+    if (isCopiedToRoot) {
+      console.log(`Copied ${path} -> dist/${name}`);
     }
   }
 };

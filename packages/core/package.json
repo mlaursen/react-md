@@ -5,6 +5,9 @@
   "type": "module",
   "sass": "./dist/_core.scss",
   "exports": {
+    "./a11y": {
+      "sass": "./dist/_a11y.scss"
+    },
     ".": {
       "sass": "./dist/_core.scss"
     },
