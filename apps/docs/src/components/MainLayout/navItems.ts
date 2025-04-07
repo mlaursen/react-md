@@ -168,6 +168,11 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/highlight-text",
+        children: "HighlightText",
+      },
+      {
+        type: "route",
         href: "/icon",
         children: "Icon",
       },
@@ -180,6 +185,11 @@ export const navItems: readonly NavigationItem[] = [
         type: "route",
         href: "/list",
         children: "List",
+      },
+      {
+        type: "route",
+        href: "/mark",
+        children: "Mark",
       },
       {
         type: "route",

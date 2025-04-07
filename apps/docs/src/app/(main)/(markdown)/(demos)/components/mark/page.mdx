@@ -1,0 +1,51 @@
+---
+title: Mark
+description: The Mark component is a styled version of the mark HTMLElement.
+docType: Demo
+docGroup: Components
+group: Presentation
+components: [Mark]
+---
+
+# Mark
+
+The `Mark` component can is a styled version of the
+[mark HTMLElement](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark).
+
+> Typical use cases for `<mark>` include:
+>
+> - When used in a quotation (`<q>`) or block quote (`<blockquote>`), it
+>   generally indicates text which is of special interest but is not marked in
+>   the original source material, or material which needs special scrutiny even
+>   though the original author didn't think it was of particular importance.
+>   Think of this like using a highlighter pen in a book to mark passages that
+>   you find of interest.
+> - Otherwise, `<mark>` indicates a portion of the document's content which is
+>   likely to be relevant to the user's current activity. This might be used,
+>   for example, to indicate the words that matched a search operation.
+> - Don't use `<mark>` for syntax highlighting purposes; instead, use the
+>   `<span>` element with appropriate CSS applied to it.
+>
+> > !Info! Note: Don't confuse `<mark>` with the `<strong>` element; `<mark>` is used to denote content which has a degree of relevance, while `<strong>` indicates spans of text of importance.
+
+## Simple Example
+
+Wrap any children with the `Mark` component to apply the styles.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## Customizing Styles Example
+
+The mark styles can be updated just like the [Typography
+component](/components/typography#customizing-typography):
+
+- there is a [$SASSDOC](mark-recommended-styles) map that will be merged with a
+  configurable [$SASSDOC](mark-custom-styles) map where the `mark-custom-styles`
+  would override any values in the `mark-recommended-styles`.
+- if all styles should be customized, configure the [$SASSDOC](mark-styles) map instead
+
+```demo source="./CustomizingStylesExample.tsx"
+
+```

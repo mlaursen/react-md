@@ -224,13 +224,6 @@ async function getServerComponentSource({
   return await format(sourceFile.getFullText(), { parser: "typescript" });
 }
 
-/**
- * These packages fail with the `import * ` notation
- */
-function isCjsOnly(key: string): boolean {
-  return /^autosuggest-highlight/.test(key);
-}
-
 export interface GenerateDemoFileOptions extends ParseCompleteDemoFileOptions {
   props: InlineDemoProps;
   aliasDir: string;
@@ -277,7 +270,6 @@ export async function generateDemoFile(
     importScope[name] = key;
     if (!name.startsWith("@react-md") && !name.startsWith("@/")) {
       dependencies.add(
-        // autosuggest-highlight/parse -> autosuggest-highlight
         // @reduxjs/toolkit/react -> @reduxjs/toolkit
         name
           .split("/")
@@ -286,17 +278,10 @@ export async function generateDemoFile(
       );
     }
 
-    if (isCjsOnly(name)) {
-      clientSourceFile.addImportDeclaration({
-        defaultImport: key,
-        moduleSpecifier: name,
-      });
-    } else {
-      clientSourceFile.addImportDeclaration({
-        namespaceImport: key,
-        moduleSpecifier: name,
-      });
-    }
+    clientSourceFile.addImportDeclaration({
+      namespaceImport: key,
+      moduleSpecifier: name,
+    });
   });
 
   const scope = Object.entries(importScope)

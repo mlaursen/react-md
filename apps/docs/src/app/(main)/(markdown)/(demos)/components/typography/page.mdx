@@ -119,7 +119,55 @@ prop or using the `typography` class name utility function.
 ## Customizing Typography
 
 The default typography can be configured by overriding the different typography
-Sass variables when `@forward`ing or `@use`ing `react-md`.
+Sass variables when `@forward`ing or `@use`ing `react-md`. The typography types
+can be customized by:
+
+- providing `{TYPE}-custom-styles` map which would be merged and override any
+  values in the `{TYPE}-recommended` styles map
+- providing a `{TYPE}-styles` map which allows full control and ignores the recommended styles
+
+So the variables for each typography type are:
+
+- [$SASSDOC](base-custom-font-styles) which is applied to all `{TYPE}-recommended-styles`
+- `headline-1`:
+  - [$SASSDOC](headline-1-recommended-styles) merged with [$SASSDOC](headline-1-custom-styles)
+  - or [$SASSDOC](headline-1-styles)
+- `headline-2`:
+  - [$SASSDOC](headline-2-recommended-styles) merged with [$SASSDOC](headline-2-custom-styles)
+  - or [$SASSDOC](headline-2-styles)
+- `headline-3`:
+  - [$SASSDOC](headline-3-recommended-styles) merged with [$SASSDOC](headline-3-custom-styles)
+  - or [$SASSDOC](headline-3-styles)
+- `headline-4`:
+  - [$SASSDOC](headline-4-recommended-styles) merged with [$SASSDOC](headline-4-custom-styles)
+  - or [$SASSDOC](headline-4-styles)
+- `headline-5`:
+  - [$SASSDOC](headline-5-recommended-styles) merged with [$SASSDOC](headline-5-custom-styles)
+  - or [$SASSDOC](headline-5-styles)
+- `headline-6`:
+  - [$SASSDOC](headline-6-recommended-styles) merged with [$SASSDOC](headline-6-custom-styles)
+  - or [$SASSDOC](headline-6-styles)
+- `subtitle-1`:
+  - [$SASSDOC](subtitle-1-recommended-styles) merged with [$SASSDOC](subtitle-1-custom-styles)
+  - or [$SASSDOC](subtitle-1-styles)
+- `subtitle-2`:
+  - [$SASSDOC](subtitle-2-recommended-styles) merged with [$SASSDOC](subtitle-2-custom-styles)
+  - or [$SASSDOC](subtitle-2-styles)
+- `body-1`:
+  - [$SASSDOC](body-1-recommended-styles) merged with [$SASSDOC](body-1-custom-styles)
+  - or [$SASSDOC](body-1-styles)
+- `body-2`:
+  - [$SASSDOC](body-2-recommended-styles) merged with [$SASSDOC](body-2-custom-styles)
+  - or [$SASSDOC](body-2-styles)
+- `caption`:
+  - [$SASSDOC](caption-recommended-styles) merged with [$SASSDOC](caption-custom-styles)
+  - or [$SASSDOC](caption-styles)
+- `overline`:
+  - [$SASSDOC](overline-recommended-styles) merged with [$SASSDOC](overline-custom-styles)
+  - or [$SASSDOC](overline-styles)
+
+The example below shows how to customize the default font family, font-weight,
+and some typography types.
 
 ```demo source="./CustomizingTypographyExample.tsx"
 

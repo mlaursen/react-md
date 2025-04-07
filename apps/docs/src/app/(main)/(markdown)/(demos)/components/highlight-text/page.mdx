@@ -1,0 +1,42 @@
+---
+title: Highlight Text
+description: The HighlightText component can be used to highlight text matching a provided query ignoring case.
+docType: Demo
+docGroup: Components
+group: Presentation
+alias: [Mark]
+components: [HighlightText, Mark]
+---
+
+# HighlightText
+
+The `HighlightText` component can be used to highlight text matching a provided
+query ignoring case.
+
+## Simple Example
+
+The `HighlightText` requires a `query` prop and text children to be provided. The default highlight
+is provided by the [Mark](/components/mark) component.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## First Match Only
+
+If only the first match should be highlighted, enable the `firstMatchOnly` prop.
+
+```demo source="./FirstMatchOnlyExample.tsx"
+
+```
+
+## Customizing Styles
+
+The highlight styles can be configured by providing a custom `highlight` component. It is provided the following props:
+
+- `match` - the `RegExpExecArray` for the current match
+- `children` - the current match based on the query
+
+```demo source="./CustomizingStylesExample.tsx"
+
+```

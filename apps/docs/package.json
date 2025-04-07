@@ -50,7 +50,6 @@
     "@react-md/code": "workspace:*",
     "@react-md/core": "workspace:*",
     "@react-md/material-icons": "workspace:*",
-    "autosuggest-highlight": "^3.3.4",
     "cnbuilder": "^3.1.0",
     "docs-generator": "workspace:*",
     "filesize": "^10.1.6",
