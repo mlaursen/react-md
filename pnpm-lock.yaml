@@ -414,6 +414,9 @@ importers:
       react-dom:
         specifier: '>= 18'
         version: 18.3.1(react@18.3.1)
+      remove-accents:
+        specifier: ^0.5.0
+        version: 0.5.0
     devDependencies:
       '@jest/globals':
         specifier: ^29.7.0
@@ -6799,6 +6802,9 @@ packages:
 
   remove-accents@0.4.4:
     resolution: {integrity: sha512-EpFcOa/ISetVHEXqu+VwI96KZBmq+a8LJnGkaeFw45epGlxIZz5dhEEnNZMsQXgORu3qaMoLX4qJCzOik6ytAg==}
+
+  remove-accents@0.5.0:
+    resolution: {integrity: sha512-8g3/Otx1eJaVD12e31UbJj1YzdtVvzH85HV7t+9MJYk/u3XmkOUJ5Ys9wQrf9PCPK8+xn4ymzqYCiZl6QWKn+A==}
 
   remove-bom-buffer@3.0.0:
     resolution: {integrity: sha512-8v2rWhaakv18qcvNeli2mZ/TMTL2nEyAKRvzo1WtnZBl15SHyEhrCu2/xKlJyUFKHiHgfXIyuY6g2dObJJycXQ==}
@@ -15322,6 +15328,8 @@ snapshots:
       unified: 11.0.5
 
   remove-accents@0.4.4: {}
+
+  remove-accents@0.5.0: {}
 
   remove-bom-buffer@3.0.0:
     dependencies:

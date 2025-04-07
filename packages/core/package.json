@@ -96,7 +96,8 @@
   "license": "MIT",
   "dependencies": {
     "cnbuilder": "^3.1.0",
-    "nanoid": "^5.1.5"
+    "nanoid": "^5.1.5",
+    "remove-accents": "^0.5.0"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

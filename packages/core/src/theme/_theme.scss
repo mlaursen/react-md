@@ -166,6 +166,11 @@ $outline-color: currentcolor !default;
 /// @type Color
 $outline-grey-color: #999 !default;
 
+/// The base inverse color to use when using the light
+/// theme. This should probably never be changed.
+/// @type Color
+$light-theme-inverse-color: colors.$black !default;
+
 /// The root background color (html) when using the light theme.
 /// @type Color
 $light-theme-background-color: #fafafa !default;
@@ -177,19 +182,35 @@ $light-theme-surface-color: #fff !default;
 
 /// The primary text color when using the light theme.
 /// @type Color
-$light-theme-text-primary-color: color.adjust(#000, $lightness: 13%) !default;
+$light-theme-text-primary-color: color.adjust(
+  $light-theme-inverse-color,
+  $lightness: 13%
+) !default;
 
 /// The secondary text color when using the light theme.
 /// @type Color
-$light-theme-text-secondary-color: color.adjust(#000, $lightness: 46%) !default;
+$light-theme-text-secondary-color: color.adjust(
+  $light-theme-inverse-color,
+  $lightness: 46%
+) !default;
 
 /// The hint text color when using the light theme.
 /// @type Color
-$light-theme-text-hint-color: color.adjust(#000, $lightness: 66%) !default;
+$light-theme-text-hint-color: color.adjust(
+  $light-theme-inverse-color,
+  $lightness: 66%
+) !default;
 
 /// The disabled text color when using the light theme.
 /// @type Color
-$light-theme-text-disabled-color: color.adjust(#000, $lightness: 62%) !default;
+$light-theme-text-disabled-color: color.adjust(
+  $light-theme-inverse-color,
+  $lightness: 62%
+) !default;
+
+/// This should probably never be changed.
+/// @type Color
+$dark-theme-inverse-color: colors.$white !default;
 
 /// The background color to apply for surfaces/temporary elements when using the
 /// dark theme. So things like dialogs and menus.
@@ -208,19 +229,31 @@ $dark-theme-surface-color: if($disable-dark-elevation, #424242, null) !default;
 
 /// The primary text color when using the dark theme.
 /// @type Color
-$dark-theme-text-primary-color: color.adjust(#fff, $lightness: -15%) !default;
+$dark-theme-text-primary-color: color.adjust(
+  $dark-theme-inverse-color,
+  $lightness: -15%
+) !default;
 
 /// The secondary text color when using the dark theme.
 /// @type Color
-$dark-theme-text-secondary-color: color.adjust(#fff, $lightness: -30%) !default;
+$dark-theme-text-secondary-color: color.adjust(
+  $dark-theme-inverse-color,
+  $lightness: -30%
+) !default;
 
 /// The hint text color when using the dark theme.
 /// @type Color
-$dark-theme-text-hint-color: color.adjust(#fff, $lightness: -50%) !default;
+$dark-theme-text-hint-color: color.adjust(
+  $dark-theme-inverse-color,
+  $lightness: -50%
+) !default;
 
 /// The disabled text color when using the dark theme.
 /// @type Color
-$dark-theme-text-disabled-color: color.adjust(#fff, $lightness: -50%) !default;
+$dark-theme-text-disabled-color: color.adjust(
+  $dark-theme-inverse-color,
+  $lightness: -50%
+) !default;
 
 /// Used to provide the correct color based on the `$color-scheme` setting.
 ///
@@ -271,6 +304,13 @@ $text-hint-color: get-default-color(
 $text-disabled-color: get-default-color(
   $light-theme-text-disabled-color,
   $dark-theme-text-disabled-color
+) !default;
+
+/// This should probably never be changed.
+/// @type Color
+$inverse-color: get-default-color(
+  $light-theme-inverse-color,
+  $dark-theme-inverse-color
 ) !default;
 
 /// This is a Map for all the supported material design elevations (0 - 24) and
@@ -367,6 +407,7 @@ $_validated_color_scheme: utils.validate(
 /// `get-var`, `set-var`, and `use-var` utils.
 /// @type List
 $theme-variables: (
+  inverse-color,
   background-color,
   on-background-color,
   surface-color,
@@ -386,7 +427,8 @@ $theme-variables: (
   text-disabled-color,
   outline-width,
   outline-color,
-  outline-grey-color
+  outline-grey-color,
+  inverse-color
 );
 
 /// Checks if a theme variable is disabled and should not be able to be
@@ -547,6 +589,7 @@ $theme-variables: (
 
 /// Creates all the css variables for the light theme respecting feature flags
 @mixin use-light-theme-colors {
+  @include theme-set-var(inverse-color, $light-theme-inverse-color);
   @include theme-set-var(background-color, $light-theme-background-color);
   @if $disable-dark-elevation and not $disable-surface-color {
     @include theme-set-var(surface-color, $light-theme-surface-color);
@@ -577,6 +620,7 @@ $theme-variables: (
 
 /// Creates all the css variables for the dark theme respecting feature flags
 @mixin use-dark-theme-colors {
+  @include theme-set-var(inverse-color, $dark-theme-inverse-color);
   @include theme-set-var(background-color, $dark-theme-background-color);
   @if $disable-dark-elevation and not $disable-surface-color {
     @include theme-set-var(surface-color, $dark-theme-surface-color);
@@ -607,6 +651,7 @@ $theme-variables: (
 
 /// Creates all the default theme css variables respecting feature flags
 @mixin theme-variables {
+  @include theme-set-var(inverse-color, $inverse-color);
   @include theme-set-var(background-color, $background-color);
   @if $disable-dark-elevation and not $disable-surface-color {
     @include theme-set-var(surface-color, $surface-color);

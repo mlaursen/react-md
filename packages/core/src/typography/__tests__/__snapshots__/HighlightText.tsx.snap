@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HighlightText should be able to highlight text if the children are an array 1`] = `
+<div
+  data-testid="wrapper"
+>
+  Some prefixed 
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    t
+  </mark>
+  ex
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    t
+  </mark>
+   w
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    i
+  </mark>
+  th a cond
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    i
+  </mark>
+  tional
+  . Wi
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    t
+  </mark>
+  h a suffix.
+</div>
+`;
+
+exports[`HighlightText should default to find all matches of the query string and wrap in the highlight component 1`] = `
+<div
+  data-testid="wrapper"
+>
+  I'm Commander Shepard, and 
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    t
+  </mark>
+  his is my favori
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    t
+  </mark>
+  e s
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    t
+  </mark>
+  ore on 
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    t
+  </mark>
+  he Ci
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    t
+  </mark>
+  adel.
+</div>
+`;
+
+exports[`HighlightText should default to find all matches of the query string and wrap in the highlight component 2`] = `
+<div
+  data-testid="wrapper"
+>
+  I'm Commander Shepard, and 
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    t
+  </mark>
+  his is my favorite store on the Citadel.
+</div>
+`;
+
+exports[`HighlightText should handle diacritics correctly 1`] = `
+<div
+  data-testid="wrapper"
+>
+  I often experience 
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    déjà
+  </mark>
+   vu when visiting this place.
+</div>
+`;
+
+exports[`HighlightText should highlight the text by wrapping in a Mark by default 1`] = `
+<div
+  data-testid="wrapper"
+>
+  I'm Commander Shepard, and this is my 
+  <mark
+    class="rmd-mark"
+  >
+    favorite
+  </mark>
+   store on the Citadel.
+</div>
+`;
+
+exports[`HighlightText should ignore whitespace 1`] = `
+<div
+  data-testid="wrapper"
+>
+  <mark
+    class="rmd-mark"
+    data-testid="mark"
+  >
+    Hello
+  </mark>
+   world
+</div>
+`;
+
+exports[`HighlightText should ignore whitespace 2`] = `
+<div
+  data-testid="wrapper"
+>
+  Hello world
+</div>
+`;
+
+exports[`HighlightText should return the children as-is if there is no query, the children are not a string, or the children is an empty string 1`] = `
+<div
+  data-testid="wrapper"
+>
+  <span>
+    Hello, world!
+  </span>
+</div>
+`;

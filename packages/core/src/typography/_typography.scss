@@ -4,12 +4,17 @@
 
 @use "sass:math";
 @use "sass:map";
+@use "../theme/theme";
 @use "../media-queries/media-queries";
 @use "../utils";
 
 /// Set this to `true` to disable the styles for the `TextContainer` component
 /// @type Boolean
 $disable-text-container: false !default;
+
+/// Set this to `true` to disable the `Mark` component styles.
+/// @type Boolean
+$disable-mark: false !default;
 
 /// Set this to `true` to disable the `headline-1` typography styles
 /// @type Boolean
@@ -524,6 +529,28 @@ $button-styles: map.merge(
   $button-custom-styles
 ) !default;
 
+/// The default recommended mark typography styles.
+///
+/// @type Map
+$mark-recommended-styles: (
+  background: transparent,
+  color: theme.theme-get-var(inverse-color),
+  font: inherit,
+  font-weight: $font-weight-bold,
+);
+
+/// An optional Map of styles that will be applied to all mark styles. If
+/// a key is provided in this Map, it will override the
+/// `$mark-recommended-styles` value.
+///
+/// @type Map
+$mark-custom-styles: () !default;
+
+/// The default mark typography styles.
+///
+/// @type Map
+$mark-styles: map.merge($mark-recommended-styles, $mark-custom-styles) !default;
+
 /// The default padding to apply to the `TextContainer`.
 /// @type Number
 $text-container-padding: 1rem !default;
@@ -578,14 +605,14 @@ $typography-variables: (
 
 /// This should only be used if not using the `typography-styles` mixin.
 ///
-/// @param {Boolean} disabled [$disable-text-container] - Set to `true` to
-/// prevent any styles from being generated.
+/// @see {mixin} typography-styles
 /// @param {Boolean} disable-layer [false] - Set to `true` to prevent the
 /// styles from being wrapped in a `@layer` declaration.
-/// @see {mixin} typography-styles
+/// @param {Boolean} disabled [$disable-text-container] - Set to `true` to
+/// prevent any styles from being generated.
 @mixin typography-text-container-styles(
-  $disabled: $disable-text-container,
-  $disable-layer: false
+  $disable-layer: false,
+  $disabled: $disable-text-container
 ) {
   @if not $disabled {
     @include utils.optional-layer(typography, $disable-layer) {
@@ -686,6 +713,23 @@ $typography-variables: (
   }
 }
 
+/// This should only be used if not using the `typography-styles` mixin.
+///
+/// @see {mixin} typography-styles
+/// @param {Boolean} disable-layer [false] - Set to `true` to prevent the
+/// styles from being wrapped in a `@layer` declaration.
+/// @param {Boolean} disabled [$disable-mark] - Set to `true` to
+/// prevent any styles from being generated.
+@mixin typography-mark-styles($disable-layer: false, $disabled: $disable-mark) {
+  @if not $disabled {
+    @include utils.optional-layer(typography, $disable-layer) {
+      .rmd-mark {
+        @include utils.map-to-styles($mark-styles);
+      }
+    }
+  }
+}
+
 /// Used to enable `text-overflow` for an element.
 ///
 /// @param {String} $white-space [nowrap] - the `white-space` value.
@@ -748,5 +792,6 @@ $typography-variables: (
   @include utils.optional-layer(typography, $disable-layer) {
     @include typography-text-container-styles($disable-layer: true);
     @include typography-base-styles(true);
+    @include typography-mark-styles($disable-layer: true);
   }
 }
