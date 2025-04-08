@@ -1,5 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`AutocompleteClearButton should apply different classes based on the visibility prop 1`] = `
+<button
+  aria-label="Clear"
+  class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button"
+  id="autocomplete-clear-:r1:"
+  tabindex="-1"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    clear
+  </span>
+</button>
+`;
+
+exports[`AutocompleteClearButton should apply different classes based on the visibility prop 2`] = `
+<button
+  aria-label="Clear"
+  class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button"
+  id="autocomplete-clear-:r1:"
+  tabindex="-1"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    clear
+  </span>
+</button>
+`;
+
+exports[`AutocompleteClearButton should apply different classes based on the visibility prop 3`] = `
+<button
+  aria-label="Clear"
+  class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover"
+  id="autocomplete-clear-:r1:"
+  tabindex="-1"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    clear
+  </span>
+</button>
+`;
+
+exports[`AutocompleteClearButton should apply different classes based on the visibility prop 4`] = `
+<button
+  aria-label="Clear"
+  class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover rmd-autocomplete__clear-button--query"
+  id="autocomplete-clear-:r1:"
+  tabindex="-1"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    clear
+  </span>
+</button>
+`;
+
 exports[`AutocompleteClearButton should apply the correct styling and HTML attributes 1`] = `
 <button
   aria-label="Clear"

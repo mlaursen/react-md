@@ -142,6 +142,7 @@ export const TYPES: ReadonlySet<string> = new Set([
   "CircularProgressProps",
   "CircularProgressSuspenseProps",
   "ClassNameCloneableChild",
+  "ClearButtonVisibility",
   "ClickableCardProps",
   "ClientPositionEvent",
   "ClientPositionMouseEvent",
@@ -2147,6 +2148,7 @@ export const EXPORT_MAP: Record<string, string> = {
   CircularProgressSuspenseProps:
     "@react-md/core/suspense/CircularProgressSuspense",
   ClassNameCloneableChild: "@react-md/core/types",
+  ClearButtonVisibility: "@react-md/core/autocomplete/types",
   clearToasts: "@react-md/core/snackbar/ToastManager",
   ClickableCard: "@react-md/core/card/ClickableCard",
   ClickableCardProps: "@react-md/core/card/ClickableCard",

@@ -22,6 +22,24 @@ $disable-everything: false !default;
 /// @type Boolean
 $disable-clear-button: false !default;
 
+/// Set to `true` to disable showing the clear button only while:
+/// - the user is focusing the input
+/// - the user is hovering a valued input
+///
+/// @type Boolean
+$disable-clear-button-hover: false !default;
+
+/// Set to `true` to disable showing the clear button only while:
+/// - the input has a value
+/// - the user is focusing the input
+/// - the user is hovering a valued input
+///
+/// NOTE: This requires the `$disable-clear-button-hover` to be `false` to
+/// work.
+///
+/// @type Boolean
+$disable-clear-button-query-hover: $disable-clear-button-hover !default;
+
 /// Set to `true` to disable the dropdown button styles
 /// @type Boolean
 $disable-dropdown-button: false !default;
@@ -321,10 +339,24 @@ $variables: (
           }
         }
 
-        @include utils.mouse-hover($wrap-in-hover: false) {
-          &:where(:not(:hover):not(:focus-within))
-            :where(#{$_clear-button-selector}) {
-            opacity: 0;
+        @if not $disable-clear-button-hover {
+          @include utils.mouse-hover($wrap-in-hover: false) {
+            // show the clear button if the autocomplete container is hovered or
+            // any element is focused within the container
+            $hover-selector: "&:where(:not(:hover):not(:focus-within)) :where(#{$_clear-button-selector + "--hover"})";
+
+            // stacks on top of the hover behavior, and also enforces only
+            // showing the clear button if the input has a value (or query)
+            $query-selector: "&:where(:has(:placeholder-shown)) :where(#{$_clear-button-selector + "--query"})";
+
+            $selector: $hover-selector;
+            @if not $disable-clear-button-query-hover {
+              $selector: $selector + ", " $query-selector;
+            }
+
+            #{$selector} {
+              opacity: 0;
+            }
           }
         }
 

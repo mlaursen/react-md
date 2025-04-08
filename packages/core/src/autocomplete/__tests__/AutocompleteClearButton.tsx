@@ -23,4 +23,23 @@ describe("AutocompleteClearButton", () => {
     );
     expect(button).toMatchSnapshot();
   });
+
+  it("should apply different classes based on the visibility prop", () => {
+    const props: AutocompleteClearButtonProps = {
+      onClick: jest.fn(),
+    };
+    const { rerender } = render(<AutocompleteClearButton {...props} />);
+
+    const button = screen.getByRole("button", { name: "Clear" });
+    expect(button).toMatchSnapshot();
+
+    rerender(<AutocompleteClearButton {...props} visibility="always" />);
+    expect(button).toMatchSnapshot();
+
+    rerender(<AutocompleteClearButton {...props} visibility="active" />);
+    expect(button).toMatchSnapshot();
+
+    rerender(<AutocompleteClearButton {...props} visibility="query" />);
+    expect(button).toMatchSnapshot();
+  });
 });

@@ -1,11 +1,112 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Autocomplete customizations should allow the button to be customized through the clearButtonProps 1`] = `
+<button
+  aria-label="Close"
+  class="rmd-button rmd-button--text rmd-interaction-surface rmd-autocomplete__clear-button custom-class-name"
+  id="autocomplete-clear-:r11d:"
+  tabindex="-1"
+  type="button"
+>
+  <kbd>
+    esc
+  </kbd>
+</button>
+`;
+
+exports[`Autocomplete customizations should allow the dropdown button to be customized 1`] = `
+<button
+  aria-controls="autocomplete-:r11o:"
+  aria-expanded="false"
+  aria-label="Show Fruits"
+  class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__dropdown-button custom-class-name"
+  id="autocomplete-dropdown-:r11u:"
+  tabindex="-1"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+  >
+    arrow_drop_down
+  </span>
+</button>
+`;
+
+exports[`Autocomplete customizations should pass through the visibility prop 1`] = `
+<button
+  aria-label="Clear"
+  class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover rmd-autocomplete__clear-button--query"
+  id="autocomplete-clear-:r115:"
+  tabindex="-1"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    clear
+  </span>
+</button>
+`;
+
+exports[`Autocomplete customizations should pass through the visibility prop 2`] = `
+<button
+  aria-label="Clear"
+  class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button"
+  id="autocomplete-clear-:r115:"
+  tabindex="-1"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    clear
+  </span>
+</button>
+`;
+
+exports[`Autocomplete customizations should pass through the visibility prop 3`] = `
+<button
+  aria-label="Clear"
+  class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover"
+  id="autocomplete-clear-:r115:"
+  tabindex="-1"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    clear
+  </span>
+</button>
+`;
+
+exports[`Autocomplete customizations should pass through the visibility prop 4`] = `
+<button
+  aria-label="Clear"
+  class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover rmd-autocomplete__clear-button--query"
+  id="autocomplete-clear-:r115:"
+  tabindex="-1"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons"
+  >
+    clear
+  </span>
+</button>
+`;
+
 exports[`Autocomplete multiselect should allow the options to be rendered with checkboxes by enabling the checkboxes prop and preventing the listbox from closing by default once clicked 1`] = `
 <div
   aria-label="Fruits"
   aria-multiselectable="true"
   class="rmd-menu rmd-menu--elevated"
-  id="autocomplete-listbox-:rub:"
+  id="autocomplete-listbox-:rup:"
   role="listbox"
   style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
   tabindex="-1"
@@ -16,7 +117,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
   >
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:ruh:"
+      id="option-:rv0:"
       role="option"
       tabindex="-1"
     >
@@ -34,7 +135,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:ruj:"
+      id="option-:rv2:"
       role="option"
       tabindex="-1"
     >
@@ -52,7 +153,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rul:"
+      id="option-:rv4:"
       role="option"
       tabindex="-1"
     >
@@ -70,7 +171,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:run:"
+      id="option-:rv6:"
       role="option"
       tabindex="-1"
     >
@@ -88,7 +189,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rup:"
+      id="option-:rv8:"
       role="option"
       tabindex="-1"
     >
@@ -106,7 +207,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rur:"
+      id="option-:rva:"
       role="option"
       tabindex="-1"
     >
@@ -124,7 +225,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rut:"
+      id="option-:rvc:"
       role="option"
       tabindex="-1"
     >
@@ -142,7 +243,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:ruv:"
+      id="option-:rve:"
       role="option"
       tabindex="-1"
     >
@@ -160,7 +261,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rv1:"
+      id="option-:rvg:"
       role="option"
       tabindex="-1"
     >
@@ -178,7 +279,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rv3:"
+      id="option-:rvi:"
       role="option"
       tabindex="-1"
     >
@@ -196,7 +297,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rv5:"
+      id="option-:rvk:"
       role="option"
       tabindex="-1"
     >
@@ -221,7 +322,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
   aria-label="Fruits"
   aria-multiselectable="true"
   class="rmd-menu rmd-menu--elevated"
-  id="autocomplete-listbox-:rub:"
+  id="autocomplete-listbox-:rup:"
   role="listbox"
   style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
   tabindex="-1"
@@ -233,7 +334,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     <li
       aria-selected="true"
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon rmd-option--selected"
-      id="option-:ruh:"
+      id="option-:rv0:"
       role="option"
       tabindex="-1"
     >
@@ -251,7 +352,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:ruj:"
+      id="option-:rv2:"
       role="option"
       tabindex="-1"
     >
@@ -269,7 +370,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rul:"
+      id="option-:rv4:"
       role="option"
       tabindex="-1"
     >
@@ -287,7 +388,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:run:"
+      id="option-:rv6:"
       role="option"
       tabindex="-1"
     >
@@ -305,7 +406,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rup:"
+      id="option-:rv8:"
       role="option"
       tabindex="-1"
     >
@@ -323,7 +424,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rur:"
+      id="option-:rva:"
       role="option"
       tabindex="-1"
     >
@@ -341,7 +442,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rut:"
+      id="option-:rvc:"
       role="option"
       tabindex="-1"
     >
@@ -359,7 +460,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:ruv:"
+      id="option-:rve:"
       role="option"
       tabindex="-1"
     >
@@ -377,7 +478,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rv1:"
+      id="option-:rvg:"
       role="option"
       tabindex="-1"
     >
@@ -395,7 +496,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rv3:"
+      id="option-:rvi:"
       role="option"
       tabindex="-1"
     >
@@ -413,7 +514,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rv5:"
+      id="option-:rvk:"
       role="option"
       tabindex="-1"
     >
@@ -437,14 +538,14 @@ exports[`Autocomplete multiselect should support multiselect behavior by setting
 <input
   aria-activedescendant=""
   aria-autocomplete="list"
-  aria-controls="autocomplete-listbox-:rq7:"
+  aria-controls="autocomplete-listbox-:rqj:"
   aria-expanded="false"
   aria-haspopup="listbox"
   autocapitalize="none"
   autocomplete="off"
   class="rmd-text-field rmd-text-field--placeholder-hidden"
   data-testid="container"
-  id="autocomplete-:rq6:"
+  id="autocomplete-:rqi:"
   placeholder=" "
   role="combobox"
   tabindex="0"
@@ -457,14 +558,14 @@ exports[`Autocomplete multiselect should support multiselect behavior by setting
 <input
   aria-activedescendant=""
   aria-autocomplete="list"
-  aria-controls="autocomplete-listbox-:rq7:"
+  aria-controls="autocomplete-listbox-:rqj:"
   aria-expanded="false"
   aria-haspopup="listbox"
   autocapitalize="none"
   autocomplete="off"
   class="rmd-text-field rmd-text-field--placeholder-hidden"
   data-testid="container"
-  id="autocomplete-:rq6:"
+  id="autocomplete-:rqi:"
   placeholder=" "
   role="combobox"
   tabindex="0"
@@ -479,7 +580,7 @@ exports[`Autocomplete should allow the CircularProgress bar props to be configur
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color custom-class-name"
-  id="circular-progress-:r6u:"
+  id="circular-progress-:r70:"
   role="progressbar"
 >
   <svg
@@ -527,11 +628,25 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
     class="rmd-text-field-addon rmd-text-field-addon--after rmd-box rmd-box--gap rmd-box--wrap rmd-autocomplete__right-addon rmd-background-container"
   >
     <button
+      aria-label="Clear"
+      class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover rmd-autocomplete__clear-button--query"
+      id="autocomplete-clear-:r5:"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        clear
+      </span>
+    </button>
+    <button
       aria-controls="autocomplete-:r0:"
       aria-expanded="false"
       aria-label="Fruits"
       class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__dropdown-button"
-      id="autocomplete-dropdown-:r5:"
+      id="autocomplete-dropdown-:r6:"
       tabindex="-1"
       type="button"
     >
@@ -578,11 +693,25 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
     class="rmd-text-field-addon rmd-text-field-addon--after rmd-box rmd-box--gap rmd-box--wrap rmd-autocomplete__right-addon rmd-background-container"
   >
     <button
+      aria-label="Clear"
+      class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover rmd-autocomplete__clear-button--query"
+      id="autocomplete-clear-:r5:"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        clear
+      </span>
+    </button>
+    <button
       aria-controls="autocomplete-:r0:"
       aria-expanded="false"
       aria-label="Fruits"
       class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__dropdown-button"
-      id="autocomplete-dropdown-:r5:"
+      id="autocomplete-dropdown-:r6:"
       tabindex="-1"
       type="button"
     >
@@ -601,7 +730,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
 <div
   aria-label="Fruits"
   class="rmd-menu rmd-menu--elevated"
-  id="autocomplete-listbox-:r8n:"
+  id="autocomplete-listbox-:r8p:"
   role="listbox"
   style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
   tabindex="-1"
@@ -612,7 +741,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
   >
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r8t:"
+      id="option-:r90:"
       role="option"
       tabindex="-1"
     >
@@ -635,7 +764,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r8v:"
+      id="option-:r92:"
       role="option"
       tabindex="-1"
     >
@@ -658,7 +787,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r91:"
+      id="option-:r94:"
       role="option"
       tabindex="-1"
     >
@@ -681,7 +810,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r93:"
+      id="option-:r96:"
       role="option"
       tabindex="-1"
     >
@@ -704,7 +833,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r95:"
+      id="option-:r98:"
       role="option"
       tabindex="-1"
     >
@@ -727,7 +856,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r97:"
+      id="option-:r9a:"
       role="option"
       tabindex="-1"
     >
@@ -750,7 +879,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r99:"
+      id="option-:r9c:"
       role="option"
       tabindex="-1"
     >
@@ -774,7 +903,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     <li
       aria-disabled="true"
       class="rmd-list-item rmd-list-item--extra-large rmd-list-item--disabled-color rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r9b:"
+      id="option-:r9e:"
       role="option"
       tabindex="-1"
     >
@@ -797,7 +926,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r9d:"
+      id="option-:r9g:"
       role="option"
       tabindex="-1"
     >
@@ -820,7 +949,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r9f:"
+      id="option-:r9i:"
       role="option"
       tabindex="-1"
     >
@@ -843,7 +972,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
     </li>
     <li
       class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface rmd-menu-item rmd-option"
-      id="option-:r9h:"
+      id="option-:r9k:"
       role="option"
       tabindex="-1"
     >
@@ -874,7 +1003,7 @@ exports[`Autocomplete should be able to render a CircularProgress bar when the l
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered"
-  id="circular-progress-:r6o:"
+  id="circular-progress-:r6q:"
   role="progressbar"
 >
   <svg

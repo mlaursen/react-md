@@ -27,6 +27,7 @@ export function AutocompleteClearButton(
     "aria-label": ariaLabel = buttonType === "text" || ariaLabelledBy
       ? undefined
       : "Clear",
+    visibility,
     ...remaining
   } = props;
   const id = useEnsuredId(propId, "autocomplete-clear");
@@ -37,7 +38,7 @@ export function AutocompleteClearButton(
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
       id={id}
-      className={autocompleteClearButton({ className })}
+      className={autocompleteClearButton({ className, visibility })}
       tabIndex={-1}
       buttonType={buttonType}
     >

@@ -2,6 +2,7 @@ import { cnb } from "cnbuilder";
 
 import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
+import { type ClearButtonVisibility } from "./types.js";
 
 const styles = bem("rmd-autocomplete");
 
@@ -86,6 +87,8 @@ export function autocompleteDropdownButton(
  */
 export interface AutocompleteClearButtonClassNameOptions {
   className?: string;
+  /** {@inheritDoc ClearButtonVisibility} */
+  visibility?: ClearButtonVisibility;
 }
 
 /**
@@ -94,9 +97,15 @@ export interface AutocompleteClearButtonClassNameOptions {
 export function autocompleteClearButton(
   options: AutocompleteClearButtonClassNameOptions = {}
 ): string {
-  const { className } = options;
+  const { className, visibility = "always" } = options;
 
-  return cnb(styles("clear-button"), className);
+  return cnb(
+    styles("clear-button", {
+      hover: visibility === "active" || visibility === "query",
+      query: visibility === "query",
+    }),
+    className
+  );
 }
 
 /**

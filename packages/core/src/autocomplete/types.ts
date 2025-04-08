@@ -499,6 +499,20 @@ export interface ConfigurableAutocompleteListboxProps
 }
 
 /**
+ * - `"always"` - the clear button is always visible
+ * - `"active"` - the clear button will be visible when:
+ *   - the user moves focus within the autocomplete
+ *   - the user hovers the autocomplete
+ * - `"query"` - the clear button will be visible when:
+ *   - the input has a value and:
+ *     - the user moves focus within the autocomplete
+ *     - the user hovers the autocomplete
+ *
+ * @since 6.0.0
+ */
+export type ClearButtonVisibility = "query" | "active" | "always";
+
+/**
  * @since 6.0.0
  */
 export interface ConfigurableAutocompleteClearButtonProps extends ButtonProps {
@@ -507,6 +521,9 @@ export interface ConfigurableAutocompleteClearButtonProps extends ButtonProps {
 
   /** @defaultValue `"autocomplete-clear-" + useId()` */
   id?: string;
+
+  /** {@inheritDoc ClearButtonVisibility} */
+  visibility?: ClearButtonVisibility;
 }
 
 /**
@@ -742,6 +759,20 @@ export interface AutocompleteBaseProps<Option extends AutocompleteOption>
    * @defaultValue `false`
    */
   disableClearButton?: boolean;
+
+  /**
+   * - `"always"` - the clear button is always visible
+   * - `"active"` - the clear button will be visible when:
+   *   - the user moves focus within the autocomplete
+   *   - the user hovers the autocomplete
+   * - `"query"` - the clear button will be visible when:
+   *   - the input has a value and:
+   *     - the user moves focus within the autocomplete
+   *     - the user hovers the autocomplete
+   *
+   * @defaultValue `"query"`
+   */
+  clearButtonVisibility?: ClearButtonVisibility;
 
   /**
    * This is a convenience prop for the `onEntering`/`onEntered` transition

@@ -172,6 +172,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
     disableDropdownButton,
     clearButtonProps,
     disableClearButton,
+    clearButtonVisibility = "query",
     noOptionsChildren = <ListSubheader>No Options</ListSubheader>,
     leftAddon: propLeftAddon,
     disableLeftAddonStyles: propDisableLeftAddonStyles,
@@ -315,9 +316,10 @@ export function Autocomplete<Option extends AutocompleteOption>(
           <>
             {rightAddon}
             {loading && <AutocompleteCircularProgress {...loadingProps} />}
-            {!disableClearButton && !!currentQuery && (
+            {!disableClearButton && (
               <AutocompleteClearButton
                 {...clearButtonProps}
+                visibility={clearButtonVisibility}
                 {...getClearButtonProps(clearButtonProps)}
               />
             )}

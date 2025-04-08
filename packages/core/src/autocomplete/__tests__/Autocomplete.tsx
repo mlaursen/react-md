@@ -931,4 +931,91 @@ describe("Autocomplete", () => {
       expect(() => screen.getByRole("option", { name: "Orange" })).toThrow();
     });
   });
+
+  describe("customizations", () => {
+    it("should allow the clear button to be removed", () => {
+      const { rerender } = rmdRender(<Autocomplete {...FRUIT_PROPS} />);
+
+      expect(() => screen.getByRole("button", { name: "Clear" })).not.toThrow();
+
+      rerender(<Autocomplete {...FRUIT_PROPS} disableClearButton />);
+      expect(() => screen.getByRole("button", { name: "Clear" })).toThrow();
+    });
+
+    it("should pass through the visibility prop", () => {
+      const { rerender } = rmdRender(<Autocomplete {...FRUIT_PROPS} />);
+
+      const clearButton = screen.getByRole("button", { name: "Clear" });
+      expect(clearButton).toMatchSnapshot();
+
+      rerender(
+        <Autocomplete {...FRUIT_PROPS} clearButtonVisibility="always" />
+      );
+      expect(clearButton).toMatchSnapshot();
+
+      rerender(
+        <Autocomplete {...FRUIT_PROPS} clearButtonVisibility="active" />
+      );
+      expect(clearButton).toMatchSnapshot();
+
+      rerender(<Autocomplete {...FRUIT_PROPS} clearButtonVisibility="query" />);
+      expect(clearButton).toMatchSnapshot();
+    });
+
+    it("should allow the button to be customized through the clearButtonProps", async () => {
+      const user = userEvent.setup();
+      const handleClick = jest.fn();
+      rmdRender(
+        <Autocomplete
+          {...FRUIT_PROPS}
+          clearButtonVisibility="always"
+          clearButtonProps={{
+            "aria-label": "Close",
+            onClick: handleClick,
+            className: "custom-class-name",
+            buttonType: "text",
+            children: <kbd>esc</kbd>,
+          }}
+        />
+      );
+
+      const clearButton = screen.getByRole("button", { name: "Close" });
+      expect(clearButton).toMatchSnapshot();
+
+      await user.click(clearButton);
+      expect(handleClick).toHaveBeenCalledTimes(1);
+    });
+
+    it("should allow the dropdown button to be removed", () => {
+      const { rerender } = rmdRender(<Autocomplete {...FRUIT_PROPS} />);
+
+      expect(() =>
+        screen.getByRole("button", { name: "Fruits" })
+      ).not.toThrow();
+
+      rerender(<Autocomplete {...FRUIT_PROPS} disableDropdownButton />);
+      expect(() => screen.getByRole("button", { name: "Fruits" })).toThrow();
+    });
+
+    it("should allow the dropdown button to be customized", async () => {
+      const user = userEvent.setup();
+      const handleClick = jest.fn();
+      rmdRender(
+        <Autocomplete
+          {...FRUIT_PROPS}
+          dropdownButtonProps={{
+            "aria-label": "Show Fruits",
+            className: "custom-class-name",
+            onClick: handleClick,
+          }}
+        />
+      );
+
+      const dropdown = screen.getByRole("button", { name: "Show Fruits" });
+      expect(dropdown).toMatchSnapshot();
+
+      await user.click(dropdown);
+      expect(handleClick).toHaveBeenCalledTimes(1);
+    });
+  });
 });
