@@ -1,6 +1,6 @@
 {
   "name": "react-md",
-  "version": "6.0.0-next.8",
+  "version": "6.0.0-next.9",
   "description": "This is the full react-md library bundled together for convenience.",
   "type": "module",
   "sass": "./dist/_react-md.scss",
