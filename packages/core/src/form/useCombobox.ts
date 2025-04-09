@@ -384,6 +384,9 @@ export function useCombobox<
       if (visible) {
         switch (event.key) {
           case "Tab":
+            // do not stop propagation for tab so that shift+tab works correctly in dialogs
+            hide();
+            break;
           case "Escape":
             event.stopPropagation();
             hide();
