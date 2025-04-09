@@ -42,18 +42,17 @@ export class ResizeObserverMock implements ResizeObserver {
    * @example Main Usage
    * ```tsx
    * import {
-   *   cleanupResizeObserverAfterEach,
    *   setupResizeObserverMock,
    * } from "@react-md/core/test-utils";
    * import { useResizeObserver } from "@react-md/core/useResizeObserver";
    * import { ExampleComponent } from "../ExampleComponent.js";
    *
    * // choose your test framework
-   * import { afterEach, jest } from "@jest/globals";
-   * cleanupResizeObserverAfterEach(afterEach, jest.restoreAllMocks);
+   * import { afterEach, cleanupResizeObserverAfterEach, jest } from "@jest/globals";
+   * cleanupResizeObserverAfterEach();
    *
-   * import { afterEach, vitest } from "vitest";
-   * cleanupResizeObserverAfterEach(afterEach, vitest.restoreAllMocks);
+   * import { afterEach, cleanupResizeObserverAfterEach, vitest } from "vitest";
+   * cleanupResizeObserverAfterEach();
    *
    * describe("ExampleComponent", () => {
    *   it("should do stuff", () => {
@@ -269,8 +268,9 @@ export function setupResizeObserverMock(
 /**
  * @see {@link setupResizeObserverMock}
  * @since 6.0.0
+ * @internal
  */
-export function cleanupResizeObserverAfterEach(
+export function cleanupRO(
   afterEach: (callback: () => void) => void,
   restoreAllMocks: () => void = () => {}
 ): void {
