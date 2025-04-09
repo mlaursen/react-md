@@ -11,6 +11,7 @@ declare module "react" {
   interface CSSProperties {
     "--rmd-icon-color"?: string;
     "--rmd-icon-size"?: string | number;
+    "--rmd-icon-dense-size"?: string | number;
     "--rmd-icon-spacing"?: string | number;
     "--rmd-icon-rotate-from"?: string | number;
     "--rmd-icon-rotate-to"?: string | number;

@@ -177,6 +177,7 @@ $rotate-duration: transition.$linear-duration !default;
 $variables: (
   color,
   size,
+  dense-size,
   spacing,
   rotate-from,
   rotate-to,
@@ -234,18 +235,14 @@ $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
   }
 }
 
-/// Applies the dense height variables
-@mixin dense {
-  @if not $_disable-icons and $dense-size {
-    @include set-var(size, $dense-size);
-  }
-}
-
 /// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $_disable-icons {
     @include set-var(color, $color);
     @include set-var(size, $size);
+    @if not $disable-dense {
+      @include set-var(dense-size, $dense-size);
+    }
     @include set-var(spacing, $spacing);
   }
 
@@ -350,7 +347,7 @@ $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
 
         @if not $disable-dense {
           &--dense {
-            @include set-var(size, $dense-size);
+            @include set-var(size, get-var(dense-size));
           }
         }
       }
