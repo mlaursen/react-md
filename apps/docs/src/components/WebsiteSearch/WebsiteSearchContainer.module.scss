@@ -1,0 +1,30 @@
+@use "everything";
+
+.button {
+  @include everything.theme-set-var(
+    outline-color,
+    everything.theme-get-var(on-background-color)
+  );
+
+  @include everything.tablet-media {
+    padding-right: 0.5rem;
+
+    @include everything.rtl {
+      padding-left: 0.5rem;
+      padding-right: everything.button-get-var(text-horizontal-padding);
+    }
+  }
+}
+
+.dialog {
+  @include everything.theme-set-var(
+    background-color,
+    everything.get-dark-elevation-color(0)
+  );
+
+  align-self: flex-start;
+
+  @include everything.tablet-media {
+    height: 40rem;
+  }
+}

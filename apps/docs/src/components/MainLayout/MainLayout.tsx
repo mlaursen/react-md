@@ -14,6 +14,8 @@ import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";
 
+import { WebsiteSearch } from "@/components/WebsiteSearch/WebsiteSearch.jsx";
+
 import { GithubLink } from "../GithubLink.jsx";
 import styles from "./MainLayout.module.scss";
 import { MainNavigation } from "./MainNavigation.jsx";
@@ -57,6 +59,7 @@ export function MainLayout(props: MainLayoutProps): ReactElement {
       >
         <Button {...navToggleProps} />
         <MainTitle />
+        <WebsiteSearch />
         <GithubLink />
         <WebsiteConfiguration />
       </LayoutAppBar>

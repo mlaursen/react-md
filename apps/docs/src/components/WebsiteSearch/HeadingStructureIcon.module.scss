@@ -1,0 +1,44 @@
+@use "everything";
+
+$line-size: 2px;
+
+.container {
+  @include everything.icon-use-var(width, size);
+
+  display: inline-block;
+  position: relative;
+
+  &::before,
+  &::after {
+    @include everything.pseudo-element($inset: null);
+    @include everything.theme-use-var(background-color, text-hint-color);
+
+    left: 0.5rem;
+    top: 0;
+    transform: translateY(-50%);
+
+    @include everything.rtl {
+      left: auto;
+      right: 0.5rem;
+    }
+  }
+
+  &::before {
+    height: calc(
+      everything.list-get-var(item-height) - calc(
+          everything.list-get-var(item-vertical-padding) * 2
+        ) -
+        0.5rem
+    );
+    width: $line-size;
+  }
+
+  &::after {
+    height: $line-size;
+    width: 1.125rem;
+  }
+}
+
+.last::before {
+  transform: scaleY(-50%) translateY(150%);
+}

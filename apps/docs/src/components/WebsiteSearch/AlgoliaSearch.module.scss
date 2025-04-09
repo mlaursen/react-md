@@ -1,0 +1,16 @@
+@use "everything";
+
+.container {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-rows: min-content 1fr;
+  overflow: auto;
+}
+
+.escape {
+  font-family: var(--code-inline-font-family);
+  line-height: 1;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  padding: 0.25rem 0.5rem;
+}

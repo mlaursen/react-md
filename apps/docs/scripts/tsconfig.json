@@ -14,6 +14,6 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["esnext"]
   },
-  "include": ["./**/*.ts", "../src/utils/strings.ts"],
+  "include": ["./**/*.ts", "../src/utils/strings.ts", "../src/utils/slug.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "everything";
+
+.kbd {
+  background-color: map.get(everything.$dark-elevation-colors, 4);
+  border-radius: 0.25em;
+  color: everything.$white;
+  display: none;
+  font-family: var(--code-inline-font-family);
+  line-height: 1;
+  padding: 0.25em 0.5em;
+  white-space: pre;
+
+  @include everything.tablet-media {
+    display: inline;
+  }
+}

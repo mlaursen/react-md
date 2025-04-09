@@ -1,7 +1,8 @@
 "use client";
 
 import { randomInt } from "@react-md/core/utils/randomInt";
-import { type ReactElement, useRef } from "react";
+import { cnb } from "cnbuilder";
+import { type HTMLAttributes, type ReactElement, useRef } from "react";
 
 import styles from "./RandomEmoji.module.scss";
 
@@ -19,11 +20,27 @@ const LIST = [
   "\\(^o^)/",
 ];
 
-export function RandomEmoji(): ReactElement {
+export interface RandomEmojiProps extends HTMLAttributes<HTMLDivElement> {
+  inheritFont?: boolean;
+}
+
+export function RandomEmoji(props: RandomEmojiProps): ReactElement {
+  const { className, inheritFont, ...remaining } = props;
   const emoji = useRef("");
   if (emoji.current === "") {
     emoji.current = LIST[randomInt({ max: LIST.length - 1 })];
   }
 
-  return <div className={styles.container}>{emoji.current}</div>;
+  return (
+    <div
+      {...remaining}
+      className={cnb(
+        styles.container,
+        inheritFont && styles.inherit,
+        className
+      )}
+    >
+      {emoji.current}
+    </div>
+  );
 }
