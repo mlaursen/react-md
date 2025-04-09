@@ -8,7 +8,13 @@ import ColorLensIcon from "@react-md/material-icons/ColorLensIcon";
 import FindInPageIcon from "@react-md/material-icons/FindInPageIcon";
 import SearchIcon from "@react-md/material-icons/SearchIcon";
 import { cnb } from "cnbuilder";
-import { Fragment, type ReactElement, type ReactNode } from "react";
+import {
+  Fragment,
+  type ReactElement,
+  type ReactNode,
+  useEffect,
+  useRef,
+} from "react";
 
 import styles from "./AlgoliaSearch.module.scss";
 import { LinkOption } from "./LinkOption.jsx";
@@ -31,9 +37,14 @@ export function AlgoliaSearch({
       hide,
     });
   const { query, loading } = autocompleteProps;
+  const formRef = useRef<HTMLFormElement>(null);
+  useEffect(() => {
+    formRef.current?.scrollTo(0, 0);
+  }, [query]);
 
   return (
     <Form
+      ref={formRef}
       className={styles.container}
       onReset={resetOrHide}
       onClick={(event) => {
