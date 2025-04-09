@@ -27,7 +27,7 @@ function addKeywords(
   metadata.keywords.push(...keywords);
 }
 
-function getFilePathname(file: VFile): string {
+export function getFilePathname(file: VFile): string {
   const startIndex = file.path.lastIndexOf(")");
   return file.path.substring(startIndex + 1, file.path.lastIndexOf("/"));
 }
