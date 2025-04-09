@@ -27,38 +27,38 @@ describe("rehypeToc", () => {
         id: "installation",
         children: "Installation",
         depth: 1,
+      },
+      // I want all the headings to be flattended by 1 since I need to enforce
+      // that the first heading is an H1 for SEO/searching.
+      {
+        id: "installing-dependencies",
+        children: "Installing Dependencies",
+        depth: 1,
+      },
+      {
+        id: "adding-base-styles",
+        children: "Adding Base Styles",
+        depth: 1,
+      },
+      {
+        id: "adding-the-roboto-font",
+        children: "Adding the Roboto Font",
+        depth: 1,
+      },
+      {
+        id: "adding-the-material-icons-font",
+        children: "Adding the Material Icons Font",
+        depth: 1,
+      },
+      {
+        id: "react-md-should-now-be-fully-installed",
+        children: "react-md should now be fully installed!",
+        depth: 1,
         items: [
           {
-            id: "installing-dependencies",
-            children: "Installing Dependencies",
+            id: "where-do-i-go-from-here",
+            children: "Where do I go from here?",
             depth: 2,
-          },
-          {
-            id: "adding-base-styles",
-            children: "Adding Base Styles",
-            depth: 2,
-          },
-          {
-            id: "adding-the-roboto-font",
-            children: "Adding the Roboto Font",
-            depth: 2,
-          },
-          {
-            id: "adding-the-material-icons-font",
-            children: "Adding the Material Icons Font",
-            depth: 2,
-          },
-          {
-            id: "react-md-should-now-be-fully-installed",
-            children: "react-md should now be fully installed!",
-            depth: 2,
-            items: [
-              {
-                id: "where-do-i-go-from-here",
-                children: "Where do I go from here?",
-                depth: 3,
-              },
-            ],
           },
         ],
       },
@@ -90,26 +90,26 @@ describe("rehypeToc", () => {
           {
             id: "heading-3",
             children: "Heading 3",
-            depth: 3,
-          },
-          {
-            id: "heading-2",
-            children: "Heading 2",
-            depth: 2,
-            items: [
-              {
-                id: "heading-6",
-                children: "Heading 6",
-                depth: 6,
-              },
-            ],
-          },
-          {
-            id: "heading-2-again",
-            children: "Heading 2 Again",
             depth: 2,
           },
         ],
+      },
+      {
+        id: "heading-2",
+        children: "Heading 2",
+        depth: 1,
+        items: [
+          {
+            id: "heading-6",
+            children: "Heading 6",
+            depth: 5,
+          },
+        ],
+      },
+      {
+        id: "heading-2-again",
+        children: "Heading 2 Again",
+        depth: 1,
       },
     ];
 
