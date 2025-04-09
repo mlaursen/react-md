@@ -19,6 +19,10 @@ $disable-everything: false !default;
 /// @type Boolean
 $disable-horizontal: false !default;
 
+/// Set to `true` to disable the dense list styles
+/// @type Boolean
+$disable-dense: false !default;
+
 /// Set to `true` if the `ListItem` will always enable the `disabledOpacity`
 /// prop.
 /// @see $disable-item-disabled-opacity
@@ -230,6 +234,11 @@ $item-media-large-size: 6.25rem !default;
 /// @type Number
 $item-keyline: 4.5rem !default;
 
+/// The default keyline to apply when the `List` has dense mode enabled.
+///
+/// @type Number
+$item-dense-keyline: 3.5rem !default;
+
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.
 /// @type List
@@ -354,6 +363,28 @@ $variables: (
             max-width: 100%;
             overflow: auto;
             padding: get-var(horizontal-padding) get-var(vertical-padding);
+          }
+        }
+
+        @if not $disable-dense {
+          &--dense {
+            @include icon.set-var(size, icon.get-var(dense-size));
+            @include set-var(vertical-padding, $dense-vertical-padding);
+            @include set-var(horizontal-padding, $dense-horizontal-padding);
+            @include set-var(item-height, $item-dense-height);
+            @include set-var(item-medium-height, $item-dense-medium-height);
+            @include set-var(item-large-height, $item-dense-large-height);
+            @include set-var(
+              item-extra-large-height,
+              $item-dense-extra-large-height
+            );
+            @include set-var(
+              item-text-multiline-height,
+              $item-dense-multiline-height
+            );
+            @include set-var(item-keyline, $item-dense-keyline);
+
+            font-size: $dense-font-size;
           }
         }
       }
