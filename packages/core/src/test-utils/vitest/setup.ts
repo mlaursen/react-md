@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom/vitest";
-import { beforeEach } from "vitest";
+import { cleanup } from "@testing-library/react";
+import { afterEach, beforeEach } from "vitest";
 
 import { INTERACTION_CONFIG } from "../../interaction/config.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
@@ -12,4 +13,8 @@ beforeEach(() => {
 
   // disable transitions in tests since it just makes it more difficult
   TRANSITION_CONFIG.disabled = true;
+});
+
+afterEach(() => {
+  cleanup();
 });
