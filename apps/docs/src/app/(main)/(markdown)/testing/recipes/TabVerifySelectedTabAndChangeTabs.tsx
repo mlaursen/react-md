@@ -4,7 +4,7 @@ import { FrameworkCodeSwap } from "../FrameworkCodeSwap.jsx";
 
 const DEFAULT_CODE = `
 import { describe, expect, it } from "{FRAMEWORK}";
-import { isElementVisible } from "@react-md/core/utils/isElementVisible.js";
+import { isElementVisible } from "@react-md/core/utils/isElementVisible";
 
 import SimpleExample from "@/components/tabs/SimpleExample.jsx"
 

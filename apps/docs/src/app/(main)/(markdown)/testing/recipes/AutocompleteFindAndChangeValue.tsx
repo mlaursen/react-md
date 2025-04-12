@@ -22,11 +22,11 @@ describe("SimpleExample", () => {
     expect(autocomplete).toHaveValue("");
 
     await user.type(autocomplete, "Apple");
-    expect(autocomplete.toHaveValue("Apple"));
+    expect(autocomplete).toHaveValue("Apple");
 
     // or fireEvent
     fireEvent.change(autocomplete, { target: { value: "Orange" } });
-    expect(autocomplete.toHaveValue("Orange"));
+    expect(autocomplete).toHaveValue("Orange");
   });
 });
 `;

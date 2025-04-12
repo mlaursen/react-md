@@ -39,7 +39,7 @@ describe("Test", () => {
       user,
       menuItem,
       // this could also be a list of files if multiple files should be uploaded
-      files: files,
+      files: file,
     });
 
     // expect the files to be uploaded
