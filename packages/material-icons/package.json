@@ -41,18 +41,18 @@
   },
   "devDependencies": {
     "@mlaursen/eslint-config": "^7.0.0",
-    "@swc/core": "^1.11.16",
+    "@swc/core": "^1.11.20",
     "@types/lodash": "^4.17.16",
-    "@types/node": "^22.14.0",
+    "@types/node": "^22.14.1",
     "@types/react": "^18.3.12",
-    "eslint": "^9.23.0",
+    "eslint": "^9.24.0",
     "glob": "^11.0.1",
     "lodash": "^4.17.21",
     "prettier": "^3.5.3",
     "pretty-ms": "^9.2.0",
     "svgo": "^3.3.2",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "react": ">= 18",

@@ -45,17 +45,17 @@
     "@inquirer/confirm": "^5.1.9",
     "@inquirer/input": "^4.1.9",
     "@inquirer/rawlist": "^4.0.12",
-    "@octokit/core": "^6.1.4",
+    "@octokit/core": "^6.1.5",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "cross-env": "^7.0.3",
-    "dotenv": "^16.4.7",
-    "eslint": "^9.23.0",
+    "dotenv": "^16.5.0",
+    "eslint": "^9.24.0",
     "husky": "^9.1.7",
-    "lint-staged": "^15.5.0",
+    "lint-staged": "^15.5.1",
     "prettier": "^3.5.3",
     "tsx": "^4.19.3",
     "turbo": "^2.5.0",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "engines": {
     "pnpm": ">=9",
