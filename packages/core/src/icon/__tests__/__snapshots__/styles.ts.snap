@@ -27,3 +27,5 @@ exports[`icon styles should support rendering as all the theme colors 12`] = `"r
 exports[`icon styles should support rendering as all the theme colors 13`] = `"rmd-icon rmd-icon--svg rmd-text-hint-color"`;
 
 exports[`icon styles should support rendering as all the theme colors 14`] = `"rmd-icon rmd-icon--svg rmd-text-disabled-color"`;
+
+exports[`icon styles should support rendering as all the theme colors 15`] = `"rmd-icon rmd-icon--svg rmd-icon--cc"`;

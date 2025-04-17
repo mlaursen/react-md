@@ -21,6 +21,11 @@ declare module "react" {
 const styles = bem("rmd-icon");
 const rotatorStyles = bem("rmd-icon-rotator");
 
+/**
+ * @since 6.0.0
+ */
+export type IconTheme = ThemeColor | TextColor | "currentcolor";
+
 /** @since 6.0.0 */
 export interface SVGIconClassNameOptions {
   className?: string;
@@ -38,8 +43,9 @@ export interface SVGIconClassNameOptions {
    * - `text-secondary -> $text-primary-color`
    * - `text-hint -> $text-hint-color`
    * - `text-disabled -> $text-disabled-color`
+   * - `currentcolor -> currentcolor`
    */
-  theme?: ThemeColor | TextColor;
+  theme?: IconTheme;
 
   /**
    * Boolean if the font icon should use the dense spec.
@@ -116,6 +122,7 @@ export function icon(options: IconClassNameOptions): string {
   const isSvg = type === "svg";
   const isSymbol = type === "symbol";
   const isMaterial = type === "material";
+  const isCurrentColor = theme === "currentcolor";
 
   return cnb(
     styles({
@@ -124,15 +131,14 @@ export function icon(options: IconClassNameOptions): string {
       symbol: isSymbol,
       vam: inline,
       dense,
+      cc: isCurrentColor,
     }),
     isSymbol && `material-symbols-${family}`,
     isMaterial &&
       `material-icons${
         family === "filled" ? "" : `-${family === "rounded" ? "round" : family}`
       }`,
-    cssUtils({
-      textColor: theme,
-    }),
+    !isCurrentColor && cssUtils({ textColor: theme }),
     iconClassName,
     className
   );

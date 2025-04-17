@@ -1,11 +1,10 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { type TextColor, type ThemeColor } from "../../cssUtils.js";
-import { icon } from "../styles.js";
+import { type IconTheme, icon } from "../styles.js";
 
 describe("icon styles", () => {
   it("should support rendering as all the theme colors", () => {
-    const themes: (ThemeColor | TextColor)[] = [
+    const themes: IconTheme[] = [
       "primary",
       "secondary",
       "warning",
@@ -20,6 +19,7 @@ describe("icon styles", () => {
       "text-secondary",
       "text-hint",
       "text-disabled",
+      "currentcolor",
     ];
 
     themes.forEach((theme) => {

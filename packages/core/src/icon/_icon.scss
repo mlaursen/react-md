@@ -52,6 +52,11 @@ $disable-dense: false !default;
 /// @type Boolean
 $disable-inline: false !default;
 
+/// Set to `true` to disable the styles for inheriting the current color.
+///
+/// @type Boolean
+$disable-current-color: false !default;
+
 /// Set to `true` to disable the `.rmd-icon--before` styles with the
 /// `TextIconSpacing` component.
 /// @type Boolean
@@ -300,6 +305,12 @@ $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
               "wght" get-var(symbol-weight),
               "GRAD" get-var(symbol-grade),
               "opsz" get-var(symbol-optical-size);
+          }
+        }
+
+        @if not $disable-current-color {
+          &--cc {
+            @include set-var(color, currentcolor);
           }
         }
 
