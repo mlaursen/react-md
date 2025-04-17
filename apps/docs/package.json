@@ -51,7 +51,7 @@
     "@react-md/code": "workspace:*",
     "@react-md/core": "workspace:*",
     "@react-md/material-icons": "workspace:*",
-    "algoliasearch": "^5.12.0",
+    "algoliasearch": "^5.23.4",
     "cnbuilder": "^3.1.0",
     "docs-generator": "workspace:*",
     "filesize": "^10.1.6",
@@ -65,8 +65,8 @@
     "server-only": "^0.0.1"
   },
   "devDependencies": {
-    "@algolia/client-search": "^5.23.3",
-    "@mlaursen/eslint-config": "^7.0.0",
+    "@algolia/client-search": "^5.23.4",
+    "@mlaursen/eslint-config": "^7.1.0",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.16",
     "@types/mdx": "^2.0.13",

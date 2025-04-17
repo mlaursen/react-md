@@ -41,7 +41,7 @@
     "release": "pnpm run run-script scripts/release.ts"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.28.1",
+    "@changesets/cli": "^2.29.2",
     "@inquirer/confirm": "^5.1.9",
     "@inquirer/input": "^4.1.9",
     "@inquirer/rawlist": "^4.0.12",
