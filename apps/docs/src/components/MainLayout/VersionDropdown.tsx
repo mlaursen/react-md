@@ -11,9 +11,6 @@ import { semver } from "@/utils/semver.js";
 
 import { VersionMenuItem } from "./VersionMenuItem.jsx";
 
-// I might just want to start react-md at v6
-const MAJOR_VERSIONS_BEFORE = 5;
-
 export interface VersionDropdownProps {
   isHiddenOnPhone?: boolean;
 }
@@ -24,7 +21,7 @@ export function VersionDropdown(props: VersionDropdownProps): ReactElement {
   const { major, minor, patch, alpha } = semver(RMD_VERSION);
   const isAlphaPreview = alpha !== null;
   const isMajorPreview = minor === 0 && patch === 0 && isAlphaPreview;
-  const previousCount = MAJOR_VERSIONS_BEFORE + major - 1;
+  const previousCount = major - 1;
 
   return (
     <DropdownMenu
