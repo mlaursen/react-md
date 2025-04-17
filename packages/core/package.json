@@ -104,7 +104,7 @@
     "@jest/types": "^29.6.3",
     "@microsoft/api-extractor": "^7.52.4",
     "@mlaursen/eslint-config": "^7.1.0",
-    "@swc/cli": "^0.7.2",
+    "@swc/cli": "^0.6.0",
     "@swc/core": "^1.11.21",
     "@swc/jest": "^0.2.37",
     "@testing-library/dom": "^10.4.0",
