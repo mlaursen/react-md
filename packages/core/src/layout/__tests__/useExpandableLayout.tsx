@@ -10,6 +10,7 @@ import { useRadioGroup } from "../../form/useRadioGroup.js";
 import { useAppSize } from "../../media-queries/AppSizeProvider.js";
 import { Sheet } from "../../sheet/Sheet.js";
 import {
+  type MatchMediaMatcher,
   matchDesktop,
   matchPhone,
   matchTablet,
@@ -22,6 +23,7 @@ import {
 import { spyOnMatchMedia } from "../../test-utils/jest-globals/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
+import { parseCssLengthUnit } from "../../utils/parseCssLengthUnit.js";
 import { LayoutNav } from "../LayoutNav.js";
 import { Main } from "../Main.js";
 import {
@@ -267,6 +269,43 @@ describe("useExpandableLayout", () => {
     expect(temporaryNav).toBeInTheDocument();
 
     matchMediaSpy.changeViewport(matchDesktop);
+    expect(temporaryNav).not.toBeInTheDocument();
+
+    matchMediaSpy.mockRestore();
+  });
+
+  it("should allow the temporary layout to be used until a specific media query", () => {
+    const matches1200: MatchMediaMatcher = (query) => {
+      const matchesMinWidth = /\(min-width: ([^)]+)\)/.exec(query);
+      const matchesMaxWidth = /max-width/.test(query);
+
+      return (
+        !matchesMaxWidth &&
+        !!matchesMinWidth &&
+        parseCssLengthUnit({
+          value: matchesMinWidth[1],
+        }) > 1200
+      );
+    };
+    const matchMediaSpy = spyOnMatchMedia(matchPhone);
+    rmdRender(
+      <Layout temporaryUntil="screen and (min-width: 1201px)" defaultVisible />
+    );
+
+    const layout = screen.getByTestId("layout");
+    const expandableNav = screen.getByRole("navigation", {
+      name: "Navigation",
+    });
+    const temporaryNav = screen.getByRole("dialog", { name: "Navigation" });
+
+    expect(layout).toHaveTextContent("phone");
+    expect(isElementVisible(expandableNav)).toBe(false);
+    expect(temporaryNav).toBeInTheDocument();
+
+    matchMediaSpy.changeViewport(matchTablet);
+    expect(temporaryNav).toBeInTheDocument();
+
+    matchMediaSpy.changeViewport(matches1200);
     expect(temporaryNav).not.toBeInTheDocument();
 
     matchMediaSpy.mockRestore();

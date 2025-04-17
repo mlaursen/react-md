@@ -2,6 +2,7 @@
 /// @group core.media-queries
 ////
 
+@use "sass:list";
 @use "../utils";
 
 /// The default phone max width media query. This should match the
@@ -176,6 +177,26 @@ $_media-types: (phone, tablet, tablet-only, desktop, large-desktop);
     }
   } @else if $type == large-desktop {
     @include large-desktop-media {
+      @content;
+    }
+  }
+}
+
+/// Applies one of the media queries.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @param {String} $type-or-media-query - This should be one of `phone`, `tablet`,
+/// `tablet-only`, `desktop`, or `large-desktop` or a generic media query
+/// @content
+@mixin media-or-media-query($type-or-media-query) {
+  @if not list.index($_media-types, $type-or-media-query) {
+    @media #{$type-or-media-query} {
+      @content;
+    }
+  } @else {
+    @include media($type-or-media-query) {
       @content;
     }
   }

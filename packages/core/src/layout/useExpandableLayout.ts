@@ -4,6 +4,9 @@ import { cnb } from "cnbuilder";
 
 import { useSsr } from "../SsrProvider.js";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type AppSize } from "../media-queries/appSize.js";
+import { useMediaQuery } from "../media-queries/useMediaQuery.js";
 import { type CSSTransitionElementProps } from "../transition/types.js";
 import { type CssPosition, type UseStateInitializer } from "../types.js";
 import { useToggle } from "../useToggle.js";
@@ -51,12 +54,24 @@ export interface ExpandableLayoutOptions extends TemporaryLayoutOptions {
   transitionProps?: Omit<HorizontalLayoutTransitionOptions, "transitionIn">;
 
   /**
-   * Set this to `"desktop"` if you want to use the temporary navigation until
-   * the viewport is at least desktop width instead of tablet.
+   * The default behavior is to use the temporary layout until the
+   * {@link AppSize.isTablet} is `true`. Set this to `"desktop"` to use the
+   * temporary layout until {@link AppSize.isDesktop} is `true`. Otherwise,
+   * provide a media query string to use the temporary layout until the media
+   * query matches
+   *
+   * @example Custom Media Query
+   * ```tsx
+   * useExpandableLayout({
+   *   ...options,
+   *   // display the expandable layout once the min-width is at least 1201px
+   *   temporaryUntil: "screen and (min-width: 1201px)",
+   * });
+   * ```
    *
    * @defaultValue `"tablet"`
    */
-  temporaryUntil?: "tablet" | "desktop";
+  temporaryUntil?: "tablet" | "desktop" | (string & {});
 }
 
 /**
@@ -242,7 +257,12 @@ export function useExpandableLayout(
     transitionIn: expanded,
   });
   const { isPhone, isDesktop } = useAppSize();
-  const temporary = isPhone || (temporaryUntil === "desktop" && !isDesktop);
+  const isAppSizeMatch =
+    temporaryUntil === "tablet" || temporaryUntil === "desktop";
+  const matches = useMediaQuery(temporaryUntil, isAppSizeMatch);
+  const temporary = isAppSizeMatch
+    ? isPhone || (temporaryUntil === "desktop" && !isDesktop)
+    : !matches;
 
   return {
     visible,

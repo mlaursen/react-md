@@ -65,6 +65,7 @@ $navigation-container-name: nav !default;
 /// - `tablet`
 /// - `desktop`
 /// - `large-desktop`
+/// - any media query
 ///
 /// @type String
 $navigation-breakpoint: tablet !default;
@@ -187,7 +188,7 @@ $variables: (size, header-height);
           }
         }
 
-        @include media-queries.media($navigation-breakpoint) {
+        @include media-queries.media-or-media-query($navigation-breakpoint) {
           // Why did I want grid? flex seems easier atm
           // use grid so that you can easily have a header + tree that fills the remaining space
           display: flex;
@@ -197,7 +198,7 @@ $variables: (size, header-height);
 
       @if not $disable-full-height-navigation {
         .rmd-layout-nav-toggle {
-          @include media-queries.media($navigation-breakpoint) {
+          @include media-queries.media-or-media-query($navigation-breakpoint) {
             display: none;
           }
         }
@@ -210,7 +211,9 @@ $variables: (size, header-height);
           will-change: margin;
 
           &--active {
-            @include media-queries.media($navigation-breakpoint) {
+            @include media-queries.media-or-media-query(
+              $navigation-breakpoint
+            ) {
               @include use-var(margin-left, size);
 
               &::before {
@@ -252,7 +255,9 @@ $variables: (size, header-height);
           &--responsive {
             display: none;
 
-            @include media-queries.media($navigation-breakpoint) {
+            @include media-queries.media-or-media-query(
+              $navigation-breakpoint
+            ) {
               display: inline-block;
             }
           }
