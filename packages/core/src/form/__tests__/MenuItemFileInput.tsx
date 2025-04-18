@@ -10,6 +10,7 @@ import {
   rmdRender,
   screen,
   userEvent,
+  waitFor,
 } from "../../test-utils/index.js";
 import { uploadMenuItemFileUpload } from "../../test-utils/jest-globals/index.js";
 import { MenuItemFileInput } from "../MenuItemFileInput.js";
@@ -219,7 +220,9 @@ describe("MenuItemFileInput", () => {
       files: file,
       menuItem,
     });
-    expect(status).toHaveTextContent("complete");
+    await waitFor(() => {
+      expect(status).toHaveTextContent("complete");
+    });
     expect(fileName).toHaveTextContent("README.txt");
     expect(progress).toHaveTextContent("100");
     expect(result).toHaveTextContent("pretend-bytes");
