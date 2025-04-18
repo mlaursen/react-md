@@ -45,5 +45,5 @@ configureIcons({
 });
 
 export const rmdConfig: ReactMDCoreConfiguration = {
-  ssr: false,
+  ssr: true,
 };

@@ -1,7 +1,7 @@
 # React + TypeScript + Vite
 
-This is a minimal boilerplate for `mlaursen` to spin up React apps. This project
-requires [volta](https://volta.sh/) to manage the `node` and `pnpm` versions.
+This is a minimal boilerplate for `mlaursen` to spin up React apps with [vite]. This project
+requires [volta] to manage the `node` and `pnpm` versions.
 
 ## How to Use
 
@@ -27,12 +27,6 @@ git add .
 git commit -m "Initial commit"
 ```
 
-or:
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mlaursen/react-md/tree/next/examples/mlaursen-vite)
-
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mlaursen/react-md/tree/next/examples/mlaursen-vite)
-
 ## What's Included
 
 This example will setup an example Create React App + ReactMD app that has the following features:
@@ -41,17 +35,28 @@ This example will setup an example Create React App + ReactMD app that has the f
 - [RootLayout](./src/components/RootLayout.tsx) that initializes a base layout for the app
   - [MainNavigation](./src/components/MainNavigation.tsx) as an example navigation panel
 - [rmdConfig](./src/rmdConfig.tsx) to configure icons and other global settings in `react-md`
-- [prettier](https://prettier.io/) code formatting and automatically sort imports using [@trivago/prettier-plugin-sort-imports](https://github.com/trivago/prettier-plugin-sort-imports)
-- a strict [@mlaursen/eslint-config](https://github.com/mlaursen/eslint-config)
-- `@/` absolute imports using [vite-tsconfig-paths](https://www.npmjs.com/package/vite-tsconfig-paths)
+- tests running with [vitest]
+- [test-utils](./src/test-utils.tsx) to provide a `renderWithEverything` test helper
+- [prettier] code formatting and automatically sort imports using [@trivago/prettier-plugin-sort-imports]
+- a strict [@mlaursen/eslint-config]
+- `@/` absolute imports using [vite-tsconfig-paths]
 
-## Scripts
+## Commands
 
-- `test` - run tests with `vitest`
-- `lint` - run `eslint` on all files
-- `typecheck` - run `tsc -b --noEmit` to check for type errors
 - `format` - format all files with prettier
   - `check-format` - check the format for all files (mostly for CI)
+- `lint` - run `eslint` on all files
+- `typecheck` - run `tsc -b --noEmit` to check for type errors
+  - Note: strict rules enforced
 - `dev` - run the vite dev server
+- `test` - run tests with `vitest`
 - `build` - build for production
 - `preview` - run the production website in preview mode with `vite`
+
+[volta]: https://volta.sh/
+[vite]: https://vite.dev
+[vitest]: https://vitest.dev
+[prettier]: https://prettier.io
+[@mlaursen/eslint-config]: https://github.com/mlaursen/eslint-config
+[@trivago/prettier-plugin-sort-imports]: https://github.com/trivago/prettier-plugin-sort-imports
+[vite-tsconfig-paths]: https://www.npmjs.com/package/vite-tsconfig-paths

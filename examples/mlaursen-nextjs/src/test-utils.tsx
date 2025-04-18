@@ -7,10 +7,10 @@ import {
 } from "@react-md/core/test-utils";
 import { Fragment, type ReactElement } from "react";
 
-import { RootProviders } from "@/RootProviders.jsx";
+import { RootProviders } from "@/components/RootProviders.jsx";
 
 export * from "@react-md/core/test-utils";
-export * from "@react-md/core/test-utils/vitest";
+export * from "@react-md/core/test-utils/jest-globals";
 
 export function renderWithEverything<
   Q extends Queries = typeof queries,

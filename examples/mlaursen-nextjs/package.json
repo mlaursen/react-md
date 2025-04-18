@@ -29,12 +29,12 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@jest/globals": "^29.7.0",
     "@jest/types": "^29.6.3",
-    "@mlaursen/eslint-config": "^7.1.0",
+    "@mlaursen/eslint-config": "^8.0.0",
+    "@next/eslint-plugin-next": "^15.3.1",
     "@swc/core": "^1.11.21",
-    "@swc/jest": "^0.2.37",
-    "@swc/types": "^0.1.21",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
@@ -45,7 +45,6 @@
     "@types/react-dom": "^19.1.2",
     "eslint": "^9.24.0",
     "husky": "^9.1.7",
-    "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-watch-typeahead": "^2.2.2",
@@ -53,6 +52,7 @@
     "prettier": "^3.5.3",
     "sass-embedded": "^1.86.3",
     "serve": "^14.2.4",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
   "lint-staged": {

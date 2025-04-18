@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`page should render correctly 1`] = `
+<body
+  class="rmd-mouse-mode"
+>
+  <div>
+    <div
+      class="rmd-text-container"
+    >
+      <h2
+        class="rmd-typography rmd-typography--headline-2"
+      >
+        ReactMD + Next.js Starter
+      </h2>
+      <p
+        class="rmd-typography rmd-typography--body-1"
+      >
+        See
+         
+        <a
+          class="rmd-link"
+          href="https://next.react-md.dev"
+          target="_blank"
+        >
+          https://next.react-md.dev
+        </a>
+         
+        and
+         
+        <a
+          class="rmd-link"
+          href="https://nextjs.org"
+          target="_blank"
+        >
+          https://nextjs.org
+        </a>
+         
+        for more information.
+      </p>
+    </div>
+  </div>
+  <div
+    id="rmd-portal-container"
+  />
+</body>
+`;

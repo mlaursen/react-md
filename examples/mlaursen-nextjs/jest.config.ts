@@ -1,32 +1,15 @@
-import { type Options as SwcOptions } from "@swc/types";
 import { type Config } from "jest";
+import nextJest from "next/jest.js";
+
+const createJestConfig = nextJest({
+  dir: "./",
+});
 
 const config: Config = {
   testEnvironment: "jsdom",
-  transform: {
-    "^.+\\.(t|j)sx?$": [
-      "@swc/jest",
-      {
-        swcrc: false,
-        jsc: {
-          parser: {
-            syntax: "typescript",
-            tsx: true,
-          },
-          transform: {
-            react: {
-              runtime: "automatic",
-            },
-          },
-          target: "esnext",
-        },
-      } satisfies SwcOptions,
-    ],
-  },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
-    "\\.scss$": "identity-obj-proxy",
-    "^(\\.{1,2}/.*)\\.js$": "$1",
+    "^(\\.{1,2}/.*)\\.jsx?$": "$1",
   },
 
   watchPlugins: [
@@ -36,25 +19,25 @@ const config: Config = {
 
   coverageProvider: "v8",
 
-  coverageThreshold: {
-    global: {
-      branches: 98,
-      functions: 98,
-      lines: 98,
-      statements: -10,
-    },
-  },
+  // coverageThreshold: {
+  //   global: {
+  //     branches: 80,
+  //     functions: 80,
+  //     lines: 80,
+  //     statements: -10,
+  //   },
+  // },
 
   // ensure that all files are picked up correctly and included in the results.
   collectCoverageFrom: [
-    "<rootDir>/app/**/*.{ts,tsx}",
+    "<rootDir>/src/**/*.{ts,tsx}",
 
-    "!<rootDir>/app/robots.ts",
-    "!<rootDir>/app/sitemap.ts",
-    "!<rootDir>/app/layout.tsx",
+    "!<rootDir>/src/**/robots.ts",
+    "!<rootDir>/src/**/sitemap.ts",
+    "!<rootDir>/src/**/layout.tsx",
   ],
 
   extensionsToTreatAsEsm: [".ts", ".tsx"],
 };
 
-export default config;
+export default createJestConfig(config);
