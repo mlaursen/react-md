@@ -18,6 +18,11 @@ const PROJECTS: ExampleProjectProps[] = [
     framework: "vitejs",
   },
   {
+    ts: "react-router-framework-mode",
+    title: "React Router Framework Mode",
+    framework: "reactrouter",
+  },
+  {
     ts: "mlaursen-nextjs",
     title: "mlaursen Next.js",
     framework: "nextjs",

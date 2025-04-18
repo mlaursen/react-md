@@ -34,7 +34,7 @@ or:
 
 ## What's Included
 
-This example will setup an example Create React App + ReactMD app that has the following features:
+This example will setup an example ReactMD + Vite app that has the following features:
 
 - [\_everything.scss](./src/_everything.scss) to override the default `react-md` theme and feature toggles
 - [RootLayout](./src/components/RootLayout.jsx) that initializes a base layout for the app
