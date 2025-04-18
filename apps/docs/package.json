@@ -28,7 +28,7 @@
     "build-typedoc": "pnpm run run-script scripts/typedoc.ts",
     "next-dev": "next dev",
     "next-build": "next build",
-    "dev": "npm-run-all build-env dev-tasks",
+    "dev": "npm-run-all build-env \"create-env --dev\" dev-tasks",
     "dev-tasks": "npm-run-all --parallel watch-demos \"sassdoc --touch\" watch-scss-lookup generator-dev",
     "build": "npm-run-all build-full-env next-build",
     "start": "next start"

@@ -9,7 +9,9 @@ const branchName =
 const commit =
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ||
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
-  execSync("git rev-parse HEAD").toString().trim();
+  process.argv.includes("--dev")
+    ? branchName
+    : execSync("git rev-parse HEAD").toString().trim();
 
 const githubUrl = "https://github.com/mlaursen/react-md";
 
