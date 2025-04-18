@@ -1,4 +1,4 @@
-c# ReactMD + Next.js
+# ReactMD + Next.js
 
 This template provides a minimal setup to get ReactMD working in
 [Next.js](https://nextjs.org) and some ESLint rules bootstrapped with
@@ -30,9 +30,9 @@ git commit -m "Initial commit"
 
 or:
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mlaursen/react-md/tree/next/examples/nextjs-js)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mlaursen/react-md/tree/next/examples/nextjs-ts)
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mlaursen/react-md/tree/next/examples/nextjs-js)
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mlaursen/react-md/tree/next/examples/nextjs-ts)
 
 ## What's Included
 
