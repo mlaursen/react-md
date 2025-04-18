@@ -1,0 +1,15 @@
+@use "everything";
+
+.container {
+  @include everything.mouse-hover {
+    .icon {
+      transform: scale(1.25);
+    }
+  }
+}
+
+.icon {
+  transform-origin: 0 50%;
+  transition: transform everything.$linear-duration
+    everything.$linear-timing-function;
+}
