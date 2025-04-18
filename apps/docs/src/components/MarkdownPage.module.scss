@@ -1,7 +1,9 @@
 @use "everything";
 
 .container {
-  @include everything.tablet-media {
+  @include everything.media-or-media-query(
+    everything.$layout-navigation-breakpoint
+  ) {
     --hp: 4rem;
   }
 

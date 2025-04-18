@@ -20,7 +20,9 @@
 }
 
 .mainGrid {
-  @include everything.desktop-media {
+  @include everything.media-or-media-query(
+    everything.$layout-navigation-breakpoint
+  ) {
     display: grid;
     grid-template-columns: 1fr var(--toc-width);
   }

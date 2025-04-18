@@ -45,7 +45,7 @@ export function MainLayout(props: MainLayoutProps): ReactElement {
   } = useExpandableLayout({
     pathname,
     defaultExpanded: true,
-    temporaryUntil: "desktop",
+    temporaryUntil: "screen and (min-width: 1201px)",
   });
 
   return (
