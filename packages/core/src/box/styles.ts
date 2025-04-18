@@ -64,7 +64,7 @@ export interface BoxOptions {
    *
    * @defaultValue `false`
    */
-  disableGap?: boolean;
+  disableGap?: boolean | "row" | "column";
 
   /**
    * Set this to `true` to set `flex-wrap: nowrap`.
@@ -175,6 +175,8 @@ export function box(options: BoxOptions = {}): string {
   return cnb(
     styles({
       gap: !disableGap,
+      "gap-h": disableGap === "row",
+      "gap-v": disableGap === "column",
       wrap: !disableWrap,
       padded: !disablePadding,
       column: stacked && !reversed,

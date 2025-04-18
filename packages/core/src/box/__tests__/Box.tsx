@@ -172,4 +172,27 @@ describe("Box", () => {
     expect(box).toHaveClass("rmd-box--grid-auto-rows");
     expect(box).toMatchSnapshot();
   });
+
+  it("should allow the gap to be disabled entirely, by row, or by column", () => {
+    const { rerender } = render(<Box {...BASE_PROPS} />);
+    const box = screen.getByTestId("box");
+    expect(box).toHaveClass("rmd-box--gap");
+    expect(box).not.toHaveClass("rmd-box--gap-h");
+    expect(box).not.toHaveClass("rmd-box--gap-v");
+
+    rerender(<Box {...BASE_PROPS} disableGap />);
+    expect(box).not.toHaveClass("rmd-box--gap");
+    expect(box).not.toHaveClass("rmd-box--gap-h");
+    expect(box).not.toHaveClass("rmd-box--gap-v");
+
+    rerender(<Box {...BASE_PROPS} disableGap="row" />);
+    expect(box).not.toHaveClass("rmd-box--gap");
+    expect(box).toHaveClass("rmd-box--gap-h");
+    expect(box).not.toHaveClass("rmd-box--gap-v");
+
+    rerender(<Box {...BASE_PROPS} disableGap="column" />);
+    expect(box).not.toHaveClass("rmd-box--gap");
+    expect(box).not.toHaveClass("rmd-box--gap-h");
+    expect(box).toHaveClass("rmd-box--gap-v");
+  });
 });

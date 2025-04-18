@@ -213,6 +213,14 @@ $variables: (
           @include use-var(gap, gap);
         }
 
+        &--gap-h {
+          @include use-var(column-gap, gap);
+        }
+
+        &--gap-v {
+          @include use-var(row-gap, gap);
+        }
+
         &--padded {
           @include use-var(padding);
         }
