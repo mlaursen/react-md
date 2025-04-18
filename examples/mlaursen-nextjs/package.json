@@ -1,0 +1,67 @@
+{
+  "name": "mlaursen-nextjs",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "prepare": "husky",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,scss,md,yml,json}\"",
+    "typecheck": "tsc --noEmit",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
+    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "start-static": "serve -p 3000 ./out"
+  },
+  "engines": {
+    "pnpm": "10.8.1",
+    "node": "22.14.0"
+  },
+  "engineStrict": true,
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "dependencies": {
+    "@react-md/core": "^1.0.0-next.21",
+    "@react-md/material-icons": "^6.0.0-next.22",
+    "next": "^15.3.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@jest/types": "^29.6.3",
+    "@mlaursen/eslint-config": "^7.1.0",
+    "@swc/core": "^1.11.21",
+    "@swc/jest": "^0.2.37",
+    "@swc/types": "^0.1.21",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "eslint": "^9.24.0",
+    "husky": "^9.1.7",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-watch-typeahead": "^2.2.2",
+    "lint-staged": "^15.5.1",
+    "prettier": "^3.5.3",
+    "sass-embedded": "^1.86.3",
+    "serve": "^14.2.4",
+    "typescript": "^5.8.3"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,scss,js,jsx,md,yml,json}": [
+      "prettier --write"
+    ]
+  },
+  "volta": {
+    "node": "22.14.0",
+    "pnpm": "10.8.1"
+  }
+}
