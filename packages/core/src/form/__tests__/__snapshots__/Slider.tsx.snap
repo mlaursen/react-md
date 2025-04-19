@@ -14,7 +14,7 @@ exports[`Slider discrete sliders should support manually defining the marks usin
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1"
-      id="slider-:r18:"
+      id="slider-:r1c:"
       role="slider"
       tabindex="0"
     />
@@ -22,7 +22,7 @@ exports[`Slider discrete sliders should support manually defining the marks usin
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r18:-value"
+      id="slider-:r1c:-value"
       max="100"
       min="0"
       step="10"
@@ -57,7 +57,7 @@ exports[`Slider discrete sliders should support manually defining the marks usin
 exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:rr:"
+  id="tooltip-:rv:"
   role="tooltip"
 >
   50
@@ -67,7 +67,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop 2`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:rr:"
+  id="tooltip-:rv:"
   role="tooltip"
 >
   60
@@ -77,7 +77,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:r11:"
+  id="tooltip-:r15:"
   role="tooltip"
 >
   0
@@ -87,7 +87,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 2`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:r11:"
+  id="tooltip-:r15:"
   role="tooltip"
 >
   10
@@ -97,7 +97,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 3`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h2"
-  id="tooltip-:r12:"
+  id="tooltip-:r16:"
   role="tooltip"
 >
   100
@@ -118,7 +118,7 @@ exports[`Slider discrete sliders should support rendering marks at each step on 
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1"
-      id="slider-:r16:"
+      id="slider-:r1a:"
       role="slider"
       tabindex="0"
     />
@@ -126,7 +126,7 @@ exports[`Slider discrete sliders should support rendering marks at each step on 
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r16:-value"
+      id="slider-:r1a:-value"
       max="100"
       min="0"
       step="10"
@@ -207,7 +207,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-valuemin="0"
       aria-valuenow="0"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
-      id="slider-:rb:"
+      id="slider-:rc:"
       role="slider"
       tabindex="0"
     />
@@ -215,7 +215,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-hidden="true"
       aria-label="Min"
       class="rmd-slider-thumb__input"
-      id="slider-:rb:-value"
+      id="slider-:rc:-value"
       max="99"
       min="0"
       step="1"
@@ -229,7 +229,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-valuemin="1"
       aria-valuenow="100"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h2 rmd-slider-thumb--animate"
-      id="slider-:rb:-2"
+      id="slider-:rc:-2"
       role="slider"
       tabindex="0"
     />
@@ -237,7 +237,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-hidden="true"
       aria-label="Max"
       class="rmd-slider-thumb__input"
-      id="slider-:rb:-2-value"
+      id="slider-:rc:-2-value"
       max="100"
       min="1"
       step="1"
@@ -264,7 +264,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
-      id="slider-:rc:"
+      id="slider-:rd:"
       role="slider"
       tabindex="0"
     />
@@ -272,7 +272,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:rc:-value"
+      id="slider-:rd:-value"
       max="100"
       min="0"
       step="1"
@@ -303,7 +303,7 @@ exports[`Slider range slider should support a disabled state 1`] = `
       aria-valuemin="0"
       aria-valuenow="0"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate rmd-slider-thumb--disabled rmd-slider-thumb--disabled-h"
-      id="slider-:rd:"
+      id="slider-:re:"
       role="slider"
       tabindex="-1"
     />
@@ -312,7 +312,7 @@ exports[`Slider range slider should support a disabled state 1`] = `
       aria-label="Min"
       class="rmd-slider-thumb__input"
       disabled=""
-      id="slider-:rd:-value"
+      id="slider-:re:-value"
       max="99"
       min="0"
       step="1"
@@ -330,7 +330,7 @@ exports[`Slider range slider should support a disabled state 1`] = `
       aria-valuemin="1"
       aria-valuenow="100"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h2 rmd-slider-thumb--animate rmd-slider-thumb--disabled rmd-slider-thumb--disabled-h"
-      id="slider-:rd:-2"
+      id="slider-:re:-2"
       role="slider"
       tabindex="-1"
     />
@@ -339,7 +339,7 @@ exports[`Slider range slider should support a disabled state 1`] = `
       aria-label="Max"
       class="rmd-slider-thumb__input"
       disabled=""
-      id="slider-:rd:-2-value"
+      id="slider-:re:-2-value"
       max="100"
       min="1"
       step="1"

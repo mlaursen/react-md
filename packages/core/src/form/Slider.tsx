@@ -18,6 +18,7 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { identity } from "../utils/identity.js";
 import { type SliderAddonProps, SliderContainer } from "./SliderContainer.js";
 import {
+  type ConfigurableSliderThumbProps,
   SliderThumb,
   type SliderThumbPresentation,
   type SliderThumbProps,
@@ -27,7 +28,7 @@ import {
   type SliderMarksOptions,
   SliderValueMarks,
 } from "./SliderValueMarks.js";
-import { getJumpValue } from "./sliderUtils.js";
+import { getJumpValue, getSliderInputName } from "./sliderUtils.js";
 import { type RangeSliderState } from "./useRangeSlider.js";
 import { type SliderState, type SliderValueOptions } from "./useSlider.js";
 import { useSliderDraggable } from "./useSliderDraggable.js";
@@ -112,10 +113,16 @@ export interface BaseSliderProps
  */
 export interface SliderProps extends BaseSliderProps, SliderState {
   /**
+   * Convenience pass-through prop to {@link ConfigurableSliderThumbProps.name} which
+   * will be applied to the hidden `<input type="range" />`
+   */
+  name?: string;
+
+  /**
    * Any additional props that should be provided to the thumb element. This can
    * be useful for applying additional styling.
    */
-  thumbProps?: HTMLAttributes<HTMLSpanElement>;
+  thumbProps?: ConfigurableSliderThumbProps;
 
   /**
    * This can be used to update the discrete slider's tooltip props.
@@ -169,16 +176,23 @@ export interface SliderProps extends BaseSliderProps, SliderState {
  */
 export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
   /**
+   * Convenience pass-through prop for {@link
+   * ConfigurableSliderThumbProps.name} for both the {@link minThumbProps} and
+   * {@link maxThumbProps}.
+   */
+  name?: string;
+
+  /**
    * Any additional props that should be provided to the min value thumb
    * element. This can be useful for applying additional styling.
    */
-  minThumbProps?: HTMLAttributes<HTMLSpanElement>;
+  minThumbProps?: ConfigurableSliderThumbProps;
 
   /**
    * Any additional props that should be provided to the max value thumb
    * element. This can be useful for applying additional styling.
    */
-  maxThumbProps?: HTMLAttributes<HTMLSpanElement>;
+  maxThumbProps?: ConfigurableSliderThumbProps;
 
   /**
    * The `aria-label` to apply to the min value.
@@ -345,6 +359,7 @@ export function Slider(
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     id: propId,
+    name,
     min = 0,
     max = 100,
     step = 1,
@@ -385,6 +400,7 @@ export function Slider(
   const thumb2Id = `${thumb1Id}-2`;
   const thumb1Ref = useRef<HTMLSpanElement>(null);
   const thumb2Ref = useRef<HTMLSpanElement>(null);
+  const { thumb1Name, thumb2Name } = getSliderInputName(name, isRangeSlider);
 
   let thumb1Max = max;
   let thumb2Min = min;
@@ -530,6 +546,7 @@ export function Slider(
           aria-label={thumb1Label as string}
           aria-labelledby={thumb1LabelledBy}
           id={thumb1Id}
+          name={thumb1Name}
           {...thumbProps}
           {...minThumbProps}
           {...sharedThumbProps}
@@ -549,6 +566,7 @@ export function Slider(
             aria-label={thumb2Label as string}
             aria-labelledby={thumb2LabelledBy}
             id={thumb2Id}
+            name={thumb2Name}
             {...maxThumbProps}
             {...sharedThumbProps}
             ref={thumb2DraggableRef}

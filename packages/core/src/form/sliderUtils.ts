@@ -234,3 +234,30 @@ export function getThumbOffsets(options: ThumbOffsetsOptions): ThumbOffsets {
     "--rmd-slider-offset-2": getThumbOffset(thumb2Percentage, 1),
   };
 }
+
+/**
+ * @since 6.0.0
+ * @internal
+ */
+interface ThumbNames {
+  thumb1Name?: string;
+  thumb2Name?: string;
+}
+
+/**
+ * @since 6.0.0
+ * @internal
+ */
+export function getSliderInputName(
+  name: string | undefined,
+  isRangeSlider: boolean
+): ThumbNames {
+  let thumb1Name = name;
+  let thumb2Name = name;
+  if (name && isRangeSlider && !name.includes("[]")) {
+    thumb1Name = `min${name}`;
+    thumb2Name = `max${name}`;
+  }
+
+  return { thumb1Name, thumb2Name };
+}

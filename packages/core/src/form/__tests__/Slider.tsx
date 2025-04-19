@@ -371,6 +371,24 @@ describe("Slider", () => {
       });
       expect(slider).toHaveValue(0);
     });
+
+    it("should allow the input name to be set preferring the thumbProps.name if it exists", () => {
+      const { rerender } = rmdRender(<SingleThumbTest />);
+      const { sliderInput } = getSliderTestElements({ name: "Slider" });
+
+      expect(sliderInput).not.toHaveAttribute("name");
+
+      rerender(<SingleThumbTest name="volume" />);
+      expect(sliderInput).toHaveAttribute("name", "volume");
+
+      rerender(<SingleThumbTest thumbProps={{ name: "intensity" }} />);
+      expect(sliderInput).toHaveAttribute("name", "intensity");
+
+      rerender(
+        <SingleThumbTest name="volume" thumbProps={{ name: "intensity" }} />
+      );
+      expect(sliderInput).toHaveAttribute("name", "intensity");
+    });
   });
 
   describe("range slider", () => {
@@ -991,6 +1009,49 @@ describe("Slider", () => {
       });
       expect(minSlider).toHaveValue(30);
       expect(maxSlider).toHaveValue(100);
+    });
+
+    it("should automatically prefix the input name with min and max if it was provided", () => {
+      const { rerender } = rmdRender(<RangeSliderTest />);
+      const { minSliderInput, maxSliderInput } = getRangeSliderTestElements();
+
+      expect(minSliderInput).not.toHaveAttribute("name");
+      expect(maxSliderInput).not.toHaveAttribute("name");
+
+      rerender(<RangeSliderTest name="volume" />);
+      expect(minSliderInput).toHaveAttribute("name", "minvolume");
+      expect(maxSliderInput).toHaveAttribute("name", "maxvolume");
+    });
+
+    it("should not automatically prefix the input name with min and max if the name prop is an array-like name", () => {
+      rmdRender(<RangeSliderTest name="volume[]" />);
+      const { minSliderInput, maxSliderInput } = getRangeSliderTestElements();
+
+      expect(minSliderInput).toHaveAttribute("name", "volume[]");
+      expect(maxSliderInput).toHaveAttribute("name", "volume[]");
+    });
+
+    it("should allow the min and max name props to be overridden by the thumb props objects", () => {
+      const { rerender } = rmdRender(
+        <RangeSliderTest
+          minThumbProps={{ name: "intensity" }}
+          maxThumbProps={{ name: "value" }}
+        />
+      );
+
+      const { minSliderInput, maxSliderInput } = getRangeSliderTestElements();
+      expect(minSliderInput).toHaveAttribute("name", "intensity");
+      expect(maxSliderInput).toHaveAttribute("name", "value");
+
+      rerender(
+        <RangeSliderTest
+          name="volume"
+          minThumbProps={{ name: "intensity" }}
+          maxThumbProps={{ name: "value" }}
+        />
+      );
+      expect(minSliderInput).toHaveAttribute("name", "intensity");
+      expect(maxSliderInput).toHaveAttribute("name", "value");
     });
   });
 
