@@ -1,11 +1,12 @@
 import { cnb } from "cnbuilder";
-import { type HTMLAttributes, type ReactElement } from "react";
+import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
 
 import { InlineCode, type InlineCodeProps } from "./InlineCode.js";
 
 const NBSP = "\u00A0";
 
 export interface ColorPreviewProps extends HTMLAttributes<HTMLSpanElement> {
+  icon?: boolean;
   color: string;
   codeProps?: InlineCodeProps;
   disableCode?: boolean;
@@ -16,7 +17,15 @@ export interface ColorPreviewProps extends HTMLAttributes<HTMLSpanElement> {
  * hovered for a slightly larger preview.
  */
 export function ColorPreview(props: ColorPreviewProps): ReactElement {
-  const { color, className, codeProps, disableCode, ...remaining } = props;
+  const { icon, color, className, codeProps, disableCode, ...remaining } =
+    props;
+
+  let content: ReactNode;
+  if (disableCode) {
+    content = NBSP;
+  } else if (!icon) {
+    content = <InlineCode {...codeProps}>{color}</InlineCode>;
+  }
 
   return (
     <span
@@ -24,11 +33,13 @@ export function ColorPreview(props: ColorPreviewProps): ReactElement {
       style={{ "--color": color }}
       className={cnb(
         "color-preview",
-        disableCode && "color-preview--color-only",
+        !icon && "color-preview--text",
+        icon && "color-preview--icon",
+        !icon && disableCode && "color-preview--color-only",
         className
       )}
     >
-      {disableCode ? NBSP : <InlineCode {...codeProps}>{color}</InlineCode>}
+      {content}
     </span>
   );
 }
