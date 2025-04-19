@@ -28,14 +28,11 @@ export function Color(props: ColorProps): ReactElement {
 
   let title: ReactNode = name;
   if (typeof i === "number") {
-    let shade = 50;
     if (i > 9) {
-      shade = ACCENTS[i - 10];
-    } else if (i > 0) {
-      shade = i * 100;
+      title = `A${ACCENTS[i - 10]}`;
+    } else {
+      title = i > 0 ? i * 100 : 50;
     }
-
-    title = shade;
   }
 
   return (

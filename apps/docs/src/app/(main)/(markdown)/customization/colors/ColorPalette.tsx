@@ -7,43 +7,21 @@ import {
 } from "@react-md/core/utils/alphaNumericSort";
 import { type ReactElement } from "react";
 
+import { MATERIAL_COLORS, type MaterialColor } from "@/constants/theme.js";
 import { titleCase } from "@/utils/strings.js";
 
 import { Color } from "./Color.jsx";
 import styles from "./ColorPalette.module.scss";
 
-const GROUP_ORDER = [
-  "red",
-  "pink",
-  "purple",
-  "deepPurple",
-  "indigo",
-  "blue",
-  "lightBlue",
-  "cyan",
-  "teal",
-  "green",
-  "lightGreen",
-  "lime",
-  "yellow",
-  "amber",
-  "orange",
-  "deepOrange",
-  "brown",
-  "grey",
-  "blueGrey",
-] as const;
-type Group = (typeof GROUP_ORDER)[number];
-
-function assertGroup(name: string): asserts name is Group {
-  if (!GROUP_ORDER.includes(name as Group)) {
+function assertMaterialColor(name: string): asserts name is MaterialColor {
+  if (!MATERIAL_COLORS.includes(name as MaterialColor)) {
     throw new Error();
   }
 }
 
-function getGroupName(varName: string): Group {
+function getGroupName(varName: string): MaterialColor {
   const name = varName.replace(/(Accent)?\d+$/, "");
-  assertGroup(name);
+  assertMaterialColor(name);
   return name;
 }
 
@@ -61,12 +39,12 @@ export function ColorPalette(): ReactElement {
 
       // make sure the group of colors are sorted like original material design
       // setup
-      return GROUP_ORDER.indexOf(aName) - GROUP_ORDER.indexOf(bName);
+      return MATERIAL_COLORS.indexOf(aName) - MATERIAL_COLORS.indexOf(bName);
     },
     extractor: ([name]) => name,
   });
 
-  const groups = new Map<Group, string[]>();
+  const groups = new Map<MaterialColor, string[]>();
   sorted.forEach(([varName, value]) => {
     const groupName = getGroupName(varName);
     const group = groups.get(groupName) ?? [];

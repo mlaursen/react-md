@@ -37,13 +37,8 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
-        href: "/theme",
-        children: "Theme",
-      },
-      {
-        type: "route",
-        href: "/color-palette",
-        children: "Color Palette",
+        href: "/colors",
+        children: "Colors",
       },
       {
         type: "route",

@@ -1,0 +1,7 @@
+@use "everything";
+
+.container {
+  @include everything.box-set-var(gap, 0.125rem);
+
+  --color-basis: calc(25% - #{0.125rem * 4});
+}

@@ -1,0 +1,164 @@
+---
+title: Colors
+description: The color system can help you create a color theme that reflects your brand or style.
+docType: Guides
+docGroup: Customization
+group: Colors
+---
+
+import { ColorPalette } from "./ColorPalette.jsx";
+import { ColorPickerLink } from "./ColorPickerLink.jsx";
+import { PlaygroundContainer } from "./PlaygroundContainer.jsx";
+
+# Colors
+
+The first two versions of Material Design provide a
+[color system](https://m2.material.io/design/color/the-color-system.html) that
+have a preset of colors that generally look good together. The official
+[Material palette generator](https://m2.material.io/inline-tools/color/) can
+be used to generate a palette for any color you input.
+
+## Customizing Colors
+
+The global theme colors can be configured by updating the default Sass variables with
+custom values.
+
+### Recommended setup
+
+A recommended setup is creating a new `_everything.scss` file that `@forward`s
+everything from `react-md` with any overrides required in the app and any
+additional Sass helpers required for developing. Here is an example below
+showcasing the default theme variables:
+
+```scss fileName="src/_everything.scss"
+@use "@react-md/core/a11y";
+@use "@react-md/core/colors";
+@use "sass:color";
+
+@forward "@react-md/core" with (
+  $color-scheme: light,
+  $primary-color: colors.$blue-500,
+  $secondary-color: colors.$orange-a-400,
+  $warning-color: colors.$deep-orange-a-400,
+  $error-color: colors.$red-500,
+  $success-color: colors.$green-a-700,
+  $light-theme-background-color: #fafafa,
+  $light-theme-surface-color: colors.$white,
+  $light-theme-text-primary-color: color.adjust(colors.$black, $lightness: 13%),
+  $light-theme-text-secondary-color: color.adjust(
+      colors.$black,
+      $lightness: 46%
+    ),
+  $light-theme-text-hint-color: color.adjust(colors.$black, $lightness: 66%),
+  $light-theme-text-disabled-color: color.adjust(colors.$black, $lightness: 62%),
+  $dark-theme-background-color: #121212,
+  $dark-theme-surface-color: #424242,
+  $dark-theme-text-primary-color: color.adjust(colors.$white, $lightness: -15%),
+  $dark-theme-text-secondary-color: color.adjust(
+      colors.$white,
+      $lightness: -30%
+    ),
+  $dark-theme-text-hint-color: color.adjust(colors.$white, $lightness: -50%),
+  $dark-theme-text-disabled-color: color.adjust(colors.$white, $lightness: -50%)
+);
+```
+
+Now `@use` this file throughout the app instead of `@react-md/core` to generate styles maintaining
+the overridden theme and configuration.
+
+```scss fileName="src/index.scss"
+@use "everything";
+
+// generate all the styles
+@include everything.styles;
+```
+
+## Picking Colors
+
+### Official color tool
+
+The Material Design Team have built a palette configuration tool:
+[material.io/resources/color](https://m2.material.io/inline-tools/color/). This
+can help you create a color palette for your UI that is designed to be
+harmonious, ensure accessible text, and distinguish UI elements and surfaces
+from one another.
+
+<ColorPickerLink />
+
+The output can be pasted into the Sass configuration:
+
+```scss fileName="src/_everything.scss"
+@use "@react-md/core/a11y";
+@use "@react-md/core/colors";
+@use "sass:color";
+
+@forward "@react-md/core" with (
+  $primary-color: colors.$blue-500,
+  $secondary-color: colors.$orange-a-400,
+  $warning-color: colors.$deep-orange-a-400,
+  $error-color: colors.$red-500,
+  $success-color: colors.$green-a-700
+);
+```
+
+## Playground
+
+To test a
+[material.io/design/color](https://m2.material.io/design/color/the-color-system.html)
+color scheme with the ReactMD documentation, simpley select cololrs using the
+palette and sliders below. Alternatively, you can enter the hex values in the
+Primary and Secondary text fields.
+
+<PlaygroundContainer />
+
+## Color Palette
+
+`react-md` still supports this color system by providing both Sass and
+Javascript variables where Sass variables will use `kebab-case-names` and
+Javascript will use `camelCaseNames`. The Sass variables can be accessed
+through `@use "@react-md/core/colors";` and the Javascript variables can
+be accessed through `import { colorName } from "@react-md/core/theme/colors";`.
+
+To help show the naming conventions and usage, all the available red colors
+will be shown below:
+
+```scss
+@use "@react-md/core/colors";
+
+$example: colors.$red-50;
+$example: colors.$red-100;
+$example: colors.$red-200;
+$example: colors.$red-300;
+$example: colors.$red-400;
+$example: colors.$red-500;
+$example: colors.$red-600;
+$example: colors.$red-700;
+$example: colors.$red-800;
+$example: colors.$red-a-100;
+$example: colors.$red-a-200;
+$example: colors.$red-a-400;
+$example: colors.$red-a-700;
+```
+
+```ts
+import {
+  red50,
+  red100,
+  red200,
+  red300,
+  red400,
+  red500,
+  red600,
+  red700,
+  red800,
+  red900,
+  redAccent100,
+  redAccent200,
+  redAccent400,
+  redAccent700,
+} from "@react-md/core/theme/colors";
+```
+
+### Material Design Colors
+
+<ColorPalette />

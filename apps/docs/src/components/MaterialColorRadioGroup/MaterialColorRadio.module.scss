@@ -1,0 +1,85 @@
+@use "everything";
+
+$focus-width: everything.interaction-get-var(focus-width);
+$inverse-color: everything.theme-get-var(inverse-color);
+
+/// I ended up trying some new stuff here, so here are a few notes about the
+/// implementation:
+///
+/// I wanted to make it so that the focus behavior was visible no matter what
+/// the background color is. To do that, there are two outline colors:
+///
+/// 1. The `--rmd-inverse-color` (should be pure black or pure white)
+/// 2. An inverse of that inverse color.
+///
+/// So, there would be a black then white outline in light node or a white then
+/// black outline in dark mode.
+///
+/// Ideally there would be another root level custom property to use, but I
+/// wanted to try it out with some pure css. So how it works is layering two
+/// box shadows in the `::before` and `::after` pseudo elements. The `::before`
+/// acts as the outer outline and `::after` is the inner shadow which are both
+/// set to the `--rmd-inverse-color` by default. The inner shadow is then
+/// inverted using `filter: invert(1)` and add some additional inset so it
+/// appears after the outer shadow.
+///
+/// Next, I wanted the ripple and hover color to change depending on the
+/// contrast color that is set as the currentcolor. The ripple color is
+/// normally 12% opacity and the hover color is 10% opacity and can be
+/// accomplished with `color-mix()`.
+.container {
+  @include everything.icon-set-var(size, 2.5rem);
+  @include everything.interaction-set-var(
+    ripple-background-color,
+    color-mix(in srgb, currentcolor 12%, transparent)
+  );
+
+  aspect-ratio: 1 / 1;
+  background-color: color-mix(
+    in srgb,
+    var(--color) 100%,
+    var(--hover-color, transparent)
+  );
+  flex: 1 1 var(--color-basis);
+  min-height: var(--color-size, 3rem);
+  min-width: var(--color-size, 3rem);
+  position: relative;
+
+  &:has(:checked) {
+    .check {
+      opacity: 1;
+    }
+  }
+
+  &:has(:focus-visible) {
+    &::before,
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::before,
+  &::after {
+    @include everything.pseudo-element;
+
+    box-shadow: inset 0 0 0 $focus-width $inverse-color;
+  }
+
+  &::after {
+    // this is a "neat" way to inverse the inverse color...
+    filter: invert(1);
+    inset: $focus-width;
+  }
+
+  @include everything.mouse-hover {
+    --hover-color: currentcolor 10%;
+  }
+}
+
+.check,
+.container::before,
+.container::after {
+  opacity: 0;
+  transition: opacity everything.$linear-duration
+    everything.$linear-timing-function;
+}

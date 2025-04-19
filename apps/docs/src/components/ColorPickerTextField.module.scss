@@ -1,0 +1,5 @@
+@use "everything";
+
+.underlined {
+  @include everything.form-set-var(addon-margin-top, 1em);
+}

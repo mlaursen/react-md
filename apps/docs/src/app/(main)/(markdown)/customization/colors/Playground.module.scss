@@ -1,0 +1,9 @@
+@use "everything";
+
+.container {
+  @include everything.box-set-var(item-min-size, 14rem);
+}
+
+.footer {
+  grid-column: 1 / 1;
+}
