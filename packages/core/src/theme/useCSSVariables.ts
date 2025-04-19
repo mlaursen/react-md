@@ -1,6 +1,6 @@
 "use client";
 
-import { type RefObject, useEffect, useMemo } from "react";
+import { type CSSProperties, type RefObject, useEffect, useMemo } from "react";
 
 import {
   type CSSVariableName,
@@ -75,14 +75,14 @@ export function useCSSVariables<Name extends CSSVariableName>(
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,
   inlineStyle: true
-): CSSVariablesProperties<Name>;
+): CSSProperties;
 /**
  * @since 6.0.0
  */
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,
   rootNodeOrInlineStyle?: RefObject<HTMLElement> | HTMLElement | boolean
-): CSSVariablesProperties<Name> | undefined {
+): CSSProperties | undefined {
   useEffect(() => {
     if (rootNodeOrInlineStyle === true || !variables.length) {
       return;

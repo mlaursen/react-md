@@ -43,8 +43,6 @@ describe("useCSSVariables", () => {
   it("should return a style object if the local argument is `true`", () => {
     let style: CSSProperties | undefined;
     function Test(): ReactElement {
-      // this is an error because the global CSSProperties have not been augmented
-      // @ts-expect-error
       style = useCSSVariables([{ name: "--test", value: "3rem" }], true);
 
       // this one should work without issue since it was added at the top of the test
