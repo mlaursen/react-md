@@ -1,13 +1,13 @@
 import { link } from "@react-md/core/link/styles";
 import { type ReactElement } from "react";
 
-import { getSassDocLink } from "@/app/(main)/(markdown)/(apidocs)/sassdoc/[group]/utils.js";
 import { GITHUB_LINK_URL } from "@/constants/env.js";
 import {
   SASSDOC_FUNCTIONS,
   SASSDOC_MIXINS,
   SASSDOC_VARIABLES,
 } from "@/generated/sassdoc.js";
+import { getSassDocLink, isFormattedVariableItem } from "@/utils/sassdoc.js";
 
 import { GithubLink } from "./GithubLink.jsx";
 import { LinkUnstyled, type LinkUnstyledProps } from "./LinkUnstyled.jsx";
@@ -52,8 +52,7 @@ export function MarkdownLink(props: MarkdownLinkProps): ReactElement {
     }
 
     if (item) {
-      const prefix =
-        item.type === "mixin" || item.type === "function" ? "" : "$";
+      const prefix = !forceVariable && isFormattedVariableItem(item) ? "$" : "";
       children = `core.${prefix}${decodeURIComponent(href)}`;
       href = getSassDocLink(item);
     } else if (!item && process.env.NODE_ENV !== "production") {

@@ -5,6 +5,7 @@ import {
 import {
   type FormattedItem,
   type FormattedSassDocItem,
+  type FormattedVariableItem,
   type ItemReferenceLink,
 } from "sassdoc-generator/types";
 
@@ -16,16 +17,18 @@ export const getGroupName = (itemOrGroup: FormattedItem | string): string => {
   return group.replace(/^core\./, "");
 };
 
+export function isFormattedVariableItem(
+  item: FormattedSassDocItem
+): item is FormattedVariableItem {
+  return item.type !== "mixin" && item.type !== "function";
+}
+
 export function getSassDocLink(
   item: FormattedSassDocItem | ItemReferenceLink
 ): string {
   let { type } = item;
   const { name, group } = item;
-  if (
-    "originalName" in item &&
-    item.type !== "function" &&
-    item.type !== "mixin"
-  ) {
+  if ("originalName" in item && isFormattedVariableItem(item)) {
     type = "variable";
   }
 

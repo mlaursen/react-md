@@ -5,7 +5,7 @@ import {
   type ItemReferenceLink,
 } from "sassdoc-generator/types";
 
-import { getSassDocLink } from "./utils.js";
+import { getSassDocLink } from "@/utils/sassdoc.js";
 
 export interface SassDocReferenceLinkListProps
   extends HTMLAttributes<HTMLUListElement> {

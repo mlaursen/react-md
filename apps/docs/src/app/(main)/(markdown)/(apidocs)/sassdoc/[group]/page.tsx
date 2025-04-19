@@ -7,13 +7,16 @@ import { LinkableHeading } from "@/components/LinkableHeading.jsx";
 import { Markdown } from "@/components/Markdown.jsx";
 import { PageNotFound } from "@/components/PageNotFound/PageNotFound.jsx";
 import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
+import {
+  SASSDOC_GROUP,
+  SASSDOC_GROUP_NAMES,
+} from "@/constants/sassdocGroups.js";
+import { createTOC } from "@/utils/sassdoc.js";
 import { slug } from "@/utils/slug.js";
 import { titleCase } from "@/utils/strings.js";
 
 import { DevRegenDialog } from "./DevRegenDialog.jsx";
 import { SassDocSection } from "./SassDocSection.jsx";
-import { SASSDOC_GROUP, SASSDOC_GROUP_NAMES } from "./constants.js";
-import { createTOC } from "./utils.js";
 
 export interface PageProps {
   params: { group: string };

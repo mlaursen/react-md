@@ -10,8 +10,7 @@ import {
   SASSDOC_MIXINS,
   SASSDOC_VARIABLES,
 } from "@/generated/sassdoc.js";
-
-import { getGroupName } from "./utils.js";
+import { getGroupName } from "@/utils/sassdoc.js";
 
 interface SassDocGroup {
   mixins: Map<string, FormattedMixinItem>;

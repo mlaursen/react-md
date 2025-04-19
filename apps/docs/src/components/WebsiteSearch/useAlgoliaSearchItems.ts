@@ -9,7 +9,7 @@ import {
 } from "docs-generator/scripts/algolia/types";
 import { useMemo } from "react";
 
-import { getGroupName } from "@/app/(main)/(markdown)/(apidocs)/sassdoc/[group]/utils.js";
+import { getGroupName } from "@/utils/sassdoc.js";
 
 interface ResolvedHighlights {
   name: boolean;
