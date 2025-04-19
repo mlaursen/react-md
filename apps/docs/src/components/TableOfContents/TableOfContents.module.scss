@@ -13,7 +13,9 @@
     left: 0;
     right: auto;
   }
-  @include everything.desktop-media {
+  @include everything.media-or-media-query(
+    everything.$layout-navigation-breakpoint
+  ) {
     display: grid;
     max-height: calc(100dvh - everything.layout-get-var(header-height));
     overflow: auto;
