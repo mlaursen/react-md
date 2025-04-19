@@ -86,7 +86,9 @@ export interface ColorSchemeState {
 /** @since 6.0.0 */
 export interface ColorSchemeContext extends ColorSchemeState {
   /**
-   * When the {@link colorScheme} is set to `"system"`, this will reflect
+   * When the {@link colorScheme} is set to `"system"`, this can be used to
+   * determine if the user prefers the `"light"` or `"dark"` color scheme so
+   * that custom styles can be set for that preference.
    */
   currentColor: LightDarkColorScheme;
 }
