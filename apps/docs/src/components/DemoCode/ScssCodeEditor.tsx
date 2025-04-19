@@ -7,11 +7,10 @@ import { highlightCode } from "@react-md/code/prismjs/highlight";
 import { type ScssCodeFile } from "@react-md/code/types";
 import { useCodeEditHistory } from "@react-md/code/useCodeEditHistory";
 import { useFocusCodeEditor } from "@react-md/code/useFocusCodeEditor";
-import { cssUtils } from "@react-md/core/cssUtils";
 import { Snackbar } from "@react-md/core/snackbar/Snackbar";
 import { type ReactElement } from "react";
 
-import styles from "./ScssCodeEditor.module.scss";
+import { ScssCodeError } from "./ScssCodeError.jsx";
 import { useScssCodeEditor } from "./useScssCodeEditor.js";
 
 export interface ScssCodeEditorProps {
@@ -57,16 +56,7 @@ export function ScssCodeEditor(props: ScssCodeEditorProps): ReactElement {
           <>
             {compiling && <CodeEditorProgress />}
             <CodeEditorCopyToClipboard copyText={code} />
-            {error && (
-              <pre
-                className={cssUtils({
-                  className: styles.tooltip,
-                  textColor: "error",
-                })}
-              >
-                <code>{error.message}</code>
-              </pre>
-            )}
+            {error && <ScssCodeError error={error} />}
             <Snackbar
               position="bottom-right"
               absolute
