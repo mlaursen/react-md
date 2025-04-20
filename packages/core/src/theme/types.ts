@@ -92,3 +92,70 @@ export interface ColorSchemeContext extends ColorSchemeState {
    */
   currentColor: LightDarkColorScheme;
 }
+
+/** @since 6.0.0 */
+export interface ThemeColors {
+  primaryColor: string;
+  onPrimaryColor: string;
+  secondaryColor: string;
+  onSecondaryColor: string;
+  warningColor: string;
+  onWarningColor: string;
+  errorColor: string;
+  onErrorColor: string;
+  successColor: string;
+  onSuccessColor: string;
+}
+
+/** @since 6.0.0 */
+export interface ThemeTextColors {
+  textPrimaryColor: string;
+  textSecondaryColor: string;
+  textHintColor: string;
+  textDisabledColor: string;
+}
+
+/** @since 6.0.0 */
+export interface ConfigurableThemeColors extends ThemeColors, ThemeTextColors {
+  backgroundColor: string;
+}
+
+/** @since 6.0.0 */
+export type ConfigurableThemeColorsName = keyof ConfigurableThemeColors;
+
+/** @since 6.0.0 */
+export interface ThemeContext extends ConfigurableThemeColors {
+  /**
+   * This will be `true` if a `theme` was not provided to the {@link ThemeProvider}
+   */
+  derived: boolean;
+
+  /**
+   * @example Simple Example
+   * ```tsx
+   * import { getDerivedTheme } from "@react-md/core/theme/getDerivedTheme"
+   * import { useTheme } from "@react-md/core/theme/ThemeProvider";
+   * import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
+   * import { useEffect } from "react";
+   *
+   * import styles from "./LightTheme.module.scss";
+   *
+   * let loadedOnce = false;
+   *
+   * export default function LightTheme(): null {
+   *   useHtmlClassName(styles.container);
+   *   const { setDerivedTheme } = useTheme();
+   *   useEffect(() => {
+   *     if (loadedOnce) {
+   *       return;
+   *     }
+   *
+   *     loadedOnce = true;
+   *     setDerivedTheme(getDerivedTheme());
+   *   }, [setDerivedTheme]);
+   *   return null;
+   * }
+   * ```
+   */
+  setDerivedTheme: UseStateSetter<Readonly<ConfigurableThemeColors>>;
+}

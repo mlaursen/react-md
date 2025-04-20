@@ -7,11 +7,8 @@ import {
   orangeAccent400,
   red500,
 } from "@react-md/core/colors";
-import {
-  type ConfigurableThemeColors,
-  ThemeProvider,
-  useTheme,
-} from "@react-md/core/theme/ThemeProvider";
+import { ThemeProvider, useTheme } from "@react-md/core/theme/ThemeProvider";
+import { type ConfigurableThemeColors } from "@react-md/core/theme/types";
 import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import { contrastColor } from "@react-md/core/theme/utils";
 import { type ReactElement } from "react";

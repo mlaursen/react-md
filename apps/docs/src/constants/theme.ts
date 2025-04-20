@@ -1,9 +1,9 @@
 import { black, pinkAccent200, teal500 } from "@react-md/core/colors";
 import {
-  type ConfigurableThemeColors,
   DEFAULT_DARK_THEME,
   DEFAULT_LIGHT_THEME,
-} from "@react-md/core/theme/ThemeProvider";
+} from "@react-md/core/theme/constants";
+import { type ConfigurableThemeColors } from "@react-md/core/theme/types";
 
 export const MATERIAL_COLORS_WITH_SHADES = [
   "red",

@@ -1,6 +1,7 @@
 "use client";
 
-import { getDerivedTheme, useTheme } from "@react-md/core/theme/ThemeProvider";
+import { useTheme } from "@react-md/core/theme/ThemeProvider";
+import { getDerivedTheme } from "@react-md/core/theme/getDerivedTheme";
 import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
 import { useEffect } from "react";
 
