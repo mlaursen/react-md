@@ -93,6 +93,7 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(
       visible,
       temporary = true,
       exitedHidden = true,
+      raised,
       children,
       ...remaining
     } = props;
@@ -110,10 +111,10 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(
         temporary={temporary}
         exitedHidden={exitedHidden}
         className={sheet({
+          raised: raised ?? !disableOverlay,
           position,
           horizontalSize,
           verticalSize,
-          disableOverlay,
           className,
         })}
       >

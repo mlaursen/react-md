@@ -83,6 +83,16 @@ export interface BaseSheetClassNameOptions {
    * @defaultValue `"recommended"`
    */
   verticalSize?: SheetVerticalSize;
+
+  /**
+   * Set this to `false` to remove the additional `z-index` and `box-shadow`
+   * applied to the sheet. This should _normally_ be `false` if the
+   * `disableOverlay` prop was enabled.
+   *
+   * @see {@link BaseDialogProps.disableOverlay}
+   * @defaultValue `!disableOverlay`
+   */
+  raised?: boolean;
 }
 
 /**
@@ -98,15 +108,6 @@ export interface SheetClassNameOptions extends BaseSheetClassNameOptions {
    * @defaultValue `false`
    */
   offscreen?: boolean;
-
-  /**
-   * Set this to `true` to disable the overlay behind the sheet and any
-   * additional box-shadow that would be applied to the sheet.
-   *
-   * @see {@link BaseDialogProps.disableOverlay}
-   * @defaultValue `false`
-   */
-  disableOverlay?: boolean;
 }
 
 /** @since 6.0.0 */
@@ -116,7 +117,7 @@ export function sheet(options: SheetClassNameOptions): string {
     horizontalSize = "media",
     verticalSize = "recommended",
     offscreen = false,
-    disableOverlay,
+    raised = true,
     className,
   } = options;
   const horizontal = position === "left" || position === "right";
@@ -125,7 +126,7 @@ export function sheet(options: SheetClassNameOptions): string {
     styles({
       horizontal,
       vertical: !horizontal,
-      raised: !disableOverlay,
+      raised,
       offscreen,
       [position]: true,
       "media-width": horizontal && horizontalSize === "media",

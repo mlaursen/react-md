@@ -167,8 +167,8 @@ export const LayoutNav = forwardRef<HTMLDivElement, LayoutNavProps>(
         layoutNav({ appBarOffset }),
         sheet({
           className,
+          raised: false,
           horizontalSize: "none",
-          disableOverlay: true,
         })
       ),
       classNames,
