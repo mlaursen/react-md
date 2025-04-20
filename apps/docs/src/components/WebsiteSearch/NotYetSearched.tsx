@@ -28,14 +28,14 @@ const RECOMMENDATIONS: readonly LinkConfig[] = [
     children: "Example Projects",
   },
   {
+    href: "/customization/colors",
+    leftAddon: <ColorLensIcon />,
+    children: "Colors",
+  },
+  {
     href: "/customization/global-configuration",
     leftAddon: <EditDocumentIcon />,
     children: "Global Configuration",
-  },
-  {
-    href: "/customization/theme",
-    leftAddon: <ColorLensIcon />,
-    children: "Theme",
   },
   {
     href: "/testing/recipes",
