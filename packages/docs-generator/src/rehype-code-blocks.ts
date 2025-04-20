@@ -5,6 +5,7 @@ import { Project } from "ts-morph";
 import { type Plugin } from "unified";
 import { visitParents } from "unist-util-visit-parents";
 
+import { compileScssCode } from "./utils/compileScssCode.js";
 import { createDemo } from "./utils/createDemo.js";
 import { createTypescriptCodeBlock } from "./utils/createTypescriptCodeBlock.js";
 import { getCodeLanguage } from "./utils/getCodeLanguage.js";
@@ -18,6 +19,9 @@ export interface RehypeCodeBlocksOptions {
 
   /** @defaultValue `"PackageManagerCodeBlock"` */
   npmComponentName?: string;
+
+  /** @defaultValue `CompiledScssCodeBlock` */
+  scssComponentName?: string;
 }
 
 /**
@@ -26,7 +30,7 @@ export interface RehypeCodeBlocksOptions {
  *   for others
  * - If the code block is a shell script with `npm `code:
  *   - auto convert the code into `pnpm` and `yarn` and replace the code block
- *   with: `<PackageManagerCodeBlock manangers={{ npm, pnpm, yarn }} />`
+ *     with: `<PackageManagerCodeBlock manangers={{ npm, pnpm, yarn }} />`
  * - Check if there are any "code props" and pass them to the `code` renderer
  *   or other special components defined later.
  *   - rehype-mdx-code-props - https://github.com/remcohaszing/rehype-mdx-code-props/blob/007ff4af2a2c11bfbdc7c3b592c247df35cbb076/src/rehype-mdx-code-props.ts
@@ -49,6 +53,9 @@ export interface RehypeCodeBlocksOptions {
  *   as the demo file to generate a new component that renders the
  *   `<CodeEditor />` with props for that demo. Then replace the code block in
  *   the markdown page with the new component.
+ * - If the code block has a language of `scss` and a `compile` prop:
+ *   - compile the scss code and replace the code block with:
+ *     `<CompiledScssCodeBlock css={css} scss={scss} {...props} />`
  *
  *```tsx
  *import CustomizingTypography from "@/generated/components/typography/CustomizingTypography.tsx";
@@ -76,6 +83,7 @@ export const rehypeCodeBlocks: Plugin<
   const {
     tsComponentName = "TypescriptCodeBlock",
     npmComponentName = "PackageManagerCodeBlock",
+    scssComponentName = "CompiledScssCodeBlock",
   } = options;
   const srcDir = join(process.cwd(), "src");
   const generatedDir = join(srcDir, "generated");
@@ -110,6 +118,7 @@ export const rehypeCodeBlocks: Plugin<
         return;
       }
 
+      let defaultReplace = false;
       const lang = getCodeLanguage(node);
       const filepath = file.path;
       switch (lang) {
@@ -138,13 +147,23 @@ export const rehypeCodeBlocks: Plugin<
               preElementParent,
             });
           } else if (meta) {
-            replacePreElementWithJsxNode({
-              meta,
-              preElement,
-              preElementParent,
-            });
+            defaultReplace = true;
           }
 
+          break;
+        }
+        case "scss": {
+          if (meta?.includes("compile")) {
+            compileScssCode({
+              as: scssComponentName,
+              meta: meta.replace("compile", ""),
+              preElement,
+              preElementParent,
+              codeElement: node,
+            });
+          } else if (meta) {
+            defaultReplace = true;
+          }
           break;
         }
         case "demo": {
@@ -185,12 +204,16 @@ export const rehypeCodeBlocks: Plugin<
           throw new Error("Code examples must use `ts` or `tsx`");
         default:
           if (meta) {
-            replacePreElementWithJsxNode({
-              meta,
-              preElement,
-              preElementParent,
-            });
+            defaultReplace = true;
           }
+      }
+
+      if (defaultReplace) {
+        replacePreElementWithJsxNode({
+          meta,
+          preElement,
+          preElementParent,
+        });
       }
     });
 

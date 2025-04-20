@@ -34,7 +34,7 @@ export function createJsxNode(
       spread.push(`${prop}={${JSON.stringify(value)}}`);
     });
 
-    jsxProps += spread.join(" ");
+    jsxProps += (jsxProps ? " " : "") + spread.join(" ");
   }
 
   return createJsxElementContent<MdxJsxFlowElementHast>(

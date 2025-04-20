@@ -18,6 +18,7 @@ import {
 } from "react";
 
 import { Blockquote } from "@/components/Blockquote.jsx";
+import { CompiledScssCodeBlock } from "@/components/CompiledScssCodeBlock/CompiledScssCodeBlock.jsx";
 import { LinkableHeading } from "@/components/LinkableHeading.jsx";
 import {
   MarkdownCode,
@@ -48,6 +49,7 @@ interface RedefinedComponents {
   TableOfContents: typeof TableOfContents;
   TypescriptCodeBlock: typeof TypescriptCodeBlock;
   PackageManagerCodeBlock: typeof PackageManagerCodeBlock;
+  CompiledScssCodeBlock: typeof CompiledScssCodeBlock;
   table: RenderChildrenComponent;
   tr: RenderChildrenComponent;
   td: RenderChildrenComponent;
@@ -85,6 +87,7 @@ export const CUSTOM_MDX_COMPONENTS: CustomMDXComponents = {
   TableOfContents,
   TypescriptCodeBlock,
   PackageManagerCodeBlock,
+  CompiledScssCodeBlock,
 
   // switch to the commented out code below if server-side only context
   // is implemented by React
