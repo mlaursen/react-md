@@ -1,0 +1,107 @@
+---
+title: Sass Theme API
+description: Use the Sass Theme API to use ReactMD custom property values or override custom properties for parts of the app.
+docType: Guides
+docGroup: Customization
+keywords: [custom properties, theme, Sass]
+---
+
+import { AvailableSassAPI } from "./AvailableSassAPI.jsx";
+
+# Sass Theme API
+
+> !Info! Before reading this page, configure the default Sass variables through
+> the [\_everything.scss](./how-to-customize#_everythingscss).
+
+Use the Sass Theme API to use ReactMD custom property values or override custom
+properties for parts of the app. The general setup is to define one variable,
+one function and two mixins to work with the theme:
+
+- `${group}-variables`
+- `@mixin {group}-use-var($property, $name, $fallback: null)`
+- `@mixin {group}-set-var($name, $new-value)`
+- `@function {group}-get-var($name, $fallback: null)`
+
+It is not required to use these functions and mixins, but they will ensure that
+a valid `$name` has been provided and throw an error if the name does not
+exist. This ensures there aren't any accidental typos during build-time and
+provides a list of available custom property names.
+
+> !Info! See the [$SASSDOC](contrast-color) function around how to
+> automatically create an accessible text color for a background.
+
+### The `variables` variable list
+
+The `$variables` list can be used to view which items are configurable using
+custom properties. It is used internally by the other functions and mixins to
+validate and generate the custom property names.
+
+This code example just prints out all the available theme variables.
+
+```scss compile
+@use "everything";
+
+:root {
+  @each $var in everything.$theme-variables {
+    @include everything.theme-set-var($var, inherit);
+  }
+}
+```
+
+### The `use-var` mixin
+
+The `use-var` mixin should be used to apply the variable as a css property
+value.
+
+```scss compile
+@use "everything";
+
+.example {
+  @include everything.theme-use-var(background-color);
+  @include everything.theme-use-var(color, text-primary-color);
+  @include everything.button-use-var(padding, text-horizontal-padding);
+}
+```
+
+### The `set-var` mixin
+
+The `set-var` mixin should be used to override the current value for a part of
+the app.
+
+```scss compile
+@use "everything";
+
+.example {
+  @include everything.theme-set-var(background-color, surface-color);
+  @include everything.theme-set-var(primary-color, blue);
+  @include everything.theme-set-var(
+    on-primary-color,
+    everything.contrast-color(blue)
+  );
+  @include everything.button-set-var(text-horizontal-padding, 8px);
+}
+```
+
+### The `get-var` function
+
+The `get-var` function should generally only be used if requiring the current
+property in a
+[calc() function](https://developer.mozilla.org/en-US/docs/Web/CSS/calc), a
+`set-var` value, or in a property shorthand since it just returns
+`var(--rmd-{name})` or `var(--rmd-{name}, $fallback)`.
+
+```scss compile
+@use "everything";
+
+.example {
+  padding: everything.icon-get-var(spacing)
+    everything.button-get-var(text-horizontal-padding);
+}
+```
+
+## Available Sass API
+
+The Sass theme API is documented in the Sass API Docs and all the available
+functions and mixins are listed below.
+
+<AvailableSassAPI />

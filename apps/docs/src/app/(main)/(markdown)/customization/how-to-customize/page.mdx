@@ -1,0 +1,158 @@
+---
+title: How to Customize
+description: Customize react-md globally by overriding Sass variables and configuration objects for React components. Additional styles can be changed through the custom properties along with the Sass API and the className props on React components.
+docType: Guides
+docGroup: Customization
+group: How to Customize
+---
+
+# How to Customize
+
+Customize `react-md` globally by overriding Sass variables and configuration
+objects for React components. Additional styles can be changed through the
+custom properties along with the Sass API and the `className` props on React
+components.
+
+## Recommended Setup
+
+> !Info! Check out the [example projects](/getting-started/example-projects) to
+> see completed examples with the recommended setup.
+
+Start by creating a file that `@forward`s everything from `react-md` with all
+the global overrides required in the app. This file can also include forward
+custom Sass variables, mixins, and functions that will be used throughout the
+app.
+
+I recommend naming this file the `_everything.scss` and will be referenced
+throughout the documentation website.
+
+### `_everything.scss`
+
+The example below show just forwards the default theme variables again to show
+an example structure.
+
+```scss fileName="_everything.scss"
+@use "@react-md/core/a11y";
+@use "@react-md/core/colors";
+@use "sass:color";
+
+@forward "@react-md/core" with (
+  $color-scheme: light,
+  $primary-color: colors.$blue-500,
+  $secondary-color: colors.$orange-a-400,
+  $warning-color: colors.$deep-orange-a-400,
+  $error-color: colors.$red-500,
+  $success-color: colors.$green-a-700,
+  $light-theme-background-color: #fafafa,
+  $light-theme-surface-color: colors.$white,
+  $light-theme-text-primary-color: color.adjust(colors.$black, $lightness: 13%),
+  $light-theme-text-secondary-color: color.adjust(
+      colors.$black,
+      $lightness: 46%
+    ),
+  $light-theme-text-hint-color: color.adjust(colors.$black, $lightness: 66%),
+  $light-theme-text-disabled-color: color.adjust(colors.$black, $lightness: 62%),
+  $dark-theme-background-color: #121212,
+  $dark-theme-surface-color: #424242,
+  $dark-theme-text-primary-color: color.adjust(colors.$white, $lightness: -15%),
+  $dark-theme-text-secondary-color: color.adjust(
+      colors.$white,
+      $lightness: -30%
+    ),
+  $dark-theme-text-hint-color: color.adjust(colors.$white, $lightness: -50%),
+  $dark-theme-text-disabled-color: color.adjust(colors.$white, $lightness: -50%)
+);
+```
+
+Now that this file has been created, it can be imported in any other Sass file
+to reuse the customizations and have access to the Sass API.
+
+```scss fileName="src/index.scss"
+@use "everything";
+
+@include everything.styles;
+```
+
+```scss fileName="src/components/SomeComponent.module.scss" compile
+@use "everything";
+
+.container {
+  @include everything.theme-use-var(background-color);
+  @include everything.theme-use-var(color, text-primary-color);
+}
+```
+
+> !Warn! The Sass configuration might need to be updated to support absolute
+> imports for the `_everything.scss`. Use one of the
+> [example project](/getting-started/example-projects) as a reference point.
+
+### `rmdConfig.tsx`
+
+Create a root Javascript file that can configure some of the React component behavior
+such as:
+
+- setting default icons
+- configuring the ripple behavior when clicking elements
+- setting the default form theme
+
+See the [global configuration](./global-configuration) for more details around this file.
+
+## Customizing Typography
+
+See the
+[customizing typography demo](/components/typography#customizing-typography)
+for an interactive example for updating typography.
+
+## Overriding global component `className`
+
+> !Warn! Before overriding global `className`, it is recommended to configure
+> variables through the Sass variables API first.
+
+If all else fails, custom styles can be applied manually by inspecting the
+elements for different class names and applying them globally. Here's an
+example for customizing buttons:
+
+```scss
+.rmd-button {
+  border: 1px solid red;
+  background: orange;
+  border-radius: 12px;
+}
+
+.rmd-button--text {
+  min-width: 100px;
+  border-radius: 9001px;
+}
+```
+
+## One-off styles through the `className` props
+
+All components support overriding styles through the `className` prop. The
+`className` is almost always applied to the top-most element and additional
+`partProps` or `partClassName` props are exposed to style the other elements
+in the component.
+
+For example, the [Avatar component](/components/avatar) can be styled using the
+`className` prop and the child `<img>` can be styled through
+`imgProps={{ className: "custom-class-name" }}`. The
+[Dialog component](/components/dialog) can be styled through the `className` and the
+`containerProps={{ className: "custom-class-name" }}`.
+
+## Overriding custom properties
+
+Most of the colors, padding, margin, spacing, and borders can be customized
+through CSS Custom Properties allowing for dynamic customization for parts of
+the app or allowing a user to configure their own theme. It is recommended to
+use the [Sass Theme API](./sass-theme-api) to override or use these custom
+properties, but they can also be configured manually if needed.
+
+```scss compile
+@use "everything";
+
+.example {
+  @include everything.theme-use-var(background-color);
+  @include everything.theme-use-var(color, text-primary-color);
+  @include everything.theme-set-var(error-color, red);
+  @include everything.button-set-var(border-radius, 3px);
+}
+```

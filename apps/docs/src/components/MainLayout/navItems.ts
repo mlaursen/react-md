@@ -32,6 +32,11 @@ export const navItems: readonly NavigationItem[] = [
     items: [
       {
         type: "route",
+        href: "/how-to-customize",
+        children: "How to Customize",
+      },
+      {
+        type: "route",
         href: "/global-configuration",
         children: "Global Configuration",
       },
@@ -44,6 +49,11 @@ export const navItems: readonly NavigationItem[] = [
         type: "route",
         href: "/dark-mode",
         children: "Dark Mode",
+      },
+      {
+        type: "route",
+        href: "/sass-theme-api",
+        children: "Sass Theme API",
       },
       {
         type: "route",
