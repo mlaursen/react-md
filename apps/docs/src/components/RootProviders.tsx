@@ -18,6 +18,7 @@ import { setCookie } from "@/utils/clientCookies.js";
 import { type AppCookies } from "@/utils/serverState.js";
 
 import { CookieColorSchemeProvider } from "./CookieColorSchemeProvider.jsx";
+import { CustomThemeProvider } from "./CustomTheme/CustomThemeProvider.jsx";
 import { PrismThemeProvider } from "./PrismThemeProvider.jsx";
 
 const handlePackageManagerChange = (value: PackageManager): void => {
@@ -38,6 +39,7 @@ export function RootProviders(props: RootProvidersProps): ReactElement {
     defaultCodeLanguage,
     defaultPackageManager,
     defaultColorScheme,
+    defaultCustomTheme,
   } = props;
 
   return (
@@ -58,7 +60,11 @@ export function RootProviders(props: RootProvidersProps): ReactElement {
                       defaultValue={defaultPackageManager}
                       onPackageManagerChange={handlePackageManagerChange}
                     >
-                      {children}
+                      <CustomThemeProvider
+                        defaultCustomTheme={defaultCustomTheme}
+                      >
+                        {children}
+                      </CustomThemeProvider>
                     </PackageManagerProvider>
                   </PrismThemeProvider>
                 </TypescriptEnabledProvider>

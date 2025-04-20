@@ -5,35 +5,45 @@ import { ColorPickerTextField } from "@/components/ColorPickerTextField.jsx";
 import { MaterialColorRadioGroup } from "@/components/MaterialColorRadioGroup/MaterialColorRadioGroup.jsx";
 import { MaterialColorShadeSlider } from "@/components/MaterialColorShadeSlider.jsx";
 import {
+  MATERIAL_COLOR_SHADES,
   type MaterialColorShade,
   type MaterialColorWithShade,
 } from "@/constants/theme.js";
-import { kebabCase, upperFirst } from "@/utils/strings.js";
-import { getMaterialColorValue } from "@/utils/theme.js";
+import { upperFirst } from "@/utils/strings.js";
+import { getMaterialColorName, getMaterialColorValue } from "@/utils/theme.js";
+
+import { type SimpleThemeColor } from "./usePlaygroundColors.js";
 
 export interface PrimaryOrSecondaryPickerProps {
-  name: "primaryColor" | "secondaryColor";
+  name: SimpleThemeColor;
   value: string;
-  onValueChange: (value: string) => void;
-  onMaterialColorChange: (value: string) => void;
+  onValueChange: (name: SimpleThemeColor, value: string) => void;
 }
-
-const toSassVar = (
-  materialColor: MaterialColorWithShade,
-  shade: MaterialColorShade
-): string => `colors.$${kebabCase(materialColor)}-${shade.replace("A", "a-")}`;
 
 export function PrimaryOrSecondaryPicker({
   name,
   value,
   onValueChange,
-  onMaterialColorChange,
 }: Readonly<PrimaryOrSecondaryPickerProps>): ReactElement {
-  const [shade, setShade] = useState<MaterialColorShade>(
-    name == "primaryColor" ? "500" : "A200"
-  );
+  const [shade, setShade] = useState<MaterialColorShade>(() => {
+    const shade = getMaterialColorName(value)?.replace(
+      /.*?(Accent)?(\d+)/,
+      (_, accent, number) => `${accent ? "A" : ""}${number}`
+    ) as MaterialColorShade;
+    if (shade && MATERIAL_COLOR_SHADES.includes(shade)) {
+      return shade;
+    }
+
+    return name === "primaryColor" ? "500" : "A200";
+  });
   const [materialColor, setMaterialColor] = useState<MaterialColorWithShade>(
-    name === "primaryColor" ? "teal" : "pink"
+    () => {
+      const fullColor =
+        getMaterialColorName(value) ??
+        (name === "primaryColor" ? "teal500" : "pinkAccent200");
+
+      return fullColor.replace(/(Accent)?\d+$/, "") as MaterialColorWithShade;
+    }
   );
 
   return (
@@ -43,8 +53,7 @@ export function PrimaryOrSecondaryPicker({
         label={upperFirst(name.replace("Color", ""))}
         color={value}
         onColorChange={(color) => {
-          onValueChange(color);
-          onMaterialColorChange(color);
+          onValueChange(name, color);
         }}
       />
       <MaterialColorShadeSlider
@@ -52,8 +61,7 @@ export function PrimaryOrSecondaryPicker({
         shade={shade}
         onShadeChange={(shade) => {
           setShade(shade);
-          onValueChange(getMaterialColorValue(materialColor, shade));
-          onMaterialColorChange(toSassVar(materialColor, shade));
+          onValueChange(name, getMaterialColorValue(materialColor, shade));
         }}
       />
       <MaterialColorRadioGroup
@@ -61,9 +69,8 @@ export function PrimaryOrSecondaryPicker({
         color={value}
         shade={shade}
         onColorChange={({ color, materialColor }) => {
-          onValueChange(color);
+          onValueChange(name, color);
           setMaterialColor(materialColor);
-          onMaterialColorChange(toSassVar(materialColor, shade));
         }}
       />
     </Box>

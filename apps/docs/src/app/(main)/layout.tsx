@@ -45,11 +45,13 @@ export default async function RootLayout(
   props: RootLayoutProps
 ): Promise<ReactElement> {
   const { children } = props;
-  const { themeStyles, ...providerProps } = await getInitialState();
+  const { themeStyles, customProperties, ...providerProps } =
+    await getInitialState();
   const { defaultPrismTheme } = providerProps;
 
   return (
     <RootHtml
+      style={customProperties}
       className={cnb(
         roboto.variable,
         sourceCodePro.variable,

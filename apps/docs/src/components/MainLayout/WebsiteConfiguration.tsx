@@ -67,7 +67,7 @@ export function WebsiteConfiguration(): ReactElement {
               <ConfigureCodeTheme />
               <Divider />
               <Link
-                href="/customization/theme-builder"
+                href="/customization/colors#playground"
                 className={button({
                   theme: "secondary",
                   themeType: "contained",

@@ -1,7 +1,13 @@
 import { type PackageManager } from "@react-md/code/PackageManagerProvider";
 import { isColorScheme } from "@react-md/core/theme/isColorScheme";
-import { type ColorScheme } from "@react-md/core/theme/types";
+import {
+  type CSSVariableName,
+  type CSSVariablesProperties,
+  type ColorScheme,
+  type ConfigurableThemeColors,
+} from "@react-md/core/theme/types";
 import { cookies } from "next/headers.js";
+import { type CSSProperties } from "react";
 import "server-only";
 
 import fallbackThemeStyles from "@/components/LoadThemeStyles/SystemTheme.module.scss";
@@ -14,15 +20,16 @@ import {
 } from "@/constants/cookies.js";
 import { PRISM_THEMES, type PrismTheme } from "@/constants/prismThemes.js";
 import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.jsx";
-import { getCookie } from "@/utils/serverCookies.js";
+import { getCookie, getThemeCookie } from "@/utils/serverCookies.js";
 
-import { pascalCase } from "./strings.js";
+import { kebabCase, pascalCase } from "./strings.js";
 
 export interface AppCookies {
   defaultPrismTheme: PrismTheme;
   defaultCodeLanguage: CodeLanguage;
   defaultPackageManager: PackageManager;
   defaultColorScheme: ColorScheme;
+  defaultCustomTheme: Partial<ConfigurableThemeColors> | undefined;
 }
 
 export function getAppCookies(): AppCookies {
@@ -53,12 +60,14 @@ export function getAppCookies(): AppCookies {
     defaultValue: "npm",
     instance,
   });
+  const defaultCustomTheme = getThemeCookie(instance);
 
   return {
     defaultPrismTheme,
     defaultCodeLanguage,
     defaultPackageManager,
     defaultColorScheme,
+    defaultCustomTheme,
   };
 }
 
@@ -81,6 +90,7 @@ async function loadStyles(
 
 export interface InitialAppState extends AppCookies {
   themeStyles: CSSModulesImport;
+  customProperties?: CSSProperties;
 }
 
 export async function getInitialState(): Promise<InitialAppState> {
@@ -89,6 +99,7 @@ export async function getInitialState(): Promise<InitialAppState> {
     defaultCodeLanguage,
     defaultPackageManager,
     defaultColorScheme,
+    defaultCustomTheme,
   } = getAppCookies();
 
   let themeStyles: CSSModulesImport = {};
@@ -100,11 +111,23 @@ export async function getInitialState(): Promise<InitialAppState> {
     );
   }
 
+  let customProperties: CSSProperties | undefined;
+  if (defaultCustomTheme) {
+    customProperties = Object.entries(defaultCustomTheme).reduce<
+      CSSVariablesProperties<CSSVariableName>
+    >((style, [name, value]) => {
+      style[`--rmd-${kebabCase(name)}`] = value;
+      return style;
+    }, {});
+  }
+
   return {
     defaultPrismTheme,
     defaultCodeLanguage,
     defaultPackageManager,
     defaultColorScheme,
+    defaultCustomTheme,
     themeStyles,
+    customProperties,
   };
 }

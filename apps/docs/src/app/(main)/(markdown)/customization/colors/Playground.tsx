@@ -1,20 +1,18 @@
 import { InlineCode } from "@react-md/code/InlineCode";
+import { Box } from "@react-md/core/box/Box";
 import { box } from "@react-md/core/box/styles";
 import { Button } from "@react-md/core/button/Button";
 import { Form } from "@react-md/core/form/Form";
-import { type CSSVariable } from "@react-md/core/theme/types";
-import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
-import { contrastColor } from "@react-md/core/theme/utils";
 import { Typography } from "@react-md/core/typography/Typography";
-import { type ReactElement, useMemo, useState } from "react";
+import { type ReactElement } from "react";
 
 import { MarkdownCode } from "@/components/MarkdownCode.jsx";
 import { MarkdownLink } from "@/components/MarkdownLink.jsx";
-import { DEFAULT_WEBSITE_THEME_COLORS } from "@/constants/theme.js";
 
 import styles from "./Playground.module.scss";
 import { PrimaryOrSecondaryPicker } from "./PrimaryOrSecondaryPicker.jsx";
 import { SimplePreview } from "./SimplePreview.jsx";
+import { usePlaygroundColors } from "./usePlaygroundColors.js";
 
 export interface PlaygroundProps {
   onReset: () => void;
@@ -23,48 +21,16 @@ export interface PlaygroundProps {
 export function Playground({
   onReset,
 }: Readonly<PlaygroundProps>): ReactElement {
-  const [primaryColor, setPrimaryColor] = useState(
-    DEFAULT_WEBSITE_THEME_COLORS.primaryColor
-  );
-  const [primaryColorVar, setPrimaryColorVar] = useState("colors.$teal-500");
-  const [secondaryColor, setSecondaryColor] = useState(
-    DEFAULT_WEBSITE_THEME_COLORS.secondaryColor
-  );
-  const [secondaryColorVar, setSecondaryColorVar] =
-    useState("colors.$pink-a-200");
-  const style = useCSSVariables(
-    useMemo(() => {
-      const variables: CSSVariable[] = [
-        {
-          name: "--rmd-primary-color",
-          value: primaryColor,
-        },
-        {
-          name: "--rmd-secondary-color",
-          value: secondaryColor,
-        },
-      ];
-      try {
-        variables.push({
-          name: "--rmd-on-primary-color",
-          value: contrastColor(primaryColor),
-        });
-      } catch {
-        // fail silently
-      }
-      try {
-        variables.push({
-          name: "--rmd-on-secondary-color",
-          value: contrastColor(secondaryColor),
-        });
-      } catch {
-        // fail silently
-      }
-
-      return variables;
-    }, [primaryColor, secondaryColor]),
-    true
-  );
+  const {
+    style,
+    reset,
+    onSubmit,
+    primaryColor,
+    primaryColorVar,
+    secondaryColor,
+    secondaryColorVar,
+    updateThemeValue,
+  } = usePlaygroundColors();
 
   return (
     <>
@@ -75,26 +41,35 @@ export function Playground({
           align: "start",
           className: styles.container,
         })}
-        onReset={onReset}
+        onSubmit={onSubmit}
+        onReset={() => {
+          reset();
+          onReset();
+        }}
       >
         <PrimaryOrSecondaryPicker
           name="primaryColor"
           value={primaryColor}
-          onValueChange={setPrimaryColor}
-          onMaterialColorChange={setPrimaryColorVar}
+          onValueChange={(name, value) =>
+            updateThemeValue({ name, value, type: "color" })
+          }
         />
         <PrimaryOrSecondaryPicker
           name="secondaryColor"
           value={secondaryColor}
-          onValueChange={setSecondaryColor}
-          onMaterialColorChange={setSecondaryColorVar}
+          onValueChange={(name, value) =>
+            updateThemeValue({ name, value, type: "color" })
+          }
         />
         <SimplePreview />
-        <div className={styles.footer}>
+        <Box className={styles.footer} disablePadding>
+          <Button theme="primary" themeType="contained" type="submit">
+            Set Website Colors
+          </Button>
           <Button theme="warning" themeType="outline" type="reset">
             Reset Colors
           </Button>
-        </div>
+        </Box>
       </Form>
       <Typography>
         The output shown below can be copied directly into the

@@ -13,3 +13,10 @@ export function setCookie(name: string, value: string): void {
     sameSite: "none",
   });
 }
+
+export function removeCookie(name: string): void {
+  Cookies.remove(name, {
+    secure: true,
+    sameSite: "none",
+  });
+}
