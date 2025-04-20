@@ -84,12 +84,15 @@ $elevation: 16 !default;
 /// @type Number
 $z-index: utils.$temporary-element-z-index !default;
 
+/// The default background color for a dialog.
 /// @type Color
 $background-color: if(
   theme.$disable-dark-elevation,
   theme.theme-get-var(surface-color),
   null
 ) !default;
+
+/// The default text color for a dialog.
 /// @type Color
 $color: if(
   theme.$disable-dark-elevation,

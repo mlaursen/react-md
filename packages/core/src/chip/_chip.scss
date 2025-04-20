@@ -229,6 +229,7 @@ $solid-raisable-box-shadow-z-value: 4 !default;
 /// @type Number
 $solid-raisable-transition-duration: transition.$linear-duration !default;
 
+/// The outline width when a `theme="outline"`.
 /// @type Number
 $outline-width: 0.0625rem !default;
 
