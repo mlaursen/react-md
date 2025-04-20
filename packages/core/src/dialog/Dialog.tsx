@@ -17,8 +17,12 @@ import {
   type TransitionTimeout,
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
-import { type LabelRequiredForA11y } from "../types.js";
+import { type LabelRequiredForA11y, type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import {
+  type ConfigurableDialogContainerProps,
+  DialogContainer,
+} from "./DialogContainer.js";
 import {
   NestedDialogProvider,
   useNestedDialogContext,
@@ -29,7 +33,6 @@ import {
   type DialogType,
   type DialogWidth,
   dialog,
-  dialogContainer,
 } from "./styles.js";
 
 const noop = (): void => {
@@ -95,12 +98,6 @@ export interface BaseDialogProps
   modal?: boolean;
 
   /**
-   * @internal
-   * @defaultValue `false`
-   */
-  fixed?: boolean;
-
-  /**
    * Set this to `true` if the dialog should no longer use the `Portal`
    * behavior.
    *
@@ -157,9 +154,12 @@ export interface BaseDialogProps
 
   /**
    * Any additional props that should be passed to the container element when
-   * the `type === "centered"`.
+   * the `type !== "custom"`.
    */
-  containerProps?: HTMLAttributes<HTMLDivElement>;
+  containerProps?: PropsWithRef<
+    ConfigurableDialogContainerProps,
+    HTMLDivElement
+  >;
 
   /**
    * @see {@link DEFAULT_DIALOG_TIMEOUT}
@@ -242,7 +242,6 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
   function Dialog(props, ref) {
     const {
       id: propId,
-      fixed = false,
       modal = false,
       role = modal ? "alertdialog" : "dialog",
       type = "centered",
@@ -330,7 +329,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       className: dialog({
         type,
         width,
-        fixed,
+        fixed: type === "custom",
         outline: !disableFocusOutline,
         disableBoxShadow: isChildVisible,
         className,
@@ -369,13 +368,11 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
         )}
         <Portal disabled={disablePortal}>
           {rendered && (
-            <div
+            <DialogContainer
+              enabled={type !== "custom"}
               {...containerProps}
-              className={dialogContainer({
-                className: containerProps?.className,
-                centered: type === "centered",
-                displayNone: !temporary && exitedHidden && stage === "exited",
-              })}
+              centered={type === "centered"}
+              displayNone={!temporary && exitedHidden && stage === "exited"}
             >
               <div
                 aria-modal={modal || undefined}
@@ -388,7 +385,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
               >
                 {children}
               </div>
-            </div>
+            </DialogContainer>
           )}
         </Portal>
       </NestedDialogProvider>

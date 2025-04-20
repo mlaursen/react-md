@@ -142,7 +142,6 @@ export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
         {...callbacks}
         ref={ref}
         type="custom"
-        fixed
         style={style}
         classNames={classNames}
         onRequestClose={onRequestClose}

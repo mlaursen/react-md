@@ -3,7 +3,7 @@
 exports[`Sheet should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
   aria-label="Sheet"
-  class="rmd-dialog rmd-dialog--outline rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width"
+  class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width"
   id="dialog-:r0:"
   role="dialog"
   tabindex="-1"
@@ -13,7 +13,7 @@ exports[`Sheet should apply the correct styling, HTMLAttributes, and allow a ref
 exports[`Sheet should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
   aria-label="Sheet"
-  class="rmd-dialog rmd-dialog--outline rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width custom-class-name"
+  class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width custom-class-name"
   id="dialog-:r0:"
   role="dialog"
   style="color: white;"

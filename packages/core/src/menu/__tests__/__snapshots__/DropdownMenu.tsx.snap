@@ -60,7 +60,7 @@ exports[`DropdownMenu should allow for a custom dropdown icon before or after th
 exports[`DropdownMenu should be able to render as a sheet 1`] = `
 <div
   aria-labelledby="menubutton-:r1f:"
-  class="rmd-dialog rmd-dialog--outline rmd-sheet rmd-sheet--vertical rmd-sheet--raised rmd-sheet--bottom rmd-sheet--touchable-height"
+  class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline rmd-sheet rmd-sheet--vertical rmd-sheet--raised rmd-sheet--bottom rmd-sheet--touchable-height"
   id="dialog-:r1l:"
   role="dialog"
   tabindex="-1"
