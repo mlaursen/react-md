@@ -4,5 +4,5 @@ import { join } from "node:path";
 
 export default config(
   gitignore(join(import.meta.url, "..", "..")),
-  ...configs.frontendTypeChecking(import.meta.dirname)
+  ...configs.frontendTypeChecking(import.meta.dirname, "jest")
 );

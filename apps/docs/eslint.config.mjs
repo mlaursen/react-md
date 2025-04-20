@@ -1,16 +1,23 @@
 // @ts-check
+import { FlatCompat } from "@eslint/eslintrc";
 import { config, configs, gitignore } from "@mlaursen/eslint-config";
+
+const compat = new FlatCompat({
+  baseDirectory: import.meta.dirname,
+});
 
 const strict = process.env.STRICT_TYPING === "true";
 
 const frontend = strict
-  ? configs.frontendTypeChecking(import.meta.dirname)
-  : configs.frontend;
+  ? configs.frontendTypeChecking(import.meta.dirname, "jest")
+  : configs.frontend("jest");
 
 export default config(
   gitignore(import.meta.url),
+  ...compat.config({
+    extends: ["plugin:@next/next/core-web-vitals"],
+  }),
   ...frontend,
-  ...configs.next,
   {
     // this seems to be needed to set the module/moduleResolution/target to "nodenext" + "esnext"
     languageOptions: {
