@@ -249,7 +249,7 @@ $variables: (size, header-height);
           @include window-splitter.set-var(position, get-var(size));
 
           &--offset-v {
-            @include window-splitter.set-var(top, get-var(header-height));
+            @include window-splitter.set-var(y, get-var(header-height));
           }
 
           &--responsive {

@@ -46,7 +46,16 @@ $z-index: 30 !default;
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.
 /// @type List
-$variables: (top, right, bottom, left, opacity, position);
+$variables: (
+  size,
+  background-size,
+  x,
+  y,
+  z,
+  position,
+  background-color,
+  opacity
+);
 
 /// @param {String} name - The supported variable name
 /// @param {any} fallback [null] - An optional fallback value
@@ -54,9 +63,11 @@ $variables: (top, right, bottom, left, opacity, position);
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "window-splitter");
   // window-splitter variables don't make much sense to set globally
-  $value: if($fallback, $fallback, 0);
-  @if $value {
-    @return var(#{$var}, #{$value});
+  @if $name != background-color and not $fallback {
+    $fallback: 0;
+  }
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
   }
 
   @return var(#{$var});
@@ -79,6 +90,16 @@ $variables: (top, right, bottom, left, opacity, position);
   #{$property}: get-var($name, $fallback);
 }
 
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(size, $size);
+    @include set-var(background-size, $background-size);
+    @if $background-color != interaction.get-var(focus-color) {
+      @include set-var(background-color, $background-color);
+    }
+  }
+}
+
 /// Generates all the styles based on feature flags.
 ///
 /// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
@@ -91,14 +112,24 @@ $variables: (top, right, bottom, left, opacity, position);
 
         background-color: transparent;
         border: 0;
+        inset: 0;
         outline-style: none;
         padding: 0;
         position: fixed;
+        transform: translate3d(get-var(x, 0), get-var(y, 0), get-var(z, 0));
         transition: opacity transition.$linear-duration;
         z-index: $z-index;
 
         &::after {
-          background-color: $background-color;
+          @include use-var(
+            background-color,
+            $fallback: if(
+                $background-color == interaction.get-var(focus-color),
+                $background-color,
+                null
+              )
+          );
+
           content: "";
           inset: 0;
           position: absolute;
@@ -106,38 +137,36 @@ $variables: (top, right, bottom, left, opacity, position);
 
         @if not $disable-horizontal {
           &--h {
-            @include use-var(bottom);
-            @include use-var(left, position);
-            @include use-var(top);
+            @include set-var(x, get-var(position));
+            @include use-var(width, size);
 
             cursor: col-resize;
-            width: $size;
 
             &::after {
-              width: $background-size;
+              @include use-var(width, background-size);
             }
 
             @include utils.rtl {
-              @include use-var(right, position);
-
-              left: auto;
+              @include set-var(x, utils.negate-var(get-var(position)));
             }
           }
 
           @if not $disable-reversed {
             &--hr {
-              @include use-var(right, position);
-
-              left: auto;
+              @include set-var(
+                x,
+                calc(100dvw - get-var(size) - get-var(position))
+              );
 
               &::after {
                 margin-left: auto;
               }
 
               @include utils.rtl {
-                @include use-var(left, position);
-
-                right: auto;
+                @include set-var(
+                  x,
+                  calc(-100dvw + get-var(size) + get-var(position))
+                );
 
                 &::after {
                   margin-left: 0;
@@ -150,27 +179,28 @@ $variables: (top, right, bottom, left, opacity, position);
 
         @if not $disable-vertical {
           &--v {
-            @include use-var(left);
-            @include use-var(right);
-            @include use-var(top, position);
+            @include set-var(y, get-var(position));
+            @include use-var(height, size);
 
             cursor: row-resize;
-            height: $size;
             width: 100%;
 
             &::after {
-              height: $background-size;
+              @include use-var(height, background-size);
             }
           }
 
           @if not $disable-reversed {
             &--vr {
-              @include use-var(bottom, position);
-
-              top: auto;
+              @include set-var(
+                y,
+                calc(100dvh - get-var(size) - get-var(position))
+              );
 
               &::after {
-                top: calc(100% - $background-size);
+                transform: translateY(
+                  calc(get-var(size) - get-var(background-size))
+                );
               }
             }
           }

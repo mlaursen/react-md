@@ -392,6 +392,7 @@ $_layer-order: (
   @include transition.transition-variables;
   @include tree.variables;
   @include typography.typography-variables;
+  @include window-splitter.variables;
 }
 
 /// Generates all the styles for react-md respecting all feature flags.
