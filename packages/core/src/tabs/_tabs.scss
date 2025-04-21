@@ -207,7 +207,11 @@ $variables: (
 @mixin indicator-styles {
   .rmd-tab-indicator {
     &::after {
-      @include use-var(background, indicator-background);
+      @include use-var(
+        background,
+        indicator-background,
+        theme.theme-color-var-fallback($indicator-background)
+      );
 
       content: "";
       pointer-events: none;
@@ -391,7 +395,10 @@ $variables: (
 @mixin tab-styles {
   .rmd-tab {
     @include utils.map-to-styles($typography);
-    @include use-var(color);
+    @include use-var(
+      color,
+      $fallback: theme.theme-color-var-fallback($inactive-color)
+    );
     @include use-var(min-height);
     @include use-var(max-width);
     @include use-var(min-width);
@@ -431,11 +438,17 @@ $variables: (
     }
 
     &--active {
-      @include set-var(color, get-var(active-color));
+      @include set-var(
+        color,
+        get-var(active-color, theme.theme-color-var-fallback($active-color))
+      );
     }
 
     &--disabled {
-      @include set-var(color, get-var(disabled-color));
+      @include set-var(
+        color,
+        get-var(disabled-color, theme.theme-color-var-fallback($disabled-color))
+      );
     }
   }
 }
@@ -443,10 +456,17 @@ $variables: (
 /// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
-    @include set-var(color, $inactive-color);
-    @include set-var(active-color, $active-color);
-    @include set-var(inactive-color, $inactive-color);
-    @include set-var(disabled-color, $disabled-color);
+    @if not theme.is-theme-color-var($inactive-color) {
+      @include set-var(color, $inactive-color);
+    }
+
+    @if not theme.is-theme-color-var($active-color) {
+      @include set-var(active-color, $active-color);
+    }
+
+    @if not theme.is-theme-color-var($disabled-color) {
+      @include set-var(disabled-color, $disabled-color);
+    }
     @include set-var(min-height, $height);
     @include set-var(max-width, $max-width);
     @include set-var(min-width, $min-width);
@@ -457,7 +477,10 @@ $variables: (
       @include set-var(stacked-padding, $vertical-padding $horizontal-padding);
     }
 
-    @if not $disable-indicator {
+    @if not
+      $disable-indicator and not
+      theme.is-theme-color-var($indicator-background)
+    {
       @include set-var(indicator-background, $indicator-background);
     }
   }

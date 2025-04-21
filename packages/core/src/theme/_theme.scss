@@ -505,6 +505,35 @@ $theme-variables: (
   @return false;
 }
 
+/// This is mostly used internally to prevent applying default theme variables
+/// to other elements so they don't need to be overwritten as well when changing
+/// the theme for a part of the app.
+///
+/// So this is used when a variable is set in the generic `@mixin variables`
+/// call and then later used in a `get-var/set-var` call with the
+/// `theme-color-var-fallback` function.
+///
+/// @param {any} value - The value to check against
+/// @return {Boolean} true if the provided value is one of the
+/// `theme-get-var()` results without any fallback provided
+@function is-theme-color-var($value) {
+  @each $name in $theme-variables {
+    @if theme-get-var($name) == $value {
+      @return true;
+    }
+  }
+
+  @return false;
+}
+
+/// See the `is-theme-color-var` for info.
+///
+/// @param {any} value - The value to maybe return
+/// @return {any} the `$value` if it was theme var, otherwise null
+@function theme-color-var-fallback($value) {
+  @return if(is-theme-color-var($value), $value, null);
+}
+
 /// @param {Number} z-value - The dark elevation value
 /// @returns {String} the dark elevation color var name
 @function _dark-elevation-color($z-value) {

@@ -514,7 +514,11 @@ $variables: (
 
   @if not $disable-determinate {
     &--determinate {
-      @include use-var(background-color, color);
+      @include use-var(
+        background-color,
+        color,
+        theme.theme-color-var-fallback($color)
+      );
       @include use-var(height, linear-size);
 
       position: absolute;
@@ -526,7 +530,11 @@ $variables: (
     &--indeterminate {
       &::before,
       &::after {
-        @include use-var(background-color, color);
+        @include use-var(
+          background-color,
+          color,
+          theme.theme-color-var-fallback($color)
+        );
         @include use-var(height, linear-size);
 
         animation-duration: $linear-transition-duration;
@@ -609,6 +617,7 @@ $variables: (
 @mixin _linear-progress {
   .rmd-linear-progress {
     @include use-var(background-color);
+
     display: block;
     overflow: hidden;
     position: relative;
@@ -685,7 +694,9 @@ $variables: (
 
   @if not $disable-linear {
     @include set-var(background-color, $background-color);
-    @include set-var(color, $color);
+    @if not theme.is-theme-color-var($color) {
+      @include set-var(color, $color);
+    }
     @include set-var(linear-size, $linear-size);
   }
 }

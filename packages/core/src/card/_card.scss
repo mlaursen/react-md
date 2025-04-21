@@ -165,7 +165,9 @@ $variables: (background-color, color, secondary-color);
 @mixin variables {
   @if not $disable-everything {
     @include set-var(background-color, $background-color);
-    @include set-var(color, $color);
+    @if not theme.is-theme-color-var($color) {
+      @include set-var(color, $color);
+    }
   }
 }
 
@@ -182,7 +184,10 @@ $variables: (background-color, color, secondary-color);
 
       .rmd-card {
         @include use-var(background-color);
-        @include use-var(color);
+        @include use-var(
+          color,
+          $fallback: theme.theme-color-var-fallback($color)
+        );
 
         border-radius: $border-radius;
 

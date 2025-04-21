@@ -134,8 +134,13 @@ $border-color: theme.get-default-color(
 /// @type Number
 $border-size: divider.$size !default;
 
+/// @type Color
 $light-theme-header-background-color: null !default;
+
+/// @type Color
 $dark-theme-header-background-color: null !default;
+
+/// @type Color
 $header-background-color: theme.get-default-color(
   $light-theme-header-background-color,
   $dark-theme-header-background-color

@@ -100,8 +100,14 @@ $variables: (background-color, color, min-width, spacing);
         $disable-colors: $disable-elevation-colors
       );
       @if $disable-elevation-colors {
-        @include use-var(background-color);
-        @include use-var(color);
+        @include use-var(
+          background-color,
+          $fallback: theme.theme-color-var-fallback($background-color)
+        );
+        @include use-var(
+          color,
+          $fallback: theme.theme-color-var-fallback($color)
+        );
       }
       @include use-var(min-width);
 
@@ -149,8 +155,12 @@ $variables: (background-color, color, min-width, spacing);
 /// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
-    @include set-var(background-color, $background-color);
-    @include set-var(color, $color);
+    @if not theme.is-theme-color-var($background-color) {
+      @include set-var(background-color, $background-color);
+    }
+    @if not theme.is-theme-color-var($color) {
+      @include set-var(color, $color);
+    }
     @include set-var(min-width, $min-width);
     @include set-var(spacing, $spacing);
   }

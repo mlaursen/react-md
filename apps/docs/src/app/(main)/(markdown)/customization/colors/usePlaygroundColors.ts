@@ -140,27 +140,6 @@ export function usePlaygroundColors(): PlaygroundColorsImplementation {
 
         const name = `--rmd-${kebabCase(key)}` as const;
         variables.push({ name, value });
-
-        if (key === "primaryColor") {
-          // these have to be updated since they are set on the root as well.
-          // I should look into making this automatic
-          variables.push({
-            name: "--rmd-progress-color",
-            value: `var(${name})`,
-          });
-          variables.push({
-            name: "--rmd-tab-indicator-background",
-            value: `var(${name})`,
-          });
-          variables.push({
-            name: "--rmd-form-active-color",
-            value: `var(${name})`,
-          });
-          variables.push({
-            name: "--rmd-slider-color",
-            value: `var(${name})`,
-          });
-        }
       });
       return variables;
     }, [state]),

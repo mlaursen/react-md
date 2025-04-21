@@ -2079,7 +2079,11 @@ $form-variables: (
       }
 
       &--active {
-        @include form-use-var(color, active-color);
+        @include form-use-var(
+          color,
+          active-color,
+          theme.theme-color-var-fallback($form-active-color)
+        );
       }
 
       @if $input-toggle-small-size {
@@ -2119,7 +2123,11 @@ $form-variables: (
 
           // make sure the error color applies to the icon when checked
           &:where(:not(.rmd-error-color)) #{$icon-color-selector} {
-            @include form-use-var(color, active-color);
+            @include form-use-var(
+              color,
+              active-color,
+              theme.theme-color-var-fallback($form-active-color)
+            );
           }
 
           // when the input is checked, hide the first icon (unchecked state)
@@ -2251,7 +2259,10 @@ $form-variables: (
 
           @include form-set-var(
             switch-ball-background-color,
-            form-get-var(active-color)
+            form-get-var(
+              active-color,
+              theme.theme-color-var-fallback($form-active-color)
+            )
           );
 
           transform: translateX($offset);
@@ -2379,7 +2390,11 @@ $form-variables: (
       &::before,
       &::after {
         @if $slider-track-color {
-          @include form-use-var(background-color, slider-color);
+          @include form-use-var(
+            background-color,
+            slider-color,
+            theme.theme-color-var-fallback($slider-track-color)
+          );
         }
 
         content: "";
@@ -2525,7 +2540,12 @@ $form-variables: (
     .rmd-slider-thumb {
       @include form-use-var(
         background-color,
-        if($slider-track-color, slider-color, slider-active-color)
+        if($slider-track-color, slider-color, slider-active-color),
+        if(
+          $slider-track-color,
+          theme.theme-color-var-fallback($slider-track-color),
+          null
+        )
       );
 
       border-radius: $slider-thumb-border-radius;
@@ -2837,7 +2857,9 @@ $form-variables: (
 /// layer behavior
 @mixin form-variables {
   @if not $form-disable-everything {
-    @include form-set-var(active-color, $form-active-color);
+    @if not theme.is-theme-color-var($form-active-color) {
+      @include form-set-var(active-color, $form-active-color);
+    }
     @include form-set-var(focus-color, $form-focus-color);
 
     @if not $disable-label and not $disable-floating-label {
@@ -2923,7 +2945,9 @@ $form-variables: (
     }
 
     @if not $disable-slider {
-      @include form-set-var(slider-color, $slider-track-color);
+      @if not theme.is-theme-color-var($slider-track-color) {
+        @include form-set-var(slider-color, $slider-track-color);
+      }
       @include form-set-var(slider-active-color, $slider-track-active-color);
       @include form-set-var(
         slider-inactive-color,

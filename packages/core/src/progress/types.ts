@@ -28,7 +28,7 @@ export interface ProgressProps {
    * should also be updated to have `aria-busy="true"` and
    * `aria-describedby="THIS_ID"`.
    *
-   * @defaultValue `"circular-progress-" useId() || "linear-progress-" + useId()`
+   * @defaultValue `"circular-progress-" + useId() || "linear-progress-" + useId()`
    * @since 6.0.0 This prop is now optional.
    */
   id?: string;
