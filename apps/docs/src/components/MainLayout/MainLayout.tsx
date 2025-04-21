@@ -12,7 +12,7 @@ import { useExpandableLayout } from "@react-md/core/layout/useExpandableLayout";
 import { Sheet } from "@react-md/core/sheet/Sheet";
 import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
-import { type ReactElement, type ReactNode } from "react";
+import { type ReactElement, type ReactNode, useEffect } from "react";
 
 import { WebsiteSearch } from "@/components/WebsiteSearch/WebsiteSearch.jsx";
 
@@ -23,8 +23,15 @@ import { MainTitle } from "./MainTitle.jsx";
 import { VersionDropdown } from "./VersionDropdown.jsx";
 import { WebsiteConfiguration } from "./WebsiteConfiguration.jsx";
 
+const isThemeBuilderRoute = (pathname: string): boolean =>
+  pathname === "/customization/theme-builder";
+
+const isFullViewportRoute = (pathname: string): boolean =>
+  isThemeBuilderRoute(pathname) ||
+  pathname === "/components/material-icons-and-symbols";
+
 const isTableOfContentsRoute = (pathname: string): boolean =>
-  pathname !== "/" && pathname !== "/components/material-icons-and-symbols";
+  pathname !== "/" && !isFullViewportRoute(pathname);
 
 export interface MainLayoutProps {
   children: ReactNode;
@@ -42,11 +49,17 @@ export function MainLayout(props: MainLayoutProps): ReactElement {
     mainProps,
     navToggleProps,
     temporaryNavProps,
+    collapseNavigation,
   } = useExpandableLayout({
     pathname,
-    defaultExpanded: true,
-    temporaryUntil: "screen and (min-width: 1201px)",
+    defaultExpanded: () => !isFullViewportRoute(pathname),
+    temporaryUntil: "screen and (min-width: 1200px)",
   });
+  useEffect(() => {
+    if (isFullViewportRoute(pathname)) {
+      collapseNavigation();
+    }
+  }, [collapseNavigation, pathname]);
 
   return (
     <>
