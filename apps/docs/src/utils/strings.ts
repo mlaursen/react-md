@@ -1,3 +1,5 @@
+import { type KebabCase } from "./types.js";
+
 // eslint-disable-next-line no-control-regex
 const ASCI_REGEX = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
 
@@ -39,12 +41,6 @@ export const titleCase = (
   s.split(splitter).reduce((result, part, i) => {
     return result + (i ? " " : "") + upperFirst(part);
   }, "");
-
-type KebabCase<S extends string> = S extends `${infer T}${infer U}`
-  ? U extends Uncapitalize<U>
-    ? `${Lowercase<T>}${KebabCase<U>}`
-    : `${Lowercase<T>}-${KebabCase<Uncapitalize<U>>}`
-  : S;
 
 /**
  * @param s - The string to convert

@@ -127,7 +127,7 @@ $dense-horizontal-padding: $horizontal-padding !default;
 $dense-font-size: 0.8125rem !default;
 
 /// The default typography to apply to the `List` component.
-/// @type List
+/// @type Map
 $typography-styles: map.merge(
   typography.$subtitle-1-styles,
   (
