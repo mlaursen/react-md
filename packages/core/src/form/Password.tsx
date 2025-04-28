@@ -56,6 +56,14 @@ export interface ConfigurableVisibilityIcon {
   invisible: ReactNode;
 }
 
+/**
+ * @since 6.0.0 Removed the `visibilityStyle`, `visibilityClassName`, and
+ * `onVisibilityClick` props in favor of `visibilityProps` object.
+ * @since 6.0.0 Removed the `disableVisibility` and `rightChildren` props in
+ * favor of just using a `TextField` instead of the `Password` component.
+ * @since 6.0.0 Merged the `getVisibilityIcon` prop behavior into the
+ * `visibilityIcon` prop.
+ */
 export interface PasswordProps
   extends Omit<TextFieldProps, "type" | "rightAddon"> {
   /**
@@ -97,6 +105,9 @@ export interface PasswordProps
    *   visibilityIcon={<SomeCustomComponent />}
    * />
    * ```
+   *
+   * @since 6.0.0 Supports dynamically getting the visibility icon with a
+   * callback function.
    */
   visibilityIcon?:
     | ConfigurableVisibilityIcon
@@ -126,13 +137,7 @@ export interface PasswordProps
  * import { Password } from "@react-md/core/form/Password";
  *
  * function Example(): ReactElement {
- *   return (
- *     <Password
- *       label="Password"
- *       name="password"
- *       required
- *     />
- *   );
+ *   return  <Password label="Password" required />;
  * }
  * ```
  *

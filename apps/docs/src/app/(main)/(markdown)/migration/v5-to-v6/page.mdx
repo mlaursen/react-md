@@ -814,18 +814,6 @@ The main breaking changes are:
 npx @react-md/codemod v5-to-v6/autocomplete/update-simple-props
 ```
 
-### Avatar 🎉
-
-No breaking changes!
-
-### Badge
-
-#### 🎨 remove-badge-container
-
-```sh
-npx @react-md/codemod v5-to-v6/badge/remove-badge-container
-```
-
 This codemod will attempt to fix all the breaking changes and add TODOs for all
 the manual steps.
 
@@ -907,6 +895,18 @@ the manual steps.
      </>
    );
  }
+```
+
+### Avatar 🎉
+
+No breaking changes!
+
+### Badge
+
+#### 🎨 remove-badge-container
+
+```sh
+npx @react-md/codemod v5-to-v6/badge/remove-badge-container
 ```
 
 The `BadgeContainer` was removed and custom styles must be used instead.
@@ -1525,7 +1525,7 @@ The `Dialog` and `FixedDialog` components have the following prop changes:
            vwMargin: 20,
          })}
 +        overlayProps={{
-+        noOpacity: true,
++          noOpacity: true,
 +          style: { color: "red" },
 +          className: "custom-overlay-class",
 +        }}
@@ -1745,6 +1745,151 @@ The `TextFieldWithMessage`, `TextAreaWithMessage`, and `PasswordWithMessage` com
 have been removed and instead the default behavior for the `TextField`,
 `TextArea`, and `Password` components.
 
+```diff
+ import { ReactElement, useCallback, useMemo, useState } from "react";
+ import {
+   Button,
+   ErrorChangeHandler,
+   Form,
+   GetErrorMessage,
+-  PasswordWithMessage,
+-  TextAreaWithMessage,
+-  TextFieldWithMessage,
++  Password,
++  TextArea,
++  TextField,
+   defaultGetErrorMessage,
+   useTextField,
+ } from "react-md";
+
+@@ -38,94 +38,90 @@
+    return (
+     <Form>
+-      <TextFieldWithMessage
++      <TextField
+         {...nameFieldProps}
+         label="Name"
+         placeholder="John Doe"
+         name="name"
+       />
+-      <TextFieldWithMessage
++      <TextField
+         {...dateFieldProps}
+         label="Date *"
+         placeholder="01/01/2020"
+         name="date"
+       />
+-      <TextAreaWithMessage
++      <TextArea
+         {...descriptionFieldProps}
+         label="Description"
+         placeholder="Something amazing."
+         name="description"
+       />
+-      <TextAreaWithMessage
++      <TextArea
+         {...description2FieldProps}
+         label="Description 2 *"
+         placeholder="Something amazing."
+         name="description2"
+       />
+-      <PasswordWithMessage
++      <Password
+         {...passwordProps}
+         label="Password *"
+         name="password"
+       />
+       <Button
+         type="submit"
+         disabled={errored}
+         theme="primary"
+         themeType="outline"
+       >
+         Submit
+       </Button>
+     </Form>
+   );
+ }
+```
+
+#### update-text-field-container-props 🔧
+
+```sh
+npx @react-md/codemod v5-to-v6/form/update-text-field-container-props
+```
+
+The `TextFieldContainer` updated a few props which affects the `TextField`,
+`TextArea`, `Password`, and `Select` components:
+
+- The `leftChildren` and `rightChildren` props were renamed to `leftAddon` and
+  `rightAddon`
+- The `isLeftAddon` and `isRightAddon` props were renamed to
+  `disableLeftAddonStyles` and `disableRightAddonStyles`
+- The `stretch` prop was removed
+
+```diff
+ export default function TextFieldContainerProps(): ReactElement {
+   const [value, setValue] = useState("");
+   const isLeftAddon = true;
+   const isRightAddon = false;
+   return (
+     <>
+       <TextField
+         label="Label"
+-        leftChildren={<span>Hello!</span>}
+-        stretch
+-        rightChildren={<span>World!</span>}
+-        isLeftAddon
+-        isRightAddon={false}
++        leftAddon={<span>Hello!</span>}
++        rightAddon={<span>World!</span>}
++        disableRightAddonStyles
+       />
+       <TextArea
+-        stretch
+         label="Label"
+-        leftChildren={<span>Hello!</span>}
+-        rightChildren={<span>World!</span>}
+-        isLeftAddon={isLeftAddon}
+-        isRightAddon
++        leftAddon={<span>Hello!</span>}
++        rightAddon={<span>World!</span>}
++        disableLeftAddonStyles={!isLeftAddon}
+       />
+       <Password
+         label="Label"
+-        leftChildren={<span>Hello!</span>}
+-        rightChildren={<span>World!</span>}
+-        stretch
++        leftAddon={<span>Hello!</span>}
++        rightAddon={<span>World!</span>}
+        />
+       <Select
+         id="simple-select-example"
+         label="A Label"
+         placeholder="Choose..."
+         name="select"
+         options={states.map(({ abbreviation, name }) => ({
+           label: name,
+           value: abbreviation,
+         }))}
+         value={value}
+         onChange={(value) => setValue(value)}
+-        leftChildren={<span>Hello!</span>}
+-        rightChildren={<span>World!</span>}
+-        isLeftAddon={false}
+-        isRightAddon={false}
+-        stretch
++        leftAddon={<span>Hello!</span>}
++        rightAddon={<span>World!</span>}
++        disableLeftAddonStyles
++        disableRightAddonStyles
+       />
+     </>
+   );
+ }
+```
+
 #### update-use-text-field-api 🔧
 
 ```sh
@@ -1756,12 +1901,12 @@ The `useTextField` and `useNumberField` hooks have updated their api slightly:
 - The hooks return an object instead of an ordered list
 - The `validateOnChange` option was renamed to `validationType` and no longer
   supports boolean values
-  - `true` would now be `"change"`
-  - `false` would now be `[]`
-  - ❌ the `getErrorMessage` and `isErrored` options also renamed this option, but
-    is not handled by the codemod
+- `true` would now be `"change"`
+- `false` would now be `[]`
+- ❌ the `getErrorMessage` and `isErrored` options also renamed this option, but
+  is not handled by the codemod
 - `getErrorIcon` option now provides a single `options` object instead of multiple arguments
-  - the `defaultGetErrorIcon` util matches this as well
+- the `defaultGetErrorIcon` util matches this as well
 
 ```diff
  import { defaultGetErrorIcon, useNumberField, useTextField } from "react-md";
@@ -1788,10 +1933,10 @@ The `useTextField` and `useNumberField` hooks have updated their api slightly:
 +      });
      },
    });
--  const [numberValue, numberFieldProps, { reset, setState }] = useNumberField({
--    name: "field2",
--    validateOnChange: false,
--    getErrorIcon: (errorMessage, error, errorIcon) => {
+-   const [numberValue, numberFieldProps, { reset, setState }] = useNumberField({
+-     name: "field2",
+-     validateOnChange: false,
+-     getErrorIcon: (errorMessage, error, errorIcon) => {
 +  const {
 +    value: numberValue,
 +    fieldProps: numberFieldProps,
@@ -1818,8 +1963,276 @@ The `useTextField` and `useNumberField` hooks have updated their api slightly:
 
    return null;
  }
-
 ```
+
+#### update-select-api ❌
+
+```sh
+npx @react-md/codemod v5-to-v6/form/update-select-api
+```
+
+The `Select` component has been updated to mimic the native `<select>` API meaning:
+
+- The `Select` no longer accepts an `options` prop and instead each option
+  should be rendered as a child with the `Option` component
+- The `labelKey`, `valueKey`, `getOptionId`, `getOptionLabel`,
+  `getOptionValue`, and `isOptionDisabled` props have been removed since they are
+  invalid or should be provided to the `Option` component instead
+- The `disableMovementChange` prop was removed since it was bad for
+  accessibility to update the value when the user moves keyboard focus
+- the `labelStyle` and `labelClassName` props have been removed in favor of
+  `labelProps`
+- The `displayLabelStyle` and `displayLabelClassName` props have been removed
+  in favor of the new `selectedOptionProps`
+- The `getDisplayLabel` prop has been removed in favor of
+  `selectedOptionProps.children`
+- The `anchor`, `listboxWidth`, `listboxStyle`, `listboxClassName`,
+  `closeOnScroll`, `closeOnResize`, and `positionOptions` have been removed in
+  favor of `menuProps`
+- The `disableLeftAddon` has been renamed to `disableOptionAddon`
+- The `onChange` prop has been updated to provide the
+  `ChangeEvent<HTMLInputElement>` instead of the current value. The
+  `event.currentTarget.value` should be used instead and will _can_ be strictly
+  typed for typescript users
+
+The codemod will attempt to convert the select API, but there were too many
+edge cases so I gave up. You'll have to manually handle most of the updates.
+
+```diff
+ import states from "constants/states";
+ import { type ReactElement, useState } from "react";
+-import { Select } from "react-md";
++import { Option, Select } from "react-md";
+
+ export default function SimpleSelectExample(): ReactElement {
+   const [value, setValue] = useState("");
+   return (
+     <Select
+       id="simple-select-example"
+       label="A Label"
+       placeholder="Choose..."
+       name="select"
+-      options={states.map(({ abbreviation, name }) => ({
+-        label: name,
+-        value: abbreviation,
+-      }))}
+       value={value}
+-       onChange={(value) => setValue(value)}
+-     />
++      onChange={(event) => {
++        const value = event.currentTarget.value;
++        setValue(value);
++      }}
++    >
++      {states.map(({ abbreviation, name }) => (
++        <Option key={abbreviation} value={abbreviation}>
++          {name}
++        </Option>
++      ))}
++    </Select>
+   );
+ }
+```
+
+#### update-file-input-props ✅
+
+```sh
+npx @react-md/codemod v5-to-v6/form/update-file-input-props
+```
+
+The `FileInput` removed the `disableIconSpacing` prop since it is no longer required.
+
+```diff
+ import { type ReactElement } from "react";
+ import { FileInput } from "react-md";
+
+ export default function SimpleFileInput(): ReactElement {
+   return (
+     <>
+       <FileInput />
+-      <FileInput disableIconSpacing />
+-      <FileInput disableIconSpacing={someFlag} />
+-      <FileInput disableIconSpacing={false} />
++      <FileInput />
++      <FileInput />
++      <FileInput />
+     </>
+   );
+ }
+```
+
+#### update-slider-and-range-slider ❌
+
+```sh
+npx @react-md/codemod v5-to-v6/form/update-slider-and-range-slider
+```
+
+There were a few breaking changes around the `Slider` and `RangeSlider` components:
+
+- The `Slider` only requires the `value` and `setValue` props removing
+  `minimum`, `maximum`, `increment`, `incrementJump`, `decrement`,
+  `decrementJump`, and `persist`.
+- The `RangeSlider` was removed since all the functionality has been merged
+  with the `Slider` component
+- The `baseId` was removed in favor of `id`, `thumbProps.id`, `thumb1Props.id`,
+  `thumb2Props.id`, etc.
+- The `label` and `labelProps` props have been removed in favor of using an
+  `aria-labelledby` for a `Fieldset` + `Legend`
+- The `animationDuration` prop was removed
+
+In addition, the `useSlider` + `useRangeSlider` hooks have updated their API to
+match the new components:
+
+- the `useSlider` and `useRangeSlider` only accept a single options argument
+  instead of an optional default value followed by an optional options object
+- the `useSlider` `useRangeSlider` return a single object of props to pass
+  to the `Slider` instead of an ordered tuple
+- the `useSlider` and `useRangeSlider` no longer support the `updateOn` option
+  as the `value` is always updated immediately
+- the `useSlider` and `useRangeSlider` no longer support an `onChange` callback
+
+> !Warn! The codemod is only able to handle the simple conversions of renaming
+> `baseId` -> `id` and removing unused props. The diff shown below is a "real
+> world" conversion with manual updates.
+
+```diff fileName="SimpleSlider.tsx"
+-import { type ReactElement } from "react";
+-import { Slider, useSlider } from "react-md";
++import { type ReactElement, useId } from "react";
++import { Fieldset, Legend, Slider, useSlider } from "react-md";
+
+ export default function SimpleSlider(): ReactElement | null {
+-  const [value, controls] = useSlider(20, { min: 0, max: 100 });
+-  const { setValue } = controls;
++  const legendId = useId();
++  const slider = useSlider({
++    min: 0,
++    max: 100,
++    defaultValue: 20,
++  });
++  const { value, setValue } = slider;
+
+   return (
+-    <>
+-      <Slider baseId="slider-1-id" label="Horizontal" {...controls} />
+-    </>
++    <Fieldset>
++      <Legend id={legendId}>Horizontal</Legend>
++      <Slider id="slider-1-id" {...slider} aria-labelledby={legendId} />
++    </Fieldset>
+   );
+ }
+```
+
+```diff fileName="SimpleRangeSlider.tsx"
+-import { type ReactElement } from "react";
+-import { RangeSlider, useRangeSlider } from "react-md";
++import { type ReactElement, useId } from "react";
++import { Fieldset, Legend, Slider, useRangeSlider } from "react-md";
+
+ export default function SimpleSlider(): ReactElement | null {
+-  const [[minValue, maxValue], controls] = useRangeSlider([20, 60], { min: 0, max: 100 });
+-  const { setValue } = controls;
++  const legendId = useId();
++  const rangeSlider = useRangeSlider({
++    min: 0,
++    max: 100,
++    defaultValue: [20, 60],
++  });
++  const { rangeValue, setRangeValue: setValue } = rangeSlider;
++  const [minValue, maxValue] = rangeValue;
+
+   return (
+-    <>
+-      <Slider baseId="slider-1-id" label="Horizontal" {...controls} />
+-    </>
++    <Fieldset>
++      <Legend id={legendId}>Horizontal</Legend>
++      <Slider id="slider-1-id" {...rangeSlider} aria-labelledby={legendId} />
++    </Fieldset>
+   );
+ }
+```
+
+#### update-password-props 🔧
+
+```sh
+npx @react-md/codemod v5-to-v6/form/update-file-input-props
+```
+
+The `Password` component has the following breaking changes:
+
+- the `visibilityStyle`, `visibilityClassName`, and `onVisibilityClick` props
+  were removed in favor of the `visibilityProps` object
+- the `disableVisibility` and `rightChildren` props were removed in favor of
+  just using a `TextField` instead
+- the `getVisibilityIcon` behavior was merged with the `visibilityIcon` prop
+  - ❌ the `GetVisibilityIcon` type was renamed to `GetPasswordVisibilityIcon` and
+    returns a `boolean` if the password type is visible
+  - ❌ so instead of `(type) => type === "password" ? icon1 : icon`, use
+    `(isPassword) => isPassword ? icon1 : icon2`
+
+```diff
++// TOOD: Update `GetPasswordVisibilityIcon` references since it provides the `type === "password"` flag instead of the `type` now
+ import { type ReactElement } from "react";
+-import { GetVisibilityIcon, Password } from "react-md";
++import { GetPasswordVisibilityIcon, Password } from "react-md";
+
+-const getVisibilityIcon: GetVisibilityIcon = (type) =>
+-  type === "password" ? <span id="password-icon" /> : <span id="text-icon" />;
++// this is not auto-converted
++const getVisibilityIcon: GetPasswordVisibilityIcon = (isPassword) =>
++  isPassword ? <span id="password-icon" /> : <span id="text-icon" />;
+
+ export default function PasswordExample(): ReactElement {
+   return (
+     <>
+       <Password
+         id="example-password-field"
+         label="Password"
+         placeholder="Super secret password"
+       />
+       <Password
+         id="example-password-field-2"
+         label="Password"
+         placeholder="Super secret password"
+-        visibilityStyle={{ opacity: 0.5 }}
+-        visibilityClassName="visibility-class-name"
+-        onVisibilityClick={(event) => {
+-          // do something
+-        }}
+-      />
++        visibilityProps={{
++          style: { opacity: 0.5 },
++          className: "visibility-class-name",
++
++          onClick: (event) => {
++            // do something
++          }
++        }} />
+       <Password
+         id="example-password-field-2"
+         label="Password"
+         placeholder="Super secret password"
+-        getVisibilityIcon={getVisibilityIcon}
++        visibilityIcon={getVisibilityIcon}
+       />
+     </>
+   );
+ }
+```
+
+#### Update Radio and Checkbox Icons ❌
+
+The `Radio` and `Checkbox` components no longer use a single icon and hackily
+overlay the icon to show the checked/unchecked states.
+
+- the `inputStyle` and `inputClassName` props have been removed
+- the `toggleStyle` and `toggleClassName` props have been removed
+- the `disableIconOverlay` has been removed since there is no longer an overlay
+- the `inline` prop has been removed since labels are always rendered inline
+- the `labelDisabled` prop has been removed in favor of `labelProps={{ disabled: labelDisabled }}`
+- the `labelStyle` and `labelClassName` props have been removed in favor of `labelProps`
 
 ### Layout ❌
 
@@ -1831,17 +2244,17 @@ convenience, here's a list of the changes:
   [CoreProviders](/components/core-providers)
 - The `Layout` component has been removed in favor of building the layout manually
   with the functionality provided by hooks:
-  - [useExpandableLayout](/hooks/use-expandable-layout) - this should be used most of the time
-    and handles the `"toggleable"`, `"floating"`, `"clipped"`, and `"full-height"` variations
-  - [useTemporaryLayout](/hooks/use-temporary-layout) - this should be used if the layout
-    was set to `"temporary"` for all viewports
-  - [useResizableLayout](/hooks/use-resizable-layout) - this should be used if the user can
-    manually resize the navigation pane on larger viewports
-  - [useLayoutTree](/hooks/use-layout-tree) - this should be used if the main navigation was
-    rendered using the `useLayoutNavigation` hook and `LayoutTree`. See the
-    [Tree Main Navigation](/getting-started/layout#tree-component) for example usage.
-  - [useNavigationExpansion](/hooks/use-navigation-expansion) - this should be used if switching
-    to the new [Navigation components](/components/navigation)
+- [useExpandableLayout](/hooks/use-expandable-layout) - this should be used most of the time
+  and handles the `"toggleable"`, `"floating"`, `"clipped"`, and `"full-height"` variations
+- [useTemporaryLayout](/hooks/use-temporary-layout) - this should be used if the layout
+  was set to `"temporary"` for all viewports
+- [useResizableLayout](/hooks/use-resizable-layout) - this should be used if the user can
+  manually resize the navigation pane on larger viewports
+- [useLayoutTree](/hooks/use-layout-tree) - this should be used if the main navigation was
+  rendered using the `useLayoutNavigation` hook and `LayoutTree`. See the
+  [Tree Main Navigation](/getting-started/layout#tree-component) for example usage.
+- [useNavigationExpansion](/hooks/use-navigation-expansion) - this should be used if switching
+  to the new [Navigation components](/components/navigation)
 - Use a normal `Sheet` + [Navigation](/components/navigation) or [Tree](/components/tree) to replace
   the `LayoutNavigation` component
 - There is no longer built-in support for mini navigation panels
@@ -1878,16 +2291,16 @@ from the v5 website.
 +import { Sheet } from "@react-md/core/sheet/Sheet";
 +import { Tree } from "@react-md/core/tree/Tree";
 +import { type TreeData } from "@react-md/core/tree/types";
- import {
-   HomeSVGIcon,
-   SecuritySVGIcon,
-   SettingsSVGIcon,
-   ShareSVGIcon,
-   SnoozeSVGIcon,
-   StarSVGIcon,
-   StorageSVGIcon,
- } from "@react-md/material-icons";
- import { type ReactElement, useState } from "react";
+import {
+  HomeSVGIcon,
+  SecuritySVGIcon,
+  SettingsSVGIcon,
+  ShareSVGIcon,
+  SnoozeSVGIcon,
+  StarSVGIcon,
+  StorageSVGIcon,
+} from "@react-md/material-icons";
+import { type ReactElement, useState } from "react";
 -import {
 -  DEFAULT_DESKTOP_LAYOUT,
 -  DEFAULT_LANDSCAPE_TABLET_LAYOUT,
@@ -1902,74 +2315,74 @@ from the v5 website.
 -} from "react-md";
 
 -import { ConfigurationForm } from "./ConfigurationForm";
- import { CurrentChildren } from "./CurrentChildren";
+import { CurrentChildren } from "./CurrentChildren";
 
 -const navItems: LayoutNavigationTree = {
 +const navItems: TreeData = {
-   "/": {
-     itemId: "/",
+  "/": {
+    itemId: "/",
 +    href: "/",
-     parentId: null,
-     children: "Home",
-     leftAddon: <HomeSVGIcon />,
-   },
-   "/route-1": {
-     itemId: "/route-1",
+    parentId: null,
+    children: "Home",
+    leftAddon: <HomeSVGIcon />,
+  },
+  "/route-1": {
+    itemId: "/route-1",
 +    href: "/route-1",
-     parentId: null,
-     children: "Route 1",
-     leftAddon: <StarSVGIcon />,
-   },
-   "/divider-1": {
-     itemId: "/divider-1",
-     parentId: null,
-     divider: true,
-     isCustom: true,
-   },
-   "/route-2": {
-     itemId: "/route-2",
+    parentId: null,
+    children: "Route 1",
+    leftAddon: <StarSVGIcon />,
+  },
+  "/divider-1": {
+    itemId: "/divider-1",
+    parentId: null,
+    divider: true,
+    isCustom: true,
+  },
+  "/route-2": {
+    itemId: "/route-2",
 +    href: "/route-2",
-     parentId: null,
-     children: "Route 2",
-     leftAddon: <ShareSVGIcon />,
-   },
-   "/route-2-1": {
-     itemId: "/route-2-1",
+    parentId: null,
+    children: "Route 2",
+    leftAddon: <ShareSVGIcon />,
+  },
+  "/route-2-1": {
+    itemId: "/route-2-1",
 +    href: "/route-2-1",
-     parentId: "/route-2",
-     children: "Route 2-1",
-     leftAddon: <SettingsSVGIcon />,
-   },
-   "/route-2-2": {
-     itemId: "/route-2-2",
+    parentId: "/route-2",
+    children: "Route 2-1",
+    leftAddon: <SettingsSVGIcon />,
+  },
+  "/route-2-2": {
+    itemId: "/route-2-2",
 +    href: "/route-2-2",
-     parentId: "/route-2",
-     children: "Route 2-2",
-     leftAddon: <StorageSVGIcon />,
-   },
-   "/route-2-3": {
-     itemId: "/route-2-3",
+    parentId: "/route-2",
+    children: "Route 2-2",
+    leftAddon: <StorageSVGIcon />,
+  },
+  "/route-2-3": {
+    itemId: "/route-2-3",
 +    href: "/route-2-3",
-     parentId: "/route-2",
-     children: "Route 2-3",
-     leftAddon: <SecuritySVGIcon />,
-   },
-   "/route-3": {
-     itemId: "/route-3",
+    parentId: "/route-2",
+    children: "Route 2-3",
+    leftAddon: <SecuritySVGIcon />,
+  },
+  "/route-3": {
+    itemId: "/route-3",
 +    href: "/route-3",
-     parentId: null,
-     children: "Route 3",
-     leftAddon: <SnoozeSVGIcon />,
-   },
-   "/route-4": {
-     itemId: "/route-4",
+    parentId: null,
+    children: "Route 3",
+    leftAddon: <SnoozeSVGIcon />,
+  },
+  "/route-4": {
+    itemId: "/route-4",
 +    href: "/route-4",
-     parentId: null,
-     children: "Route 4",
-   },
- };
+    parentId: null,
+    children: "Route 4",
+  },
+};
 
- export default function Demo(): ReactElement {
+export default function Demo(): ReactElement {
 -  const [phoneLayout, setPhoneLayout] =
 -    useState<SupportedPhoneLayout>(DEFAULT_PHONE_LAYOUT);
 -  const [tabletLayout, setTabletLayout] = useState<SupportedTabletLayout>(
@@ -1983,7 +2396,7 @@ from the v5 website.
 -  const [largeDesktopLayout, setLargeDesktopLayout] =
 -    useState<SupportedWideLayout>(DEFAULT_DESKTOP_LAYOUT);
 -
-   const [selectedId, setSelectedId] = useState("/");
+  const [selectedId, setSelectedId] = useState("/");
 +  const tree = useLayoutTree({
 +    navItems,
 +    pathname: selectedId,
@@ -2260,7 +2673,11 @@ Remove `SimpleListItem`:
 
 ### Media
 
+TODO
+
 ### Menu
+
+TODO
 
 ### Overlay
 

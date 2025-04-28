@@ -110,6 +110,7 @@ export interface BaseSliderProps
  * slider controls.
  * @since 6.0.0 The `thumbLabel` and `thumbLabelledBy` props were removed. Use
  * the `aria-label` or `aria-labelledby` props instead.
+ * @since 6.0.0 The `baseId` prop was removed in favor of `id` or `*Props.id`
  */
 export interface SliderProps extends BaseSliderProps, SliderState {
   /**

@@ -12,13 +12,14 @@ export interface CreateLetOptions {
   id: string;
   type: TSTypeAnnotation["typeAnnotation"];
   value?: ExpressionKind;
+  comment?: string;
   isTypescript: boolean;
 }
 
 export function createLet(options: CreateLetOptions): VariableDeclaration {
-  const { j, id, value = null, type, isTypescript } = options;
+  const { j, id, value = null, type, comment, isTypescript } = options;
 
-  return j.variableDeclaration("let", [
+  const decl = j.variableDeclaration("let", [
     j.variableDeclarator(
       createTypedIdentifier({
         j,
@@ -29,4 +30,9 @@ export function createLet(options: CreateLetOptions): VariableDeclaration {
       value
     ),
   ]);
+  if (comment) {
+    decl.comments = [j.commentLine(` TODO: ${comment}`)];
+  }
+
+  return decl;
 }

@@ -7,8 +7,7 @@ import {
 
 import { type ComponentDefinition, type PatternKind } from "../types";
 import { createConst } from "./createConst";
-import { getClosestComponentDefinition } from "./getClosestComponentDefinition";
-import { isRulesOfHooksReturnFound } from "./isRulesOfHooksReturnStatement";
+import { insertStatementIntoComponentBody } from "./insertStatementIntoComponentBody";
 
 export interface InsertHookIntoComponentOptions {
   j: JSCodeshift;
@@ -23,30 +22,6 @@ export function insertHookIntoComponent(
 ): void {
   const { j, name, args = [], from, result } = options;
 
-  let component: ComponentDefinition | undefined;
-  if ("node" in from) {
-    component = getClosestComponentDefinition({ j, from });
-  } else {
-    component = from;
-  }
-
-  if (!component) {
-    return;
-  }
-
-  const firstReturnStatement = j(component).find(j.ReturnStatement);
-  const firstReturn = firstReturnStatement.get().node;
-  if (!j.ReturnStatement.check(firstReturn)) {
-    return;
-  }
-
-  const firstReturnIndex = component.body.body.findIndex((exp) =>
-    isRulesOfHooksReturnFound({ j, node: exp })
-  );
-  if (firstReturnIndex === -1) {
-    return;
-  }
-
   const hookCall = j.callExpression(j.identifier(name), args);
   let expression: ExpressionStatement | VariableDeclaration =
     j.expressionStatement(hookCall);
@@ -57,6 +32,9 @@ export function insertHookIntoComponent(
       value: hookCall,
     });
   }
-
-  component.body.body.splice(firstReturnIndex, 0, expression);
+  insertStatementIntoComponentBody({
+    j,
+    from,
+    statement: expression,
+  });
 }
