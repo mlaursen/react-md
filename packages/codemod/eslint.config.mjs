@@ -5,6 +5,6 @@ export default config(
   gitignore(join(import.meta.url, "..", "..")),
   ...configs.typescript,
   {
-    ignores: ["**/__testfixtures__", "bin/**"],
+    ignores: ["**/__testfixtures__", "dist/**"],
   }
 );

@@ -15,9 +15,8 @@ CHANGELOG.md
 packages/material-icons/src
 packages/material-icons/*.d.ts
 packages/material-icons/*.js
-packages/codemod/bin/
 
-packages/codemod/transforms/**/__testfixtures__
+packages/codemod/**/__testfixtures__/
 
 generating.json
 material-metadata.json

@@ -1,25 +1,23 @@
 {
   "name": "@react-md/codemod",
-  "type": "module",
   "version": "6.0.0-next.4",
   "description": "ReactMD codemod scripts",
-  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
-  "bin": {
-    "rmd-codemod": "./bin/rmd-codemod.js"
+  "type": "module",
+  "exports": {
+    "./transforms/*": "./dist/transforms/*.js",
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
   },
-  "files": [
-    "bin"
-  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "scripts": {
-    "run-script": "tsx --tsconfig scripts/tsconfig.json",
-    "update-docs": "node updateDocs.cjs",
     "prepare-release": "npm-run-all clean-dist build",
-    "clean-dist": "rm -rf bin",
-    "clean": "rm -rf .turbo bin node_modules",
+    "clean-dist": "rm -rf dist",
+    "clean": "rm -rf .turbo dist node_modules",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
-    "test": "jest",
-    "build": "tsc --project tsconfig.build.json"
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
+    "build": "swc -d ./dist --strip-leading-paths src",
+    "build-watch": "pnpm run build --watch"
   },
   "repository": {
     "type": "git",
@@ -39,9 +37,15 @@
     "transforms"
   ],
   "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
+    "@inquirer/input": "^4.1.9",
+    "@inquirer/rawlist": "^4.1.0",
+    "@inquirer/search": "^3.0.12",
     "commander": "^13.1.0",
-    "glob": "^11.0.1",
+    "glob": "^11.0.2",
     "jscodeshift": "^17.3.0"
   },
   "devDependencies": {
@@ -51,13 +55,13 @@
     "@jest/types": "^29.6.3",
     "@mlaursen/eslint-config": "^8.0.0",
     "@swc/cli": "^0.6.0",
-    "@swc/core": "^1.11.21",
-    "@swc/jest": "^0.2.37",
+    "@swc/core": "^1.11.22",
+    "@swc/jest": "^0.2.38",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/glob": "^8.1.0",
-    "@types/jscodeshift": "^0.12.0",
-    "@types/node": "^22.14.1",
-    "eslint": "^9.25.0",
+    "@types/jscodeshift": "^17.3.0",
+    "@types/node": "^22.15.3",
+    "eslint": "^9.25.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-watch-typeahead": "^2.2.2",

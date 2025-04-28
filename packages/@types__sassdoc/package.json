@@ -24,7 +24,7 @@
   "license": "MIT",
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.3",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3"
   },

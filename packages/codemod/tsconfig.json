@@ -1,22 +1,20 @@
 {
   "compilerOptions": {
-    "outDir": "./bin",
-    "target": "es5",
-    "module": "commonjs",
-    "jsx": "react-jsx",
-    "sourceMap": true,
+    "target": "esnext",
+    "module": "nodenext",
     "strict": true,
+    "noEmit": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "downlevelIteration": true,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
     "lib": ["esnext"]
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.cjs"],
-  "exclude": ["node_modules", "**/__testfixtures__/**"]
+  "exclude": ["node_modules", "dist", "**/__testfixtures__/"]
 }

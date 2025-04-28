@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc.json",
+  "exclude": ["__tests__", "__testfixtures__", "src/test-utils.ts"],
+  "jsc": {
+    "parser": {
+      "syntax": "typescript"
+    },
+    "target": "es2021"
+  },
+  "sourceMaps": true
+}
