@@ -8,7 +8,8 @@ export default function Example(): ReactElement {
       to="/example"
       onClick={() => {
         // do something
-      }}>Hello, world!
+      }}
+      disableRipple>Hello, world!
           </ListItemLink>
   );
 }

@@ -7,7 +7,8 @@ export default function Example(): ReactElement {
     <ListItem
       onClick={() => {
         // do something
-      }}>Hello, world!
+      }}
+      disableRipple>Hello, world!
           </ListItem>
   );
 }

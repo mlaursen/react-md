@@ -67,6 +67,7 @@ export type AnyJSXAttribute = JSXAttribute | JSXSpreadAttribute;
 export type JSXAttributes = AnyJSXAttribute[];
 export type JSXReactNode = Parameters<JSCodeshift["jsxElement"]>[2];
 export type JSXReactNodeItem = NonNullable<JSXReactNode>[number];
+export type JSXAttributeValue = JSXAttribute["value"];
 
 export type FunctionArgument = CallExpression["arguments"][number];
 export type ObjectPropertyKind = ObjectExpression["properties"][number];

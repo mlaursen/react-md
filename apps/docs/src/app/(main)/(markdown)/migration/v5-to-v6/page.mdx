@@ -382,8 +382,9 @@ summary of the changes:
 - The `useMessageQueueActions` has been removed in favor of
   `useToastManager`/`useCurrentToastActions`
 
-Here's an example diff for converting the "Simple Message Queue" demo in v5 to
-the v6 implementation:
+Here's an example diff for converting the
+["Simple Message Queue" demo in v5](https://v5.react-md.dev/packages/alert/demos#simple-message-queue)
+to the v6 implementation:
 
 ```diff
 +import { Snackbar } from "@react-md/core/snackbar/Snackbar";
@@ -1078,7 +1079,7 @@ The `Button` no longer supports the ripple props.
        onClick={() => {
          // do something
        }}
--      disableRipple
+       disableRipple
 -      disableProgrammaticRipple
 -      disableEnterClick
 -      disableSpacebarClick
@@ -1735,7 +1736,7 @@ The `usePanels` hook was renamed to `useExpansionPanels` with a new API:
 
 ### Form
 
-#### replace-with-message-components 🔧
+#### 🔧 replace-with-message-components
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/replace-with-message-components
@@ -1812,7 +1813,7 @@ have been removed and instead the default behavior for the `TextField`,
  }
 ```
 
-#### update-text-field-container-props 🔧
+#### 🔧 update-text-field-container-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-text-field-container-props
@@ -1890,7 +1891,7 @@ The `TextFieldContainer` updated a few props which affects the `TextField`,
  }
 ```
 
-#### update-use-text-field-api 🔧
+#### 🔧 update-use-text-field-api
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-use-text-field-api
@@ -1965,7 +1966,7 @@ The `useTextField` and `useNumberField` hooks have updated their api slightly:
  }
 ```
 
-#### update-select-api ❌
+#### ❌ update-select-api
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-select-api
@@ -2034,7 +2035,7 @@ edge cases so I gave up. You'll have to manually handle most of the updates.
  }
 ```
 
-#### update-file-input-props ✅
+#### ✅ update-file-input-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-file-input-props
@@ -2061,7 +2062,7 @@ The `FileInput` removed the `disableIconSpacing` prop since it is no longer requ
  }
 ```
 
-#### update-slider-and-range-slider ❌
+#### ❌ update-slider-and-range-slider
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-slider-and-range-slider
@@ -2154,7 +2155,7 @@ match the new components:
  }
 ```
 
-#### update-password-props 🔧
+#### 🔧 update-password-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-file-input-props
@@ -2173,7 +2174,7 @@ The `Password` component has the following breaking changes:
     `(isPassword) => isPassword ? icon1 : icon2`
 
 ```diff
-+// TOOD: Update `GetPasswordVisibilityIcon` references since it provides the `type === "password"` flag instead of the `type` now
++// TODO: Update `GetPasswordVisibilityIcon` references since it provides the `type === "password"` flag instead of the `type` now
  import { type ReactElement } from "react";
 -import { GetVisibilityIcon, Password } from "react-md";
 +import { GetPasswordVisibilityIcon, Password } from "react-md";
@@ -2222,7 +2223,7 @@ The `Password` component has the following breaking changes:
  }
 ```
 
-#### Update Radio and Checkbox Icons ❌
+#### ❌ Update Radio and Checkbox Icons
 
 The `Radio` and `Checkbox` components no longer use a single icon and hackily
 overlay the icon to show the checked/unchecked states.
@@ -2572,7 +2573,7 @@ Remove ripple props:
        onClick={() => {
          // do something
        }}
--      disableRipple
+       disableRipple
 -      disableProgrammaticRipple
 -      disableEnterClick
 -      disableSpacebarClick
@@ -2673,11 +2674,295 @@ Remove `SimpleListItem`:
 
 ### Media
 
-TODO
+There are a few breaking changes for the media components since the new
+[objectFit](/utils/object-fit) class name utility handles most use-cases now.
+
+- the `MediaContainer` was renamed to `ResponsiveItem`
+  - the `height` and `width` props were removed in favor of the `aspectRatio` prop
+    - ``aspectRatio={`${width}-${height}}``
+  - the `auto` prop was removed in favor of the `responsive` prop
+    - `auto` -> `responsive="auto"` (this was the previous default)
+    - `auto={false}` -> `responsive="manual"`
+  - the `MediaContainerProps` was renamed to `ResponsiveItemProps`
+- the `MediaOverlay` was renamed to `ResponsiveItemOverlay`
+  - the `MediaOverlayProps` was renamed to `ResponsiveItemOverlayProps`
+  - the `MediaOverlayPosition` was renamed to `ResponsiveItemOverlayPosition`
+
+#### 🔧 update-media-components
+
+```sh
+npx @react-md/codemod v5-to-v6/media/update-media-components
+```
+
+```diff
+ import type { ReactElement } from "react";
+-import { MediaContainer, MediaOverlay, Typography, type MediaOverlayPosition } from "react-md";
++import { ResponsiveItem, ResponsiveItemOverlay, Typography, ResponsiveItemOverlayPosition } from "react-md";
+
+ import styles from "./Container.module.scss";
+
+-const positions: MediaOverlayPosition[] = [
++const positions: ResponsiveItemOverlayPosition[] = [
+   "top",
+   "right",
+   "bottom",
+   "left",
+   "middle",
+   "center",
+   "absolute-center",
+ ];
+
+ export default function WithOverlay(): ReactElement {
+   return (
+     <>
+       {positions.map((position, i) => (
+-        <MediaContainer
++        <ResponsiveItem
+           key={position}
+           id={`overlay-container-${i}`}
+-          height={9}
+-          width={16}
+           className={styles.container}
+-        >
++          aspectRatio="16-9">
+           <img
+             src={`https://picsum.photos/800/800?image=43${i}`}
+             alt=""
+             aria-describedby={`overlay-container-overlay-${i}`}
+           />
+-          <MediaOverlay
++          <ResponsiveItemOverlay
+             id={`overlay-container-overlay-${i}`}
+             position={position}
+           >
+             <Typography
+               type="headline-5"
+               margin="none"
+               align={
+                 ["left", "right", "center"].includes(position)
+                   ? "center"
+                   : undefined
+               }
+             >
+               This is a random picture!
+             </Typography>
+-          </MediaOverlay>
+-        </MediaContainer>
++          </ResponsiveItemOverlay>
++        </ResponsiveItem>
+       ))}
+     </>
+   );
+ }
+```
 
 ### Menu
 
-TODO
+The majority of the menu component changes were internal, but there are a few
+breaking changes that can mostly be automated through the codemod.
+
+#### ✅ replace-menu-item-link
+
+```sh
+npx @react-md/codemod v5-to-v6/menu/replace-menu-item-link
+```
+
+The `MenuItemLink` was removed in favor of just using a `ListItemLink` with
+`role="menuitem"`. All the other transforms from
+[update-list-item-props](#update-list-item-props) must then be applied as well.
+
+> !Success! This codemod will convert to a `ListItemLink` and then handle the
+> `ListItemLink` migration.
+
+```diff
+ import type { ReactElement } from "react";
+-import { DropdownMenu, MenuItemLink, Link } from "react-md";
++import { DropdownMenu, Link, ListItemLink } from "react-md";
+
+ export default function SimpleExample(): ReactElement {
+   return (
+     <DropdownMenu buttonChildren="Options...">
+-      <MenuItemLink href="/link-1" component={Link}>
++      <ListItemLink href="/link-1" as={Link} role="menuitem">
+         Link 1
+-      </MenuItemLink>
+-      <MenuItemLink
++      </ListItemLink>
++      <ListItemLink
+         href="#link-2"
+         liProps={{ className: "container-class-name" }}
+         className="link-class-name"
+-      >
++        role="menuitem">
+         Link 2
+-      </MenuItemLink>
++      </ListItemLink>
+     </DropdownMenu>
+   );
+ }
+```
+
+#### 🔧 update-use-context-menu-api
+
+```sh
+npx @react-md/codemod v5-to-v6/menu/update-use-context-menu-api
+```
+
+The `useContextMenu` hook was updated for the latest Menu API and only supports
+the following options: `anchor`, `menuLabel`, `preventScroll`, and
+`onContextMenu`.
+
+In addition, the hook only returns: `visible`, `setVisible`, `menuProps`, and
+`onContextMenu`. The `onContextMenu` type definition has also been updated to
+better support triggering the context menu from different element types.
+
+Here is an example diff of the most common changes:
+
+```diff
+ import ContentCopyIcon from "@react-md/material-icons/ContentCopyIcon";
+ import ContentCutIcon from "@react-md/material-icons/ContentCutIcon";
+ import ContentPasteIcon from "@react-md/material-icons/ContentPasteIcon";
+ import type { ReactElement } from "react";
+ import { Menu, MenuItem, TextArea, useContextMenu } from "react-md";
+
+ export default function SimpleContextMenu(): ReactElement {
+-  const { menuRef, menuProps, onContextMenu } = useContextMenu();
++  const {
++    menuProps,
++    onContextMenu
++  } = useContextMenu();
+   return (
+     <>
+       <TextArea
+         id="simple-context-menu-area"
+         onContextMenu={onContextMenu}
+         placeholder="Right click me!"
+       />
+-      <Menu {...menuProps} ref={menuRef}>
++      <Menu {...menuProps}>
+         <MenuItem leftAddon={<ContentCutIcon />}>Cut</MenuItem>
+         <MenuItem leftAddon={<ContentCopyIcon />}>Copy</MenuItem>
+         <MenuItem leftAddon={<ContentPasteIcon />}>Paste</MenuItem>
+       </Menu>
+     </>
+   );
+ }
+
+
+```
+
+Here is an example diff of all the changes and what the codemod can support:
+
+```diff
++// TODO: The `useContextMenu` no longer supports the `onFixedPositionScroll` callback
++// TODO: The `useContextMenu` no longer supports the `onFixedPositionResize` callback
++// TODO: The `useContextMenu` no longer returns `setCoords`. Manually provide an `initialX` and `initialY` to the `Menu` instead
++// TODO: The `useContextMenu` no longer returns `menuNodeRef` and must be implemented manually
+ import ContentCopyIcon from "@react-md/material-icons/ContentCopyIcon";
+ import ContentCutIcon from "@react-md/material-icons/ContentCutIcon";
+ import ContentPasteIcon from "@react-md/material-icons/ContentPasteIcon";
+ import type { ReactElement } from "react";
+ import { Menu, MenuItem, TextArea, TOP_RIGHT_ANCHOR, useContextMenu } from "react-md";
+
+ export default function ComplexContextMenu(): ReactElement {
+   const onEntering = (): void => {
+     // entering
+   };
+   const {
+-    menuRef,
+-    menuNodeRef,
+     menuProps,
+     onContextMenu,
+-    setCoords,
+     visible,
+-    setVisible,
++    setVisible
+   } = useContextMenu({
+     anchor: TOP_RIGHT_ANCHOR,
+-    baseId: "context-menu",
+-    closeOnResize: true,
+-    closeOnScroll: true,
+-    disableFocusOnMount: true,
+-    disableFocusOnUnmount: true,
+-    getFixedPositionOptions: () => ({}),
+-    horizontal: false,
+     menuLabel: "Context Menu",
+-    menuitem: false,
++
+     onContextMenu(event) {
+       // onContextMenu
+     },
+-    onEnter() {
+-      // enter
+-    },
+-    onEntering,
+-    onEntered: () => {
+-      // entered
+-    },
+-    onExited: () => {
+-      // exited
+-    },
+-    onFixedPositionResize: (event) => {
+-      // resized
+-    },
+-    onFixedPositionScroll: (event, data) => {
+-      // scroll
+-    },
+-    preventScroll: true,
+-    style: {
+-      background: "orange",
+-    },
++
++    preventScroll: true
+   });
+
+   return (
+     <>
+       <TextArea
+         id="simple-context-menu-area"
+         onContextMenu={onContextMenu}
+         placeholder="Right click me!"
+       />
+-      <Menu {...menuProps} ref={menuRef}>
++      <Menu
++        {...menuProps}
++        id="context-menu"
++        closeOnResize={true}
++        closeOnScroll={true}
++        getFixedPositionOptions={() => ({})}
++        horizontal={false}
++        onEnter={() => {
++          // enter
++        }}
++        onEntering={onEntering}
++        onEntered={() => {
++          // entered
++        }}
++        onExited={() => {
++          // exited
++        }}
++        style={{
++          background: "orange"
++        }}
++        isFocusTypeDisabled={type => {
++          if (type === "mount") {
++            return true;
++          }
++
++          if (type === "unmount") {
++            return true;
++          }
++
++          return false;
++        }}>
+         <MenuItem leftAddon={<ContentCutIcon />}>Cut</MenuItem>
+         <MenuItem leftAddon={<ContentCopyIcon />}>Copy</MenuItem>
+         <MenuItem leftAddon={<ContentPasteIcon />}>Paste</MenuItem>
+       </Menu>
+     </>
+   );
+ }
+```
 
 ### Overlay
 

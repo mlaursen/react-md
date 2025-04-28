@@ -6,7 +6,8 @@ export default function Example() {
     <Button
       onClick={() => {
         // do something
-      }}>Hello, world!
+      }}
+      disableRipple>Hello, world!
           </Button>
   );
 }

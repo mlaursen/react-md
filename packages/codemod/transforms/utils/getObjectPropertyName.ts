@@ -1,7 +1,14 @@
-import { type ASTPath, type ObjectProperty } from "jscodeshift";
+import {
+  type ASTPath,
+  type ObjectMethod,
+  type ObjectProperty,
+} from "jscodeshift";
 
 export function getObjectPropertyName(
-  objectProperty: ObjectProperty | ASTPath<ObjectProperty>,
+  objectProperty:
+    | ObjectProperty
+    | ObjectMethod
+    | ASTPath<ObjectProperty | ObjectMethod>,
   local = false
 ): string {
   const node = "node" in objectProperty ? objectProperty.node : objectProperty;
@@ -11,7 +18,9 @@ export function getObjectPropertyName(
     case "StringLiteral":
       return node.key.value;
     case "Identifier":
-      return local && node.value.type === "Identifier"
+      return local &&
+        node.type === "ObjectProperty" &&
+        node.value.type === "Identifier"
         ? node.value.name
         : node.key.name;
     default:

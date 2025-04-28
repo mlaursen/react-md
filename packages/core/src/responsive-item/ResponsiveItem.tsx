@@ -9,7 +9,7 @@ import {
  * @since 6.0.0 Renamed from `MediaContainerProps` to
  * `ResponsiveItemProps`
  * @since 6.0.0 The `height` and `width` props were removed in favor of the
- * `aspectRatio` props since the latest typescript string interpolation supports
+ * `aspectRatio` prop since the latest typescript string interpolation supports
  * enforcing the correct format.
  * @since 6.0.0 The `auto` prop was removed in favor of the new
  * {@link ResponsiveItemProps.responsive} prop.
