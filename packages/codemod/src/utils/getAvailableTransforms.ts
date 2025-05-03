@@ -2,9 +2,9 @@ import { globSync } from "glob";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { alphaNumericSort } from "./sort.js";
+import { COMPARE_ALPHA_NUMERIC } from "./sort.js";
 
-interface AvailableTransforms {
+export interface AvailableTransforms {
   transformNames: ReadonlyMap<string, string>;
   availableTransforms: ReadonlySet<string>;
   versionedTransforms: ReadonlyMap<string, ReadonlySet<string>>;
@@ -21,10 +21,47 @@ export function getAvailableTransforms(baseUrl: string): AvailableTransforms {
       "v5-to-v6/coreExportMap.js",
       "v5-to-v6/scssVariables.js",
       "v5-to-v6/form/utils/**",
+      "v5-to-v6/preset.js",
     ],
   });
 
-  const availableTransforms = new Set(alphaNumericSort(transformFiles));
+  const sortedTransformFiles = [...transformFiles];
+  sortedTransformFiles.sort((a, b) => {
+    const [aVersion, aTransform] = a.split("/");
+    const [bVersion, bTransform] = b.split("/");
+    if (aVersion !== bVersion) {
+      return -1 * COMPARE_ALPHA_NUMERIC(a, b);
+    }
+
+    if (aTransform?.includes("preset")) {
+      return -1;
+    }
+    if (bTransform?.includes("preset")) {
+      return 1;
+    }
+
+    if (aTransform?.includes("prerequisites")) {
+      return -1;
+    }
+    if (bTransform?.includes("prerequisites")) {
+      return 1;
+    }
+    if (aTransform?.includes("post-optimizations")) {
+      return -1;
+    }
+    if (bTransform?.includes("post-optimizations")) {
+      return 1;
+    }
+    if (a.endsWith("all.js")) {
+      return -1;
+    }
+    if (b.endsWith("all.js")) {
+      return -1;
+    }
+
+    return COMPARE_ALPHA_NUMERIC(a, b);
+  });
+  const availableTransforms = new Set(sortedTransformFiles);
   const versionedTransforms = new Map<string, Set<string>>();
   const transformNames = new Map<string, string>();
   availableTransforms.forEach((transformPath) => {

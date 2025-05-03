@@ -347,6 +347,9 @@ importers:
 
   packages/codemod:
     dependencies:
+      '@inquirer/confirm':
+        specifier: ^5.1.9
+        version: 5.1.9(@types/node@22.15.3)
       '@inquirer/input':
         specifier: ^4.1.9
         version: 4.1.9(@types/node@22.15.3)
@@ -2750,6 +2753,7 @@ packages:
   '@swc/core@1.11.22':
     resolution: {integrity: sha512-mjPYbqq8XjwqSE0hEPT9CzaJDyxql97LgK4iyvYlwVSQhdN1uK0DBG4eP9PxYzCS2MUGAXB34WFLegdUj5HGpg==}
     engines: {node: '>=10'}
+    deprecated: It has a bug. See https://github.com/swc-project/swc/issues/10413
     peerDependencies:
       '@swc/helpers': '>=0.5.17'
     peerDependenciesMeta:

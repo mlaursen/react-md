@@ -16,11 +16,12 @@ export async function getTransformName(options: Options): Promise<string> {
     return transform;
   }
 
+  const latestVersionFirst = alphaNumericSort([...versionedTransforms.keys()], {
+    descending: true,
+  });
   const version = await rawlist<string>({
     message: "Which version of react-md would you like to upgrade",
-    choices: alphaNumericSort([...versionedTransforms.keys()], {
-      descending: true,
-    }),
+    choices: latestVersionFirst,
   });
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

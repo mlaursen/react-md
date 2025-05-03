@@ -1,39 +1,44 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
-import { Command } from "commander";
-import { execSync } from "node:child_process";
-import { fileURLToPath } from "node:url";
+import { Command, Option } from "commander";
 
-import { applyOptions } from "./utils/applyOptions.js";
+import { migrate } from "./migrations/v5-to-v6.js";
 import { getAvailableTransforms } from "./utils/getAvailableTransforms.js";
 import { getFilesToTransform } from "./utils/getFilesToTransform.js";
-import { type Parser, getParser } from "./utils/getParser.js";
+import { getParser, parsers } from "./utils/getParser.js";
 import { getTransformName } from "./utils/getTransformName.js";
-
-const baseUrl = import.meta.url;
-const jscodeshiftExecutable = fileURLToPath(
-  import.meta.resolve("jscodeshift/bin/jscodeshift", baseUrl)
-);
+import { runJscodeshift } from "./utils/runJscodeshift.js";
+import { type ProgramOptions } from "./utils/types.js";
 
 const {
   transformNames,
   availableTransforms,
   versionedTransforms,
   getValidTransformFile,
-} = getAvailableTransforms(baseUrl);
+} = getAvailableTransforms(import.meta.url);
 
-const program = new Command().name("npx @react-md/codemod").description(
-  `Run a codemod script to update to the latest version of ReactMD.
+const program = new Command()
+  .name("npx @react-md/codemod")
+  .description(
+    `Run a codemod script to update to the latest version of ReactMD.
 
  Running this script without any options or commands will start an interactive wizard.
  `
-);
+  )
+  .option("-d, --dry", "Dry run (no changes are made to files)", false)
+  .option("-p, --print", "Print transformed files to your terminal", false)
+  .option(
+    "-a, --auto-confirm",
+    "Run all the codemods without requiring a confirmation (only for full release migration scripts)",
+    false
+  )
+  .addOption(
+    new Option("--parser <parser>", "The file parser to use.")
+      .choices([...parsers, ""])
+      .default("")
+  );
 
-interface ActionOptions {
-  dry: boolean;
-  print: boolean;
+interface ActionOptions extends ProgramOptions {
   files: string[];
-  parser: Parser | "";
   transform: string;
 }
 
@@ -46,54 +51,67 @@ async function handleAction(options: ActionOptions): Promise<void> {
   const files = await getFilesToTransform(options.files);
   const parser = await getParser(options.parser);
 
-  const args: string[] = [];
-  if (options.dry) {
-    args.push("--dry");
-  }
-
-  if (options.print) {
-    args.push("--print");
-  }
-
-  args.push("--verbose=2");
-  args.push("--ignore-pattern=**/node_modules/**");
-
-  args.push("--parser", parser);
-  args.push(`--extensions=${parser === "tsx" ? "tsx,ts," : ""}jsx,js`);
-
-  args.push("--transform", getValidTransformFile(transform));
-  args.push(...files);
-
-  // prefix with `node` because of a bug around: "env: node\r"
-  const command = `node ${jscodeshiftExecutable} ${args.join(" ")}`;
-  console.log(command);
-
-  // react-codemod does it... so I'll ignore the security issue fo rnow.
-  // https://github.com/reactjs/react-codemod/blob/b34b92a1f0b8ad333efe5effb50d17d46d66588b/bin/cli.js
-  execSync(command, { stdio: "inherit" });
+  runJscodeshift({
+    ...options,
+    files,
+    parser,
+    transform: getValidTransformFile(transform),
+  });
 }
+
+program
+  .command("migrate/v5-to-v6")
+  .argument(
+    "[files...]",
+    'An optional glob or folder path to transform (default: ".")'
+  )
+  .action((files) => {
+    const { dry, print, parser, autoConfirm } = program.opts<ProgramOptions>();
+    migrate({
+      dry,
+      print,
+      parser,
+      files,
+      autoConfirm,
+      transformNames,
+      availableTransforms,
+      versionedTransforms,
+      getValidTransformFile,
+    });
+  });
 
 availableTransforms.forEach((transformFile) => {
   const transform = transformFile.replace(/\.js$/, "");
-  applyOptions(
-    program
-      .command(transform)
-      .argument(
-        "[files...]",
-        'An optional glob or folder path to transform (default: ".")'
-      )
-  ).action((files, { dry, print, parser }) => {
-    handleAction({ files, dry, print, parser, transform });
-  });
+  program
+    .command(transform)
+    .argument(
+      "[files...]",
+      'An optional glob or folder path to transform (default: ".")'
+    )
+    .action((files) => {
+      const { dry, print, parser, autoConfirm } =
+        program.opts<ProgramOptions>();
+
+      handleAction({
+        files,
+        dry,
+        print,
+        parser,
+        transform,
+        autoConfirm,
+      });
+    });
 });
 
-applyOptions(program).action(() => {
+program.action(() => {
+  const { dry, print, parser, autoConfirm } = program.opts<ProgramOptions>();
   handleAction({
-    dry: false,
-    print: false,
-    parser: "",
+    dry,
+    print,
+    parser,
     files: [],
     transform: "",
+    autoConfirm,
   });
 });
 

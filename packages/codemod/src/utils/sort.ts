@@ -1,4 +1,4 @@
-const compare = new Intl.Collator("en-US", {
+export const COMPARE_ALPHA_NUMERIC = new Intl.Collator("en-US", {
   numeric: true,
   caseFirst: "upper",
 }).compare;
@@ -38,7 +38,7 @@ export function alphaNumericSort<T>(
     const value1 = descending ? bValue : aValue;
     const value2 = descending ? aValue : bValue;
 
-    return compare(value1, value2);
+    return COMPARE_ALPHA_NUMERIC(value1, value2);
   });
 
   return sorted;

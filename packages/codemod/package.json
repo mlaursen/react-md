@@ -41,6 +41,7 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@inquirer/confirm": "^5.1.9",
     "@inquirer/input": "^4.1.9",
     "@inquirer/rawlist": "^4.1.0",
     "@inquirer/search": "^3.0.12",
