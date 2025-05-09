@@ -225,7 +225,11 @@ $dark-theme-background-color: #121212 !default;
 /// color depending on its elevation.
 ///
 /// @type Color
-$dark-theme-surface-color: if($disable-dark-elevation, #424242, null) !default;
+$dark-theme-surface-color: if(
+  $disable-dark-elevation,
+  colors.$grey-800,
+  null
+) !default;
 
 /// The primary text color when using the dark theme.
 /// @type Color

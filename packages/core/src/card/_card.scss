@@ -116,7 +116,7 @@ $footer-padding: 0.5rem !default;
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.
 /// @type List
-$variables: (background-color, color, secondary-color);
+$variables: (background-color, color);
 
 /// @param {String} name - The supported variable name
 /// @param {any} fallback [null] - An optional fallback value

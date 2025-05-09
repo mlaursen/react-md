@@ -5,13 +5,16 @@
   "type": "module",
   "sass": "./dist/_react-md.scss",
   "exports": {
+    "./a11y": {
+      "sass": "./dist/_a11y.scss"
+    },
+    "./colors": {
+      "sass": "./dist/_colors.scss"
+    },
     ".": {
       "sass": "./dist/_react-md.scss",
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    },
-    "./colors": {
-      "sass": "./dist/_colors.scss"
     },
     "./package.json": "./package.json"
   },

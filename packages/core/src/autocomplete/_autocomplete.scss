@@ -22,23 +22,15 @@ $disable-everything: false !default;
 /// @type Boolean
 $disable-clear-button: false !default;
 
-/// Set to `true` to disable showing the clear button only while:
-/// - the user is focusing the input
-/// - the user is hovering a valued input
+/// The default behavior for the clear button is to become visible only when:
+/// - the input has a value AND
+/// - the user is hovering the input OR the user is focusing the input
+///
+/// Set this to `true` to always show the clear button unless the
+/// `disableClearButton` was enabled on the `Autocomplete`.
 ///
 /// @type Boolean
-$disable-clear-button-hover: false !default;
-
-/// Set to `true` to disable showing the clear button only while:
-/// - the input has a value
-/// - the user is focusing the input
-/// - the user is hovering a valued input
-///
-/// NOTE: This requires the `$disable-clear-button-hover` to be `false` to
-/// work.
-///
-/// @type Boolean
-$disable-clear-button-query-hover: $disable-clear-button-hover !default;
+$disable-clear-button-opacity-query: false !default;
 
 /// Set to `true` to disable the dropdown button styles
 /// @type Boolean
@@ -128,6 +120,17 @@ $_outline-selector: ".rmd-text-field-container--outline";
 /// @access private
 /// @type String
 $_underline-selector: ".rmd-text-field-container--underline";
+
+// show the clear button if the autocomplete container is hovered or
+// any element is focused within the container
+$_clear-button-hover-selector: "&:where(:not(:hover):not(:focus-within)) :where(#{$_clear-button-selector + "--hover"})";
+
+// stacks on top of the hover behavior, and also enforces only
+// showing the clear button if the input has a value (or query)
+$_clear-button-valued-selector: "&:where(:has(:placeholder-shown)) :where(#{$_clear-button-selector + "--query"})";
+
+$_clear-button-opacity-selector: $_clear-button-hover-selector + ", "
+  $_clear-button-valued-selector;
 
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.
@@ -339,24 +342,9 @@ $variables: (
           }
         }
 
-        @if not $disable-clear-button-hover {
-          @include utils.mouse-hover($wrap-in-hover: false) {
-            // show the clear button if the autocomplete container is hovered or
-            // any element is focused within the container
-            $hover-selector: "&:where(:not(:hover):not(:focus-within)) :where(#{$_clear-button-selector + "--hover"})";
-
-            // stacks on top of the hover behavior, and also enforces only
-            // showing the clear button if the input has a value (or query)
-            $query-selector: "&:where(:has(:placeholder-shown)) :where(#{$_clear-button-selector + "--query"})";
-
-            $selector: $hover-selector;
-            @if not $disable-clear-button-query-hover {
-              $selector: $selector + ", " $query-selector;
-            }
-
-            #{$selector} {
-              opacity: 0;
-            }
+        @if not $disable-clear-button {
+          #{$_clear-button-opacity-selector} {
+            opacity: 0;
           }
         }
 
