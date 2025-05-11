@@ -106,7 +106,8 @@ $aspect-ratios: (
 /// @type Boolean
 $disable-aspect-ratios: not list.length(map.keys($aspect-ratios)) !default;
 
-/// This mixin should really only be used if the ``
+/// This mixin should really only be used if the `$disable-aspect-ratios` is
+/// `true`
 @mixin forced-aspect-ratio {
   height: 100%;
   inset: 0;

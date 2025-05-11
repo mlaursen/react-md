@@ -7,13 +7,14 @@
 @use "sass:math";
 @use "sass:meta";
 @use "sass:string";
+@use "theme/colors";
 @use "theme/theme";
 @use "transition/transition";
 @use "utils";
 
 /// The default box-shadow color to use for all material design box shadows.
 /// @type Color
-$box-shadow-color: #000 !default;
+$box-shadow-color: colors.$black !default;
 
 /// The opacity to apply for the first box shadow
 /// @type Number

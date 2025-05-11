@@ -173,12 +173,12 @@ $light-theme-inverse-color: colors.$black !default;
 
 /// The root background color (html) when using the light theme.
 /// @type Color
-$light-theme-background-color: #fafafa !default;
+$light-theme-background-color: colors.$grey-50 !default;
 
 /// The background color to apply for surfaces/temporary elements when using the
 /// light theme. So things like dialogs and menus.
 /// @type Color
-$light-theme-surface-color: #fff !default;
+$light-theme-surface-color: colors.$white !default;
 
 /// The primary text color when using the light theme.
 /// @type Color
@@ -854,11 +854,9 @@ $theme-variables: (
 /// `$disable-default-system-theme` and `$disable-default-root-theme` are both
 /// `false` and the `$color-scheme` has been set to `system`.
 @mixin default-system-theme {
-  @if not
-    $disable-default-system-theme and
-    $disable-default-root-theme and
-    $color-scheme ==
-    system
+  @if (not $disable-default-system-theme) and
+    (not $disable-default-root-theme) and
+    ($color-scheme == system)
   {
     @media (prefers-color-scheme: dark) {
       :root {

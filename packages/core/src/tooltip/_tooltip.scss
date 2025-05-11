@@ -134,7 +134,21 @@ $transition-distance: 0.5rem !default;
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.
 /// @type List
-$variables: (background-color, color, spacing);
+$variables: (
+  background-color,
+  border-radius,
+  color,
+  spacing,
+  z-index,
+  horizontal-padding,
+  vertical-padding,
+  min-height,
+  max-width,
+  dense-horizontal-padding,
+  dense-vertical-padding,
+  dense-min-height,
+  transition-distance
+);
 
 /// @param {String} name - The supported variable name
 /// @param {any} fallback [null] - An optional fallback value
@@ -168,11 +182,31 @@ $variables: (background-color, color, spacing);
 /// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
+    // do not include spacing
+
     @include set-var(background-color, $background-color);
     @include set-var(color, $color);
+    @include set-var(border-radius, $border-radius);
+    @include set-var(horizontal-padding, $horizontal-padding);
+    @include set-var(vertical-padding, $vertical-padding);
+    @include set-var(max-width, $max-width);
+    @include set-var(min-height, $min-height);
+    @include set-var(transition-distance, $transition-distance);
+    @include set-var(z-index, $z-index);
 
-    // do not include spacing
+    @if not $disable-dense {
+      @include set-var(dense-horizontal-padding, $dense-horizontal-padding);
+      @include set-var(dense-vertical-padding, $dense-vertical-padding);
+      @include set-var(dense-min-height, $dense-min-height);
+    }
   }
+}
+
+@mixin dense-variables {
+  @include set-var(spacing, $dense-spacing);
+  @include set-var(min-height, get-var(dense-min-height));
+  @include set-var(horizontal-padding, get-var(dense-horizontal-padding));
+  @include set-var(vertical-padding, get-var(dense-vertical-padding));
 }
 
 /// Generates all the styles based on feature flags.
@@ -186,51 +220,52 @@ $variables: (background-color, color, spacing);
         @include utils.map-to-styles($typography);
         @include use-var(background-color);
         @include use-var(color);
+        @include use-var(border-radius);
+        @include use-var(max-width);
+        @include use-var(min-height);
+        @include use-var(z-index);
 
-        border-radius: $border-radius;
-        max-width: $max-width;
-        min-height: $min-height;
         opacity: 0;
         overflow: hidden;
         overflow-wrap: anywhere;
-        padding: $vertical-padding $horizontal-padding;
+        padding: get-var(vertical-padding) get-var(horizontal-padding);
         pointer-events: none;
         position: fixed;
         text-transform: none;
         user-select: none;
-        z-index: $z-index;
 
         @if not $disable-dense {
           &--dense {
             @include utils.map-to-styles($dense-typography);
-            @include set-var(spacing, $dense-spacing);
-
-            min-height: $dense-min-height;
-            padding: $dense-vertical-padding $dense-horizontal-padding;
+            @include dense-variables;
           }
         }
 
         @if not $disable-above {
           &--above {
-            transform: translateY(-$transition-distance);
+            transform: translateY(
+              #{utils.negate-var(get-var(transition-distance))}
+            );
           }
         }
 
         @if not $disable-below {
           &--below {
-            transform: translateY($transition-distance);
+            transform: translateY(#{get-var(transition-distance)});
           }
         }
 
         @if not $disable-left {
           &--left {
-            transform: translateX(-$transition-distance);
+            transform: translateX(
+              #{utils.negate-var(get-var(transition-distance))}
+            );
           }
         }
 
         @if not $disable-right {
           &--right {
-            transform: translateX($transition-distance);
+            transform: translateX(#{get-var(transition-distance)});
           }
         }
 

@@ -8,6 +8,17 @@
 @use "../media-queries/media-queries";
 @use "../utils";
 
+/// A small utility function to get the letter spacing based on tracking and
+/// font-size
+///
+/// @access private
+/// @param {Number} tracking - The tracking to use
+/// @param {Number} font-size - The font size to use
+/// @returns {Number} the letter spacing value in em
+@function _get-letter-spacing($tracking, $font-size) {
+  @return math.div($tracking, $font-size * 16) * 1em;
+}
+
 /// Set this to `true` to disable the styles for the `TextContainer` component
 /// @type Boolean
 $disable-text-container: false !default;
@@ -63,17 +74,6 @@ $disable-caption: false !default;
 /// Set this to `true` to disable the `overline` typography styles
 /// @type Boolean
 $disable-overline: false !default;
-
-/// A small utility function to get the letter spacing based on tracking and
-/// font-size
-///
-/// @access private
-/// @param {Number} tracking - The tracking to use
-/// @param {Number} font-size - The font size to use
-/// @returns {Number} the letter spacing value in em
-@function get-letter-spacing($tracking, $font-size) {
-  @return math.div($tracking, $font-size * 16) * 1em;
-}
 
 /// The thin `font-weight`.
 /// @type Number
@@ -204,7 +204,7 @@ $headline-1-recommended-styles: (
   font-size: 6rem,
   line-height: 6rem,
   font-weight: map.get($font-weights, light),
-  letter-spacing: get-letter-spacing(-1.5, 6),
+  letter-spacing: _get-letter-spacing(-1.5, 6),
 );
 
 /// An optional Map of styles that will be applied to all headline-1 styles. If
@@ -229,7 +229,7 @@ $headline-2-recommended-styles: (
   font-size: 3.75rem,
   line-height: 3.75rem,
   font-weight: map.get($font-weights, light),
-  letter-spacing: get-letter-spacing(-0.5, 3.75),
+  letter-spacing: _get-letter-spacing(-0.5, 3.75),
 );
 
 /// An optional Map of styles that will be applied to all headline-2 styles. If
@@ -279,7 +279,7 @@ $headline-4-recommended-styles: (
   font-size: 2.125rem,
   line-height: 2.5rem,
   font-weight: map.get($font-weights, regular),
-  letter-spacing: get-letter-spacing(0.25, 2.125),
+  letter-spacing: _get-letter-spacing(0.25, 2.125),
 );
 
 /// An optional Map of styles that will be applied to all headline-4 styles. If
@@ -329,7 +329,7 @@ $headline-6-recommended-styles: (
   font-size: 1.25rem,
   line-height: 2rem,
   font-weight: map.get($font-weights, medium),
-  letter-spacing: get-letter-spacing(0.25, 1.25),
+  letter-spacing: _get-letter-spacing(0.25, 1.25),
 );
 
 /// An optional Map of styles that will be applied to all headline-6 styles. If
@@ -354,7 +354,7 @@ $subtitle-1-recommended-styles: (
   font-size: 1rem,
   line-height: 1.75rem,
   font-weight: map.get($font-weights, regular),
-  letter-spacing: get-letter-spacing(0.15, 1),
+  letter-spacing: _get-letter-spacing(0.15, 1),
 );
 
 /// An optional Map of styles that will be applied to all subtitle-1 styles. If
@@ -379,7 +379,7 @@ $subtitle-2-recommended-styles: (
   font-size: 0.875rem,
   line-height: 1.375rem,
   font-weight: map.get($font-weights, medium),
-  letter-spacing: get-letter-spacing(0.1, 0.875),
+  letter-spacing: _get-letter-spacing(0.1, 0.875),
 );
 
 /// An optional Map of styles that will be applied to all subtitle-2 styles. If
@@ -404,7 +404,7 @@ $body-1-recommended-styles: (
   font-size: 1rem,
   line-height: 1.5rem,
   font-weight: map.get($font-weights, regular),
-  letter-spacing: get-letter-spacing(0.5, 0.875),
+  letter-spacing: _get-letter-spacing(0.5, 0.875),
 );
 
 /// An optional Map of styles that will be applied to all body-1 styles. If
@@ -429,7 +429,7 @@ $body-2-recommended-styles: (
   font-size: 0.875rem,
   line-height: 1.25rem,
   font-weight: map.get($font-weights, regular),
-  letter-spacing: get-letter-spacing(0.25, 0.875),
+  letter-spacing: _get-letter-spacing(0.25, 0.875),
 );
 
 /// An optional Map of styles that will be applied to all body-2 styles. If
@@ -454,7 +454,7 @@ $caption-recommended-styles: (
   font-size: 0.75rem,
   line-height: 1.25rem,
   font-weight: map.get($font-weights, regular),
-  letter-spacing: get-letter-spacing(0.4, 0.75),
+  letter-spacing: _get-letter-spacing(0.4, 0.75),
 );
 
 /// An optional Map of styles that will be applied to all caption styles. If
@@ -479,7 +479,7 @@ $overline-recommended-styles: (
   font-size: 0.75rem,
   line-height: 2rem,
   font-weight: map.get($font-weights, medium),
-  letter-spacing: get-letter-spacing(2, 0.75),
+  letter-spacing: _get-letter-spacing(2, 0.75),
 );
 
 /// An optional Map of styles that will be applied to all overline styles. If
@@ -505,7 +505,7 @@ $button-recommended-styles: map.merge(
   (
     font-size: 0.875rem,
     font-weight: map.get($font-weights, medium),
-    letter-spacing: get-letter-spacing(1.25, 0.875),
+    letter-spacing: _get-letter-spacing(1.25, 0.875),
     line-height: 2.25rem,
     // buttons with multiple lines of text look terrible because of the large
     // line-height. You normally want to use a different component if the

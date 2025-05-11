@@ -131,7 +131,7 @@ $transition-timing-function: transition.$linear-timing-function !default;
 
 /// The default padding for a `TabList` with the `padded` prop enabled.
 /// @type Number
-$tablist-padding-left: 3.25rem !default;
+$tablist-scrollable-horizontal-padding: 3.25rem !default;
 
 /// The default z-index for a `TabList` scroll button.
 /// @type Number
@@ -303,11 +303,11 @@ $variables: (
 
     @if not $disable-tablist-padded {
       &--padded {
-        padding-left: $tablist-padding-left;
+        padding-left: $tablist-scrollable-horizontal-padding;
 
         @include utils.rtl {
           padding-left: 0;
-          padding-right: $tablist-padding-left;
+          padding-right: $tablist-scrollable-horizontal-padding;
         }
       }
     }

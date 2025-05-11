@@ -96,12 +96,12 @@ $disable-higher-contrast: false !default;
 /// The base interaction background color to apply when an element is on a
 /// light surface.
 /// @type Color
-$light-surface-base-background-color: #000 !default;
+$light-surface-base-background-color: colors.$black !default;
 
 /// The base interaction background color to apply when an element is on a
 /// dark surface.
 /// @type Color
-$dark-surface-base-background-color: #fff !default;
+$dark-surface-base-background-color: colors.$white !default;
 
 /// The default color to use while elements are focused.
 /// @type Color

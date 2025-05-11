@@ -93,16 +93,6 @@ $disable-subheader-inset: false !default;
 /// @type Boolean
 $disable-divider-inset: divider.$disable-everything !default;
 
-/// The `line-height` to apply to the secondary text within a `ListItem`.
-/// @type Number
-$item-secondary-text-line-height: 1.42857 !default;
-
-/// The `max-height` to apply to the `ListItem` secondary text which enables
-/// the line-clamp behavior.
-///
-/// @type Number
-$item-secondary-text-multiline-max-height: 3rem !default;
-
 /// The vertical padding to apply to the `List` component.
 /// @type Number
 $vertical-padding: 0.5rem !default;
@@ -224,6 +214,16 @@ $item-media-size: 3.5rem !default;
 ///
 /// @type Number
 $item-media-large-size: 6.25rem !default;
+
+/// The `line-height` to apply to the secondary text within a `ListItem`.
+/// @type Number
+$item-secondary-text-line-height: 1.42857 !default;
+
+/// The `max-height` to apply to the `ListItem` secondary text which enables
+/// the line-clamp behavior.
+///
+/// @type Number
+$item-secondary-text-multiline-max-height: 3rem !default;
 
 /// The default keyline to apply to text content in a `ListItem` when an icon
 /// or `Avatar` are provided as addons. In other words, the text will be this
