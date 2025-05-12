@@ -9,5 +9,5 @@
 }
 
 .label {
-  @include everything.form-use-var(line-height, slider-size);
+  @include everything.slider-use-var(line-height, size);
 }

@@ -8,6 +8,8 @@
 @use "../theme/theme";
 @use "../interaction/interaction";
 @use "../icon/icon";
+@use "../form/input-toggle";
+@use "../form/switch";
 
 /// Set to `true` to disable all the styles
 /// @type Boolean
@@ -20,6 +22,20 @@ $disable-menu-item: false !default;
 /// Set to `true` to if the `MenuItemGroup` component will not be used.
 /// @type Boolean
 $disable-menu-item-group: false !default;
+
+/// Set to `true` to disable the `MenuItemCheckbox` styles.
+/// @type Boolean
+$disable-menu-item-checkbox: $disable-menu-item or
+  input-toggle.$disable-checkbox !default;
+
+/// Set to `true` to disable the `MenuItemRadio` styles.
+/// @type Boolean
+$disable-menu-item-radio: $disable-menu-item or input-toggle.$disable-radio !default;
+
+/// Set to `true` to disable the `MenuItemSwitch` styles.
+/// @type Boolean
+$disable-menu-item-switch: $disable-menu-item or
+  switch.$disable-menu-item-switch !default;
 
 /// Set to `true` to disable the dark mode elevation colors for the `Menu`.
 /// @type Boolean
@@ -152,6 +168,54 @@ $variables: (background-color, color, min-width, spacing);
   }
 }
 
+/// Generates the `MenuItemCheckbox`, `MenuItemRadio`, and `MenuItemSwitch` styles.
+@mixin menu-item-input-toggle-styles($disable-layer: false) {
+  .rmd-menu-item-input-toggle {
+    @if not $disable-menu-item-radio or not $disable-menu-item-switch {
+      &__icon {
+        // remove the padding since the icon isn't the click target anymore.
+        padding: 0;
+
+        // disable the hover states since it's handled by the ListItem instead
+        &::before {
+          content: none;
+        }
+      }
+    }
+
+    @if not $disable-menu-item-switch {
+      // this makes it so that the spacing between the switch and the text
+      // aligns with other menu items/icons
+      &__track {
+        @include icon.set-var(size, switch.$track-width);
+      }
+
+      // decrease the ball size and remove the hover states since it's handled
+      // by the ListItem instead. without decreasing the ball size, horizontal
+      // scrollbars will appear when the switch is checked
+      &__ball {
+        height: switch.$ball-size;
+        left: -#{switch.$ball-offset};
+        top: calc(50% - switch.$ball-size * 0.5);
+        width: switch.$ball-size;
+
+        &::before {
+          content: none;
+        }
+
+        &::after {
+          inset: 0;
+        }
+
+        @include utils.rtl {
+          left: auto;
+          right: -#{switch.$ball-offset};
+        }
+      }
+    }
+  }
+}
+
 /// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
@@ -181,6 +245,14 @@ $variables: (background-color, color, min-width, spacing);
 
       @if not $disable-menu-item-group {
         @include menu-item-group-styles;
+      }
+
+      @if not
+        $disable-menu-item-checkbox or not
+        $disable-menu-item-radio or not
+        $disable-menu-item-switch
+      {
+        @include menu-item-input-toggle-styles;
       }
     }
   }

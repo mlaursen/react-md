@@ -9,6 +9,13 @@ import {
   forwardRef,
 } from "react";
 
+import {
+  type ConfigurableInputToggleIconProps,
+  type IndeterminateCheckboxProps,
+} from "../form/InputToggle.js";
+import { InputToggleIcon } from "../form/InputToggleIcon.js";
+import { SwitchTrack } from "../form/SwitchTrack.js";
+import { type InputToggleSize } from "../form/inputToggleStyles.js";
 import { ListItem } from "../list/ListItem.js";
 import {
   type ListItemAddonPosition,
@@ -19,18 +26,11 @@ import {
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import {
-  type ConfigurableInputToggleIconProps,
-  type IndeterminateCheckboxProps,
-} from "./InputToggle.js";
-import { InputToggleIcon } from "./InputToggleIcon.js";
-import { SwitchTrack } from "./SwitchTrack.js";
-import { type InputToggleSize } from "./inputToggleStyles.js";
-import {
   menuItemInputToggle,
   menuItemInputToggleBall,
   menuItemInputToggleIcon,
   menuItemInputToggleTrack,
-} from "./menuItemInputToggleStyles.js";
+} from "./styles.js";
 
 const noop = (): void => {
   // do nothing

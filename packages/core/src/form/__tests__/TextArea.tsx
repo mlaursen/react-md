@@ -292,7 +292,7 @@ describe("TextArea", () => {
       const getHeightVar = () =>
         window
           .getComputedStyle(container)
-          .getPropertyValue("--rmd-textarea-height");
+          .getPropertyValue("--rmd-text-area-height");
       const maskScrollHeight = jest
         .spyOn(mask, "scrollHeight", "get")
         // the default height of 3.5rem

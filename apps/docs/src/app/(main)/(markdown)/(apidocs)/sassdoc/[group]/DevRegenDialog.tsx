@@ -30,6 +30,7 @@ export function DevRegenDialog({
       isFocusTypeDisabled={() => true}
       style={{ position: "relative" }}
       containerProps={{
+        enabled: true,
         style: {
           position: "fixed",
           bottom: 0,

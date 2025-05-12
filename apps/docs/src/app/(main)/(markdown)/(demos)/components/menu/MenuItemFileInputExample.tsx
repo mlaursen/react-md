@@ -1,6 +1,6 @@
 import { useFileUpload } from "@react-md/core/files/useFileUpload";
-import { MenuItemFileInput } from "@react-md/core/form/MenuItemFileInput";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+import { MenuItemFileInput } from "@react-md/core/menu/MenuItemFileInput";
 import { type ReactElement, useState } from "react";
 
 const extensions = [

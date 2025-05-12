@@ -11,7 +11,8 @@
 @use "../button/button";
 @use "../chip/chip";
 @use "../icon/icon";
-@use "../form/form";
+@use "../form/base";
+@use "../form/text-field";
 @use "../progress/progress";
 
 /// Set to `true` to disable all the styles
@@ -62,8 +63,8 @@ $inline-chips-gap: icon.get-var(spacing) !default;
 /// nice.
 /// @type Number
 $inline-outlined-vertical-padding: calc(
-  (form.form-get-var(text-field-height) - chip.get-var(height)) / 2 -
-    form.$text-field-border-width
+  (text-field.get-var(height) - chip.get-var(height)) / 2 -
+    text-field.$border-width
 ) !default;
 
 /// The amount of padding to apply to the text field when there is at least one
@@ -87,13 +88,13 @@ $circular-progress-size: button.$icon-small-size !default;
 /// button (when they exist).
 ///
 /// @type Number
-$addon-gap: form.$text-field-addon-gap !default;
+$addon-gap: text-field.$addon-gap !default;
 
 /// The spacing between the input and the circular progress/clear button/dropdown
 /// button addons.
 ///
 /// @type Number
-$addon-spacing: form.form-get-var(addon-spacing) !default;
+$addon-spacing: text-field.get-var(addon-spacing) !default;
 
 /// The size of the clear button and used to generate the correct padding for all
 /// the inline addons
@@ -269,10 +270,7 @@ $variables: (
           //
           // When the addon isn't included, its size will be set to `0px`. When
           // the addon is included, the size is set to the correct value
-          @include form.form-set-var(
-            text-field-padding-right,
-            _right-addon-calc()
-          );
+          @include text-field.set-var(padding-right, _right-addon-calc());
         }
 
         @if not $disable-text-overflow-ellipsis {
@@ -364,8 +362,8 @@ $variables: (
           //   since those are still "boxed" elements and it helps show current
           //   focus
           &--inline-chips {
-            @include form.form-use-var(min-height, text-field-height);
-            @include form.form-use-var(padding-right, text-field-padding-right);
+            @include text-field.use-var(min-height, height);
+            @include text-field.use-var(padding-right);
             @include use-var(gap, inline-gap);
 
             flex-wrap: wrap;
@@ -376,11 +374,11 @@ $variables: (
             }
 
             @if not
-              form.$disable-text-field-filled-theme or not
-              form.$disable-text-field-underlined-theme
+              base.$form-disable-filled-theme or not
+              base.$form-disable-underlined-theme
             {
               &:where(#{$_underline-selector}):has(#{$_chip-selector}) {
-                @include form.form-use-var(padding-top, text-field-padding-top);
+                @include text-field.use-var(padding-top);
                 @include use-var(padding-bottom, inline-gap);
 
                 :where(.rmd-text-field) {
@@ -389,7 +387,7 @@ $variables: (
               }
             }
 
-            @if not form.$disable-text-field-outlined-theme {
+            @if not base.$form-disable-outlined-theme {
               &:where(#{$_outline-selector}):has(#{$_chip-selector}) {
                 padding-bottom: $inline-outlined-vertical-padding;
                 padding-top: $inline-outlined-vertical-padding;
@@ -420,10 +418,7 @@ $variables: (
             }
 
             @include utils.rtl {
-              @include form.form-use-var(
-                padding-left,
-                text-field-padding-right
-              );
+              @include text-field.use-var(padding-left, padding-right);
 
               padding-right: 0;
             }

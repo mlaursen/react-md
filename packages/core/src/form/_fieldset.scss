@@ -1,0 +1,34 @@
+////
+/// @group fieldset
+////
+
+@use "../utils";
+@use "base";
+
+/// Set to `true` to disable the `Formset` component styles
+/// @type Boolean
+$disable-everything: base.$form-disable-everything !default;
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin styles($disable-layer: false) {
+  @include utils.optional-layer(fieldset, $disable-layer) {
+    @if not $disable-everything {
+      .rmd-fieldset {
+        &--unstyled {
+          border: 0;
+          margin: 0;
+          min-width: 0; // just so it can shrink correctly in flex or grid
+          padding: 0;
+        }
+
+        &--full-width {
+          flex: 1 1 auto;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

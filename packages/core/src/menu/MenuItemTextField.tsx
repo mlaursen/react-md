@@ -3,8 +3,8 @@
 import { cnb } from "cnbuilder";
 import { type HTMLAttributes, forwardRef } from "react";
 
+import { TextField, type TextFieldProps } from "../form/TextField.js";
 import { type PropsWithRef } from "../types.js";
-import { TextField, type TextFieldProps } from "./TextField.js";
 
 /**
  * @since 5.0.0

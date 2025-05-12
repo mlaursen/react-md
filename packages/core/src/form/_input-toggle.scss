@@ -1,0 +1,184 @@
+////
+/// @group input-toggle
+////
+
+@use "sass:color";
+@use "sass:map";
+@use "../utils";
+@use "../theme/theme";
+@use "../icon/icon";
+@use "../interaction/interaction";
+@use "base";
+
+/// Set to `true` to disable the `Checkbox`, `Radio`, and `Switch` styles.
+/// @type Boolean
+$disable-everything: base.$form-disable-everything !default;
+
+/// Set to `true` to disable the `Checkbox` styles.
+/// @type Boolean
+$disable-checkbox: $disable-everything !default;
+
+/// Set to `true` to disable the `Radio` styles.
+/// @type Boolean
+$disable-radio: $disable-everything !default;
+
+/// Set to `true` to if the `Checkbox` and `Radio` components will always
+/// be controlled providing a `checked` prop. This feature flag adds a few more
+/// styles to support switching between the icons based on the `input` checked
+/// state without JS.
+///
+/// @type Boolean
+$disable-uncontrolled: false !default;
+
+/// The default border-radius for `Checkbox` and `Radio` components.
+/// @type Number
+$border-radius: 50% !default;
+
+/// The amount of padding to apply around the `Checkbox` and `Radio` icons
+/// @type Number
+$padding: 0.5em !default;
+
+/// The `Checkbox` and `Radio` size to use when `size="small"`.
+///
+/// @type Number
+$small-size: 1rem !default;
+
+/// The `Checkbox` and `Radio` size to use when `size="dense"`.
+///
+/// @type Number
+$dense-size: icon.$dense-size !default;
+
+/// The `Checkbox` and `Radio` size to use when `size="normal"`.
+///
+/// @type Number
+$normal-size: icon.$size !default;
+
+/// The `Checkbox` and `Radio` size to use when `size="large"`.
+///
+/// @type Number
+$large-size: 2rem !default;
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin hidden-input-styles($disable-layer: false) {
+  @include utils.optional-layer(input-toggle, $disable-layer) {
+    .rmd-hidden-input {
+      height: 100%;
+      inset: 0;
+      margin: 0;
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+
+      &:not(:disabled):hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(input-toggle, $disable-layer) {
+      @include hidden-input-styles(true);
+
+      .rmd-input-toggle {
+        @include icon.set-var(color, currentcolor);
+        @include interaction.surface(
+          $focus-selector: if(
+              utils.$disable-has-selectors or utils.$disable-focus-visible,
+              "&:focus-within",
+              "&:has(:focus-visible)"
+            ),
+          $keyboard-only-focus: utils.$disable-has-selectors or
+            utils.$disable-focus-visible,
+          $disabled-selector: "&--disabled",
+          $higher-contrast: false
+        );
+
+        // stylelint-disable-next-line no-duplicate-selectors
+        & {
+          align-items: center;
+          border-radius: $border-radius;
+          display: inline-flex;
+          flex-shrink: 0;
+          justify-content: center;
+          padding: $padding;
+        }
+
+        &--em {
+          @include icon.set-var(size, 1em);
+        }
+
+        &--active {
+          @include base.form-use-var(
+            color,
+            active-color,
+            theme.theme-color-var-fallback(base.$form-active-color)
+          );
+        }
+
+        @if $small-size {
+          &--small {
+            font-size: $small-size;
+          }
+        }
+
+        @if $dense-size {
+          &--dense {
+            font-size: $dense-size;
+          }
+        }
+
+        @if $normal-size {
+          &--normal {
+            font-size: $normal-size;
+          }
+        }
+
+        @if $large-size {
+          &--large {
+            font-size: $large-size;
+          }
+        }
+
+        @if not $disable-uncontrolled {
+          &--uncontrolled {
+            $icon-color-selector: ".rmd-hidden-input:where(:checked:not(:disabled)) ~ .rmd-icon";
+            $unchecked-icon-selector: "~ :nth-child(-n + 1 of .rmd-icon)";
+            $checked-icon-selector: "~ :nth-child(n + 2 of .rmd-icon)";
+            // make sure the active color from the label also applies to the icon when
+            // checked
+            .rmd-label--active & #{$icon-color-selector} {
+              @include base.form-use-var(color, focus-color);
+            }
+
+            // make sure the error color applies to the icon when checked
+            &:where(:not(.rmd-error-color)) #{$icon-color-selector} {
+              @include base.form-use-var(
+                color,
+                active-color,
+                theme.theme-color-var-fallback(base.$form-active-color)
+              );
+            }
+
+            // when the input is checked, hide the first icon (unchecked state)
+            // when the input is not checked, hide the second icon (checked state)
+            .rmd-hidden-input:checked #{$unchecked-icon-selector},
+            .rmd-hidden-input:not(:checked) #{$checked-icon-selector} {
+              opacity: 0;
+              position: absolute;
+            }
+          }
+        }
+      }
+    }
+  }
+}

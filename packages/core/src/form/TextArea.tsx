@@ -24,8 +24,8 @@ import {
 
 declare module "react" {
   interface CSSProperties {
-    "--rmd-textarea-height"?: string | number;
-    "--rmd-textarea-padding"?: string | number;
+    "--rmd-text-area-height"?: string | number;
+    "--rmd-text-area-padding"?: string | number;
   }
 }
 
@@ -261,7 +261,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           ref={containerRef}
           style={{
             ...style,
-            "--rmd-textarea-height": height,
+            "--rmd-text-area-height": height,
           }}
           className={textAreaContainer({
             animate: !disableTransition && resize == "auto",

@@ -3,8 +3,8 @@
 .pending {
   // set the background color to the inactive color so that the circular
   // progress bar will be visible while checked
-  @include everything.form-set-var(
-    switch-ball-background-color,
+  @include everything.switch-set-var(
+    ball-background-color,
     everything.$switch-ball-background-color
   );
 }

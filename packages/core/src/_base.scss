@@ -33,8 +33,18 @@
 @use "transition/transition";
 @use "typography/typography";
 @use "window-splitter/window-splitter";
+@use "form/base" as form-base;
+@use "form/label";
+@use "form/fieldset";
+@use "form/form-message";
+@use "form/input-toggle";
+@use "form/select";
+@use "form/slider";
+@use "form/switch";
+@use "form/text-area";
+@use "form/text-field";
+@use "form/password";
 @use "menu/menu";
-@use "form/form";
 @use "files/files";
 @use "layout/layout";
 @use "navigation/navigation";
@@ -73,8 +83,17 @@ $_layer-order: (
   draggable,
   window-splitter,
   menu,
-  form,
+  form-message,
+  fieldset,
+  label,
+  text-field,
+  text-area,
+  password,
+  slider,
+  switch,
+  input-toggle,
   files,
+  password,
   autocomplete,
   layout,
   navigation,
@@ -315,8 +334,10 @@ $_layer-order: (
   @include app-bar.use-light-theme;
   @include divider.use-light-theme;
   @include card.use-light-theme;
-  @include form.form-use-light-theme;
+  @include switch.use-light-theme;
+  @include slider.use-light-theme;
   @include table.use-light-theme;
+  @include text-field.use-light-theme;
   @include segmented-button.use-light-theme;
   @include badge.use-light-theme;
 }
@@ -338,8 +359,10 @@ $_layer-order: (
   @include app-bar.use-dark-theme;
   @include divider.use-dark-theme;
   @include card.use-dark-theme;
-  @include form.form-use-dark-theme;
+  @include slider.use-dark-theme;
+  @include switch.use-dark-theme;
   @include table.use-dark-theme;
+  @include text-field.use-dark-theme;
   @include segmented-button.use-dark-theme;
   @include badge.use-dark-theme;
 }
@@ -362,7 +385,6 @@ $_layer-order: (
 ///   }
 ///
 @mixin variables {
-  @include theme.theme-variables;
   @include app-bar.variables;
   @include autocomplete.variables;
   @include avatar.variables;
@@ -373,9 +395,10 @@ $_layer-order: (
   @include chip.variables;
   @include dialog.variables;
   @include divider.variables;
-  @include form.form-variables;
+  @include form-base.form-variables;
   @include icon.variables;
   @include interaction.variables;
+  @include label.variables;
   @include layout.variables;
   @include link.variables;
   @include list.variables;
@@ -385,9 +408,15 @@ $_layer-order: (
   @include progress.variables;
   @include segmented-button.variables;
   @include sheet.variables;
+  @include slider.variables;
   @include snackbar.variables;
+  @include switch.variables;
+  @include switch.variables;
   @include table.variables;
   @include tabs.variables;
+  @include text-field.variables;
+  @include text-area.variables;
+  @include theme.theme-variables;
   @include tooltip.variables;
   @include transition.transition-variables;
   @include tree.variables;
@@ -442,10 +471,13 @@ $_layer-order: (
   @include divider.styles($disable-layer);
   @include draggable.styles($disable-layer);
   @include expansion-panel.styles($disable-layer);
-  @include form.form-styles($disable-layer);
+  @include fieldset.styles($disable-layer);
   @include files.styles($disable-layer);
+  @include form-message.styles($disable-layer);
   @include icon.styles($disable-layer);
+  @include input-toggle.styles($disable-layer);
   @include interaction.styles($disable-layer);
+  @include label.styles($disable-layer);
   @include layout.styles($disable-layer);
   @include link.styles($disable-layer);
   @include list.styles($disable-layer);
@@ -453,13 +485,19 @@ $_layer-order: (
   @include navigation.styles($disable-layer);
   @include object-fit.styles($disable-layer);
   @include overlay.styles($disable-layer);
+  @include password.styles($disable-layer);
   @include progress.styles($disable-layer);
   @include responsive-item.styles($disable-layer);
   @include segmented-button.styles($disable-layer);
+  @include select.styles($disable-layer);
   @include sheet.styles($disable-layer);
+  @include slider.styles($disable-layer);
   @include snackbar.styles($disable-layer);
+  @include switch.styles($disable-layer);
   @include table.styles($disable-layer);
   @include tabs.styles($disable-layer);
+  @include text-area.styles($disable-layer);
+  @include text-field.styles($disable-layer);
   @include tooltip.styles($disable-layer);
   @include transition.transition-styles($disable-layer);
   @include tree.styles($disable-layer);

@@ -1,8 +1,8 @@
-import { MenuItemRadio } from "@react-md/core/form/MenuItemRadio";
 import { useRadioGroup } from "@react-md/core/form/useRadioGroup";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
 import { MenuItem } from "@react-md/core/menu/MenuItem";
 import { MenuItemGroup } from "@react-md/core/menu/MenuItemGroup";
+import { MenuItemRadio } from "@react-md/core/menu/MenuItemRadio";
 import { MenuItemSeparator } from "@react-md/core/menu/MenuItemSeparator";
 import { type ReactElement } from "react";
 

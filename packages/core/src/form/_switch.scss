@@ -1,0 +1,305 @@
+////
+/// @group switch
+////
+
+@use "sass:color";
+@use "sass:map";
+@use "../utils";
+@use "../box-shadows";
+@use "../theme/colors";
+@use "../theme/theme";
+@use "../icon/icon";
+@use "../interaction/interaction";
+@use "../progress/progress";
+@use "../transition/transition";
+@use "base";
+
+/// Set to `true` to disable the `Switch` styles.
+/// @type Boolean
+$disable-everything: base.$form-disable-everything !default;
+
+/// Set to `true` to disable the `MenuItemSwitch` styles
+/// @type Boolean
+$disable-menu-item-switch: $disable-everything !default;
+
+/// Set to `true` to disable the `CircularProgress` rendered within a `Switch`
+/// styles.
+/// @type Boolean
+$disable-circular-progress: progress.$disable-circular !default;
+
+/// Set to `true` to disable the icon rendered within a `Switch` styles.
+/// @type Boolean
+$disable-icon: false !default;
+
+/// The opacity to apply to a `Switch` while disabled.
+/// @type Number
+$disabled-opacity: 0.5 !default;
+
+/// The `Switch` ball size.
+/// @type Number
+$ball-size: 1.25em !default;
+
+/// The `Switch` border radius.
+/// @type Number
+$ball-border-radius: 50% !default;
+
+/// The distance from the `left` and `right` of the `Switch` track to display
+/// the ball.
+///
+/// @type Number
+$ball-offset: 0.25em !default;
+
+/// The default `Switch` ball background color.
+/// @type Color
+$ball-background-color: color.adjust(colors.$white, $lightness: -5%) !default;
+
+/// The height of the `Switch` clickable area.
+/// @type Number
+$track-height: 1em !default;
+
+/// The width of the `Switch` clickable area.
+/// @type Number
+$track-width: 2.25em !default;
+
+/// The border radius for the `Switch` clickable area.
+/// @type Number
+$track-border-radius: 0.5em !default;
+
+/// The amount of vertical padding to apply to the `Switch` component.
+/// @type Number
+$track-vertical-padding: 0.75em !default;
+
+/// The amount of horizontal padding to apply to the `Switch` component.
+/// @type Number
+$track-horizontal-padding: 0.875em !default;
+
+/// The background color to apply to the `SwitchTrack` in the light theme.
+/// @type Color
+$track-light-background-color: colors.$grey-400 !default;
+
+/// The background color to apply to the `SwitchTrack` in the dark theme.
+/// @type Color
+$track-dark-background-color: if(
+  theme.$disable-dark-elevation,
+  $track-light-background-color,
+  map.get(theme.$dark-elevation-colors, 24)
+) !default;
+
+/// The default background color to apply to the `SwitchTrack`.
+/// @type Color
+$track-background-color: theme.get-default-color(
+  $track-light-background-color,
+  $track-dark-background-color
+) !default;
+
+/// The default size for an icon within the `Switch` ball.
+/// @type Number
+$icon-size: 1em !default;
+
+/// The `circular-stroke-width` to use for a `CircularProgress` rendered within
+/// a `Switch` ball.
+///
+/// @type Number
+$circular-progress-width: 12 !default;
+
+/// The `circular-size` to use for a `CircularProgress` rendered within a
+/// `Switch` ball.
+///
+/// @type Number
+$circular-progress-size: 1em !default;
+
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
+$variables: (track-background-color, ball-background-color);
+
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
+@function get-var($name, $fallback: null) {
+  $var: utils.get-var-name($variables, $name, "switch");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
+  }
+
+  @return var(#{$var});
+}
+
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
+@mixin set-var($name, $value) {
+  @if $value {
+    #{utils.get-var-name($variables, $name, "switch")}: #{$value};
+  }
+}
+
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+/// Applies the light the variables based on feature flags
+@mixin use-light-theme {
+  @if not $disable-everything {
+    @include set-var(track-background-color, $track-light-background-color);
+  }
+}
+
+/// Applies the dark the variables based on feature flags
+@mixin use-dark-theme {
+  @if not $disable-everything {
+    @include set-var(track-background-color, $track-dark-background-color);
+  }
+}
+/// Conditionally applies the css variables based on feature flags
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(track-background-color, $track-background-color);
+    @include set-var(ball-background-color, $ball-background-color);
+  }
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(switch, $disable-layer) {
+      @include theme.default-system-theme {
+        @include use-dark-theme;
+      }
+
+      .rmd-switch {
+        padding: $track-vertical-padding $track-horizontal-padding;
+
+        &--clickable:hover {
+          cursor: pointer;
+        }
+
+        &--current-color,
+        &--current-color .rmd-switch__input:checked + .rmd-switch__ball {
+          @include set-var(ball-background-color, currentcolor);
+        }
+
+        &__input {
+          @if utils.$disable-focus-visible {
+            @include utils.keyboard-only {
+              &:focus + .rmd-switch__ball::before {
+                @include interaction.focus-styles;
+              }
+            }
+          } @else {
+            &:focus-visible + .rmd-switch__ball::before {
+              @include interaction.focus-styles;
+            }
+          }
+
+          &:disabled + .rmd-switch__ball {
+            cursor: auto;
+
+            &:hover::before {
+              @include interaction.set-var(background-color, transparent);
+            }
+          }
+        }
+
+        &__track {
+          @if not $disable-circular-progress {
+            @include progress.set-var(
+              circular-stroke-width,
+              $circular-progress-width
+            );
+            @include progress.set-var(circular-size, $circular-progress-size);
+          }
+          @if not $disable-icon {
+            @include icon.set-var(size, $icon-size);
+          }
+          @include use-var(background-color, track-background-color);
+
+          border-radius: $track-border-radius;
+          height: $track-height;
+          position: relative;
+          transition: background-color transition.$linear-duration
+            transition.$linear-timing-function;
+          width: $track-width;
+
+          &--disabled {
+            opacity: $disabled-opacity;
+          }
+        }
+
+        &__ball {
+          // The focus and disabled states are handled by the `.rmd-switch__input`'s
+          // :focus and :disabled' states instead.
+          @include interaction.surface(
+            $focus-selector: null,
+            $disabled-selector: null,
+            $clickable: false
+          );
+
+          // stylelint-disable-next-line no-duplicate-selectors
+          & {
+            align-items: center;
+            border-radius: $ball-border-radius;
+            display: flex;
+            height: $ball-size * 2;
+            justify-content: center;
+            left: calc(-50% + #{$ball-offset});
+            top: calc(-50% - #{$ball-size - $track-height});
+            transition-duration: transition.$linear-duration;
+            transition-property: background-color, transform;
+            transition-timing-function: transition.$linear-timing-function;
+            width: $ball-size * 2;
+            z-index: 1;
+          }
+
+          &::after {
+            @include use-var(background-color, ball-background-color);
+
+            border-radius: inherit;
+            box-shadow: box-shadows.box-shadow(1);
+            content: "";
+            height: $ball-size;
+            left: 25%;
+            pointer-events: none;
+            position: absolute;
+            top: 25%;
+            width: $ball-size;
+            z-index: 0;
+          }
+
+          $active-selector: ".rmd-switch__input:checked + &" +
+            if($disable-menu-item-switch, "", ", &--active");
+
+          #{$active-selector} {
+            $offset: $ball-size + $ball-offset;
+
+            @include set-var(
+              ball-background-color,
+              base.form-get-var(
+                active-color,
+                theme.theme-color-var-fallback(base.$form-active-color)
+              )
+            );
+
+            transform: translateX($offset);
+
+            @include utils.rtl {
+              transform: translateX(-$offset);
+            }
+          }
+
+          @include utils.rtl {
+            left: auto;
+            right: calc(-50% + #{$ball-offset});
+          }
+        }
+      }
+    }
+  }
+}

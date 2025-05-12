@@ -1,0 +1,706 @@
+////
+/// @group text-field
+////
+
+@use "sass:map";
+@use "../utils";
+@use "../box/box";
+@use "../theme/colors";
+@use "../theme/theme";
+@use "../icon/icon";
+@use "../interaction/interaction";
+@use "../transition/transition";
+@use "../typography/typography";
+@use "base";
+@use "label";
+
+/// Set to `true` to disable the `TextField` styles
+/// @type Boolean
+$disable-everything: base.$form-disable-everything !default;
+
+/// Set to `true` if the addon props will not be used with the `TextField` or
+/// `TextArea` components or the `visibilityIcon` prop for the `Password`
+/// component.
+/// @type Boolean
+$disable-addon: $disable-everything !default;
+
+/// Set to `true` if the `::placeholder` text should not automatically ellipsis
+/// when there is text overflow.
+/// @type Boolean
+$disable-placeholder-ellipsis: false !default;
+
+/// Set to `true` to disable the `TextFieldContainer` dense styles.
+/// @type Boolean
+$disable-container-dense: false !default;
+
+/// Set to `true` if the underlined theme will not animate from the left.
+///
+/// NOTE: This would require updating the `FORM_CONFIG.underlineDirection`
+/// value since this is the default.
+///
+/// @type Boolean
+$disable-underline-left: base.$form-disable-underlined-theme !default;
+
+/// Set to `true` if the underlined theme will not animate from the center.
+///
+/// @type Boolean
+$disable-underline-center: base.$form-disable-underlined-theme !default;
+
+/// Set to `true` if the underlined theme will not animate from the right.
+///
+/// @type Boolean
+$disable-underline-right: base.$form-disable-underlined-theme !default;
+
+/// The default `TextField` typography
+/// @type Map
+$typography: map.merge(
+  typography.$base-font-styles,
+  map.merge(
+    typography.$body-1-styles,
+    (
+      font-size: 1em,
+    )
+  )
+) !default;
+
+/// The default `TextField` height.
+/// @type Number
+$height: 3rem !default;
+
+/// The default `TextField` height when the `dense` prop is enabled.
+/// @type Number
+$dense-height: 2.5rem !default;
+
+/// The default `TextField` height when there is a `label` prop.
+/// @type Number
+$label-height: 3.5rem !default;
+
+/// The default `TextField` height when there is a `label` and `dense` prop.
+/// @type Number
+$label-dense-height: 3.25rem !default;
+
+/// The `border-radius` for a `TextField`.
+/// @type Number
+$border-radius: 0.25rem !default;
+
+/// The `border-width` for a `TextField`.
+/// @type Number
+$border-width: 1px !default;
+
+/// The `border-width` for a `TextField` while active or focused.
+/// @type Number
+$border-width-active: 2px !default;
+
+/// The amount of horizontal padding to apply to a `TextField` with the
+/// `theme="filled"`.
+/// @type Number
+$filled-padding: 0.75rem !default;
+
+/// The amount of horizontal padding to apply to a `TextField` with the
+/// `theme="outline"`.
+/// @type Number
+$outlined-padding: 1rem !default;
+
+/// The amount of horizontal padding to apply to a `TextField` with the
+/// `theme="underline"`.
+///
+/// @type Number
+$underlined-padding: null !default;
+
+/// The amount of height to apply to a `TextField` while the
+/// `theme="underline"` and a `label` has not been provided.
+///
+/// Set this to `null` to disable these styles.
+///
+/// @type Number
+$underlined-placeholder-height: 2.5rem !default;
+
+/// The amount of padding-top to apply to a `TextField` while the
+/// `theme="underline"` and a `label` has not been provided.
+///
+/// This will be ignored if the `$underlined-placeholder-height` is
+/// `null`.
+///
+/// @type Number
+$underlined-placeholder-padding-top: 0.5rem !default;
+
+/// The amount of padding-top to apply to addons in a `TextField` while the
+/// `theme="underline"`.
+///
+/// This will be ignored if the `$underlined-placeholder-height` is
+/// `null`.
+///
+/// @type Number
+$underlined-placeholder-addon-padding-top: 0.25rem !default;
+
+/// The amount of padding-top to apply to the `TextFieldContainer` while the
+/// `theme="underline"` and a `label` was provided.
+///
+/// NOTE: This is the default height of the label with line-height
+///
+/// @type Number
+$underlined-label-padding-top: 1.5rem !default;
+
+/// The position in the `TextFieldContainer` for a `Label` while the
+/// `theme="underline"`.
+///
+/// @type Number
+$underlined-label-left-offset: icon.$spacing !default;
+
+/// Set this to `null` if not using `<TextField type="color" />` since this is
+/// used to apply a `min-width` to color inputs.
+///
+/// @type Number
+$color-min-width: 5rem !default;
+
+/// The gap to apply between addon elements if multiple were provided.
+/// i.e. `leftAddon={<><FavoriteIcon /><CloseIcon /></>}`
+///
+/// @type Number
+$addon-gap: 0.25rem !default;
+
+/// The amount of margin to apply to addons when the `TextField`
+/// `theme="underline"`.
+/// @type Number
+$addon-margin: icon.$spacing !default;
+
+/// The amount of spacing between a `TextField` addon and the `<input>`
+/// element.
+///
+/// @type Number
+$addon-spacing: icon.get-var(spacing) !default;
+
+/// The border-color for a `theme="outline"` `TextField` in the light theme.
+/// @type Color
+$light-border-color: rgba(colors.$black, 0.12) !default;
+
+/// The border-color for a `theme="outline"` `TextField` in the dark theme.
+/// @type Color
+$dark-border-color: rgba(colors.$white, 0.5) !default;
+
+/// The default border-color for a `theme="outline"` `TextField`.
+/// @type Color
+$border-color: theme.get-default-color(
+  $light-border-color,
+  $dark-border-color
+) !default;
+
+/// The border-color for a `theme="outline"` `TextField` in the light theme
+/// while hovering.
+///
+/// @type Color
+$light-hover-border-color: rgba(colors.$black, 0.87) !default;
+
+/// The border-color for a `theme="outline"` `TextField` in the dark theme
+/// while hovering.
+///
+/// @type Color
+$dark-hover-border-color: rgba(colors.$white, 0.87) !default;
+
+/// The default border-color for a `theme="outline"` `TextField` while
+/// hovering.
+///
+/// @type Color
+$hover-border-color: theme.get-default-color(
+  $light-hover-border-color,
+  $dark-hover-border-color
+) !default;
+
+/// The background color for `theme="filled"` `TextField` in the light theme.
+/// @type Color
+$light-filled-background-color: colors.$grey-100 !default;
+
+/// The background color for `theme="filled"` `TextField` in the dark theme.
+/// @type Color
+$dark-filled-background-color: #424242 !default;
+
+/// The default background color for `theme="filled"` `TextField`.
+/// @type Color
+$filled-background-color: theme.get-default-color(
+  $light-filled-background-color,
+  $dark-filled-background-color
+) !default;
+
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
+$variables: (
+  addon-top,
+  addon-spacing,
+  addon-margin-top,
+  addon-left-offset,
+  height,
+  padding-left,
+  padding-right,
+  padding-top,
+  border-color,
+  hover-border-color,
+  filled-color,
+  filled-padding,
+  outlined-padding,
+  underlined-padding
+);
+
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
+@function get-var($name, $fallback: null) {
+  $var: utils.get-var-name($variables, $name, "text-field");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
+  }
+
+  @return var(#{$var});
+}
+
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
+@mixin set-var($name, $value) {
+  @if $value {
+    #{utils.get-var-name($variables, $name, "text-field")}: #{$value};
+  }
+}
+
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+/// Applies the light the variables based on feature flags
+@mixin use-light-theme {
+  @if not $disable-everything {
+    @include set-var(border-color, $light-border-color);
+    @include set-var(hover-border-color, $light-hover-border-color);
+    @if not base.$form-disable-filled-theme {
+      @include set-var(filled-color, $light-filled-background-color);
+    }
+  }
+}
+
+/// Applies the dark the variables based on feature flags
+@mixin use-dark-theme {
+  @if not $disable-everything {
+    @include set-var(border-color, $dark-border-color);
+    @include set-var(hover-border-color, $dark-hover-border-color);
+    @if not base.$form-disable-filled-theme {
+      @include set-var(filled-color, $dark-filled-background-color);
+    }
+  }
+}
+/// Conditionally applies the css variables based on feature flags
+@mixin variables {
+  @if not $disable-everything {
+    @if not base.$form-disable-filled-theme and $filled-padding {
+      @include set-var(filled-padding, $filled-padding);
+    }
+
+    @if not base.$form-disable-outlined-theme and $outlined-padding {
+      @include set-var(outlined-padding, $outlined-padding);
+    }
+
+    @if not base.$form-disable-underlined-theme and $underlined-padding {
+      @include set-var(underlined-padding, $underlined-padding);
+    }
+
+    @include set-var(height, $height);
+    @include set-var(padding-left, 0px);
+    @include set-var(padding-right, 0px);
+    @include set-var(padding-top, 0px);
+    @if not base.$form-disable-outlined-theme {
+      @include set-var(border-color, $border-color);
+      @include set-var(hover-border-color, $hover-border-color);
+    }
+    @if not base.$form-disable-filled-theme {
+      @include set-var(filled-color, $filled-background-color);
+    }
+
+    @if not $disable-addon {
+      @include set-var(addon-top, auto);
+      @include set-var(addon-margin-top, 0px);
+      @include set-var(addon-left-offset, 0px);
+      @include set-var(addon-spacing, $addon-spacing);
+    }
+  }
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin container-styles($disable-layer: false) {
+  @include utils.optional-layer(text-field, $disable-layer) {
+    .rmd-text-field-container {
+      @if not label.$disable-floating {
+        @include label.set-var(floating-x, get-var(padding-left));
+      }
+      @include use-var(height, height);
+
+      align-items: center;
+      display: flex;
+      flex: 1 1 auto;
+      position: relative;
+      width: 100%;
+
+      @if not $disable-container-dense {
+        &--dense {
+          @include set-var(height, $dense-height);
+        }
+
+        &--dense-label {
+          @include set-var(height, $label-dense-height);
+        }
+      }
+
+      &--inline {
+        display: inline-flex;
+        width: auto;
+      }
+
+      &--label {
+        @include set-var(height, $label-height);
+      }
+
+      &--error {
+        @if not $disable-addon {
+          @include icon.set-var(color, currentcolor);
+        }
+        @include base.form-set-var(active-color, currentcolor);
+        @include base.form-set-var(focus-color, currentcolor);
+
+        @if not
+          base.$form-disable-underlined-theme or not
+          base.$form-disable-outlined-theme
+        {
+          @include set-var(border-color, theme.theme-get-var(error-color));
+          @include set-var(
+            hover-border-color,
+            theme.theme-get-var(error-color)
+          );
+        }
+      }
+
+      &--hoverable:hover {
+        @include set-var(border-color, get-var(hover-border-color));
+      }
+
+      @if not base.$form-disable-outlined-theme {
+        &--outline {
+          @include set-var(padding-left, get-var(outlined-padding));
+          @include set-var(padding-right, get-var(outlined-padding));
+          @include use-var(border-color, border-color);
+          @if not $disable-addon {
+            @include set-var(addon-left-offset, get-var(outlined-padding));
+          }
+
+          @if not label.$disable-floating {
+            @include label.set-var(
+              floating-active-x,
+              get-var(outlined-padding)
+            );
+            @include label.set-var(floating-active-y, -50%);
+            @include label.set-var(active-padding, 0 label.$floating-padding);
+            @include label.set-var(
+              active-background-color,
+              theme.theme-get-var(background-color)
+            );
+          }
+
+          border-radius: $border-radius;
+          border-style: solid;
+          border-width: $border-width;
+        }
+
+        &--outline:focus-within,
+        &--outline-active {
+          @include interaction.outline(
+            $box-shadow: false,
+            $color: interaction.get-var(focus-color),
+            $outline-offset: false
+          );
+
+          @if not interaction.$disable-outline-offset {
+            outline-offset: calc($border-width * -1);
+          }
+        }
+
+        &--outline-error {
+          @include interaction.set-var(focus-color, currentcolor);
+        }
+
+        @if not $disable-addon {
+          &--outline-left {
+            $distance: calc(
+              icon.get-var(size) +
+                get-var(outlined-padding) +
+                get-var(addon-spacing)
+            );
+
+            @include set-var(padding-left, $distance);
+          }
+
+          &--outline-right {
+            $distance: calc(
+              icon.get-var(size) + calc(get-var(addon-spacing) * 2)
+            );
+
+            @include set-var(padding-right, $distance);
+          }
+        }
+      }
+
+      @if not base.$form-disable-filled-theme {
+        &--filled {
+          @include theme.theme-set-var(background-color, get-var(filled-color));
+          @include theme.theme-use-var(background-color);
+          @include set-var(padding-left, $filled-padding);
+          @include set-var(padding-right, $filled-padding);
+          @if not label.$disable-floating {
+            @include label.set-var(
+              floating-active-x,
+              $filled-padding + label.$floating-padding
+            );
+          }
+
+          @if not $disable-addon {
+            @include set-var(addon-left-offset, $filled-padding);
+          }
+        }
+      }
+
+      // the filled theme uses the same styles as underline
+      @if not
+        base.$form-disable-underlined-theme or not
+        base.$form-disable-filled-theme
+      {
+        &--underline {
+          @include use-var(border-color, border-color);
+
+          border-bottom-style: solid;
+          border-bottom-width: $border-width;
+
+          @if $underlined-padding {
+            @include set-var(padding-left, $underlined-padding);
+            @include set-var(padding-right, $underlined-padding);
+          }
+
+          &::after {
+            @include base.form-use-var(background-color, focus-color);
+
+            bottom: -$border-width;
+            content: "";
+            height: $border-width-active;
+            left: 0;
+            position: absolute;
+            right: 0;
+            transform: scale(0);
+            transition: transform
+              transition.$linear-duration
+              transition.$linear-timing-function;
+            z-index: 1;
+          }
+        }
+
+        @if $underlined-placeholder-height {
+          &--underline-placeholder {
+            @include set-var(
+              padding-top,
+              $underlined-placeholder-addon-padding-top
+            );
+            height: $underlined-placeholder-height;
+          }
+
+          &--underline-placeholder-only {
+            @include set-var(padding-top, $underlined-placeholder-padding-top);
+          }
+        }
+
+        &--underline-labelled {
+          @include set-var(padding-top, $underlined-label-padding-top);
+          @include set-var(addon-margin-top, $addon-margin);
+        }
+
+        @if not $disable-underline-left {
+          &--underline-left::after {
+            transform-origin: left;
+          }
+        }
+
+        @if not $disable-underline-center {
+          &--underline-center::after {
+            transform-origin: center;
+          }
+        }
+
+        @if not $disable-underline-right {
+          &--underline-right::after {
+            transform-origin: right;
+          }
+        }
+
+        &:focus-within::after,
+        &--underline-active::after {
+          transform: scale(1);
+        }
+
+        @if not $disable-addon {
+          $addon-offset: "#{icon.get-var(size)} + #{$underlined-label-left-offset * 2}";
+          @if $underlined-padding {
+            $addon-offset: "#{$addon-offset} + #{$underlined-padding}";
+          }
+
+          &--underline-left-addon {
+            @include set-var(padding-left, calc(#{$addon-offset}));
+          }
+
+          &--underline-right-addon {
+            @include set-var(padding-right, calc(#{$addon-offset}));
+          }
+        }
+      }
+    }
+  }
+}
+
+/// @access private
+@mixin base-styles {
+  @include utils.map-to-styles($typography);
+  @include use-var(padding-left, padding-left);
+  @include use-var(padding-right, padding-right);
+  @include use-var(padding-top, padding-top);
+
+  background-color: transparent;
+  border-width: 0;
+  color: inherit;
+  flex: 1 1 auto;
+  height: 100%;
+  outline: none;
+  width: 100%;
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin text-field-styles($disable-layer: false) {
+  @include utils.optional-layer(text-field, $disable-layer) {
+    .rmd-text-field {
+      @include base-styles;
+
+      &[disabled] {
+        @include theme.theme-use-var(color, text-disabled-color);
+      }
+
+      @if $color-min-width {
+        &[type="color"] {
+          min-width: $color-min-width;
+        }
+      }
+
+      &::placeholder {
+        @if not $disable-placeholder-ellipsis {
+          @include typography.text-overflow;
+        }
+
+        @include theme.theme-use-var(color, text-secondary-color);
+        // want to gain the same font styles as the input/textarea itself,
+        // just apply different colors as needed instead. Can't just do font: inherit
+        // since it'll break the styles in firefox.
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+
+        // fix firefox setting opacity to 0.54 by default
+        opacity: 1;
+
+        // Note: doesn't look like firefox applies css transitions to placeholder text?
+        transition: opacity transition.$linear-duration;
+      }
+
+      &[disabled]::placeholder {
+        color: inherit;
+      }
+
+      &--placeholder-hidden:not(:focus)::placeholder {
+        opacity: 0;
+      }
+
+      @include utils.rtl {
+        @include use-var(padding-left, padding-right);
+        @include use-var(padding-right, padding-left);
+      }
+    }
+  }
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin addon-styles($disable-layer: false) {
+  @include utils.optional-layer(text-field, $disable-layer) {
+    .rmd-text-field-addon {
+      @if $addon-gap {
+        @include box.set-var(gap, $addon-gap);
+      }
+      @if not
+        base.$form-disable-filled-theme or not
+        base.$form-disable-underlined-theme
+      {
+        @include use-var(margin-top, addon-margin-top);
+      }
+
+      // this makes it so that this container element is the same size as the
+      // child (normally icons). without this, icons would have a height of 30.5px
+      // and no longer be centered
+      position: absolute;
+
+      // Note: Can't use `:first-child` and `:last-child` since
+      // password/autocomplete managers might add another element into the
+      // `.rmd-text-field-container` which would prevent these styles from being
+      // applied
+      &--before {
+        @include use-var(left, addon-left-offset);
+
+        @include utils.rtl {
+          @include use-var(right, addon-left-offset);
+          left: auto;
+        }
+      }
+
+      &--after {
+        @include use-var(right, addon-spacing);
+
+        @include utils.rtl {
+          @include use-var(left, addon-spacing);
+          right: auto;
+        }
+      }
+
+      &--presentational {
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(text-field, $disable-layer) {
+      @include theme.default-system-theme {
+        @include use-dark-theme;
+      }
+
+      @include container-styles(true);
+      @include text-field-styles(true);
+      @include addon-styles(true);
+    }
+  }
+}

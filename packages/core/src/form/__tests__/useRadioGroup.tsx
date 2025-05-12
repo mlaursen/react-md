@@ -5,9 +5,9 @@ import { type ReactElement } from "react";
 import { Button } from "../../button/Button.js";
 import { AppSizeProvider } from "../../media-queries/AppSizeProvider.js";
 import { DropdownMenu } from "../../menu/DropdownMenu.js";
+import { MenuItemRadio } from "../../menu/MenuItemRadio.js";
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { Form } from "../Form.js";
-import { MenuItemRadio } from "../MenuItemRadio.js";
 import { Radio } from "../Radio.js";
 import { useRadioGroup } from "../useRadioGroup.js";
 

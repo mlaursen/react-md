@@ -2,7 +2,6 @@ import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, createRef } from "react";
 
 import { useFileUpload } from "../../files/useFileUpload.js";
-import { DropdownMenu } from "../../menu/DropdownMenu.js";
 import {
   createFileList,
   fireEvent,
@@ -13,6 +12,7 @@ import {
   waitFor,
 } from "../../test-utils/index.js";
 import { uploadMenuItemFileUpload } from "../../test-utils/jest-globals/index.js";
+import { DropdownMenu } from "../DropdownMenu.js";
 import { MenuItemFileInput } from "../MenuItemFileInput.js";
 
 describe("MenuItemFileInput", () => {

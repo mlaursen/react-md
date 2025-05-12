@@ -6,10 +6,10 @@ import { type ReactElement } from "react";
 import { Button } from "../../button/Button.js";
 import { AppSizeProvider } from "../../media-queries/AppSizeProvider.js";
 import { DropdownMenu } from "../../menu/DropdownMenu.js";
+import { MenuItemCheckbox } from "../../menu/MenuItemCheckbox.js";
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { Checkbox } from "../Checkbox.js";
 import { Form } from "../Form.js";
-import { MenuItemCheckbox } from "../MenuItemCheckbox.js";
 import { useCheckboxGroup } from "../useCheckboxGroup.js";
 
 describe("useCheckboxGroup", () => {

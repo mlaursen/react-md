@@ -1,0 +1,233 @@
+////
+/// @group select
+////
+
+@use "sass:map";
+@use "sass:math";
+@use "../utils";
+@use "../theme/colors";
+@use "../theme/theme";
+@use "../icon/icon";
+@use "../list/list";
+@use "../typography/typography";
+@use "base";
+@use "text-field";
+
+/// Set to `true` to disable the `Select` styles.
+/// @type Boolean
+$disable-everything: text-field.$disable-everything !default;
+
+/// Set to `true` to disable the `Option` styles.
+/// @type Boolean
+$disable-option: $disable-everything !default;
+
+/// Set to `true` to disable the `NativeSelect` styles.
+/// @type Boolean
+$disable-native-select: base.$form-disable-everything !default;
+
+/// Set to `true` to disable the `multiselect` styles for the `NativeSelect`.
+/// @type Boolean
+$disable-native-select-multiple: base.$form-disable-everything !default;
+
+/// The addon position within a `NativeSelect`.
+/// @type Number
+$native-select-addon-top: 1rem !default;
+
+/// The padding to apply to a multiselect `NativeSelect`.
+/// @type Number
+$native-select-multiple-padding: 0.75rem !default;
+
+/// The padding to apply to a multiselect `NativeSelect` when the
+/// `theme="underline"`.
+///
+/// @type Number
+$native-select-multiple-underline-padding: 1.5rem !default;
+
+/// The default icon size for a selected `Option`.
+/// @type Number
+$option-selected-icon-size: 1rem !default;
+
+/// The default `Option` styles while selected.
+/// @type Map
+$option-selected-styles: (
+  --rmd-icon-color: currentcolor,
+  background-color: colors.$blue-900,
+  color: colors.$white,
+) !default;
+
+/// The `padding-left` to apply to an `Option` when the `disableSelectedIcon`
+/// prop has not been enabled.
+///
+/// @type Number
+$option-padding-left: list.$item-horizontal-padding - math.div(
+    icon.$size - $option-selected-icon-size,
+    2
+  ) !default;
+
+/// The spacing between the selected icon and the `Option` content.
+/// @type Number
+$option-selected-icon-spacing: $option-padding-left !default;
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin option-styles($disable-layer: false) {
+  @include utils.optional-layer(select, $disable-layer) {
+    .rmd-option {
+      &--icon {
+        padding-left: $option-padding-left;
+
+        @include utils.rtl {
+          @include list.use-var(padding-left, item-horizontal-padding);
+
+          padding-right: $option-padding-left;
+        }
+      }
+
+      &--selected {
+        @include utils.map-to-styles($option-selected-styles);
+      }
+
+      &__icon {
+        @include icon.set-var(spacing, $option-selected-icon-spacing);
+        @include icon.set-var(size, $option-selected-icon-size);
+      }
+    }
+  }
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin native-select-styles($disable-layer: false) {
+  @include utils.optional-layer(select, $disable-layer) {
+    @if not $disable-native-select-multiple {
+      .rmd-native-select-container {
+        &--multi {
+          @include text-field.set-var(addon-top, $native-select-addon-top);
+          @include text-field.use-var(min-height, height);
+
+          height: auto;
+        }
+
+        &--padded {
+          padding-top: $native-select-multiple-padding;
+        }
+
+        @if not
+          base.$form-disable-filled-theme or not
+          base.$form-disable-underlined-theme
+        {
+          &--underline {
+            @include text-field.set-var(padding-top, 0);
+          }
+
+          &--underline-padded {
+            padding-top: $native-select-multiple-underline-padding;
+          }
+        }
+      }
+    }
+
+    .rmd-native-select {
+      @include text-field.base-styles;
+      @include typography.text-overflow;
+
+      appearance: none;
+
+      &[disabled] {
+        @include theme.theme-use-var(color, text-disabled-color);
+      }
+
+      &[multiple] {
+        overflow: auto;
+      }
+
+      @include utils.rtl {
+        @include text-field.use-var(padding-left, padding-right);
+        @include text-field.use-var(padding-right, padding-left);
+      }
+    }
+  }
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin select-styles($disable-layer: false) {
+  @include utils.optional-layer(select, $disable-layer) {
+    .rmd-select-container {
+      outline-style: none;
+    }
+
+    .rmd-selected-option {
+      position: absolute;
+    }
+
+    .rmd-select {
+      opacity: 0;
+
+      // All these additional overrides are provided so that the select will have
+      // the same sizing as a text field with the same props provided.
+      @if not base.$form-disable-underlined-theme {
+        &--underline {
+          padding-right: 0;
+
+          @include utils.rtl {
+            @include text-field.use-var(padding-right, padding-left);
+
+            padding-left: 0;
+          }
+        }
+      }
+
+      @if not base.$form-disable-outlined-theme {
+        &--outline {
+          @include text-field.use-var(padding-right, outlined-padding);
+          @include utils.rtl {
+            @include text-field.use-var(padding-left, outlined-padding);
+            @include text-field.use-var(padding-right, padding-left);
+          }
+        }
+      }
+
+      @if not base.$form-disable-filled-theme {
+        &--filled {
+          @include text-field.use-var(padding-right, filled-padding);
+          @include utils.rtl {
+            @include text-field.use-var(padding-right, padding-left);
+            @include text-field.use-var(padding-left, filled-padding);
+          }
+        }
+      }
+
+      // disable pointer events on touch devices so the soft keyboard does not
+      // appear when clicking the select
+      @media (hover: none) and (pointer: coarse) {
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(select, $disable-layer) {
+      @include select-styles(true);
+      @if not $disable-option {
+        @include option-styles(true);
+      }
+
+      @if not $disable-native-select {
+        @include native-select-styles(true);
+      }
+    }
+  }
+}

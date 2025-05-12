@@ -7,8 +7,8 @@ import {
 } from "react";
 
 import { getIcon } from "../icon/config.js";
-import { MenuItem, type MenuItemProps } from "../menu/MenuItem.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import { MenuItem, type MenuItemProps } from "./MenuItem.js";
 
 const noop = (): void => {
   // do nothing

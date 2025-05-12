@@ -1,0 +1,309 @@
+////
+/// @group label
+////
+
+@use "sass:map";
+@use "../utils";
+@use "../icon/icon";
+@use "../transition/transition";
+@use "../typography/typography";
+@use "base";
+
+/// Set to `true` to disable all the `Label` styles
+/// @type Boolean
+$disable-everything: base.$form-disable-everything !default;
+
+/// Set to `true` to disable only the floating `Label` styles
+/// @type Boolean
+$disable-floating: $disable-everything !default;
+
+/// Set to `true` to disable the styles that set the label active styles while
+/// an element in the `TextFieldContainer` has focus.
+/// @type Boolean
+$disable-text-field-container: false !default;
+
+/// Set to `true` to disable if not using the `TextField`, `Password`, and
+/// `TextArea` components to remove the styles that float the label while
+/// the input or textarea has a value.
+/// @type Boolean
+$disable-text-field: $disable-text-field-container !default;
+
+/// Set to `true` to disable if not using the `Select` component to remove the
+/// styles that float the label while the `Select` has a value.
+/// @type Boolean
+$disable-select: $disable-text-field-container !default;
+
+/// Set to `true` to disable the styles to float the label while the
+/// `NativeSelect` has a value.
+/// @type Boolean
+$disable-native-select: $disable-text-field-container !default;
+
+/// Set to `true` to disable the `gap` property on a `Label`.
+/// @type Boolean
+$disable-gap: $disable-everything !default;
+
+/// Set to `true` to disable the `reversed` styles on a `Label`.
+/// @type Boolean
+$disable-reversed: $disable-everything !default;
+
+/// Set to `true` to disable the `stacked` styles for a `Label`.
+/// @type Boolean
+$disable-stacked: $disable-everything !default;
+
+/// Set to `true` to disable the `stacked` and `reversed` styles for a `Label`.
+/// @type Boolean
+$disable-stacked-reversed: $disable-everything !default;
+
+/// The spacing between elements in a `Label`.
+///
+/// @see $disable-gap
+/// @type Number
+$gap: icon.$spacing !default;
+
+/// The default `Label` font size.
+///
+/// @type Number
+$font-size: 1em !default;
+
+/// The default `Label` typography.
+///
+/// @type Map
+$typography: map.merge(
+  typography.$body-1-styles,
+  (
+    font-size: $font-size,
+  )
+) !default;
+
+/// The distance from the top of the floating label container to position the `Label`
+/// while not active.
+///
+/// @type Number
+$floating-y: 1rem !default;
+
+/// The distance from the top of the floating label container to position the `Label`
+/// while not active and the `dense` prop was enabled.
+///
+/// @type Number
+$floating-y-dense: 0.9rem !default;
+
+/// The `transform: scale()` value to apply to the floating label while not active.
+/// @type Number
+$floating-scale: 0.75 !default;
+
+/// The amount of padding to apply to a floating label. This is used to "cover"
+/// the outline and add some general spacing.
+///
+/// @type Number
+$floating-padding: 0.25rem !default;
+
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
+$variables: (
+  floating-x,
+  floating-y,
+  floating-active-x,
+  floating-active-y,
+  active-padding,
+  active-background-color
+);
+
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
+@function get-var($name, $fallback: null) {
+  $var: utils.get-var-name($variables, $name, "label");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
+  }
+
+  @return var(#{$var});
+}
+
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
+@mixin set-var($name, $value) {
+  @if $value {
+    #{utils.get-var-name($variables, $name, "label")}: #{$value};
+  }
+}
+
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+/// This is probably an internal only mixin to generate update the label styles
+/// while linked component is considered active (normally focused).
+@mixin active-styles {
+  @include base.form-use-var(color, focus-color);
+}
+
+/// This is probably an internal only mixin to generate update the label styles
+/// while linked component is considered active (normally focused).
+@mixin floating-active-styles {
+  @include use-var(background-color, active-background-color);
+  @include use-var(padding, active-padding);
+
+  transform: scale($floating-scale)
+    translate(get-var(floating-active-x), get-var(floating-active-y));
+  // need to add the `transform-origin` because of the scaling applied.
+  // it'll change the position based on the size of the label otherwise
+  transform-origin: 0 0;
+  z-index: 1;
+
+  @include utils.rtl {
+    transform: scale($floating-scale)
+      translate(
+        utils.negate-var(get-var(floating-active-x)),
+        get-var(floating-active-y)
+      );
+    transform-origin: 100% 0;
+  }
+}
+
+/// Conditionally applies the css variables based on feature flags
+@mixin variables {
+  @if not $disable-everything and not $disable-floating {
+    @include set-var(floating-x, 0px);
+    @include set-var(floating-y, $floating-y);
+    @include set-var(floating-active-x, 0px);
+    @include set-var(floating-active-y, 0px);
+    @include set-var(active-padding, 0px);
+    @include set-var(active-background-color, transparent);
+  }
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(label, $disable-layer) {
+      .rmd-label {
+        @include utils.map-to-styles($typography);
+
+        align-items: center;
+        display: inline-flex;
+        transition-duration: transition.$linear-duration;
+        transition-property: background-color, transform;
+
+        $active-selector: "&--active";
+        @if not $disable-text-field-container {
+          $active-selector: $active-selector +
+            ", .rmd-text-field-container:focus-within &";
+        }
+
+        #{$active-selector} {
+          @include active-styles;
+        }
+
+        @if not $disable-floating {
+          &--floating {
+            left: 0;
+            position: absolute;
+            top: 0;
+            transform: translate(get-var(floating-x), get-var(floating-y));
+
+            @include utils.rtl {
+              left: auto;
+              right: 0;
+              transform: translate(
+                utils.negate-var(get-var(floating-x)),
+                get-var(floating-y)
+              );
+            }
+          }
+
+          &--floating-dense {
+            @include set-var(floating-y, $floating-y-dense);
+          }
+
+          $floating-active-selector: "&--floating-active";
+          // TODO: Figure out how to better feature flag this?
+          @if not $disable-text-field or not $disable-select {
+            // The label should automatically float while the input is not focused
+            // and there is a value the label _should_ always be the next element.
+            // However, password managers might inject an element in the DOM
+            // before the label to display their way of autocompleting the field
+            // so it also needs to support the label appearing anywhere after the
+            // input instead of the next element. It should also ignore the select
+            // field since it is more of a hidden input. Here are a few examples:
+            //
+            // ```html
+            // <!-- Simple TextField with no password manager -->
+            // <input class="rmd-text-field" type="text" />
+            // <label class="rmd-label rmd-label--floating"></label>
+            //
+            // <!-- Simple TextField with password manager -->
+            // <input class="rmd-text-field" type="text" />
+            // <div style="position: relative !important; ...">...</div>
+            // <label class="rmd-label rmd-label--floating"></label>
+            //
+            // <!-- Simple Select -->
+            // <input class="rmd-select rmd-text-field" type="text" />
+            // <span class="rmd-label rmd-label--floating"></span>
+            // ```
+            $valued-input: ", .rmd-text-field:where(:not(:placeholder-shown))";
+
+            // so this targets the TextField with no password manager
+            $valued-input-with-floating-label-next-element: $valued-input +
+              " + &--floating";
+            // this targets the TextField with a password manager and excludes the
+            // Select
+            $valued-input-with-floating-label-any-relative-element: $valued-input +
+              " ~ :where(:not(.rmd-select)) ~ &--floating";
+
+            $text-field-floating: $valued-input-with-floating-label-next-element +
+              $valued-input-with-floating-label-any-relative-element;
+
+            $floating-active-selector: $floating-active-selector +
+              ", .rmd-text-field-container:focus-within &--floating" +
+              $text-field-floating;
+          }
+          @if not $disable-native-select {
+            $floating-active-selector: $floating-active-selector +
+              ", .rmd-native-select[multiple] ~ &--floating" +
+              ", .rmd-native-select:where(:not(:invalid)) ~ &--floating";
+          }
+
+          #{$floating-active-selector} {
+            @include floating-active-styles;
+          }
+        }
+
+        @if not $disable-gap {
+          &--gap {
+            gap: $gap;
+          }
+        }
+
+        @if not $disable-reversed {
+          &--reversed {
+            flex-direction: row-reverse;
+            // this makes it so the content is at the starting edge
+            justify-content: flex-end;
+          }
+        }
+
+        @if not $disable-stacked {
+          &--stacked {
+            flex-direction: column;
+          }
+        }
+
+        @if not $disable-stacked-reversed {
+          &--stacked-reversed {
+            flex-direction: column-reverse;
+          }
+        }
+      }
+    }
+  }
+}

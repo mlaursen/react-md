@@ -1,8 +1,8 @@
 "use client";
 
-import { MenuItemCheckbox } from "@react-md/core/form/MenuItemCheckbox";
 import { useCheckboxGroup } from "@react-md/core/form/useCheckboxGroup";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+import { MenuItemCheckbox } from "@react-md/core/menu/MenuItemCheckbox";
 import { MenuItemSeparator } from "@react-md/core/menu/MenuItemSeparator";
 import { type ReactElement, useState } from "react";
 

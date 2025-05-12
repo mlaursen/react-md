@@ -6,5 +6,5 @@
 }
 
 .darker {
-  @include everything.form-set-var(switch-track-background-color, #000);
+  @include everything.switch-set-var(track-background-color, #000);
 }

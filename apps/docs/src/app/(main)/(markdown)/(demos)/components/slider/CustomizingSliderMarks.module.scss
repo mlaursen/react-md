@@ -2,5 +2,5 @@
 
 .form {
   @include everything.box-set-var(gap, 3rem);
-  @include everything.form-set-var(slider-vertical-size, 25rem);
+  @include everything.slider-set-var(vertical-size, 25rem);
 }

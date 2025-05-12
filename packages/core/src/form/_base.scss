@@ -1,0 +1,86 @@
+////
+/// @group core.form
+////
+
+@use "../utils";
+@use "../theme/theme";
+@use "../interaction/interaction";
+
+/// Set to `true` to disable all form styles.
+/// @type Boolean
+$form-disable-everything: false !default;
+
+/// Set to `true` if the `theme="filled"` will not be used in the app.
+///
+/// @type Boolean
+$form-disable-filled-theme: $form-disable-everything !default;
+
+/// Set to `true` if the `theme="outline"` will not be used in the app.
+///
+/// NOTE: This would require updating the `FORM_CONFIG.theme` value since this
+/// is the default theme.
+///
+/// @type Boolean
+$form-disable-outlined-theme: $form-disable-everything !default;
+
+/// Set to `true` if the `theme="underline"` will not be used in the app.
+///
+/// NOTE: If the `$form-theme` is set to `filled`, this will always be `true`
+/// since it they depend on the same styles.
+///
+/// @type Boolean
+$form-disable-underlined-theme: $form-disable-everything !default;
+
+/// The color to use while the form elements are focused. This would
+/// apply to things like the border-color/box-shadow and text color.
+///
+/// @type Color
+$form-focus-color: interaction.$focus-color !default;
+
+/// The color to apply to form elements while they are active/checked.
+///
+/// @type Color
+$form-active-color: theme.theme-get-var(primary-color) !default;
+
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
+$form-variables: (active-color, focus-color);
+
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
+@function form-get-var($name, $fallback: null) {
+  $var: utils.get-var-name($form-variables, $name, "form");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
+  }
+
+  @return var(#{$var});
+}
+
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
+@mixin form-set-var($name, $value) {
+  @if $value {
+    #{utils.get-var-name($form-variables, $name, "form")}: #{$value};
+  }
+}
+
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
+@mixin form-use-var($property, $name: $property, $fallback: null) {
+  #{$property}: form-get-var($name, $fallback);
+}
+
+@mixin form-variables {
+  @if not $form-disable-everything {
+    @if not theme.is-theme-color-var($form-active-color) {
+      @include form-set-var(active-color, $form-active-color);
+    }
+    @include form-set-var(focus-color, $form-focus-color);
+  }
+}

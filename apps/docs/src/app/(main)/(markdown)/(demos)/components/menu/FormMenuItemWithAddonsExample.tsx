@@ -1,9 +1,9 @@
 import { Avatar } from "@react-md/core/avatar/Avatar";
-import { MenuItemCheckbox } from "@react-md/core/form/MenuItemCheckbox";
-import { MenuItemRadio } from "@react-md/core/form/MenuItemRadio";
-import { MenuItemSwitch } from "@react-md/core/form/MenuItemSwitch";
 import { useCheckboxGroup } from "@react-md/core/form/useCheckboxGroup";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+import { MenuItemCheckbox } from "@react-md/core/menu/MenuItemCheckbox";
+import { MenuItemRadio } from "@react-md/core/menu/MenuItemRadio";
+import { MenuItemSwitch } from "@react-md/core/menu/MenuItemSwitch";
 import FavoriteIcon from "@react-md/material-icons/FavoriteIcon";
 import { type ReactElement } from "react";
 

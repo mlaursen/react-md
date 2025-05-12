@@ -4,7 +4,7 @@ exports[`TextArea resizing behavior should update the height as the user types 1
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-textarea-container rmd-textarea-container--height rmd-textarea-container--cursor"
   data-testid="container"
-  style="--rmd-textarea-height: 56px;"
+  style="--rmd-text-area-height: 56px;"
 >
   <div
     class="rmd-textarea-container__inner"
@@ -37,7 +37,7 @@ exports[`TextArea resizing behavior should update the height as the user types 2
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-textarea-container rmd-textarea-container--height rmd-textarea-container--animate rmd-textarea-container--cursor"
   data-testid="container"
-  style="--rmd-textarea-height: 72px;"
+  style="--rmd-text-area-height: 72px;"
 >
   <div
     class="rmd-textarea-container__inner rmd-textarea-container__inner--animate"

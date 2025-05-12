@@ -1,7 +1,7 @@
-import { MenuItemTextField } from "@react-md/core/form/MenuItemTextField";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
 import { MenuItem } from "@react-md/core/menu/MenuItem";
 import { MenuItemSeparator } from "@react-md/core/menu/MenuItemSeparator";
+import { MenuItemTextField } from "@react-md/core/menu/MenuItemTextField";
 import SearchIcon from "@react-md/material-icons/SearchIcon";
 import { type ReactElement } from "react";
 

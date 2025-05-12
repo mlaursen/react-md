@@ -5,9 +5,10 @@ import { type LabelProps } from "./types.js";
 
 declare module "react" {
   interface CSSProperties {
-    "--rmd-label-floating-top"?: string | number;
-    "--rmd-label-left-offset"?: string | number;
-    "--rmd-label-top-offset"?: string | number;
+    "--rmd-label-floating-x"?: string | number;
+    "--rmd-label-floating-y"?: string | number;
+    "--rmd-label-floating-active-x"?: string | number;
+    "--rmd-label-floating-active-y"?: string | number;
     "--rmd-label-active-padding"?: string | number;
     "--rmd-label-active-background-color"?: string;
   }

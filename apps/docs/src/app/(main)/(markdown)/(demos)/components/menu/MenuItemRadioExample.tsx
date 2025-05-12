@@ -1,9 +1,9 @@
 "use client";
 
 import { type TextDecoration } from "@react-md/core/cssUtils";
-import { MenuItemRadio } from "@react-md/core/form/MenuItemRadio";
 import { useRadioGroup } from "@react-md/core/form/useRadioGroup";
 import { DropdownMenu } from "@react-md/core/menu/DropdownMenu";
+import { MenuItemRadio } from "@react-md/core/menu/MenuItemRadio";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
 

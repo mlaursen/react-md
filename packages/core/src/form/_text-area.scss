@@ -1,0 +1,211 @@
+////
+/// @group text-area
+////
+
+@use "sass:map";
+@use "../utils";
+@use "../transition/transition";
+@use "base";
+@use "label";
+@use "text-field";
+
+/// Set to `true` to disable the `TextArea` styles
+/// @type Boolean
+$disable-everything: base.$form-disable-everything !default;
+
+/// Set to `true` if the `TextArea` does not need to support the
+/// `resize="auto"` behavior.
+///
+/// @type Boolean
+$disable-resizing-rows: $disable-everything !default;
+
+/// Set to `true` if the `resize="horizontal"` will not be used for the
+/// `TextArea`.
+/// @type Boolean
+$disable-resize-horizontal: $disable-everything !default;
+
+/// Set to `true` if the `resize="vertical"` will not be used for the
+/// `TextArea`.
+/// @type Boolean
+$disable-resize-vertical: $disable-everything !default;
+
+/// The default position for addons within a `TextArea`.
+/// @type Number
+$addon-top: 1rem !default;
+
+/// The default vertical padding to apply to `TextArea` which is useful when
+/// there is a scrollbar visible. This should normally be enough so that the
+/// floating label does not cover the content.
+///
+/// @type Number
+$vertical-padding: 0.75rem !default;
+
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
+$variables: (height, padding);
+
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
+@function get-var($name, $fallback: null) {
+  $var: utils.get-var-name($variables, $name, "text-area");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
+  }
+
+  @return var(#{$var});
+}
+
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
+@mixin set-var($name, $value) {
+  @if $value {
+    #{utils.get-var-name($variables, $name, "text-area")}: #{$value};
+  }
+}
+
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin textarea-container-styles($disable-layer: false) {
+  @include utils.optional-layer(text-area, $disable-layer) {
+    .rmd-textarea-container {
+      @include text-field.set-var(addon-top, $addon-top);
+
+      height: auto;
+      max-width: 100%;
+      padding-top: calc(
+        #{text-field.get-var(padding-top)} + #{get-var(padding)}
+      );
+
+      &--cursor:hover {
+        // need to add this cursor back since the textarea container adds padding to
+        // itself instead of the textarea so it loses this cursor. the container
+        // element will still focus the textarea when clicked
+        cursor: text;
+      }
+
+      @if not
+        base.$form-disable-filled-theme or not
+        base.$form-disable-underlined-theme
+      {
+        &--underline-labelled {
+          @include set-var(padding, 0px);
+          @include label.set-var(
+            floating-y,
+            text-field.$underlined-label-padding-top
+          );
+        }
+      }
+
+      @if not $disable-resizing-rows {
+        &--height {
+          height: calc(
+            #{text-field.get-var(padding-top)} +
+              #{get-var(padding)} +
+              #{get-var(height)}
+          );
+        }
+
+        &--animate {
+          transition: height
+            transition.$linear-duration
+            transition.$linear-timing-function;
+        }
+
+        &__inner {
+          @include use-var(height, height, 100%);
+
+          width: 100%;
+
+          &--animate {
+            transition: height
+              transition.$linear-duration
+              transition.$linear-timing-function;
+          }
+        }
+      }
+    }
+  }
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin textarea-styles($disable-layer: false) {
+  @include utils.optional-layer(text-area, $disable-layer) {
+    .rmd-textarea {
+      @include text-field.set-var(padding-top, 0px);
+      @include text-field.use-var(min-height, height);
+      @include use-var(height, height, 100%);
+
+      @if not $disable-resize-horizontal {
+        &--rh {
+          resize: horizontal;
+        }
+      }
+
+      @if not $disable-resize-vertical {
+        &--rv {
+          resize: vertical;
+        }
+      }
+
+      &--rn {
+        overflow: hidden;
+        resize: none;
+      }
+
+      // only want the textarea to be scrollable if there's a limit on the rows
+      // since it'll flash the scrollbar on most OS during the height transition
+      &--scrollable {
+        overflow: auto;
+      }
+
+      @if not $disable-resizing-rows {
+        &--mask {
+          height: auto;
+          left: 0;
+          opacity: 0;
+          overflow: hidden;
+          pointer-events: none;
+          position: absolute;
+          right: 0;
+          z-index: -1;
+        }
+      }
+    }
+  }
+}
+
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(height, text-field.$height);
+    @include set-var(padding, $vertical-padding);
+  }
+}
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(text-area, $disable-layer) {
+      @include textarea-container-styles(true);
+      @include textarea-styles(true);
+    }
+  }
+}

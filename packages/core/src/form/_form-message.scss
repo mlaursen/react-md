@@ -1,0 +1,114 @@
+////
+/// @group form-message
+////
+
+@use "sass:map";
+@use "../utils";
+@use "../icon/icon";
+@use "../typography/typography";
+@use "base";
+@use "text-field";
+
+/// Set to `true` to disable the `FormMessage`/`FormMessageContainer` component
+/// styles. This also includes the `messageProps` on other form components.
+///
+/// @type Boolean
+$disable-everything: base.$form-disable-everything !default;
+
+/// Set to `true` if the inline counter for `TextField`/`TextArea`/`Password`
+/// will not be used.
+///
+/// @type Boolean
+$disable-counter: $disable-everything !default;
+
+/// The default typography for the `FormMessage` component.
+/// @type Map
+$typography-styles: map.merge(
+  typography.$body-2-styles,
+  (
+    font-size: 0.75rem,
+  )
+) !default;
+
+/// The `gap` between elements in the `FormMessageCounter` component .
+///
+/// @type Number
+$counter-spacing: icon.$spacing !default;
+
+/// The  `margin-top` for the `FormMessage` component.
+/// @type Number
+$margin-top: 0.5rem !default;
+
+/// The `margin-bottom` for the `FormMessage` component.
+///
+/// @type Number
+$margin-bottom: 1rem !default;
+
+/// The `min-height` for the `FormMessage` component.
+/// @type Number
+$min-height: 2rem !default;
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(form-message, $disable-layer) {
+      .rmd-form-message-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .rmd-form-message {
+        @include utils.map-to-styles($typography-styles);
+
+        display: flex;
+        margin: $margin-top 0 $margin-bottom;
+        min-height: $min-height;
+
+        @if not base.$form-disable-filled-theme {
+          &--filled {
+            @include text-field.use-var(padding-left, filled-padding);
+            @include text-field.use-var(padding-right, filled-padding);
+          }
+        }
+
+        @if not base.$form-disable-outlined-theme {
+          &--outline {
+            @include text-field.use-var(padding-left, outlined-padding);
+            @include text-field.use-var(padding-right, outlined-padding);
+          }
+        }
+
+        @if not base.$form-disable-underlined-theme {
+          &--underline {
+            @include text-field.use-var(padding-left, underlined-padding);
+            @include text-field.use-var(padding-right, underlined-padding);
+          }
+        }
+
+        &__message {
+          margin: 0;
+        }
+
+        @if not $disable-counter {
+          &__counter {
+            flex-shrink: 0;
+            margin-left: auto;
+            padding-left: $counter-spacing;
+            white-space: nowrap;
+
+            @include utils.rtl {
+              margin-left: 0;
+              margin-right: auto;
+              padding-left: 0;
+              padding-right: $counter-spacing;
+            }
+          }
+        }
+      }
+    }
+  }
+}
