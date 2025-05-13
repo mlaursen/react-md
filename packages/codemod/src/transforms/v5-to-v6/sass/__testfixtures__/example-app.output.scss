@@ -1,0 +1,19 @@
+@use "../everything" as *;
+
+@include styles;
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include use-dark-theme;
+  }
+}
+
+body > div:first-child {
+  height: 100%;
+}
+
+:root {
+  @include desktop-media {
+    @include tooltip-dense-variables;
+  }
+}

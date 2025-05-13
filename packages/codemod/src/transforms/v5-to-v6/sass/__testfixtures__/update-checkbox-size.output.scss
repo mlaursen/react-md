@@ -1,0 +1,15 @@
+@use 'react-md' as *;
+
+.small {
+  @include button-set-var(icon-size, 2rem);
+  @include icon-set-var(size, 1rem);
+  // TODO: This mixin removed support for "toggle-inset".
+  @include form-set-var(toggle-inset, 0.25rem);
+}
+
+.large {
+  @include button-set-var(icon-size, 5rem);
+  @include icon-set-var(size, 4rem);
+  // TODO: This mixin removed support for "toggle-inset".
+  @include form-set-var(toggle-inset, 0.85rem);
+}

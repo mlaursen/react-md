@@ -7,9 +7,9 @@ keywords: [migrate, auto-migrate, codemod]
 
 # Migrate from v5 to v6
 
-There were a lot of breaking changes between v5 and v6 of react-md, but most
-can be automated using the `codemod`. The migrations will be listed on this
-page and prefixed with an icon:
+There were a lot of breaking changes between v5 and v6 of react-md, but a good
+amount can be automated using the `codemod`. The migrations will be listed on
+this page and prefixed with an icon:
 
 - 🎉 - no breaking changes
 - ✅ - can be fully migrated
@@ -17,13 +17,71 @@ page and prefixed with an icon:
 - 🔧 - can be migrated but will probably require a few manual changes
 - ❌ - must be manually updated
 
-The full interactive migration can be run with the following command:
+> !Warn! Make sure to have committed or stashed any working changes before
+> running the codemod to make reviewing changes easier and having a fallback if
+> everything goes wrong. If you use a formatter, make sure to run it against
+> all files afterwards to reduce the diffs as well.
+
+Before getting started, remove all the `@react-md/*` packages and upgrade to
+the latest `react-md` version.
+
+```sh
+npm uninstall \
+  react-md \
+  @react-md/alert \
+  @react-md/app-bar \
+  @react-md/autocomplete \
+  @react-md/avatar \
+  @react-md/badge \
+  @react-md/button \
+  @react-md/card \
+  @react-md/chip \
+  @react-md/dialog \
+  @react-md/divider \
+  @react-md/elevation \
+  @react-md/expansion-panel \
+  @react-md/form \
+  @react-md/icon \
+  @react-md/layout \
+  @react-md/link \
+  @react-md/list \
+  @react-md/material-icons \
+  @react-md/media \
+  @react-md/menu \
+  @react-md/overlay \
+  @react-md/portal \
+  @react-md/progress \
+  @react-md/sheet \
+  @react-md/states \
+  @react-md/table \
+  @react-md/tabs \
+  @react-md/theme \
+  @react-md/tooltip \
+  @react-md/transition \
+  @react-md/tree \
+  @react-md/typography \
+  @react-md/utils
+```
+
+```sh
+npm install react-md @react-md/material-icons
+```
+
+## Codemods
+
+If you just want to try auto-migrating everything through the codemods and
+handling the `TODO`s/manual steps afterwards, you can run the following commands:
 
 ```sh
 npx @react-md/codemod migrate/v5-to-v6
 ```
 
-## ✅ Update all imports to `react-md`
+You will be prompted to provide the Javascript parser, which files/folder to
+run the codemod on, and if everything should be auto-confirmed.
+
+## Javascript/Typescript Migration
+
+### ✅ Update all imports to `react-md`
 
 > !Warn! This step is **required** for any other codemods to work. The codemods
 > only look for the `react-md` package name.
@@ -58,7 +116,7 @@ package imports (`@react-md/*`) into the `react-md` package import.
  import styles from "./FullPageExample.module.scss";
 ```
 
-## 🔧 Hardcode any scssVariables usage
+### 🔧 Hardcode any scssVariables usage
 
 ```sh
 npx @react-md/codemod v5-to-v6/hardcode-scss-variables
@@ -114,7 +172,7 @@ it no longer exists.
    );
 ```
 
-## ✅ Remove deprecated `FontIcon` props
+### ✅ Remove deprecated `FontIcon` props
 
 ```sh
 npx @react-md/codemod v5-to-v6/icon/remove-deprecated-font-icon-props
@@ -142,13 +200,13 @@ The `forceSize` and `forceFontSize` props were removed from the `FontIcon` compo
  }
 ```
 
-## ✅ Update Material Icons
+### ✅ Update Material Icons
 
 The `@react-md/material-icons` package was updated to support all the new icons
 and material symbols but only exports SVG icon component versions. Choose one of
 the following migrations:
 
-#### ✅ to-svg
+##### ✅ to-svg
 
 ```sh
 npx @react-md/codemod v5-to-v6/material-icons/to-svg
@@ -224,7 +282,7 @@ Converts all material icons into the SVG components in v6.0.0.
  };
 ```
 
-#### ✅ to-font
+##### ✅ to-font
 
 ```sh
 npx @react-md/codemod v5-to-v6/material-icons/to-font
@@ -290,7 +348,7 @@ Converts all material icons into the new `MaterialIcon` component.
  };
 ```
 
-#### ✅ to-symbol
+##### ✅ to-symbol
 
 ```sh
 npx @react-md/codemod v5-to-v6/material-icons/to-symbol
@@ -355,9 +413,9 @@ Converts all material icons into the new `MaterialSymbol` component.
  };
 ```
 
-## Update the scoped packages
+### Update the scoped packages
 
-### Alert ❌
+#### Alert ❌
 
 There are a lot of breaking changes for the alert components and API. There are
 some auto-migrations available, but it is recommended to change a few things
@@ -522,9 +580,9 @@ to the v6 implementation:
  }
 ```
 
-### App Bar
+#### App Bar
 
-#### 🔧 remove-class-name-constants
+##### 🔧 remove-class-name-constants
 
 ```sh
 npx @react-md/codemod v5-to-v6/app-bar/remove-class-name-constants
@@ -589,7 +647,7 @@ If the content should still be offset by the app bar's height, apply the followi
 }
 ```
 
-#### ✅ remove-use-action-class-name
+##### ✅ remove-use-action-class-name
 
 ```sh
 npx @react-md/codemod v5-to-v6/app-bar/remove-use-action-class-name
@@ -636,7 +694,7 @@ spacing within an `AppBar`.
      </>
 ```
 
-#### ✅ replace-nav-and-action-with-button
+##### ✅ replace-nav-and-action-with-button
 
 ```sh
 npx @react-md/codemod v5-to-v6/app-bar/replace-nav-and-action-with-button
@@ -698,7 +756,7 @@ with a `Button`.
      </Container>
 ```
 
-#### ✅ update-app-bar-props
+##### ✅ update-app-bar-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/app-bar/update-app-bar-props
@@ -736,7 +794,7 @@ The following props have changed for the `AppBar` component:
  }
 ```
 
-#### ✅ update-app-bar-title-props
+##### ✅ update-app-bar-title-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/app-bar/update-app-bar-title-props
@@ -768,7 +826,7 @@ The following props have changed for the `AppBarTitle` component:
  }
 ```
 
-### Auto Complete ❌
+#### Auto Complete ❌
 
 The `AutoComplete` has a completely new API and has been renamed to `Autocomplete`. It
 is recommended to check out the [Autocomplete Demos](/components/autocomplete) to see
@@ -809,7 +867,7 @@ The main breaking changes are:
 - The listbox style, className, and positioning options must now be passed to
   `listboxProps`:
 
-#### 🔧 update-simple-props
+##### 🔧 update-simple-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/autocomplete/update-simple-props
@@ -898,13 +956,13 @@ the manual steps.
  }
 ```
 
-### Avatar 🎉
+#### Avatar 🎉
 
 No breaking changes!
 
-### Badge
+#### Badge
 
-#### 🎨 remove-badge-container
+##### 🎨 remove-badge-container
 
 ```sh
 npx @react-md/codemod v5-to-v6/badge/remove-badge-container
@@ -967,7 +1025,7 @@ The `BadgeContainer` was removed and custom styles must be used instead.
  }
 ```
 
-#### 🔧 update-badge
+##### 🔧 update-badge
 
 ```sh
 npx @react-md/codemod v5-to-v6/badge/update-badge
@@ -1059,9 +1117,9 @@ a string.
 +}
 ```
 
-### Button
+#### Button
 
-#### ✅ remove-unused-props
+##### ✅ remove-unused-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/button/remove-unused-props
@@ -1096,7 +1154,7 @@ The `Button` no longer supports the ripple props.
  }
 ```
 
-#### ✅ rename-button-theme-class-names
+##### ✅ rename-button-theme-class-names
 
 ```sh
 npx @react-md/codemod v5-to-v6/button/rename-button-theme-class-names
@@ -1125,7 +1183,7 @@ The `buttonThemeClassNames` utility function was renamed to `button`.
 
 ```
 
-#### ✅ rename-fab
+##### ✅ rename-fab
 
 ```sh
 npx @react-md/codemod v5-to-v6/button/rename-fab
@@ -1162,7 +1220,7 @@ The `FAB` was renamed to `FloatingActionButton`.
  }
 ```
 
-#### ✅ rename-unstyled-button
+##### ✅ rename-unstyled-button
 
 ```sh
 npx @react-md/codemod v5-to-v6/button/rename-unstyled-button
@@ -1205,9 +1263,9 @@ The `UnstyledButton` component was renamed to `ButtonUnstyled`.
  }
 ```
 
-### Card
+#### Card
 
-#### ✅ card-actions-to-card-footer
+##### ✅ card-actions-to-card-footer
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/card-actions-to-card-footer
@@ -1232,7 +1290,7 @@ was renamed to `justify`.
  }
 ```
 
-#### ✅ remove-deprecated-card-props
+##### ✅ remove-deprecated-card-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/remove-deprecated-card-props
@@ -1251,7 +1309,7 @@ The deprecated `raiseable` prop was removed in favor of `raisable`.
      </>
 ```
 
-#### ✅ update-card-content-props
+##### ✅ update-card-content-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/update-card-content-props
@@ -1275,7 +1333,7 @@ The `CardContent` component updated the following props:
        </CardContent>
 ```
 
-#### ✅ update-card-header-props
+##### ✅ update-card-header-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/update-card-header-props
@@ -1323,7 +1381,7 @@ The `CardHeader` updated the following props:
      </>
 ```
 
-#### ✅ update-card-subtitle-props
+##### ✅ update-card-subtitle-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/update-card-subtitle-props
@@ -1352,7 +1410,7 @@ The `CardSubtitle` updated the following props:
        </CardSubtitle>
 ```
 
-#### ✅ update-card-title-props
+##### ✅ update-card-title-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/card/update-card-title-props
@@ -1382,9 +1440,9 @@ The `CardTitle` updated the following props:
      </>
 ```
 
-### Chip
+#### Chip
 
-#### ✅ update-chip-props
+##### ✅ update-chip-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/chip/update-chip-props
@@ -1403,9 +1461,9 @@ The `Chip` renamed the `noninteractable` prop to `noninteractive`.
  }
 ```
 
-### Dialog
+#### Dialog
 
-#### ✅ remove-nested-dialog-context-provider
+##### ✅ remove-nested-dialog-context-provider
 
 ```sh
 npx @react-md/codemod v5-to-v6/dialog/remove-nested-dialog-context-provider
@@ -1450,7 +1508,7 @@ The `NestedDialogContextProvider` has been removed and is no longer required.
  }
 ```
 
-#### 🔧 update-dialog-props
+##### 🔧 update-dialog-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/dialog/update-dialog-props
@@ -1545,9 +1603,9 @@ The `Dialog` and `FixedDialog` components have the following prop changes:
          <DialogFooter>
 ```
 
-### Divider
+#### Divider
 
-#### 🎨 vertical-divider-to-divider
+##### 🎨 vertical-divider-to-divider
 
 ```sh
 npx @react-md/codemod v5-to-v6/divider/vertical-divider-to-divider
@@ -1599,9 +1657,9 @@ and there is no replacement.
  }
 ```
 
-### Expansion Panel
+#### Expansion Panel
 
-#### ✅ update-expansion-panel-props
+##### ✅ update-expansion-panel-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/expansion-panel/update-expansion-panel-props
@@ -1661,7 +1719,7 @@ The `ExpansionPanel` updated the following props:
  }
 ```
 
-#### 🔧 use-panels-to-use-expansion-panel
+##### 🔧 use-panels-to-use-expansion-panel
 
 ```sh
 npx @react-md/codemod v5-to-v6/expansion-panel/use-panels-to-use-expansion-panel
@@ -1734,9 +1792,9 @@ The `usePanels` hook was renamed to `useExpansionPanels` with a new API:
          lacinia. Fusce vitae commodo nisl. Donec congue arcu ut porta feugiat.
 ```
 
-### Form
+#### Form
 
-#### 🔧 replace-with-message-components
+##### 🔧 replace-with-message-components
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/replace-with-message-components
@@ -1813,7 +1871,7 @@ have been removed and instead the default behavior for the `TextField`,
  }
 ```
 
-#### 🔧 update-text-field-container-props
+##### 🔧 update-text-field-container-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-text-field-container-props
@@ -1891,7 +1949,7 @@ The `TextFieldContainer` updated a few props which affects the `TextField`,
  }
 ```
 
-#### 🔧 update-use-text-field-api
+##### 🔧 update-use-text-field-api
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-use-text-field-api
@@ -1966,7 +2024,7 @@ The `useTextField` and `useNumberField` hooks have updated their api slightly:
  }
 ```
 
-#### ❌ update-select-api
+##### ❌ update-select-api
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-select-api
@@ -2035,7 +2093,7 @@ edge cases so I gave up. You'll have to manually handle most of the updates.
  }
 ```
 
-#### ✅ update-file-input-props
+##### ✅ update-file-input-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-file-input-props
@@ -2062,7 +2120,7 @@ The `FileInput` removed the `disableIconSpacing` prop since it is no longer requ
  }
 ```
 
-#### ❌ update-slider-and-range-slider
+##### ❌ update-slider-and-range-slider
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-slider-and-range-slider
@@ -2155,7 +2213,7 @@ match the new components:
  }
 ```
 
-#### 🔧 update-password-props
+##### 🔧 update-password-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/form/update-file-input-props
@@ -2223,7 +2281,7 @@ The `Password` component has the following breaking changes:
  }
 ```
 
-#### ❌ Update Radio and Checkbox Icons
+##### ❌ Update Radio and Checkbox Icons
 
 The `Radio` and `Checkbox` components no longer use a single icon and hackily
 overlay the icon to show the checked/unchecked states.
@@ -2235,7 +2293,7 @@ overlay the icon to show the checked/unchecked states.
 - the `labelDisabled` prop has been removed in favor of `labelProps={{ disabled: labelDisabled }}`
 - the `labelStyle` and `labelClassName` props have been removed in favor of `labelProps`
 
-### Layout ❌
+#### Layout ❌
 
 There is no longer a pre-built layout component so see the new
 [Layout component documentation](/getting-started/layout) for the new setup. For
@@ -2480,9 +2538,9 @@ export default function Demo(): ReactElement {
  }
 ```
 
-### Link
+#### Link
 
-#### 🔧 update-link-props
+##### 🔧 update-link-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/link/update-link-props
@@ -2516,7 +2574,7 @@ The `Link` component updated the following props:
  }
 ```
 
-### List
+#### List
 
 There are a few breaking changes for the list components:
 
@@ -2532,7 +2590,7 @@ There are a few breaking changes for the list components:
 > !Warn! For Typescript users, the `ListItemLink` no longer allows
 > `{ [key: string]: unknown }` when the `as` component is provided.
 
-#### 🔧 update-list-item-props
+##### 🔧 update-list-item-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/list/update-list-item-props
@@ -2672,7 +2730,7 @@ Remove `SimpleListItem`:
    );
 ```
 
-### Media
+#### Media
 
 There are a few breaking changes for the media components since the new
 [objectFit](/utils/object-fit) class name utility handles most use-cases now.
@@ -2688,7 +2746,7 @@ There are a few breaking changes for the media components since the new
   - the `MediaOverlayProps` was renamed to `ResponsiveItemOverlayProps`
   - the `MediaOverlayPosition` was renamed to `ResponsiveItemOverlayPosition`
 
-#### 🔧 update-media-components
+##### 🔧 update-media-components
 
 ```sh
 npx @react-md/codemod v5-to-v6/media/update-media-components
@@ -2756,12 +2814,12 @@ npx @react-md/codemod v5-to-v6/media/update-media-components
  }
 ```
 
-### Menu
+#### Menu
 
 The majority of the menu component changes were internal, but there are a few
 breaking changes that can mostly be automated through the codemod.
 
-#### ✅ replace-menu-item-link
+##### ✅ replace-menu-item-link
 
 ```sh
 npx @react-md/codemod v5-to-v6/menu/replace-menu-item-link
@@ -2802,7 +2860,7 @@ The `MenuItemLink` was removed in favor of just using a `ListItemLink` with
  }
 ```
 
-#### 🔧 update-use-context-menu-api
+##### 🔧 update-use-context-menu-api
 
 ```sh
 npx @react-md/codemod v5-to-v6/menu/update-use-context-menu-api
@@ -2964,9 +3022,9 @@ Here is an example diff of all the changes and what the codemod can support:
  }
 ```
 
-### Overlay
+#### Overlay
 
-#### 🔧 update-overlay-props
+##### 🔧 update-overlay-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/overlay/update-overlay-props
@@ -3015,9 +3073,9 @@ The `Overlay` updated the following props:
          clickable
 ```
 
-### Portal
+#### Portal
 
-#### 🔧 use-new-portal-api
+##### 🔧 use-new-portal-api
 
 ```sh
 npx @react-md/codemod v5-to-v6/portal/use-new-portal-api
@@ -3094,9 +3152,9 @@ internal component. The changes are:
 
 In addition, the `ConditionalPortal` was removed.
 
-### Progress
+#### Progress
 
-#### ✅ update-circular-progress-props
+##### ✅ update-circular-progress-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/progress/update-circular-progress-props
@@ -3127,14 +3185,14 @@ The `CircularProgress` updated the following props:
  }
 ```
 
-### Sheet 🎉
+#### Sheet 🎉
 
-### States ❌
+#### States ❌
 
 The `@react-md/states` packages was _mostly_ internal so codemods will not be provided
 to update this package.
 
-#### Replace `StatesConnfig` context provider
+##### Replace `StatesConnfig` context provider
 
 The `StatesConfig` context provider has been removed in favor of the new
 `INTERACTION_CONFIG` object. Here is an example on how to update the `disableRipple`
@@ -3156,7 +3214,7 @@ behavior:
  }
 ```
 
-#### Replace `useInteractionStates` with `useElementInteraction`
+##### Replace `useInteractionStates` with `useElementInteraction`
 
 If the `useInteractionStates` hook was used, switch to the
 [useElementInteraction](/hooks/use-element-interaction) hook.
@@ -3243,9 +3301,9 @@ If the `useInteractionStates` hook was used, switch to the
  }
 ```
 
-### Table
+#### Table
 
-#### 🔧 update-table-cell-props
+##### 🔧 update-table-cell-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/table/update-table-cell-props
@@ -3278,7 +3336,7 @@ The `TableCell` updated the following props:
              </TableCell>
 ```
 
-#### 🔧 update-table-checkbox-props
+##### 🔧 update-table-checkbox-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/table/update-table-checkbox-props
@@ -3297,7 +3355,7 @@ The `TableCheckbox` no longer supports the `cellId` prop in favor of the `id` pr
  }
 ```
 
-#### ✅ caption-to-typography
+##### ✅ caption-to-typography
 
 ```sh
 npx @react-md/codemod v5-to-v6/table/caption-to-typography
@@ -3331,7 +3389,7 @@ component.
            <TableCell>Column 1</TableCell>
 ```
 
-### Tabs
+#### Tabs
 
 There is a completely new tabs API which will require manual changes. First,
 the `TabsManager` and `Tabs` components have been removed and should be
@@ -3447,7 +3505,7 @@ To migrate to the new API, the step are as follows:
 
 ```
 
-#### ❌ update-tabs-api
+##### ❌ update-tabs-api
 
 ```sh
 npx @react-md/codemod v5-to-v6/tabs/update-tabs-api
@@ -3536,9 +3594,9 @@ components were defined in the same file.
  }
 ```
 
-### Transition
+#### Transition
 
-#### 🔧 update-scale-transition
+##### 🔧 update-scale-transition
 
 ```sh
 npx @react-md/codemod v5-to-v6/transition/update-scale-transition
@@ -3571,7 +3629,7 @@ The `ScaleTransition` component no longer supports the `portal`, `portalInto`, a
  }
 ```
 
-### Tree
+#### Tree
 
 There were a lot of breaking changes for the `Tree` API and cannot be fully
 converted automatically for complex implementations. The list of changes are:
@@ -3746,7 +3804,7 @@ npx @react-md/codemod v5-to-v6/tree/everything
      <Tree
 ```
 
-#### 🔧 convert-get-item-props
+##### 🔧 convert-get-item-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/tree/convert-get-item-props
@@ -3842,7 +3900,7 @@ npx @react-md/codemod v5-to-v6/tree/convert-get-item-props
  };
 ```
 
-#### 🔧 item-renderer-to-render-component
+##### 🔧 item-renderer-to-render-component
 
 ```sh
 npx @react-md/codemod v5-to-v6/tree/item-renderer-to-render-component
@@ -3871,7 +3929,7 @@ npx @react-md/codemod v5-to-v6/tree/item-renderer-to-render-component
  };
 ```
 
-#### ✅ update-simple-types
+##### ✅ update-simple-types
 
 ```sh
 npx @react-md/codemod v5-to-v6/tree/update-simple-types
@@ -3892,7 +3950,7 @@ npx @react-md/codemod v5-to-v6/tree/update-simple-types
  }
 ```
 
-#### 🔧 update-tree-props
+##### 🔧 update-tree-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/tree/update-tree-props
@@ -3925,7 +3983,7 @@ npx @react-md/codemod v5-to-v6/tree/update-tree-props
        />
 ```
 
-#### 🔧 use-tree-hooks
+##### 🔧 use-tree-hooks
 
 ```sh
 npx @react-md/codemod v5-to-v6/tree/use-tree-hooks
@@ -3959,9 +4017,9 @@ npx @react-md/codemod v5-to-v6/tree/use-tree-hooks
      <Tree
 ```
 
-### Tooltip
+#### Tooltip
 
-#### 🔧 convert-use-tooltip
+##### 🔧 convert-use-tooltip
 
 ```sh
 npx @react-md/codemod v5-to-v6/tooltip/convert-use-tooltip
@@ -4041,7 +4099,7 @@ If the hover mode API was used, there will be a diff similar to:
      },
 ```
 
-#### 🔧 remove-tooltipped-component
+##### 🔧 remove-tooltipped-component
 
 ```sh
 npx @react-md/codemod v5-to-v6/tooltip/remove-tooltipped-component
@@ -4060,7 +4118,7 @@ used instead.
    onClick?: (event: MouseEvent) => void;
 ```
 
-#### 🔧 update-tooltip-props
+##### 🔧 update-tooltip-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/tooltip/update-tooltip-props
@@ -4099,9 +4157,9 @@ The `Tooltip` component updated the following props:
  }
 ```
 
-### Typography
+#### Typography
 
-#### ❌ remove-removed-types
+##### ❌ remove-removed-types
 
 ```sh
 npx @react-md/codemod v5-to-v6/typography/remove-removed-types
@@ -4123,7 +4181,7 @@ The following types were removed and cannot be migrated automatically.
  const y: TypographyRenderFunction = ({ className }) => <>{className}</>;
 ```
 
-#### ✅ update-text-container-props
+##### ✅ update-text-container-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/typography/update-text-container-props
@@ -4150,7 +4208,7 @@ The `TextContainer` no longer supports the `size` prop and should be removed.
      </>
 ```
 
-#### ✅ update-typography-props
+##### ✅ update-typography-props
 
 ```sh
 npx @react-md/codemod v5-to-v6/typography/update-typography-props
@@ -4204,9 +4262,9 @@ class name utility functions instead.
  }
 ```
 
-### Utils
+#### Utils
 
-#### ✅ dir-to-writing-direction-provider
+##### ✅ dir-to-writing-direction-provider
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/dir-to-writing-direction-provider
@@ -4258,7 +4316,7 @@ Typescript only:
  export function Example3(): ReactElement {
 ```
 
-#### ✅ nearest-parameters-to-object
+##### ✅ nearest-parameters-to-object
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/nearest-parameters-to-object
@@ -4292,7 +4350,7 @@ The `nearest` utility function was updated to accept a single object parameter i
 +).toBe(minValue);
 ```
 
-#### ❌ remove-scroll-listener
+##### ❌ remove-scroll-listener
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/remove-scroll-listener
@@ -4341,7 +4399,7 @@ and must be implemented manually.
 
 ```
 
-#### ✅ update-resize-listener
+##### ✅ update-resize-listener
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/update-resize-listener
@@ -4437,7 +4495,7 @@ In addition, the `ResizeListener` component has been removed in favor of using t
      </>
 ```
 
-#### ✅ update-use-resize-observer
+##### ✅ update-use-resize-observer
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/update-use-resize-observer
@@ -4561,7 +4619,7 @@ If the `nodeRef` is dynamic, wrap with `useEnsuredRef`:
      if (ref.current) {
 ```
 
-#### ✅ update-use-toggle-api
+##### ✅ update-use-toggle-api
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/update-use-toggle-api
@@ -4592,7 +4650,7 @@ The `useToggle` hook was updated to return an object instead of an ordered array
  }
 ```
 
-#### ✅ within-range-parameters-to-object
+##### ✅ within-range-parameters-to-object
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/within-range-parameters-to-object
@@ -4620,7 +4678,7 @@ instead of multiple parameters.
 +).toBe(0);
 ```
 
-#### 🔧 update-search-functions
+##### 🔧 update-search-functions
 
 ```sh
 npx @react-md/codemod v5-to-v6/utils/update-search-functions
@@ -4744,3 +4802,1414 @@ There were a few breaking changes for the `caseInsensitiveFilter`, `fuzzyFilter`
 +  })
 +).toBe("Apple");
 ```
+
+## Sass/SCSS Migration
+
+```sh
+npx @react-md/codemod sass-migrator v5-to-v6
+```
+
+The provided codemod will attempt to handle most of the sass migrations except
+for the following:
+
+- migrating react-md imports through `@import` or `@use`
+- migrating from `@import` to `@use`
+- updating mixin and function parameters
+- updating class name references within react-md
+
+The codemod will:
+
+- handle simple renames
+- add `TODO:` comments for functions, variables, and mixins that have been
+  removed without a possible fallback
+
+### High Level Changes
+
+This version of react-md only supports the new Sass module system through
+`@use` where the main changes are:
+
+- The `@react-md/{{PACKAGE_NAME}}/dist/*` no longer exist. Instead use
+  `@react-md/core`, `@react-md/core/colors`, and `@react-md/core/a11y` instead:
+
+  ```diff
+  -@use "@react-md/core/dist/color-palette" as *;
+  -@use "@react-md/button/dist/mixins" as *;
+  +@use "@react-md/core/colors" as *;
+  +@use "@react-md/core" as *;
+  ```
+
+- The theme API has been updated to reference custom properties instead of
+  `theme`. The general pattern is `rmd-{{PACKAGE_NAME}}-theme-var` ->
+  `{{GROUP_NAME}}-get-var`, `rmd-{{PACKAGE_NAME}}-theme` ->
+  `{{GROUP_NAME}}-use-var`, and `rmd-{{PACKAGE_NAME}}-theme-update-var` ->
+  `{{GROUP_NAME}}-set-var`:
+
+  ```diff
+  -@include rmd-app-bar-theme-update-var(height, 3.5rem);
+  +@include app-bar-set-var(height, 3.5rem);
+
+  -@include rmd-avatar-theme(background-color);
+  +@include avatar-use-var(background-color);
+
+  -color: rmd-button-theme-var(color);
+  +color: button-get-var(color);
+  ```
+
+- The theme API no longer provides `rmd-theme` and
+  `rmd-{{PACKAGE_NAME}}-theme` functions since the `{{GROUPNAME}}-get-var()`
+  function is preferred
+
+- Variables, functions, and mixins are no longer prefixed with `rmd-` since the
+  new Sass module system prefers providing namespaces. The general pattern is
+  `rmd-{{PACKAGE_NAME}}-{{REMAINING}}` to `{{GROUP_NAME}}-{{REMAINING}}`:
+
+  ```diff
+  -$rmd-badge-size
+  +$badge-size
+  ```
+
+### Color Scheme Changes
+
+This version of react-md now supports switching between, light, dark, and
+system color schemes by setting a new `$color-scheme` variable instead of the
+`$rmd-theme-light` and `$rmd-theme-dark-class` variables. If you were not using
+the `prefers-color-scheme` behavior for the `$rmd-theme-dark-class`, just change
+`$rmd-theme-light: true|false` to `$color-scheme: light|dark`
+
+```diff
+ @use "react-md" with (
++  $color-scheme: dark
+-  $rmd-theme-light: false
+ );
+```
+
+If you were using the `$rmd-theme-dark-class: prefers-color-scheme`, set
+`$color-scheme: system` and `$disable-default-system-theme: true`:
+
+```diff
+ @use "react-md" with (
++  $color-scheme: system,
++  $disable-default-system-theme: true
+-  $rmd-theme-light: false,
+-  $rmd-theme-dark-class: 'prefers-color-scheme'
+ );
+```
+
+If you want to use the new system theme behavior, remove the
+`$disable-default-system-theme` and every `@media (prefers-color-scheme: dark)`
+that exist in your app.
+
+### Theme 🔧
+
+- the theme API renamed the following variables:
+  - `background` -> `background-color`
+  - `primary` -> `primary-color`
+  - `on-primary` -> `on-primary-color`
+  - `secondary` -> `secondary-color`
+  - `on-secondary` -> `on-secondary-color`
+  - `surface` -> `surface-color`
+  - `on-surface` -> use `text-primary-color` or `inverse-color` instead
+  - `warning` -> `warning-color`
+  - `on-warning` -> `on-warning-color`
+  - `error` -> `error-color`
+  - `on-error` -> `on-error-color`
+  - `success` -> `success-color`
+  - `on-success` -> `on-success-color`
+  - `text-primary-on-background` -> `text-primary-color`
+  - `text-secondary-on-background` -> `text-secondary-color`
+  - `text-hint-on-background` -> `text-hint-color`
+  - `text-disabled-on-background` -> `text-disabled-color`
+  - `text-icon-on-background` -> use the [$SASSDOC](<icon-get-var(color)>) or [$SASSDOC](<icon-use-var(color)>) instead
+
+```diff
+-@include rmd-theme(background-color, background);
++@include theme-use-var(background-color, background-color);
+
+-@include rmd-theme(background-color, surface);
++@include theme-use-var(background-color, surface-color);
+
+ /* there is no `on-surface` variable type in v6, but inverse-color or text-primary-color are the closest */
+-@include rmd-theme(color, on-surface);
++@include theme-use-var(color, inverse-color);
+
+-@include rmd-theme(background-color, primary);
+-@include rmd-theme(color, on-primary);
++@include theme-use-var(background-color, primary-color);
++@include theme-use-var(color, on-primary-color);
+
+-@include rmd-theme(background-color, secondary);
+-@include rmd-theme(color, on-secondary);
++@include theme-use-var(background-color, secondary-color);
++@include theme-use-var(color, on-secondary-color);
+
+-@include rmd-theme(background-color, warning);
+-@include rmd-theme(color, on-warning);
++@include theme-use-var(background-color, warning-color);
++@include theme-use-var(color, on-warning-color);
+
+-@include rmd-theme(background-color, error);
+-@include rmd-theme(color, on-error);
++@include theme-use-var(background-color, error-color);
++@include theme-use-var(color, on-error-color);
+
+-@include rmd-theme(background-color, success);
+-@include rmd-theme(color, on-success);
++@include theme-use-var(background-color, success-color);
++@include theme-use-var(color, on-success-color);
+
+-@include rmd-theme(color, text-primary-on-background);
++@include theme-use-var(color, text-primary-color);
+
+-@include rmd-theme(color, text-secondary-on-background);
++@include theme-use-var(color, text-secondary-color);
+
+-@include rmd-theme(color, text-hint-on-background);
++@include theme-use-var(color, text-hint-color);
+
+-@include rmd-theme(color, text-disabled-on-background);
++@include theme-use-var(color, text-disabled-color);
+
+-@include rmd-theme(color, text-icon-on-background);
++@include icon-use-var(color);
+```
+
+- the theme API no longer supports the following variables:
+  - `light-background`
+  - `light-surface`
+  - `dark-background`
+  - `dark-surface`
+  - `text-primary-on-light`
+  - `text-secondary-on-light`
+  - `text-hint-on-light`
+  - `text-disabled-on-light`
+  - `text-icon-on-light`
+  - `text-primary-on-dark`
+  - `text-secondary-on-dark`
+  - `text-hint-on-dark`
+  - `text-disabled-on-dark`
+  - `text-icon-on-dark`
+
+```diff
+-@include rmd-theme(background-color, light-background);
+-@include rmd-theme(background-color, light-surface);
+-@include rmd-theme(background-color, dark-background);
+-@include rmd-theme(background-color, dark-surface);
+-@include rmd-theme(color, text-primary-on-light);
+-@include rmd-theme(color, text-secondary-on-light);
+-@include rmd-theme(color, text-hint-on-light);
+-@include rmd-theme(color, text-disabled-on-light);
+-@include rmd-theme(color, text-icon-on-light);
+-@include rmd-theme(color, text-primary-on-dark);
+-@include rmd-theme(color, text-secondary-on-dark);
+-@include rmd-theme(color, text-hint-on-dark);
+-@include rmd-theme(color, text-disabled-on-dark);
+-@include rmd-theme(color, text-icon-on-dark);
+```
+
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-theme`
+  - `@function rmd-theme-text-color`
+  - `@mixin rmd-theme-tone`
+  - `@mixin rmd-theme-dark-elevation-styles`
+  - `@mixin rmd-theme-dark-elevation`
+  - `$rmd-theme-default-contrast-ratio`
+  - `$rmd-theme-better-contrast-colors`
+  - `$rmd-theme-no-css-variables-fallback`
+  - `$rmd-theme-define-colors-with-rgba`
+  - `$rmd-theme-light` - use `$color-scheme: light`, `$color-scheme: dark`, or `$color-scheme: system` instead
+  - `$rmd-theme-dark-class`
+  - `$rmd-theme-on-surface`
+  - `$rmd-theme-light-text-colors`
+  - `$rmd-theme-dark-text-colors`
+  - `$rmd-theme-primary-text-on-light-color`
+  - `$rmd-theme-secondary-text-on-light-color`
+  - `$rmd-theme-hint-text-on-light-color`
+  - `$rmd-theme-disabled-text-on-light-color`
+  - `$rmd-theme-primary-text-on-dark-color`
+  - `$rmd-theme-secondary-text-on-dark-color`
+  - `$rmd-theme-hint-text-on-dark-color`
+  - `$rmd-theme-disabled-text-on-dark-color`
+  - `$rmd-theme-icon-on-light-color`
+  - `$rmd-theme-icon-on-dark-color`
+  - `$rmd-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-theme-var` -> `theme-get-var`
+  - `@mixin rmd-theme` -> `theme-use-var`
+  - `@mixin rmd-theme-update-var` -> `theme-set-var`
+  - `@mixin rmd-theme-light` -> `use-light-theme` (all components and themes) /
+    `use-light-theme-colors` (only base theme colors)
+  - `@mixin rmd-theme-dark` -> `use-dark-theme` (all components and themes) /
+    `use-dark-theme-colors` (only base theme colors)
+  - `@mixin rmd-theme-get-swatch` -> `get-swatch`
+  - `@mixin rmd-theme-contrast-tone` -> `contrast-color`
+  - `@mixin rmd-theme-best-contrast-color` -> `contrast-color`
+  - `@mixin react-md-theme` -> `theme-styles`
+  - `$rmd-theme-dark-elevation` -> `$disable-dark-elevation`
+  - `$rmd-theme-primary` -> `$primary-color`
+  - `$rmd-theme-on-primary` -> `$on-primary-color`
+  - `$rmd-theme-secondary` -> `$secondary-color`
+  - `$rmd-theme-on-secondary` -> `$on-secondary-color`
+  - `$rmd-theme-warning` -> `$warning-color`
+  - `$rmd-theme-on-warning` -> `$on-warning-color`
+  - `$rmd-theme-error` -> `$error-color`
+  - `$rmd-theme-on-error` -> `$on-error-color`
+  - `$rmd-theme-success` -> `$success-color`
+  - `$rmd-theme-on-success` -> `$on-success-color`
+  - `$rmd-theme-light-background` -> `$light-theme-background-color`
+  - `$rmd-theme-light-surface` -> `$light-theme-surface-color`
+  - `$rmd-theme-light-primary-text-color` -> `$light-theme-text-primary-color`
+  - `$rmd-theme-light-secondary-text-color` -> `$light-theme-text-secondary-color`
+  - `$rmd-theme-light-hint-text-color` -> `$light-theme-text-hint-color`
+  - `$rmd-theme-light-disabled-text-color` -> `$light-theme-text-disabled-color`
+  - `$rmd-theme-dark-background` -> `$dark-theme-background-color` and changed
+    the default value to always be #121212
+  - `$rmd-theme-dark-surface` -> `$dark-theme-surface-color` and changed the
+    default value to be `if($disable-dark-elevation, colors.$grey-800, null)`
+  - `$rmd-theme-dark-primary-text-color` -> `$dark-theme-text-primary-color`
+  - `$rmd-theme-dark-secondary-text-color` -> `$dark-theme-text-secondary-color`
+  - `$rmd-theme-dark-hint-text-color` -> `$dark-theme-text-hint-color`
+  - `$rmd-theme-dark-disabled-text-color` -> `$dark-theme-text-disabled-color`
+  - `$rmd-theme-light-icon-color` -> `$icon-light-theme-color`
+  - `$rmd-theme-dark-icon-color` -> `$icon-dark-theme-color`
+  - `$rmd-theme-icon-on-background-color` -> `$icon-color`
+  - `$rmd-theme-background` -> `$background-color`
+  - `$rmd-theme-surface` -> `$surface-color`
+  - `$rmd-theme-primary-text-on-background-color` -> `$text-primary-color`
+  - `$rmd-theme-secondary-text-on-background-color` -> `$text-secondary-color`
+  - `$rmd-theme-hint-text-on-background-color` -> `$text-hint-color`
+  - `$rmd-theme-disabled-text-on-background-color` -> `$text-disabled-color`
+  - `$rmd-theme-dark-elevation-colors` -> `$dark-elevation-colors`
+  - `$rmd-theme-color-map` -> `$color-map`
+  - `$rmd-theme-primary-suffixes` -> `$primary-suffixes`
+  - `$rmd-theme-accent-suffixes` -> `$accent-suffixes`
+  - `$rmd-theme-colors` -> `$available-color-names`
+
+### Alert 🔧
+
+- the alert theme API no longer support the `light-background-color`,
+  `light-color`, `dark-background-color`, and `dark-color` variables
+- the following functions, mixins, and variables were removed:
+  - `@function rmd-alert-theme`
+  - `@mixin rmd-snackbar`
+  - `@mixin rmd-toast`
+  - `$rmd-toast-two-line-min-height`
+  - `$rmd-toast-action-margin`
+  - `$rmd-toast-stacked-action-margin-top`
+  - `$rmd-toast-enter-duration`
+  - `$rmd-toast-exit-duration`
+  - `$rmd-alert-theme-values`
+- the following functions, mixins, and variables were renamed:
+  - `@function rmd-alert-theme-var` -> `snackbar-get-var`
+  - `@mixin rmd-alert-theme` -> `snackbar-use-var`
+  - `@mixin rmd-alert-theme-update-var` -> `snackbar-set-var`
+  - `@mxin react-md-alert` -> `snackbar-styles`
+
+### App Bar 🔧
+
+- the app bar theme API no longer supports the `background-color`, `color`,
+  `primary`, `on-primary`, `secondary`, `on-secondary`,
+  `default-background-color`, `default-color`, `default-light-background-color`,
+  `default-light-color`, `default-dark-background-color`, `default-dark-color`,
+  `dense-height`, `priminent-height`, and `prominent-dense-height` variables
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-app-bar-theme`
+  - `@mixin rmd-app-bar-fixed`
+  - `@mixin rmd-app-bar-themes`
+  - `@mixin rmd-app-bar-nav`
+  - `@mixin rmd-app-bar-action-position`
+  - `@mixin rmd-app-bar-action`
+  - `@mixin rmd-app-bar-offset`
+  - `@mixin rmd-app-bar-offsets`
+  - `$rmd-app-bar-nav-margin`
+  - `$rmd-app-bar-primary-background-color`
+  - `$rmd-app-bar-primary-color`
+  - `$rmd-app-bar-secondary-background-color`
+  - `$rmd-app-bar-secondary-color`
+  - `$rmd-app-bar-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-app-bar-theme-var` -> `app-bar-get-var`
+  - `@mixin rmd-app-bar-theme` -> `app-bar-use-var`
+  - `@mixin rmd-app-bar-theme-update-var` -> `app-bar-set-var`
+  - `@mixin rmd-app-bar-dense-theme` -> `app-bar-dense-variables`
+  - `@mixin react-md-app-bar` -> `app-bar-styles`
+  - `$rmd-app-bar-z-index` -> `$app-bar-fixed-z-index`
+  - `$rmd-app-bar-fixed-elevation` -> `$app-bar-fixed-elevation`
+  - `$rmd-app-bar-height` -> `$app-bar-height`
+  - `$rmd-app-bar-dense-height` -> `app-bar-dense-height`
+  - `$rmd-app-bar-prominent-height` -> `app-bar-prominent-height`
+  - `$rmd-app-bar-prominent-dense-height` -> `app-bar-prominent-dense-height`
+  - `$rmd-app-bar-keyline` -> `$app-bar-keyline`
+  - `$rmd-app-bar-title-keyline` -> `$app-bar-title-keyline`
+  - `$rmd-app-bar-title-nav-margin` -> `$app-bar-nav-keyline` and is now configurable
+  - `$rmd-app-bar-lr-margin` -> `$app-bar-horizontal-padding` and is applied as
+    padding instead of margin
+  - `$rmd-app-bar-default-light-theme-background-color` ->
+    `$app-bar-light-theme-surface-background-color` and changed the default value
+    from `$grey-100` to `$light-theme-surface-color` (`$white`)
+  - `$rmd-app-bar-default-light-theme-color` -> `$app-bar-light-theme-surface-color`
+  - `$rmd-app-bar-default-dark-theme-background-color` ->
+    `$app-bar-dark-theme-surface-background-color` and changed the default value
+    from `$rmd-grey-900` to `if($disable-dark-elevation, $grey-800, null)`
+  - `$rmd-app-bar-default-dark-theme-color` ->
+    `$app-bar-dark-theme-surface-color` and changed the default value to `$white`
+  - `$rmd-app-bar-default-background-color` ->
+    `$app-bar-surface-background-color`
+  - `$rmd-app-bar-default-color` -> `$app-bar-surface-color`
+
+### Autocomplete 🎉
+
+The previous version did not have any custom Sass/SCSS.
+
+### Avatar 🔧
+
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-avatar-theme`
+  - `@mixin rmd-avatar-color` and `@mixin rmd-avtar-colors` were removed in favor
+    of [$SASSDOC](avatar-custom-color)
+  - `$rmd-avatar-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-avatar-theme-var` -> `avatar-get-var`
+  - `@mixin rmd-avatar-theme` -> `avatar-use-var`
+  - `@mixin rmd-avatar-theme-update-var` -> `avatar-set-var`
+  - `@mixin react-md-avatar` -> `avatar-styles`
+  - `$rmd-avatar-color` -> `$avatar-color`
+  - `$rmd-avatar-background-color` -> `$avatar-background-color`
+  - `$rmd-avatar-border-color` -> `$avatar-border-color` and the default value
+    changed to `transparent`
+  - `$rmd-avatar-border-radius` -> `$avatar-border-radius`
+  - `$rmd-avatar-size` -> `$avatar-size` -> `size`
+  - `$rmd-avatar-font-size` -> `$avatar-font-size`
+  - `$rmd-avatar-line-height` -> `$avatar-line-height`
+  - `$rmd-avatar-colors` -> `$avatar-colors`
+
+### Badge 🔧
+
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-badge-theme`
+  - `$rmd-badge-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-badge-theme-var` -> `badge-get-var`
+  - `@mixin rmd-badge-theme` -> `badge-use-var`
+  - `@mixin rmd-badge-theme-update-var` -> `badge-set-var`
+  - `@mixin react-md-badge` -> `badge-styles`
+  - `$rmd-badge-size` -> `$badge-size`
+  - `$rmd-badge-border-radius` -> `$badge-border-radius`
+  - `$rmd-badge-default-background-color` -> `$badge-greyscale-background-color`
+    and changed the default value from `rgba($rmd-black-base, 0.2)` to
+    `if($light-theme, #ccc, $grey-700)`
+  - `$rmd-badge-default-color` -> `$badge-greyscale-color`
+  - `$rmd-badge-font-size` -> `$badge-font-size`
+  - `$rmd-badge-offset-top` -> `$badge-offset-top` and changed the default value
+    to `$badge-offset` (`0`)
+  - `$rmd-bagde-offset-right` -> `$badge-offset-right` and changed the default
+    value to `$badge-offset` (`0`)
+
+### Button 🔧
+
+- the button theme API no longer supports the `outline` and `outline-width`
+  variables. Instead, use the [$SASSDOC](<theme-get-var(outline-color)>),
+  [$SASSDOC](<theme-set-var(outline-color)>), and [$SASSDOC](<theme-use-var(outline-color)>) with `outline-color`
+  or `outline-width`
+- the button theme API renamed the following variables:
+  - `text-border-radius` -> `border-radius`
+  - `text-height` -> `text-min-height`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-button-theme`
+  - `@mixin rmd-button-base`
+  - `@mixin rmd-button-icon`
+  - `@mixin rmd-button`
+  - `@mixin rmd-button-floating-positions`
+  - `@mixin rmd-fab`
+  - `$rmd-button-text-icon-inherit-color`
+  - `$rmd-button-outline-width`
+  - `$rmd-button-outline-color`
+  - `$rmd-button-box-shadow`
+  - `$rmd-button-background-color`
+  - `$rmd-button-color`
+  - `$rmd-button-contained-elevation-transition-time`
+  - `$rmd-button-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-button-theme-var` -> `button-get-var`
+  - `@mixin rmd-button-theme` -> `button-use-var`
+  - `@mixin rmd-button-theme-update-var` -> `button-set-var`
+  - `@mixin rmd-button-reset` -> `button-unstyled`
+  - `@mixin rmd-button-unstyled` -> `button-unstyled`
+  - `@mixin rmd-button-text` -> `button-text-styles`
+  - `@mixin react-md-button` -> `button-styles`
+  - `$rmd-button-text-border-radius` -> `$button-text-border-radius`
+  - `$rmd-button-text-horizontal-padding` -> `$button-text-horizontal-padding`
+  - `$rmd-button-text-vertical-padding` -> `$button-text-vertical-padding`
+  - `$rmd-button-text-height` -> `$button-text-min-height`
+  - `$rmd-button-text-min-width` -> `$button-text-min-width`
+  - `$rmd-button-text-icon-size` -> `$button-text-icon-size`
+  - `$rmd-button-icon-border-radius` -> `$button-icon-border-radius`
+  - `$rmd-button-icon-size` -> `$button-icon-size` and changed the default
+    value from `3rem` to `auto`
+  - `$rmd-button-contained-resting-elevation` -> `$button-contained-elevation`
+  - `$rmd-button-contained-pressed-elevation` -> `$button-contained-pressed-elevation`
+  - `$rmd-button-floating-z-index` -> `$button-floating-z-index`
+  - `$rmd-button-floating-margin` -> `$button-floating-margin`
+  - `$rmd-button-floating-positions` -> `$button-floating-positions`
+  - `$rmd-button-circular-progress-size` -> `$button-circular-progress-size`
+
+### Card 🔧
+
+- the card theme API no longer supports the `secondary-color` variables
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-card-theme`
+  - `@mixin rmd-card`
+  - `@mixin rmd-card-header`
+  - `@mixin rmd-card-title`
+  - `@mixin rmd-card-subtitle`
+  - `@mixin rmd-card-content`
+  - `@mixin rmd-card-actions`
+  - `$rmd-card-dark-elevation-background-color`
+  - `$rmd-card-secondary-color`
+  - `$rmd-card-actions-padding`
+  - `$rmd-card-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-card-theme-var` -> `card-get-var`
+  - `@mixin rmd-card-theme` -> `card-use-var`
+  - `@mixin rmd-card-theme-update-var` -> `card-set-var`
+  - `@mixin react-md-card` -> `card-styles`
+  - `$rmd-card-elevation` -> `$card-elevation`
+  - `$rmd-card-light-background-color` -> `$card-light-background-color`
+  - `$rmd-card-dark-background-color` -> `$card-dark-background-color`
+  - `$rmd-card-background-color` -> `$card-background-color`
+  - `$rmd-card-color` -> `$card-color`
+  - `$rmd-card-base-elevation` -> `$card-raisable-start-elevation`
+  - `$rmd-card-raised-elevation` -> `$card-raisable-end-elevation`
+  - `$rmd-card-border-radius` -> `$card-border-radius`
+  - `$rmd-card-header-padding` -> `$card-header-padding`
+  - `$rmd-card-header-padding-top` -> `$card-header-padding-top`
+  - `$rmd-card-header-spacing` -> `$card-header-spacing`
+  - `$rmd-card-content-padding` -> `$card-content-padding`
+  - `$rmd-card-content-padding-extra` -> `$card-content-padding-bottom`
+  - `$rmd-card-border-color` -> `$card-border-color`
+  - `$rmd-card-border-width` -> `$card-border-width`
+
+### Chip 🔧
+
+- the chip theme API no longer supports the `background-color` and `color` variables
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-chip-theme`
+  - `@mixin rmd-chip`
+  - `$rmd-chip-disable-focus-background-color`
+  - `$rmd-chip-box-shadow`
+  - `$rmd-chip-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-chip-theme-var` -> `chip-get-var`
+  - `@mixin rmd-chip-theme` -> `chip-use-var`
+  - `@mixin rmd-chip-theme-update-var` -> `chip-set-var`
+  - `@mixin react-md-chip` -> `chip-styles`
+  - `$rmd-chip-height` -> `$chip-height`
+  - `$rmd-chip-border-radius` -> `$chip-border-radius`
+  - `$rmd-chip-small-spacing` -> `$chip-addon-left-padding`
+  - `$rmd-chip-medium-spacing` -> `$chip-addon-right-padding`
+  - `$rmd-chip-large-spacing` -> `$chip-horizonal-padding`
+  - `$rmd-chip-icon-size` -> `$chip-icon-size`
+  - `$rmd-chip-avatar-size` -> `$chip-avatar-size`
+  - `$rmd-chip-progress-size` -> `$chip-progress-size`
+  - `$rmd-chip-progress-width` -> `$chip-progress-width`
+  - `$rmd-chip-themed-background-color` -> `$chip-theme-background-color`
+  - `$rmd-chip-themed-color` -> `$chip-theme-color`
+  - `$rmd-chip-solid-light-background-color` -> `$chip-solid-light-background-color`
+  - `$rmd-chip-solid-light-color` -> `$chip-solid-light-color`
+  - `$rmd-chip-solid-light-disabled-background-color` -> `$chip-solid-light-disabled-background-color`
+  - `$rmd-chip-solid-dark-background-color` -> `$chip-solid-dark-background-color`
+  - `$rmd-chip-solid-dark-color` -> `$chip-solid-dark-color`
+  - `$rmd-chip-solid-dark-disabled-background-color` -> `$chip-solid-dark-disabled-background-color`
+  - `$rmd-chip-solid-background-color` -> `$chip-solid-background-color`
+  - `$rmd-chip-solid-color` -> `$chip-solid-color`
+  - `$rmd-chip-solid-disabled-background-color` -> `$chip-solid-disabled-background-color`
+  - `$rmd-chip-outline-light-background-color` -> `$chip-outline-light-background-color`
+  - `$rmd-chip-outline-light-color` -> `$chip-outline-light-text-color`
+  - `$rmd-chip-outline-dark-background-color` -> `$chip-outline-dark-background-color`
+  - `$rmd-chip-outline-dark-color` -> `$chip-outline-dark-text-color`
+  - `$rmd-chip-outline-background-color` -> `$chip-outline-background-color`
+  - `$rmd-chip-outline-color` -> `$chip-outline-text-color`
+  - `$rmd-chip-outline-border-color` -> `$chip-outline-color`
+  - `$rmd-chip-transition-duration` -> `$chip-outline-raisable-transition-duration`
+
+### Dialog 🔧
+
+- the dialog theme API no longer supports the `background-color` variable and
+  renamed `min-width` to `width`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-dialog-theme`
+  - `@mixin rmd-dialog`
+  - `@mixin rmd-dialog-header`
+  - `@mixin rmd-dialog-title`
+  - `@mixin rmd-dialog-content`
+  - `@mixin rmd-dialog-footer`
+  - `@mixin rmd-dialog-container`
+  - `@mixin rmd-dialog-overlay`
+  - `$rmd-dialog-light-background-color`
+  - `$rmd-dialog-dark-elevation-background-color`
+  - `$rmd-dialog-dark-background-color`
+  - `$rmd-dialog-background-color`
+  - `$rmd-dialog-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-dialog-theme-var` -> `dialog-get-var`
+  - `@mixin rmd-dialog-theme` -> `dialog-use-var`
+  - `@mixin rmd-dialog-theme-update-var` -> `dialog-set-var`
+  - `@mixin react-md-dialog` -> `dialog-styles`
+  - `$rmd-dialog-z-index` -> `$dialog-z-index`
+  - `$rmd-dialog-elevation` -> `$dialog-elevation`
+  - `$rmd-dialog-min-width` -> `$dialog-min-width`
+  - `$rmd-dialog-vertical-margin` -> `$dialog-vertical-margin`
+  - `$rmd-dialog-horizontal-margin` -> `$dialog-horizontal-margin`
+  - `$rmd-dialog-header-padding` -> `$dialog-header-padding`
+  - `$rmd-dialog-header-padding-bottom` -> `$dialog-header-padding-bottom`
+  - `$rmd-dialog-content-padding` -> `$dialog-content-padding`
+  - `$rmd-dialog-footer-padding` -> `$dialog-footer-padding`
+  - `$rmd-dialog-transition-distance` -> `$dialog-transition-distance`
+  - `$rmd-dialog-enter-duration` -> `$dialog-enter-duration`
+  - `$rmd-dialog-leave-duration` -> `$dialog-leave-duration`
+
+### Divider 🔧
+
+- the divider theme API renamed the following variables:
+  - `background-color` -> `color`
+- the divider theme API no longer supports the following variables:
+  - `background-color-on-light`
+  - `background-color-on-dark`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-divider-theme`
+  - `@mixin rmd-divider`
+  - `$rmd-divider-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-divider-theme-var` -> `divider-get-var`
+  - `@mixin rmd-divider-theme` -> `divider-use-var`
+  - `@mixin rmd-divider-theme-update-var` -> `divider-set-var`
+  - `@mixin rmd-divider-border` -> `divider-border-style`
+  - `@mixin react-md-divider` -> `divider-styles`
+  - `$rmd-divider-size` -> `$divider-size`
+  - `$rmd-divider-max-size` -> `$divider-max-size`
+  - `$rmd-divider-inset` -> `$divider-inset`
+  - `$rmd-divider-spacing` -> `$divider-spacing`
+  - `$rmd-divider-vertical-spacing` -> `$divider-vertical-spacing`
+  - `$rmd-divider-background-color-on-light` -> `$divider-light-theme-color`
+  - `$rmd-divider-background-color-on-dark` -> `$divider-dark-theme-color`
+  - `$rmd-divider-background-color` -> `$divider-color`
+
+### Elevation 🔧
+
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-elevation` -> `box-shadow`
+  - `@mixin rmd-elevation` -> `box-shadow`
+  - `@mixin rmd-elevation-transition` -> `box-shadow-transition`
+  - `$rmd-elevation-color` -> `$box-shadow-color`
+  - `$rmd-elevation-shadow-1-opacity` -> `$box-shadow-1-opacity`
+  - `$rmd-elevation-shadow-2-opacity` -> `$box-shadow-2-opacity`
+  - `$rmd-elevation-shadow-3-opacity` -> `$box-shadow-3-opacity`
+  - `$rmd-elevation-shadow-1-map` -> `$box-shadow-1-layers`
+  - `$rmd-elevation-shadow-2-map` -> `$box-shadow-2-layers`
+  - `$rmd-elevation-shadow-3-map` -> `$box-shadow-3-layers`
+
+### Expansion Panel 🔧
+
+- the expansion-panel no longer has a theme API
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-expansion-panel-theme`
+  - `@function rmd-expansion-panel-theme-var`
+  - `@mixin rmd-expansion-panel-theme`
+  - `@mixin rmd-expansion-panel-theme-update-var`
+  - `@mixin rmd-expansion-panel`
+  - `$rmd-expansion-panel-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@mixin react-md-expansion-panel` -> `expansion-panel-styles`
+  - `$rmd-expansion-panel-spacing` -> `$expansion-panel-spacing`
+  - `$rmd-expansion-panel-header-padding` -> `$expansion-panel-padding`
+  - `$rmd-expansion-panel-expander-icon-spacing` -> `$expansion-panel-button-spacing`
+
+### Form 🔧
+
+- the form theme API has been split into multiple themes based on components:
+  - `form` - `form-get-var`, `form-use-var`, `form-set-var`
+    - `active-color`
+    - `focus-color`
+  - `label` - `label-get-var`, `label-use-var`, `label-set-var`
+    - `floating-top` -> `floating-y`
+    - `label-left-offset` -> `floating-active-x`
+    - `label-top-offset` -> `floating-active-y`
+    - `label-active-padding` -> `active-padding`
+    - `label-active-background-color` -> `active-background-color`
+  - `text-field` - `text-field-get-var`, `text-field-use-var`, `text-field-set-var`
+    - `addon-top`
+    - `addon-margin-top`
+    - `text-padding-left` -> `padding-left`
+    - `text-padding-right` -> `padding-right`
+    - `text-padding-top` -> `padding-top`
+    - `text-border-color` -> `border-color`
+    - `text-filled-color` -> `filled-color`
+    - `text-height` -> `height`
+  - `text-area` - `text-area-get-var`, `text-area-use-var`, `text-area-set-var`
+    - `textarea-padding` -> `padding`
+  - `slider` - `slider-get-var`, `slider-use-var`, `slider-set-var`
+  - `switch` - `switch-get-var`, `switch-use-var`, `switch-set-var`
+    - `track-background-color`
+- the following form theme variables were removed:
+  - `error-color`
+  - `error-hover-color`
+  - `disabled-color`
+  - `toggle-inset`
+  - `toggle-dense-inset`
+  - `indeterminate-height`
+  - `indeterminate-dense-height`
+  - `floating-dense-top`
+  - `listbox-background-color`
+  - `text-offset`
+  - `text-active-color`
+  - `text-border-hover-color`
+  - `text-label-height`
+  - `text-label-dense-height`
+  - `text-placeholder-height`
+  - `text-placeholder-dense-height`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-form-theme`
+  - `@mixin rmd-label`
+  - `$rmd-label-floating-font-size`
+  - `$rmd-text-field-filled-border-radius`
+  - `$rmd-listbox-elevation`
+  - `$rmd-listbox-light-background-color`
+  - `$rmd-listbox-dark-elevation-background-color`
+  - `$rmd-listbox-dark-background-color`
+  - `$rmd-listbox-background-color`
+  - `$rmd-listbox-z-index`
+  - `$rmd-option-focused-styles`
+  - `$rmd-option-selected-offset`
+  - `$rmd-option-selected-content`
+  - `$rmd-option-horizontal-padding`
+  - `$rmd-text-field-active-color`
+  - `$rmd-form-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-form-theme-var` -> `form-get-var`
+  - `@mixin rmd-form-theme` -> `form-use-var`
+  - `@mixin rmd-form-theme-update-var` -> `form-set-var`
+  - `@mixin react-md-form`:
+    - `@mixin form-message-styles`
+    - `@mixin fieldset-styles`
+    - `@mixin label-styles`
+    - `@mixin text-field-styles`
+    - `@mixin text-area-styles`
+    - `@mixin password-styles`
+    - `@mixin slider-styles`
+    - `@mixin input-toggle-styles`
+    - `@mixin switch-styles`
+    - `@mixin files-styles`
+  - `$rmd-label-font-size` -> `$label-font-size`
+  - `$rmd-label-floating-padding` -> `$label-floating-padding`
+  - `$rmd-label-floating-top` -> `$label-floating-y`
+  - `$rmd-label-floating-dense-top` -> `$label-floating-y-dense`
+  - `$rmd-label-padding` -> `$label-floating-padding`
+  - `$rmd-select-native-multiple-padding` -> `$select-native-select-multiple-padding`
+  - `$rmd-select-native-addon-top` -> `$select-native-select-addon-top`
+  - `$rmd-option-selected-styles` -> `$select-option-selected-styles`
+  - `$rmd-slider-include-vertical` -> `$slider-disable-vertical`
+  - `$rmd-slider-size` -> `$slider-size`
+  - `$rmd-slider-vertical-size` -> `$slider-vertical-size`
+  - `$rmd-slider-active-track-size` -> `$slider-track-active-size`
+  - `$rmd-slider-active-track-color` -> `$slider-track-active-color`
+  - `$rmd-slider-active-track-opacity` -> `$slider-track-active-opacity`
+  - `$rmd-slider-inactive-track-size` -> `$slider-track-inactive-size`
+  - `$rmd-slider-inactive-track-color` -> `$slider-track-inactive-color`
+  - `$rmd-slider-disabled-track-color` -> `$slider-track-disabled-color`
+  - `$rmd-slider-disabled-thumb-color` -> `$slider-thumb-disabled-color`
+  - `$rmd-slider-inactive-track-opacity` -> `$slider-track-inactive-opacity`
+  - `$rmd-slider-inactive-track-z-index` -> `$slider-track-inactive-z-index`
+  - `$rmd-slider-active-track-z-index` -> `$slider-track-active-z-index`
+  - `$rmd-slider-thumb-size` -> `$slider-thumb-size`
+  - `$rmd-slider-thumb-radius` -> `$slider-thumb-border-radius`
+  - `$rmd-slider-thumb-z-index` -> `$slider-thumb-z-index`
+  - `$rmd-slider-thumb-bubble-opacity` -> `$slider-thumb-bubble-opacity`
+  - `$rmd-slider-thumb-focus-scale` -> `$slider-thumb-focus-scale`
+  - `$rmd-slider-thumb-active-scale` -> `$slider-thumb-active-scale`
+  - `$rmd-slider-thumb-disabled-scale` -> `$slider-thumb-disabled-scale`
+  - `$rmd-slider-thumb-disabled-mask-scale` -> `$slider-thumb-disabled-mask-scale`
+  - `$rmd-slider-thumb-value-caret-size` -> `$slider-tooltip-caret-size`
+  - `$rmd-slider-thumb-value-offset` -> `$slider-tooltip-offset`
+  - `$rmd-slider-container-padding` -> `$slider-container-padding`
+  - `$rmd-slider-container-addon-spacing` -> `$slider-container-addon-spacing`
+  - `$rmd-text-field-light-border-color` -> `$text-field-light-border-color`
+  - `$rmd-text-field-dark-border-color` -> `$text-field-dark-border-color`
+  - `$rmd-text-field-border-color` -> `$text-field-border-color`
+  - `$rmd-text-field-light-border-hover-color` -> `$text-field-light-hover-border-color`
+  - `$rmd-text-field-dark-border-hover-color` -> `$text-field-dark-hover-border-color`
+  - `$rmd-text-field-border-hover-color` -> `$text-field-hover-border-color`
+  - `$rmd-text-field-border-radius` -> `$text-field-border-radius`
+  - `$rmd-text-field-border-width` -> `$text-field-border-width`
+  - `$rmd-text-field-border-width-active` -> `$text-field-border-width-active`
+  - `$rmd-text-field-label-height` -> `$text-field-label-height`
+  - `$rmd-text-field-label-dense-height` -> `$text-field-label-dense-height`
+  - `$rmd-text-field-height` -> `$text-field-height`
+  - `$rmd-text-field-dense-height` -> `$text-field-dense-height`
+  - `$rmd-text-field-outline-padding` -> `$text-field-outlined-padding`
+  - `$rmd-text-field-underline-label-padding-top` -> `$text-field-underlined-label-padding-top`
+  - `$rmd-text-field-underline-label-left-offset` -> `$text-field-underlined-label-left-offset`
+  - `$rmd-text-field-underline-dense-padding-top` -> `$text-field-underlined-placeholder-addon-padding-top`
+  - `$rmd-text-field-underline-padding` -> `$text-field-underlined-padding`
+  - `$rmd-text-field-filled-padding` -> `$text-field-filled-padding`
+  - `$rmd-text-field-filled-light-background-color` -> `$text-field-light-filled-background-color`
+  - `$rmd-text-field-filled-dark-background-color` -> `$text-field-dark-filled-background-color`
+  - `$rmd-text-field-filled-background-color` -> `$text-field-filled-background-color`
+  - `$rmd-text-field-addon-margin` -> `$text-field-addon-margin`
+  - `$rmd-textarea-vertical-padding` -> `$text-area-vertical-padding`
+  - `$rmd-textarea-addon-top` -> `$text-area-addon-top`
+  - `$rmd-form-message-min-height` -> `$form-message-min-height`
+  - `$rmd-form-message-margin-top` -> `$form-message-margin-top`
+  - `$rmd-form-message-margin-bottom` -> `$form-message-margin-bottom`
+  - `$rmd-form-message-counter-spacing` -> `$form-message-counter-spacing`
+  - `$rmd-form-message-font-size` -> `$form-message-font-size`
+
+### Icon 🔧
+
+- the icon theme API renamed the following variables;
+  - `text-spacing` -> `spacing`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-icon-theme`
+  - `@mixin rmd-icon-base`
+  - `@mixin rmd-icon-font`
+  - `@mixin rmd-icon-dense-theme`
+  - `@mixin rmd-icon-svg`
+  - `@mixin rmd-icon-text-icon-spacing`
+  - `@mixin rmd-icon-spaced-with-text`
+  - `@mixin rmd-icon-icon-rotator`
+  - `@mixin rmd-icon`
+  - `@mixin rmd-icon-spacing`
+  - `@mixin rmd-icon-material-icons-font-face`
+  - `@mixin rmd-icon-material-icons-class`
+  - `@mixin rmd-icon-host-material-icons`
+  - `$rmd-icon-material-icons-font`
+  - `$rmd-icon-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-icon-theme-var` -> `icon-get-var`
+  - `@mixin rmd-icon-theme` -> `icon-use-var`
+  - `@mixin rmd-icon-theme-update-var` -> `icon-set-var`
+  - `@mixin react-md-icon` -> `icon-styles`
+  - `$rmd-icon-color` -> `$icon-color`
+  - `$rmd-icon-size` -> `$icon-size`
+  - `$rmd-icon-dense-size` -> `$icon-dense-size`
+  - `$rmd-icon-include-dense` -> `$icon-disable-dense`
+  - `$rmd-icon-use-font-icons` -> `$icon-disable-font`
+  - `$rmd-icon-use-svg-icons` -> `$icon-disable-svg`
+  - `$rmd-icon-spacing-with-text` -> `$icon-spacing`
+  - `$rmd-icon-rotator-transition-time` -> `$icon-rotate-duration`
+  - `$rmd-icon-rotator-from` -> `$icon-rotate-from`
+  - `$rmd-icon-rotator-to` -> `$icon-rotate-to`
+
+### Layout 🔧
+
+- the layout theme API renamed the following variables:
+  - `nav-width` -> `size`
+- the layout theme API no longer supports the following variables:
+  - `mini-nav-width`
+  - `main-offset`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-layout-theme`
+  - `$rmd-layout-main-focus-shadow`
+  - `$rmd-layout-navigation-mini-z-index`
+  - `$rmd-layout-mini-navigation-width`
+  - `$rmd-layout-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-layout-theme-var` -> `layout-get-var`
+  - `@mixin rmd-layout-theme` -> `layout-use-var`
+  - `@mixin rmd-layout-theme-update-var` -> `layout-set-var`
+  - `@mixin react-md-layout` -> `layout-styles`
+  - `$rmd-layout-enter-duration` -> `$layout-enter-duration`
+  - `$rmd-layout-leave-duration` -> `$layout-leave-duration`
+  - `$rmd-layout-main-focus-z-index` -> `$layout-main-focus-z-index`
+  - `$rmd-layout-navigation-z-index` -> `$layout-navigation-z-index`
+  - `$rmd-layout-navigation-width` -> `$layout-navigation-static-width`
+
+### Link 🔧
+
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-link-theme`
+  - `@mixin rmd-link`
+  - `@mixin rmd-link-skip`
+  - `$rmd-link-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-link-theme-var` -> `link-get-var`
+  - `@mixin rmd-link-theme` -> `link-use-var`
+  - `@mixin rmd-link-theme-update-var` -> `link-set-var`
+  - `@mixin react-md-link` -> `link-styles`
+  - `$rmd-link-transition-time` -> `$link-transition-duration`
+  - `$rmd-link-color` -> `$link-color`
+  - `$rmd-link-visited-color` -> `$link-visited-color`
+  - `$rmd-link-hover-color` -> `$link-hover-color`
+  - `$rmd-link-skip-z-index` -> `$link-skip-to-main-z-index`
+  - `$rmd-link-skip-styles` -> `$link-skip-to-main-styles`
+  - `$rmd-link-skip-active-styles` -> `$link-skip-to-main-active-styles`
+
+### List 🔧
+
+- the list theme API no longer supports the following variables:
+  - `vertical-padding`
+  - `horizontal-padding`
+  - `font-size`
+  - `text-keyline`
+  - `item-height`
+  - `item-medium-height`
+  - `item-large-height`
+  - `item-extra-large-height`
+  - `item-three-line-height`
+  - `item-vertical-padding`
+  - `item-horizontal-padding`
+  - `item-secondary-three-line-height`
+  - `dense-font-size`
+  - `dense-vertical-padding`
+  - `dense-horizontal-padding`
+  - `dense-item-height`
+  - `dense-item-medium-height`
+  - `dense-item-large-height`
+  - `dense-item-extra-large-height`
+  - `dense-item-three-line-height`
+  - `dense-item-secondary-three-line-height`
+  - `media-size`
+  - `media-spacing`
+  - `media-large-size`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-list-theme`
+  - `@mixin rmd-list-unstyled`
+  - `@mixin rmd-list-dense-theme`
+  - `@mixin rmd-list`
+  - `@mixin rmd-list-item-base`
+  - `@mixin rmd-list-item-dense-theme`
+  - `@mixin rmd-list-item-addon-spacing`
+  - `@mixin rmd-list-item`
+  - `@mixin rmd-list-subheader`
+  - `$rmd-list-line-height`
+  - `$rmd-list-font-size`
+  - `$rmd-list-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-list-theme-var` -> `list-get-var`
+  - `@mixin rmd-list-theme` -> `list-use-var`
+  - `@mixin rmd-list-theme-update-var` -> `list-set-var`
+  - `@mixin react-md-list` -> `list-styles`
+  - `$rmd-list-vertical-padding` -> `$list-vertical-padding`
+  - `$rmd-list-dense-vertical-padding` -> `$list-dense-vertical-padding`
+  - `$rmd-list-horizontal-padding` -> `$list-horizontal-padding`
+  - `$rmd-list-dense-horizontal-padding` -> `$list-dense-horizontal-padding`
+  - `$rmd-list-dense-font-size` -> `$list-dense-font-size`
+  - `$rmd-list-item-vertical-padding` -> `$list-item-vertical-padding`
+  - `$rmd-list-item-horizontal-padding` -> `$list-item-horizontal-padding`
+  - `$rmd-list-item-height` -> `$list-item-height`
+  - `$rmd-list-item-dense-height` -> `$list-item-dense-height`
+  - `$rmd-list-item-medium-height` -> `$list-item-medium-height`
+  - `$rmd-list-item-dense-medium-height` -> `$list-item-dense-medium-height`
+  - `$rmd-list-item-large-height` -> `$list-item-large-height`
+  - `$rmd-list-item-dense-large-height` -> `$list-item-dense-large-height`
+  - `$rmd-list-item-extra-large-height` -> `$list-item-extra-large-height`
+  - `$rmd-list-item-dense-extra-large-height` -> `$list-item-dense-extra-large-height`
+  - `$rmd-list-item-three-line-height` -> `$list-item-mulitline-height`
+  - `$rmd-list-item-dense-three-line-height` -> `$list-item-dense-mulitline-height`
+  - `$rmd-list-item-secondary-text-line-height` -> `$list-item-secondary-text-line-height`
+  - `$rmd-list-item-secondary-text-three-line-max-height` -> `$list-item-mulitline-max-height`
+  - `$rmd-list-item-dense-secondary-text-three-line-max-height` -> `$list-item-dense-mulitline-max-height`
+  - `$rmd-list-item-text-keyline` -> `$list-item-keyline`
+  - `$rmd-list-item-media-size` -> `$list-item-media-size`
+  - `$rmd-list-item-media-large-size` -> `$list-item-media-large-size`
+  - `$rmd-list-item-media-spacing` -> `$list-item-media-spacing`
+  - `$rmd-list-item-disabled-opacity` -> `$list-item-disabled-opacity`
+
+### Media 🔧
+
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-media-theme`
+  - `@mixin rmd-media-responsive-item`
+  - `@mixin rmd-media-overlay-position`
+  - `$rmd-media-default-aspect-ratio`
+  - `$rmd-media-overlay-positions` - use
+    `$responsive-item-disable-overlay-{top|right|bottom|left|middle|center|absoluite-center}`
+    variables instead
+  - `$rmd-media-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@mixin react-md-media` -> `responsive-item-styles`
+  - `@mixin rmd-media-aspect-ratio` -> `responsive-item-aspect-ratio`
+  - `@mixin rmd-media-aspect-ratio-container` -> `responsive-item-aspect-ratio-container`
+  - `@mixin rmd-media-forced-aspect-ratio-item` -> `responsive-item-forced-aspect-ratio`
+  - `@mixin rmd-media-overlay` -> `responsive-item-overlay-styles`
+  - `@mixin rmd-media-container`-> `responsive-item-base-styles`
+  - `$rmd-media-selectors` -> `$responsive-item-selectors`
+  - `$rmd-media-default-aspect-ratios` -> `$responsive-item-default-aspect-ratios`
+  - `$rmd-media-overlay-background-color` -> `$responsive-item-overlay-background-color`
+  - `$rmd-media-overlay-padding` -> `$responsive-item-overlay-padding`
+  - `$rmd-media-overlay-horizontal-width` -> `$responsive-item-overlay-horizontal-width`
+
+### Overlay 🔧
+
+- the overlay theme API no longer supports the `active-opacity` variable
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-overlay-theme`
+  - `@mixin rmd-overlay`
+  - `$rmd-overlay-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-overlay-theme-var` -> `overlay-get-var`
+  - `@mixin rmd-overlay-theme` -> `overlay-use-var`
+  - `@mixin rmd-overlay-theme-update-var` -> `overlay-set-var`
+  - `@mixin react-md-overlay` -> `overlay-styles`
+  - `$rmd-overlay-z-index` -> `$overlay-z-index`
+  - `$rmd-overlay-transition-duration` -> `$overlay-transition-duration`
+  - `$rmd-overlay-color` -> `$overlay-background-color`
+
+### Progress 🔧
+
+- the progress theme API renamed `circular-width` to `circular-stroke-width`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-progress-theme`
+  - `@mixin rmd-progress-animation`
+  - `@mixin rmd-linear-progress-styles`
+  - `@mixin rmd-linear-progress-bar`
+  - `@mixin rmd-linear-progress`
+  - `@mixin rmd-circular-progress`
+  - `$rmd-progress-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-progress-theme-var` -> `progress-get-var`
+  - `@mixin rmd-progress-theme` -> `progress-use-var`
+  - `@mixin rmd-progress-theme-update-var` -> `progress-set-var`
+  - `@mixin react-md-progress` -> `progress-styles`
+  - `$rmd-progress-include-linear` -> `$progress-disable-linear`
+  - `$rmd-progress-include-circular` -> `$progress-disable-circular`
+  - `$rmd-progress-color` -> `$progress-color`
+  - `$rmd-progress-background-color` -> `$progress-background-color`
+  - `$rmd-linear-progress-size` -> `$progress-linear-size`
+  - `$rmd-linear-progress-transition-duration` -> `$progress-linear-transition-duration`
+  - `$rmd-linear-progress-short-animation-delay` -> `$progress-linear-short-animation-delay`
+  - `$rmd-linear-progress-styles` -> `$progress-linear-styles`
+  - `$rmd-linear-progress-short-styles` -> `$progress-linear-short-styles`
+  - `$rmd-linear-progress-reverse-styles` -> `$progress-linear-reverse-styles`
+  - `$rmd-linear-progress-reverse-short-styles` -> `$progress-linear-reverse-short-styles`
+  - `$rmd-linear-progress-vertical-styles` -> `$progress-linear-vertical-styles`
+  - `$rmd-linear-progress-vertical-short-styles` -> `$progress-linear-vertical-short-styles`
+  - `$rmd-linear-progress-vertical-reverse-styles` -> `$progress-linear-vertical-reverse-styles`
+  - `$rmd-linear-progress-vertical-reverse-short-styles` -> `$progress-linear-vertical-reverse-short-styles`
+  - `$rmd-circular-progress-size` -> `$progress-circular-size`
+  - `$rmd-circular-progress-small-size` -> `$progress-circular-dense-size`
+  - `$rmd-circular-progress-stroke-width` -> `$progress-circular-stroke-width`
+  - `$rmd-circular-progress-dasharray` -> `$progress-circular-dasharray`
+  - `$rmd-circular-progress-transition-duration` -> `$progress-circular-transition-duration`
+  - `$rmd-circular-progress-start-offset` -> `$progress-circular-start-offset`
+  - `$rmd-circular-progress-end-offset` -> `$progress-circular-end-offset`
+  - `$rmd-circular-progress-rotate-styles` -> `$progress-circular-rotate-styles`
+  - `$rmd-circular-progress-dash-styles` -> `$progress-circular-dash-styles`
+
+### Sheet 🔧
+
+- the sheet theme API renamed the following variables:
+  - `touchable-max-height` -> `touch-max-height`
+- the sheet theme API no longer supports the following variables:
+  - `background-color`
+  - `raised-background-color`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-sheet-theme`
+  - `@mixin rmd-sheet-positions`
+  - `@mixin rmd-sheet`
+  - `$rmd-sheet-overlay-z-index`
+  - `$rmd-sheet-light-background-color`
+  - `$rmd-sheet-dark-elevation-background-color`
+  - `$rmd-sheet-dark-background-color`
+  - `$rmd-sheet-background-color`
+  - `$rmd-sheet-raised-light-background-color`
+  - `$rmd-sheet-raised-dark-elevation-background-color`
+  - `$rmd-sheet-raised-dark-background-color`
+  - `$rmd-sheet-raised-background-color`
+  - `$rmd-sheet-positions`
+  - `$rmd-sheet-enabled-positions`
+    - use `$sheet-disable-position-{left|right|bottom|top}` variables instead
+  - `$rmd-sheet-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-sheet-theme-var` -> `sheet-get-var`
+  - `@mixin rmd-sheet-theme` -> `sheet-use-var`
+  - `@mixin rmd-sheet-theme-update-var` -> `sheet-set-var`
+  - `@mixin react-md-sheet` -> `sheet-styles`
+  - `$rmd-sheet-z-index` -> `$sheet-z-index`
+  - `$rmd-sheet-raised-z-index` -> `$sheet-raised-z-index`
+  - `$rmd-sheet-elevation` -> `$sheet-elevation`
+  - `$rmd-sheet-raised-elevation` -> `$sheet-raised-elevation`
+  - `$rmd-sheet-enter-duration` -> `$sheet-enter-duration`
+  - `$rmd-sheet-leave-duration` -> `$sheet-leave-duration`
+  - `$rmd-sheet-touch-margin` -> `$sheet-touch-margin`
+  - `$rmd-sheet-touch-width` -> `$sheet-touch-width`
+  - `$rmd-sheet-static-width` -> `$sheet-static-width`
+  - `$rmd-sheet-max-height` -> `$sheet-max-height`
+  - `$rmd-sheet-touchable-max-height` -> `$sheet-touch-max-height`
+  - `$rmd-sheet-recommended-min-height` -> `$sheet-recommended-min-height`
+  - `$rmd-sheet-recommended-max-height` -> `$sheet-recommended-max-height`
+
+### States 🔧
+
+- the states theme API renamed the following variables:
+  - `hover-color` -> `hover-background-color`
+  - `focus-color` -> `focus-background-color`
+  - `pressed-color` -> `press-background-color`
+  - `selected-color` -> `selected-background-color`
+- the states theme API no longer removed the following variables:
+  - `focus-shadow`
+  - `light-hover-color`
+  - `light-focus-color`
+  - `light-pressed-color`
+  - `light-selected-color`
+  - `light-ripple-background-color`
+  - `dark-hover-color`
+  - `dark-focus-color`
+  - `dark-pressed-color`
+  - `dark-selected-color`
+  - `dark-ripple-background-color`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-states-theme`
+  - `$rmd-states-use-ripple` - use `$interaction-mode: none` or `$interaction-mode: press` instead
+  - `$rmd-states-use-pressed-states-fallback` - use `$interaction-mode: press` instead
+  - `$rmd-states-background-color`
+  - `$rmd-states-focus-shadow`
+  - `$rmd-states-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-states-theme-var` -> `interaction-get-var`
+  - `@mixin rmd-states-theme` -> `interaction-use-var`
+  - `@mixin rmd-states-theme-update-var` -> `interaction-set-var`
+  - `@mixin react-md-states` -> `interaction-styles`
+  - `$rmd-states-use-focus-shadow` -> `$interaction-focus-box-shadow` and
+    changed the default value from `true` to `false`
+  - `$rmd-states-use-focus-background` -> `$interaction-disable-focus-background`
+  - `$rmd-states-light-theme-background-color` -> `$interaction-light-surface-base-background-color`
+  - `$rmd-states-dark-theme-background-color` -> `$interaction-dark-surface-base-background-color`
+  - `$rmd-states-light-theme-hover-color` -> `$interaction-light-surface-hover-color`
+  - `$rmd-states-light-theme-focus-color` -> `$interaction-light-surface-focus-color`
+  - `$rmd-states-light-theme-pressed-color` -> `$interaction-light-surface-pressed-color`
+  - `$rmd-states-light-theme-selected-color` -> `$interaction-light-surface-selected-color`
+  - `$rmd-states-dark-theme-hover-color` -> `$interaction-dark-surface-hover-color`
+  - `$rmd-states-dark-theme-focus-color` -> `$interaction-dark-surface-focus-color`
+  - `$rmd-states-dark-theme-pressed-color` -> `$interaction-dark-surface-pressed-color`
+  - `$rmd-states-dark-theme-selected-color` -> `$interaction-dark-surface-selected-color`
+  - `$rmd-states-light-theme-ripple-background-color` -> `$interaction-light-surface-ripple-background-color`
+  - `$rmd-states-dark-theme-ripple-background-color` -> `$interaction-dark-surface-ripple-background-color`
+  - `$rmd-states-hover-color` -> `$interaction-hover-color`
+  - `$rmd-states-focus-color` -> `$interaction-focus-color`
+  - `$rmd-states-pressed-color` -> `$interaction-pressed-color`
+  - `$rmd-states-selected-color` -> `$interaction-selected-color`
+  - `$rmd-states-focus-shadow-width` -> `$interaction-focus-width`
+  - `$rmd-states-focus-shadow-color` -> `$interaction-focus-color`
+  - `$rmd-states-ripple-background-color` -> `$interaction-ripple-background-color`
+  - `$rmd-states-ripple-transform-duration` -> `$interaction-ripple-transform-duration`
+  - `$rmd-states-ripple-opacity-duration` -> `$interaction-ripple-opacity-duration`
+  - `$rmd-states-pressed-class-name` -> `$interaction-pressed-class-name`
+    - this value is no longer configurable
+    - this value is changed from `.rmd-states--pressed` to `rmd-pressed`
+
+### Table 🔧
+
+- the table theme API renamed the following variables:
+  - `cell-h-padding` -> `cell-horizontal-padding`
+  - `cell-v-padding` -> `cell-vertical-padding`
+- the table theme API removed the following variables:
+  - `cell-dense-height`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-table-theme`
+  - `@mixin rmd-table`
+  - `@mixin rmd-thead`
+  - `@mixin rmd-table-cell-horizontal-alignments`
+  - `@mixin rmd-table-cell-vertical-alignments`
+  - `@mixin rmd-table-cell`
+  - `@mixin rmd-table-row`
+  - `$rmd-table-cell-horizontal-alignments`
+  - `$rmd-table-cell-vertical-alignments` - use `$table-disable-cell-align-{top|bottom}` instead
+  - `$rmd-table-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-table-theme-var` -> `table-get-var`
+  - `@mixin rmd-table-theme` -> `table-use-var`
+  - `@mixin rmd-table-theme-update-var` -> `table-set-var`
+  - `@mixin react-md-table` -> `table-styles`
+  - `$rmd-table-light-border-color` -> `$table-light-theme-border-color`
+  - `$rmd-table-dark-border-color` -> `$table-dark-theme-border-color`
+  - `$rmd-table-border-color` -> `$table-border-color`
+  - `$rmd-table-cell-horizontal-padding` -> `$table-cell-horizontal-padding`
+  - `$rmd-table-cell-vertical-padding` -> `$table-cell-vertical-padding`
+  - `$rmd-table-cell-sticky-position` -> `$table-sticky-cell-position`
+  - `$rmd-table-cell-sticky-z-index` -> `$table-sticky-cell-z-index`
+  - `$rmd-table-cell-height` -> `$table-cell-height`
+  - `$rmd-table-cell-dense-height` -> `$table-cell-dense-height`
+  - `$rmd-table-cell-color` -> `$table-cell-color`
+  - `$rmd-table-header-cell-height` -> `$table-cell-header-height`
+  - `$rmd-table-header-cell-dense-height` -> `$table-cell-header-dense-height`
+  - `$rmd-table-header-cell-color` -> `$table-cell-header-color`
+  - `$rmd-table-header-sticky-position` -> `$table-sticky-header-position`
+  - `$rmd-table-row-hover-color` -> `$table-row-hover-color`
+  - `$rmd-table-row-selected-color` -> `$table-row-selected-color`
+  - `$rmd-table-footer-sticky-position` -> `$table-sticky-footer-position`
+  - `$rmd-table-checkbox-padding` -> `$table-cell-input-toggle-horizontal-padding`
+
+### Tabs 🔧
+
+- the tabs theme API renamed the following variables:
+  - `active` -> `active-color`
+  - `inactive` -> `inactive-color`
+  - `disabled` -> `disabled-color`
+  - `indicator-color` -> `indicator-background`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-tabs-theme`
+  - `@mixin rmd-tabs`
+  - `@mixin rmd-tab`
+  - `@mixin rmd-tab-panels`
+  - `@mixin rmd-tab-panel`
+  - `$rmd-tabs-positions`
+  - `$rmd-tab-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-tabs-theme-var` -> `tabs-get-var`
+  - `@mixin rmd-tabs-theme` -> `tabs-use-var`
+  - `@mixin rmd-tabs-theme-update-var` -> `tabs-set-var`
+  - `@mixin react-md-tabs` -> `tabs-styles`
+  - `$rmd-tab-height` -> `$tabs-height`
+  - `$rmd-tab-stacked-height` -> `$tabs-stacked-height`
+  - `$rmd-tab-horizontal-padding` -> `$tabs-horizontal-padding`
+  - `$rmd-tab-vertical-padding` -> `$tabs-vertical-padding`
+  - `$rmd-tab-min-width` -> `$tabs-min-width`
+  - `$rmd-tab-max-width` -> `$tabs-max-width`
+  - `$rmd-tab-indicator-color` -> `$tabs-indicator-background`
+  - `$rmd-tab-active-color` -> `$tabs-active-color`
+  - `$rmd-tab-inactive-color` -> `$tabs-inactive-color`
+  - `$rmd-tab-disabled-color` -> `$tabs-disabled-color`
+  - `$rmd-tab-active-indicator-height` -> `$tabs-indicator-height`
+  - `$rmd-tabs-scrollable-padding` -> `$tabs-tablist-scrollable-horizontal-padding`
+
+### Tooltip 🔧
+
+- the tooltip theme API no longer supports the following variables:
+  - `spacing`
+  - `font-size`
+  - `line-height`
+  - `dense-spacing`
+  - `dense-font-size`
+  - `dense-line-height`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-tooltip-theme`
+  - `@function rmd-tooltip-position-to-property`
+  - `@function rmd-tooltip-inverse-position`
+  - `@mixin rmd-tooltip-base`
+  - `@mixin rmd-tooltip-line-wrap`
+  - `@mixin rmd-tooltip`
+  - `$rmd-tooltip-font-size` - use `$tooltip-typography` instead
+  - `$rmd-tooltip-line-height` - use `$tooltip-typography` instead
+  - `$rmd-tooltip-dense-font-size` - use `$tooltip-dense-typography` instead
+  - `$rmd-tooltip-dense-line-height` - use `$tooltip-dense-typography` instead
+  - `$rmd-tooltip-line-wrap-vertical-padding`
+  - `$rmd-tooltip-dense-line-wrap-vertical-padding`
+  - `$rmd-tooltip-position-values` - use `$tooltip-disable-{above|below|left|right}` variables instead
+  - `$rmd-tooltip-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-tooltip-theme-var` -> `tooltip-get-var`
+  - `@mixin rmd-tooltip-theme` -> `tooltip-use-var`
+  - `@mixin rmd-tooltip-theme-update-var` -> `tooltip-set-var`
+  - `@mixin rmd-tooltip-dense-theme` -> `tooltip-dense-variables`
+  - `@mixin react-md-tooltip` -> `tooltip-styles`
+  - `$rmd-tooltip-background-color` -> `$tooltip-background-color`
+  - `$rmd-tooltip-color` -> `$tooltip-color`
+  - `$rmd-tooltip-max-width` -> `$tooltip-max-width`
+  - `$rmd-tooltip-enter-duration` -> `$tooltip-enter-duration`
+  - `$rmd-tooltip-exit-duration` -> `$tooltip-leave-duration`
+  - `$rmd-tooltip-z-index` -> `$tooltip-z-index`
+  - `$rmd-tooltip-min-height` -> `$tooltip-min-height`
+  - `$rmd-tooltip-horizontal-padding` -> `$tooltip-horizontal-padding`
+  - `$rmd-tooltip-spacing` -> `$tooltip-spacing`
+  - `$rmd-tooltip-dense-min-height` -> `$tooltip-dense-min-height`
+  - `$rmd-tooltip-dense-horizontal-padding` -> `$tooltip-dense-horizontal-padding`
+  - `$rmd-tooltip-dense-spacing` -> `$tooltip-dense-spacing`
+  - `$rmd-tooltip-border-radius` -> `$tooltip-border-radius`
+  - `$rmd-tooltip-transition-distance` -> `$tooltip-transition-distance`
+
+### Transition 🔧
+
+- the following functions, mixins, and variables have been removed:
+  - `@mixin rmd-transition`
+  - `@mixin rmd-transition-parent-shadow`
+  - `@mixin rmd-transition-pseudo-shadow`
+  - `@mixin rmd-collapse`
+  - `@mixin rmd-cross-fade`
+  - `$rmd-collapse-enter-transition-func`
+  - `$rmd-collapse-leave-transition-func`
+  - `$rmd-transitions`
+- the following functions, mixins, and variables have been renamed:
+  - `@mixin rmd-transition-shadow-transition` -> `box-shadow-transition`
+  - `@mixin rmd-transition-classes` -> `rmd-scale-transition` and `rmd-scale-y-transition`
+  - `@mixin react-md-transition` -> `transition-styles`
+  - `$rmd-transition-sharp` -> `$sharp-timing-function`
+  - `$rmd-transition-standard` -> `$standard-timing-function`
+  - `$rmd-transition-acceleration` -> `$acceleration-timing-function`
+  - `$rmd-transition-deceleration` -> `$deceleration-timing-function`
+  - `$rmd-transition-standard-time` -> `$linear-duration`
+  - `$rmd-transition-enter-duration` -> `$enter-duration`
+  - `$rmd-transition-leave-duration` -> `$leave-duration`
+  - `$rmd-cross-fade-translate-distance` -> `$cross-fade-translate-distance`
+  - `$rmd-cross-fade-transition-duration` -> `$cross-fade-transition-duration`
+  - `$rmd-transition-scale-enter-duration` -> `$scale-transition-enter-duration`
+  - `$rmd-transition-scale-leave-duration` -> `$scale-transition-leave-duration`
+  - `$rmd-transition-scale-y-enter-duration` -> `$scale-y-transition-enter-duration`
+  - `$rmd-transition-scale-y-leave-duration` -> `$scale-y-transition-leave-duration`
+
+### Tree 🔧
+
+- the tree theme API renamed the following variables:
+  - `incrementor` -> `item-padding-incrementor`
+  - `base-padding` -> `item-padding-base`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-tree-theme`
+  - `@mixin rmd-tree-depths`
+  - `@mixin rmd-tree-item-at-depth`
+  - `@mixin rmd-tree`
+  - `@mixin rmd-tree-item`
+  - `@mixin rmd-tree-group`
+  - `$rmd-tree-item-focused-styles`
+  - `$rmd-tree-item-keyboard-focused-styles`
+  - `$rmd-tree-max-depth`
+  - `$rmd-tree-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-tree-theme-var` -> `tree-get-var`
+  - `@mixin rmd-tree-theme` -> `tree-use-var`
+  - `@mixin rmd-tree-theme-update-var` -> `tree-set-var`
+  - `@mixin react-md-tree` -> `tree-styles`
+  - `$rmd-tree-item-padding-incrementor` -> `$tree-item-padding-incrementor`
+  - `$rmd-tree-item-padding-base` -> `$tree-item-padding-base`
+
+### Typography 🔧
+
+- the typography theme API renamed the following variables:
+  - `line-width` -> `line-length`
+- the typography theme API removed the following variables:
+  - `mobile-line-width`
+  - `desktop-line-width`
+- the following functions, mixins, and variables have been removed:
+  - `@function rmd-typography-theme`
+  - `@function rmd-typography-value`
+  - `@function rmd-typography-google-font-suffix`
+  - `@mixin rmd-typography-value`
+  - `@mixin rmd-typography-base`
+  - `@mixin rmd-typography`
+  - `@mixin rmd-text-container-base`
+  - `@mixin rmd-text-container-auto`
+  - `@mixin rmd-text-container`
+  - `@mixin rmd-typography-google-font-face`
+  - `@mixin rmd-typography-host-google-font`
+  - `$rmd-typography-mobile-max-line-length`
+  - `$rmd-typography-desktop-max-line-length`
+  - `$rmd-typography-colors`
+  - `$rmd-typography-google-font-weight-suffixes`
+  - `$rmd-typography-text-container-breakpoint`
+  - `$rmd-typography-theme-values`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-typography-theme-var` -> `typography-get-var`
+  - `@mixin rmd-typography-theme` -> `typography-use-var`
+  - `@mixin rmd-typography-theme-update-var` -> `typography-set-var`
+  - `@mixin rmd-typography-text-overflow-ellipsis` -> `text-overflow`
+  - `@mixin rmd-typography-line-clamp` -> `line-clamp`
+  - `@mixin react-md-typography` -> `typography-styles`
+  - `$rmd-typography-font-family` -> `$font-family`
+  - `$rmd-typography-base` -> `$base-font-styles`
+  - `$rmd-typography-thin` -> `$font-weight-thin`
+  - `$rmd-typography-light` -> `$font-weight-light`
+  - `$rmd-typography-regular` -> `$font-weight-regular`
+  - `$rmd-typography-medium` -> `$font-weight-medium`
+  - `$rmd-typography-bold` -> `$font-weight-bold`
+  - `$rmd-typography-semi-bold` -> `$font-weight-semi-bold`
+  - `$rmd-typography-black` -> `$font-weight-black`
+  - `$rmd-typography-font-weights` -> `$font-weights`
+  - `$rmd-typography-default-font-weights` -> `$font-weights`
+  - `$rmd-typography-alignments` -> `$text-alignments`
+  - `$rmd-typography-decorations` -> `$text-decorfations`
+  - `$rmd-typography-transforms` -> `$text-transforms`
+  - `$rmd-typography-font-styles` -> `$font-styles`
+  - `$rmd-typography-default-headline-1-styles` -> `$headline-1-recommended-styles`
+  - `$rmd-typography-headline-1-styles` -> `$headline-1-custom-styles`
+  - `$rmd-typography-default-headline-2-styles` -> `$headline-2-recommended-styles`
+  - `$rmd-typography-headline-2-styles` -> `$headline-2-custom-styles`
+  - `$rmd-typography-default-headline-3-styles` -> `$headline-3-recommended-styles`
+  - `$rmd-typography-headline-3-styles` -> `$headline-3-custom-styles`
+  - `$rmd-typography-default-headline-4-styles` -> `$headline-4-recommended-styles`
+  - `$rmd-typography-headline-4-styles` -> `$headline-4-custom-styles`
+  - `$rmd-typography-default-headline-5-styles` -> `$headline-5-recommended-styles`
+  - `$rmd-typography-headline-5-styles` -> `$headline-5-custom-styles`
+  - `$rmd-typography-default-headline-6-styles` -> `$headline-6-recommended-styles`
+  - `$rmd-typography-headline-6-styles` -> `$headline-6-custom-styles`
+  - `$rmd-typography-default-subtitle-1-styles` -> `$subtitle-1-recommended-styles`
+  - `$rmd-typography-subtitle-1-styles` -> `$subtitle-1-custom-styles`
+  - `$rmd-typography-default-subtitle-2-styles` -> `$subtitle-2-recommended-styles`
+  - `$rmd-typography-subtitle-2-styles` -> `$subtitle-2-custom-styles`
+  - `$rmd-typography-default-body-1-styles` -> `$body-1-recommended-styles`
+  - `$rmd-typography-body-1-styles` -> `$body-1-custom-styles`
+  - `$rmd-typography-default-body-2-styles` -> `$body-2-recommended-styles`
+  - `$rmd-typography-body-2-styles` -> `$body-2-custom-styles`
+  - `$rmd-typography-default-caption-styles` -> `$caption-recommended-styles`
+  - `$rmd-typography-caption-styles` -> `$caption-custom-styles`
+  - `$rmd-typography-default-button-styles` -> `$button-recommended-styles`
+  - `$rmd-typography-button-styles` -> `$button-custom-styles`
+  - `$rmd-typography-default-overline-styles` -> `$overline-recommended-styles`
+  - `$rmd-typography-overline-styles` -> `$overline-custom-styles`
+  - `$rmd-typography-styles` -> `$typography-styles`
+
+### Utils 🔧
+
+- the following functions, mixins, and variables have been removed:
+  - `rmd-utils-rtl-auto`
+  - `rmd-utils-rtl-auto-group`
+  - `rmd-utils-block-centered`
+  - `rmd-utils-absolute-centered`
+  - `rmd-utils-scroll`
+  - `rmd-utils-hide-focus-outline`
+  - `rmd-utils-full-screen`
+  - `rmd-utils-sr-only-focusable`
+  - `rmd-grid` - try using the new [Box component](/components/box) instead!
+  - `rmd-grid-cell-full`
+  - `rmd-grid-cell-size`
+  - `rmd-grid-cell`
+  - `rmd-grid-list-cell-size`
+  - `rmd-grid-list-cell`
+  - `rmd-grid-list`
+  - `react-md-utils-grid`
+  - `rmd-utils-dense`
+  - `$rmd-grid-columns-var`
+  - `$rmd-grid-gutter-var`
+  - `$rmd-grid-cell-margin-var`
+  - `$rmd-grid-cell-size-var`
+  - `$rmd-grid-padding`
+  - `$rmd-grid-cell-margin`
+  - `$rmd-grid-columns`
+  - `$rmd-grid-phone-columns`
+  - `$rmd-grid-tablet-columns`
+  - `$rmd-grid-desktop-columns`
+  - `$rmd-grid-large-desktop-columns`
+  - `$rmd-grid-list-padding`
+  - `$rmd-grid-list-cell-margin`
+  - `$rmd-grid-list-cell-max-size`
+  - `$rmd-utils-ios-scroll-momentum`
+  - `$rmd-utils-auto-dense`
+  - `$rmd-utils-swappable-positions`
+  - `$rmd-utils-swappable-position-prefixes`
+  - `$rmd-utils-fix-moz-focus`
+- the following functions, mixins, and variables have been renamed:
+  - `@function rmd-utils-validate` -> `validate`
+  - `@function rmd-utils-swap-position` -> `swap-position`
+  - `@function rmd-utils-negate-var` -> `negate-var`
+  - `@mixin rmd-utils-map-to-styles` -> `map-to-styles`
+  - `@mixin rmd-utils-rtl` -> `@rtl`
+  - `@mixin rmd-utils-pseudo-element` -> `pseudo-element`
+  - `@mixin rmd-utils-sr-only` -> `sr-only`
+  - `@mixin rmd-utils-hide-scrollbar` -> `hide-scrollbar`
+  - `@mixin rmd-utils-phone-media` -> `phone-media`
+  - `@mixin rmd-utils-tablet-media` -> `tablet-media`
+  - `@mixin rmd-utils-tablet-only-media` -> `tablet-only-media`
+  - `@mixin rmd-utils-desktop-media` -> `desktop-media`
+  - `@mixin rmd-utils-large-desktop-media` -> `large-desktop-media`
+  - `@mixin rmd-utils-optional-css-modules` -> `optional-css-modules`
+  - `@mixin rmd-utils-touch-only` -> `touch-only`
+  - `@mixin rmd-utils-keyboard-only` -> `keyboard-only`
+  - `@mixin rmd-utils-mouse-only` -> `mouse-only`
+  - `@mixin rmd-utils-base` -> `css-reset`
+  - `@mixin react-md-utils` -> `styles`
+    - NOTE: Since the global dense theme has been removed, this will not enable
+      the dense mode for desktops automatically
+  - `$rmd-utils-enable-rtl` -> `$disable-rtl`
+  - `$rmd-utils-temporary-element-z-index` -> `$utils-temporary-element-z-index`
+  - `$rmd-utils-skip-validation` -> `$disable-validation`
+  - `$rmd-utils-phone-max-width` -> `$phone-max-width`
+  - `$rmd-utils-tablet-min-width` -> `$tablet-min-width`
+  - `$rmd-utils-tablet-max-width` -> `$tablet-max-width`
+  - `$rmd-utils-desktop-min-width` -> `$desktop-min-width`
+  - `$rmd-utils-large-desktop-min-width` -> `$large-desktop-min-width`

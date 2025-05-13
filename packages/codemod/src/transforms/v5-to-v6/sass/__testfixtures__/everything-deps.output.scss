@@ -1,0 +1,9 @@
+@use "react-md/colors" as *;
+
+@forward "react-md" with (
+  // update these variables as needed for your app
+  $rmd-theme-primary: $rmd-teal-500,
+  $rmd-theme-secondary: $rmd-pink-a-200,
+  $rmd-theme-light: true,
+  $rmd-theme-dark-elevation: "prefers-color-scheme"
+);

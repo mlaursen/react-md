@@ -1,0 +1,19 @@
+@use "../everything" as *;
+
+@include react-md-utils;
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include rmd-theme-dark;
+  }
+}
+
+body > div:first-child {
+  height: 100%;
+}
+
+:root {
+  @include rmd-utils-desktop-media {
+    @include rmd-tooltip-dense-theme;
+  }
+}

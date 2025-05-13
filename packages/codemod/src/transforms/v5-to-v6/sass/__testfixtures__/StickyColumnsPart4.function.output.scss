@@ -1,0 +1,20 @@
+@use 'react-md' as *;
+@use 'everything';
+
+.container {
+  max-height: 25rem;
+}
+
+.sticky {
+  $checkbox-offset: calc(
+    #{button-get-var(icon-size)} + #{$table-cell-input-toggle-horizontal-padding * 2}
+  );
+
+  // if you don't need auto-RTL support, you could just set the `left` value
+  // instead of using the mixin and updating the css variable
+  @include rmd-table-theme-update-var(sticky-cell, $checkbox-offset);
+
+  color: everything.$black;
+  background: everything.theme-get-var(background-color);
+  border-color: icon-get-var(color);
+}

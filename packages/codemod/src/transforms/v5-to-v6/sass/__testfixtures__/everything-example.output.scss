@@ -1,0 +1,11 @@
+// TODO: The following variables have been removed: $rmd-theme-light, $rmd-theme-dark-elevation
+
+@use "@react-md/theme/dist/color-palette" as *;
+
+@forward "react-md" with (
+  /* update these variables as needed for your app*/
+  $primary-color: $teal-500,
+  $secondary-color: $pink-a-200,
+  $rmd-theme-light: true,
+  $rmd-theme-dark-elevation: "prefers-color-scheme"
+);

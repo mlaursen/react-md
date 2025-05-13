@@ -22,6 +22,7 @@ export function getAvailableTransforms(baseUrl: string): AvailableTransforms {
       "v5-to-v6/scssVariables.js",
       "v5-to-v6/form/utils/**",
       "v5-to-v6/preset.js",
+      "v5-to-v6/sass/**",
     ],
   });
 

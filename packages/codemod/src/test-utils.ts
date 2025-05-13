@@ -57,11 +57,11 @@ export function defineTest(
   importMetaUrl: string,
   transformName: string,
   options?: Options | null,
-  testFilePrefix?: string,
+  testFilePrefix = "",
   testOptions?: TestOptions
 ): void {
   const suffix = testFilePrefix ? `using "${testFilePrefix}" data` : "";
-  const testName = "transforms correctly" + suffix;
+  const testName = "transforms correctly " + suffix;
   const dirName = dirname(fileURLToPath(importMetaUrl));
 
   describe(transformName, () => {

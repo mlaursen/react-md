@@ -1,0 +1,56 @@
+@use 'react-md' as *;
+
+.container {
+  // TODO: This mixin has been removed and must manually be updated.
+  @include rmd-utils-rtl-auto(margin-left, auto);
+  @include text-field-set-var(filled-color, rgba($rmd-black-base, 0.15));
+  @include icon-set-var(color, rmd-theme-var(on-primary));
+  @include phone-media {
+    max-width: 2.5rem;
+  }
+
+  border: 0;
+  border-radius: $rmd-text-field-border-radius;
+  max-width: 10rem;
+  transition: max-width $rmd-transition-standard-time * 2;
+  width: 100%;
+
+  &::after {
+    display: none;
+  }
+}
+
+.expanded {
+  max-width: 30rem - $rmd-list-item-media-large-size -
+    $rmd-option-horizontal-padding;
+}
+
+@include phone-media {
+  .transparent {
+    @include text-field-set-var(filled-color, transparent);
+  }
+}
+
+.input {
+  // TODO: This mixin has been removed and must manually be updated.
+  @include rmd-text-field-placeholder {
+    color: inherit;
+    opacity: 0.7;
+  }
+}
+
+.listbox {
+  @include tablet-media {
+    width: 100%;
+  }
+
+  max-width: 30rem;
+}
+
+.result {
+  @include theme-use-var(color, text-primary-color);
+}
+
+.option {
+  align-self: flex-start;
+}

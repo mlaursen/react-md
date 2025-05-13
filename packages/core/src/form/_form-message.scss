@@ -21,12 +21,16 @@ $disable-everything: base.$form-disable-everything !default;
 /// @type Boolean
 $disable-counter: $disable-everything !default;
 
+/// Configure only the `font-size` for the `FormMessage` typography.
+/// @type String
+$font-size: 0.75rem !default;
+
 /// The default typography for the `FormMessage` component.
 /// @type Map
 $typography-styles: map.merge(
   typography.$body-2-styles,
   (
-    font-size: 0.75rem,
+    font-size: $font-size,
   )
 ) !default;
 

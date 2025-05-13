@@ -225,7 +225,7 @@ $variables: (height, surface-background-color, surface-color);
 }
 
 /// Applies the dense height variables
-@mixin dense {
+@mixin dense-variables {
   @if not $disable-everything and $dense-height {
     @include set-var(height, $dense-height);
   }

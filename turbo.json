@@ -6,7 +6,7 @@
       "outputs": ["*.d.ts", "*.js"]
     },
     "@react-md/codemod#build": {
-      "outputs": ["bin/**"]
+      "outputs": ["dist/**"]
     },
     "docs#build": {
       "dependsOn": ["^build"],

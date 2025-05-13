@@ -1,0 +1,13 @@
+@use "../everything" as *;
+
+.panels {
+  @include rmd-app-bar-offset($height-type: prominent-dense-height);
+}
+
+.grid {
+  @include rmd-app-bar-offset($height-type: dense-height);
+
+  display: grid;
+  grid-template-columns: var(--percentage, 50%) 1fr;
+  height: 100%;
+}

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import confirm from "@inquirer/confirm";
 import rawlist from "@inquirer/rawlist";
 
@@ -5,6 +6,7 @@ import { type AvailableTransforms } from "../utils/getAvailableTransforms.js";
 import { getFilesToTransform } from "../utils/getFilesToTransform.js";
 import { getParser } from "../utils/getParser.js";
 import { runJscodeshift } from "../utils/runJscodeshift.js";
+import { sassMigrator } from "../utils/sassMigrator.js";
 import { type ProgramOptions } from "../utils/types.js";
 
 const version = "v5-to-v6";
@@ -63,7 +65,7 @@ export async function migrate(options: MigrateOptions): Promise<void> {
   options.files = await getFilesToTransform(options.files);
   options.parser = await getParser(options.parser);
 
-  const transforms = versionedTransforms.get("v5-to-v6");
+  const transforms = versionedTransforms.get(version);
   if (!transforms) {
     process.exit(1);
   }
@@ -99,6 +101,19 @@ export async function migrate(options: MigrateOptions): Promise<void> {
 
   if (
     await confirm({
+      message: "Do you want to run the sass migrations?",
+    })
+  ) {
+    await sassMigrator({
+      dry: options.dry,
+      // remove files that have an extension
+      files: options.files.filter((name) => !/\.[^/.]+$/.test(name)),
+      version,
+    });
+  }
+
+  if (
+    await confirm({
       message: "Do you want to run the post-optimizations codemods?",
     })
   ) {
@@ -106,9 +121,18 @@ export async function migrate(options: MigrateOptions): Promise<void> {
       ...options,
       transform: getValidTransformFile("v5-to-v6/post-optimizations/all"),
     });
+    console.log();
+    console.log();
+    console.log(`Manually switch from the \`react-md\` package to \`@react-md/core\`:
+
+npm uninstall react-md && npm install -S @react-md/core
+
+yarn remove react-md && yarn add @react-md/core
+
+pnpm remove react-md && pnpm add @react-md/core
+`);
   }
 
-  // eslint-disable-next-line no-console
   console.log(
     "🎉 The v5-to-v6 migration has completed. Please review all the changed files for any TODO comments and the official changelog for things that could not be automigrated."
   );

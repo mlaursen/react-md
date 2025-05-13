@@ -1,0 +1,50 @@
+@use "../everything" as *;
+
+.editor {
+  height: 100%;
+  padding-top: 0;
+}
+
+.area {
+  font-family: "Source Code Pro", monospace;
+  padding: 2rem;
+  padding-left: 4rem;
+  white-space: pre;
+}
+
+.lines {
+  @include theme-use-var(background-color);
+  // TODO: This mixin has been removed and must manually be updated.
+  @include rmd-theme-dark-elevation(4, true);
+  // TODO: This mixin has been removed and must manually be updated.
+  @include rmd-elevation(4);
+
+  bottom: 0;
+  counter-reset: line;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  grid-row-start: 3;
+  left: 0;
+  min-width: 3rem;
+  overflow: hidden;
+  padding: 2rem 0.25rem 2rem 0;
+  position: absolute;
+  text-align: right;
+  top: 0;
+  z-index: 1;
+}
+
+.linesOffset {
+  padding-top: $app-bar-dense-height + 2rem;
+}
+
+.line::before {
+  // TODO: This mixin has been removed and must manually be updated.
+  @include rmd-typography(body-1, font-size);
+
+  content: counter(line);
+  counter-increment: line;
+  font-family: "Source Code Pro", monospace;
+  font-size: 1rem;
+}

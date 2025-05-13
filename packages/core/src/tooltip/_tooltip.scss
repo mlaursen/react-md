@@ -203,10 +203,12 @@ $variables: (
 }
 
 @mixin dense-variables {
-  @include set-var(spacing, $dense-spacing);
-  @include set-var(min-height, get-var(dense-min-height));
-  @include set-var(horizontal-padding, get-var(dense-horizontal-padding));
-  @include set-var(vertical-padding, get-var(dense-vertical-padding));
+  @if not $disable-everything {
+    @include set-var(spacing, $dense-spacing);
+    @include set-var(min-height, get-var(dense-min-height));
+    @include set-var(horizontal-padding, get-var(dense-horizontal-padding));
+    @include set-var(vertical-padding, get-var(dense-vertical-padding));
+  }
 }
 
 /// Generates all the styles based on feature flags.

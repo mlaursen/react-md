@@ -47,7 +47,10 @@
     "@inquirer/search": "^3.0.12",
     "commander": "^13.1.0",
     "glob": "^11.0.2",
-    "jscodeshift": "^17.3.0"
+    "jscodeshift": "^17.3.0",
+    "postcss": "^8.5.3",
+    "postcss-scss": "^4.0.9",
+    "postcss-value-parser": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",

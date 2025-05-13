@@ -1,0 +1,24 @@
+@use "react-md" as * with (
+  $rmd-typography-headline-1-styles: (
+    font-size: 4rem,
+    line-height: 4rem,
+    margin: 0,
+  ),
+  $rmd-typography-headline-2-styles: (
+    font-size: 3.5rem,
+    line-height: 3.5rem,
+    margin: 0,
+  ),
+  $rmd-typography-headline-3-styles: (
+    margin: 0,
+  ),
+  $rmd-typography-headline-4-styles: (
+    margin: 0,
+  ),
+  $rmd-typography-headline-5-styles: (
+    margin: 0,
+  ),
+  $rmd-typography-headline-6-styles: (
+    margin: 0,
+  ),
+);

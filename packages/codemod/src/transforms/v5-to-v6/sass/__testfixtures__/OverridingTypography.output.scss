@@ -1,0 +1,24 @@
+@use "react-md" as * with (
+  $headline-1-custom-styles: (
+    font-size: 4rem,
+    line-height: 4rem,
+    margin: 0,
+  ),
+  $headline-2-custom-styles: (
+    font-size: 3.5rem,
+    line-height: 3.5rem,
+    margin: 0,
+  ),
+  $headline-3-custom-styles: (
+    margin: 0,
+  ),
+  $headline-4-custom-styles: (
+    margin: 0,
+  ),
+  $headline-5-custom-styles: (
+    margin: 0,
+  ),
+  $headline-6-custom-styles: (
+    margin: 0,
+  ),
+);

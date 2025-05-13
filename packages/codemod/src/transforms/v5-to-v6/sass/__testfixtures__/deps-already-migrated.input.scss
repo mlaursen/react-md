@@ -1,0 +1,5 @@
+@use "react-md/colors" as *;
+@forward "react-md" with (
+  $rmd-theme-primary: $rmd-teal-500,
+  $rmd-theme-secondary: $rmd-deep-orange-a-400
+);

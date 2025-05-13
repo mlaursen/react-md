@@ -1,0 +1,20 @@
+@include rmd-theme(background-color, background);
+@include rmd-theme(background-color, surface);
+@include rmd-theme(color, on-surface);
+@include rmd-theme(background-color, primary);
+@include rmd-theme(color, on-primary);
+@include rmd-theme(background-color, secondary);
+@include rmd-theme(color, on-secondary);
+@include rmd-theme(background-color, warning);
+@include rmd-theme(color, on-warning);
+@include rmd-theme(background-color, error);
+@include rmd-theme(color, on-error);
+@include rmd-theme(background-color, success);
+@include rmd-theme(color, on-success);
+@include rmd-theme(color, text-primary-on-background);
+@include rmd-theme(color, text-secondary-on-background);
+@include rmd-theme(color, text-hint-on-background);
+@include rmd-theme(color, text-disabled-on-background);
+@include rmd-theme(color, text-icon-on-background);
+@include rmd-theme-update-var(text-icon-on-background, red);
+

@@ -1,0 +1,59 @@
+@use "../everything" as *;
+
+.separator {
+  @include divider-use-var(background-color, color);
+  @include theme-use-var(background-color);
+  $width: 0.25rem;
+
+  bottom: 0;
+  grid-row-start: 2;
+  left: calc(var(--percentage, 50%) - #{$width * 0.5});
+  position: absolute;
+  top: 0;
+  width: $width;
+  z-index: 2;
+
+  &::before {
+    background-color: $rmd-states-focus-shadow-color;
+    bottom: 0;
+    content: "";
+    left: inherit;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: $width;
+  }
+
+  &:hover {
+    cursor: col-resize;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  @include keyboard-only(true) {
+    &:focus::before {
+      opacity: 1;
+    }
+  }
+
+  @include touch-only(true) {
+    &:hover::before {
+      opacity: 0;
+    }
+  }
+}
+
+.dragging {
+  cursor: col-resize;
+  user-select: none;
+
+  * {
+    pointer-events: none;
+  }
+
+  .separator::before {
+    opacity: 1;
+  }
+}

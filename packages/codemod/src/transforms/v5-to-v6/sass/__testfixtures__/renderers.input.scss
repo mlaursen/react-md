@@ -1,0 +1,48 @@
+@use "../everything" as *;
+
+.blockquote {
+  $border-style: 0.25em solid rmd-divider-theme-var(background-color);
+
+  @include rmd-theme(color, text-secondary-on-background);
+  @include rmd-typography(subtitle-1);
+  @include rmd-utils-rtl-auto(border-left, $border-style);
+
+  font-style: italic;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  position: relative;
+
+  p:only-child {
+    margin: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.task {
+  list-style: none;
+  margin-left: -2.5rem;
+}
+
+.invalid {
+  min-height: 15rem;
+  position: relative;
+
+  &::after {
+    @include rmd-theme(color, text-primary-on-dark);
+    @include rmd-utils-scroll;
+
+    background-color: $rmd-black-base;
+    bottom: 0;
+    content: attr(data-languages);
+    display: flex;
+    left: 0;
+    padding: 1rem 1.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    white-space: pre-line;
+  }
+}

@@ -1,0 +1,20 @@
+@include theme-use-var(background-color);
+@include theme-use-var(background-color, surface-color);
+@include theme-use-var(color, inverse-color);
+@include theme-use-var(background-color, primary-color);
+@include theme-use-var(color, on-primary-color);
+@include theme-use-var(background-color, secondary-color);
+@include theme-use-var(color, on-secondary-color);
+@include theme-use-var(background-color, warning-color);
+@include theme-use-var(color, on-warning-color);
+@include theme-use-var(background-color, error-color);
+@include theme-use-var(color, on-error-color);
+@include theme-use-var(background-color, success-color);
+@include theme-use-var(color, on-success-color);
+@include theme-use-var(color, text-primary-color);
+@include theme-use-var(color, text-secondary-color);
+@include theme-use-var(color, text-hint-color);
+@include theme-use-var(color, text-disabled-color);
+@include icon-use-var(color);
+@include icon-set-var(color, red);
+
