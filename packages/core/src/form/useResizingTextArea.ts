@@ -132,9 +132,8 @@ export function useResizingTextArea(
       }
 
       const maxHeight = maxRows * lineHeight;
-      nextHeight = Math.min(maxHeight, nextHeight);
-      setMaxHeightReached(nextHeight === maxHeight);
-      nextHeight += borderHeight;
+      setMaxHeightReached(nextHeight > maxHeight + borderHeight);
+      nextHeight = Math.min(maxHeight, nextHeight) + borderHeight;
     }
 
     // This just makes snapshots look nicer since `nextHeight` will be 0 in

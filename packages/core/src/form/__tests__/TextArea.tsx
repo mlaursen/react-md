@@ -394,8 +394,9 @@ describe("TextArea", () => {
       act(() => {
         observer.resizeElement(mask, { width: 110 });
       });
+      // in the browser, this is really 74px since it includes box-sizing: border-box
       expect(getHeightVar()).toBe("72px");
-      expect(textarea).toHaveClass("rmd-textarea--scrollable");
+      expect(textarea).not.toHaveClass("rmd-textarea--scrollable");
 
       maskScrollHeight.mockReturnValue(96);
       act(() => {
