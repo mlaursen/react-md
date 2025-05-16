@@ -51,6 +51,7 @@ $option-selected-icon-size: 1rem !default;
 /// @type Map
 $option-selected-styles: (
   --rmd-icon-color: currentcolor,
+  --rmd-mark-color: currentcolor,
   background-color: colors.$blue-900,
   color: colors.$white,
 ) !default;

@@ -534,7 +534,7 @@ $button-styles: map.merge(
 /// @type Map
 $mark-recommended-styles: (
   background: transparent,
-  color: theme.theme-get-var(inverse-color),
+  color: var(--rmd-mark-color, theme.theme-get-var(inverse-color)),
   font: inherit,
   font-weight: $font-weight-bold,
 );
@@ -571,7 +571,8 @@ $typography-variables: (
   font-size,
   font-family,
   font-weight,
-  line-height
+  line-height,
+  mark-color
 );
 
 /// @param {String} name - The supported variable name
