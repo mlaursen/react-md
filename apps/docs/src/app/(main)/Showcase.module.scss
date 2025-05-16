@@ -1,11 +1,11 @@
 @use "everything";
 
 .container {
+  min-width: 0;
+
   @include everything.tablet-media {
     min-width: 35.875rem;
   }
-
-  min-width: 0;
 }
 
 .logo {

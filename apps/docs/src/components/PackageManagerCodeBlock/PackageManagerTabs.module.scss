@@ -1,4 +1,5 @@
 @use "everything";
+@use "sass:math";
 
 $vertical-inset: 0.5rem;
 $inset: $vertical-inset 0;
@@ -18,6 +19,6 @@ $border-radius: 0.5rem;
   min-width: 0;
 
   &::after {
-    transform: translateY(-$vertical-inset / 2);
+    transform: translateY(math.div(-$vertical-inset, 2));
   }
 }
