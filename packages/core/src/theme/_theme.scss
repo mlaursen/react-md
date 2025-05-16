@@ -182,30 +182,27 @@ $light-theme-surface-color: colors.$white !default;
 
 /// The primary text color when using the light theme.
 /// @type Color
-$light-theme-text-primary-color: color.adjust(
+$light-theme-text-primary-color: rgba(
   $light-theme-inverse-color,
-  $lightness: 13%
+  0.87
 ) !default;
 
 /// The secondary text color when using the light theme.
 /// @type Color
-$light-theme-text-secondary-color: color.adjust(
+$light-theme-text-secondary-color: rgba(
   $light-theme-inverse-color,
-  $lightness: 46%
+  0.6
 ) !default;
 
 /// The hint text color when using the light theme.
 /// @type Color
-$light-theme-text-hint-color: color.adjust(
-  $light-theme-inverse-color,
-  $lightness: 66%
-) !default;
+$light-theme-text-hint-color: rgba($light-theme-inverse-color, 0.38) !default;
 
 /// The disabled text color when using the light theme.
 /// @type Color
-$light-theme-text-disabled-color: color.adjust(
+$light-theme-text-disabled-color: rgba(
   $light-theme-inverse-color,
-  $lightness: 62%
+  0.38
 ) !default;
 
 /// This should probably never be changed.
@@ -233,31 +230,19 @@ $dark-theme-surface-color: if(
 
 /// The primary text color when using the dark theme.
 /// @type Color
-$dark-theme-text-primary-color: color.adjust(
-  $dark-theme-inverse-color,
-  $lightness: -15%
-) !default;
+$dark-theme-text-primary-color: rgba($dark-theme-inverse-color, 0.87) !default;
 
 /// The secondary text color when using the dark theme.
 /// @type Color
-$dark-theme-text-secondary-color: color.adjust(
-  $dark-theme-inverse-color,
-  $lightness: -30%
-) !default;
+$dark-theme-text-secondary-color: rgba($dark-theme-inverse-color, 0.6) !default;
 
 /// The hint text color when using the dark theme.
 /// @type Color
-$dark-theme-text-hint-color: color.adjust(
-  $dark-theme-inverse-color,
-  $lightness: -50%
-) !default;
+$dark-theme-text-hint-color: rgba($dark-theme-inverse-color, 0.38) !default;
 
 /// The disabled text color when using the dark theme.
 /// @type Color
-$dark-theme-text-disabled-color: color.adjust(
-  $dark-theme-inverse-color,
-  $lightness: -50%
-) !default;
+$dark-theme-text-disabled-color: rgba($dark-theme-inverse-color, 0.38) !default;
 
 /// Used to provide the correct color based on the `$color-scheme` setting.
 ///
