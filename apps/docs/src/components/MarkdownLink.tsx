@@ -1,5 +1,6 @@
 import { link } from "@react-md/core/link/styles";
 import { type ReactElement } from "react";
+import { type FormattedSassDocItem } from "sassdoc-generator/types";
 
 import { GITHUB_LINK_URL } from "@/constants/env.js";
 import {
@@ -36,24 +37,33 @@ export function MarkdownLink(props: MarkdownLinkProps): ReactElement {
   }
 
   if (children === SASSDOC) {
+    const forceMixin = href.startsWith("mixin#");
+    const hrefWithoutForce = href.replace(/^mixin#/, "");
     // allow for stuff like: `[$SASSDOC](theme-get-var(primary-color))`
-    const name = href.replace(/\(.+\)$/, "");
+    const name = hrefWithoutForce.replace(/\(.+\)$/, "");
     const forceVariable = name.startsWith("$");
 
     const fn = SASSDOC_FUNCTIONS[name];
     const mixin = SASSDOC_MIXINS[name];
     const variable = SASSDOC_VARIABLES[name.replace(/^\$/, "")];
-    const item = forceVariable ? variable : mixin || fn || variable;
+    let item: FormattedSassDocItem | undefined;
+    if (forceVariable) {
+      item = variable;
+    } else if (forceMixin) {
+      item = mixin;
+    } else {
+      item = mixin || fn || variable;
+    }
     if (
       process.env.NODE_ENV !== "production" &&
-      ((fn && mixin) || (fn && variable) || (mixin && variable))
+      ((fn && mixin && !forceMixin) || (fn && variable) || (mixin && variable))
     ) {
       throw new Error(`${name} has multiple matches and should be updated.`);
     }
 
     if (item) {
       const prefix = !forceVariable && isFormattedVariableItem(item) ? "$" : "";
-      children = `core.${prefix}${decodeURIComponent(href)}`;
+      children = `core.${prefix}${decodeURIComponent(hrefWithoutForce)}`;
       href = getSassDocLink(item);
     } else if (!item && process.env.NODE_ENV !== "production") {
       throw new Error(`Unable to find SassDoc item with name "${href}"`);
