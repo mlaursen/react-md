@@ -855,6 +855,11 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/css-utils",
+        children: "cssUtils",
+      },
+      {
+        type: "route",
         href: "/object-fit",
         children: "objectFit",
       },
