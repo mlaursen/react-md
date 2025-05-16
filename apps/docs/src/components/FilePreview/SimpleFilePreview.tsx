@@ -67,4 +67,3 @@ export function SimpleFilePreview(props: SimpleFilePreviewProps): ReactElement {
     </>
   );
 }
-// @importOnly

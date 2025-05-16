@@ -326,6 +326,11 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/root-html",
+        children: "RootHtml",
+      },
+      {
+        type: "route",
         href: "/portal",
         children: "Portal",
       },

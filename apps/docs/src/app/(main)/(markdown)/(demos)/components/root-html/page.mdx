@@ -1,0 +1,45 @@
+---
+title: Root Html
+description: The RootHtml component can be used in SSR apps like next.js to create the root html structure.
+docType: Demo
+docGroup: Components
+group: Utils
+components: [RootHtml]
+---
+
+# Root Html
+
+The `RootHtml` component is mostly for creating the root html for next.js
+applications that defaults to setting the `dir="ltr"` and `lang="en"`.
+Additional props can be passed to the root `<html>` and `<body>` elements and
+children can be rendered before and after the `<body>` if needed.
+
+## Example Next.js Setup
+
+```tsx fileName="src/app/layout.tsx"
+import { RootHtml } from "@react-md/core/RootHtml";
+import { Roboto_Flex } from "next/font/google";
+import { type PropsWithChildren, type ReactElement } from "react";
+
+const roboto = Roboto_Flex({
+  subsets: ["latin"],
+  variable: "--roboto",
+});
+
+export default function RootLayout(props: PropsWithChildren): ReactElement {
+  const { children } = props;
+
+  return <RootHtml className={roboto.variable}>{children}</RootHtml>;
+}
+```
+
+## This Website's Implementation
+
+The `RootHtml` component supports additional props like `beforeBodyChildren`,
+`affterBodyChildren`, `bodyProps`, `bodyClassName`, etc allowing for additional customization as needed.
+
+Here's this website's `RootLayout` implementation for a reference:
+
+```import source="@/app/(main)/layout.tsx"
+
+```
