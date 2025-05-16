@@ -41,20 +41,20 @@
     "release": "pnpm run run-script scripts/release.ts"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.2",
-    "@inquirer/confirm": "^5.1.9",
-    "@inquirer/input": "^4.1.9",
-    "@inquirer/rawlist": "^4.1.0",
+    "@changesets/cli": "^2.29.4",
+    "@inquirer/confirm": "^5.1.10",
+    "@inquirer/input": "^4.1.10",
+    "@inquirer/rawlist": "^4.1.1",
     "@octokit/core": "^6.1.5",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.5.0",
-    "eslint": "^9.25.1",
+    "eslint": "^9.26.0",
     "husky": "^9.1.7",
-    "lint-staged": "^15.5.1",
+    "lint-staged": "^16.0.0",
     "prettier": "^3.5.3",
-    "tsx": "^4.19.3",
-    "turbo": "^2.5.2",
+    "tsx": "^4.19.4",
+    "turbo": "^2.5.3",
     "typescript": "^5.8.3"
   },
   "engines": {
