@@ -209,6 +209,7 @@ export function cssUtils(options: CssUtilsOptions): string {
     backgroundColor && "rmd-background-container",
     backgroundColor &&
       backgroundColor !== "current-color" &&
+      backgroundColor !== "surface" &&
       `rmd-${backgroundColor}-container`,
     outlineColor && "rmd-outline",
     outlineColor && `rmd-${outlineColor}-outline`,
