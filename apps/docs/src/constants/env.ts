@@ -7,6 +7,7 @@ declare global {
       NEXT_PUBLIC_GITHUB_URL: string;
       NEXT_PUBLIC_GITHUB_FILE_LINK: string;
       NEXT_PUBLIC_RMD_VERSION: string;
+      NEXT_PUBLIC_BRANCH_NAME: string;
       NEXT_PUBLIC_GTAG_ID?: string;
 
       NEXT_PUBLIC_ALGOLIA_APP_ID: string;
@@ -34,6 +35,7 @@ export const GTAG_ID = process.env.NEXT_PUBLIC_GTAG_ID;
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL;
 export const GITHUB_LINK_URL = process.env.NEXT_PUBLIC_GITHUB_FILE_LINK;
+export const BRANCH_NAME = process.env.NEXT_PUBLIC_BRANCH_NAME;
 export const RMD_VERSION = process.env.NEXT_PUBLIC_RMD_VERSION;
 
 export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
