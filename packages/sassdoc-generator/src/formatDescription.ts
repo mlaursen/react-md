@@ -10,5 +10,5 @@ export function formatDescription(
   return description
     .replace(NO_COMPILE_TOKEN, "")
     .replace(/\r?\n\r?\n$/, "")
-    .replace(/([A-z0-9])\r?\n([A-z0-9])/g, "$1 $2");
+    .replace(/([A-Za-z0-9])\r?\n([A-Za-z0-9])/g, "$1 $2");
 }

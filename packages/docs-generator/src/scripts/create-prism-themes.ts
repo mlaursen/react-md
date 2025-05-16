@@ -166,7 +166,10 @@ function isNoLicenseTheme(theme: string): boolean {
 
 await Promise.all(
   files.map(async (filePath) => {
-    const themeName = filePath.replace(/^.*prism(-([A-z0-9.-]+))?\.css$/, "$2");
+    const themeName = filePath.replace(
+      /^.*prism(-([A-Za-z0-9.-]+))?\.css$/,
+      "$2"
+    );
     if (filePath.includes("prismjs")) {
       if (themeName) {
         defaultThemes.push(themeName);

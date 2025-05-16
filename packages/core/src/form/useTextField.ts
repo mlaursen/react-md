@@ -416,7 +416,7 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  *   const { fieldProps } = useTextField({
  *     name: "example",
  *     required: true,
- *     pattern: "^[A-z]+$",
+ *     pattern: "^[A-Za-z]+$",
  *     minLength: 4,
  *     maxLength: 20,
  *   });
