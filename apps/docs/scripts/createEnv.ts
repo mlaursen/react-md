@@ -18,8 +18,10 @@ const githubUrl = "https://github.com/mlaursen/react-md";
 let baseUrl = packageJson.homepage;
 if (/(support\/v\d)|next/.test(branchName)) {
   baseUrl = `https://${branchName}.react-md.dev`;
-} else if (vercelUrl && branchName !== "main") {
-  baseUrl = `https://${vercelUrl}`;
+} else if (vercelUrl) {
+  if (branchName !== "main") {
+    baseUrl = `https://${vercelUrl}`;
+  }
 } else if (process.env.NODE_ENV !== "production") {
   baseUrl = `http://localhost:${process.env.PORT ?? 3000}`;
 }

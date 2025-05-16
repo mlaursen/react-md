@@ -59,8 +59,8 @@
     "@react-md/core": "workspace:*"
   },
   "devDependencies": {
-    "@swc/cli": "^0.6.0",
-    "@swc/core": "^1.11.22",
+    "@swc/cli": "^0.7.7",
+    "@swc/core": "^1.11.24",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.15.18",
     "chokidar": "^4.0.3",
