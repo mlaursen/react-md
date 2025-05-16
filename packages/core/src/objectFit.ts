@@ -11,6 +11,24 @@ export interface ObjectFitOptions {
   className?: string;
 
   /**
+   * Set this to `true` if the image should only shrink and grow relative to the
+   * container, but not extend past it's native width. So let's say there is an
+   * image set to 1920x1080:
+   *
+   * - container is 4096x2160
+   *   - inline:
+   *     - false - image grows to 4096x2160
+   *     - true  - image is 1920x1080
+   * - container is 360x800
+   *   - inline:
+   *     - false - image shrinks to 360×203
+   *     - true  - image shrinks to 360×203
+   *
+   * @defaultValue `false`
+   */
+  inline?: boolean;
+
+  /**
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit}
    * @defaultValue `aspectRatio ? "fill" : "contain"`
    */
@@ -76,12 +94,13 @@ export interface ObjectFitOptions {
  * @since 6.0.0
  */
 export function objectFit(options: ObjectFitOptions = {}): string {
-  const { className, fit: propFit, aspectRatio = "" } = options;
+  const { className, inline, fit: propFit, aspectRatio = "" } = options;
   const fit = propFit ?? (aspectRatio ? "fill" : "contain");
 
   return cnb(
     styles({
       [fit]: fit !== "contain",
+      contain: !inline,
       [aspectRatio]: !!aspectRatio,
     }),
     className

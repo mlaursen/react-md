@@ -30,6 +30,7 @@ import { TableOfContents } from "@/components/TableOfContents/TableOfContents.js
 import { TypescriptCodeBlock } from "@/components/TypescriptCodeBlock.jsx";
 
 import styles from "./CustomMdxComponents.module.scss";
+import { MarkdownImage } from "./MarkdownImage.jsx";
 
 interface HeadingProps {
   id: string;
@@ -50,6 +51,7 @@ interface RedefinedComponents {
   TypescriptCodeBlock: typeof TypescriptCodeBlock;
   PackageManagerCodeBlock: typeof PackageManagerCodeBlock;
   CompiledScssCodeBlock: typeof CompiledScssCodeBlock;
+  MarkdownImage: typeof MarkdownImage;
   table: RenderChildrenComponent;
   tr: RenderChildrenComponent;
   td: RenderChildrenComponent;
@@ -88,6 +90,7 @@ export const CUSTOM_MDX_COMPONENTS: CustomMDXComponents = {
   TypescriptCodeBlock,
   PackageManagerCodeBlock,
   CompiledScssCodeBlock,
+  MarkdownImage,
 
   // switch to the commented out code below if server-side only context
   // is implemented by React

@@ -1,25 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`objectFit should generate the correct class names 1`] = `"rmd-object-fit"`;
+exports[`objectFit should generate the correct class names 1`] = `"rmd-object-fit rmd-object-fit--contain"`;
 
-exports[`objectFit should generate the correct class names 2`] = `"rmd-object-fit"`;
+exports[`objectFit should generate the correct class names 2`] = `"rmd-object-fit rmd-object-fit--contain"`;
 
-exports[`objectFit should generate the correct class names 3`] = `"rmd-object-fit rmd-object-fit--cover"`;
+exports[`objectFit should generate the correct class names 3`] = `"rmd-object-fit rmd-object-fit--cover rmd-object-fit--contain"`;
 
-exports[`objectFit should generate the correct class names 4`] = `"rmd-object-fit rmd-object-fit--fill"`;
+exports[`objectFit should generate the correct class names 4`] = `"rmd-object-fit rmd-object-fit--fill rmd-object-fit--contain"`;
 
-exports[`objectFit should generate the correct class names 5`] = `"rmd-object-fit rmd-object-fit--none"`;
+exports[`objectFit should generate the correct class names 5`] = `"rmd-object-fit rmd-object-fit--none rmd-object-fit--contain"`;
 
-exports[`objectFit should generate the correct class names 6`] = `"rmd-object-fit rmd-object-fit--scale-down"`;
+exports[`objectFit should generate the correct class names 6`] = `"rmd-object-fit rmd-object-fit--scale-down rmd-object-fit--contain"`;
 
-exports[`objectFit should support aspect ratios 1`] = `"rmd-object-fit rmd-object-fit--fill rmd-object-fit--16-9"`;
+exports[`objectFit should support aspect ratios 1`] = `"rmd-object-fit rmd-object-fit--fill rmd-object-fit--contain rmd-object-fit--16-9"`;
 
-exports[`objectFit should support aspect ratios 2`] = `"rmd-object-fit rmd-object-fit--fill rmd-object-fit--4-3"`;
+exports[`objectFit should support aspect ratios 2`] = `"rmd-object-fit rmd-object-fit--fill rmd-object-fit--contain rmd-object-fit--4-3"`;
 
-exports[`objectFit should support aspect ratios 3`] = `"rmd-object-fit rmd-object-fit--fill rmd-object-fit--1-1"`;
+exports[`objectFit should support aspect ratios 3`] = `"rmd-object-fit rmd-object-fit--fill rmd-object-fit--contain rmd-object-fit--1-1"`;
 
-exports[`objectFit should support aspect ratios 4`] = `"rmd-object-fit rmd-object-fit--cover rmd-object-fit--16-9"`;
+exports[`objectFit should support aspect ratios 4`] = `"rmd-object-fit rmd-object-fit--cover rmd-object-fit--contain rmd-object-fit--16-9"`;
 
-exports[`objectFit should support aspect ratios 5`] = `"rmd-object-fit rmd-object-fit--cover rmd-object-fit--4-3"`;
+exports[`objectFit should support aspect ratios 5`] = `"rmd-object-fit rmd-object-fit--cover rmd-object-fit--contain rmd-object-fit--4-3"`;
 
-exports[`objectFit should support aspect ratios 6`] = `"rmd-object-fit rmd-object-fit--cover rmd-object-fit--1-1"`;
+exports[`objectFit should support aspect ratios 6`] = `"rmd-object-fit rmd-object-fit--cover rmd-object-fit--contain rmd-object-fit--1-1"`;

@@ -50,10 +50,16 @@ $aspect-ratios: (
   @if not $disable-everything {
     @include utils.optional-layer(object-fit, $disable-layer) {
       .rmd-object-fit {
-        display: $display;
-        height: 100%;
-        object-fit: contain;
-        width: 100%;
+        display: inline-block;
+        height: auto;
+        max-width: 100%;
+
+        &--contain {
+          display: $display;
+          height: 100%;
+          object-fit: contain;
+          width: 100%;
+        }
 
         @if not $disable-cover {
           &--cover {

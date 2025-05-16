@@ -4,14 +4,10 @@ description: The release notes and features for react-md@v6
 group: Blog
 ---
 
-import Image from "next/image.js";
-
 import SimpleAutocomplete from "@/app/(main)/(markdown)/(demos)/components/autocomplete/SimpleExample.jsx";
 import CustomizingSliderMarks from "@/app/(main)/(markdown)/(demos)/components/slider/CustomizingSliderMarks.jsx";
 
 import { DevToolsPreview } from "./DevToolsPreview.jsx";
-import interactionAfter from "./normal-hover-focus-after.png";
-import interactionBefore from "./normal-hover-focus-before.png";
 
 # react-md v6 is out now 🎉
 
@@ -116,11 +112,17 @@ normal, hover, then focus states for a button with the dark theme enabled.
 
 Before:
 
-<Image src={interactionBefore} alt="Interaction states before v6" />
+<MarkdownImage
+  src={import("./normal-hover-focus-before.png")}
+  alt="Interaction states before v6"
+/>
 
 After
 
-<Image src={interactionAfter} alt="Interaction states with v6" />
+<MarkdownImage
+  src={import("./normal-hover-focus-after.png")}
+  alt="Interaction states with v6"
+/>
 
 As you can see, the hover and focus states could not be seen by default in
 previous versions but now will automatically use the background inverse color
