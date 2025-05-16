@@ -1,0 +1,56 @@
+---
+title: useInlineCSSVariables
+description: The useInlineCSSVariables hook can be used to dynamically set CSS Variables (custom properties) on the other elements or using inline styles.
+docType: API Docs
+docGroup: Hooks
+group: Theming
+hooks: [useInlineCSSVariables]
+---
+
+# useInlineCSSVariables [$SOURCE](packages/core/src/theme/useInlineCSSVariables.ts)
+
+```ts disableTransform
+function useInlineCSSVariables<Name extends CSSVariableName>(
+  variables: ReadonlyCSSVariableList<Name>
+): CSSProperties;
+```
+
+The `useCSSVariables` hook can be used to dynamically set CSS Variables (custom
+properties) on the root `<html>`, other elements, or using inline styles.
+
+## Example Usage
+
+```tsx
+import { purple500 } from "@react-md/core/theme/colors";
+import { type ReadonlyCSSVariableList } from "@react-md/core/theme/types";
+import { useInlineCSSVariables } from "@react-md/core/theme/useInlineCSSVariables";
+import { contrastColor } from "@react-md/core/theme/utils";
+import { type ReactElement, type ReactNode, useMemo } from "react";
+
+function Example({ children }: { children: ReactNode }): ReactElement {
+  const customVariables = useMemo<ReadonlyCSSVariableList>(() => {
+    return [
+      {
+        name: "--rmd-primary-color",
+        value: purple500,
+      },
+      {
+        name: "--rmd-on-primary-color",
+        value: contrastColor(purple500),
+      },
+    ];
+  }, []);
+  const style = useInlineCSSVariables(customVariables);
+
+  return <div style={style}>{children}</div>;
+}
+```
+
+## Parameters
+
+- `variables` - A list of `{ name: string; value: string | number; }` to
+  define. The hook will return an empty object if this is an empty list.
+
+## Returns
+
+- A style object

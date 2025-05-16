@@ -671,6 +671,11 @@ export const navItems: readonly NavigationItem[] = [
         href: "/use-css-variables",
         children: "useCSSVariables",
       },
+      {
+        type: "route",
+        href: "/use-inline-css-variables",
+        children: "useInlineCSSVariables",
+      },
       { type: "subheader", children: "Low-level" },
       {
         type: "route",

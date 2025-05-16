@@ -45,12 +45,12 @@ export interface LayoutAppBarHeightResult {
  * ```tsx
  * import { AppBar } from "@react-md/core/app-bar/AppBar";
  * import { useLayoutAppBarHeight } from "@react-md/core/layout/useLayoutAppBarHeight";
- * import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
+ * import { useInlineCSSVariables } from "@react-md/core/theme/useInlineCSSVariables";
  * import type { PropsWithChildren, ReactElement } from "react";
  *
  * export function Layout({ children }: PropsWithChildren): ReactElement {
  *   const { appBarRef, variables } = useLayoutAppBarHeight();
- *   const inlineStyle = useCSSVariables(variables, true);
+ *   const inlineStyle = useCSSVariables(variables);
  *
  *   return (
  *     <div style={inlineStyle}>

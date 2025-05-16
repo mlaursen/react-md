@@ -1,12 +1,8 @@
 "use client";
 
-import { type CSSProperties, type RefObject, useEffect, useMemo } from "react";
+import { type RefObject, useEffect } from "react";
 
-import {
-  type CSSVariableName,
-  type CSSVariablesProperties,
-  type ReadonlyCSSVariableList,
-} from "./types.js";
+import { type CSSVariableName, type ReadonlyCSSVariableList } from "./types.js";
 
 /**
  * @example Applying Variables the root html element
@@ -41,65 +37,24 @@ import {
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,
   rootNode?: RefObject<HTMLElement> | HTMLElement
-): void;
-/**
- * @example Applying variables through inline styles
- * ```tsx
- * import { purple500 } from "@react-md/core/theme/colors";
- * import { type ReadonlyCSSVariableList } from "@react-md/core/theme/types";
- * import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
- * import { contrastColor } from "@react-md/core/theme/utils";
- * import { type ReactElement, type ReactNode, useMemo } from "react";
- *
- * function Example({ children }: { children: ReactNode }): ReactElement {
- *   const customVariables = useMemo<ReadonlyCSSVariableList>(() => {
- *     return [
- *       {
- *         name: "--rmd-primary-color",
- *         value: purple500,
- *       },
- *       {
- *         name: "--rmd-on-primary-color",
- *         value: contrastColor(purple500),
- *       },
- *     ];
- *   }, []);
- *   const style = useCSSVariables(customVariables, true);
- *
- *   return <div style={style}>{children}</div>;
- * }
- * ```
- *
- * @since 6.0.0
- */
-export function useCSSVariables<Name extends CSSVariableName>(
-  variables: ReadonlyCSSVariableList<Name>,
-  inlineStyle: true
-): CSSProperties;
-/**
- * @since 6.0.0
- */
-export function useCSSVariables<Name extends CSSVariableName>(
-  variables: ReadonlyCSSVariableList<Name>,
-  rootNodeOrInlineStyle?: RefObject<HTMLElement> | HTMLElement | boolean
-): CSSProperties | undefined {
+): void {
   useEffect(() => {
-    if (rootNodeOrInlineStyle === true || !variables.length) {
+    if (!variables.length) {
       return;
     }
 
     // use an iife so that hoisting doesn't cause a possible "null" issue for
     // the root
     const root = (() => {
-      if (!rootNodeOrInlineStyle) {
+      if (!rootNode) {
         return document.documentElement;
       }
 
-      if ("current" in rootNodeOrInlineStyle) {
-        return rootNodeOrInlineStyle.current;
+      if ("current" in rootNode) {
+        return rootNode.current;
       }
 
-      return rootNodeOrInlineStyle;
+      return rootNode;
     })();
 
     if (!root) {
@@ -131,19 +86,5 @@ export function useCSSVariables<Name extends CSSVariableName>(
         root.style.removeProperty(name);
       });
     };
-  }, [variables, rootNodeOrInlineStyle]);
-
-  return useMemo(() => {
-    if (rootNodeOrInlineStyle !== true) {
-      return;
-    }
-
-    return variables.reduce<CSSVariablesProperties<Name>>(
-      (style, { name, value }) => {
-        style[name] = value;
-        return style;
-      },
-      {}
-    );
-  }, [rootNodeOrInlineStyle, variables]);
+  }, [variables, rootNode]);
 }

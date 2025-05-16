@@ -1,6 +1,6 @@
 "use client";
 
-import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
+import { useInlineCSSVariables } from "@react-md/core/theme/useInlineCSSVariables";
 import { useResizeObserver } from "@react-md/core/useResizeObserver";
 import {
   type CSSProperties,
@@ -42,9 +42,8 @@ export function useVirtualizedColumns(): VirtualizedColumns {
     }, []),
   });
   const columns = Math.floor(containerWidth / MIN_CELL_WIDTH);
-  const containerStyle = useCSSVariables(
-    useMemo(() => [{ name: "--rmd-box-columns", value: columns }], [columns]),
-    true
+  const containerStyle = useInlineCSSVariables(
+    useMemo(() => [{ name: "--rmd-box-columns", value: columns }], [columns])
   );
 
   return {

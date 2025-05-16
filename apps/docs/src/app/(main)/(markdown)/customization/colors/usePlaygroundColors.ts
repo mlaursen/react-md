@@ -3,7 +3,7 @@ import {
   type CSSVariable,
   type ConfigurableThemeColors,
 } from "@react-md/core/theme/types";
-import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
+import { useInlineCSSVariables } from "@react-md/core/theme/useInlineCSSVariables";
 import { contrastColor } from "@react-md/core/theme/utils";
 import { type CSSProperties, useCallback, useMemo, useReducer } from "react";
 
@@ -130,7 +130,7 @@ export function usePlaygroundColors(): PlaygroundColorsImplementation {
     setOverrides(overrides);
   }, [setOverrides, state]);
 
-  const style = useCSSVariables(
+  const style = useInlineCSSVariables(
     useMemo(() => {
       const variables: CSSVariable[] = [];
       Object.entries(state).forEach(([key, value]) => {
@@ -142,8 +142,7 @@ export function usePlaygroundColors(): PlaygroundColorsImplementation {
         variables.push({ name, value });
       });
       return variables;
-    }, [state]),
-    true
+    }, [state])
   );
 
   return {

@@ -40,30 +40,6 @@ describe("useCSSVariables", () => {
     expect(html.style.getPropertyValue("--test")).toBe("");
   });
 
-  it("should return a style object if the local argument is `true`", () => {
-    let style: CSSProperties | undefined;
-    function Test(): ReactElement {
-      style = useCSSVariables([{ name: "--test", value: "3rem" }], true);
-
-      // this one should work without issue since it was added at the top of the test
-      const _style2 = useCSSVariables(
-        [{ name: "--test-defined", value: "1" }],
-        true
-      );
-      return <div style={style} />;
-    }
-
-    const html = document.documentElement;
-    expect(html.style.getPropertyValue("--test")).toBe("");
-
-    const { unmount } = render(<Test />);
-    expect(html.style.getPropertyValue("--test")).toBe("");
-    expect(style).toEqual({ "--test": "3rem" });
-
-    unmount();
-    expect(html.style.getPropertyValue("--test")).toBe("");
-  });
-
   it("should warn about overriding variables for non-production environments", () => {
     expect(process.env.NODE_ENV).not.toBe("production");
     const html = document.documentElement;
