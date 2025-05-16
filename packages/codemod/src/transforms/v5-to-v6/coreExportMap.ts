@@ -2464,18 +2464,16 @@ export const EXPORT_MAP: Record<string, string> = {
     "@react-md/core/expansion-panel/useExpansionList",
   ExpansionListProps: "@react-md/core/expansion-panel/ExpansionList",
   ExpansionPanel: "@react-md/core/expansion-panel/ExpansionPanel",
-  expansionPanel: "@react-md/core/expansion-panel/expansionPanelStyles",
-  expansionPanelButton: "@react-md/core/expansion-panel/expansionPanelStyles",
-  ExpansionPanelButtonClassNameOptions:
-    "@react-md/core/expansion-panel/expansionPanelStyles",
-  ExpansionPanelClassNameOptions:
-    "@react-md/core/expansion-panel/expansionPanelStyles",
+  expansionPanel: "@react-md/core/expansion-panel/styles",
+  expansionPanelButton: "@react-md/core/expansion-panel/styles",
+  ExpansionPanelButtonClassNameOptions: "@react-md/core/expansion-panel/styles",
+  ExpansionPanelClassNameOptions: "@react-md/core/expansion-panel/styles",
   ExpansionPanelHeader: "@react-md/core/expansion-panel/ExpansionPanelHeader",
   ExpansionPanelHeaderProps:
     "@react-md/core/expansion-panel/ExpansionPanelHeader",
-  expansionPanelHeading: "@react-md/core/expansion-panel/expansionPanelStyles",
+  expansionPanelHeading: "@react-md/core/expansion-panel/styles",
   ExpansionPanelHeadingClassNameOptions:
-    "@react-md/core/expansion-panel/expansionPanelStyles",
+    "@react-md/core/expansion-panel/styles",
   ExpansionPanelHookOptions:
     "@react-md/core/expansion-panel/useExpansionPanels",
   ExpansionPanelImplementation:

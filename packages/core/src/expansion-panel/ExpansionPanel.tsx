@@ -11,7 +11,7 @@ import {
   ExpansionPanelHeader,
   type ExpansionPanelHeaderProps,
 } from "./ExpansionPanelHeader.js";
-import { expansionPanel } from "./expansionPanelStyles.js";
+import { expansionPanel } from "./styles.js";
 
 /**
  * @since 6.0.0 The `disableSecondaryColor` convenience prop was removed in

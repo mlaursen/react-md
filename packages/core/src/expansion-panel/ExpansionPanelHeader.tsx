@@ -11,10 +11,7 @@ import { getIcon } from "../icon/config.js";
 import { type PropsWithRef } from "../types.js";
 import { Typography, type TypographyProps } from "../typography/Typography.js";
 import { type TypographyType } from "../typography/typographyStyles.js";
-import {
-  expansionPanelButton,
-  expansionPanelHeading,
-} from "./expansionPanelStyles.js";
+import { expansionPanelButton, expansionPanelHeading } from "./styles.js";
 
 /**
  * @since 6.0.0 Updated to include additional heading/Typography

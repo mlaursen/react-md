@@ -55,7 +55,7 @@ export * from "@react-md/core/error-boundary/useErrorBoundary";
 export * from "@react-md/core/expansion-panel/ExpansionList";
 export * from "@react-md/core/expansion-panel/ExpansionPanel";
 export * from "@react-md/core/expansion-panel/ExpansionPanelHeader";
-export * from "@react-md/core/expansion-panel/expansionPanelStyles";
+export * from "@react-md/core/expansion-panel/styles";
 export * from "@react-md/core/expansion-panel/useExpansionList";
 export * from "@react-md/core/expansion-panel/useExpansionPanels";
 export * from "@react-md/core/files/FileInput";
