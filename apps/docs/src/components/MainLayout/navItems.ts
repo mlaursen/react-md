@@ -321,6 +321,11 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/no-ssr",
+        children: "NoSsr",
+      },
+      {
+        type: "route",
         href: "/render-recursively",
         children: "RenderRecursively",
       },

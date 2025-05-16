@@ -20,7 +20,7 @@ export interface NoSsrProps {
  * import { NoSsr } from "@react-md/core/NoSsr";
  * import { CoreProviders } from "@react-md/core/CoreProviders"
  * import { Typography } from "@react-md/core/typography/Typography"
- * import type { ReactElement } from "react";
+ * import { type ReactElement } from "react";
  *
  * function Example(): ReactElement {
  *   return (

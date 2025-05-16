@@ -1,0 +1,47 @@
+---
+title: No Ssr
+description: The NoSsr component can be used to prevent components from being rendered on the server that rely on browser APIs.
+docType: Demo
+docGroup: Components
+group: Utils
+components: [NoSsr]
+---
+
+# No Ssr
+
+The `NoSsr` component is small wrapper that can be used to render
+children client side only. The main use-case are for components
+that rely on browser API to work correctly.
+
+> !Info! See the [SsrProvider](/components/ssr-provider) for more
+> info.
+
+## Simple Example
+
+```tsx
+import { CoreProviders } from "@react-md/core/CoreProviders";
+import { NoSsr } from "@react-md/core/NoSsr";
+import { Typography } from "@react-md/core/typography/Typography";
+import { type ReactElement } from "react";
+
+function Example(): ReactElement {
+  return (
+    <>
+      <Typography>This is always rendered.</Typography>
+      <NoSsr>
+        <Typography>
+          This is only rendered client-side after rehydrating.
+        </Typography>
+      </NoSsr>
+    </>
+  );
+}
+
+function App(): ReactElement {
+  return (
+    <CoreProviders ssr>
+      <Example />
+    </CoreProviders>
+  );
+}
+```
