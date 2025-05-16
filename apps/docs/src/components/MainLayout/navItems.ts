@@ -57,11 +57,6 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
-        href: "/theme-builder",
-        children: "Theme Builder",
-      },
-      {
-        type: "route",
         href: "/breakpoints",
         children: "Breakpoints",
       },

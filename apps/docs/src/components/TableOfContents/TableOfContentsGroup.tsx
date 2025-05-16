@@ -18,6 +18,7 @@ export function TableOfContentsGroup(
     <List
       className={cnb(
         typography({ type: "subtitle-1" }),
+        styles.container,
         !root && styles.noPadding
       )}
     >

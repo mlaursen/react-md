@@ -1,7 +1,4 @@
 import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
-import autoprefixer from "autoprefixer";
-import cssnano from "cssnano";
-import cssnanoPresetDefault from "cssnano-preset-default";
 import { globSync } from "glob";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
@@ -12,10 +9,7 @@ import postcssRemovePrefixes from "postcss-remove-prefixes";
 import postcssSorting from "postcss-sorting";
 import { format } from "prettier";
 
-import {
-  type CompileScssOptions,
-  compileScss,
-} from "../utils/compileScssModule.js";
+import { compileAndMinifyScss } from "../utils/compileAndMinifyScss.js";
 import { getProjectRootDir } from "../utils/getProjectRootDir.js";
 import { loadDemoScssInNode } from "../utils/getScssCodeFile.js";
 import { GENERATED_FILE_BANNER } from "./constants.js";
@@ -168,24 +162,6 @@ function isNoLicenseTheme(theme: string): boolean {
     "material-oceanic",
     "vsc-dark-plus",
   ].includes(theme);
-}
-
-async function compileAndMinifyScss(
-  options: CompileScssOptions
-): Promise<string> {
-  const compiled = compileScss(options);
-  const result = await postcss([
-    cssnano({
-      preset: cssnanoPresetDefault({
-        env: "production",
-      }),
-      plugins: [autoprefixer],
-    }),
-  ]).process(compiled, {
-    from: "./theme.css",
-  });
-
-  return result.css;
 }
 
 await Promise.all(

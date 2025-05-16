@@ -1,3 +1,13 @@
+@use "everything";
+
+.container {
+  @include everything.theme-set-var(
+    surface-color,
+    everything.get-dark-elevation-color(0)
+  );
+  @include everything.theme-use-var(background-color, surface-color);
+}
+
 .noPadding {
   padding: 0;
 }
