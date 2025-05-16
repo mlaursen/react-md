@@ -98,7 +98,7 @@
 - This release was focused around the `Autocomplete` and the "better" API for it. There's a lot more functionality built
   in by default and should behave much more like other libraries. I might add a few more features in before calling it complete, but not sure yet.
 
-  Check out the <https://next.react-md.dev/components/autocomplete> page to see the latest demos.
+  Check out the <https://react-md.dev/components/autocomplete> page to see the latest demos.
 
   Fixes:
 

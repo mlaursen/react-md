@@ -36,6 +36,6 @@ use in your application as well since there is no runtime type checking for
 React props that cannot be caught by Typescript.
 
 [typescript]: https://www.typescriptlang.org/
-[installation]: https://next.react-md.dev/getting-started/installation
-[documentation website]: https://next.react-md.dev
+[installation]: https://react-md.dev/getting-started/installation
+[documentation website]: https://react-md.dev
 [material design specifications]: https://material.io/design/

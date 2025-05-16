@@ -79,4 +79,4 @@ function Example() {
 }
 ```
 
-[documentation site]: https://next.react-md.dev/material-icons-and-symbols
+[documentation site]: https://react-md.dev/material-icons-and-symbols

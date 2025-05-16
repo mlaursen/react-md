@@ -31,7 +31,7 @@ convenience. Some more information can be found
 
 [typescript]: https://www.typescriptlang.org/
 [www.w3.org]: https://www.w3.org/TR/wai-aria-practices
-[installation]: https://next.react-md.dev/getting-started/installation
-[full documentation]: https://next.react-md.dev
+[installation]: https://react-md.dev/getting-started/installation
+[full documentation]: https://react-md.dev
 [material design specifications]: https://material.io/design/
 [@react-md/core]: https://npmjs.com/package/@react-md/core
