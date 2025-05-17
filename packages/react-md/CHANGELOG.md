@@ -1,5 +1,13 @@
 # react-md
 
+## 6.0.1
+
+### Patch Changes
+
+- Fixed the media-queries using map.nth instead of map.get after switching from list.nth.
+- Updated dependencies
+  - @react-md/core@6.0.1
+
 ## 6.0.0
 
 ### Major Changes
