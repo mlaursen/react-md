@@ -157,7 +157,6 @@ if (!(await confirm({ message: "Continue the release?" }))) {
 
 exec('git commit -m "build(version): version packages"');
 exec("pnpm changeset publish", { stdio: "inherit" });
-await confirm({ message: "Have the packages been published?" });
 exec("git push --follow-tags");
 
 await createRelease({
