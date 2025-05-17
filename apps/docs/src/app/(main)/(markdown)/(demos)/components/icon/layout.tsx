@@ -1,6 +1,8 @@
 import Script from "next/script.js";
 import { type PropsWithChildren, type ReactElement } from "react";
 
+import "./layout.scss";
+
 export default function IconLayout({
   children,
 }: PropsWithChildren): ReactElement {

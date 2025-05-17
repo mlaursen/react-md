@@ -5,10 +5,12 @@ import { Sheet } from "@react-md/core/sheet/Sheet";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 
+import { DesktopOnly } from "./DesktopOnly.jsx";
 import styles from "./HowToUseSheet.module.scss";
 import { HowToUseSheetContent } from "./HowToUseSheetContent.jsx";
 import { HowToUseSheetHeader } from "./HowToUseSheetHeader.jsx";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { ResizeHowToUseSheet } from "./ResizeHowToUseSheet.jsx";
 
 export interface HowToUseSheetProps {
   className: string;
@@ -30,6 +32,9 @@ export function HowToUseSheet(props: HowToUseSheetProps): ReactElement {
       disableOverlay={isDesktop}
       disableScrollLock={isDesktop}
     >
+      <DesktopOnly>
+        <ResizeHowToUseSheet />
+      </DesktopOnly>
       <HowToUseSheetHeader />
       <HowToUseSheetContent />
     </Sheet>

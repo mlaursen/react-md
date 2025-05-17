@@ -66,7 +66,7 @@ export function FullScreenVirtualizedList(): ReactElement {
     });
 
   return (
-    <div {...howToUseTransitionProps}>
+    <div {...howToUseTransitionProps} id="virtualized-grid-container">
       <div {...filterPanelTransitionProps} style={containerStyle}>
         {isEmpty && <NoMatches />}
         <VariableSizeList {...listProps} width={containerWidth}>

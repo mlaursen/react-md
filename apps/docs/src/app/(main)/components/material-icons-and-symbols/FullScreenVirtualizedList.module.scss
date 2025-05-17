@@ -17,7 +17,7 @@
   }
 
   .gridOffset {
-    --how-to-use-size: 26rem;
+    --how-to-use-size: #{everything.window-splitter-get-var(position, 26rem)};
   }
 }
 

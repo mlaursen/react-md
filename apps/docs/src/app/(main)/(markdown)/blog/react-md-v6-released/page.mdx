@@ -22,9 +22,11 @@ DOM structure or layout without custom styling.
 
 With the introduction of the `Box` component, the
 [Grid](https://v5.react-md.dev/packages/utils/demos#material-grid-example),
-`Griditem`, and
-[GridList](https://v5.react-md.dev/packages/utils/demos#simple-grid-list)
-components have been removed.
+`GridCell`,
+[GridList](https://v5.react-md.dev/packages/utils/demos#simple-grid-list), and
+`GridListCell` components have been removed. See the
+[Material Grid Example](/components/box#material-grid-example) for an example
+using the `Box` component.
 
 ### Latest Material Icons and Material Symbols support
 
@@ -82,9 +84,7 @@ import "./index.scss";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RootProviders>
-      <App />
-    </RootProviders>
+    <Snackbar />
   </StrictMode>
 );
 

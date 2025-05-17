@@ -27,7 +27,7 @@ const createColorNode = (color: string): Element => ({
   ],
   properties: {
     style: `--color:${color};`,
-    class: "color-preview",
+    class: "color-preview color-preview--text",
   },
 });
 

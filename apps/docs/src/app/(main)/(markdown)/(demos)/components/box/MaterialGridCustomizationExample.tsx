@@ -1,4 +1,4 @@
-import { Box, BoxProps } from "@react-md/core/box/Box";
+import { Box, type BoxProps } from "@react-md/core/box/Box";
 import { Card } from "@react-md/core/card/Card";
 import { cnb } from "cnbuilder";
 import { type CSSProperties, type ReactElement } from "react";
@@ -53,6 +53,7 @@ declare module "react" {
     [name in `--cell-${CellPropertyWithBreakpoint}`]?: string | number;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface CSSProperties extends CellProperties {}
 }
 

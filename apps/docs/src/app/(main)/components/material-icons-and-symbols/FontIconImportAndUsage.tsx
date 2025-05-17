@@ -4,6 +4,7 @@ import { type ReactElement } from "react";
 import { AdditionalChanges } from "./AdditionalChanges.jsx";
 import { CopyCode } from "./CopyCode.jsx";
 import { IconImportAndUsage } from "./IconImportAndUsage.jsx";
+import { MaterialFontStylesWarning } from "./MaterialFontStylesWarning.jsx";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import { TwoToneIconWarning } from "./TwoToneIconWarning.jsx";
 import { getFontStylesheet } from "./utils.js";
@@ -26,6 +27,7 @@ export function FontIconImportAndUsage(): ReactElement {
       <CopyCode lang="html">
         {`<link rel="stylesheet" href="${href}" />`}
       </CopyCode>
+      <MaterialFontStylesWarning />
     </>
   );
 }

@@ -2,6 +2,7 @@ import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
 
 import { CopyCode } from "./CopyCode.jsx";
+import { MaterialFontStylesWarning } from "./MaterialFontStylesWarning.jsx";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
 import { getFontStylesheet } from "./utils.js";
 
@@ -33,6 +34,7 @@ export function MaterialSymbolStylesheets(): ReactElement {
       <CopyCode lang="html">
         {`<link rel="stylesheet" href="${variableHref}" />`}
       </CopyCode>
+      <MaterialFontStylesWarning />
       <Typography type="headline-6" margin="top">
         Static icon font
       </Typography>

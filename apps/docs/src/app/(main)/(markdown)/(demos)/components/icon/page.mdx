@@ -53,6 +53,37 @@ defaults to Material Icons but can be configured by using the `iconClassName` pr
 
 ```
 
+## Material Icon Component
+
+If the font icon version of material icons should be used, it is recommended to
+switch to the `MaterialIcon` component over the `FontIcon` since it supports:
+
+- checking if the icon name is a valid material icon (Typescript)
+- switching to a separate material icon family if needed:
+  - `outlined`
+  - `rounded`
+  - `sharp`
+  - `filled`
+  - `two-tone`
+
+> !Info! Check out the
+> [material icons and symbols page](/components/material-icons-and-symbols?icon.type=icon-font)
+> for more info.
+
+```demo source="./MaterialIconComponentExample.tsx"
+
+```
+
+## Material Symbol Component
+
+> !Info! Check out the
+> [material icons and symbols page](/components/material-icons-and-symbols)
+> for more info.
+
+```demo source="./MaterialSymbolComponentExample.tsx"
+
+```
+
 ## Custom SVG Icons
 
 Custom SVG icons can be created by using the `SVGIcon` component and pasting the

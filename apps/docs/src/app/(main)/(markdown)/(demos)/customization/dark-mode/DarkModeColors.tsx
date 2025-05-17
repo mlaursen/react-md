@@ -14,10 +14,19 @@ interface Color {
 const colors: Color[] = [
   { color: "#121212", name: "$dark-theme-background-color" },
   { color: "#424242", name: "$dark-theme-surface-color" },
-  { color: "#D9D9D9", name: "$dark-theme-text-primary-color" },
-  { color: "#B3B3B3", name: "$dark-theme-text-secondary-color" },
-  { color: "#808080", name: "$dark-theme-text-hint-color" },
-  { color: "#808080", name: "$dark-theme-text-disabled-color" },
+  {
+    color: "rgba(255, 255, 255, 0.87)",
+    name: "$dark-theme-text-primary-color",
+  },
+  {
+    color: "rgba(255, 255, 255, 0.6)",
+    name: "$dark-theme-text-secondary-color",
+  },
+  { color: "rgba(255, 255, 255, 0.38)", name: "$dark-theme-text-hint-color" },
+  {
+    color: "rgba(255, 255, 255, 0.38)",
+    name: "$dark-theme-text-disabled-color",
+  },
   {
     color: "rgba(255, 255, 255, 0.1)",
     name: "$dark-surface-hover-background-color",
