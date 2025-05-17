@@ -1,5 +1,14 @@
 # @react-md/codemod
 
+## 6.0.1
+
+### Patch Changes
+
+- a6f212c: Trying to fix publish behavior.
+- f877a5c: Add the bin field back to support npx
+- debf062: Trying to remove bin field in package.json
+- Fixed the @react-md/codemod publish
+
 ## 6.0.1-next.2
 
 ### Patch Changes
