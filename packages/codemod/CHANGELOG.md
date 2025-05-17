@@ -1,5 +1,11 @@
 # @react-md/codemod
 
+## 6.0.1-next.1
+
+### Patch Changes
+
+- Trying to fix publish behavior.
+
 ## 6.0.1-next.0
 
 ### Patch Changes

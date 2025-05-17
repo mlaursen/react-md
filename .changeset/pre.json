@@ -12,5 +12,5 @@
     "react-md": "6.0.1",
     "sassdoc-generator": "0.0.3"
   },
-  "changesets": ["quick-dancers-show"]
+  "changesets": ["neat-results-hide", "quick-dancers-show"]
 }
