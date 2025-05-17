@@ -12,5 +12,5 @@
     "react-md": "6.0.1",
     "sassdoc-generator": "0.0.3"
   },
-  "changesets": []
+  "changesets": ["quick-dancers-show"]
 }

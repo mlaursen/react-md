@@ -3,7 +3,7 @@ import input from "@inquirer/input";
 import rawlist from "@inquirer/rawlist";
 import { Octokit } from "@octokit/core";
 import dotenv from "dotenv";
-import { execSync } from "node:child_process";
+import { ExecSyncOptions, execSync } from "node:child_process";
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
 
@@ -13,20 +13,33 @@ const isSkipBuild = isContinue1 || process.argv.includes("--skip-build");
 const isSkipCoreGenerate =
   isContinue1 || process.argv.includes("--skip-generate");
 
-const exec = (command: string): void => {
+const exec = (command: string, opts?: ExecSyncOptions): void => {
   console.log(command);
-  execSync(command);
+  execSync(command, opts);
 };
 
 interface CreateReleaseOptions {
   body: string;
   version: string;
   override?: boolean;
+  tagPrefix: string;
   prerelease: boolean;
 }
 
+async function getTagPrefix(): Promise<string> {
+  if (
+    !(await confirm({ message: "Use @react-md/core as the next tag name?" }))
+  ) {
+    return await input({
+      message: "Enter the next tag name prefix",
+    });
+  }
+
+  return "@reactg-md/core";
+}
+
 async function createRelease(options: CreateReleaseOptions): Promise<void> {
-  const { version, body, override, prerelease } = options;
+  const { version, body, tagPrefix, override, prerelease } = options;
 
   dotenv.config({ path: ".env.local", override });
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
@@ -36,7 +49,7 @@ async function createRelease(options: CreateReleaseOptions): Promise<void> {
       {
         owner: "mlaursen",
         repo: "react-md",
-        tag_name: `@react-md/core@${version}`,
+        tag_name: `${tagPrefix}@${version}`,
         body,
         prerelease,
       }
@@ -114,26 +127,19 @@ if (!isSkipBuild) {
   exec("pnpm clean-dist");
 
   if (!isSkipCoreGenerate) {
-    exec("pnpm core-export-map");
-    exec("pnpm core-index-file");
+    // exec("pnpm core-export-map");
+    // exec("pnpm core-index-file");
     exec("git add -u");
   }
 
-  exec("pnpm build-packages");
+  exec('pnpm build --filter="./packages/*"');
 }
 
 if (isPreRelease) {
   exec("pnpm changeset pre enter next");
 }
 
-if (!isContinue1) {
-  console.log(`Run the following commands in another terminal since I don't know how to get it to work in this script.
-
-pnpm changeset
-pnpm changeset version
-`);
-}
-
+exec("pnpm changeset", { stdio: "inherit" });
 if (!(await confirm({ message: "Continue the release?" }))) {
   process.exit(1);
 }
@@ -143,17 +149,20 @@ exec("git add .changeset");
 
 const changeset = await getCurrentChangeset();
 const version = await getReleaseVersion();
+exec("pnpm changeset version", { stdio: "inherit" });
+exec("git add -u");
+if (!(await confirm({ message: "Continue the release?" }))) {
+  process.exit(1);
+}
 
 exec('git commit -m "build(version): version packages"');
-console.log(`Run the following command in another terminal since I don't know how to get it to work in this script.
-
-pnpm changeset publish
-`);
+exec("pnpm changeset publish", { stdio: "inherit" });
 await confirm({ message: "Have the packages been published?" });
 exec("git push --follow-tags");
 
 await createRelease({
   body: changeset,
+  tagPrefix: await getTagPrefix(),
   version,
   prerelease: isPreRelease || version.includes("-next"),
 });

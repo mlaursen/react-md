@@ -1,5 +1,11 @@
 # @react-md/codemod
 
+## 6.0.1-next.0
+
+### Patch Changes
+
+- f877a5c: Add the bin field back to support npx
+
 ## 6.0.0
 
 ### Major Changes
