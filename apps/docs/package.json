@@ -56,6 +56,7 @@
     "docs-generator": "workspace:*",
     "filesize": "^10.1.6",
     "fuse.js": "^7.1.0",
+    "gray-matter": "^4.0.3",
     "js-cookie": "^3.0.5",
     "next": "^14.2.15",
     "next-mdx-remote": "^5.0.0",

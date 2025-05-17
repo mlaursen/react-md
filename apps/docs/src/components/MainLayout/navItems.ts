@@ -908,4 +908,9 @@ export const navItems: readonly NavigationItem[] = [
       },
     ],
   },
+  {
+    type: "route",
+    href: "/blog",
+    children: "Blog",
+  },
 ];

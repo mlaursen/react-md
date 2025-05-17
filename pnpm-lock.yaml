@@ -92,6 +92,9 @@ importers:
       fuse.js:
         specifier: ^7.1.0
         version: 7.1.0
+      gray-matter:
+        specifier: ^4.0.3
+        version: 4.0.3
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
