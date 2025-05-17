@@ -10,3 +10,4 @@ test("SimpleTabExample");
 test("TwoPageTabExample");
 test("PersistentTabs");
 test("ConfigurableTabs");
+test("NoTabComponents");

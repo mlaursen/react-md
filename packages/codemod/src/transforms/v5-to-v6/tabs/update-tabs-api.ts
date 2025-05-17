@@ -571,8 +571,11 @@ export default function transformer(
   const tabs = tabsLookup.get("Tabs");
   const tabPanels = tabsLookup.get("TabPanels");
   const tabPanel = tabsLookup.get("TabPanel");
+  const foundTabComponents = [tabsManager, tabs, tabPanels, tabPanel].filter(
+    Boolean
+  ).length;
 
-  if ([tabsManager, tabs, tabPanels, tabPanel].filter(Boolean).length !== 4) {
+  if (foundTabComponents > 0 && foundTabComponents !== 4) {
     comments.add(
       "TODO: The `TabsManager`, `Tabs`, `TabPanels`, and `TabPanel` components are not in the same file and will need to be updated manually."
     );
