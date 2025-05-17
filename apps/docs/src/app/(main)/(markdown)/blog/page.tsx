@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   keywords: ["blog", "release notes"],
 };
 
+// TODO: See if there is another way to handle this. vercel does not keep the files
+// so this fails without the run-time bundling. this does make it so this page is
+// forced to use system theme and none of the user preferences.
+export const dynamic = "force-static";
+
 const DATE_FORMATTER = Intl.DateTimeFormat("en-US", {
   weekday: "short",
   month: "short",

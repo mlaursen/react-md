@@ -8,6 +8,7 @@ const branchName =
   execSync("git branch --show-current").toString().trim();
 const commit =
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ||
+  process.env.VERCEL_GIT_COMMIT_SHA ||
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
   process.argv.includes("--dev")
     ? branchName
