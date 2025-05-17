@@ -1,5 +1,35 @@
 # docs-generator
 
+## 0.0.1
+
+### Patch Changes
+
+- Updated dependencies [aaedc49]
+- Updated dependencies [3b18106]
+- Updated dependencies [64071b7]
+- Updated dependencies [093d3bf]
+- Updated dependencies [70f92fd]
+- Updated dependencies [6e8e77e]
+- Updated dependencies [c42ad14]
+- Updated dependencies [a1483f0]
+- Updated dependencies [31b0fa5]
+- Updated dependencies [a26803b]
+- Updated dependencies [1a8cfaf]
+- Updated dependencies [68f0920]
+- Updated dependencies [e475d03]
+- Updated dependencies
+- Updated dependencies [64071b7]
+- Updated dependencies [4b8b394]
+- Updated dependencies [e37cc8d]
+- Updated dependencies [ae417ce]
+- Updated dependencies [d5d7d5a]
+- Updated dependencies [54f99e9]
+- Updated dependencies [bc90f77]
+- Updated dependencies [91ea1f8]
+- Updated dependencies [d8f185b]
+  - @react-md/core@6.0.0
+  - @react-md/code@0.0.1
+
 ## 0.0.1-next.9
 
 ### Patch Changes
