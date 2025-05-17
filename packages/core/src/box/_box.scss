@@ -3,7 +3,6 @@
 ////
 
 @use "sass:map";
-@use "sass:list";
 @use "../utils";
 @use "../media-queries/media-queries";
 
@@ -132,23 +131,24 @@ $item-min-size: 8rem !default;
 /// @type Map
 $grids: () !default;
 
+/// @type Map
 /// @access private
 $_breakpoints: (
   phone: (
-    $disable-phone-columns,
-    $disable-phone-min-item-size,
+    columns: $disable-phone-columns,
+    size: $disable-phone-min-item-size,
   ),
   tablet: (
-    $disable-tablet-columns,
-    $disable-tablet-min-item-size,
+    columns: $disable-tablet-columns,
+    size: $disable-tablet-min-item-size,
   ),
   desktop: (
-    $disable-desktop-columns,
-    $disable-desktop-min-item-size,
+    columns: $disable-desktop-columns,
+    size: $disable-desktop-min-item-size,
   ),
   large-desktop: (
-    $disable-large-desktop-columns,
-    $disable-large-desktop-min-item-size,
+    columns: $disable-large-desktop-columns,
+    size: $disable-large-desktop-min-item-size,
   ),
 );
 
@@ -356,8 +356,8 @@ $variables: (
 
           @each $media, $feature-flags in $_breakpoints {
             @include media-queries.media-or-media-query($media) {
-              $disable-columns: list.nth($feature-flags, 1);
-              $disable-size: list.nth($feature-flags, 2);
+              $disable-columns: map.get($feature-flags, columns);
+              $disable-size: map.nth($feature-flags, size);
               @if not $disable-columns {
                 &--grid-#{$media} {
                   @include set-var(columns, get-var($media + "-columns"));

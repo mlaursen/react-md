@@ -15,7 +15,12 @@ export async function formatVariableItem(
 ): Promise<FormattedVariableItem> {
   const { type } = item;
   const { scope, value } = item.context;
-  assertValidVariableDataType(type);
+  try {
+    assertValidVariableDataType(type);
+  } catch (e) {
+    console.error(`${item.context.name} has an invalid type!`);
+    throw e;
+  }
 
   let compiled: string | undefined;
   if (isCompileable(value)) {

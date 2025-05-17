@@ -320,6 +320,7 @@ export * from "@react-md/core/theme/useColorScheme";
 export * from "@react-md/core/theme/useColorSchemeMetaTag";
 export * from "@react-md/core/theme/useColorSchemeProvider";
 export * from "@react-md/core/theme/useCSSVariables";
+export * from "@react-md/core/theme/useInlineCSSVariables";
 export * from "@react-md/core/theme/usePrefersDarkTheme";
 export * from "@react-md/core/theme/utils";
 export * from "@react-md/core/tooltip/constants";
