@@ -1,0 +1,34 @@
+@use "everything";
+
+.span {
+  grid-column: span var(--cell-span, 1);
+}
+
+.order {
+  order: var(--cell-order);
+}
+
+.offset {
+  grid-column-start: var(--cell-offset);
+}
+
+$breakpoints: (phone, tablet, desktop);
+
+@each $breakpoint in $breakpoints {
+  @include everything.media($breakpoint) {
+    .#{$breakpoint}Span {
+      --cell-span: var(--cell-#{$breakpoint}-span);
+    }
+    .#{$breakpoint}Order {
+      --cell-span: var(--cell-#{$breakpoint}-order);
+    }
+    .#{$breakpoint}Offset {
+      --cell-span: var(--cell-#{$breakpoint}-order);
+    }
+  }
+}
+
+// just for this demo
+.container {
+  min-height: 3rem;
+}

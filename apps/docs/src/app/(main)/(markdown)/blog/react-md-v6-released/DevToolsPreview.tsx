@@ -7,6 +7,7 @@ import { CardSubtitle } from "@react-md/core/card/CardSubtitle";
 import { CardTitle } from "@react-md/core/card/CardTitle";
 import { ClickableCard } from "@react-md/core/card/ClickableCard";
 import { Dialog } from "@react-md/core/dialog/Dialog";
+import { objectFit } from "@react-md/core/objectFit";
 import Image from "next/image.js";
 import { type ReactElement, useState } from "react";
 
@@ -36,7 +37,11 @@ export function DevToolsPreview(): ReactElement {
 
   return (
     <>
-      <Box grid style={{ "--rmd-box-item-min-size": "22rem" }}>
+      <Box
+        grid
+        style={{ "--rmd-box-item-min-size": "22rem" }}
+        gridColumns={{ phone: 1 }}
+      >
         {images.map(({ id, src, alt }, i) => (
           <ClickableCard
             aria-label="Show full resolution"
@@ -50,7 +55,11 @@ export function DevToolsPreview(): ReactElement {
               <CardSubtitle>Click to see full image</CardSubtitle>
             </CardHeader>
             <CardContent className={styles.content} disablePadding>
-              <Image src={src} alt={alt} />
+              <Image
+                src={src}
+                alt={alt}
+                className={objectFit({ fit: "cover" })}
+              />
             </CardContent>
           </ClickableCard>
         ))}

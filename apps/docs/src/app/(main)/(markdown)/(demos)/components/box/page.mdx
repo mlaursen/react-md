@@ -116,6 +116,22 @@ to that number.
 
 ```
 
+### Grid Column Media Queries
+
+The `gridColumns` prop also supports setting different column behavior based on the
+defined media queries:
+
+- `phone` - [$SASSDOC](phone-media)
+- `tablet` - [$SASSDOC](tablet-media)
+- `desktop` - [$SASSDOC](desktop-media)
+- `largeDesktop` - [$SASSDOC](large-desktop-media)
+
+Each of the breakpoints can be `"fit"`, `"fill"`, or a number of columns.
+
+```demo source="./GridColumnMediaQueries.tsx" disableBox
+
+```
+
 ### Grid Auto Rows
 
 To create rows with an equal height, enable the `gridAutoRows` restrict
@@ -143,6 +159,37 @@ See the example below to see how these props can be used.
 
 ```
 
+## Material Grid Example
+
+The material design grid system is defined as:
+
+- 4 columns on mobile
+- 8 columns on tablet
+- 12 columns on desktop
+
+The material grid is no longer supported out of the box (ha) anymore but can be
+re-created using the `gridColumns` prop and setting the `grid-column` CSS
+property on cells to span multiple columns.
+
+```demo source="./MaterialGridExample.tsx" disableBox
+
+```
+
+### Material Grid Customization
+
+If the material grid system is actually still useful, it is recommended
+to create a few utility classes to help position grid items.
+
+> !Warn! This is not natively supported by `react-md` since I've never needed
+> to create layouts that could not be solved with the non-material design grid
+> system.
+
+Here's an example:
+
+```demo source="./MaterialGridCustomizationExample.tsx" disableBox
+
+```
+
 ## Box Class Name Function
 
 The box styles can also be applied using the `box` class name function. It
@@ -152,7 +199,18 @@ supports `display: flex` or `display: grid`.
 > !Warn! Setting the `gridColumns` to a number with the `box` class name
 > function does not enforce the provided number of columns like the `Box`
 > component. It will only update the `--rmd-box-item-min-size` to `0`.
+> Use the `boxStyles` utility if the number of columns must be enforced.
 
 ```demo source="./BoxClassNameFunctionExample.tsx" disableBox
+
+```
+
+### Box Styles Utility Function
+
+If the number of columns or item size need to be controlled, use the
+`boxStyles` utility function instead. It returns a `style` object with CSS
+variables and the corresponding class names.
+
+```demo source="./BoxStylesUtilityFunctionExample.tsx" disableBox
 
 ```
