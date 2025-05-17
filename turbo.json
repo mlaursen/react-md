@@ -3,7 +3,7 @@
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "@react-md/material-icons#build": {
-      "outputs": ["*.d.ts", "*.js"]
+      "outputs": ["*Icon.d.ts", "*Icon.js"]
     },
     "@react-md/codemod#build": {
       "outputs": ["dist/**"]
