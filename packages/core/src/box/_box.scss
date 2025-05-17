@@ -3,7 +3,9 @@
 ////
 
 @use "sass:map";
+@use "sass:list";
 @use "../utils";
+@use "../media-queries/media-queries";
 
 /// Set to `true` to disable all the styles
 /// @type Boolean
@@ -31,6 +33,40 @@ $disable-grid-columns: false !default;
 /// Set to `true` to disable the styles for the `grid-auto-rows` behavior.
 /// @type Boolean
 $disable-grid-auto-rows: false !default;
+
+/// Set to `true` to disable the styles for the phone columns variable.
+/// @type Boolean
+$disable-phone-columns: false !default;
+
+/// Set to `true` to disable the styles for the tablet columns variable.
+/// @type Boolean
+$disable-tablet-columns: false !default;
+
+/// Set to `true` to disable the styles for the desktop columns variable.
+/// @type Boolean
+$disable-desktop-columns: false !default;
+
+/// Set to `true` to disable the styles for the large desktop columns variable.
+/// @type Boolean
+$disable-large-desktop-columns: false !default;
+
+/// Set to `true` to disable the styles for the phone grid min item variable.
+/// @type Boolean
+$disable-phone-min-item-size: false !default;
+
+/// Set to `true` to disable the styles for the tablet grid min item variable.
+/// @type Boolean
+$disable-tablet-min-item-size: false !default;
+
+/// Set to `true` to disable the styles for the desktop grid min item size
+/// variable.
+/// @type Boolean
+$disable-desktop-min-item-size: false !default;
+
+/// Set to `true` to disable the styles for the large desktop grid min item
+/// size variable
+/// @type Boolean
+$disable-large-desktop-min-item-size: false !default;
 
 /// This is the default `align-items` property value to set if you don't like
 /// everything being centered by default. This value is always overridable using
@@ -96,6 +132,26 @@ $item-min-size: 8rem !default;
 /// @type Map
 $grids: () !default;
 
+/// @access private
+$_breakpoints: (
+  phone: (
+    $disable-phone-columns,
+    $disable-phone-min-item-size,
+  ),
+  tablet: (
+    $disable-tablet-columns,
+    $disable-tablet-min-item-size,
+  ),
+  desktop: (
+    $disable-desktop-columns,
+    $disable-desktop-min-item-size,
+  ),
+  large-desktop: (
+    $disable-large-desktop-columns,
+    $disable-large-desktop-min-item-size,
+  ),
+);
+
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.
 /// @type List
@@ -106,7 +162,19 @@ $variables: (
   item-min-height,
   columns,
   row-max-height,
-  auto-rows-height
+  auto-rows-height,
+  phone-columns,
+  tablet-columns,
+  desktop-columns,
+  large-desktop-columns,
+  phone-item-min-height,
+  tablet-item-min-height,
+  desktop-item-min-height,
+  large-desktop-item-min-height,
+  phone-item-min-size,
+  tablet-item-min-size,
+  desktop-item-min-size,
+  large-desktop-item-min-size
 );
 
 /// @param {String} name - The supported variable name
@@ -195,6 +263,10 @@ $variables: (
     @include set-var(padding, $padding);
     @include set-var(item-min-size, $item-min-size);
     @include set-var(columns, auto-fit);
+    @include set-var(phone-columns, auto-fit);
+    @include set-var(tablet-columns, auto-fit);
+    @include set-var(desktop-columns, auto-fit);
+    @include set-var(large-desktop-columns, auto-fit);
   }
 }
 
@@ -277,8 +349,29 @@ $variables: (
           }
 
           @if not $disable-grid-columns {
-            &--grid-columns {
+            &--grid-size {
               @include set-var(item-min-size, 0);
+            }
+          }
+
+          @each $media, $feature-flags in $_breakpoints {
+            @include media-queries.media-or-media-query($media) {
+              $disable-columns: list.nth($feature-flags, 1);
+              $disable-size: list.nth($feature-flags, 2);
+              @if not $disable-columns {
+                &--grid-#{$media} {
+                  @include set-var(columns, get-var($media + "-columns"));
+                }
+              }
+
+              @if not $disable-size {
+                &--grid-#{$media}-size {
+                  @include set-var(
+                    item-min-size,
+                    get-var($media + "-item-min-size", 0)
+                  );
+                }
+              }
             }
           }
 

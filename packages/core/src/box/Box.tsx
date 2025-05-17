@@ -1,6 +1,6 @@
 import { type HTMLAttributes, forwardRef } from "react";
 
-import { type BoxOptions, box } from "./styles.js";
+import { type BoxOptions, boxStyles } from "./styles.js";
 
 /**
  * @since 6.0.0
@@ -109,15 +109,16 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
   function Box(props, ref) {
     const {
-      style: propStyle,
+      style,
       className,
       children,
       align,
-      grid,
-      gridName,
       justify,
       stacked,
       reversed,
+      grid,
+      gridName,
+      gridItemSize,
       gridColumns,
       gridAutoRows,
       fullWidth,
@@ -127,30 +128,23 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       ...remaining
     } = props;
 
-    let style = propStyle;
-    if (typeof gridColumns === "number") {
-      style = {
-        ...propStyle,
-        "--rmd-box-columns": gridColumns,
-      };
-    }
-
     return (
       <div
         {...remaining}
-        style={style}
         ref={ref}
-        className={box({
+        {...boxStyles({
+          style,
           className,
-          fullWidth,
-          grid,
-          stacked,
-          gridName,
-          gridColumns,
-          gridAutoRows,
           align,
           justify,
+          stacked,
           reversed,
+          grid,
+          gridName,
+          gridItemSize,
+          gridColumns,
+          gridAutoRows,
+          fullWidth,
           disableGap,
           disableWrap,
           disablePadding,

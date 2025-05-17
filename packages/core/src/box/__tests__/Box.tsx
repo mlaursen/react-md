@@ -112,13 +112,13 @@ describe("Box", () => {
     expect(box).toMatchSnapshot();
     expect(box).toHaveClass("rmd-box--grid");
     expect(box).not.toHaveClass("rmd-box--grid-fill");
-    expect(box).not.toHaveClass("rmd-box--grid-columns");
+    expect(box).not.toHaveClass("rmd-box--grid-size");
 
     rerender(<Box {...BASE_PROPS} grid gridColumns={4} />);
     expect(box).toMatchSnapshot();
     expect(box).toHaveClass("rmd-box--grid");
     expect(box).not.toHaveClass("rmd-box--grid-fill");
-    expect(box).toHaveClass("rmd-box--grid-columns");
+    expect(box).toHaveClass("rmd-box--grid-size");
 
     rerender(
       <Box {...BASE_PROPS} grid gridColumns={4} style={{ color: "red" }} />
@@ -194,5 +194,69 @@ describe("Box", () => {
     expect(box).not.toHaveClass("rmd-box--gap");
     expect(box).not.toHaveClass("rmd-box--gap-h");
     expect(box).toHaveClass("rmd-box--gap-v");
+  });
+
+  it("should allow the columns to be configured by different breakpoints", () => {
+    const { rerender } = render(<Box {...BASE_PROPS} grid gridColumns={2} />);
+    const box = screen.getByTestId("box");
+    expect(box).toHaveClass("rmd-box--grid-size");
+
+    rerender(<Box {...BASE_PROPS} grid gridColumns={{ phone: "fill" }} />);
+    expect(box).toHaveClass("rmd-box--grid-phone");
+    expect(box).not.toHaveClass("rmd-box--grid-phone-size");
+    expect(box).toMatchSnapshot();
+
+    rerender(
+      <Box
+        {...BASE_PROPS}
+        grid
+        gridColumns={{ phone: 1, tablet: "fill", desktop: "fit" }}
+      />
+    );
+    expect(box).toHaveClass("rmd-box--grid-phone");
+    expect(box).toHaveClass("rmd-box--grid-phone-size");
+    expect(box).toMatchSnapshot();
+
+    rerender(
+      <Box
+        {...BASE_PROPS}
+        grid
+        gridColumns={{ tablet: 2, desktop: 4, largeDesktop: "fit" }}
+      />
+    );
+    expect(box).toMatchSnapshot();
+  });
+
+  it("should allow the grid item size to be configured by different breakpoints", () => {
+    const { rerender } = render(
+      <Box {...BASE_PROPS} grid gridItemSize="4rem" />
+    );
+    const box = screen.getByTestId("box");
+    expect(box).toMatchSnapshot();
+
+    rerender(<Box {...BASE_PROPS} grid gridItemSize={{ phone: "4rem" }} />);
+    expect(box).toMatchSnapshot();
+
+    rerender(
+      <Box
+        {...BASE_PROPS}
+        grid
+        gridItemSize={{ phone: "4rem", tablet: "8rem", desktop: "12rem" }}
+      />
+    );
+    expect(box).toMatchSnapshot();
+
+    rerender(
+      <Box
+        {...BASE_PROPS}
+        grid
+        gridItemSize={{
+          tablet: "5rem",
+          desktop: "12rem",
+          largeDesktop: "auto",
+        }}
+      />
+    );
+    expect(box).toMatchSnapshot();
   });
 });

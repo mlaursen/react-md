@@ -1,5 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Box should allow the columns to be configured by different breakpoints 1`] = `
+<div
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-phone"
+  data-testid="box"
+  style=""
+>
+  Content
+</div>
+`;
+
+exports[`Box should allow the columns to be configured by different breakpoints 2`] = `
+<div
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-phone rmd-box--grid-phone-size rmd-box--grid-tablet rmd-box--grid-desktop"
+  data-testid="box"
+  style="--rmd-box-phone-columns: 1;"
+>
+  Content
+</div>
+`;
+
+exports[`Box should allow the columns to be configured by different breakpoints 3`] = `
+<div
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-tablet rmd-box--grid-tablet-size rmd-box--grid-desktop rmd-box--grid-desktop-size rmd-box--grid-large-desktop"
+  data-testid="box"
+  style="--rmd-box-tablet-columns: 2; --rmd-box-desktop-columns: 4;"
+>
+  Content
+</div>
+`;
+
+exports[`Box should allow the grid item size to be configured by different breakpoints 1`] = `
+<div
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid"
+  data-testid="box"
+  style="--rmd-box-item-min-size: 4rem;"
+>
+  Content
+</div>
+`;
+
+exports[`Box should allow the grid item size to be configured by different breakpoints 2`] = `
+<div
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-phone rmd-box--grid-phone-size"
+  data-testid="box"
+  style="--rmd-box-phone-item-min-size: 4rem;"
+>
+  Content
+</div>
+`;
+
+exports[`Box should allow the grid item size to be configured by different breakpoints 3`] = `
+<div
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-phone rmd-box--grid-phone-size rmd-box--grid-tablet rmd-box--grid-tablet-size rmd-box--grid-desktop rmd-box--grid-desktop-size"
+  data-testid="box"
+  style="--rmd-box-phone-item-min-size: 4rem; --rmd-box-tablet-item-min-size: 8rem; --rmd-box-desktop-item-min-size: 12rem;"
+>
+  Content
+</div>
+`;
+
+exports[`Box should allow the grid item size to be configured by different breakpoints 4`] = `
+<div
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-tablet rmd-box--grid-tablet-size rmd-box--grid-desktop rmd-box--grid-desktop-size rmd-box--grid-large-desktop rmd-box--grid-large-desktop-size"
+  data-testid="box"
+  style="--rmd-box-tablet-item-min-size: 5rem; --rmd-box-desktop-item-min-size: 12rem; --rmd-box-large-desktop-item-min-size: auto;"
+>
+  Content
+</div>
+`;
+
 exports[`Box should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded"
@@ -66,7 +136,7 @@ exports[`Box should set the --rmd-box-columns variable and grid-columsn class wh
 
 exports[`Box should set the --rmd-box-columns variable and grid-columsn class when gridColumns is a number 2`] = `
 <div
-  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-columns"
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-size"
   data-testid="box"
   style="--rmd-box-columns: 4;"
 >
@@ -76,7 +146,7 @@ exports[`Box should set the --rmd-box-columns variable and grid-columsn class wh
 
 exports[`Box should set the --rmd-box-columns variable and grid-columsn class when gridColumns is a number 3`] = `
 <div
-  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-columns"
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-size"
   data-testid="box"
   style="--rmd-box-columns: 4; color: red;"
 >
