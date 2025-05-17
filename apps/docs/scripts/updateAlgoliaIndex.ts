@@ -1,10 +1,13 @@
 import { searchClient } from "@algolia/client-search";
 import { parseMdx } from "docs-generator/scripts/algolia/parseMdx";
-import { type IndexedItem } from "docs-generator/scripts/algolia/types";
+import {
+  type HeadingWithDescription,
+  type IndexedItem,
+} from "docs-generator/scripts/algolia/types";
 import { log } from "docs-generator/utils/log";
 import { config } from "dotenv";
 import { glob } from "glob";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { generate } from "sassdoc-generator";
 import {
   type FormattedFunctionItem,
@@ -13,6 +16,7 @@ import {
   type FormattedVariableItem,
 } from "sassdoc-generator/types";
 
+import { getBlogs } from "../src/app/(main)/(markdown)/blog/data.js";
 import { titleCase } from "../src/utils/strings.js";
 import { CORE_SRC } from "./constants.js";
 
@@ -145,6 +149,38 @@ async function indexSassDocPages(): Promise<readonly IndexedItem[]> {
   return items;
 }
 
+async function indexBlogs(): Promise<readonly IndexedItem[]> {
+  const items: IndexedItem[] = [];
+  const blogRoot = resolve(process.cwd(), "src/app/(main)/(markdown)/blog");
+  const blogs = await getBlogs(blogRoot);
+  const headings: HeadingWithDescription[] = [];
+  blogs.forEach((blog) => {
+    const { id, title, exerpt } = blog;
+    if (blog.pinned) {
+      headings.push({
+        id,
+        depth: 2,
+        title,
+        description: exerpt,
+      });
+    }
+  });
+  items.push({
+    type: "page",
+    title: "Blog",
+    description: "Stay up-to-date with the latest news about react-md",
+    objectID: `${BASE_URL}/blog`,
+    url: `${BASE_URL}/blog`,
+    pathname: "/blog",
+    headings,
+    keywords: ["blog", "release notes"],
+    docType: "Blog",
+    docGroup: "Blog",
+  });
+
+  return items;
+}
+
 async function run(): Promise<void> {
   config({ path: join(process.cwd(), ".env.development.local") });
   config({ path: join(process.cwd(), ".env.local") });
@@ -166,7 +202,8 @@ async function run(): Promise<void> {
       indexSassDocPages(),
       "Indexing SassDoc pages",
       "SassDoc pages indexed"
-    ))
+    )),
+    ...(await log(indexBlogs(), "Indexing Blog pages", "Blog pages indexed"))
   );
   indexes.push({
     type: "page",
@@ -183,30 +220,9 @@ async function run(): Promise<void> {
     group: "Presentation",
     components: ["FontIcon", "MaterialSymbol", "SVGIcon"],
   });
-  // TOOD: Need to pull dynamically create this
-  indexes.push({
-    type: "page",
-    title: "Blog",
-    description: "Stay up-to-date with the latest news about react-md",
-    objectID: `${BASE_URL}/blog`,
-    url: `${BASE_URL}/blog`,
-    pathname: "/blog",
-    headings: [
-      {
-        id: "react-md-v6-released",
-        depth: 1,
-        title: "react-md v6 Released",
-        description:
-          "react-md v6 has finally been released. A lot of new features, improvements, and bugfixes have been added.",
-      },
-    ],
-    keywords: ["blog", "release notes"],
-    docType: "Blog",
-    docGroup: "Blog",
-  });
 
   console.log(`There are ${indexes.length} items added to the search index.`);
-  // await client.clearObjects({ indexName });
+  await client.clearObjects({ indexName });
   await client.saveObjects({
     indexName,
     objects: indexes as unknown as Record<string, unknown>[],

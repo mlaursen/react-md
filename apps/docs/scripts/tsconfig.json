@@ -12,8 +12,11 @@
     "moduleResolution": "NodeNext",
     "incremental": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["esnext"]
+    "lib": ["esnext"],
+    "paths": {
+      "@/*": ["../src/*"]
+    }
   },
-  "include": ["./**/*.ts", "../src/utils/strings.ts", "../src/utils/slug.ts"],
+  "include": ["./**/*.ts", "../src/**/*.ts"],
   "exclude": ["node_modules"]
 }
