@@ -38,6 +38,10 @@ const env = {
   NEXT_PUBLIC_ALGOLIA_INDEX_NAME: "next_react_md_dev_search",
 } satisfies Record<string, string>;
 
+Object.keys(process.env).forEach((key) => {
+  console.log(`${key} = ${process.env[key]}`);
+});
+
 const stringifiedEnv = Object.entries(env)
   .map(([name, value]) => `${name}=${value}`)
   .join("\n");
