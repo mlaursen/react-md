@@ -1,5 +1,11 @@
 # @react-md/codemod
 
+## 6.0.1-next.2
+
+### Patch Changes
+
+- Trying to remove bin field in package.json
+
 ## 6.0.1-next.1
 
 ### Patch Changes
