@@ -183,6 +183,27 @@ async function run(): Promise<void> {
     group: "Presentation",
     components: ["FontIcon", "MaterialSymbol", "SVGIcon"],
   });
+  // TOOD: Need to pull dynamically create this
+  indexes.push({
+    type: "page",
+    title: "Blog",
+    description: "Stay up-to-date with the latest news about react-md",
+    objectID: `${BASE_URL}/blog`,
+    url: `${BASE_URL}/blog`,
+    pathname: "/blog",
+    headings: [
+      {
+        id: "react-md-v6-released",
+        depth: 1,
+        title: "react-md v6 Released",
+        description:
+          "react-md v6 has finally been released. A lot of new features, improvements, and bugfixes have been added.",
+      },
+    ],
+    keywords: ["blog", "release notes"],
+    docType: "Blog",
+    docGroup: "Blog",
+  });
 
   console.log(`There are ${indexes.length} items added to the search index.`);
   // await client.clearObjects({ indexName });
