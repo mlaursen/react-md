@@ -1,5 +1,11 @@
 # @react-md/codemod
 
+## 6.0.2
+
+### Patch Changes
+
+- Fixed the tabs codemod reporting on all files.
+
 ## 6.0.1
 
 ### Patch Changes
