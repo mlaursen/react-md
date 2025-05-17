@@ -11,7 +11,9 @@ describe("RootHtml", () => {
   });
 
   it("should allow a custom bodyClassName", () => {
-    expect(<RootHtml bodyClassName="body-class-name" />).toMatchSnapshot();
+    expect(
+      renderToString(<RootHtml bodyClassName="body-class-name" />)
+    ).toMatchSnapshot();
   });
 
   it("should allow the body className to be set through bodyProps when the bodyClassName prop is not provided", () => {
