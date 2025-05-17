@@ -357,7 +357,7 @@ $variables: (
           @each $media, $feature-flags in $_breakpoints {
             @include media-queries.media-or-media-query($media) {
               $disable-columns: map.get($feature-flags, columns);
-              $disable-size: map.nth($feature-flags, size);
+              $disable-size: map.get($feature-flags, size);
               @if not $disable-columns {
                 &--grid-#{$media} {
                   @include set-var(columns, get-var($media + "-columns"));
