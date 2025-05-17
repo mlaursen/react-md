@@ -8,11 +8,20 @@ const branchName =
   execSync("git branch --show-current").toString().trim();
 const commit =
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ||
-  process.env.VERCEL_GIT_COMMIT_SHA ||
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
   process.argv.includes("--dev")
     ? branchName
     : execSync("git rev-parse HEAD").toString().trim();
+
+console.log("commit:", commit);
+console.log(
+  "process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF:",
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF
+);
+console.log(
+  "process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA:",
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA
+);
 
 const githubUrl = "https://github.com/mlaursen/react-md";
 
@@ -37,10 +46,6 @@ const env = {
   NEXT_PUBLIC_ALGOLIA_API_KEY: "9a93702ac5feb1874e6ecc334127c069",
   NEXT_PUBLIC_ALGOLIA_INDEX_NAME: "next_react_md_dev_search",
 } satisfies Record<string, string>;
-
-Object.keys(process.env).forEach((key) => {
-  console.log(`${key} = ${process.env[key]}`);
-});
 
 const stringifiedEnv = Object.entries(env)
   .map(([name, value]) => `${name}=${value}`)
