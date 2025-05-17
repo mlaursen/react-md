@@ -175,6 +175,26 @@ export interface MaterialSymbolFontVariationSettings {
   family: MaterialSymbolFamily;
 }
 
+interface ApplyOptions {
+  name: "fill" | "wght" | "grad" | "opsz";
+  value: number | undefined;
+  defaultValue: number;
+  style: CSSProperties | undefined;
+}
+
+const applyVar = (options: ApplyOptions): CSSProperties | undefined => {
+  const { name, value, defaultValue, style } = options;
+  if (typeof value !== "undefined" && value !== defaultValue) {
+    const varName = `--rmd-symbol-${name}` as const;
+    return {
+      ...style,
+      [varName]: value,
+    };
+  }
+
+  return style;
+};
+
 /**
  * @since 6.0.0
  * @internal
@@ -182,26 +202,38 @@ export interface MaterialSymbolFontVariationSettings {
 export function getFontVariationSettings(
   options: MaterialSymbolCustomization & { style?: CSSProperties }
 ): MaterialSymbolFontVariationSettings {
-  let { style } = options;
   const {
-    fill = MATERIAL_CONFIG.fill,
-    grade = MATERIAL_CONFIG.grade,
-    opticalSize = MATERIAL_CONFIG.opticalSize,
-    weight = MATERIAL_CONFIG.weight,
-    family: symbolFamily = MATERIAL_CONFIG.family,
+    family = MATERIAL_CONFIG.family,
+    fill,
+    grade,
+    opticalSize,
+    weight,
   } = options;
-  if (
-    !style?.fontVariationSettings &&
-    (fill !== MATERIAL_CONFIG.fill ||
-      grade !== MATERIAL_CONFIG.grade ||
-      opticalSize !== MATERIAL_CONFIG.opticalSize ||
-      weight !== MATERIAL_CONFIG.weight)
-  ) {
-    style = {
-      ...style,
-      fontVariationSettings: `"FILL" ${fill}, "wght" ${weight}, "GRAD" ${grade}, "opsz" ${opticalSize}`,
-    };
-  }
+  let { style } = options;
+  style = applyVar({
+    style,
+    name: "fill",
+    value: fill,
+    defaultValue: MATERIAL_CONFIG.fill,
+  });
+  style = applyVar({
+    style,
+    name: "grad",
+    value: grade,
+    defaultValue: MATERIAL_CONFIG.grade,
+  });
+  style = applyVar({
+    style,
+    name: "opsz",
+    value: opticalSize,
+    defaultValue: MATERIAL_CONFIG.opticalSize,
+  });
+  style = applyVar({
+    style,
+    name: "wght",
+    value: weight,
+    defaultValue: MATERIAL_CONFIG.weight,
+  });
 
-  return { family: symbolFamily, style };
+  return { style, family };
 }

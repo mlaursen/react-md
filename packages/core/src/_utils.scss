@@ -130,7 +130,7 @@ $_swappable-properties: text-align;
     @if $name == symbol-weight {
       @return --rmd-symbol-wght;
     }
-    @if $name == optical-size {
+    @if $name == symbol-optical-size {
       @return --rmd-symbol-opsz;
     }
   }

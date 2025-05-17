@@ -71,15 +71,19 @@ describe("MaterialSymbol", () => {
     expect(icon).toHaveStyle({ fontVariationSettings: "" });
 
     rerender(<MaterialSymbol {...props} fill={1} />);
+    expect(icon).toMatchSnapshot();
     expect(icon).toHaveStyle({
-      fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24',
+      "--rmd-symbol-fill": "1",
     });
 
     rerender(
       <MaterialSymbol {...props} fill={1} grade={-25} opticalSize={48} />
     );
+    expect(icon).toMatchSnapshot();
     expect(icon).toHaveStyle({
-      fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" -25, "opsz" 48',
+      "--rmd-symbol-fill": "1",
+      "--rmd-symbol-grad": "-25",
+      "--rmd-symbol-opsz": "48",
     });
   });
 

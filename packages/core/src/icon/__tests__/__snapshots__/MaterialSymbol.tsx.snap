@@ -40,3 +40,25 @@ exports[`MaterialSymbol should support overriding the symbol configuration throu
   air
 </span>
 `;
+
+exports[`MaterialSymbol should use inline styles for font variation settings when they do not match the MATERIAL_CONFIG 1`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--symbol material-symbols-outlined"
+  data-testid="icon"
+  style="--rmd-symbol-fill: 1;"
+>
+  air
+</span>
+`;
+
+exports[`MaterialSymbol should use inline styles for font variation settings when they do not match the MATERIAL_CONFIG 2`] = `
+<span
+  aria-hidden="true"
+  class="rmd-icon rmd-icon--symbol material-symbols-outlined"
+  data-testid="icon"
+  style="--rmd-symbol-fill: 1; --rmd-symbol-grad: -25; --rmd-symbol-opsz: 48;"
+>
+  air
+</span>
+`;
