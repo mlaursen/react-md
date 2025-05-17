@@ -1,5 +1,6 @@
 import { objectFit } from "@react-md/core/objectFit";
 import Image, { type ImageProps, type StaticImageData } from "next/image.js";
+import Link from "next/link.js";
 import { type ReactElement } from "react";
 
 export interface MarkdownImageProps extends Omit<ImageProps, "src"> {
@@ -16,8 +17,8 @@ export async function MarkdownImage(
       : result.default
   );
   return (
-    <>
+    <Link href={typeof src === "string" ? src : src.src} target="_blank">
       <Image {...remaining} src={src} className={objectFit({ inline: true })} />
-    </>
+    </Link>
   );
 }
