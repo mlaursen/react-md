@@ -17,6 +17,11 @@
       "@/*": ["../src/*"]
     }
   },
-  "include": ["./**/*.ts", "../src/**/*.ts"],
+  "include": [
+    "./**/*.ts",
+    "../src/utils/slug.ts",
+    "../src/utils/strings.ts",
+    "../src/app/(main)/(markdown)/blog/data.ts"
+  ],
   "exclude": ["node_modules"]
 }
