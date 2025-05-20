@@ -385,6 +385,8 @@ $_layer-order: (
 ///   }
 ///
 @mixin variables {
+  @include theme.theme-variables;
+  @include typography.typography-variables;
   @include app-bar.variables;
   @include autocomplete.variables;
   @include avatar.variables;
@@ -416,11 +418,9 @@ $_layer-order: (
   @include tabs.variables;
   @include text-field.variables;
   @include text-area.variables;
-  @include theme.theme-variables;
   @include tooltip.variables;
   @include transition.transition-variables;
   @include tree.variables;
-  @include typography.typography-variables;
   @include window-splitter.variables;
 }
 
