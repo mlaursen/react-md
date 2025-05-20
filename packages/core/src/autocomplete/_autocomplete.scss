@@ -31,7 +31,7 @@ $disable-clear-button: false !default;
 /// `disableClearButton` was enabled on the `Autocomplete`.
 ///
 /// @type Boolean
-$disable-clear-button-opacity-query: false !default;
+$disable-clear-button-display-none-query: false !default;
 
 /// Set to `true` to disable the dropdown button styles
 /// @type Boolean
@@ -130,7 +130,7 @@ $_clear-button-hover-selector: "&:where(:not(:hover):not(:focus-within)) :where(
 // showing the clear button if the input has a value (or query)
 $_clear-button-valued-selector: "&:where(:has(:placeholder-shown)) :where(#{$_clear-button-selector + "--query"})";
 
-$_clear-button-opacity-selector: $_clear-button-hover-selector + ", "
+$_clear-button-display-none-selector: $_clear-button-hover-selector + ", "
   $_clear-button-valued-selector;
 
 /// The available configurable css variables and mostly used internally for the
@@ -340,9 +340,12 @@ $variables: (
           }
         }
 
-        @if not $disable-clear-button {
-          #{$_clear-button-opacity-selector} {
-            opacity: 0;
+        @if not
+          $disable-clear-button and not
+          $disable-clear-button-display-none-query
+        {
+          #{$_clear-button-display-none-selector} {
+            display: none;
           }
         }
 
