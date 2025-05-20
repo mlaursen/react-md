@@ -8,6 +8,8 @@
 @forward "theme/a11y";
 @forward "theme/colors";
 @forward "theme/theme";
+@forward "border-radius" as border-radius-*;
+@forward "spacing" as spacing-*;
 @forward "typography/typography";
 @forward "transition/transition";
 @forward "box-shadows";

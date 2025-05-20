@@ -28,6 +28,8 @@
 @use "chip/chip";
 @use "table/table";
 @use "theme/theme";
+@use "border-radius";
+@use "spacing";
 @use "dialog/dialog";
 @use "sheet/sheet";
 @use "transition/transition";
@@ -386,6 +388,8 @@ $_layer-order: (
 ///
 @mixin variables {
   @include theme.theme-variables;
+  @include border-radius.variables;
+  @include spacing.variables;
   @include typography.typography-variables;
   @include app-bar.variables;
   @include autocomplete.variables;
