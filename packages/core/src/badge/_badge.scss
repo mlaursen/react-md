@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../border-radius";
 @use "../theme/a11y";
 @use "../theme/colors";
 @use "../theme/theme";
@@ -60,7 +61,7 @@ $offset-right: $offset !default;
 
 /// The default border radius
 /// @type Number
-$border-radius: 50% !default;
+$border-radius: border-radius.get-var(full) !default;
 
 /// The default typography to use
 /// @type Map
@@ -110,6 +111,7 @@ $greyscale-color: theme.get-default-color(
 /// `get-var`, `set-var`, and `use-var` utils.
 /// @type List
 $variables: (
+  border-radius,
   greyscale-background-color,
   greyscale-color,
   size,
@@ -144,6 +146,12 @@ $variables: (
 /// @param {any} fallback [null] - An optional fallback value if the variable
 /// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
+  @if not $fallback {
+    @if $name == border-radius {
+      $fallback: $border-radius;
+    }
+  }
+
   #{$property}: get-var($name, $fallback);
 }
 
@@ -207,12 +215,12 @@ $variables: (
     @include utils.optional-layer(badge, $disable-layer) {
       .rmd-badge {
         @include utils.map-to-styles($typography);
+        @include use-var(border-radius);
         @include use-var(height, size);
         @include use-var(width, size);
         @include use-var(top, offset-top, get-var(offset));
 
         align-items: center;
-        border-radius: $border-radius;
         display: inline-flex;
         justify-content: center;
         pointer-events: none; // badges are _kind_ of presentational and shouldn't trigger mouse events

@@ -5,6 +5,7 @@
 @use "sass:color";
 @use "sass:map";
 @use "../utils";
+@use "../border-radius";
 @use "../theme/colors";
 @use "../theme/theme";
 
@@ -112,7 +113,7 @@ $skeleton-placeholder-width: 43% !default;
 
 /// The default skeleton placeholder border-radius.
 /// @type Number
-$skeleton-placeholder-border-radius: 0.25rem !default;
+$skeleton-placeholder-border-radius: border-radius.get-var(xs) !default;
 
 /// The default light theme skeleton placeholder background color.
 /// @type Color

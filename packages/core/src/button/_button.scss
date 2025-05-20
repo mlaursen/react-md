@@ -5,6 +5,8 @@
 @use "sass:list";
 @use "sass:map";
 @use "../utils";
+@use "../border-radius";
+@use "../spacing";
 @use "../theme/a11y";
 @use "../theme/theme";
 @use "../icon/icon";
@@ -69,15 +71,15 @@ $disable-unstyled-utility-class: false !default;
 
 /// The default border radius to apply to text buttons
 /// @type Number
-$text-border-radius: 0.5rem !default;
+$text-border-radius: border-radius.get-var(sm) !default;
 
 /// The default horizontal padding to apply to text buttons
 /// @type Number
-$text-horizontal-padding: 1rem !default;
+$text-horizontal-padding: spacing.get-var(md) !default;
 
 /// The default vertical padding to apply to text buttons
 /// @type Number
-$text-vertical-padding: 0 !default;
+$text-vertical-padding: spacing.get-var(none) !default;
 
 /// The default min-height to apply to text buttons
 /// @type Number
@@ -93,7 +95,7 @@ $text-icon-size: 1.125rem !default;
 
 /// The default border radius to apply to icon buttons
 /// @type Number
-$icon-border-radius: 50% !default;
+$icon-border-radius: border-radius.get-var(full) !default;
 
 /// The default border radius to apply to square icon buttons
 /// @type Number
@@ -151,7 +153,7 @@ $circular-progress-size: icon.get-var(size) !default;
 
 /// The default viewport margin for a floating action button
 /// @type Number
-$floating-margin: 1.5rem !default;
+$floating-margin: spacing.get-var(lg) !default;
 
 /// The default z-index for a floating action button
 /// @type Number
@@ -196,9 +198,12 @@ $variables: (
   text-vertical-padding,
   text-min-height,
   text-min-width,
+  text-border-radius,
   icon-size,
+  icon-padding,
   icon-font-size,
   icon-border-radius,
+  icon-square-border-radius,
   fab-offset
 );
 
@@ -277,8 +282,8 @@ $variables: (
 ///   }
 @mixin text-styles {
   @include icon.set-var(size, $text-icon-size);
-  @include set-var(border-radius, $text-border-radius);
   @include utils.map-to-styles(typography.$button-styles);
+  @include use-var(border-radius, text-border-radius, $text-border-radius);
   @include use-var(min-height, text-min-height);
   @include use-var(min-width, text-min-width);
 
@@ -308,7 +313,7 @@ $variables: (
     @if not $disable-icon {
       @include set-var(icon-size, $icon-size);
       @include set-var(icon-font-size, $icon-font-size);
-      @include set-var(icon-border-radius, $icon-border-radius);
+      @include set-var(icon-padding, $icon-padding);
     }
 
     @if not $disable-floating {
@@ -350,17 +355,22 @@ $variables: (
         @if not $disable-icon {
           &--icon {
             @include icon.set-var(size, 1em);
-            @include set-var(border-radius, get-var(icon-border-radius));
+            @include set-var(
+              border-radius,
+              get-var(icon-border-radius, $icon-border-radius)
+            );
             @include use-var(font-size, icon-font-size);
             @include use-var(height, icon-size);
             @include use-var(width, icon-size);
-
-            padding: $icon-padding;
+            @include use-var(padding, icon-padding);
           }
 
           @if not $disable-icon-square {
             &--icon-square {
-              @include set-var(icon-border-radius, $icon-square-border-radius);
+              @include set-var(
+                icon-border-radius,
+                get-var(icon-square-border-radius)
+              );
             }
           }
 

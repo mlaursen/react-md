@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../spacing";
 @use "../theme/colors";
 @use "../theme/theme";
 @use "../icon/icon";
@@ -49,8 +50,8 @@ $skip-to-main-z-index: 10000 !default;
 $skip-to-main-styles: (
   color: theme.theme-get-var(on-primary-color),
   left: 50%,
-  padding: 0.25rem 1rem,
-  top: 0.25rem,
+  padding: spacing.get-var(xs) spacing.get-var(md),
+  top: spacing.get-var(xs),
   transform: translateX(-50%),
   z-index: $skip-to-main-z-index,
 ) !default;

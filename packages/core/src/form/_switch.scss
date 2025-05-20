@@ -5,6 +5,7 @@
 @use "sass:color";
 @use "sass:map";
 @use "../utils";
+@use "../border-radius";
 @use "../box-shadows";
 @use "../theme/colors";
 @use "../theme/theme";
@@ -41,7 +42,7 @@ $ball-size: 1.25em !default;
 
 /// The `Switch` border radius.
 /// @type Number
-$ball-border-radius: 50% !default;
+$ball-border-radius: border-radius.get-var(full) !default;
 
 /// The distance from the `left` and `right` of the `Switch` track to display
 /// the ball.

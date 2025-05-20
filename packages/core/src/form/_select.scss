@@ -60,10 +60,10 @@ $option-selected-styles: (
 /// prop has not been enabled.
 ///
 /// @type Number
-$option-padding-left: list.$item-horizontal-padding - math.div(
-    icon.$size - $option-selected-icon-size,
-    2
-  ) !default;
+$option-padding-left: calc(
+  list.$item-horizontal-padding -
+    #{math.div(icon.$size - $option-selected-icon-size, 2)}
+) !default;
 
 /// The spacing between the selected icon and the `Option` content.
 /// @type Number

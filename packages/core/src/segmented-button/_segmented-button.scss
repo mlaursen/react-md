@@ -5,6 +5,7 @@
 @use "sass:map";
 @use "sass:color";
 @use "../utils";
+@use "../spacing";
 @use "../icon/icon";
 @use "../interaction/interaction";
 @use "../typography/typography";
@@ -69,7 +70,7 @@ $dark-theme-selected-color: a11y.contrast-color(
 
 /// The default gap to apply between the elements in the `SegmentedButton`.
 /// @type Number
-$gap: icon.$spacing !default;
+$gap: spacing.get-var(sm) !default;
 
 /// The default border-radius to apply `SegmentedButton` that appear at the
 /// edges.
@@ -86,11 +87,11 @@ $min-width: 3rem !default;
 
 /// The default horizontal padding for a `SegmentedButton`.
 /// @type Number
-$horizontal-padding: 0.75rem !default;
+$horizontal-padding: calc(spacing.get-var(sm) * 1.5) !default;
 
 /// The default vertical padding for a `SegmentedButton`.
 /// @type Number
-$vertical-padding: 0 !default;
+$vertical-padding: spacing.get-var(none) !default;
 
 /// The default outline width for a `SegmentedButton`.
 /// @type Number
@@ -129,6 +130,9 @@ $typography-styles: typography.$button-styles !default;
 /// `get-var`, `set-var`, and `use-var` utils.
 /// @type List
 $variables: (
+  border-radius,
+  min-height,
+  min-width,
   outline-width,
   outline-color,
   color,
@@ -212,6 +216,7 @@ $variables: (
 /// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
+    @include set-var(border-radius, $border-radius);
     @include set-var(outline-width, $outline-width);
     @include set-var(outline-color, $outline-color);
     @include set-var(color, currentcolor);
@@ -242,6 +247,8 @@ $variables: (
         @include icon.set-var(color, currentcolor);
         @include icon.set-var(size, 1.125rem);
         @include utils.map-to-styles($typography-styles);
+        @include use-var(min-height, $fallback: $min-height);
+        @include use-var(min-width, $fallback: $min-width);
 
         align-items: center;
         background-color: transparent;
@@ -250,30 +257,30 @@ $variables: (
         display: inline-flex;
         gap: $gap;
         justify-content: center;
-        min-height: $min-height;
-        min-width: $min-width;
         padding: $vertical-padding $horizontal-padding;
 
         &:first-child {
-          border-bottom-left-radius: $border-radius;
-          border-top-left-radius: $border-radius;
+          @include use-var(border-bottom-left-radius, border-radius);
+          @include use-var(border-top-left-radius, border-radius);
 
           @include utils.rtl {
+            @include use-var(border-bottom-right-radius, border-radius);
+            @include use-var(border-top-right-radius, border-radius);
+
             border-bottom-left-radius: 0;
-            border-bottom-right-radius: $border-radius;
             border-top-left-radius: 0;
-            border-top-right-radius: $border-radius;
           }
         }
 
         &:last-child {
-          border-bottom-right-radius: $border-radius;
-          border-top-right-radius: $border-radius;
+          @include use-var(border-bottom-right-radius, border-radius);
+          @include use-var(border-top-right-radius, border-radius);
 
           @include utils.rtl {
-            border-bottom-left-radius: $border-radius;
+            @include use-var(border-bottom-left-radius, border-radius);
+            @include use-var(border-top-left-radius, border-radius);
+
             border-bottom-right-radius: 0;
-            border-top-left-radius: $border-radius;
             border-top-right-radius: 0;
           }
         }

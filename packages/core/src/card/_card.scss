@@ -4,6 +4,8 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../spacing";
+@use "../border-radius";
 @use "../theme/theme";
 @use "../box-shadows";
 @use "../typography/typography";
@@ -84,34 +86,34 @@ $border-width: divider.get-var(size) !default;
 
 /// The default border-radius for bordered cards
 /// @type Number
-$border-radius: 0.25rem !default;
+$border-radius: border-radius.get-var(xs) !default;
 
 /// The default padding to apply to `CardHeader`
 /// @type Number
-$header-padding: 1rem !default;
+$header-padding: spacing.get-var(md) !default;
 
 /// The default padding-top to apply to `CardHeader`
 /// @type Number
-$header-padding-top: 1.5rem !default;
+$header-padding-top: spacing.get-var(lg) !default;
 
 /// The default `column-gap` to apply to the `CardHeader`
 /// @type Number
-$header-spacing: 1rem !default;
+$header-spacing: spacing.get-var(md) !default;
 
 /// The default padding to apply to the `CardContent`
 /// @type Number
-$content-padding: 1rem !default;
+$content-padding: spacing.get-var(md) !default;
 
 /// The default padding-bottom to apply to the `CardContent` when it is the last
 /// child and the `$disable-content-last-child-padding` feature flag has
 /// not been disabled.
 ///
 /// @type Number
-$content-padding-bottom: 1.5rem !default;
+$content-padding-bottom: spacing.get-var(lg) !default;
 
 /// The default padding to apply to the `CardFooter`
 /// @type Number
-$footer-padding: 0.5rem !default;
+$footer-padding: spacing.get-var(sm) !default;
 
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.

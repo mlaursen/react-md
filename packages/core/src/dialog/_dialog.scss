@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../spacing";
 @use "../box-shadows";
 @use "../box/box";
 @use "../transition/transition";
@@ -129,13 +130,13 @@ $extra-large-width: 80rem !default;
 /// is centered.
 ///
 /// @type Number
-$horizontal-margin: 2.5rem !default;
+$horizontal-margin: calc(spacing.get-var(lg) * 1.25) !default;
 
 /// The amount of spacing to apply to the top and bottom of the dialog when it
 /// is centered.
 ///
 /// @type Number
-$vertical-margin: 1.5rem !default;
+$vertical-margin: spacing.get-var(lg) !default;
 
 /// The distance to move while the dialog enters and exits.
 /// @type Number
@@ -165,22 +166,22 @@ $leave-duration: transition.$leave-duration !default;
 /// The amount of padding to apply to the `DialogHeader` component.
 ///
 /// @type Number
-$header-padding: 1.5rem !default;
+$header-padding: spacing.get-var(lg) !default;
 
 /// The amount of padding-bottom to apply to the `DialogHeader` component.
 ///
 /// @type Number
-$header-padding-bottom: 1.25rem !default;
+$header-padding-bottom: calc(spacing.get-var(md) * 1.25) !default;
 
 /// The amount of padding-bottom to apply to the `DialogContent` component.
 ///
 /// @type Number
-$content-padding: 1.5rem !default;
+$content-padding: spacing.get-var(lg) !default;
 
 /// The amount of padding-bottom to apply to the `DialogFooter` component.
 ///
 /// @type Number
-$footer-padding: 0.5rem !default;
+$footer-padding: spacing.get-var(sm) !default;
 
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.

@@ -6,6 +6,7 @@
 @use "sass:map";
 @use "sass:math";
 @use "../utils";
+@use "../border-radius";
 @use "../theme/colors";
 @use "../typography/typography";
 @use "../icon/icon";
@@ -53,7 +54,7 @@ $border-color: transparent !default;
 /// set this to something like 0.25rem.
 ///
 /// @type Number
-$border-radius: 50% !default;
+$border-radius: border-radius.get-var(full) !default;
 
 /// The default height and width
 /// @type Number
@@ -178,7 +179,6 @@ $variables: (
     @include set-var(background-color, $background-color);
     @include set-var(color, $color);
     @include set-var(border-color, $border-color);
-    @include set-var(border-radius, $border-radius);
     @include set-var(size, $size);
     @include set-var(font-size, $font-size);
   }
@@ -198,7 +198,7 @@ $variables: (
         }
         @include utils.map-to-styles(typography.$base-font-styles);
         @include use-var(background-color);
-        @include use-var(border-radius);
+        @include use-var(border-radius, $fallback: $border-radius);
         @include use-var(color);
         @include use-var(font-size);
         @include use-var(height, size);

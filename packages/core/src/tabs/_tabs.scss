@@ -5,6 +5,7 @@
 @use "sass:map";
 
 @use "../utils";
+@use "../spacing";
 @use "../theme/theme";
 @use "../transition/transition";
 @use "../typography/typography";
@@ -75,7 +76,7 @@ $typography: map.remove(typography.$button-styles, line-height) !default;
 
 /// The default gap between the `Tab` icon and children.
 /// @type Number
-$gap: icon.$spacing !default;
+$gap: spacing.get-var(sm) !default;
 
 /// The default `Tab` height.
 /// @type Number
@@ -87,11 +88,11 @@ $stacked-height: 4.5rem !default;
 
 /// The default `Tab` horizontal padding.
 /// @type Number
-$horizontal-padding: 1rem !default;
+$horizontal-padding: spacing.get-var(md) !default;
 
 /// The default `Tab` vertical padding while `stacked`.
 /// @type Number
-$vertical-padding: 0.75rem !default;
+$vertical-padding: calc(spacing.get-var(sm) * 1.5) !default;
 
 /// The `Tab` min width.
 /// @type Number
@@ -131,7 +132,9 @@ $transition-timing-function: transition.$linear-timing-function !default;
 
 /// The default padding for a `TabList` with the `padded` prop enabled.
 /// @type Number
-$tablist-scrollable-horizontal-padding: 3.25rem !default;
+$tablist-scrollable-horizontal-padding: calc(
+  spacing.get-var(xl) * 1.625
+) !default;
 
 /// The default z-index for a `TabList` scroll button.
 /// @type Number

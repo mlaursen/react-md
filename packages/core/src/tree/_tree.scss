@@ -43,7 +43,7 @@ $item-padding-base: list.$item-horizontal-padding !default;
 ///
 /// @see $item-padding
 /// @type Number
-$item-padding-incrementor: list.$item-horizontal-padding * 1.5 !default;
+$item-padding-incrementor: calc(list.$item-horizontal-padding * 1.5) !default;
 
 /// The default `TreeItemExpander` rotation starting position when rendered as
 /// a `rightAddon`.

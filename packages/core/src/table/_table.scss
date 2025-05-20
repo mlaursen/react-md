@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../spacing";
 @use "../box-shadows";
 @use "../theme/theme";
 @use "../icon/icon";
@@ -184,20 +185,20 @@ $cell-header-dense-height: 2.125rem !default;
 
 /// The default `TableCell` horizontal padding.
 /// @type Number
-$cell-horizontal-padding: 1rem !default;
+$cell-horizontal-padding: spacing.get-var(md) !default;
 
 /// The default `TableCell` vertical padding.
 /// @type Number
-$cell-vertical-padding: 0.375rem !default;
+$cell-vertical-padding: calc(spacing.get-var(xs) * 1.5) !default;
 
 /// The default `TableCheckbox` and `TableRadio` horizontal padding.
 /// @type Number
 ///
-$cell-input-toggle-horizontal-padding: 0.5rem !default;
+$cell-input-toggle-horizontal-padding: spacing.get-var(sm) !default;
 
 /// The default `gap` between items in a sortable `TableCell`.
 /// @type Number
-$cell-content-gap: icon.$spacing !default;
+$cell-content-gap: spacing.get-var(sm) !default;
 
 /// This is the default position of a row based sticky `TableCell`.
 /// @type Number

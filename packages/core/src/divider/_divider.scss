@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../spacing";
 @use "../theme/theme";
 @use "../theme/colors";
 
@@ -46,12 +47,12 @@ $inset: 4rem !default;
 /// The default margin to apply to the horizontal `Divider`.
 ///
 /// @type Number
-$spacing: 0.25rem auto !default;
+$spacing: spacing.get-var(xs) auto !default;
 
 /// The default margin to apply to the vertical `Divider`.
 ///
 /// @type Number
-$vertical-spacing: auto 0.25rem !default;
+$vertical-spacing: auto spacing.get-var(xs) !default;
 
 /// The `Divider` color in light themes.
 /// @type Color

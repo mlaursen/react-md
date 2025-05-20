@@ -5,6 +5,8 @@
 @use "sass:color";
 @use "sass:map";
 @use "../utils";
+@use "../border-radius";
+@use "../spacing";
 @use "../box-shadows";
 @use "../theme/a11y";
 @use "../theme/colors";
@@ -85,7 +87,7 @@ $disable-selected-icon-transition: false !default;
 /// The `gap` between items in the `Chip`.
 ///
 /// @type Number
-$gap: icon.$spacing !default;
+$gap: spacing.get-var(md) !default;
 
 /// The default `Chip` height.
 /// @type Number
@@ -94,7 +96,7 @@ $height: 2rem !default;
 /// The default `Chip` border radius.
 ///
 /// @type Number
-$border-radius: 1rem !default;
+$border-radius: border-radius.get-var(lg) !default;
 
 /// The default size for icons that are rendered within a `Chip` normally as
 /// the `leftAddon` or `rightAddon` props.
@@ -131,24 +133,24 @@ $typography: map.merge(
 /// The default horizontal padding on `Chip`s.
 ///
 /// @type Number
-$horizontal-padding: 0.75rem !default;
+$horizontal-padding: calc(spacing.get-var(md) * 1.25) !default;
 
 /// The default vertical padding on `Chip`s.
 ///
 /// @type Number
-$vertical-padding: 0 !default;
+$vertical-padding: spacing.get-var(none) !default;
 
 /// The amount of `padding-left` to apply to the `Chip` if a `leftAddon` prop
 /// was provided.
 ///
 /// @type Number
-$addon-left-padding: 0.25rem !default;
+$addon-left-padding: spacing.get-var(xs) !default;
 
 /// The amount of `padding-right` to apply to the `Chip` if a `rightAddon` prop
 /// was provided.
 ///
 /// @type Number
-$addon-right-padding: 0.5rem !default;
+$addon-right-padding: spacing.get-var(sm) !default;
 
 /// The background-color to apply when the `themed` prop is enabled.
 ///
@@ -231,7 +233,7 @@ $solid-raisable-transition-duration: transition.$linear-duration !default;
 
 /// The outline width when a `theme="outline"`.
 /// @type Number
-$outline-width: 0.0625rem !default;
+$outline-width: calc(interaction.get-var(focus-width) / 2) !default;
 
 /// A number between 0-24 representing the box-shadow elevation when the user
 /// is pressing the `Chip` with a `theme="outline"` and `raisable`.

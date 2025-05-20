@@ -6,6 +6,7 @@
 @use "sass:map";
 @use "sass:math";
 @use "../utils";
+@use "../spacing";
 @use "../theme/colors";
 @use "../theme/theme";
 
@@ -85,7 +86,7 @@ $overlay-z-index: 0 !default;
 
 /// The default `ResponsiveItemOverlay` padding.
 /// @type Number
-$overlay-padding: 1rem !default;
+$overlay-padding: spacing.get-var(md) !default;
 
 /// The default width to apply to the `position="left"`, `"position="right"`,
 /// `position="center"`, or `position="absolute-center"`

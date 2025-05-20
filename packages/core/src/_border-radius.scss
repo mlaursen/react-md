@@ -1,0 +1,92 @@
+////
+/// @group core.border-radius
+////
+
+@use "utils";
+
+/// Set to `true` to disable the border radius variables. You probably don't
+/// want to do this.
+/// @type Boolean
+$disable-everything: false !default;
+
+/// No Border Radius.
+///
+/// @type Number
+$none: 0 !default;
+
+/// Extra Small Border Radius.
+///
+/// @type Number
+$xs: 0.25rem !default;
+
+/// Small Border Radius.
+///
+/// @type Number
+$sm: 0.5rem !default;
+
+/// Medium Border Radius.
+///
+/// @type Number
+$md: 0.75rem !default;
+
+/// Large Border Radius.
+///
+/// @type Number
+$lg: 1rem !default;
+
+/// Extra Large Border Radius.
+///
+/// @type Number
+$xl: 1.75rem !default;
+
+/// Full Border Radius.
+///
+/// @type Number
+$full: 50% !default;
+
+/// The available configurable css variables and mostly used internally for the
+/// `get-var`, `set-var`, and `use-var` utils.
+/// @type List
+$variables: (none, xs, sm, md, lg, xl, full);
+
+/// @param {String} name - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value
+/// @returns {String} a `var()` statement
+@function get-var($name, $fallback: null) {
+  $var: utils.get-var-name($variables, $name, "border-radius");
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
+  }
+
+  @return var(#{$var});
+}
+
+/// @param {String} name - The supported variable name
+/// @param {any} value - The value to set the variable to. Supports `null` which
+/// will just be a no-op.
+@mixin set-var($name, $value) {
+  @if $value {
+    #{utils.get-var-name($variables, $name, "border-radius")}: #{$value};
+  }
+}
+
+/// @param {String} property - The css property to apply the variable to
+/// @param {String} name [$property] - The supported variable name
+/// @param {any} fallback [null] - An optional fallback value if the variable
+/// has not been set
+@mixin use-var($property, $name: $property, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+/// Conditionally applies the css variables based on feature flags
+@mixin variables {
+  @if not $disable-everything {
+    @include set-var(none, $none);
+    @include set-var(xs, $xs);
+    @include set-var(sm, $sm);
+    @include set-var(md, $md);
+    @include set-var(lg, $lg);
+    @include set-var(xl, $xl);
+    @include set-var(full, $full);
+  }
+}

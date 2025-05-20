@@ -4,6 +4,8 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../border-radius";
+@use "../spacing";
 @use "../box/box";
 @use "../theme/colors";
 @use "../theme/theme";
@@ -81,7 +83,7 @@ $label-dense-height: 3.25rem !default;
 
 /// The `border-radius` for a `TextField`.
 /// @type Number
-$border-radius: 0.25rem !default;
+$border-radius: border-radius.get-var(xs) !default;
 
 /// The `border-width` for a `TextField`.
 /// @type Number
@@ -94,12 +96,12 @@ $border-width-active: 2px !default;
 /// The amount of horizontal padding to apply to a `TextField` with the
 /// `theme="filled"`.
 /// @type Number
-$filled-padding: 0.75rem !default;
+$filled-padding: calc(spacing.get-var(sm) * 1.5) !default;
 
 /// The amount of horizontal padding to apply to a `TextField` with the
 /// `theme="outline"`.
 /// @type Number
-$outlined-padding: 1rem !default;
+$outlined-padding: spacing.get-var(md) !default;
 
 /// The amount of horizontal padding to apply to a `TextField` with the
 /// `theme="underline"`.
@@ -122,7 +124,7 @@ $underlined-placeholder-height: 2.5rem !default;
 /// `null`.
 ///
 /// @type Number
-$underlined-placeholder-padding-top: 0.5rem !default;
+$underlined-placeholder-padding-top: spacing.get-var(sm) !default;
 
 /// The amount of padding-top to apply to addons in a `TextField` while the
 /// `theme="underline"`.
@@ -131,7 +133,7 @@ $underlined-placeholder-padding-top: 0.5rem !default;
 /// `null`.
 ///
 /// @type Number
-$underlined-placeholder-addon-padding-top: 0.25rem !default;
+$underlined-placeholder-addon-padding-top: spacing.get-var(xs) !default;
 
 /// The amount of padding-top to apply to the `TextFieldContainer` while the
 /// `theme="underline"` and a `label` was provided.
@@ -139,13 +141,13 @@ $underlined-placeholder-addon-padding-top: 0.25rem !default;
 /// NOTE: This is the default height of the label with line-height
 ///
 /// @type Number
-$underlined-label-padding-top: 1.5rem !default;
+$underlined-label-padding-top: spacing.get-var(lg) !default;
 
 /// The position in the `TextFieldContainer` for a `Label` while the
 /// `theme="underline"`.
 ///
 /// @type Number
-$underlined-label-left-offset: icon.$spacing !default;
+$underlined-label-left-offset: spacing.get-var(sm) !default;
 
 /// Set this to `null` if not using `<TextField type="color" />` since this is
 /// used to apply a `min-width` to color inputs.
@@ -157,18 +159,18 @@ $color-min-width: 5rem !default;
 /// i.e. `leftAddon={<><FavoriteIcon /><CloseIcon /></>}`
 ///
 /// @type Number
-$addon-gap: 0.25rem !default;
+$addon-gap: spacing.get-var(xs) !default;
 
 /// The amount of margin to apply to addons when the `TextField`
 /// `theme="underline"`.
 /// @type Number
-$addon-margin: icon.$spacing !default;
+$addon-margin: spacing.get-var(sm) !default;
 
 /// The amount of spacing between a `TextField` addon and the `<input>`
 /// element.
 ///
 /// @type Number
-$addon-spacing: icon.get-var(spacing) !default;
+$addon-spacing: spacing.get-var(sm) !default;
 
 /// The border-color for a `theme="outline"` `TextField` in the light theme.
 /// @type Color
@@ -547,17 +549,19 @@ $variables: (
         }
 
         @if not $disable-addon {
-          $addon-offset: "#{icon.get-var(size)} + #{$underlined-label-left-offset * 2}";
-          @if $underlined-padding {
-            $addon-offset: "#{$addon-offset} + #{$underlined-padding}";
-          }
+          $addon-offset: calc(
+            #{icon.get-var(size) +
+              if($underlined-padding, "#{$underlined-padding} + ", "")} +
+              $underlined-label-left-offset *
+              2
+          );
 
           &--underline-left-addon {
-            @include set-var(padding-left, calc(#{$addon-offset}));
+            @include set-var(padding-left, $addon-offset);
           }
 
           &--underline-right-addon {
-            @include set-var(padding-right, calc(#{$addon-offset}));
+            @include set-var(padding-right, $addon-offset);
           }
         }
       }

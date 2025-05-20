@@ -5,6 +5,7 @@
 @use "sass:color";
 @use "sass:map";
 @use "../utils";
+@use "../border-radius";
 @use "../theme/theme";
 @use "../icon/icon";
 @use "../interaction/interaction";
@@ -32,7 +33,7 @@ $disable-uncontrolled: false !default;
 
 /// The default border-radius for `Checkbox` and `Radio` components.
 /// @type Number
-$border-radius: 50% !default;
+$border-radius: border-radius.get-var(full) !default;
 
 /// The amount of padding to apply around the `Checkbox` and `Radio` icons
 /// @type Number

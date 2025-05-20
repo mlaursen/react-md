@@ -5,6 +5,7 @@
 @use "sass:map";
 
 @use "../utils";
+@use "../spacing";
 @use "../box/box";
 @use "../box-shadows";
 @use "../interaction/interaction";
@@ -60,7 +61,7 @@ $disable-title: false !default;
 
 /// Sets the `gap` css property to apply spacing between each item.
 /// @type Number
-$gap: 0.25rem !default;
+$gap: spacing.get-var(xs) !default;
 
 /// The default height for an app bar.
 /// @type Number
@@ -142,11 +143,11 @@ $surface-color: theme.get-default-color(
 
 /// Horizontal padding for the app bar
 /// @type String|Number
-$horizontal-padding: 0.25rem !default;
+$horizontal-padding: spacing.get-var(xs) !default;
 
 /// Vertical padding for the app bar
 /// @type String|Number
-$vertical-padding: 0 !default;
+$vertical-padding: spacing.get-var(none) !default;
 
 /// This value is used to align the first element (normally a button) nicely with
 /// other elements on the page.
@@ -166,7 +167,7 @@ $title-keyline: 4.5rem !default;
 /// based on font-size now and `em`
 ///
 /// @type String|Number
-$nav-keyline: $title-keyline - $horizontal-padding - $gap - 3rem !default;
+$nav-keyline: calc($title-keyline - $horizontal-padding - $gap - 3rem) !default;
 
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.
@@ -253,7 +254,8 @@ $variables: (height, surface-background-color, surface-color);
 
       .rmd-app-bar {
         @include box.set-var(gap, $gap);
-        @include box.set-var(padding, $vertical-padding $horizontal-padding);
+        @include box.set-var(padding-v, $vertical-padding);
+        @include box.set-var(padding-h, $horizontal-padding);
         @include use-var(height);
 
         // since app bars can appear a lot in full page dialogs, setting these flex
@@ -348,8 +350,8 @@ $variables: (height, surface-background-color, surface-color);
 
       @if not $disable-title {
         .rmd-app-bar-title {
-          $title-h-margin: $keyline - $horizontal-padding;
-          $title-keyline-h-margin: $title-keyline - $horizontal-padding;
+          $title-h-margin: calc($keyline - $horizontal-padding);
+          $title-keyline-h-margin: calc($title-keyline - $horizontal-padding);
 
           flex: 1 1 auto;
           margin: 0 auto 0 $title-h-margin;

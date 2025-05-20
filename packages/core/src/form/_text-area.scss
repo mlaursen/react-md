@@ -8,6 +8,7 @@
 @use "base";
 @use "label";
 @use "text-field";
+@use "../spacing";
 
 /// Set to `true` to disable the `TextArea` styles
 /// @type Boolean
@@ -31,14 +32,14 @@ $disable-resize-vertical: $disable-everything !default;
 
 /// The default position for addons within a `TextArea`.
 /// @type Number
-$addon-top: 1rem !default;
+$addon-top: spacing.get-var(lg) !default;
 
 /// The default vertical padding to apply to `TextArea` which is useful when
 /// there is a scrollbar visible. This should normally be enough so that the
 /// floating label does not cover the content.
 ///
 /// @type Number
-$vertical-padding: 0.75rem !default;
+$vertical-padding: calc(spacing.get-var(sm) * 1.5) !default;
 
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.

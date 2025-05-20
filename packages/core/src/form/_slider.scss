@@ -3,6 +3,7 @@
 ////
 
 @use "../utils";
+@use "../border-radius";
 @use "../theme/colors";
 @use "../theme/theme";
 @use "../icon/icon";
@@ -136,7 +137,7 @@ $mark-width: $track-inactive-size !default;
 
 /// The default border-radius for a discrete `Slider` tick mark.
 /// @type Number
-$mark-border-radius: 50% !default;
+$mark-border-radius: border-radius.get-var(full) !default;
 
 /// The light theme `Slider` tick mark color.
 /// @type Color
@@ -216,7 +217,7 @@ $thumb-size: 1.25rem !default;
 
 /// The `border-radius` for the `Slider` thumb.
 /// @type Number
-$thumb-border-radius: 50% !default;
+$thumb-border-radius: border-radius.get-var(full) !default;
 
 /// The amount of opacity to apply to the focused/active state of the `Slider`
 /// thumb.
@@ -266,7 +267,7 @@ $tooltip-caret-size: 0.3rem !default;
 
 /// The top/left for the discrete `Slider` tooltip.
 /// @type Number
-$tooltip-offset: -($thumb-size + icon.$spacing) !default;
+$tooltip-offset: calc(-1 * ($thumb-size + icon.$spacing)) !default;
 
 /// The `z-index` for the discrete `Slider` tooltip.
 /// @type Number

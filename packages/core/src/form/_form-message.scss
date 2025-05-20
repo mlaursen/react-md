@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../spacing";
 @use "../icon/icon";
 @use "../typography/typography";
 @use "base";
@@ -37,16 +38,16 @@ $typography-styles: map.merge(
 /// The `gap` between elements in the `FormMessageCounter` component .
 ///
 /// @type Number
-$counter-spacing: icon.$spacing !default;
+$counter-spacing: spacing.get-var(sm) !default;
 
 /// The  `margin-top` for the `FormMessage` component.
 /// @type Number
-$margin-top: 0.5rem !default;
+$margin-top: spacing.get-var(sm) !default;
 
 /// The `margin-bottom` for the `FormMessage` component.
 ///
 /// @type Number
-$margin-bottom: 1rem !default;
+$margin-bottom: spacing.get-var(md) !default;
 
 /// The `min-height` for the `FormMessage` component.
 /// @type Number

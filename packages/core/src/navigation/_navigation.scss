@@ -5,6 +5,8 @@
 @use "sass:list";
 @use "sass:map";
 @use "../utils";
+@use "../border-radius";
+@use "../spacing";
 @use "../tree/tree";
 @use "../interaction/interaction";
 
@@ -14,18 +16,18 @@ $disable-everything: false !default;
 
 /// The default border-radius.
 /// @type Number
-$border-radius: 3rem !default;
+$border-radius: calc(border-radius.get-var(lg) * 3) !default;
 
 /// The default horizontal padding.
 /// @type Number
-$horizontal-padding: 0.25rem !default;
+$horizontal-padding: spacing.get-var(xs) !default;
 
 /// This is used to continually add more padding to the start of the
 /// `NavigationItem` the deeper within the nested lists it appears.
 ///
 /// @see $increasing-padding
 /// @type Number
-$padding-incrementor: 0.75rem !default;
+$padding-incrementor: calc(spacing.get-var(sm) * 1.5) !default;
 
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.

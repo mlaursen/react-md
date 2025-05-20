@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../spacing";
 @use "../media-queries/media-queries";
 
 /// Set to `true` to disable all the styles
@@ -101,7 +102,7 @@ $justify-content: (
 
 /// The default flex and grid gap to apply between each item
 /// @type Number
-$gap: 1rem !default;
+$gap: spacing.get-var(md) !default;
 
 /// The default padding to apply to the container.
 /// @type Number
@@ -157,7 +158,11 @@ $_breakpoints: (
 /// @type List
 $variables: (
   gap,
+  column-gap,
+  row-gap,
   padding,
+  padding-v,
+  padding-h,
   item-min-size,
   item-min-height,
   columns,
@@ -182,6 +187,7 @@ $variables: (
 /// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
   $var: utils.get-var-name($variables, $name, "box");
+
   @if $fallback {
     @return var(#{$var}, #{$fallback});
   }
@@ -203,6 +209,72 @@ $variables: (
 /// @param {any} fallback [null] - An optional fallback value if the variable
 /// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
+  // these variables define another fallback and are not set at the root so
+  // they can easily be overridden. if they have a default value at the root,
+  // that root value will be used instead of the lowest defined override.
+  //
+  // i.e.
+  // ```scss
+  //
+  // :root {
+  //   --rmd-box-padding: 3rem;
+  //   --rmd-box-padding-v: var(--rmd-box-padding);
+  //   --rmd-box-padding-h: var(--rmd-box-padding);
+  // }
+  //
+  // .some-child {
+  //   --rmd-box-padding: 1rem;
+  //
+  // }
+  // ```
+  //
+  // `--rmd-box-padding-v` and `--rmd-box-padding-h` would still have a value
+  // of `1rem`
+  @if not $fallback {
+    @if $name == padding-v or $name == padding-h {
+      $fallback: get-var(padding);
+    } @else if $name == column-gap or $name == row-gap {
+      $fallback: get-var(gap);
+    } @else if
+      $name ==
+      phone-columns or
+      $name ==
+      tablet-columns or
+      $name ==
+      desktop-columns or
+      $name ==
+      large-desktop-columns
+    {
+      $fallback: get-var(columns);
+    } @else if
+      $name ==
+      phone-item-min-height or
+      $name ==
+      tablet-item-min-height or
+      $name ==
+      desktop-item-min-height or
+      $name ==
+      large-desktop-item-min-height
+    {
+      $fallback: get-var(item-min-height);
+    } @else if
+      $name ==
+      phone-size or
+      $name ==
+      tablet-size or
+      $name ==
+      desktop-size or
+      $name ==
+      large-desktop-size
+    {
+      $fallback: get-var(size);
+    } @else if $name == gap {
+      $fallback: $gap;
+    } @else if $name == padding {
+      $fallback: $padding;
+    }
+  }
+
   #{$property}: get-var($name, $fallback);
 }
 
@@ -259,14 +331,8 @@ $variables: (
 /// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
-    @include set-var(gap, $gap);
-    @include set-var(padding, $padding);
     @include set-var(item-min-size, $item-min-size);
     @include set-var(columns, auto-fit);
-    @include set-var(phone-columns, auto-fit);
-    @include set-var(tablet-columns, auto-fit);
-    @include set-var(desktop-columns, auto-fit);
-    @include set-var(large-desktop-columns, auto-fit);
   }
 }
 
@@ -282,19 +348,20 @@ $variables: (
         display: flex;
 
         &--gap {
-          @include use-var(gap, gap);
+          @include use-var(gap);
         }
 
         &--gap-h {
-          @include use-var(column-gap, gap);
+          @include use-var(column-gap);
         }
 
         &--gap-v {
-          @include use-var(row-gap, gap);
+          @include use-var(row-gap);
         }
 
         &--padded {
-          @include use-var(padding);
+          padding: get-var(padding-v, get-var(padding, $padding))
+            get-var(padding-h, get-var(padding, $padding));
         }
 
         &--wrap {

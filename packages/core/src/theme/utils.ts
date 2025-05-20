@@ -37,7 +37,7 @@ export function hexToRGB(hex: string): RGB {
 
 export function getRGB(color: string): RGB {
   // chrome 102.0.50005.63 apparently has whitespace when calling `window.getComputedStyle(element)`
-  // remove whitepsace to make it easy for supporting rgb or hex
+  // remove whitespace to make it easy for supporting rgb or hex
   color = color.replace(/\s/g, "");
   const rgbMatches = color.match(RGB_REGEX);
   if (rgbMatches) {

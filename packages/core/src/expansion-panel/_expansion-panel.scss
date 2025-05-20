@@ -3,6 +3,7 @@
 ////
 
 @use "../utils";
+@use "../spacing";
 @use "../transition/transition";
 @use "../icon/icon";
 @use "../button/button";
@@ -22,18 +23,18 @@ $disable-margin-top-transition: false !default;
 /// `ExpansionPanel`.
 ///
 /// @type Number
-$padding: 1rem !default;
+$padding: spacing.get-var(md) !default;
 
 /// The `margin-top` to apply between expanded expansion panels
 ///
 /// @type Number
-$spacing: 1rem !default;
+$spacing: spacing.get-var(md) !default;
 
 /// The `gap` to apply between elements in the clickable area in the
 /// `ExpansionPanel`.
 ///
 /// @type Number
-$button-spacing: icon.$spacing !default;
+$button-spacing: spacing.get-var(sm) !default;
 
 /// The degrees to start the rotation animation for the expansion panel icon.
 ///

@@ -4,6 +4,8 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../border-radius";
+@use "../spacing";
 @use "../box-shadows";
 @use "../button/button";
 @use "../theme/a11y";
@@ -72,24 +74,24 @@ $default-align-items: center !default;
 
 /// The default `gap` for a `Snackbar`.
 /// @type Number
-$gap: 1rem !default;
+$gap: spacing.get-var(md) !default;
 
 /// The default `gap` for a `Toast`.
 /// @type Number
-$toast-gap: 1rem !default;
+$toast-gap: spacing.get-var(md) !default;
 
 /// The default `gap` for a stacked `Toast`.
 /// @type Number
-$toast-gap-stacked: 0.5rem !default;
+$toast-gap-stacked: spacing.get-var(sm) !default;
 
 /// The default `gap` for a toast that has both a `ToastActionButton` and
 /// `ToastCloseButton`.
 /// @type Number
-$toast-gap-both-buttons: 0.25rem !default;
+$toast-gap-both-buttons: spacing.get-var(xs) !default;
 
 /// The viewport margin to apply to all `Toast` rendered within the `Snackbar`.
 /// @type Number
-$margin: 1rem !default;
+$margin: spacing.get-var(md) !default;
 
 /// A number between 0-24 representing the box-shadow elevation for a `Toast`.
 /// @type Number
@@ -97,25 +99,25 @@ $elevation: 6 !default;
 
 /// The default border-radius for a `Toast`.
 /// @type Number
-$border-radius: 0.25rem !default;
+$border-radius: border-radius.get-var(xs) !default;
 
 /// The default vertical padding for a `Toast`.
 /// @type Number
-$vertical-padding: 0.75em !default;
+$vertical-padding: calc(spacing.get-var(sm) * 1.5) !default;
 
 /// The default horizontal padding for a `Toast`.
 /// @type Number
-$horizontal-padding: 1rem !default;
+$horizontal-padding: spacing.get-var(md) !default;
 
 /// The default horizontal padding for a `Toast` that has an
 /// `ToastActionButton`.
 /// @type Number
-$action-horizontal-padding: 0.5rem !default;
+$action-horizontal-padding: spacing.get-var(sm) !default;
 
 /// The default horizontal padding for a `Toast` that has an
 /// `ToastCloseButton`.
 /// @type Number
-$close-button-horizontal-padding: 0 !default;
+$close-button-horizontal-padding: spacing.get-var(none) !default;
 
 /// The min-height for a `Toast`.
 /// @type Number

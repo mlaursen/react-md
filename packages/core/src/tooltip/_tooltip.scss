@@ -4,6 +4,8 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../border-radius";
+@use "../spacing";
 @use "../theme/a11y";
 @use "../theme/colors";
 @use "../transition/transition";
@@ -69,27 +71,27 @@ $dense-typography: (
 
 /// The default `Tooltip` border radius.
 /// @type Number
-$border-radius: 0.25rem !default;
+$border-radius: border-radius.get-var(xs) !default;
 
 /// The default `Tooltip` z-index.
 /// @type Number
 $z-index: utils.$temporary-element-z-index + 20 !default;
 
-/// The default `max-width` for a `Tooltip`>
+/// The default `max-width` for a `Tooltip`.
 /// @type Number
 $max-width: 15rem !default;
 
-/// The default `min-height` for a `Tooltip`>
+/// The default `min-height` for a `Tooltip`.
 /// @type Number
 $min-height: 2rem !default;
 
-/// The default horizontal padding for a `Tooltip`>
+/// The default horizontal padding for a `Tooltip`.
 /// @type Number
-$horizontal-padding: 1rem !default;
+$horizontal-padding: spacing.get-var(md) !default;
 
-/// The default vertical padding for a `Tooltip`>
+/// The default vertical padding for a `Tooltip`
 /// @type Number
-$vertical-padding: 0.5625rem !default;
+$vertical-padding: calc(spacing.get-var(sm) * 1.25) !default;
 
 /// The default spacing between a tooltipped element and the `Tooltip`.
 /// @type Number
@@ -105,11 +107,11 @@ $dense-min-height: 1.375rem !default;
 
 /// The default horizontal padding for a dense `Tooltip`.
 /// @type Number
-$dense-horizontal-padding: 0.5rem !default;
+$dense-horizontal-padding: spacing.get-var(sm) !default;
 
 /// The default vertical padding for a dense `Tooltip`.
 /// @type Number
-$dense-vertical-padding: 0.375rem !default;
+$dense-vertical-padding: calc(spacing.get-var(xs) * 1.25) !default;
 
 /// The default `Tooltip` enter transition duration.
 /// @type Number
@@ -127,9 +129,9 @@ $leave-duration: transition.$linear-duration !default;
 /// @type Number
 $leave-timing-function: transition.$acceleration-timing-function !default;
 
-/// The default `Tooltip` /nter/leave animation distance.
+/// The default `Tooltip` enter/leave animation distance.
 /// @type Number
-$transition-distance: 0.5rem !default;
+$transition-distance: spacing.get-var(sm) !default;
 
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.
@@ -176,6 +178,22 @@ $variables: (
 /// @param {any} fallback [null] - An optional fallback value if the variable
 /// has not been set
 @mixin use-var($property, $name: $property, $fallback: null) {
+  @if not $fallback {
+    @if name == border-radius {
+      $fallbacK: $border-radius;
+    } @else if name == horizontal-padding {
+      $fallback: $horizontal-padding;
+    } @else if name == vertical-padding {
+      $fallback: $vertical-padding;
+    }
+  } @else if name == dense-horizontal-padding {
+    $fallback: $dense-horizontal-padding;
+  } @else if name == dense-vertical-padding {
+    $fallback: $dense-vertical-padding;
+  } @else if name == transition-distance {
+    $fallback: $transition-distance;
+  }
+
   #{$property}: get-var($name, $fallback);
 }
 
@@ -186,17 +204,11 @@ $variables: (
 
     @include set-var(background-color, $background-color);
     @include set-var(color, $color);
-    @include set-var(border-radius, $border-radius);
-    @include set-var(horizontal-padding, $horizontal-padding);
-    @include set-var(vertical-padding, $vertical-padding);
     @include set-var(max-width, $max-width);
     @include set-var(min-height, $min-height);
-    @include set-var(transition-distance, $transition-distance);
     @include set-var(z-index, $z-index);
 
     @if not $disable-dense {
-      @include set-var(dense-horizontal-padding, $dense-horizontal-padding);
-      @include set-var(dense-vertical-padding, $dense-vertical-padding);
       @include set-var(dense-min-height, $dense-min-height);
     }
   }
@@ -206,8 +218,14 @@ $variables: (
   @if not $disable-everything {
     @include set-var(spacing, $dense-spacing);
     @include set-var(min-height, get-var(dense-min-height));
-    @include set-var(horizontal-padding, get-var(dense-horizontal-padding));
-    @include set-var(vertical-padding, get-var(dense-vertical-padding));
+    @include set-var(
+      horizontal-padding,
+      get-var(dense-horizontal-padding, $dense-horizontal-padding)
+    );
+    @include set-var(
+      vertical-padding,
+      get-var(dense-vertical-padding, $dense-vertical-padding)
+    );
   }
 }
 
@@ -222,7 +240,7 @@ $variables: (
         @include utils.map-to-styles($typography);
         @include use-var(background-color);
         @include use-var(color);
-        @include use-var(border-radius);
+        @include use-var(border-radius, $fallback: $border-radius);
         @include use-var(max-width);
         @include use-var(min-height);
         @include use-var(z-index);
@@ -230,7 +248,8 @@ $variables: (
         opacity: 0;
         overflow: hidden;
         overflow-wrap: anywhere;
-        padding: get-var(vertical-padding) get-var(horizontal-padding);
+        padding: get-var(vertical-padding, $vertical-padding)
+          get-var(horizontal-padding, $horizontal-padding);
         pointer-events: none;
         position: fixed;
         text-transform: none;
@@ -246,28 +265,36 @@ $variables: (
         @if not $disable-above {
           &--above {
             transform: translateY(
-              #{utils.negate-var(get-var(transition-distance))}
+              #{utils.negate-var(
+                  get-var(transition-distance, $transition-distance)
+                )}
             );
           }
         }
 
         @if not $disable-below {
           &--below {
-            transform: translateY(#{get-var(transition-distance)});
+            transform: translateY(
+              #{get-var(transition-distance, $transition-distance)}
+            );
           }
         }
 
         @if not $disable-left {
           &--left {
             transform: translateX(
-              #{utils.negate-var(get-var(transition-distance))}
+              #{utils.negate-var(
+                  get-var(transition-distance, $transition-distance)
+                )}
             );
           }
         }
 
         @if not $disable-right {
           &--right {
-            transform: translateX(#{get-var(transition-distance)});
+            transform: translateX(
+              #{get-var(transition-distance, $transition-distance)}
+            );
           }
         }
 

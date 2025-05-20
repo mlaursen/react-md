@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../spacing";
 @use "../icon/icon";
 @use "../transition/transition";
 @use "../typography/typography";
@@ -58,7 +59,7 @@ $disable-stacked-reversed: $disable-everything !default;
 ///
 /// @see $disable-gap
 /// @type Number
-$gap: icon.$spacing !default;
+$gap: spacing.get-var(sm) !default;
 
 /// The default `Label` font size.
 ///
@@ -95,7 +96,7 @@ $floating-scale: 0.75 !default;
 /// the outline and add some general spacing.
 ///
 /// @type Number
-$floating-padding: 0.25rem !default;
+$floating-padding: spacing.get-var(xs) !default;
 
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.

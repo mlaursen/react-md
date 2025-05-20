@@ -3,6 +3,7 @@
 ////
 
 @use "sass:color";
+@use "../spacing";
 @use "../theme/theme";
 @use "../transition/transition";
 @use "../utils";
@@ -162,7 +163,7 @@ $_validated_optical-size: utils.validate(
 /// should be separated from other content.
 ///
 /// @type Number
-$spacing: 0.5rem !default;
+$spacing: spacing.get-var(sm) !default;
 
 /// The default `IconRotator` starting position
 /// @type String

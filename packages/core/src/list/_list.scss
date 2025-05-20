@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../spacing";
 @use "../theme/theme";
 @use "../avatar/avatar";
 @use "../icon/icon";
@@ -95,15 +96,15 @@ $disable-divider-inset: divider.$disable-everything !default;
 
 /// The vertical padding to apply to the `List` component.
 /// @type Number
-$vertical-padding: 0.5rem !default;
+$vertical-padding: spacing.get-var(sm) !default;
 
 /// The vertical padding to apply to a dense `List` component.
 /// @type Number
-$dense-vertical-padding: 0.25rem !default;
+$dense-vertical-padding: spacing.get-var(xs) !default;
 
 /// The horizontal padding to apply to the `List` component.
 /// @type Number
-$horizontal-padding: 0 !default;
+$horizontal-padding: spacing.get-var(none) !default;
 
 /// The horizontal padding to apply to a dense `List` component.
 /// @type Number
@@ -133,11 +134,11 @@ $item-disabled-opacity: 0.5 !default;
 
 /// The vertical padding to apply to `ListItem`.
 /// @type Number
-$item-vertical-padding: 0.5rem !default;
+$item-vertical-padding: spacing.get-var(sm) !default;
 
 /// The horizontal padding to apply to `ListItem`.
 /// @type Number
-$item-horizontal-padding: 1rem !default;
+$item-horizontal-padding: spacing.get-var(md) !default;
 
 /// The default height for a `ListItem` that has no addons or secondary text.
 /// @type Number
@@ -203,7 +204,7 @@ $item-dense-multiline-height: 5rem !default;
 /// The amount of spacing between a media addon and the `ListItem` content.
 ///
 /// @type Number
-$item-media-spacing: 1rem !default;
+$item-media-spacing: spacing.get-var(md) !default;
 
 /// The default size for a media addon in the `ListItem` component.
 ///

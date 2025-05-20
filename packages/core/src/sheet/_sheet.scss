@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../spacing";
 @use "../box-shadows";
 @use "../media-queries/media-queries";
 @use "../transition/transition";
@@ -72,7 +73,7 @@ $static-width: 16rem !default;
 /// @see $touch-width
 /// @see $touch-max-height
 /// @type Number
-$touch-margin: 3.5rem !default;
+$touch-margin: calc(spacing.get-var(md) * 3.5) !default;
 
 /// The default width for a `Sheet` on touch/phone devices.
 /// @type Number
