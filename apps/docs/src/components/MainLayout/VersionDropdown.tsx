@@ -6,8 +6,8 @@ import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 
 import { DISPLAY_NONE_PHONE } from "@/constants/classnames.js";
-import { BRANCH_NAME, RMD_VERSION } from "@/constants/env.js";
-import { semver } from "@/utils/semver.js";
+import { RMD_VERSION } from "@/constants/env.js";
+import { IS_MAJOR_PREVIEW, MAJOR_VERSION } from "@/constants/version.js";
 
 import { VersionMenuItem } from "./VersionMenuItem.jsx";
 
@@ -18,10 +18,7 @@ export interface VersionDropdownProps {
 export function VersionDropdown(props: VersionDropdownProps): ReactElement {
   const { isHiddenOnPhone } = props;
 
-  const { major, minor, patch, alpha } = semver(RMD_VERSION);
-  const isAlphaPreview = alpha !== null && BRANCH_NAME !== "main";
-  const isMajorPreview = minor === 0 && patch === 0 && isAlphaPreview;
-  const previousCount = major - 1;
+  const previousCount = MAJOR_VERSION - 1;
 
   return (
     <DropdownMenu
@@ -37,7 +34,7 @@ export function VersionDropdown(props: VersionDropdownProps): ReactElement {
         <VersionMenuItem
           key={i}
           version={`v${previousCount - i}`}
-          latest={i === 0 && isMajorPreview}
+          latest={i === 0 && IS_MAJOR_PREVIEW}
         />
       ))}
     </DropdownMenu>

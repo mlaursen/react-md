@@ -37,6 +37,9 @@ export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL;
 export const GITHUB_LINK_URL = process.env.NEXT_PUBLIC_GITHUB_FILE_LINK;
 export const BRANCH_NAME = process.env.NEXT_PUBLIC_BRANCH_NAME;
 export const RMD_VERSION = process.env.NEXT_PUBLIC_RMD_VERSION;
+export const DEPLOYMENT_ENV =
+  process.env.NEXT_PUBLIC_VERCEL_ENV || "development";
+export const IS_PRODUCTION_ENV = DEPLOYMENT_ENV === "production";
 
 export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 export const ALGOLIA_API_KEY = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY;

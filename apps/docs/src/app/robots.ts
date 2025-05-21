@@ -1,16 +1,13 @@
 import { type MetadataRoute } from "next";
 
-import { BASE_URL } from "@/constants/env.js";
+import { BASE_URL, IS_PRODUCTION_ENV } from "@/constants/env.js";
 
 export default function robots(): MetadataRoute.Robots {
+  // I don't want them to crawl this preview website
+  const key = IS_PRODUCTION_ENV ? "allow" : "disallow";
   return {
     rules: [
-      {
-        userAgent: "*",
-        // I don't want them to crawl this preview website
-        disallow: "/",
-        // allow: "/",
-      },
+      { userAgent: "*", [key]: "/" },
       {
         userAgent: "Algolia Crawler",
         allow: "/",
