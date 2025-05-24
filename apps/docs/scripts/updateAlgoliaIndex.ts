@@ -1,4 +1,5 @@
 import { searchClient } from "@algolia/client-search";
+import confirm from "@inquirer/confirm";
 import { parseMdx } from "docs-generator/scripts/algolia/parseMdx";
 import {
   type HeadingWithDescription,
@@ -20,15 +21,13 @@ import { getBlogs } from "../src/app/(main)/(markdown)/blog/data.js";
 import { titleCase } from "../src/utils/strings.js";
 import { CORE_SRC } from "./constants.js";
 
-const BASE_URL = "https://react-md.dev";
-
-async function indexMdxPages(): Promise<readonly IndexedItem[]> {
+async function indexMdxPages(baseUrl: string): Promise<readonly IndexedItem[]> {
   const mdxPages = await glob("src/app/**/page.mdx");
   return await Promise.all(
     mdxPages.map(async (mdxFilePath) => {
       try {
         return parseMdx({
-          baseUrl: BASE_URL,
+          baseUrl,
           mdxFilePath,
         });
       } catch (e) {
@@ -45,7 +44,9 @@ interface SassDocGroup {
   variables: Map<string, FormattedVariableItem>;
 }
 
-async function indexSassDocPages(): Promise<readonly IndexedItem[]> {
+async function indexSassDocPages(
+  baseUrl: string
+): Promise<readonly IndexedItem[]> {
   const { mixins, functions, variables } = await generate({ src: CORE_SRC });
 
   const grouped = new Map<string, SassDocGroup>();
@@ -108,7 +109,7 @@ async function indexSassDocPages(): Promise<readonly IndexedItem[]> {
   grouped.forEach((item, group) => {
     const groupTitle = titleCase(group, "-");
     const pathname = `/sassdoc/${getGroupName(group)}`;
-    const url = `${BASE_URL}${pathname}`;
+    const url = `${baseUrl}${pathname}`;
     items.push({
       objectID: url,
       url,
@@ -129,7 +130,7 @@ async function indexSassDocPages(): Promise<readonly IndexedItem[]> {
     ].forEach((sassdocItem) => {
       const { name, description, type } = sassdocItem;
       const itemPathname = getSassDocLink(sassdocItem);
-      const url = `${BASE_URL}${itemPathname}`;
+      const url = `${baseUrl}${itemPathname}`;
       const itemType =
         type === "mixin" || type === "function" ? type : "variable";
 
@@ -149,7 +150,7 @@ async function indexSassDocPages(): Promise<readonly IndexedItem[]> {
   return items;
 }
 
-async function indexBlogs(): Promise<readonly IndexedItem[]> {
+async function indexBlogs(baseUrl: string): Promise<readonly IndexedItem[]> {
   const items: IndexedItem[] = [];
   const blogRoot = resolve(process.cwd(), "src/app/(main)/(markdown)/blog");
   const blogs = await getBlogs(blogRoot);
@@ -169,8 +170,8 @@ async function indexBlogs(): Promise<readonly IndexedItem[]> {
     type: "page",
     title: "Blog",
     description: "Stay up-to-date with the latest news about react-md",
-    objectID: `${BASE_URL}/blog`,
-    url: `${BASE_URL}/blog`,
+    objectID: `${baseUrl}/blog`,
+    url: `${baseUrl}/blog`,
     pathname: "/blog",
     headings,
     keywords: ["blog", "release notes"],
@@ -181,37 +182,94 @@ async function indexBlogs(): Promise<readonly IndexedItem[]> {
   return items;
 }
 
-async function run(): Promise<void> {
-  config({ path: join(process.cwd(), ".env.development.local") });
-  config({ path: join(process.cwd(), ".env.local") });
+interface RequiredEnvVars {
+  appId: string;
+  apiKey: string;
+  baseUrl: string;
+  indexName: string;
+}
 
-  const appId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
-  const apiKey = process.env.ALGOLIA_WRITE_API_KEY;
-  const indexName = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME;
-  if (!appId || !apiKey || !indexName) {
-    throw new Error(
-      `The .env.local is missing the NEXT_PUBLIC_ALGOLIA_APP_ID and/or ALGOLIA_WRITE_API_KEY and/or NEXT_PUBLIC_ALGOLIA_INDEX_NAME`
-    );
+async function getEnvVars(): Promise<RequiredEnvVars> {
+  const appId = process.env.ALGOLIA_APP_ID?.trim() ?? "";
+  const apiKey = process.env.ALGOLIA_WRITE_API_KEY?.trim() ?? "";
+  const indexName = process.env.ALGOLIA_INDEX_NAME?.trim() ?? "";
+  const baseUrl = process.env.BASE_URL?.trim() ?? "";
+  const missing: string[] = [];
+  if (!appId) {
+    missing.push("ALGOLIA_APP_ID");
+  }
+  if (!apiKey) {
+    missing.push("ALGOLIA_WRITE_API_KEY");
+  }
+  if (!indexName) {
+    missing.push("ALGOLIA_INDEX_NAME");
+  }
+  if (!baseUrl) {
+    missing.push("BASE_URL");
+  }
+  if (missing.length) {
+    console.error(`The following environment variables are missing:`);
+    console.error(missing.map((name) => `- ${name}`).join("\n"));
+    console.error("Update the `.env.algolia` with the correct values");
+    process.exit(1);
   }
 
+  if (
+    !(await confirm({
+      message: `Are the following variables correct?
+
+- appId - ${appId}
+- apiKey - ${apiKey}
+- baseUrl - ${baseUrl}
+- indexName - ${indexName}
+
+`,
+    }))
+  ) {
+    console.error(`Update the \`.env.algolia\` and run again.`);
+    process.exit(1);
+  }
+
+  return {
+    appId,
+    apiKey,
+    indexName,
+    baseUrl,
+  };
+}
+
+async function run({
+  appId,
+  apiKey,
+  baseUrl,
+  indexName,
+}: RequiredEnvVars): Promise<void> {
   const client = searchClient(appId, apiKey);
   const indexes: IndexedItem[] = [];
   indexes.push(
-    ...(await log(indexMdxPages(), "Indexing MDX pages", "MDX pages indexed")),
     ...(await log(
-      indexSassDocPages(),
+      indexMdxPages(baseUrl),
+      "Indexing MDX pages",
+      "MDX pages indexed"
+    )),
+    ...(await log(
+      indexSassDocPages(baseUrl),
       "Indexing SassDoc pages",
       "SassDoc pages indexed"
     )),
-    ...(await log(indexBlogs(), "Indexing Blog pages", "Blog pages indexed"))
+    ...(await log(
+      indexBlogs(baseUrl),
+      "Indexing Blog pages",
+      "Blog pages indexed"
+    ))
   );
   indexes.push({
     type: "page",
     title: "Material Icons and Symbols",
     description:
       "This page is used to help find icons available in react-md using Material Symbols or Material Icons svg components. Icons can be filtered by type, group, or name.",
-    objectID: `${BASE_URL}/components/material-icons-and-symbols`,
-    url: `${BASE_URL}/components/material-icons-and-symbols`,
+    objectID: `${baseUrl}/components/material-icons-and-symbols`,
+    url: `${baseUrl}/components/material-icons-and-symbols`,
     pathname: "/components/material-icons-and-symbols",
     headings: [],
     keywords: ["icon", "material", "component"],
@@ -229,8 +287,10 @@ async function run(): Promise<void> {
   });
 }
 
+config({ path: join(process.cwd(), ".env.algolia") });
+const envVars = await getEnvVars();
 await log(
-  run(),
+  run(envVars),
   "Indexing the documentation site",
   "Documentation site indexed!"
 );

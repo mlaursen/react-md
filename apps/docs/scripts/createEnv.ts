@@ -32,9 +32,6 @@ const env = {
   NEXT_PUBLIC_GITHUB_FILE_LINK: `${githubUrl}/blob/${commit}`,
   NEXT_PUBLIC_BRANCH_NAME: branchName,
   NEXT_PUBLIC_RMD_VERSION: packageJson.version,
-  NEXT_PUBLIC_ALGOLIA_APP_ID: "D8A7D4VBAW",
-  NEXT_PUBLIC_ALGOLIA_API_KEY: "9a93702ac5feb1874e6ecc334127c069",
-  NEXT_PUBLIC_ALGOLIA_INDEX_NAME: "next_react_md_dev_search",
 } satisfies Record<string, string>;
 
 const stringifiedEnv = Object.entries(env)
