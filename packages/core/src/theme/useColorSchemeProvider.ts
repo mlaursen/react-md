@@ -90,6 +90,7 @@ export function useColorSchemeProvider(
   } = options;
 
   const [colorScheme, setColorScheme] = useEnsuredState({
+    name: "colorScheme",
     value: propColorScheme,
     setValue: propSetColorScheme,
     defaultValue: defaultColorScheme,

@@ -12,6 +12,7 @@ export interface EnsuredStateOptions<
   V,
   Setter extends Dispatch<V> | UseStateSetter<V> = UseStateSetter<V>,
 > {
+  name?: string;
   value?: V;
   setValue?: Setter;
   defaultValue?: UseStateInitializer<V>;
@@ -30,20 +31,22 @@ export function useEnsuredState<
 >(
   options: EnsuredStateOptions<V, Setter>
 ): readonly [value: V, setValue: Setter] {
-  const { value, setValue, defaultValue } = options;
+  const { name = "value", value, setValue, defaultValue } = options;
   if (typeof value !== "undefined" && typeof setValue !== "undefined") {
     return [value, setValue];
   }
 
   if (typeof value !== "undefined" || typeof setValue !== "undefined") {
+    const pascalName = name.charAt(0).toUpperCase() + name.substring(1);
     throw new Error(
-      "Both a `value` and `setValue` must be defined for controlled components."
+      `Both a \`${name}\` and \`set${pascalName}\` must be defined for controlled components.`
     );
   }
 
   if (typeof defaultValue === "undefined") {
+    const pascalName = name.charAt(0).toUpperCase() + name.substring(1);
     throw new Error(
-      "A `defaultValue` must be defined for uncontrolled components."
+      `A \`default${pascalName}\` must be defined for uncontrolled components.`
     );
   }
 

@@ -451,6 +451,7 @@ export function useTabs<TabValue extends string | number>(
   const [direction, setDirection] = useState<SlideDirection>("forward");
 
   const [activeTab, setActiveTab] = useEnsuredState({
+    name: "activeTab",
     value: propActiveTab,
     setValue: propSetActiveTab,
     defaultValue: defaultActiveTab ?? (0 as TabValue),

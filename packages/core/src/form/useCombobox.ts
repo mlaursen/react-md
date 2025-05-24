@@ -335,6 +335,7 @@ export function useCombobox<
   } = options;
 
   const [visible, setVisible] = useEnsuredState({
+    name: "visible",
     value: propVisible,
     setValue: propSetVisible,
     defaultValue: defaultVisible,

@@ -144,6 +144,7 @@ export function useAutocomplete<
     propDisableCloseOnSelect ?? (multiselect && checkboxes);
 
   const [query, setQuery] = useEnsuredState({
+    name: "query",
     value: propQuery,
     setValue: propSetQuery,
     defaultValue: getDefaultQuery({

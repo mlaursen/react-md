@@ -1,4 +1,11 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  jest,
+} from "@jest/globals";
 import { type ReactElement } from "react";
 
 import { fireEvent, render, screen } from "../test-utils/index.js";
@@ -10,9 +17,17 @@ const CONTROLLED_ERROR =
 const MISSING_DEFAULT_VALUE_ERROR =
   "A `defaultValue` must be defined for uncontrolled components.";
 
+let error: jest.SpiedFunction<typeof console.error>;
+beforeEach(() => {
+  error = jest.spyOn(console, "error").mockImplementation(() => {});
+});
+
+afterEach(() => {
+  error.mockRestore();
+});
+
 describe("useEnsuredState", () => {
   it("should throw an error in dev if not both value and setValue are set together", () => {
-    const error = jest.spyOn(console, "error").mockImplementation(() => {});
     function Test1(): null {
       useEnsuredState({ value: "" });
       return null;
@@ -24,12 +39,9 @@ describe("useEnsuredState", () => {
 
     expect(() => render(<Test1 />)).toThrow(CONTROLLED_ERROR);
     expect(() => render(<Test2 />)).toThrow(CONTROLLED_ERROR);
-
-    error.mockRestore();
   });
 
   it("should throw an error if the value, setValue, and defaultValue are undefined", () => {
-    const error = jest.spyOn(console, "error").mockImplementation(() => {});
     function Test1(): null {
       useEnsuredState({});
       return null;
@@ -41,12 +53,9 @@ describe("useEnsuredState", () => {
 
     expect(() => render(<Test1 />)).toThrow(MISSING_DEFAULT_VALUE_ERROR);
     expect(() => render(<Test2 />)).not.toThrow();
-
-    error.mockRestore();
   });
 
   it("should throw an error if changing the controlled state", () => {
-    const error = jest.spyOn(console, "error").mockImplementation(() => {});
     function Test(): ReactElement {
       const { toggled, toggle } = useToggle();
       const controlled = {
@@ -69,7 +78,44 @@ describe("useEnsuredState", () => {
     expect(() => fireEvent.click(button)).toThrow(
       "Rendered fewer hooks than expected. This may be caused by an accidental early return statement."
     );
+  });
 
-    error.mockRestore();
+  it("should allow the name to be configured to improve debugging", () => {
+    function Test1(): null {
+      const { toggled } = useToggle();
+      useEnsuredState({
+        name: "visible",
+        value: toggled,
+      });
+
+      return null;
+    }
+    function Test2(): null {
+      const { toggle } = useToggle();
+      useEnsuredState({
+        name: "visible",
+        setValue: toggle,
+      });
+
+      return null;
+    }
+    function Test3(): null {
+      useEnsuredState({ name: "visible" });
+
+      return null;
+    }
+
+    const visibleError = CONTROLLED_ERROR.replace("Value", "Visible").replace(
+      "value",
+      "visible"
+    );
+    const defaultVisibleError = MISSING_DEFAULT_VALUE_ERROR.replace(
+      "Value",
+      "Visible"
+    );
+
+    expect(() => render(<Test1 />)).toThrow(visibleError);
+    expect(() => render(<Test2 />)).toThrow(visibleError);
+    expect(() => render(<Test3 />)).toThrow(defaultVisibleError);
   });
 });

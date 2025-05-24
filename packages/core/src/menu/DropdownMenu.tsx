@@ -164,6 +164,7 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
   const fixedTo = useRef<HTMLElement | HTMLButtonElement>(null);
   const defaultFocusIndex = useRef(0);
   const [visible, setVisible] = useEnsuredState({
+    name: "visible",
     value: propVisible,
     setValue: propSetVisible,
     defaultValue: false,
