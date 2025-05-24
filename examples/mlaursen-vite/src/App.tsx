@@ -12,8 +12,8 @@ export default function App(): ReactElement {
         <Typography type="headline-2">ReactMD + Vite Starter</Typography>
         <Typography>
           See{" "}
-          <Link href="https://next.react-md.dev" target="_blank">
-            https://next.react-md.dev
+          <Link href="https://react-md.dev" target="_blank">
+            https://react-md.dev
           </Link>{" "}
           and{" "}
           <Link href="https://vite.dev" target="_blank">

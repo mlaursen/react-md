@@ -31,7 +31,7 @@ export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * @see {@link https://next.react-md.dev/components/card | Card Demos}
+ * @see {@link https://react-md.dev/components/card | Card Demos}
  * @since 6.0.0 Removed the `align` prop.
  * @since 6.0.0 Renamed the `beforeChildren` and `afterChildren` props to
  * `beforeAddon` and `afterAddon`.

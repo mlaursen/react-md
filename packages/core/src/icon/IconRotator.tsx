@@ -46,7 +46,7 @@ export interface IconRotatorProps extends IconRotatorBaseProps {
  * The `IconRotator` is a simple component that is used to rotate an icon from a
  * one degrees to another.
  *
- * @see {@link https://next.react-md.dev/components/icon-rotator | IconRotator Demos}
+ * @see {@link https://react-md.dev/components/icon-rotator | IconRotator Demos}
  */
 export const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
   function IconRotator(props, ref) {

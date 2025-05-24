@@ -124,7 +124,7 @@ export interface ExpansionPanelHeaderProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/expansion-panel | ExpansionPanel Demos}
+ * @see {@link https://react-md.dev/components/expansion-panel | ExpansionPanel Demos}
  * @since 6.0.0 Updated to be wrapped by the {@link Typography}
  * component and rendered as an `<h6>`.
  */

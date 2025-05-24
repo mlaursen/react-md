@@ -20,7 +20,7 @@ export type ButtonUnstyledProps = Omit<
  *
  * Requires the `$disable-unstyled-utility-class` to be `false` to use.
  *
- * @see {@link https://next.react-md.dev/components/button-unstyled | ButtonUnstyled Demos}
+ * @see {@link https://react-md.dev/components/button-unstyled | ButtonUnstyled Demos}
  * @see {@link buttonUnstyled}
  * @since 6.0.0 Renamed from `UnstyledButton`
  */

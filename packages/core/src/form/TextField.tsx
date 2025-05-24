@@ -119,7 +119,7 @@ export interface TextFieldProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/textfield | TextField Demos}
+ * @see {@link https://react-md.dev/components/textfield | TextField Demos}
  */
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(props, ref) {

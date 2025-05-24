@@ -17,7 +17,7 @@ export interface LegendProps extends TypographyProps {
 /**
  * This should be used within a `Fieldset` to apply a label.
  *
- * @see {@link https://next.react-md.dev/components/fieldset | Fieldset Demos}
+ * @see {@link https://react-md.dev/components/fieldset | Fieldset Demos}
  * @since 6.0.0
  */
 export const Legend = forwardRef<HTMLLegendElement, LegendProps>(

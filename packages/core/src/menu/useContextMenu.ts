@@ -85,7 +85,7 @@ const noop = (): void => {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/menu#context-menu | Menu Demos}
+ * @see {@link https://react-md.dev/components/menu#context-menu | Menu Demos}
  * @since 5.0.0
  * @since 6.0.0 No longer supports overriding most of the `Menu` props. The
  * props must be passed to the `Menu` component manually.

@@ -70,7 +70,7 @@ export interface TooltippedButtonProps extends ButtonProps {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/button | Button Demos}
+ * @see {@link https://react-md.dev/components/button | Button Demos}
  * @since 6.0.0
  */
 export const TooltippedButton = forwardRef<

@@ -56,7 +56,7 @@ export interface MenuItemFileInputProps
  *
  * A wrapper for the `<input type="file">` element that works within menus.
  *
- * @see {@link https://next.react-md.dev/components/menu#menuitemfileinput-example | DropdownMenu Demos}
+ * @see {@link https://react-md.dev/components/menu#menuitemfileinput-example | DropdownMenu Demos}
  * @since 5.0.0
  * @since 6.0.0 No longer creates an invisible file input element within the
  * menu item. This allows the menu to be closed immediately when this menu item

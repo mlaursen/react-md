@@ -40,7 +40,7 @@ const noop = (): void => {
 /**
  * This is the single select autocomplete implementation.
  *
- * @see {@link https://next.react-md.dev/components/autocomplete | Autocomplete Demos}
+ * @see {@link https://react-md.dev/components/autocomplete | Autocomplete Demos}
  * @since 6.0.0
  */
 export function useAutocomplete<
@@ -53,7 +53,7 @@ export function useAutocomplete<
 /**
  * This is the multiselect autocomplete implementation.
  *
- * @see {@link https://next.react-md.dev/components/autocomplete | Autocomplete Demos}
+ * @see {@link https://react-md.dev/components/autocomplete | Autocomplete Demos}
  * @since 6.0.0
  */
 export function useAutocomplete<
@@ -67,7 +67,7 @@ export function useAutocomplete<
  * This is an internal override implementation where the types are less strict
  * so it can be used with the `Autocomplete` component.
  *
- * @see {@link https://next.react-md.dev/components/autocomplete | Autocomplete Demos}
+ * @see {@link https://react-md.dev/components/autocomplete | Autocomplete Demos}
  * @since 6.0.0
  * @internal
  */
@@ -79,7 +79,7 @@ export function useAutocomplete<
   options: AutocompleteOptions<Option, ComboboxEl, PopupEl>
 ): AutocompleteImplementation<Option, ComboboxEl, PopupEl>;
 /**
- * @see {@link https://next.react-md.dev/components/autocomplete | Autocomplete Demos}
+ * @see {@link https://react-md.dev/components/autocomplete | Autocomplete Demos}
  * @since 6.0.0
  * @internal
  */

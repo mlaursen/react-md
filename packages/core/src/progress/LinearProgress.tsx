@@ -87,7 +87,7 @@ const styles = bem("rmd-linear-progress");
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/progress#linear-progress | Progress Demos}
+ * @see {@link https://react-md.dev/components/progress#linear-progress | Progress Demos}
  * @since 6.0.0 Supports rendering as any of the theme colors and
  * requires a label for accessibility.
  */

@@ -50,7 +50,7 @@ export interface SrOnlyProps extends HTMLAttributes<TypographyHTMLElement> {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/sr-only | SrOnly Demos}
+ * @see {@link https://react-md.dev/components/sr-only | SrOnly Demos}
  */
 export const SrOnly = forwardRef<TypographyHTMLElement, SrOnlyProps>(
   function SrOnly(props, ref) {

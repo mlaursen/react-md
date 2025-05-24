@@ -119,7 +119,7 @@ import {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/hooks/use-storage | useStorage Demos}
+ * @see {@link https://react-md.dev/hooks/use-storage | useStorage Demos}
  * @see https://developer.mozilla.org/en-US/docs/Web/API/StorageEvent
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage

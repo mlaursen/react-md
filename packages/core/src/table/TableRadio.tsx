@@ -134,7 +134,7 @@ export interface TableRadioProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/table | Table Demos}
+ * @see {@link https://react-md.dev/components/table | Table Demos}
  * @since 6.0.0
  */
 export const TableRadio = forwardRef<HTMLTableCellElement, TableRadioProps>(

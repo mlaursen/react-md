@@ -17,7 +17,7 @@ import {
  * Look at the `Tree` component for an example of creating a custom
  * implementation.
  *
- * @see {@link https://next.react-md.dev/components/tree | Tree Demos}
+ * @see {@link https://react-md.dev/components/tree | Tree Demos}
  * @since 6.0.0
  */
 export function DefaultTreeItemRenderer<

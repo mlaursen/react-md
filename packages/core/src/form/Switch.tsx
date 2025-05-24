@@ -69,7 +69,7 @@ export interface SwitchProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/switch | Switch Demos}
+ * @see {@link https://react-md.dev/components/switch | Switch Demos}
  * @since 6.0.0 Added support for `FormMessage` behavior.
  */
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(

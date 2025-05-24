@@ -163,7 +163,7 @@ export interface ThemeProviderProps {
  * );
  * ```
  *
- * @see {@link https://next.react-md.dev/components/theme-provider | ThemeProvider Demos}
+ * @see {@link https://react-md.dev/components/theme-provider | ThemeProvider Demos}
  * @since 6.0.0
  */
 export function ThemeProvider(props: ThemeProviderProps): ReactElement {

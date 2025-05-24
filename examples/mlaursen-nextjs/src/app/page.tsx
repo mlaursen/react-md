@@ -9,8 +9,8 @@ export default function Page(): ReactElement {
       <Typography type="headline-2">ReactMD + Next.js Starter</Typography>
       <Typography>
         See{" "}
-        <Link href="https://next.react-md.dev" target="_blank">
-          https://next.react-md.dev
+        <Link href="https://react-md.dev" target="_blank">
+          https://react-md.dev
         </Link>{" "}
         and{" "}
         <Link href="https://nextjs.org" target="_blank">

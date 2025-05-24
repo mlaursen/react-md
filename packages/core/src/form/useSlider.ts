@@ -85,7 +85,7 @@ export interface SliderOptions extends SliderValueOptions {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/slider | Slider Demos}
+ * @see {@link https://react-md.dev/components/slider | Slider Demos}
  * @see The `Slider` component for additional examples.
  * @since 2.5.0
  * @since 6.0.0 Now returns an object instead of an ordered tuple and only

@@ -125,7 +125,7 @@ export interface ToastVisibilityTimers {
 }
 
 /**
- * @see {@link https://next.react-md.dev/components/snackbar | Snackbar Demos}
+ * @see {@link https://react-md.dev/components/snackbar | Snackbar Demos}
  * @see {@link ToastManagerProvider}
  * @since 6.0.0
  */

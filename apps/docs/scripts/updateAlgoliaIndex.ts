@@ -20,7 +20,7 @@ import { getBlogs } from "../src/app/(main)/(markdown)/blog/data.js";
 import { titleCase } from "../src/utils/strings.js";
 import { CORE_SRC } from "./constants.js";
 
-const BASE_URL = "https://next.react-md.dev";
+const BASE_URL = "https://react-md.dev";
 
 async function indexMdxPages(): Promise<readonly IndexedItem[]> {
   const mdxPages = await glob("src/app/**/page.mdx");

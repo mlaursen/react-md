@@ -17,8 +17,8 @@ import { useSsr } from "../SsrProvider.js";
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/hooks/use-media-query | useMediaQuery Demos}
- * @see {@link https://next.react-md.dev/components/app-size-provider | AppSizeProvider Demos}
+ * @see {@link https://react-md.dev/hooks/use-media-query | useMediaQuery Demos}
+ * @see {@link https://react-md.dev/components/app-size-provider | AppSizeProvider Demos}
  * @param query - The media query to use
  * @param disabled - When `true`, the `window.matchMedia` API will not be
  * activated and the hook will return the last cached value.

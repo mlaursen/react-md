@@ -49,7 +49,7 @@ export interface ParseMdxOptions {
 }
 
 export async function parseMdx(options: ParseMdxOptions): Promise<IndexedPage> {
-  const { baseUrl = "https://next.react-md.dev", mdxFilePath } = options;
+  const { baseUrl = "https://react-md.dev", mdxFilePath } = options;
 
   try {
     const slugger = new GithubSlugger();

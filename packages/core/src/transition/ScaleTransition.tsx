@@ -61,7 +61,7 @@ export interface ScaleTransitionProps<E extends HTMLElement>
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/scale-transition | ScaleTransition Demos}
+ * @see {@link https://react-md.dev/components/scale-transition | ScaleTransition Demos}
  * @typeParam E - The HTMLElement type used or the ref required for the
  * transition.
  * @since 2.0.0

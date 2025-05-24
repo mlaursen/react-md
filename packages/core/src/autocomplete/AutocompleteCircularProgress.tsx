@@ -7,7 +7,7 @@ import { type AutocompleteCircularProgressProps } from "./types.js";
  * An internal component used to handle the styling and minimal accessibility
  * for the `CircularProgress` within the `Autocomplete`
  *
- * @see {@link https://next.react-md.dev/components/autocomplete | Autocomplete Demos}
+ * @see {@link https://react-md.dev/components/autocomplete | Autocomplete Demos}
  * @internal
  * @since 6.0.0
  */

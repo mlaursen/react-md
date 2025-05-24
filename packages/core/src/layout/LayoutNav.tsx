@@ -132,7 +132,7 @@ export interface LayoutNavProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/getting-started/layout | Layout Demos}
+ * @see {@link https://react-md.dev/getting-started/layout | Layout Demos}
  * @since 6.0.0
  */
 export const LayoutNav = forwardRef<HTMLDivElement, LayoutNavProps>(

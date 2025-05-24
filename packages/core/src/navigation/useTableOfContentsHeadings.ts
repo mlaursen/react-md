@@ -53,7 +53,7 @@ export const DEFAULT_GET_HEADING_TEXT = (element: Element): string =>
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/hooks/use-table-of-contents-headings | useTableOfContentsHeadings Demos}
+ * @see {@link https://react-md.dev/hooks/use-table-of-contents-headings | useTableOfContentsHeadings Demos}
  * @since 6.0.0
  */
 export function useTableOfContentsHeadings(

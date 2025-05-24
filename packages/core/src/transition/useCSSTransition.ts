@@ -155,8 +155,8 @@ import { getTransitionClassNames } from "./utils.js";
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/hooks/use-css-transition | useCSSTransition Demos}
- * @see {@link https://next.react-md.dev/components/css-transition | CSSTransition Demos}
+ * @see {@link https://react-md.dev/hooks/use-css-transition | useCSSTransition Demos}
+ * @see {@link https://react-md.dev/components/css-transition | CSSTransition Demos}
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.
  * @since 4.0.0

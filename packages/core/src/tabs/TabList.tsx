@@ -114,7 +114,7 @@ export interface TabListProps
 /**
  * **Client Component**
  *
- * @see {@link https://next.react-md.dev/components/tabs | Tabs Demos}
+ * @see {@link https://react-md.dev/components/tabs | Tabs Demos}
  * @see {@link useTabs} for example usage.
  * @since 6.0.0
  */

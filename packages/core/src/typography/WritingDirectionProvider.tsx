@@ -195,7 +195,7 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
  * );
  * ```
  *
- * @see {@link https://next.react-md.dev/components/writing-direction-provider | WritingDirectionProvider Demos}
+ * @see {@link https://react-md.dev/components/writing-direction-provider | WritingDirectionProvider Demos}
  * @since 6.0.0 Renamed from `Dir`
  */
 export function WritingDirectionProvider(

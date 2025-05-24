@@ -349,7 +349,7 @@ export interface DraggableImplementation<E extends HTMLElement = HTMLElement>
  * NOTE: This requires `touch-action: none` to be applied to the draggable
  * element to help prevent page scrolling on mobile devices.
  *
- * @see {@link https://next.react-md.dev/components/use-draggable | useDraggable Demos}
+ * @see {@link https://react-md.dev/components/use-draggable | useDraggable Demos}
  * @since 6.0.0
  */
 export function useDraggable<E extends HTMLElement>(

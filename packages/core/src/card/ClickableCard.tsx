@@ -53,7 +53,7 @@ export interface ClickableCardProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/card#clickable-card | ClickableCard Demos}
+ * @see {@link https://react-md.dev/components/card#clickable-card | ClickableCard Demos}
  * @since 6.0.0
  */
 export const ClickableCard = forwardRef<HTMLDivElement, ClickableCardProps>(

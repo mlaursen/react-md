@@ -78,7 +78,7 @@ export type SheetProps = LabelRequiredForA11y<BaseSheetProps>;
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/sheet | Sheet Demos}
+ * @see {@link https://react-md.dev/components/sheet | Sheet Demos}
  */
 export const Sheet = forwardRef<HTMLDivElement, SheetProps>(
   function Sheet(props, ref) {

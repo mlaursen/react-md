@@ -29,7 +29,7 @@ export interface DialogTitleProps extends TypographyProps {
  * sensible defaults to be rendered within a `Dialog`. Look at the `Dialog` or
  * `FixedDialog` components for example usage.
  *
- * @see {@link https://next.react-md.dev/components/dialog | Dialog Demos}
+ * @see {@link https://react-md.dev/components/dialog | Dialog Demos}
  */
 export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
   function DialogTitle(props, ref) {

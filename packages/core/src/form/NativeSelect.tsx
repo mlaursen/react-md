@@ -108,7 +108,7 @@ export interface NativeSelectProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/native-select | NativeSelect Demos}
+ * @see {@link https://react-md.dev/components/native-select | NativeSelect Demos}
  */
 export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
   function NativeSelect(props, ref) {

@@ -205,8 +205,8 @@ const EMPTY_OBJECT = {} as const;
  * can also be used to upload the files as an `ArrayBuffer` and then uploaded to
  * a server.
  *
- * @see {@link https://next.react-md.dev/components/file-input | FileInput Demos}
- * @see {@link https://next.react-md.dev/hooks/use-file-input | useFileInput Demos}
+ * @see {@link https://react-md.dev/components/file-input | FileInput Demos}
+ * @see {@link https://react-md.dev/hooks/use-file-input | useFileInput Demos}
  * @typeParam E - An optional HTMLElement type that is used for the
  * {@link FileUploadHandlers}.
  * @typeParam CustomError - An optional error type that gets returned from the

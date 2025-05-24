@@ -62,7 +62,7 @@ export interface CollapseProps<E extends HTMLElement>
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/collapse | Collapse Demos}
+ * @see {@link https://react-md.dev/components/collapse | Collapse Demos}
  * @see {@link useCollapseTransition} for additional examples
  * @typeParam E - An HTMLElement type used for the ref required for the
  * transition.

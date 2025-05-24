@@ -170,7 +170,7 @@ export interface CarouselOptions {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/carousel | Carousel Demos}
+ * @see {@link https://react-md.dev/components/carousel | Carousel Demos}
  * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/carousel/}
  * @see {@link https://www.w3.org/WAI/ARIA/apg/example-index/carousel/carousel-2-tablist.html}
  * @since 6.0.0

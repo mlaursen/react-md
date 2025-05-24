@@ -62,7 +62,7 @@ export interface MainProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/getting-started/layout | Layout Demos}
+ * @see {@link https://react-md.dev/getting-started/layout | Layout Demos}
  * @since 6.0.0 Renamed from `LayoutMain` removed a lot of
  * functionality to keep this component simple.
  */

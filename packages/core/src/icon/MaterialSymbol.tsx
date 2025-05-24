@@ -63,8 +63,8 @@ export interface MaterialSymbolProps
  * root.render(<App />);
  * ```
  *
- * @see {@link https://next.react-md.dev/components/icon | Icon Demos}
- * @see {@link https://next.react-md.dev/components/material-icons|Available Material Icons}
+ * @see {@link https://react-md.dev/components/icon | Icon Demos}
+ * @see {@link https://react-md.dev/components/material-icons|Available Material Icons}
  * @since 6.0.0
  */
 export const MaterialSymbol = forwardRef<HTMLSpanElement, MaterialSymbolProps>(

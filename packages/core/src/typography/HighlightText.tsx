@@ -125,7 +125,7 @@ export interface HighlightTextProps {
  * }
  *
  * ```
- * @see {@link https://next.react-md.dev/components/highlight-text | HighlightText Demos}
+ * @see {@link https://react-md.dev/components/highlight-text | HighlightText Demos}
  * @since 6.0.0
  */
 export function HighlightText(

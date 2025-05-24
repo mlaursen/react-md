@@ -42,7 +42,7 @@ export const remarkMdxMetadata: Plugin<[RemarkMdxMetadataOptions?], Root> = (
 ) => {
   const {
     name = "metadata",
-    baseUrl = "https://next.react-md.dev",
+    baseUrl = "https://react-md.dev",
     ...defineOptions
   } = options;
 

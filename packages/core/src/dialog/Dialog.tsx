@@ -233,7 +233,7 @@ export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/dialog | Dialog Demos}
+ * @see {@link https://react-md.dev/components/dialog | Dialog Demos}
  * @since 6.0.0 The `Dialog` no longer supports focusing elements
  * within once it becomes visible. You must manually add `autoFocus` to a
  * element instead.

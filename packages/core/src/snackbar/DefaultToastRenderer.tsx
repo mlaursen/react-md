@@ -44,7 +44,7 @@ export interface ToastRendererProps extends ConfigurableToastProps, ToastMeta {
  * - always renders the {@link ToastRendererProps.toastDefaults}'s `children`
  *   'after the optional toast's `children`
  *
- * @see {@link https://next.react-md.dev/components/snackbar | Snackbar Demos}
+ * @see {@link https://react-md.dev/components/snackbar | Snackbar Demos}
  * @since 6.0.0
  */
 export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {

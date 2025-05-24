@@ -77,7 +77,7 @@ export interface SVGIconProps
  * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a
  * sprite map as an icon.
  *
- * @see {@link https://next.react-md.dev/components/icon | Icon Demos}
+ * @see {@link https://react-md.dev/components/icon | Icon Demos}
  */
 export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function SVGIcon(props, ref) {

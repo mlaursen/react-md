@@ -41,8 +41,8 @@ export interface FormMessageCounterProps
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/form-message | FormMessage Demos}
- * @see {@link https://next.react-md.dev/components/text-field | TextField Demos}
+ * @see {@link https://react-md.dev/components/form-message | FormMessage Demos}
+ * @see {@link https://react-md.dev/components/text-field | TextField Demos}
  * @since 2.9.0
  */
 export function FormMessageCounter(

@@ -37,7 +37,7 @@ import { type ListItemChildrenProps } from "./types.js";
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/list | List Demos}
+ * @see {@link https://react-md.dev/components/list | List Demos}
  */
 export function ListItemChildren(props: ListItemChildrenProps): ReactElement {
   const {

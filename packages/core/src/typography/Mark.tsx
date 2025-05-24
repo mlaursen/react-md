@@ -26,7 +26,7 @@ export interface MarkProps extends HTMLAttributes<HTMLElement> {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/mark | Mark Demos}
+ * @see {@link https://react-md.dev/components/mark | Mark Demos}
  * @since 6.0.0
  */
 export const Mark = forwardRef<HTMLElement, MarkProps>(

@@ -50,7 +50,7 @@ export interface CollapsibleNavGroupProps
 /**
  * **Client Component**
  *
- * @see {@link https://next.react-md.dev/components/navigation | Navigation Demos}
+ * @see {@link https://react-md.dev/components/navigation | Navigation Demos}
  * @since 6.0.0
  */
 export const CollapsibleNavGroup = forwardRef<

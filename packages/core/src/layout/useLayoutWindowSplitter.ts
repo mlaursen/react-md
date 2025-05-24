@@ -105,7 +105,7 @@ export interface LayoutWindowSplitterImplementation
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/getting-started/layout | Layout Demos}
+ * @see {@link https://react-md.dev/getting-started/layout | Layout Demos}
  * @see {@link useResizableLayout} For a pre-built solution.
  * @since 6.0.0
  */

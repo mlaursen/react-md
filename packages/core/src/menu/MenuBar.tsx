@@ -67,7 +67,7 @@ export interface MenuBarProps extends Omit<ListProps, "role"> {
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/menu | Menu Demos}
+ * @see {@link https://react-md.dev/components/menu | Menu Demos}
  * @since 5.0.0
  * @since 6.0.0 Combined with the previous `MenuBarWidget`
  */

@@ -139,7 +139,7 @@ const styles = bem("rmd-circular-progress");
  * }
  * ```
  *
- * @see {@link https://next.react-md.dev/components/progress#circular-progress | Progress Demos}
+ * @see {@link https://react-md.dev/components/progress#circular-progress | Progress Demos}
  * @since 6.0.0 Updated the determinate circular progress to no longer
  * rotate while increasing the value and require a label for accessibility.
  */

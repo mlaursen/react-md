@@ -146,8 +146,8 @@ export interface CombinedCheckboxGroupReturnValue<V extends string> {
  * );
  * ```
  *
- * @see {@link https://next.react-md.dev/components/Checkbox | Checkbox Demos}
- * @see {@link https://next.react-md.dev/hooks/use-checkbox-group | useCheckboxGroup Demos}
+ * @see {@link https://react-md.dev/components/Checkbox | Checkbox Demos}
+ * @see {@link https://react-md.dev/hooks/use-checkbox-group | useCheckboxGroup Demos}
  * @since 6.0.0
  */
 export function useCheckboxGroup<V extends string>(
@@ -186,8 +186,8 @@ export function useCheckboxGroup<V extends string>(
  * );
  * ```
  *
- * @see {@link https://next.react-md.dev/components/Checkbox | Checkbox Demos}
- * @see {@link https://next.react-md.dev/hooks/use-checkbox-group | useCheckboxGroup Demos}
+ * @see {@link https://react-md.dev/components/Checkbox | Checkbox Demos}
+ * @see {@link https://react-md.dev/hooks/use-checkbox-group | useCheckboxGroup Demos}
  * @since 6.0.0
  */
 export function useCheckboxGroup<V extends string>(
@@ -217,8 +217,8 @@ export function useCheckboxGroup<V extends string>(
  * );
  * ```
  *
- * @see {@link https://next.react-md.dev/components/Checkbox | Checkbox Demos}
- * @see {@link https://next.react-md.dev/hooks/use-checkbox-group | useCheckboxGroup Demos}
+ * @see {@link https://react-md.dev/components/Checkbox | Checkbox Demos}
+ * @see {@link https://react-md.dev/hooks/use-checkbox-group | useCheckboxGroup Demos}
  * @since 6.0.0
  */
 export function useCheckboxGroup<V extends string>(
@@ -257,8 +257,8 @@ export function useCheckboxGroup<V extends string>(
  * );
  * ```
  *
- * @see {@link https://next.react-md.dev/components/Checkbox | Checkbox Demos}
- * @see {@link https://next.react-md.dev/hooks/use-checkbox-group | useCheckboxGroup Demos}
+ * @see {@link https://react-md.dev/components/Checkbox | Checkbox Demos}
+ * @see {@link https://react-md.dev/hooks/use-checkbox-group | useCheckboxGroup Demos}
  * @since 6.0.0
  */
 export function useCheckboxGroup<V extends string>(
@@ -269,8 +269,8 @@ export function useCheckboxGroup<V extends string>(
   }
 ): IndeterminateMenuItemCheckboxGroupImplementation<V>;
 /**
- * @see {@link https://next.react-md.dev/components/Checkbox | Checkbox Demos}
- * @see {@link https://next.react-md.dev/hooks/use-checkbox-group | useCheckboxGroup Demos}
+ * @see {@link https://react-md.dev/components/Checkbox | Checkbox Demos}
+ * @see {@link https://react-md.dev/hooks/use-checkbox-group | useCheckboxGroup Demos}
  * @since 6.0.0
  * @internal
  */

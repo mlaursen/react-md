@@ -11,7 +11,7 @@ export interface DialogContentProps
  * component that applies some reasonable default styles. Look at the `Dialog`
  * or `FixedDialog` components for example usage.
  *
- * @see {@link https://next.react-md.dev/components/dialog | Dialog Demos}
+ * @see {@link https://react-md.dev/components/dialog | Dialog Demos}
  */
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   function DialogContent(props, ref) {
