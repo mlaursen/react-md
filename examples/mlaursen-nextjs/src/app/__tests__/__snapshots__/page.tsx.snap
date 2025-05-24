@@ -17,7 +17,7 @@ exports[`page should render correctly 1`] = `
         class="rmd-typography rmd-typography--body-1"
       >
         See
-
+         
         <a
           class="rmd-link"
           href="https://react-md.dev"
@@ -25,9 +25,9 @@ exports[`page should render correctly 1`] = `
         >
           https://react-md.dev
         </a>
-
+         
         and
-
+         
         <a
           class="rmd-link"
           href="https://nextjs.org"
@@ -35,7 +35,7 @@ exports[`page should render correctly 1`] = `
         >
           https://nextjs.org
         </a>
-
+         
         for more information.
       </p>
     </div>

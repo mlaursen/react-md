@@ -9,8 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-md/core": "^6.0.1",
-    "@react-md/material-icons": "^6.0.1",
+    "@react-md/core": "^6.0.2",
+    "@react-md/material-icons": "^6.0.2",
+    "cnbuilder": "^3.1.0",
     "next": "15.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

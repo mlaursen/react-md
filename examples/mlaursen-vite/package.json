@@ -15,8 +15,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-md/core": "^6.0.1",
-    "@react-md/material-icons": "^6.0.1",
+    "@react-md/core": "^6.0.2",
+    "@react-md/material-icons": "^6.0.2",
     "cnbuilder": "^3.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -34,7 +34,7 @@
     "eslint": "^9.24.0",
     "husky": "^9.1.7",
     "jsdom": "^26.1.0",
-    "lint-staged": "^15.5.0",
+    "lint-staged": "^16.0.0",
     "prettier": "^3.5.3",
     "sass-embedded": "^1.86.3",
     "typescript": "~5.8.3",
@@ -42,8 +42,13 @@
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.1.1"
   },
+  "lint-staged": {
+    "**/*.{scss,js,jsx,md,yml,json,ts,tsx}": [
+      "prettier --write"
+    ]
+  },
   "volta": {
     "node": "22.14.0",
-    "pnpm": "10.8.1"
+    "pnpm": "10.11.0"
   }
 }
