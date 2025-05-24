@@ -1,5 +1,15 @@
 # react-md
 
+## 6.0.2
+
+### Patch Changes
+
+- - do not allow clear button to be clickable while hidden
+  - update controllable hooks/components to show the correct prop name instead of only showing `value`
+  - update source comments to use `https://react-md.dev` instead of `https://next.react-md.dev`
+- Updated dependencies
+  - @react-md/core@6.0.2
+
 ## 6.0.1
 
 ### Patch Changes

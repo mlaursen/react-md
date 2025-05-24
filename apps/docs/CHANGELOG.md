@@ -1,5 +1,15 @@
 # docs
 
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-md/core@6.0.2
+  - @react-md/material-icons@6.0.2
+  - @react-md/code@0.0.3
+  - docs-generator@0.0.3
+
 ## 0.0.3
 
 ### Patch Changes
