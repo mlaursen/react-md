@@ -43,6 +43,10 @@ export function parseCssLengthUnit(options: ParseCssLengthUnitOptions): number {
     return value;
   }
 
+  if (value.includes("calc")) {
+    throw new Error(`Unable to parse a unit with \`calc\`: "${value}"`);
+  }
+
   const parsed = parseFloat(value);
   if (/px$/i.test(value)) {
     return parsed;
