@@ -9,6 +9,8 @@ export function getItemPublicName(name: string, group: string): string {
   let itemName = name;
   if (!group.startsWith("core.")) {
     itemName = `${group}-${name}`;
+  } else if (/core\.(spacing|border-radius)/.test(group)) {
+    itemName = group.substring("core.".length) + `-${name}`;
   }
 
   return itemName;

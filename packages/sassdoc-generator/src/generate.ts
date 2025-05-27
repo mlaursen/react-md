@@ -56,50 +56,58 @@ async function formatItem(options: FormatItemOptions): Promise<void> {
     originalFunctions,
     originalVariables,
   } = options;
-  const baseItem = await formatBaseItem({ src, item });
+  try {
+    const baseItem = await formatBaseItem({ src, item });
 
-  let type: "function" | "variable" | "mixin";
-  if (isVariableItem(item)) {
-    type = "variable";
-    const formatted = await formatVariableItem(src, baseItem, item);
-    variablesOrder.set(formatted.name, index);
-    if (variables.has(formatted.name)) {
-      throw new Error(`Duplicate variables with ${formatted.name}`);
+    let type: "function" | "variable" | "mixin";
+    if (isVariableItem(item)) {
+      type = "variable";
+      const formatted = await formatVariableItem(src, baseItem, item);
+      variablesOrder.set(formatted.name, index);
+      if (variables.has(formatted.name)) {
+        throw new Error(`Duplicate variables with ${formatted.name}`);
+      }
+
+      variables.set(formatted.name, formatted);
+      originalVariables.set(formatted.name, item);
+    } else if (isFunctionItem(item)) {
+      type = "function";
+      const formatted = await formatFunctionItem(baseItem, item);
+      functionsOrder.set(formatted.name, index);
+      if (functions.has(formatted.name)) {
+        throw new Error(`Duplicate functions with ${formatted.name}`);
+      }
+
+      functions.set(formatted.name, formatted);
+      originalFunctions.set(formatted.name, item);
+    } else if (isMixinItem(item)) {
+      type = "mixin";
+      const formatted = await formatMixinItem(baseItem, item);
+      mixinsOrder.set(formatted.name, index);
+      if (mixins.has(formatted.name)) {
+        throw new Error(`Duplicate mixins with ${formatted.name}`);
+      }
+
+      mixins.set(formatted.name, formatted);
+      originalMixins.set(formatted.name, item);
+    } else {
+      // other types aren't documented at this time
+      return;
     }
 
-    variables.set(formatted.name, formatted);
-    originalVariables.set(formatted.name, item);
-  } else if (isFunctionItem(item)) {
-    type = "function";
-    const formatted = await formatFunctionItem(baseItem, item);
-    functionsOrder.set(formatted.name, index);
-    if (functions.has(formatted.name)) {
-      throw new Error(`Duplicate functions with ${formatted.name}`);
-    }
-
-    functions.set(formatted.name, formatted);
-    originalFunctions.set(formatted.name, item);
-  } else if (isMixinItem(item)) {
-    type = "mixin";
-    const formatted = await formatMixinItem(baseItem, item);
-    mixinsOrder.set(formatted.name, index);
-    if (mixins.has(formatted.name)) {
-      throw new Error(`Duplicate mixins with ${formatted.name}`);
-    }
-
-    mixins.set(formatted.name, formatted);
-    originalMixins.set(formatted.name, item);
-  } else {
-    // other types aren't documented at this time
-    return;
+    references.set(baseItem.name, {
+      type,
+      name: baseItem.name,
+      group: baseItem.group,
+      private: baseItem.private,
+    });
+  } catch (e) {
+    console.error("There was an error formatting: ", {
+      name: item.context.name,
+      file: item.file,
+    });
+    throw e;
   }
-
-  references.set(baseItem.name, {
-    type,
-    name: baseItem.name,
-    group: baseItem.group,
-    private: baseItem.private,
-  });
 }
 
 export interface ApplyReferencesOptions {
