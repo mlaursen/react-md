@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { black, white } from "./colors.js";
 
 const RGB_REGEX = /^rgb\(((\b([01]?\d\d?|2[0-4]\d|25[0-5])\b),?){3}\)$/;

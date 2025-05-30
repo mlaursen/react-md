@@ -249,7 +249,7 @@ export function useElementInteraction<E extends HTMLElement>(
   const { pressed } = state;
 
   let ripples: ReactElement | undefined;
-  if (mode == "ripple") {
+  if (mode === "ripple") {
     ripples = (
       <RippleContainer
         ripples={state.ripples}

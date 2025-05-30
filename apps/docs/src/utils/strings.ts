@@ -20,8 +20,8 @@ export const upperFirst = <S extends string>(s: S): Capitalize<S> =>
  */
 export const camelCase = (s: string, separator = ""): string =>
   words(s).reduce((result, word, i) => {
-    word = word.toLowerCase();
-    return result + (i ? separator : "") + (i ? upperFirst(word) : word);
+    const w = word.toLowerCase();
+    return result + (i ? separator : "") + (i ? upperFirst(w) : w);
   }, "");
 
 /**

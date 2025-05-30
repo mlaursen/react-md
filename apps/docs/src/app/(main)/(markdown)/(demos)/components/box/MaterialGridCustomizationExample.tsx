@@ -83,13 +83,18 @@ const applyVarGroup = (
   value?: ValueOrBreakpoints,
   style?: CSSProperties
 ): CSSProperties | undefined => {
-  style = applyVar(type, "", value, style);
+  let combinedStyle = applyVar(type, "", value, style);
   if (value && typeof value === "object") {
     BREAKPOINTS.forEach((breakpoint) => {
-      style = applyVar(type, breakpoint, value[breakpoint], style);
+      combinedStyle = applyVar(
+        type,
+        breakpoint,
+        value[breakpoint],
+        combinedStyle
+      );
     });
   }
-  return style;
+  return combinedStyle;
 };
 
 interface GridCellStyles {

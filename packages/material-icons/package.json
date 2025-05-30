@@ -40,12 +40,12 @@
     "cnbuilder": "^3.1.0"
   },
   "devDependencies": {
-    "@mlaursen/eslint-config": "^8.0.0",
-    "@swc/core": "^1.11.22",
-    "@types/lodash": "^4.17.16",
-    "@types/node": "^22.15.18",
+    "@mlaursen/eslint-config": "^8.0.1",
+    "@swc/core": "^1.11.29",
+    "@types/lodash": "^4.17.17",
+    "@types/node": "^22.15.29",
     "@types/react": "^18.3.12",
-    "eslint": "^9.26.0",
+    "eslint": "^9.28.0",
     "glob": "^11.0.2",
     "lodash": "^4.17.21",
     "prettier": "^3.5.3",

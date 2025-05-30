@@ -264,7 +264,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             "--rmd-text-area-height": height,
           }}
           className={textAreaContainer({
-            animate: !disableTransition && resize == "auto",
+            animate: !disableTransition && resize === "auto",
             disabled,
             height: !!height,
             underlineLabelled:

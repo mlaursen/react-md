@@ -140,7 +140,7 @@ export const LayoutNav = forwardRef<HTMLDivElement, LayoutNavProps>(
     const {
       as: Component = "nav",
       "aria-labelledby": ariaLabelledBy,
-      "aria-label": ariaLabel = Component == "nav" && !ariaLabelledBy
+      "aria-label": ariaLabel = Component === "nav" && !ariaLabelledBy
         ? "Navigation"
         : undefined,
       expanded,

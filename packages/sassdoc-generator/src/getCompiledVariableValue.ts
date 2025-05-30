@@ -41,6 +41,7 @@ function parseValue(value: VariableValue): VariableValue {
 
   // remove additional quotes around strings and remove parens around font-family
   if (/^('|").+\1$/.test(value) || /^\(.+\)$/.test(value)) {
+    // eslint-disable-next-line no-param-reassign
     value = value.substring(1, value.length - 1);
   }
 

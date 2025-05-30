@@ -141,6 +141,7 @@ export function createOptionsDotMap({
 }: CreateOptionsDotMapOptions): ArrowFunctionExpression {
   let statements: StatementKind[] = [];
   if (!label || !value) {
+    // eslint-disable-next-line no-param-reassign
     ({ label, value, statements } = createDefaultLabelValueGetters({
       j,
       option,

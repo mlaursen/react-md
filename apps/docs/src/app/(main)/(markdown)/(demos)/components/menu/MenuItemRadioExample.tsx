@@ -16,7 +16,7 @@ const decorations = [
 type Decoration = (typeof decorations)[number];
 
 const getDecoration = (decoration: Decoration): TextDecoration | undefined => {
-  if (decoration == "none") {
+  if (decoration === "none") {
     return undefined;
   }
 

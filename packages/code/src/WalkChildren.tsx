@@ -32,7 +32,7 @@ export const WalkChildren = memo(function WalkChildren(
 
         let start = 0;
         let match: RegExpExecArray | null;
-        while ((match = regex.exec(child)) != null) {
+        while ((match = regex.exec(child)) !== null) {
           const [color] = match;
           const prefix = child.substring(start, match.index);
           start = match.index + color.length;

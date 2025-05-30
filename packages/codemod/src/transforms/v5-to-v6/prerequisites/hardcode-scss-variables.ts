@@ -56,7 +56,7 @@ const getHardCodedValue = (
   let index = 0;
   let result = lookup;
   const length = keys.length;
-  while (result != null && index < length) {
+  while (result !== null && index < length) {
     result = result[keys[index++]];
   }
 

@@ -38,6 +38,7 @@ export function tryToSubmitRelatedForm<E extends HTMLElement>(
     return;
   }
 
+  // eslint-disable-next-line no-param-reassign
   formId = formId || form.id;
   let submit = form.querySelector<HTMLButtonElement>('[type="submit"]');
   if (!submit && formId) {

@@ -8,7 +8,7 @@ function modify(base: string, modifier?: BEMModifier): string {
   const hasOwn = Object.prototype.hasOwnProperty;
   return Object.keys(modifier).reduce((s, mod) => {
     if (hasOwn.call(modifier, mod) && modifier[mod]) {
-      s = `${s} ${base}--${mod}`;
+      return `${s} ${base}--${mod}`;
     }
 
     return s;

@@ -199,7 +199,7 @@ export function appBarTitle(options: AppBarTitleClassNameOptions = {}): string {
   const { className, keyline = "small" } = options;
   return cnb(
     titleStyles({
-      keyline: keyline == "list",
+      keyline: keyline === "list",
       "nav-keyline": keyline === "nav",
     }),
     className

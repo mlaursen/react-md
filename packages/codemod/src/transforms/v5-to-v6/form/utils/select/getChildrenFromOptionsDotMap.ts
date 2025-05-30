@@ -71,6 +71,7 @@ export function getChildrenFromOptionsDotMap({
         //     value = prop.value;
         //   }
         // }
+        // eslint-disable-next-line no-lonely-if
         if (isSupportedLabelReference(j, prop)) {
           const { name } = prop.key;
           if (name === "label") {

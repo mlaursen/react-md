@@ -59,6 +59,7 @@ function removeUncompilableCode(code: string): string {
   while (startIndex !== -1 && endIndex !== -1) {
     const whitespace = code.match(/\s*\/\/ START_NO_COMPILE/);
     const whitespaceCount = whitespace ? whitespace[0].indexOf("/") : 0;
+    // eslint-disable-next-line no-param-reassign
     code = `${code.substring(0, startIndex - whitespaceCount)}${code.substring(
       endIndex + END_NO_COMPILE.length + 1
     )}`;
