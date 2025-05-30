@@ -1,5 +1,26 @@
 # @react-md/material-icons
 
+## 6.1.0
+
+### Minor Changes
+
+- # Features
+
+  - prioritize theme and typography variables in dev tools
+  - add border-radius and spacing variables to match latest design tokens
+
+  # Internal
+
+  - Throw an error if `parseCssLengthUnit` is not a number unit
+  - Update Algolia searching behavior
+  - Update examples to latest
+  - Update deps to latest
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-md/core@6.1.0
+
 ## 6.0.2
 
 ### Patch Changes

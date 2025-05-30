@@ -1,6 +1,6 @@
 {
   "name": "@react-md/core",
-  "version": "6.0.2",
+  "version": "6.1.0",
   "description": "The core components and functionality for react-md.",
   "type": "module",
   "sass": "./dist/_core.scss",
