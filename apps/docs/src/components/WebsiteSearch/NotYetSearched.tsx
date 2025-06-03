@@ -5,6 +5,8 @@ import BugReportIcon from "@react-md/material-icons/BugReportIcon";
 import ColorLensIcon from "@react-md/material-icons/ColorLensIcon";
 import DownloadIcon from "@react-md/material-icons/DownloadIcon";
 import EditDocumentIcon from "@react-md/material-icons/EditDocumentIcon";
+import GridOnIcon from "@react-md/material-icons/GridOnIcon";
+import InterestsIcon from "@react-md/material-icons/InterestsIcon";
 import LaunchIcon from "@react-md/material-icons/LaunchIcon";
 import { type ReactElement, type ReactNode } from "react";
 
@@ -17,6 +19,16 @@ interface LinkConfig {
 }
 
 const RECOMMENDATIONS: readonly LinkConfig[] = [
+  {
+    href: "/components/material-icons-and-symbols",
+    leftAddon: <InterestsIcon />,
+    children: "Material Icons and Symbols",
+  },
+  {
+    href: "/components/box",
+    leftAddon: <GridOnIcon />,
+    children: "Grid and Box Component",
+  },
   {
     href: "/getting-started/installation",
     leftAddon: <DownloadIcon />,
