@@ -39,7 +39,7 @@ export interface ListItemLinkProps
    * Any additional props to provide the wrapping `<li>` element such as
    * `style`, `className`, and `ref`.
    */
-  liProps?: PropsWithRef<HTMLAttributes<HTMLLIElement>, HTMLLIElement>;
+  liProps?: PropsWithRef<HTMLAttributes<HTMLLIElement>>;
 
   /**
    * @defaultValue `disabled ? -1 : undefined`

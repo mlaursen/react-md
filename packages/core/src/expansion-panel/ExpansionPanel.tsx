@@ -128,7 +128,7 @@ export interface ExpansionPanelProps extends CardProps {
    * @see {@link contentClassName}
    * @see {@link disableContentPadding}
    */
-  contentProps?: PropsWithRef<Omit<CardContentProps, "role">, HTMLDivElement>;
+  contentProps?: PropsWithRef<Omit<CardContentProps, "role">>;
 
   /**
    * Convenience prop to apply custom style to the `CardContent` component.

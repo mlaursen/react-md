@@ -53,7 +53,7 @@ export interface ConfigurableInputToggleIconProps {
    * Any props that should be passed to the `<span>` that surrounds the current
    * icon element.
    */
-  iconProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+  iconProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
 
   /**
    * Optional style to set on the `<span>` that surrounds the current icon
@@ -101,10 +101,7 @@ export interface InputToggleLabelProps {
    * }}
    * ```
    */
-  labelProps?: PropsWithRef<
-    LabelHTMLAttributes<HTMLLabelElement>,
-    HTMLLabelElement
-  >;
+  labelProps?: PropsWithRef<LabelHTMLAttributes<HTMLLabelElement>>;
 
   /**
    * @see {@link LabelClassNameOptions.gap}

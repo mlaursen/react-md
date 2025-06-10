@@ -15,7 +15,7 @@ describe("List", () => {
     expect(ref.current).toBe(unorderedList);
     expect(unorderedList).toMatchSnapshot();
 
-    const props: PropsWithRef<ListProps, ListElement> = {
+    const props: PropsWithRef<ListProps> = {
       ref,
       style: {
         maxWidth: 30,

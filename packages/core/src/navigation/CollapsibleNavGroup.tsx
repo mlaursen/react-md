@@ -25,8 +25,8 @@ const noop = (): void => {
 export interface CollapsibleNavGroupProps
   extends NavGroupProps,
     NavItemButtonRotatorProps {
-  liProps?: PropsWithRef<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>;
-  buttonProps?: PropsWithRef<ButtonProps, HTMLButtonElement>;
+  liProps?: PropsWithRef<LiHTMLAttributes<HTMLLIElement>>;
+  buttonProps?: PropsWithRef<ButtonProps>;
   collapseOptions?: Omit<
     CollapseTransitionHookOptions<HTMLUListElement>,
     "nodeRef" | "className" | "transitionIn"

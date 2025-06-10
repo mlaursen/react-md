@@ -160,7 +160,7 @@ export interface ListItemChildrenTextProps {
    *
    * @since 6.0.0
    */
-  textProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+  textProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
 
   /**
    * An optional className to apply to the `<span>` that surrounds the
@@ -206,10 +206,7 @@ export interface ListItemChildrenTextProps {
    *
    * @since 6.0.0
    */
-  secondaryTextProps?: PropsWithRef<
-    HTMLAttributes<HTMLSpanElement>,
-    HTMLSpanElement
-  >;
+  secondaryTextProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
 
   /**
    * Set this to `true` to allow the {@link secondaryText} to span multiple

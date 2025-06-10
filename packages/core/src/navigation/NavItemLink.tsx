@@ -36,7 +36,7 @@ export interface NavItemLinkProps
    * Any additional props to provide the wrapping `<li>` element such as
    * `style`, `className`, and `ref`.
    */
-  liProps?: PropsWithRef<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>;
+  liProps?: PropsWithRef<LiHTMLAttributes<HTMLLIElement>>;
 
   /**
    * Set this to `true` if the link matches the current `pathname`. This will

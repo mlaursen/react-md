@@ -104,7 +104,7 @@ export interface ConfigurableToastProps
    * Any additional props that should be provided to the `<div>` that surrounds
    * the toast `children`.
    */
-  contentProps?: PropsWithRef<ToastContentProps, HTMLDivElement>;
+  contentProps?: PropsWithRef<ToastContentProps>;
 
   /**
    * Set this to `true` if the `children` for the toast should no longer be

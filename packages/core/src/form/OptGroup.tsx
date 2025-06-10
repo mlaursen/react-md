@@ -26,10 +26,7 @@ export interface OptGroupProps extends Omit<ListProps, "role"> {
    * This can be used to apply any additional props to the `ListSubheader` that
    * describes the group of options.
    */
-  labelProps?: PropsWithRef<
-    Omit<ListSubheaderProps, "role" | "children">,
-    HTMLLIElement
-  >;
+  labelProps?: PropsWithRef<Omit<ListSubheaderProps, "role" | "children">>;
 
   /**
    * This should be any `Option`s to display within the group.

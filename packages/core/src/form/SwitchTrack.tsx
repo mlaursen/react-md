@@ -12,7 +12,7 @@ export interface SwitchTrackProps extends HTMLAttributes<HTMLDivElement> {
   active?: boolean;
   disabled?: boolean;
   ballAddon?: ReactNode;
-  ballProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+  ballProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
   ballStyle?: CSSProperties;
   ballClassName?: string;
 }

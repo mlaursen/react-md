@@ -15,7 +15,7 @@ export interface FormMessageContainerProps
    * component, these props are optional. It kind of eliminates the whole
    * purpose of this component though.
    */
-  messageProps?: PropsWithRef<FormMessageProps, HTMLDivElement>;
+  messageProps?: PropsWithRef<FormMessageProps>;
 }
 
 /**

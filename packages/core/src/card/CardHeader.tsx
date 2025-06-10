@@ -27,7 +27,7 @@ export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
    * Any props to pass to the `<div>` that surrounds the `children`. This is
    * generally used to apply custom `style` or `className`.
    */
-  contentProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+  contentProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>>;
 }
 
 /**

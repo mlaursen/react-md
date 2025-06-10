@@ -8,10 +8,7 @@ import { listItemText } from "./listItemStyles.js";
  */
 export interface ListItemTextProps extends HTMLAttributes<HTMLSpanElement> {
   secondaryText?: ReactNode;
-  secondaryTextProps?: PropsWithRef<
-    HTMLAttributes<HTMLSpanElement>,
-    HTMLSpanElement
-  >;
+  secondaryTextProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
 
   /** @defaultValue `false` */
   secondaryTextClamped?: boolean;

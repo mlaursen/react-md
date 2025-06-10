@@ -35,12 +35,12 @@ export interface SwitchProps
     InputToggleLabelProps,
     FormMessageContainerExtension,
     FormComponentStates {
-  containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
-  trackProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+  containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>>;
+  trackProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>>;
   trackStyle?: CSSProperties;
   trackClassName?: string;
   ballAddon?: ReactNode;
-  ballProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+  ballProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
   ballStyle?: CSSProperties;
   ballClassName?: string;
 }

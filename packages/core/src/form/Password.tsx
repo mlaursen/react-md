@@ -126,7 +126,7 @@ export interface PasswordProps
    * `id`, `buttonType`, `aria-label`, `aria-pressed`, or `children` are
    * provided here, they will override the default implementation.
    */
-  visibilityProps?: PropsWithRef<ButtonProps, HTMLButtonElement>;
+  visibilityProps?: PropsWithRef<ButtonProps>;
 }
 
 /**

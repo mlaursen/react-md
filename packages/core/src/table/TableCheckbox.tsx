@@ -73,7 +73,7 @@ export interface TableCheckboxProps
    * @see {@link TableCheckboxSupportedCheckboxProps}
    * @since 6.0.0
    */
-  checkboxProps?: PropsWithRef<CheckboxProps, HTMLInputElement>;
+  checkboxProps?: PropsWithRef<CheckboxProps>;
 }
 
 /**

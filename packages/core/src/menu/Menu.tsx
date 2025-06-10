@@ -12,7 +12,7 @@ import {
 import { type FloatingActionButtonPosition } from "../button/FloatingActionButton.js";
 import { useFocusContainer } from "../focus/useFocusContainer.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
-import { type ListElement, type ListProps } from "../list/List.js";
+import { type ListProps } from "../list/List.js";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { type GetDefaultFocusedIndex } from "../movement/types.js";
 import { Portal } from "../portal/Portal.js";
@@ -149,7 +149,7 @@ export interface MenuListConvenienceProps {
    * Any additional props to pass to the `List` component that surrounds the
    * `Menu`'s `MenuItem`s.
    */
-  listProps?: PropsWithRef<Omit<ListProps, "horizontal">, ListElement>;
+  listProps?: PropsWithRef<Omit<ListProps, "horizontal">>;
 }
 
 /**
@@ -186,8 +186,7 @@ export interface MenuConvenienceProps extends MenuConfigurationProps {
       | "visible"
       | "onRequestClose"
       | "getDefaultFocusedIndex"
-    >,
-    HTMLDivElement
+    >
   >;
 
   /**

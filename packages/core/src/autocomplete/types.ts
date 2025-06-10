@@ -702,10 +702,7 @@ export interface AutocompleteBaseProps<Option extends AutocompleteOption>
   /**
    * Any additional props that should be passed to the `Listbox` component.
    */
-  listboxProps?: PropsWithRef<
-    ConfigurableAutocompleteListboxProps,
-    HTMLDivElement
-  >;
+  listboxProps?: PropsWithRef<ConfigurableAutocompleteListboxProps>;
 
   /**
    * This can be used to add any custom styling, change the icon, change the
@@ -746,10 +743,7 @@ export interface AutocompleteBaseProps<Option extends AutocompleteOption>
   /**
    * This will do nothing if {@link disableClearButton} is `true`.
    */
-  clearButtonProps?: PropsWithRef<
-    ConfigurableAutocompleteClearButtonProps,
-    HTMLButtonElement
-  >;
+  clearButtonProps?: PropsWithRef<ConfigurableAutocompleteClearButtonProps>;
 
   /**
    * Set to `true` to hide the clear button that appears when hovering an

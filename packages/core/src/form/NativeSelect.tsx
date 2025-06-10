@@ -62,7 +62,7 @@ export interface NativeSelectProps
    * There probably isn't any real use for this prop other than if you need to
    * add a `ref` for some DOM behavior.
    */
-  containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+  containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>>;
 }
 
 /**

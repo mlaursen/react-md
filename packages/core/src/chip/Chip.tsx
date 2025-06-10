@@ -147,7 +147,7 @@ export interface ChipProps
    *
    * @since 6.0.0
    */
-  contentProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+  contentProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
 
   /**
    * This will be ignored if {@link disableContentWrap} is `true`.

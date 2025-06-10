@@ -29,7 +29,7 @@ export interface LayoutAppBarProps extends AppBarProps {
   /**
    * Any additional props to pass to the {@link SkipToMainContent} component.
    */
-  skipProps?: PropsWithRef<SkipToMainContentProps, HTMLAnchorElement>;
+  skipProps?: PropsWithRef<SkipToMainContentProps>;
 }
 
 /**

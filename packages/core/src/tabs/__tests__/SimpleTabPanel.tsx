@@ -9,7 +9,7 @@ import { SimpleTabPanel, type SimpleTabPanelProps } from "../SimpleTabPanel.js";
 describe("SimpleTabPanel", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLDivElement>();
-    const props: PropsWithRef<SimpleTabPanelProps, HTMLDivElement> = {
+    const props: PropsWithRef<SimpleTabPanelProps> = {
       "aria-labelledby": "fake-tab-id",
       active: false,
       id: "fake-tab-panel-id",

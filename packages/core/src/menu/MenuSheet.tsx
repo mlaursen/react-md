@@ -43,7 +43,7 @@ export interface MenuSheetConvenienceProps {
    * />
    * ```
    */
-  sheetProps?: PropsWithRef<MenuSheetConfigurableProps, HTMLDivElement>;
+  sheetProps?: PropsWithRef<MenuSheetConfigurableProps>;
 
   /**
    * Convenience prop to apply custom style to the `Sheet` component when the

@@ -156,10 +156,7 @@ export interface BaseDialogProps
    * Any additional props that should be passed to the container element when
    * the `type !== "custom"`.
    */
-  containerProps?: PropsWithRef<
-    ConfigurableDialogContainerProps,
-    HTMLDivElement
-  >;
+  containerProps?: PropsWithRef<ConfigurableDialogContainerProps>;
 
   /**
    * @see {@link DEFAULT_DIALOG_TIMEOUT}

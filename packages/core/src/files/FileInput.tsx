@@ -42,10 +42,7 @@ export interface FileInputProps
    * most props get passed to the `<input type="file">`. So this would be useful
    * for inline style or click handlers.
    */
-  labelProps?: PropsWithRef<
-    LabelHTMLAttributes<HTMLLabelElement>,
-    HTMLLabelElement
-  >;
+  labelProps?: PropsWithRef<LabelHTMLAttributes<HTMLLabelElement>>;
 
   /**
    * An optional icon to display for the file input.

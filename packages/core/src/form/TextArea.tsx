@@ -92,17 +92,14 @@ export interface TextAreaProps
    *
    * This will only be applied when {@link resize} is set to `"auto"`.
    */
-  resizeContainerProps?: PropsWithRef<
-    HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  >;
+  resizeContainerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>>;
 
   /**
    * Optional props to provide to the {@link TextFieldContainer} component.
    * There probably isn't any real use for this prop other than if you need to
    * add a `ref` for some DOM behavior.
    */
-  containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+  containerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>>;
 }
 
 /**

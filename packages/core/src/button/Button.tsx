@@ -30,7 +30,7 @@ export interface ButtonProps
    * Any additional props to provide the to `FAB` container element when the
    * `floating` prop is provided
    */
-  floatingProps?: PropsWithRef<FloatingActionButtonProps, HTMLSpanElement>;
+  floatingProps?: PropsWithRef<FloatingActionButtonProps>;
 }
 
 /**

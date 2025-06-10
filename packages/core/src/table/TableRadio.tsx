@@ -68,7 +68,7 @@ export interface TableRadioProps
    * @see {@link TableRadioSupportedRadioProps}
    * @since 6.0.0
    */
-  radioProps?: PropsWithRef<RadioProps, HTMLInputElement>;
+  radioProps?: PropsWithRef<RadioProps>;
 }
 
 /**

@@ -108,10 +108,10 @@ export type MenuItemRadioProps = BaseMenuItemInputToggleProps;
  * @since 6.0.0 Added additional props for styling the track and ball.
  */
 export interface MenuItemSwitchProps extends BaseMenuItemInputToggleProps {
-  trackProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+  trackProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>>;
   trackStyle?: CSSProperties;
   trackClassName?: string;
-  ballProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+  ballProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
   ballStyle?: CSSProperties;
   ballClassName?: string;
 }

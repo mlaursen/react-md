@@ -22,7 +22,7 @@ export interface RootHtmlProps extends HtmlHTMLAttributes<HTMLHtmlElement> {
    * `ref` if that is required for some reason. Using a `ref` would make your
    * root layout a client component though.
    */
-  bodyProps?: PropsWithRef<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>;
+  bodyProps?: PropsWithRef<HTMLAttributes<HTMLBodyElement>>;
 
   /**
    * Convenience prop to replace `bodyProps={{ className: "custom-class-name" }}`.

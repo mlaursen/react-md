@@ -48,12 +48,12 @@ export interface TreeItemProps
    * element. The top-level props are passed to the `<span>` or `<a>` element
    * instead.
    */
-  liProps?: PropsWithRef<HTMLAttributes<HTMLLIElement>, HTMLLIElement>;
+  liProps?: PropsWithRef<HTMLAttributes<HTMLLIElement>>;
 
   /**
    * Any additional props to pass to the `TreeGroup` component.
    */
-  groupProps?: PropsWithRef<OverridableTreeGroupProps, HTMLUListElement>;
+  groupProps?: PropsWithRef<OverridableTreeGroupProps>;
 
   /**
    * This should normally be the text/content to display within the tree item

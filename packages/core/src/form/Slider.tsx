@@ -90,7 +90,7 @@ export interface BaseSliderProps
    * This can be used to apply custom styles or a `ref` to the track element if
    * needed.
    */
-  trackProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+  trackProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
 
   /**
    * This can be used to configure any additional tooltip props like the

@@ -16,7 +16,7 @@ import {
 describe("ResponsiveItemOverlay", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLSpanElement>();
-    const props: PropsWithRef<ResponsiveItemOverlayProps, HTMLSpanElement> = {
+    const props: PropsWithRef<ResponsiveItemOverlayProps> = {
       ref,
       children: (
         <Typography type="headline-5" margin="none">

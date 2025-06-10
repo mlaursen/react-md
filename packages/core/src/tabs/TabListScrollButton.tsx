@@ -31,7 +31,7 @@ import {
 export interface BaseTabListScrollButtonProps
   extends HTMLAttributes<HTMLDivElement>,
     ButtonClassNameThemeOptions {
-  buttonProps?: PropsWithRef<ButtonProps, HTMLButtonElement>;
+  buttonProps?: PropsWithRef<ButtonProps>;
 
   /** @defaultValue `false` */
   disableTransition?: boolean;

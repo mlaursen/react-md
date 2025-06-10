@@ -141,7 +141,7 @@ export interface SelectProps<Value extends string>
   /**
    * Optional props to pass to the `<span>` that surrounds the {@link label}
    */
-  labelProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+  labelProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
 
   /**
    * An optional ref to pass to the hidden `<input type="text" />` element that
@@ -170,8 +170,7 @@ export interface SelectProps<Value extends string>
    * - `width="min"`
    */
   menuProps?: PropsWithRef<
-    Omit<MenuProps, "visible" | "onRequestClose" | "fixedTo">,
-    HTMLDivElement
+    Omit<MenuProps, "visible" | "onRequestClose" | "fixedTo">
   >;
 
   /**

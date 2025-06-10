@@ -119,10 +119,7 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
    *
    * @since 6.0.0
    */
-  contentProps?: PropsWithRef<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  >;
+  contentProps?: PropsWithRef<ButtonHTMLAttributes<HTMLButtonElement>>;
 
   /**
    * Any additional props to pass to the `IconRotator` when the `aria-sort` prop

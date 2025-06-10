@@ -45,7 +45,7 @@ export interface ListSubheaderProps
   /**
    * @since 6.0.0
    */
-  textProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+  textProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
 }
 
 /**

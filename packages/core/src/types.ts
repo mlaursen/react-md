@@ -1,12 +1,25 @@
-import type { Dispatch, ReactElement, Ref, SetStateAction } from "react";
+import {
+  type Dispatch,
+  type HTMLAttributes,
+  type ReactElement,
+  type Ref,
+  type SetStateAction,
+} from "react";
 
 /**
  * A helper type that allows an optional `ref` to also be applied with a props
  * object even though a `ref` isn't a real prop.
+ *
+ * @since 6.2.0 Automatically infer the `Element` type param from the provided
+ * props.
  */
 export type PropsWithRef<
   Props extends object,
-  Element extends HTMLElement,
+  Element extends HTMLElement = Props extends HTMLAttributes<infer E>
+    ? E extends HTMLElement
+      ? E
+      : never
+    : never,
 > = Props & {
   /**
    * An optional ref that can be applied.

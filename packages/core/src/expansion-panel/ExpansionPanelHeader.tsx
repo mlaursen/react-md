@@ -47,7 +47,7 @@ export interface ExpansionPanelHeaderProps
    * Any additional props to provide to the heading element that wraps the
    * expansion panel button.
    */
-  headingProps?: PropsWithRef<TypographyProps, HTMLHeadingElement>;
+  headingProps?: PropsWithRef<TypographyProps>;
   iconRotatorProps?: Omit<IconRotatorProps, "rotated" | "disableTransition">;
 
   /**

@@ -335,8 +335,7 @@ export interface FormMessageContainerExtension {
    * purpose of this component though.
    */
   messageProps?: PropsWithRef<
-    FormMessageProps & Partial<FormMessageInputLengthCounterProps>,
-    HTMLDivElement
+    FormMessageProps & Partial<FormMessageInputLengthCounterProps>
   >;
 
   /**
@@ -346,10 +345,7 @@ export interface FormMessageContainerExtension {
    * Note: This will not be used if the `messageProps` are not provided since
    * only the `children` will be returned without the container.
    */
-  messageContainerProps?: PropsWithRef<
-    HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  >;
+  messageContainerProps?: PropsWithRef<HTMLAttributes<HTMLDivElement>>;
 }
 
 /** @since 6.0.0 */
@@ -507,10 +503,7 @@ export interface TextFieldContainerOptions
    *
    * @since 6.0.0
    */
-  leftAddonProps?: PropsWithRef<
-    ConfigurableTextFieldAddonProps,
-    HTMLSpanElement
-  >;
+  leftAddonProps?: PropsWithRef<ConfigurableTextFieldAddonProps>;
 
   /**
    * @see {@link TextFieldAddonProps.disabled}
@@ -530,10 +523,7 @@ export interface TextFieldContainerOptions
    *
    * @since 6.0.0
    */
-  rightAddonProps?: PropsWithRef<
-    ConfigurableTextFieldAddonProps,
-    HTMLSpanElement
-  >;
+  rightAddonProps?: PropsWithRef<ConfigurableTextFieldAddonProps>;
 
   /**
    * @see {@link TextFieldAddonProps.disabled}
@@ -569,7 +559,7 @@ export interface FormFieldOptions
    * }}
    * ```
    */
-  labelProps?: PropsWithRef<LabelProps, HTMLLabelElement>;
+  labelProps?: PropsWithRef<LabelProps>;
 
   /**
    * A convenience prop to apply a custom style to a label. This is equivalent

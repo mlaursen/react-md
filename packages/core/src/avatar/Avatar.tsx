@@ -77,7 +77,7 @@ export interface AvatarProps
    *
    * @since 2.2.0
    */
-  imgProps?: PropsWithRef<AvatarImgAttributes, HTMLImageElement>;
+  imgProps?: PropsWithRef<AvatarImgAttributes>;
 }
 
 /**

@@ -122,13 +122,13 @@ export interface AsyncButtonProps extends ButtonProps {
    * Any additional props to pass to the `CircularProgress` bar when the
    * {@link loadingType} is one of the circular types.
    */
-  linearProgressProps?: PropsWithRef<LinearProgressProps, HTMLDivElement>;
+  linearProgressProps?: PropsWithRef<LinearProgressProps>;
 
   /**
    * Any additional props to pass to the `LinearProgress` bar when the
    * {@link loadingType} is one of the linear types.
    */
-  circularProgressProps?: PropsWithRef<CircularProgressProps, HTMLSpanElement>;
+  circularProgressProps?: PropsWithRef<CircularProgressProps>;
 }
 
 /**

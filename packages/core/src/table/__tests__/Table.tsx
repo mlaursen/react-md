@@ -15,7 +15,7 @@ import { TableRow } from "../TableRow.js";
 describe("Table", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLTableElement>();
-    const props: PropsWithRef<TableProps, HTMLTableElement> = {
+    const props: PropsWithRef<TableProps> = {
       ref,
       children: (
         <>

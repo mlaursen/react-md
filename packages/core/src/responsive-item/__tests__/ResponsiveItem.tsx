@@ -8,7 +8,7 @@ import { ResponsiveItem, type ResponsiveItemProps } from "../ResponsiveItem.js";
 describe("ResponsiveItem", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLSpanElement>();
-    const props: PropsWithRef<ResponsiveItemProps, HTMLSpanElement> = {
+    const props: PropsWithRef<ResponsiveItemProps> = {
       ref,
       children: <img alt="" src="/some-image.png" />,
     };
