@@ -10,5 +10,10 @@ const frontend = strict
 
 export default config(
   gitignore(join(import.meta.url, "..", "..")),
-  ...frontend
+  ...frontend,
+  {
+    rules: {
+      "react/prop-types": "off",
+    },
+  }
 );
