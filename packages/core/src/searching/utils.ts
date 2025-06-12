@@ -4,17 +4,28 @@ import { type BaseSearchOptions } from "./types.js";
 
 /**
  * @since 6.0.0
+ * @since 6.2.0 Added support for `item.name` and `item.label`.
  * @internal
  */
 export const defaultExtractor =
-  (name: string) =>
+  (usageName: string, propName = "extractor") =>
   (item: unknown): string => {
     if (typeof item === "string") {
       return item;
     }
 
+    if (item && typeof item === "object") {
+      if ("label" in item && typeof item.label === "string") {
+        return item.label;
+      }
+
+      if ("name" in item && typeof item.name === "string") {
+        return item.name;
+      }
+    }
+
     throw new Error(
-      `A \`TextExtractor\` must be provided to \`${name}\` for lists that do not contain strings`
+      `\`${usageName}\` requires the \`${propName}\` prop for lists that do not contain strings or known object types.`
     );
   };
 

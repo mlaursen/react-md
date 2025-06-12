@@ -1,6 +1,12 @@
-import { type TextExtractor } from "../types.js";
+import { type AutomaticTextExtraction, type TextExtractor } from "../types.js";
 import { type BaseSearchOptions } from "./types.js";
 import { defaultExtractor, search } from "./utils.js";
+
+/**
+ * @since 6.2.0
+ * @internal
+ */
+const DEFAULT_EXTRACTOR = defaultExtractor("caseInsensitiveSearch");
 
 /**
  * @since 6.0.0
@@ -142,18 +148,34 @@ export interface CaseInsensitiveOptions<T>
  * caseInsensitiveSearch({
  *   list: fruits,
  *   query: "ap",
- *   extractor: (item) => item.name,
  * });
  * // [{ name: "Apple", value: 0 }, { name: "Grape", value: 2 }]
  * ```
  *
+ * @example Objects With Custom Names
+ * ```ts
+ * const fruits = [
+ *   { nameField: "Apple", value: 0 },
+ *   { nameField: "Banana", value: 1 },
+ *   { nameField: "Grape", value: 2 },
+ *   { nameField: "Orange", value: 3 },
+ * ];
+ *
+ * caseInsensitiveSearch({
+ *   list: fruits,
+ *   query: "ap",
+ *   extractor: (item) => item.nameField,
+ * });
+ * // [{ nameField: "Apple", value: 0 }, { nameField: "Grape", value: 2 }]
+ * ```
+ *
  * @since 6.0.0
  */
-export function caseInsensitiveSearch<T extends string>(
-  options: Omit<CaseInsensitiveOptions<T>, "extractor"> & { type?: "filter" }
+export function caseInsensitiveSearch<T extends AutomaticTextExtraction>(
+  options: CaseInsensitiveOptions<T> & { type?: "filter" }
 ): readonly T[];
-export function caseInsensitiveSearch<T extends string>(
-  options: Omit<CaseInsensitiveOptions<T>, "extractor"> & { type: "search" }
+export function caseInsensitiveSearch<T extends AutomaticTextExtraction>(
+  options: CaseInsensitiveOptions<T> & { type: "search" }
 ): T | undefined;
 export function caseInsensitiveSearch<T>(
   options: CaseInsensitiveOptions<T> & {
@@ -174,7 +196,7 @@ export function caseInsensitiveSearch<T>(
     list,
     type = "filter",
     query,
-    extractor = defaultExtractor("caseInsensitiveSearch"),
+    extractor = DEFAULT_EXTRACTOR,
     startsWith,
     whitespace,
   } = options;

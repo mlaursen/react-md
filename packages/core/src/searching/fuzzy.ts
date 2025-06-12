@@ -1,6 +1,12 @@
-import { type TextExtractor } from "../types.js";
+import { type AutomaticTextExtraction, type TextExtractor } from "../types.js";
 import { type BaseSearchOptions } from "./types.js";
 import { defaultExtractor, search } from "./utils.js";
+
+/**
+ * @since 6.2.0
+ * @internal
+ */
+const DEFAULT_EXTRACTOR = defaultExtractor("fuzzySearch");
 
 /**
  * @example
@@ -126,11 +132,11 @@ export type FuzzySearchOptions<T> = BaseSearchOptions<T>;
  *
  * @since 6.0.0
  */
-export function fuzzySearch<T extends string>(
-  options: Omit<FuzzySearchOptions<T>, "extractor"> & { type?: "filter" }
+export function fuzzySearch<T extends AutomaticTextExtraction>(
+  options: FuzzySearchOptions<T> & { type?: "filter" }
 ): readonly T[];
-export function fuzzySearch<T extends string>(
-  options: Omit<FuzzySearchOptions<T>, "extractor"> & { type?: "search" }
+export function fuzzySearch<T extends AutomaticTextExtraction>(
+  options: FuzzySearchOptions<T> & { type?: "search" }
 ): T | undefined;
 export function fuzzySearch<T>(
   option: FuzzySearchOptions<T> & {
@@ -151,7 +157,7 @@ export function fuzzySearch<T>(
     list,
     type = "filter",
     query,
-    extractor = defaultExtractor("fuzzySearch"),
+    extractor = DEFAULT_EXTRACTOR,
     whitespace,
   } = options;
 

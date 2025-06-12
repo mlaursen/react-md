@@ -9,20 +9,13 @@ import {
 
 /**
  * @since 6.0.0
+ * @since 6.2.0 Added support for `item.name` and provide better error messaging.
  * @internal
  */
-export const defaultAutocompleteExtractor = (item: unknown): string => {
-  if (
-    item &&
-    typeof item === "object" &&
-    "label" in item &&
-    typeof item.label === "string"
-  ) {
-    return item.label;
-  }
-
-  return defaultExtractor("Autocomplete")(item);
-};
+export const defaultAutocompleteExtractor = defaultExtractor(
+  "Autocomplete",
+  "getOptionLabel"
+);
 
 /**
  * @since 6.0.0

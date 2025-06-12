@@ -31,6 +31,7 @@ import { type CircularProgressProps } from "../progress/CircularProgress.js";
 import { type ProgressTheme } from "../progress/types.js";
 import { type BaseSearchOptions } from "../searching/types.js";
 import {
+  type AutomaticTextExtraction,
   type PropsWithRef,
   type TextExtractor,
   type UseStateInitializer,
@@ -43,15 +44,17 @@ import {
  *
  * - `"some value"` -&gt; `"some value"`
  * - `{ label: "Hello, world", value: 300 }` -&gt; `"Hello, world!"`
+ * - `{ name: "Hello, world", value: 300 }` -&gt; `"Hello, world!"`
  *
  * @since 6.0.0
+ * @deprecated @since 6.2.0 Use `AutomaticTextExtraction` instead.
  */
-export type AutocompleteLabeledOption = string | { label: string };
+export type AutocompleteLabeledOption = AutomaticTextExtraction;
 
 /**
  * @since 6.0.0
  */
-export type AutocompleteOption = AutocompleteLabeledOption | object;
+export type AutocompleteOption = AutomaticTextExtraction | object;
 
 /**
  * @since 6.0.0
@@ -268,13 +271,13 @@ export interface AutocompleteUnknownQueryAndValueOptions<
 
 /**
  * A utility type that makes the `getOptionLabel` required when an option is not
- * a {@link AutocompleteLabeledOption}.
+ * a {@link AutomaticTextExtraction}.
  *
  * @since 6.0.0
  */
 export type AutocompleteOptionLabelExtractor<
   Option extends AutocompleteOption,
-> = Option extends AutocompleteLabeledOption
+> = Option extends AutomaticTextExtraction
   ? AutocompleteGetOptionLabel<Option>
   : Required<AutocompleteGetOptionLabel<Option>>;
 

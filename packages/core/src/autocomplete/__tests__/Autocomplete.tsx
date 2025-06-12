@@ -23,6 +23,8 @@ import {
 } from "../defaults.js";
 import { type AutocompleteProps } from "../types.js";
 
+const ERROR_MESSAGE =
+  "`Autocomplete` requires the `getOptionLabel` prop for lists that do not contain strings or known object types.";
 const FRUITS = [
   "Apple",
   "Apricot",
@@ -480,6 +482,57 @@ describe("Autocomplete", () => {
     expect(autocomplete).toHaveValue("A new fruit");
   });
 
+  it("should not require the getOptionLabel prop for options that the label can be inferred", async () => {
+    const error = jest.spyOn(console, "error").mockImplementation(() => {});
+    const BASE_PROPS = {
+      label: "Autocomplete",
+      listboxLabel: "Autocomplete",
+    } satisfies Partial<AutocompleteProps<any>>;
+    expect(() => {
+      const { unmount } = rmdRender(
+        <Autocomplete {...BASE_PROPS} options={["a", "b", "c"]} />
+      );
+      unmount();
+    }).not.toThrow();
+    expect(() => {
+      const { unmount } = rmdRender(
+        <Autocomplete
+          {...BASE_PROPS}
+          options={[{ label: "a" }, { label: "b" }, { label: "c" }]}
+          defaultQuery="a"
+        />
+      );
+      unmount();
+    }).not.toThrow();
+    expect(() => {
+      const { unmount } = rmdRender(
+        <Autocomplete
+          {...BASE_PROPS}
+          options={[{ name: "a" }, { name: "b" }, { name: "c" }]}
+          defaultQuery="a"
+        />
+      );
+      unmount();
+    }).not.toThrow();
+
+    expect(() => {
+      const { unmount } = rmdRender(
+        // @ts-expect-error Invalid options type
+        <Autocomplete
+          {...BASE_PROPS}
+          options={[
+            { first_name: "a" },
+            { first_name: "b" },
+            { first_name: "c" },
+          ]}
+          defaultQuery="a"
+        />
+      );
+      unmount();
+    }).toThrow();
+    error.mockRestore();
+  });
+
   describe("keyboard support", () => {
     it("should allow the listbox to be closed with the escape key while visible or clear out the textbox", async () => {
       const user = userEvent.setup();
@@ -675,7 +728,6 @@ describe("Autocomplete", () => {
     it("should require the extractor for when the options are not a list of strings or a list of objects with a label", async () => {
       const user = userEvent.setup();
       const error = jest.spyOn(console, "error").mockImplementation(() => {});
-      const errorMessage = `A \`TextExtractor\` must be provided to \`Autocomplete\` for lists that do not contain strings`;
       const { rerender } = rmdRender(
         // @ts-expect-error
         <Autocomplete listboxLabel="Options" options={[0, 1, 2, 3]} />
@@ -683,7 +735,7 @@ describe("Autocomplete", () => {
 
       await expect(
         user.click(screen.getByRole("button", { name: "Options" }))
-      ).rejects.toThrow(errorMessage);
+      ).rejects.toThrow(ERROR_MESSAGE);
 
       rerender(
         // @ts-expect-error
@@ -694,7 +746,7 @@ describe("Autocomplete", () => {
       );
       await expect(
         user.click(screen.getByRole("button", { name: "Options" }))
-      ).rejects.toThrow(errorMessage);
+      ).rejects.toThrow(ERROR_MESSAGE);
       rerender(
         <Autocomplete
           listboxLabel="Options"
@@ -704,7 +756,7 @@ describe("Autocomplete", () => {
       );
       await expect(
         user.click(screen.getByRole("button", { name: "Options" }))
-      ).rejects.toThrow(errorMessage);
+      ).rejects.toThrow(ERROR_MESSAGE);
 
       error.mockRestore();
     });

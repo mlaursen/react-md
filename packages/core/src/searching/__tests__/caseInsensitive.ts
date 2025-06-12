@@ -113,27 +113,30 @@ describe("caseInsensitiveSearch", () => {
     ).toEqual(["Apple"]);
   });
 
-  it("should throw an error if an extractor is not provided for a non-string list", () => {
+  it("should throw an error if an extractor is not provided for a non-string or known object list", () => {
     expect(() =>
       // @ts-expect-error
       caseInsensitiveSearch({ query: "q", list: [0, 1, 2] })
     ).toThrow(
-      "A `TextExtractor` must be provided to `caseInsensitiveSearch` for lists that do not contain strings"
+      "`caseInsensitiveSearch` requires the `extractor` prop for lists that do not contain strings or known object types."
     );
 
     expect(() =>
       // @ts-expect-error
       caseInsensitiveSearch({ query: "q", list: [null, undefined] })
     ).toThrow(
-      "A `TextExtractor` must be provided to `caseInsensitiveSearch` for lists that do not contain strings"
+      "`caseInsensitiveSearch` requires the `extractor` prop for lists that do not contain strings or known object types."
     );
 
     expect(() =>
-      // @ts-expect-error
       caseInsensitiveSearch({ query: "q", list: [{ name: "Qwerty" }] })
-    ).toThrow(
-      "A `TextExtractor` must be provided to `caseInsensitiveSearch` for lists that do not contain strings"
-    );
+    ).not.toThrow();
+    expect(() =>
+      caseInsensitiveSearch({
+        query: "q",
+        list: [{ name: "Qwerty" }, { label: "Another" }, "Hello!"],
+      })
+    ).not.toThrow();
   });
 
   it("should find the first match when the type is set to search", () => {

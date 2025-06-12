@@ -1,5 +1,11 @@
 import { defaultExtractor } from "../searching/utils.js";
-import { type TextExtractor } from "../types.js";
+import { type AutomaticTextExtraction, type TextExtractor } from "../types.js";
+
+/**
+ * @since 6.2.0
+ * @internal
+ */
+const DEFAULT_EXTRACTOR = defaultExtractor("alphaNumericSort");
 
 /** @since 6.0.0 */
 export const DEFAULT_COLLATOR_OPTIONS = {
@@ -26,13 +32,13 @@ export interface AlphaNumericSortOptions<T> {
    * @example Simple Example
    * ```ts
    * interface Item {
-   *   name: string;
+   *   nameField: string;
    * }
    *
-   * const items: Item[] = [{ name: 'Hello' }, { name: 'World' }];
+   * const items: Item[] = [{ nameField: 'Hello' }, { nameField: 'World' }];
    *
    * alphaNumericSort(items, {
-   *   extractor: (item) => item.name,
+   *   extractor: (item) => item.nameField,
    * });
    * ```
    *
@@ -87,23 +93,23 @@ export interface AlphaNumericSortOptions<T> {
  * @param list - The list of strings to sort
  * @returns a new sorted list
  */
-export function alphaNumericSort<T extends string>(
+export function alphaNumericSort<T extends AutomaticTextExtraction>(
   list: readonly T[],
-  options?: Omit<AlphaNumericSortOptions<T>, "extractor">
+  options?: AlphaNumericSortOptions<T>
 ): readonly T[];
 /**
  * @example Simple Example
  * ```ts
  * interface Item {
- *   name: string;
+ *   nameField: string;
  * }
  *
- * const items: Item[] = [{ name: "World" }, { name: "Hello" }];
+ * const items: Item[] = [{ nameField: "World" }, { nameField: "Hello" }];
  *
  * const sorted = alphaNumericSort(items, {
- *   extractor: (item) => item.name,
+ *   extractor: (item) => item.nameField,
  * });
- * // sorted == [{ name: "Hello" }, { name: "World" }]
+ * // sorted == [{ nameField: "Hello" }, { nameField: "World" }]
  * ```
  *
  * @param list - The list of items to sort
@@ -119,7 +125,7 @@ export function alphaNumericSort<T>(
 ): readonly T[] {
   const {
     compare = DEFAULT_COLLATOR.compare,
-    extractor = defaultExtractor("alphaNumericSort"),
+    extractor = DEFAULT_EXTRACTOR,
     descending = false,
   } = options;
 

@@ -11,10 +11,10 @@ describe("alphaNumericSort", () => {
     expect(list).toEqual(["a", "f", "d"]);
   });
 
-  it("should require an extractor if the provided list is not a list of strings", () => {
+  it("should require an extractor if the provided list is not a list of strings or known object types", () => {
     // @ts-expect-error
     expect(() => alphaNumericSort(["a", 2])).toThrow(
-      `A \`TextExtractor\` must be provided to \`alphaNumericSort\` for lists that do not contain strings`
+      "`alphaNumericSort` requires the `extractor` prop for lists that do not contain strings or known object types."
     );
 
     expect(

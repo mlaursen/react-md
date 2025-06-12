@@ -118,6 +118,18 @@ export type HtmlTagName = keyof JSX.IntrinsicElements;
 export type TextExtractor<T> = (item: T) => string;
 
 /**
+ * - `"some value"` -&gt; `"some value"`
+ * - `{ label: "Hello, world", value: 300 }` -&gt; `"Hello, world!"`
+ * - `{ name: "Hello, world", value: 300 }` -&gt; `"Hello, world!"`
+ *
+ * @since 6.2.0
+ */
+export type AutomaticTextExtraction =
+  | string
+  | { label: string }
+  | { name: string };
+
+/**
  * @since 6.0.0
  * @internal
  */
