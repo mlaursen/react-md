@@ -45,13 +45,13 @@
     "@types/lodash": "^4.17.17",
     "@types/node": "^22.15.29",
     "@types/react": "^18.3.12",
-    "eslint": "^9.28.0",
-    "glob": "^11.0.2",
+    "eslint": "^9.29.0",
+    "glob": "^11.0.3",
     "lodash": "^4.17.21",
     "prettier": "^3.5.3",
     "pretty-ms": "^9.2.0",
     "svgo": "^3.3.2",
-    "tsx": "^4.19.4",
+    "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {

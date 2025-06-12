@@ -49,11 +49,11 @@
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.5.0",
-    "eslint": "^9.28.0",
+    "eslint": "^9.29.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.0",
     "prettier": "^3.5.3",
-    "tsx": "^4.19.4",
+    "tsx": "^4.20.3",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3"
   },
