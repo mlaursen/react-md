@@ -16,7 +16,6 @@ export default function MultipleValuesExample(): ReactElement {
         setValue={setValue}
         listboxLabel="Desserts"
         options={desserts}
-        getOptionLabel={(dessert) => dessert.name}
       />
     </>
   );

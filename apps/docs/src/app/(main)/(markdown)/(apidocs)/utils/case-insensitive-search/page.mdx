@@ -48,9 +48,9 @@ caseInsensitiveSearch({
 // undefined
 ```
 
-### Non-string lists
+### Object Lists
 
-When the provided `list` is not a list of strings, a text `extractor` must also be provided:
+The `list` will automatically be able to extract strings from objects with a `name` or `label` property.
 
 ```ts disableTransform
 const fruits = [
@@ -63,7 +63,6 @@ const fruits = [
 caseInsensitiveSearch({
   list: fruits,
   query: "ap",
-  extractor: (item) => item.name,
 });
 // [{ name: "Apple", value: 0 }, { name: "Grape", value: 2 }]
 
@@ -71,9 +70,37 @@ caseInsensitiveSearch({
   list: fruits,
   query: "ap",
   type: "search",
-  extractor: (item) => item.name,
 });
 // { name: "Apple", value: 0 }
+```
+
+### Non-known lists
+
+When the provided `list` is not a list of strings or known object types, a text
+`extractor` must also be provided:
+
+```ts disableTransform
+const fruits = [
+  { fieldName: "Apple", value: 0 },
+  { fieldName: "Banana", value: 1 },
+  { fieldName: "Grape", value: 2 },
+  { fieldName: "Orange", value: 3 },
+];
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "ap",
+  extractor: (item) => item.fieldName,
+});
+// [{ fieldName: "Apple", value: 0 }, { fieldName: "Grape", value: 2 }]
+
+caseInsensitiveSearch({
+  list: fruits,
+  query: "ap",
+  type: "search",
+  extractor: (item) => item.fieldName,
+});
+// { fieldName: "Apple", value: 0 }
 ```
 
 ### Handling Whitespace

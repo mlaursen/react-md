@@ -42,7 +42,6 @@ export default function FilterSelectedExample(): ReactElement {
         setValue={setValue}
         listboxLabel="Desserts"
         options={desserts}
-        getOptionLabel={(dessert) => dessert.name}
         filterSelected
         disableInlineChips
       />

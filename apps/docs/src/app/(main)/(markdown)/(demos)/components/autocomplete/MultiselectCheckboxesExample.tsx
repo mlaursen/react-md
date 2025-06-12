@@ -17,7 +17,6 @@ export default function MultiselectCheckboxesExample(): ReactElement {
         listboxLabel="Desserts"
         checkboxes
         options={desserts}
-        getOptionLabel={(dessert) => dessert.name}
       />
     </>
   );

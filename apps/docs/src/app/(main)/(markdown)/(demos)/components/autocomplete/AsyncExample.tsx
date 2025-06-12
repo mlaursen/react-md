@@ -1,7 +1,6 @@
 "use client";
 
 import { Autocomplete } from "@react-md/core/autocomplete/Autocomplete";
-import { type TextExtractor } from "@react-md/core/types";
 import { useUnmounted } from "@react-md/core/useUnmounted";
 import { wait } from "@react-md/core/utils/wait";
 import { type ReactElement, useState } from "react";
@@ -12,8 +11,6 @@ interface AsyncState {
   loading: boolean;
   options: readonly State[];
 }
-
-const extractor: TextExtractor<State> = (state) => state.name;
 
 export default function AsyncExample(): ReactElement {
   const [{ loading, options }, setState] = useState<AsyncState>({
@@ -27,7 +24,6 @@ export default function AsyncExample(): ReactElement {
       label="State"
       options={options}
       listboxLabel="States"
-      getOptionLabel={extractor}
       loading={loading}
       onOpen={async () => {
         setState({ loading: true, options: [] });

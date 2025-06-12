@@ -26,9 +26,9 @@ filtering, matching, etc as well.
 ## Simple Example
 
 An `Autocomplete` requires a list of options which can be strings or an object
-with a `label` string so that the options can be filtered as the user types. In
-addition, a `listboxLabel` or `listboxLabelledby` prop must be defined for
-accessibility to provide a label for the listbox.
+with a `label` or `name` string so that the options can be filtered as the user
+types. In addition, a `listboxLabel` or `listboxLabelledby` prop must be
+defined for accessibility to provide a label for the listbox.
 
 ```demo source="./SimpleExample.tsx"
 
@@ -376,8 +376,8 @@ with most of the same behavior. Here's a breakdown of how this was created:
 The `Autocomplete` option is defined as:
 
 ```ts disableTransform
-type AutocompleteLabeledOption = string | { label: string };
-type AutocompleteOption = AutocompleteLabeledOption | {};
+type AutomaticTextExtraction = string | { label: string } | { name: string };
+type AutocompleteOption = AutomaticTextExtraction | object;
 ```
 
 Each option should extend this type and will automatically be inferred for
@@ -403,7 +403,6 @@ const options = [
 <Autocomplete
   {...props}
   options={options}
-  getOptionLabel={(option) => option.name}
 />;
 
 // ✅ Inferred as `State`
@@ -418,7 +417,6 @@ const options: readonly State[] = [
 <Autocomplete
   {...props}
   options={options}
-  getOptionLabel={(state) => state.name}
 />;
 ```
 
@@ -427,14 +425,14 @@ defined with `as const`:
 
 ```tsx disableTransform
 const options = [
-  { name: "Virginia", abbreviation: "VA" },
-  { name: "Whyoming", abbreviation: "WY" },
+  { fullName: "Virginia", abbreviation: "VA" },
+  { fullName: "Whyoming", abbreviation: "WY" },
 ] as const;
 <Autocomplete
   {...props}
   options={options}
   // ❌ Parameter 'state' implicity has an `any` type.
-  getOptionLabel={(state) => state.name}
+  getOptionLabel={(state) => state.fullName}
 />;
 ```
 
@@ -442,8 +440,8 @@ The type issue can be resolved by one of the following:
 
 ```tsx disableTransform
 const options = [
-  { name: "Virginia", abbreviation: "VA" },
-  { name: "Whyoming", abbreviation: "WY" },
+  { fullName: "Virginia", abbreviation: "VA" },
+  { fullName: "Whyoming", abbreviation: "WY" },
 ] as const;
 
 type State = (typeof options)[number];
@@ -453,7 +451,7 @@ type State = (typeof options)[number];
   {...props}
   // ✅ `state` and `options` are set to the `State` type
   options={options}
-  getOptionLabel={(state: State) => state.name}
+  getOptionLabel={(state: State) => state.fullName}
 />;
 
 // 2. Provide the type definition as the `Autocomplete` type parameter
@@ -461,46 +459,7 @@ type State = (typeof options)[number];
   {...props}
   // ✅ `state` and `options` are set to the `State` type
   options={options}
-  getOptionLabel={(state) => state.name}
-/>;
-
-// 3. Cast the options to a new list:
-<Autocomplete
-  {...props}
-  // ✅ `state` and `options` are set to the `State` type
-  options={options as State[]}
-  getOptionLabel={(state) => state.name}
-/>;
-
-// 4. Redefine the list:
-const states: readonly State[] = options;
-<Autocomplete
-  {...props}
-  // ✅ `state` and `options` are set to the `State` type
-  options={states}
-  getOptionLabel={(state) => state.name}
-/>;
-
-// 5. Provide a `defaultValue`
-const defaultValue: State | null = null
-
-<Autocomplete
-  {...props}
-  defaultValue={defaultValue}
-  // ✅ `state` and `options` are set to the `State` type
-  options={options}
-  getOptionLabel={(state) => state.name}
-/>;
-
-// 6. Control the value:
-const [value, setValue] = useState<State | null>(null);
-<Autocomplete
-  {...props}
-  value={value}
-  setValue={setValue}
-  // ✅ `state` and `options` are set to the `State` type
-  options={options}
-  getOptionLabel={(state) => state.name}
+  getOptionLabel={(state) => state.fullName}
 />;
 ```
 

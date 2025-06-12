@@ -31,7 +31,6 @@ export default function CustomFilterFunctionExample(): ReactElement {
       label="State"
       options={states}
       listboxLabel="States"
-      getOptionLabel={(state) => state.name}
       filter={filter}
     />
   );

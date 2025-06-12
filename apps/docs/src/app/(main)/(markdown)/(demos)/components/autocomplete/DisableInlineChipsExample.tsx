@@ -42,7 +42,6 @@ export default function DisableInlineChipsExample(): ReactElement {
         setValue={setValue}
         listboxLabel="Desserts"
         options={desserts}
-        getOptionLabel={(dessert) => dessert.name}
         disableInlineChips
       />
     </>

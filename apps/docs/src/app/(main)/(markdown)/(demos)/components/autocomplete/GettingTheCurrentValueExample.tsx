@@ -12,7 +12,6 @@ export default function GettingTheCurrentValueExample(): ReactElement {
     <Autocomplete
       label="State"
       options={states}
-      getOptionLabel={(state) => state.name}
       defaultValue={defaultValue}
       listboxLabel="States"
       onValueChange={(value) => {

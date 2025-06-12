@@ -32,20 +32,20 @@ const sorted = alphaNumericSort(items);
 
 ### Non-string lists
 
-If the provided `list` is not a list of strings, an `extractor` option must
-also be provided to get the search text for each item.
+If the provided `list` is not a list of strings or a known object type, an
+`extractor` option must also be provided to get the search text for each item.
 
 ```ts disableTransform
 interface Item {
-  name: string;
+  nameField: string;
 }
 
-const items: Item[] = [{ name: "World" }, { name: "Hello" }];
+const items: Item[] = [{ nameField: "World" }, { nameField: "Hello" }];
 
 const sorted = alphaNumericSort(items, {
-  extractor: (item) => item.name,
+  extractor: (item) => item.nameField,
 });
-// sorted == [{ name: "Hello" }, { name: "World" }]
+// sorted == [{ nameField: "Hello" }, { nameField: "World" }]
 ```
 
 ### Descending order

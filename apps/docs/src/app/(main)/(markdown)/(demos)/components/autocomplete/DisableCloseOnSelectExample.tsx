@@ -16,7 +16,6 @@ export default function DisableCloseOnSelectExample(): ReactElement {
         setValue={setValue}
         listboxLabel="Desserts"
         options={desserts}
-        getOptionLabel={(dessert) => dessert.name}
         disableCloseOnSelect
       />
     </>

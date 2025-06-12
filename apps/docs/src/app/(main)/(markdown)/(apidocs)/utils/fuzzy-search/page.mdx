@@ -92,36 +92,36 @@ fuzzySearch({
 
 ### Non-string lists
 
-If the provided `list` is not a list of strings, an `extractor` option must
-also be provided to get the search text for each item.
+If the provided `list` is not a list of strings or a known object type, an
+`extractor` option must also be provided to get the search text for each item.
 
 ```ts disableTransform
 interface Item {
-  name: string;
+  nameField: string;
 }
 
-const items: Item[] = [{ name: "Hello" }, { name: "World" }];
+const items: Item[] = [{ nameField: "Hello" }, { nameField: "World" }];
 
 fuzzySearch({
   list,
   query: "el",
-  extractor: (item) => item.name,
+  extractor: (item) => item.nameField,
 });
-// [{ name: "Hello" }]
-//            ^^
+// [{ nameField: "Hello" }]
+//                 ^^
 
 fuzzySearch({
   list,
   query: "od",
-  extractor: (item) => item.name,
+  extractor: (item) => item.nameField,
 });
-// { name: "World" }
-//           ^  ^
+// { nameField: "World" }
+//                ^  ^
 
 fuzzySearch({
   list,
   query: "aa",
-  extractor: (item) => item.name,
+  extractor: (item) => item.nameField,
 });
 // undefined
 ```

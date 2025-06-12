@@ -17,7 +17,6 @@ export default function DisabledOptionsExample(): ReactElement {
       // getOptionProps={({ index, option }) => ({
       //   disabled: option.disabled || index % 4 === 0 || option.type === "Other",
       // })}
-      getOptionLabel={(dessert) => dessert.name}
       listboxLabel="Desserts"
     />
   );

@@ -6,7 +6,7 @@ import { Button } from "@react-md/core/button/Button";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement, useState } from "react";
 
-import { type State, states } from "@/constants/states.js";
+import { states } from "@/constants/states.js";
 
 export default function ControllingTheInputValueExample(): ReactElement {
   const [query, setQuery] = useState("");
@@ -19,7 +19,6 @@ export default function ControllingTheInputValueExample(): ReactElement {
         setQuery={setQuery}
         options={states}
         listboxLabel="States"
-        getOptionLabel={(state: State) => state.name}
       />
       <Button
         onClick={() => {

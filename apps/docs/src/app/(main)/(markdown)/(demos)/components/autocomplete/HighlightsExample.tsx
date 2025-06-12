@@ -14,7 +14,6 @@ export default function HighlightsExample(): ReactElement {
       placeholder="Apple"
       listboxLabel="Fruits"
       options={desserts}
-      getOptionLabel={(dessert) => dessert.name}
       filter={(options) => caseInsensitiveSearch(options)}
       getOptionProps={(options) => {
         const { option, query } = options;

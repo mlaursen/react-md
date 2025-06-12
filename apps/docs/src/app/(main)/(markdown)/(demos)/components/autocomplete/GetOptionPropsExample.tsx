@@ -19,7 +19,6 @@ export default function GetOptionPropsExample(): ReactElement {
         ),
         leftAddon: <Avatar size="icon">{option.type.charAt(0)}</Avatar>,
       })}
-      getOptionLabel={(dessert) => dessert.name}
       listboxLabel="Desserts"
     />
   );

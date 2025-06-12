@@ -11,7 +11,6 @@ export default function SettingADefaultValueExample(): ReactElement {
     <Autocomplete
       label="State"
       options={states}
-      getOptionLabel={(state) => state.name}
       defaultValue={defaultValue}
       listboxLabel="States"
     />

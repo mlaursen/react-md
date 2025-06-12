@@ -18,7 +18,6 @@ export default function CustomizingInlineChipsExample(): ReactElement {
         defaultValue={[desserts[0], desserts[1], desserts[4]]}
         listboxLabel="Desserts"
         options={desserts}
-        getOptionLabel={(dessert) => dessert.name}
         getOptionProps={({ option }) => {
           return {
             disabled: isDisabled(option),

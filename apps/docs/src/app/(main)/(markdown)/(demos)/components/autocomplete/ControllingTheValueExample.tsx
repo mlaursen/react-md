@@ -18,7 +18,6 @@ export default function ControllingTheValueExample(): ReactElement {
         setValue={setValue}
         options={states}
         listboxLabel="States"
-        getOptionLabel={(state) => state.name}
       />
       <Typography>Value: {`"${value?.name || null}"`}</Typography>
     </Box>

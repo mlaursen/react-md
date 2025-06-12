@@ -126,7 +126,6 @@ export default function GithubLabelPickerExample(): ReactElement {
           }}
           className={styles.autocomplete}
           listboxLabel="Labels"
-          getOptionLabel={(label) => label.name}
           disableInlineChips
           disableCloseOnSelect
           disableClearButton
