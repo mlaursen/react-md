@@ -226,3 +226,15 @@ export interface ElementSize {
   height: number;
   width: number;
 }
+
+/**
+ * @since 6.2.0
+ */
+export type OverridableStringUnion<
+  Defaults extends string,
+  Overrides extends Partial<Record<string, boolean>>,
+> =
+  | Exclude<Defaults, { [K in keyof Overrides]: K }[keyof Overrides]>
+  | {
+      [K in keyof Overrides]: Overrides[K] extends false ? never : K;
+    }[keyof Overrides];

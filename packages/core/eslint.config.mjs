@@ -14,6 +14,14 @@ export default config(
   {
     rules: {
       "react/prop-types": "off",
+      "@typescript-eslint/no-empty-object-type": [
+        "error",
+        {
+          allowInterfaces: "never",
+          allowObjectTypes: "never",
+          allowWithName: ".+Overrides$",
+        },
+      ],
     },
   }
 );

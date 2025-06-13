@@ -28,7 +28,7 @@ describe("Avatar", () => {
     );
     expect(avatar).toMatchSnapshot();
 
-    rerender(<Avatar {...props} color="primary" />);
+    rerender(<Avatar {...props} color="purple" />);
     expect(avatar).toMatchSnapshot();
   });
 

@@ -20,7 +20,7 @@ exports[`Avatar should apply the correct styling, HTML attributes, and allow a r
 exports[`Avatar should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <span
   aria-hidden="true"
-  class="rmd-avatar rmd-avatar--primary"
+  class="rmd-avatar rmd-avatar--purple"
   data-testid="avatar"
   style=""
 />

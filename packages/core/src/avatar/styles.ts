@@ -1,9 +1,61 @@
 import { cnb } from "cnbuilder";
 
 import { type ThemeColor, cssUtils } from "../cssUtils.js";
+import { type OverridableStringUnion } from "../types.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-avatar");
+
+/**
+ * @since 6.2.0
+ */
+export interface AvatarColorOverrides {}
+
+/**
+ * @since 6.2.0
+ */
+export type DefaultAvatarColors =
+  | "red"
+  | "pink"
+  | "purple"
+  | "deep-purple"
+  | "indigo"
+  | "blue"
+  | "light-blue"
+  | "cyan"
+  | "teal"
+  | "green"
+  | "light-green"
+  | "lime"
+  | "yellow"
+  | "amber"
+  | "orange"
+  | "deep-orange"
+  | "brown"
+  | "grey"
+  | "blue-grey";
+
+/**
+ * The avatar available colors can be configured using module augmentation:
+ *
+ * ```ts
+ * declare module "@react-md/core/avatar/styles" {
+ *   interface AvatarColorOverrides {
+ *     "light-blue": false;
+ *     brandColor: true;
+ *   }
+ * }
+ * ```
+ *
+ * This would remove the support for the `light-blue` color and enable
+ * `brandColor`.
+ *
+ * @since 6.2.0
+ */
+export type AvatarColor = OverridableStringUnion<
+  DefaultAvatarColors,
+  AvatarColorOverrides
+>;
 
 /** @since 6.0.0 */
 export interface AvatarClassNameOptions {
@@ -19,7 +71,7 @@ export interface AvatarClassNameOptions {
    * @see {@link theme}
    * @defaultValue `""`
    */
-  color?: string;
+  color?: AvatarColor;
 
   /**
    * @defaultValue `"avatar"`

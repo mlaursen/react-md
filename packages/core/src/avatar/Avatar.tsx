@@ -108,7 +108,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
       src,
       alt = "",
       size = "avatar",
-      color = "",
+      color,
       theme,
       imgProps,
       referrerPolicy,
