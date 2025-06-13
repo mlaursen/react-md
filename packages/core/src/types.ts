@@ -238,3 +238,8 @@ export type OverridableStringUnion<
   | {
       [K in keyof Overrides]: Overrides[K] extends false ? never : K;
     }[keyof Overrides];
+
+/**
+ * @since 6.2.0
+ */
+export type IsEmptyObject<T> = keyof T extends never ? true : false;

@@ -2,6 +2,7 @@ import { cnb } from "cnbuilder";
 import { type CSSProperties } from "react";
 
 import { type DefinedCSSVariableName } from "../theme/types.js";
+import { type IsEmptyObject, type OverridableStringUnion } from "../types.js";
 import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-box");
@@ -23,25 +24,28 @@ declare module "react" {
   }
 }
 
-/**
- * @since 6.0.0
- */
-export type BoxAlignItems =
-  | "start"
-  | "flex-start"
-  | "center"
-  | "end"
-  | "flex-end"
-  | "stretch";
+/** @since 6.2.0 */
+export interface BoxAlignItemsOverrides {}
+/** @since 6.2.0 */
+export interface BoxJustifyContentOverrides {}
+/** @since 6.2.0 */
+export interface BoxGridNameOverrides {}
 
 /**
  * @since 6.0.0
  */
-export type BoxJustifyContent =
-  | BoxAlignItems
-  | "space-around"
-  | "space-between"
-  | "space-evenly";
+export type BoxAlignItems = OverridableStringUnion<
+  "start" | "flex-start" | "center" | "end" | "flex-end" | "stretch",
+  BoxAlignItemsOverrides
+>;
+
+/**
+ * @since 6.0.0
+ */
+export type BoxJustifyContent = OverridableStringUnion<
+  BoxAlignItems | "space-around" | "space-between" | "space-evenly",
+  BoxJustifyContentOverrides
+>;
 
 /**
  * @since 6.0.0
@@ -52,6 +56,14 @@ export type BoxFlexDirection = "row" | "column";
  * @since 6.0.0
  */
 export type BoxGridColumns = "fit" | "fill" | number;
+
+/**
+ * @since 6.2.0
+ */
+export type BoxGridName =
+  IsEmptyObject<BoxGridNameOverrides> extends true
+    ? string
+    : OverridableStringUnion<never, BoxGridNameOverrides>;
 
 /**
  * @since 6.0.0
@@ -132,11 +144,20 @@ export interface BoxOptions {
    * );
    * ```
    *
+   * ```ts
+   * declare module "@react-md/core/box/styles" {
+   *   interface BoxGridNameOverrides {
+   *     small: true;
+   *     medium: true;
+   *   }
+   * }
+   * ```
+   *
    * The `gridName` should be `"small" | "medium"`.
    *
    * @defaultValue `""`
    */
-  gridName?: string;
+  gridName?: BoxGridName;
 
   /**
    * The default behavior for a grid is to automatically determine the number
