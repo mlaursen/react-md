@@ -1,5 +1,26 @@
 # react-md
 
+## 6.2.0
+
+### Minor Changes
+
+- # Features
+
+  - All hooks, components, and utils that required a `TextExtractor` now support `item.name` and `item.label` by default
+    - `Autocomplete`
+    - `alphaNumericSort`
+    - `fuzzySearch`
+    - `caseInsensitiveSearch`
+  - The `Avatar` `color` can now be type-safe with module augmentation and the new `AvatarColorOverrides` interface
+  - The `Box` `gridName` can now be type-safe with module augmentation and the new `BoxGridNameOverrides` interface
+  - Added missing `circularProgress` and `linearProgress` class name utility functions
+  - (internal): Updated the `PropsWithRef` utility type to automatically infer the element type
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-md/core@6.2.0
+
 ## 6.1.0
 
 ### Minor Changes
