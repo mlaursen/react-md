@@ -1,4 +1,3 @@
-import { cnb } from "cnbuilder";
 import {
   type CSSProperties,
   type HTMLAttributes,
@@ -6,11 +5,10 @@ import {
   useMemo,
 } from "react";
 
-import { cssUtils } from "../cssUtils.js";
-import { type LabelRequiredForA11y } from "../types.js";
+import { type LabelRequiredForA11y, type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { bem } from "../utils/bem.js";
 import { getPercentage } from "../utils/getPercentage.js";
+import { linearProgress, linearProgressBar } from "./linearProgressStyles.js";
 import { type ProgressProps } from "./types.js";
 
 /**
@@ -30,6 +28,11 @@ export interface LinearProgressProps
    * An optional className to apply to the progress bar.
    */
   barClassName?: string;
+
+  /**
+   * @since 6.1.0
+   */
+  barProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
 
   /**
    * Boolean if the progress should be reversed. This will change the progress
@@ -60,8 +63,6 @@ export interface LinearProgressProps
    */
   verticalHeight?: number | null;
 }
-
-const styles = bem("rmd-linear-progress");
 
 /**
  * @example Indeterminate Example
@@ -101,13 +102,14 @@ export const LinearProgress = forwardRef<
     className,
     barStyle: propBarStyle,
     barClassName,
+    barProps,
     min = 0,
     max = 100,
     value,
-    reverse = false,
-    theme = "primary",
-    disableTransition = false,
-    vertical = false,
+    reverse,
+    theme,
+    disableTransition,
+    vertical,
     verticalHeight = 240,
     ...remaining
   } = props;
@@ -140,8 +142,7 @@ export const LinearProgress = forwardRef<
     };
   }, [progress, propBarStyle, vertical]);
 
-  const determinate = typeof progress === "number";
-  const indeterminate = !determinate;
+  const indeterminate = typeof progress !== "number";
   return (
     <span
       {...remaining}
@@ -152,37 +153,23 @@ export const LinearProgress = forwardRef<
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={value}
-      className={cnb(
-        styles({
-          vertical,
-          horizontal: !vertical,
-          determinate,
-          indeterminate,
-        }),
-        theme !== "current-color" && cssUtils({ textColor: theme }),
-        className
-      )}
+      className={linearProgress({
+        className,
+        theme,
+        vertical,
+        indeterminate,
+      })}
     >
       <span
+        {...barProps}
         style={barStyle}
-        className={cnb(
-          styles("bar", {
-            vertical,
-            "vertical-reverse": vertical && reverse,
-            horizontal: !vertical,
-            "horizontal-reverse": !vertical && reverse,
-            animate: !disableTransition && determinate,
-            determinate,
-            indeterminate,
-            "determinate-reverse": determinate && reverse && !vertical,
-            "determinate-vertical-reverse": determinate && reverse && vertical,
-            "indeterminate-reverse": indeterminate && reverse && !vertical,
-            "indeterminate-vertical": indeterminate && vertical,
-            "indeterminate-vertical-reverse":
-              indeterminate && reverse && vertical,
-          }),
-          barClassName
-        )}
+        className={linearProgressBar({
+          className: barClassName,
+          reverse,
+          vertical,
+          indeterminate,
+          disableTransition,
+        })}
       />
     </span>
   );

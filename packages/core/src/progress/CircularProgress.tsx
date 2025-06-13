@@ -1,4 +1,3 @@
-import { cnb } from "cnbuilder";
 import {
   type CSSProperties,
   type HTMLAttributes,
@@ -6,11 +5,15 @@ import {
   useMemo,
 } from "react";
 
-import { cssUtils } from "../cssUtils.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { bem } from "../utils/bem.js";
 import { getPercentage } from "../utils/getPercentage.js";
+import {
+  type CircularProgressClassNameOptions,
+  circularProgress,
+  circularProgressCircle,
+  circularProgressSvg,
+} from "./circularProgressStyles.js";
 import { type ProgressProps } from "./types.js";
 
 /**
@@ -22,7 +25,8 @@ import { type ProgressProps } from "./types.js";
  */
 export interface CircularProgressProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, "id">,
-    ProgressProps {
+    ProgressProps,
+    CircularProgressClassNameOptions {
   /**
    * An optional style to apply to the svg within the circular progress. The
    * values of this style object will be merged with the current determinate
@@ -85,24 +89,6 @@ export interface CircularProgressProps
   dashoffset?: number;
 
   /**
-   * Boolean if the circular progress should be centered using left and right
-   * margins.
-   *
-   * @defaultValue `false`
-   * @since 6.0.0 Renamed from `centered`
-   */
-  disableCentered?: boolean;
-
-  /**
-   * Set to `true` to render as a smaller size.
-   *
-   * @defaultValue `false`
-   * @since 2.3.0
-   * @since 6.0.0 Renamed from `small`
-   */
-  dense?: boolean;
-
-  /**
    * Set this to `true` to update the indeterminate behavior to only rotate
    * which will increase performance during CPU-intensive tasks or when many
    * loading spinners are displayed at once on the page.
@@ -112,8 +98,6 @@ export interface CircularProgressProps
    */
   disableShrink?: boolean;
 }
-
-const styles = bem("rmd-circular-progress");
 
 /**
  * @example Indeterminate Example
@@ -160,12 +144,12 @@ export const CircularProgress = forwardRef<
     radius = 30,
     center = 33,
     viewBox = "0 0 66 66",
-    theme = "primary",
-    dense = false,
+    theme,
+    dense,
     dashoffset = 187,
-    disableShrink = false,
-    disableCentered = false,
-    disableTransition = false,
+    disableShrink,
+    disableCentered,
+    disableTransition,
     ...remaining
   } = props;
 
@@ -186,8 +170,7 @@ export const CircularProgress = forwardRef<
     };
   }, [progress, propCircleStyle, dashoffset]);
 
-  const determinate = typeof progress === "number";
-  const indeterminate = !determinate;
+  const indeterminate = typeof progress !== "number";
   return (
     <span
       {...remaining}
@@ -197,35 +180,30 @@ export const CircularProgress = forwardRef<
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={value}
-      className={cnb(
-        styles({ dense, centered: !disableCentered }),
-        theme !== "current-color" && cssUtils({ textColor: theme }),
-        className
-      )}
+      className={circularProgress({
+        theme,
+        dense,
+        disableCentered,
+        className,
+      })}
     >
       <svg
         style={svgStyle}
-        className={cnb(
-          styles("svg", {
-            determinate,
-            indeterminate: indeterminate && !disableShrink,
-            "rotate-only": indeterminate && disableShrink,
-          }),
-          svgClassName
-        )}
+        className={circularProgressSvg({
+          className: svgClassName,
+          indeterminate,
+          disableShrink,
+        })}
         viewBox={viewBox}
       >
         <circle
           style={circleStyle}
-          className={cnb(
-            styles("circle", {
-              animate: !disableTransition && determinate,
-              determinate,
-              indeterminate: indeterminate && !disableShrink,
-              "rotate-only": indeterminate && disableShrink,
-            }),
-            circleClassName
-          )}
+          className={circularProgressCircle({
+            className: circleClassName,
+            indeterminate,
+            disableShrink,
+            disableTransition,
+          })}
           r={radius}
           cx={center}
           cy={center}
