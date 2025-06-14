@@ -1,0 +1,523 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NativeSelect should allow for addons before and after the input 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-left rmd-text-field-container--outline-right rmd-native-select-container"
+  data-testid="container"
+>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--before rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+      data-testid="favorite"
+    >
+      favorite
+    </span>
+  </span>
+  <select
+    class="rmd-native-select rmd-native-select--icon"
+    id="select-:r9:"
+  >
+    <option
+      value="a"
+    >
+      First
+    </option>
+  </select>
+  <label
+    class="rmd-label rmd-label--floating"
+    for="select-:r9:"
+  >
+    Field
+  </label>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+      data-testid="close"
+    >
+      close
+    </span>
+  </span>
+</div>
+`;
+
+exports[`NativeSelect should allow for multiselect behavior 1`] = `
+<select
+  class="rmd-native-select rmd-native-select--icon"
+  id="select-:rc:"
+  multiple=""
+  name="choice"
+  required=""
+>
+  <option
+    disabled=""
+    hidden=""
+    value=""
+  />
+  <option>
+    Option 1
+  </option>
+  <option>
+    Option 2
+  </option>
+  <option>
+    Option 3
+  </option>
+  <option>
+    Option 4
+  </option>
+</select>
+`;
+
+exports[`NativeSelect should allow for multiselect behavior 2`] = `
+<select
+  class="rmd-native-select rmd-native-select--icon"
+  id="select-:rc:"
+  multiple=""
+  name="choice"
+  required=""
+>
+  <option
+    disabled=""
+    hidden=""
+    value=""
+  />
+  <option>
+    Option 1
+  </option>
+  <option>
+    Option 2
+  </option>
+  <option>
+    Option 3
+  </option>
+  <option>
+    Option 4
+  </option>
+</select>
+`;
+
+exports[`NativeSelect should allow the active state to be controlled programmatically instead of with css only by using the active prop 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--outline-right rmd-native-select-container"
+  data-testid="container"
+>
+  <select
+    class="rmd-native-select rmd-native-select--icon"
+    id="select-:r4:"
+  >
+    <option
+      value="a"
+    >
+      First
+    </option>
+  </select>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      arrow_drop_down
+    </span>
+  </span>
+</div>
+`;
+
+exports[`NativeSelect should allow the active state to be controlled programmatically instead of with css only by using the active prop 2`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--outline-active rmd-text-field-container--outline-right rmd-native-select-container"
+  data-testid="container"
+>
+  <select
+    class="rmd-native-select rmd-native-select--icon"
+    id="select-:r4:"
+  >
+    <option
+      value="a"
+    >
+      First
+    </option>
+  </select>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      arrow_drop_down
+    </span>
+  </span>
+</div>
+`;
+
+exports[`NativeSelect should allow the active state to be controlled programmatically instead of with css only by using the active prop 3`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-native-select-container"
+  data-testid="container"
+>
+  <select
+    class="rmd-native-select rmd-native-select--icon"
+    id="select-:r4:"
+  >
+    <option
+      value="a"
+    >
+      First
+    </option>
+  </select>
+  <label
+    class="rmd-label rmd-label--floating"
+    for="select-:r4:"
+  >
+    Label
+  </label>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      arrow_drop_down
+    </span>
+  </span>
+</div>
+`;
+
+exports[`NativeSelect should allow the active state to be controlled programmatically instead of with css only by using the active prop 4`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--label rmd-text-field-container--outline-active rmd-text-field-container--outline-right rmd-native-select-container"
+  data-testid="container"
+>
+  <select
+    class="rmd-native-select rmd-native-select--icon"
+    id="select-:r4:"
+  >
+    <option
+      value="a"
+    >
+      First
+    </option>
+  </select>
+  <label
+    class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active"
+    for="select-:r4:"
+  >
+    Label
+  </label>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      arrow_drop_down
+    </span>
+  </span>
+</div>
+`;
+
+exports[`NativeSelect should allow the label to by styled by labelProps or the labelStyle/labelClassName 1`] = `
+<label
+  class="rmd-label rmd-label--floating label-props-class-name"
+  data-testid="label"
+  for="select-:ra:"
+  style="background: orange;"
+>
+  Label
+</label>
+`;
+
+exports[`NativeSelect should allow the label to by styled by labelProps or the labelStyle/labelClassName 2`] = `
+<label
+  class="rmd-label rmd-label--floating label-class-name"
+  data-testid="label"
+  for="select-:ra:"
+  style="color: red;"
+>
+  Label
+</label>
+`;
+
+exports[`NativeSelect should apply the correct styles, HTMLAttributes, and allow a ref 1`] = `
+<select
+  class="rmd-native-select rmd-native-select--icon"
+  id="select-:r0:"
+>
+  <option
+    value="a"
+  >
+    First
+  </option>
+</select>
+`;
+
+exports[`NativeSelect should apply the correct styles, HTMLAttributes, and allow a ref 2`] = `
+<select
+  class="rmd-native-select rmd-native-select--icon"
+  id="select-:r0:"
+>
+  <option
+    value="a"
+  >
+    First
+  </option>
+</select>
+`;
+
+exports[`NativeSelect should automatically merge the error and theme props when messageProps have been defined 1`] = `
+<div
+  class="rmd-form-message-container"
+  data-testid="message-container"
+>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--filled rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--underline rmd-text-field-container--underline-labelled rmd-text-field-container--underline-left rmd-text-field-container--underline-right-addon rmd-error-color rmd-native-select-container"
+  >
+    <select
+      class="rmd-native-select rmd-native-select--icon"
+      id="select-:r7:"
+    >
+      <option
+        value="a"
+      >
+        First
+      </option>
+    </select>
+    <label
+      class="rmd-label rmd-label--error rmd-label--floating rmd-error-color"
+      for="select-:r7:"
+    >
+      Field
+    </label>
+    <span
+      class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+  </div>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--filled rmd-error-color"
+    id="form-message-:r8:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r8:-message"
+    >
+      Help Text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`NativeSelect should render the FormMessageContainer when the messageProps have been defined 1`] = `
+<div
+  class="rmd-form-message-container"
+  data-testid="message-container"
+>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-native-select-container"
+  >
+    <select
+      class="rmd-native-select rmd-native-select--icon"
+      id="select-:r5:"
+    >
+      <option
+        value="a"
+      >
+        First
+      </option>
+    </select>
+    <label
+      class="rmd-label rmd-label--floating"
+      for="select-:r5:"
+    >
+      Field
+    </label>
+    <span
+      class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+  </div>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+    id="form-message-:r6:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r6:-message"
+    >
+      Help text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`NativeSelect should render the FormMessageContainer when the messageProps have been defined 2`] = `
+<div
+  class="rmd-form-message-container rmd-form-message-container--inline"
+  data-testid="message-container"
+>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-native-select-container"
+  >
+    <select
+      class="rmd-native-select rmd-native-select--icon"
+      id="select-:r5:"
+    >
+      <option
+        value="a"
+      >
+        First
+      </option>
+    </select>
+    <label
+      class="rmd-label rmd-label--floating"
+      for="select-:r5:"
+    >
+      Field
+    </label>
+    <span
+      class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        arrow_drop_down
+      </span>
+    </span>
+  </div>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+    id="form-message-:r6:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r6:-message"
+    >
+      Help text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`NativeSelect should support an error state 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-error rmd-text-field-container--outline-right rmd-error-color rmd-native-select-container"
+  data-testid="container"
+>
+  <select
+    class="rmd-native-select rmd-native-select--icon"
+    id="select-:r3:"
+  >
+    <option
+      value="a"
+    >
+      First
+    </option>
+  </select>
+  <label
+    class="rmd-label rmd-label--error rmd-label--floating rmd-error-color"
+    for="select-:r3:"
+  >
+    Label
+  </label>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      arrow_drop_down
+    </span>
+  </span>
+</div>
+`;
+
+exports[`NativeSelect should support the disabled state 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--disabled rmd-text-field-container--label rmd-text-field-container--outline-right rmd-text-disabled-color rmd-native-select-container"
+  data-testid="container"
+>
+  <select
+    class="rmd-native-select rmd-native-select--icon"
+    disabled=""
+    id="select-:r2:"
+  >
+    <option
+      value="a"
+    >
+      First
+    </option>
+  </select>
+  <label
+    class="rmd-label rmd-label--disabled rmd-label--floating rmd-text-disabled-color"
+    for="select-:r2:"
+  >
+    Label
+  </label>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      arrow_drop_down
+    </span>
+  </span>
+</div>
+`;
+
+exports[`NativeSelect should support the readOnly state 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--disabled rmd-text-field-container--hoverable rmd-text-field-container--outline-right rmd-native-select-container"
+  data-testid="container"
+>
+  <select
+    class="rmd-native-select rmd-native-select--icon"
+    id="select-:r1:"
+    readonly=""
+  >
+    <option
+      value="a"
+    >
+      First
+    </option>
+  </select>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--after rmd-text-field-addon--presentational rmd-box rmd-box--gap rmd-box--wrap"
+  >
+    <span
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      arrow_drop_down
+    </span>
+  </span>
+</div>
+`;
