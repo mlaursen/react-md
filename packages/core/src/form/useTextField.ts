@@ -163,49 +163,22 @@ export interface ProvidedTextFieldMessageProps<
   messageProps: ProvidedFormMessageProps;
 }
 
-/** @since 2.5.6 */
-export interface TextFieldHookOptions<
+/**
+ * @since 6.3.0
+ */
+export interface TextFieldHookComponentOptions<
   E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
-> extends TextFieldValidationOptions,
-    TextFieldChangeHandlers<E> {
+> {
   /**
-   * An optional id to use for the `TextField` or `TextArea` that is also used
-   * to create an id for the inline help/error messages.
+   * An optional id to use for the `TextField`, `Password`, or `TextArea` that
+   * is also used to create an id for the inline help/error messages.
    *
    * @defaultValue `"text-field-" + useId()`
    */
   id?: string;
 
   /**
-   * An optional ref that should be merged with the ref returned by this hook.
-   * This should really only be used if you are making a custom component using
-   * this hook and forwarding refs. If you need a ref to access the `<input>` or
-   * `<textarea>` DOM node, you can use the `fieldRef` returned by this hook
-   * instead.
-   *
-   * @example Accessing TextField DOM Node
-   * ```tsx
-   * import { TextField } from "@react-md/core/form/TextField";
-   * import { useTextField } from "@react-md/core/form/useTextField";
-   * import { useEffect } from "react";
-   * import type { ReactElement } from "react";
-   *
-   * function Example(): ReactElement {
-   *   const { fieldRef, fieldProps } = useTextField({ name: "example" });
-   *
-   *   useEffect(() => {
-   *     fieldRef.current;
-   *     //       ^ HTMLInputElement | null
-   *   }, [fieldRef]);
-   *
-   *   return <TextField {...fieldProps} label="Example" />;
-   * }
-   * ```
-   */
-  ref?: Ref<E>;
-
-  /**
-   * A unique name to attach to the `TextField`, `TextArea` or `Password`
+   * A unique name to attach to the `TextField`, `TextArea`, or `Password`
    * component.
    */
   name: string;
@@ -225,25 +198,6 @@ export interface TextFieldHookOptions<
    * @defaultValue `false`
    */
   counter?: boolean;
-
-  /**
-   * This is used internally for the `useNumberField` hook and probably
-   * shouldn't be used otherwise. This is just passed into the
-   * {@link getErrorMessage} options and is used for additional validation.
-   *
-   * @defaultValue `false`
-   */
-  isNumber?: boolean;
-
-  /**
-   * The default value to use for the `TextField` or `TextArea` one initial
-   * render. If you want to manually change the value to something else after
-   * the initial render, either change the `key` for the component containing
-   * this hook, or use the `setState` function returned from this hook.
-   *
-   * @defaultValue `""`
-   */
-  defaultValue?: UseStateInitializer<string>;
 
   /**
    * An optional help text to display in the `FormMessage` component when there
@@ -329,6 +283,60 @@ export interface TextFieldHookOptions<
    * @defaultValue `"recommended"`
    */
   validationType?: TextFieldValidationType;
+}
+
+/** @since 2.5.6 */
+export interface TextFieldHookOptions<
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
+> extends TextFieldValidationOptions,
+    TextFieldHookComponentOptions<E>,
+    TextFieldChangeHandlers<E> {
+  /**
+   * An optional ref that should be merged with the ref returned by this hook.
+   * This should really only be used if you are making a custom component using
+   * this hook and forwarding refs. If you need a ref to access the `<input>` or
+   * `<textarea>` DOM node, you can use the `fieldRef` returned by this hook
+   * instead.
+   *
+   * @example Accessing TextField DOM Node
+   * ```tsx
+   * import { TextField } from "@react-md/core/form/TextField";
+   * import { useTextField } from "@react-md/core/form/useTextField";
+   * import { useEffect } from "react";
+   * import type { ReactElement } from "react";
+   *
+   * function Example(): ReactElement {
+   *   const { fieldRef, fieldProps } = useTextField({ name: "example" });
+   *
+   *   useEffect(() => {
+   *     fieldRef.current;
+   *     //       ^ HTMLInputElement | null
+   *   }, [fieldRef]);
+   *
+   *   return <TextField {...fieldProps} label="Example" />;
+   * }
+   * ```
+   */
+  ref?: Ref<E>;
+
+  /**
+   * This is used internally for the `useNumberField` hook and probably
+   * shouldn't be used otherwise. This is just passed into the
+   * {@link getErrorMessage} options and is used for additional validation.
+   *
+   * @defaultValue `false`
+   */
+  isNumber?: boolean;
+
+  /**
+   * The default value to use for the `TextField` or `TextArea` one initial
+   * render. If you want to manually change the value to something else after
+   * the initial render, either change the `key` for the component containing
+   * this hook, or use the `setState` function returned from this hook.
+   *
+   * @defaultValue `""`
+   */
+  defaultValue?: UseStateInitializer<string>;
 }
 
 /** @since 6.0.0 */
