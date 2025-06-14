@@ -1,21 +1,15 @@
-import {
-  type Dispatch,
-  type ReactElement,
-  type ReactNode,
-  type Ref,
-  useMemo,
-} from "react";
+"use client";
+
+import { type ReactElement, type ReactNode, type Ref } from "react";
 
 import { Menu, type MenuProps } from "../menu/Menu.js";
 import { type LabelRequiredForA11y } from "../types.js";
-import { ListboxProvider } from "./ListboxProvider.js";
-import { type OptionSelectedIconProps } from "./Option.js";
-
-/**
- * @since 6.0.0
- * @internal
- */
-export type ListboxValue = string | number | null | object;
+import {
+  ListboxProvider,
+  type ListboxProviderOptions,
+  type ListboxValue,
+  useListboxProvider,
+} from "./ListboxProvider.js";
 
 /**
  * @since 6.0.0
@@ -23,11 +17,8 @@ export type ListboxValue = string | number | null | object;
  */
 export interface ListboxProps<Value extends ListboxValue>
   extends MenuProps,
-    OptionSelectedIconProps {
+    ListboxProviderOptions<Value> {
   nodeRef?: Ref<HTMLDivElement>;
-
-  value: Value | readonly NonNullable<ListboxValue>[];
-  setValue: Dispatch<NonNullable<Value>>;
   children: ReactNode;
 }
 
@@ -49,36 +40,17 @@ export function Listbox<T extends ListboxValue>(
     disableSelectedIcon,
     ...remaining
   } = props;
-  const values = useMemo(() => {
-    if (Array.isArray(value)) {
-      return new Set(value);
-    }
-
-    return new Set([value]);
-  }, [value]);
 
   return (
     <ListboxProvider
-      value={useMemo(
-        () => ({
-          selectOption: setValue,
-          isOptionSelected(option) {
-            return values.has(option);
-          },
-          selectedIcon,
-          unselectedIcon,
-          selectedIconAfter,
-          disableSelectedIcon,
-        }),
-        [
-          disableSelectedIcon,
-          selectedIcon,
-          selectedIconAfter,
-          setValue,
-          unselectedIcon,
-          values,
-        ]
-      )}
+      value={useListboxProvider({
+        value,
+        setValue,
+        selectedIcon,
+        selectedIconAfter,
+        disableSelectedIcon,
+        unselectedIcon,
+      })}
     >
       <Menu {...remaining} ref={nodeRef}>
         {children}

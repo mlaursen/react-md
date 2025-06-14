@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import { type Dispatch, createContext, useContext, useMemo } from "react";
 
 import { type OptionSelectedIconProps } from "./Option.js";
 
@@ -36,4 +36,64 @@ export function useListboxContext(): ListboxContext {
   }
 
   return value;
+}
+
+/**
+ * @since 6.0.0
+ * @internal
+ */
+export type ListboxValue = string | number | null | object;
+
+/**
+ * @since 6.3.0
+ */
+export interface ListboxProviderOptions<Value extends ListboxValue>
+  extends OptionSelectedIconProps {
+  value: ListboxValue | readonly NonNullable<ListboxValue>[];
+  setValue: Dispatch<NonNullable<Value>>;
+}
+
+/**
+ * @since 6.3.0
+ */
+export function useListboxProvider<Value extends ListboxValue>(
+  options: ListboxProviderOptions<Value>
+): ListboxContext {
+  const {
+    value,
+    setValue,
+    selectedIconAfter,
+    selectedIcon,
+    unselectedIcon,
+    disableSelectedIcon,
+  } = options;
+
+  const values = useMemo(() => {
+    if (Array.isArray(value)) {
+      return new Set(value);
+    }
+
+    return new Set([value]);
+  }, [value]);
+
+  return useMemo(
+    () => ({
+      selectOption: setValue,
+      isOptionSelected(option) {
+        return values.has(option);
+      },
+      selectedIcon,
+      unselectedIcon,
+      selectedIconAfter,
+      disableSelectedIcon,
+    }),
+    [
+      disableSelectedIcon,
+      selectedIcon,
+      selectedIconAfter,
+      setValue,
+      unselectedIcon,
+      values,
+    ]
+  );
 }
