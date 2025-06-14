@@ -20,6 +20,7 @@ import {
   type FormMessageInputLengthCounterProps,
   type FormMessageProps,
 } from "./types.js";
+import { useFormReset } from "./useFormReset.js";
 import {
   type ErrorMessageOptions,
   type GetErrorIcon,
@@ -41,12 +42,12 @@ const noop = (): void => {
  * @since 6.0.0 Added the `onInvalid` handler
  */
 export type TextFieldChangeHandlers<
-  E extends HTMLInputElement | HTMLTextAreaElement,
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 > = Pick<HTMLAttributes<E>, "onBlur" | "onChange" | "onInvalid">;
 
 /** @since 6.0.0 */
 export interface ErrorChangeHandlerOptions<
-  E extends HTMLInputElement | HTMLTextAreaElement,
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 > {
   /**
    * A ref containing the `TextField` or `TextArea` if you need access to that
@@ -94,7 +95,7 @@ export interface ErrorChangeHandlerOptions<
  * @since 6.0.0 Changed to object argument.
  */
 export type ErrorChangeHandler<
-  E extends HTMLInputElement | HTMLTextAreaElement,
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 > = (options: ErrorChangeHandlerOptions<E>) => void;
 
 /** @since 2.5.6 */
@@ -135,7 +136,7 @@ export interface ProvidedFormMessageProps
  * @since 2.5.0
  */
 export interface ProvidedTextFieldProps<
-  E extends HTMLInputElement | HTMLTextAreaElement,
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 > extends TextFieldValidationOptions,
     TextFieldChangeHandlers<E>,
     Required<Pick<TextFieldProps, "id" | "name" | "value" | "error">>,
@@ -153,7 +154,7 @@ export interface ProvidedTextFieldProps<
  * @since 2.5.0
  */
 export interface ProvidedTextFieldMessageProps<
-  E extends HTMLInputElement | HTMLTextAreaElement,
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 > extends ProvidedTextFieldProps<E> {
   /**
    * These props will be defined as long as the `disableMessage` prop is not
@@ -164,7 +165,7 @@ export interface ProvidedTextFieldMessageProps<
 
 /** @since 2.5.6 */
 export interface TextFieldHookOptions<
-  E extends HTMLInputElement | HTMLTextAreaElement,
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 > extends TextFieldValidationOptions,
     TextFieldChangeHandlers<E> {
   /**
@@ -208,6 +209,11 @@ export interface TextFieldHookOptions<
    * component.
    */
   name: string;
+
+  /**
+   * @since 6.3.0
+   */
+  form?: string;
 
   /**
    * Boolean if the `FormMessage` should also display a counter for the
@@ -290,6 +296,15 @@ export interface TextFieldHookOptions<
   onErrorChange?: ErrorChangeHandler<E>;
 
   /**
+   * Set to `true` to prevent the state from automatically resetting with a
+   * form's `reset` event.
+   *
+   * @defaultValue `false`
+   * @since 6.3.0
+   */
+  disableReset?: boolean;
+
+  /**
    * Set this to `true` to prevent the `errorMessage` from being
    * rendered inline below the `TextField`.
    *
@@ -318,7 +333,7 @@ export interface TextFieldHookOptions<
 
 /** @since 6.0.0 */
 export interface TextFieldImplementation<
-  E extends HTMLInputElement | HTMLTextAreaElement,
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 > extends TextFieldHookState {
   fieldRef: RefObject<E>;
   reset: () => void;
@@ -328,14 +343,14 @@ export interface TextFieldImplementation<
 
 /** @since 6.0.0 */
 export interface TextFieldWithMessageImplementation<
-  E extends HTMLInputElement | HTMLTextAreaElement,
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 > extends TextFieldImplementation<E> {
   fieldProps: ProvidedTextFieldMessageProps<E>;
 }
 
 /** @since 6.0.0 */
 export interface ValidatedTextFieldImplementation<
-  E extends HTMLInputElement | HTMLTextAreaElement,
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 > extends TextFieldImplementation<E> {
   fieldProps: ProvidedTextFieldProps<E> | ProvidedTextFieldMessageProps<E>;
 }
@@ -365,7 +380,9 @@ export interface ValidatedTextFieldImplementation<
  * @see {@link https://react-md.dev/components/text-field | TextField Demos}
  * @see {@link https://react-md.dev/hooks/use-text-field | useTextField Demos}
  */
-export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
+export function useTextField<
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
+>(
   options: TextFieldHookOptions<E> & { disableMessage: true }
 ): TextFieldImplementation<E>;
 
@@ -481,21 +498,22 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
  * added the ability to display an inline counter and help text while disabling
  * the error messaging.
  */
-export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
-  options: TextFieldHookOptions<E>
-): TextFieldWithMessageImplementation<E>;
+export function useTextField<
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
+>(options: TextFieldHookOptions<E>): TextFieldWithMessageImplementation<E>;
 /**
  * @see {@link https://react-md.dev/components/text-field | TextField Demos}
  * @see {@link https://react-md.dev/hooks/use-text-field | useTextField Demos}
  * @since 6.0.0
  */
-export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
-  options: TextFieldHookOptions<E>
-): ValidatedTextFieldImplementation<E> {
+export function useTextField<
+  E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
+>(options: TextFieldHookOptions<E>): ValidatedTextFieldImplementation<E> {
   const {
     id: propId,
     ref: propRef,
     name,
+    form,
     defaultValue = "",
     isNumber = false,
     required,
@@ -507,6 +525,7 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
     onInvalid = noop,
     counter = false,
     helpText,
+    disableReset,
     validationType = "recommended",
     disableMessage = false,
     disableMaxLength = false,
@@ -711,6 +730,12 @@ export function useTextField<E extends HTMLInputElement | HTMLTextAreaElement>(
       children: (!disableMessage && errorMessage) || helpText,
     };
   }
+
+  useFormReset({
+    form,
+    onReset: disableReset ? undefined : reset,
+    elementRef: fieldRef,
+  });
 
   return {
     ...state,

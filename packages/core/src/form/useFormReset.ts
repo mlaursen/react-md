@@ -9,12 +9,15 @@ import {
 
 /**
  * @since 6.0.0
+ * @since 6.3.0 Added the optional `onReset` callback and updated
+ * `defaultValue` to be optional.
  * @internal
  */
 export interface FormResetOptions {
   form?: string;
   elementRef: RefObject<ChangeableHTMLElement>;
-  defaultValue: string;
+  onReset?: () => void;
+  defaultValue?: string;
 }
 
 /**
@@ -22,11 +25,11 @@ export interface FormResetOptions {
  * @internal
  */
 export function useFormReset(options: FormResetOptions): void {
-  const { form, elementRef, defaultValue } = options;
+  const { form, elementRef, defaultValue, onReset } = options;
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element) {
+    if (!element || (typeof defaultValue === "undefined" && !onReset)) {
       return;
     }
 
@@ -39,12 +42,16 @@ export function useFormReset(options: FormResetOptions): void {
     }
 
     const handleReset = (): void => {
-      triggerManualChangeEvent(element, defaultValue);
+      if (onReset) {
+        onReset();
+      } else if (typeof defaultValue !== "undefined") {
+        triggerManualChangeEvent(element, defaultValue);
+      }
     };
 
     formElement.addEventListener("reset", handleReset);
     return () => {
       formElement.removeEventListener("reset", handleReset);
     };
-  }, [defaultValue, elementRef, form]);
+  }, [defaultValue, elementRef, form, onReset]);
 }

@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 
 import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { withinRange } from "../utils/withinRange.js";
+import { useFormReset } from "./useFormReset.js";
 import {
   type ProvidedTextFieldMessageProps,
   type ProvidedTextFieldProps,
@@ -46,10 +47,7 @@ export interface NumberFieldConstraints {
  * - Renamed `fixOnBlur` to `updateValueOnBlur`
  */
 export interface NumberFieldHookOptions
-  extends Omit<
-      TextFieldHookOptions<HTMLInputElement>,
-      "defaultValue" | "isNumber"
-    >,
+  extends Omit<TextFieldHookOptions, "defaultValue" | "isNumber">,
     NumberFieldConstraints {
   /**
    * @defaultValue `undefined`
@@ -121,24 +119,21 @@ export interface NumberFieldHookState
 
 /** @since 2.5.6 */
 export interface ProvidedNumberFieldProps
-  extends ProvidedTextFieldProps<HTMLInputElement>,
+  extends ProvidedTextFieldProps,
     NumberFieldConstraints {
   type: "number";
 }
 
 /** @since 2.5.6 */
 export interface ProvidedNumberFieldMessageProps
-  extends ProvidedTextFieldMessageProps<HTMLInputElement>,
+  extends ProvidedTextFieldMessageProps,
     NumberFieldConstraints {
   type: "number";
 }
 
 /** @since 6.0.0 */
 export interface NumberFieldImplementation
-  extends Omit<
-    TextFieldImplementation<HTMLInputElement>,
-    "value" | "setState"
-  > {
+  extends Omit<TextFieldImplementation, "value" | "setState"> {
   value: number | undefined;
   setState: UseStateSetter<NumberFieldHookState>;
   fieldProps: ProvidedNumberFieldProps;
@@ -152,10 +147,7 @@ export interface NumberFieldWithMessageImplementation
 
 /** @since 6.0.0 */
 export interface ValidatedNumberFieldImplementation
-  extends Omit<
-    ValidatedTextFieldImplementation<HTMLInputElement>,
-    "value" | "setState"
-  > {
+  extends Omit<ValidatedTextFieldImplementation, "value" | "setState"> {
   value: number | undefined;
   setState: UseStateSetter<NumberFieldHookState>;
   fieldProps: ProvidedNumberFieldProps | ProvidedNumberFieldMessageProps;
@@ -361,10 +353,12 @@ export function useNumberField(
     min,
     max,
     step,
+    form,
     onBlur = noop,
     onChange = noop,
     updateValue = "change",
     updateValueOnBlur = true,
+    disableReset,
     defaultValue,
     ...textOptions
   } = options;
@@ -374,6 +368,7 @@ export function useNumberField(
   const {
     value: _value,
     reset: resetTextField,
+    fieldRef,
     fieldProps,
     setState: setTextFieldState,
     ...remaining
@@ -381,6 +376,7 @@ export function useNumberField(
     ...textOptions,
     isNumber: true,
     defaultValue: `${number ?? ""}`,
+    disableReset: true,
     onBlur(event) {
       onBlur(event);
       if (event.isPropagationStopped()) {
@@ -482,11 +478,18 @@ export function useNumberField(
     [setTextFieldState]
   );
 
+  useFormReset({
+    form,
+    elementRef: fieldRef,
+    onReset: disableReset ? undefined : reset,
+  });
+
   return {
     ...remaining,
     reset,
     value: number,
     setState,
+    fieldRef,
     fieldProps: {
       ...fieldProps,
       min,
