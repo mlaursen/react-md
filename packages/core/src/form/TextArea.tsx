@@ -250,6 +250,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     return (
       <FormMessageContainer
+        inline={inline}
         {...messageContainerProps}
         messageProps={messageProps}
       >

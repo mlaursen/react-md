@@ -113,6 +113,16 @@ describe("TextArea", () => {
 
     const messageContainer = screen.getByTestId("message-container");
     expect(messageContainer).toMatchSnapshot();
+
+    rerender(
+      <TextArea
+        label="Field"
+        inline
+        messageContainerProps={{ "data-testid": "message-container" }}
+        messageProps={{ children: "Help text" }}
+      />
+    );
+    expect(messageContainer).toMatchSnapshot();
   });
 
   it("should automatically merge the error and theme props when messageProps have been defined", () => {

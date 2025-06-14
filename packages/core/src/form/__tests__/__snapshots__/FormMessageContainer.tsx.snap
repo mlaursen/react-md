@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormMessageContainer should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  class="rmd-form-message-container"
+  data-testid="container"
+>
+  <span>
+    Children
+  </span>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+    id="form-message-:r0:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r0:-message"
+    >
+      Message!
+    </p>
+  </div>
+</div>
+`;
+
+exports[`FormMessageContainer should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  class="rmd-form-message-container custom-class-name"
+  data-testid="container"
+  style="color: white;"
+>
+  <span>
+    Children
+  </span>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+    id="form-message-:r0:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r0:-message"
+    >
+      Message!
+    </p>
+  </div>
+</div>
+`;
+
+exports[`FormMessageContainer should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<div
+  class="rmd-form-message-container rmd-form-message-container--inline custom-class-name"
+  data-testid="container"
+  style="color: white;"
+>
+  <span>
+    Children
+  </span>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+    id="form-message-:r0:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r0:-message"
+    >
+      Message!
+    </p>
+  </div>
+</div>
+`;

@@ -165,6 +165,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
     return (
       <FormMessageContainer
+        inline={inline}
         {...messageContainerProps}
         messageProps={
           messageProps && {

@@ -372,6 +372,54 @@ exports[`TextArea should render the FormMessageContainer when the messageProps h
 </div>
 `;
 
+exports[`TextArea should render the FormMessageContainer when the messageProps have been defined 2`] = `
+<div
+  class="rmd-form-message-container rmd-form-message-container--inline"
+  data-testid="message-container"
+>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-textarea-container rmd-textarea-container--cursor"
+  >
+    <div
+      class="rmd-textarea-container__inner"
+    >
+      <textarea
+        class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
+        id="text-area-:r5:"
+        placeholder=" "
+        rows="2"
+      />
+      <label
+        class="rmd-label rmd-label--floating"
+        for="text-area-:r5:"
+      >
+        Field
+      </label>
+      <textarea
+        aria-hidden="true"
+        class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+        id="text-area-:r5:-mask"
+        readonly=""
+        rows="2"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+    id="form-message-:r6:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r6:-message"
+    >
+      Help text
+    </p>
+  </div>
+</div>
+`;
+
 exports[`TextArea should support an error state 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-error rmd-error-color rmd-textarea-container rmd-textarea-container--cursor"

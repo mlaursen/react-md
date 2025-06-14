@@ -1,4 +1,9 @@
-import { type HTMLAttributes, type ReactElement, type ReactNode } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  forwardRef,
+} from "react";
 
 import { formMessageCounter } from "./formMessageStyles.js";
 
@@ -44,15 +49,21 @@ export interface FormMessageCounterProps
  * @see {@link https://react-md.dev/components/form-message | FormMessage Demos}
  * @see {@link https://react-md.dev/components/text-field | TextField Demos}
  * @since 2.9.0
+ * @since 6.3.0 Supports refs.
  */
-export function FormMessageCounter(
-  props: FormMessageCounterProps
-): ReactElement {
+export const FormMessageCounter = forwardRef<
+  HTMLSpanElement,
+  FormMessageCounterProps
+>(function FormMessageCounter(props, ref): ReactElement {
   const { children, className, ...remaining } = props;
 
   return (
-    <span {...remaining} className={formMessageCounter({ className })}>
+    <span
+      ref={ref}
+      {...remaining}
+      className={formMessageCounter({ className })}
+    >
       {children}
     </span>
   );
-}
+});

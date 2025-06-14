@@ -222,6 +222,42 @@ exports[`TextField should render the FormMessageContainer when the messageProps 
 </div>
 `;
 
+exports[`TextField should render the FormMessageContainer when the messageProps have been defined 2`] = `
+<div
+  class="rmd-form-message-container rmd-form-message-container--inline"
+  data-testid="message-container"
+>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label"
+  >
+    <input
+      class="rmd-text-field rmd-text-field--placeholder-hidden"
+      id="text-field-:r5:"
+      placeholder=" "
+      type="text"
+    />
+    <label
+      class="rmd-label rmd-label--floating"
+      for="text-field-:r5:"
+    >
+      Field
+    </label>
+  </div>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+    id="form-message-:r6:"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="form-message-:r6:-message"
+    >
+      Help text
+    </p>
+  </div>
+</div>
+`;
+
 exports[`TextField should support an error state 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-error rmd-error-color"

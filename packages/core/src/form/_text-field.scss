@@ -31,6 +31,13 @@ $disable-addon: $disable-everything !default;
 /// @type Boolean
 $disable-placeholder-ellipsis: false !default;
 
+/// Set to `true` to disable the styles for allowing the `TextField` to be
+/// rendered inline instead of always spanning the full width of the container.
+///
+/// @since 6.3.0
+/// @type Boolean
+$disable-inline: false !default;
+
 /// Set to `true` to disable the `TextFieldContainer` dense styles.
 /// @type Boolean
 $disable-container-dense: false !default;
@@ -357,9 +364,11 @@ $variables: (
         }
       }
 
-      &--inline {
-        display: inline-flex;
-        width: auto;
+      @if not $disable-inline {
+        &--inline {
+          display: inline-flex;
+          width: auto;
+        }
       }
 
       &--label {

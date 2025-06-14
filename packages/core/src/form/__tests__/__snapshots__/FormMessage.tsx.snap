@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormMessage should allow for simple props to be provided to the paragraph element 1`] = `
+<div
+  aria-live="polite"
+  class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+  data-testid="container"
+  id="form-message-:r2:"
+>
+  <p
+    class="rmd-form-message__message message-class-name"
+    id="form-message-:r2:-message"
+    style="color: blue;"
+  >
+    <span>
+      Help text
+    </span>
+  </p>
+</div>
+`;
+
+exports[`FormMessage should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  aria-live="polite"
+  class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+  data-testid="container"
+  id="form-message-:r0:"
+/>
+`;
+
+exports[`FormMessage should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  aria-live="polite"
+  class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color custom-class-name"
+  data-testid="container"
+  id="form-message-:r0:"
+  style="color: white;"
+/>
+`;
+
+exports[`FormMessage should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<div
+  aria-live="polite"
+  class="rmd-form-message rmd-form-message--outline rmd-error-color custom-class-name"
+  data-testid="container"
+  id="form-message-:r0:"
+  style="color: white;"
+/>
+`;
+
+exports[`FormMessage should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+<div
+  aria-live="polite"
+  class="rmd-form-message rmd-form-message--filled rmd-error-color custom-class-name"
+  data-testid="container"
+  id="form-message-:r0:"
+  style="color: white;"
+/>
+`;
+
+exports[`FormMessage should be able to render an inline counter if length and maxLength are provided 1`] = `
+<span
+  class="rmd-form-message__counter"
+  data-testid="counter"
+  id="form-message-:r4:-counter"
+>
+  12 / 20
+</span>
+`;
+
+exports[`FormMessage should wrap the children in a p tag unless disableMessage is provided 1`] = `
+<div
+  aria-live="polite"
+  class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+  data-testid="container"
+  id="form-message-:r1:"
+>
+  <p
+    class="rmd-form-message__message"
+    id="form-message-:r1:-message"
+  >
+    Hello, world!
+  </p>
+</div>
+`;
+
+exports[`FormMessage should wrap the children in a p tag unless disableMessage is provided 2`] = `
+<div
+  aria-live="polite"
+  class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
+  data-testid="container"
+  id="form-message-:r1:"
+>
+  Hello, world!
+</div>
+`;

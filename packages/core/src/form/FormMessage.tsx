@@ -38,6 +38,8 @@ export const FormMessage = forwardRef<
     children,
     length,
     maxLength,
+    counterProps,
+    messageProps,
     ...remaining
   } = props;
   const id = useEnsuredId(propId, "form-message");
@@ -48,6 +50,7 @@ export const FormMessage = forwardRef<
     message = (
       <p
         id={`${id}-message`}
+        {...messageProps}
         style={messageStyle}
         className={formMessageText({ className: messageClassName })}
       >
@@ -69,6 +72,7 @@ export const FormMessage = forwardRef<
       {typeof length === "number" && typeof maxLength === "number" && (
         <FormMessageCounter
           id={`${id}-counter`}
+          {...counterProps}
           style={counterStyle}
           className={counterClassName}
         >

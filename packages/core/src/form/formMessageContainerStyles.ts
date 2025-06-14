@@ -9,6 +9,14 @@ const styles = bem("rmd-form-message-container");
  */
 export interface FormMessageContainerClassNameOptions {
   className?: string;
+
+  /**
+   * Set to `true` to enable `display: inline-flex; width: auto`.
+   *
+   * @defaultValue `false`
+   * @since 6.3.0
+   */
+  inline?: boolean;
 }
 
 /**
@@ -17,7 +25,7 @@ export interface FormMessageContainerClassNameOptions {
 export function formMessageContainer(
   options: FormMessageContainerClassNameOptions = {}
 ): string {
-  const { className } = options;
+  const { className, inline } = options;
 
-  return cnb(styles(), className);
+  return cnb(styles({ inline }), className);
 }

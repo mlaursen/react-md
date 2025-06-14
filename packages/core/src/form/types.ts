@@ -256,6 +256,21 @@ export interface FormMessageProps
   disableWrap?: boolean;
 
   /**
+   * Optional props to provide to inline counter.
+   *
+   * @since 6.3.0
+   */
+  counterProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
+
+  /**
+   * Optional props to apply to the `<p>` tag that surrounds the `children`.
+   * This will not be used if `role="alert"` or `disableWrap={true}`.
+   *
+   * @since 6.3.0
+   */
+  messageProps?: PropsWithRef<HTMLAttributes<HTMLParagraphElement>>;
+
+  /**
    * An optional style to apply to the `<p>` tag that surrounds the `children`.
    * This will not be used if `role="alert"` or `disableWrap={true}`.
    */

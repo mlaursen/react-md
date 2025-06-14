@@ -2,14 +2,18 @@ import { type HTMLAttributes, forwardRef } from "react";
 
 import { type PropsWithRef } from "../types.js";
 import { FormMessage } from "./FormMessage.js";
-import { formMessageContainer } from "./formMessageContainerStyles.js";
+import {
+  type FormMessageContainerClassNameOptions,
+  formMessageContainer,
+} from "./formMessageContainerStyles.js";
 import { type FormMessageProps } from "./types.js";
 
 /**
  * @since 2.5.0
  */
 export interface FormMessageContainerProps
-  extends HTMLAttributes<HTMLDivElement> {
+  extends HTMLAttributes<HTMLDivElement>,
+    FormMessageContainerClassNameOptions {
   /**
    * If the extension doesn't actually want to render the `FormMessage`
    * component, these props are optional. It kind of eliminates the whole
@@ -29,7 +33,7 @@ export const FormMessageContainer = forwardRef<
   HTMLDivElement,
   FormMessageContainerProps
 >(function FormMessageContainer(props, ref) {
-  const { className, children, messageProps, ...remaining } = props;
+  const { className, children, inline, messageProps, ...remaining } = props;
   if (!messageProps) {
     return <>{children}</>;
   }
@@ -38,7 +42,7 @@ export const FormMessageContainer = forwardRef<
     <div
       {...remaining}
       ref={ref}
-      className={formMessageContainer({ className })}
+      className={formMessageContainer({ className, inline })}
     >
       {children}
       <FormMessage {...messageProps} />

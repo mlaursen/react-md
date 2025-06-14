@@ -22,6 +22,12 @@ $disable-everything: base.$form-disable-everything !default;
 /// @type Boolean
 $disable-counter: $disable-everything !default;
 
+/// Set to `true` to disable the inline styles for the container element.
+///
+/// @since 6.3.0
+/// @type Boolean
+$disable-inline: text-field.$disable-inline !default;
+
 /// Configure only the `font-size` for the `FormMessage` typography.
 /// @type String
 $font-size: 0.75rem !default;
@@ -64,6 +70,13 @@ $min-height: 2rem !default;
         display: flex;
         flex-direction: column;
         width: 100%;
+
+        @if not $disable-inline {
+          &--inline {
+            display: inline-flex;
+            width: auto;
+          }
+        }
       }
 
       .rmd-form-message {
