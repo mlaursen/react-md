@@ -1,0 +1,73 @@
+---
+title: Native Date Field
+description: The NativeDateField can be used as a lightweight wrapper around the TextField utilizing the useDateField hook.
+docType: Demo
+docGroup: Components
+group: Date & Time
+components: [NativeDateField]
+---
+
+# Native Date Field
+
+The `NativeDateField` can be used as a lightweight wrapper around the
+`TextField` utilizing the [useDateField](/hooks/use-date-field) hook.
+
+## Simple Example
+
+The `NativeDateField` requires a `name` and an optional `label` or `aria-label`
+for accessibility.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## Getting the Value
+
+Unlike other input elements, the `onChange` function will only be called once
+the full date has been typed and will always be in the format of `yyyy-mm-dd`.
+
+The `defaultValue` can also be provided using the `yyyy-mm-dd` format.
+
+```demo source="./GettingTheValueExample.tsx"
+
+```
+
+### Controlling the Value
+
+> !Error! Due to how the native `<input type="date">` works, the value cannot be
+> controlled since it reduces the user experience. The `onChange` event fires
+> when the user fully types all the date parts, changes any value afterwards,
+> or removes a date part. Removing a date part would result in the input having
+> a value of `""` and wiping out the other fields which is not desired.
+
+Try deleting the date portion in the following example to see what happens.
+
+```demo source="./ControllingTheValueExample.tsx"
+
+```
+
+## Validation
+
+The `NativeDateField` supports validation through the `min`, `max`, `step`, and
+`required` props. The `min` and `max` props **need** to be in the format of
+`yyyy-mm-dd` and the `step` will be shown in the
+[specific date intervals](#specific-date-intervals) instead.
+
+### Min and Max Date
+
+```demo source="./MinAndMaxDateExample.tsx"
+
+```
+
+### Specific Date Intervals
+
+> For date inputs, the value of step is given in days; and is treated as a
+> number of milliseconds equal to 86,400,000 times the step value (the
+> underlying numeric value is in milliseconds). The default value of step is
+> 1, indicating 1 day.
+>
+> [Step attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date#step)
+
+```demo source="./SpecificDateIntervalsExample.tsx"
+
+```

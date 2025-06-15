@@ -1,0 +1,122 @@
+---
+title: useDateField
+description: The useDateField is a small wrapper around the useTextField to be used with <input type="date" />.
+docType: API Docs
+docGroup: Hooks
+group: Form State
+hooks: [useDateField]
+---
+
+# useDateField [$SOURCE](packages/core/src/datetime/useDateField.ts)
+
+```ts disableTransform
+export function useDateField(
+  options: DateFieldOptions
+): ValidatedDateFieldImplementation;
+```
+
+The `useDateField` is a small wrapper around the
+[useTextField](/hooks/use-text-field) to be used with `<input type="date" />`.
+It is used in the [NativeDateField](/components/native-date-field) if an
+example implementation would like to be seen.
+
+## Example Usage
+
+```tsx
+function Example() {
+  const { value, fieldProps } = useDateField({
+    name: "delivery",
+    required: true,
+    min: "2025-01-01",
+    max: "2026-01-01",
+  });
+
+  // value: `""` or `"yyyy-mm-dd"`
+
+  return <TextField label="Delivery Date" {...fieldProps} />;
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+```ts disableTransform
+export interface DateFieldOptions
+  extends Omit<
+      TextFieldHookOptions,
+      | "isNumber"
+      | "counter"
+      | "pattern"
+      | "maxLength"
+      | "minLength"
+      | "disableMaxLength"
+    >,
+    DateFieldConstraints {}
+
+export interface DateFieldConstraints {
+  /**
+   * This **must** be in the format `yyyy-mm-dd`
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date#min | min attribute}
+   */
+  min?: string;
+
+  /**
+   * This **must** be in the format `yyyy-mm-dd`
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date#max | max attribute}
+   */
+  max?: string;
+
+  /**
+   * For date inputs, the value of step is given in days; and is treated as a
+   * number of milliseconds equal to 86,400,000 times the step value (the
+   * underlying numeric value is in milliseconds). The default value of step is
+   * 1, indicating 1 day.
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date#step | step attribute}
+   */
+  step?: number | "any";
+}
+```
+
+## Returns
+
+The return type has the following shape, but changes depending on the provided options.
+Just know that it is always save to pass the `fieldProps` to the `TextField` component.
+
+```ts disableTransform
+export interface ProvidedDateFieldMessageProps extends ProvidedDateFieldProps {
+  /**
+   * These props will be defined as long as the `disableMessage` prop is not
+   * `true` from the `useTextField` hook.
+   */
+  messageProps: ProvidedFormMessageProps;
+}
+
+/** @since 6.3.0 */
+export interface DateFieldImplementation
+  extends Omit<TextFieldImplementation, "fieldProps"> {
+  fieldProps: ProvidedDateFieldProps;
+}
+
+/** @since 6.3.0 */
+export interface DateFieldWithMessageImplementation
+  extends Omit<TextFieldWithMessageImplementation, "fieldProps"> {
+  fieldProps: ProvidedDateFieldMessageProps;
+}
+
+/** @since 6.3.0 */
+export interface ValidatedDateFieldImplementation
+  extends DateFieldImplementation {
+  fieldProps: ProvidedDateFieldProps | ProvidedDateFieldMessageProps;
+}
+```
+
+## See Also
+
+- [NativeDateField](/components/native-time-field)
+- [useTimeField](./use-time-field)
+- [useTextField](./use-text-field)
+- [useNumberField](./use-number-field)

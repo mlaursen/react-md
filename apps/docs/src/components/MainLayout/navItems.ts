@@ -136,6 +136,11 @@ export const navItems: readonly NavigationItem[] = [
       { type: "subheader", children: "Date & Time" },
       {
         type: "route",
+        href: "/native-date-field",
+        children: "NativeDateField",
+      },
+      {
+        type: "route",
         href: "/native-time-field",
         children: "NativeTimeField",
       },
@@ -451,6 +456,11 @@ export const navItems: readonly NavigationItem[] = [
         type: "route",
         href: "/use-number-field",
         children: "useNumberField",
+      },
+      {
+        type: "route",
+        href: "/use-date-field",
+        children: "useTimeField",
       },
       {
         type: "route",
