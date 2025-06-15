@@ -133,6 +133,12 @@ export const navItems: readonly NavigationItem[] = [
         href: "/text-field",
         children: "TextField",
       },
+      { type: "subheader", children: "Date & Time" },
+      {
+        type: "route",
+        href: "/native-time-field",
+        children: "NativeTimeField",
+      },
       { type: "subheader", children: "Form" },
       {
         type: "route",
@@ -445,6 +451,11 @@ export const navItems: readonly NavigationItem[] = [
         type: "route",
         href: "/use-number-field",
         children: "useNumberField",
+      },
+      {
+        type: "route",
+        href: "/use-time-field",
+        children: "useTimeField",
       },
       {
         type: "route",

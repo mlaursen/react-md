@@ -1,0 +1,147 @@
+---
+title: useTimeField
+description: The useTimeField is a small wrapper around the useTextField to be used with <input type="time" />.
+docType: API Docs
+docGroup: Hooks
+group: Form State
+hooks: [useTimeField]
+---
+
+# useTimeField [$SOURCE](packages/core/src/datetime/useTimeField.ts)
+
+```ts disableTransform
+export function useTimeField(
+  options: TimeFieldOptions
+): ValidatedTimeFieldImplementation;
+```
+
+The `useTimeField` is a small wrapper around the
+[useTextField](/hooks/use-text-field) to be used with `<input type="time" />`.
+It is used in the [NativeTimeField](/components/native-time-field) if an
+example implementation would like to be seen.
+
+## Example Usage
+
+```tsx
+function Example() {
+  const { value, fieldProps } = useTimeField({
+    name: "appt",
+    required: true,
+    min: "08:00",
+    max: "17:00",
+    step: { minute: 15 },
+  });
+
+  // value: `""` or `"HH:mm"`
+
+  return <TextField label="Appointment" {...fieldProps} />;
+}
+```
+
+## Parameters
+
+- `options` - An object with the following definition:
+
+````ts disableTransform
+export interface TimeFieldOptions
+  extends Omit<
+      TextFieldHookOptions,
+      | "isNumber"
+      | "counter"
+      | "pattern"
+      | "maxLength"
+      | "minLength"
+      | "disableMaxLength"
+    >,
+    TimeFieldConstraints {}
+
+export interface TimeFieldConstraints {
+  /**
+   * This **must** be in the format `HH:mm`:
+   * - `00:30` (12:30 AM)
+   * - `15:15` (03:15 PM)
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/time#time_value_format | Time value format}
+   */
+  min?: string;
+
+  /**
+   * This **must** be in the format `HH:mm`:
+   * - `00:30` (12:30 AM)
+   * - `15:15` (03:15 PM)
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/time#time_value_format | Time value format}
+   */
+  max?: string;
+
+  /**
+   * For time inputs, the value of step is given in seconds, with a scaling
+   * factor of 1000 (since the underlying numeric value is in milliseconds).
+   * The default value of step is 60, indicating 60 seconds (or 1 minute, or
+   * 60,000 milliseconds).
+   *
+   * When any is set as the value for step, the default 60 seconds is used, and
+   * the seconds value is not displayed in the UI.
+   *
+   * Here are a few examples:
+   *
+   * - `15`   -&gt; 15 seconds
+   * - `60`   -&gt; 1 minute
+   * - `900`  -&gt; 15 minutes
+   * - `3600` -&gt; 1 hour
+   *
+   * Since this might be a bit confusing, the values can be provided in an
+   * object instead:
+   *
+   * ```ts
+   * { seconds: 30 }
+   * { minutes: 1 }
+   * { minutes: 15 }
+   * { hours: 1 }
+   * { seconds: 15, minutes: 30, hours: 1 }
+   * ```
+   *
+   * NOTE: The `min` and `max` props **must** be provided as well for the
+   * `step` to work.
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/time#step | step attribute}
+   */
+  step?: number | "any" | TimeFieldStepOptions;
+}
+````
+
+## Returns
+
+The return type has the following shape, but changes depending on the provided options.
+Just know that it is always save to pass the `fieldProps` to the `TextField` component.
+
+```ts disableTransform
+export interface ProvidedTimeFieldMessageProps extends ProvidedTimeFieldProps {
+  /**
+   * These props will be defined as long as the `disableMessage` prop is not
+   * `true` from the `useTextField` hook.
+   */
+  messageProps: ProvidedFormMessageProps;
+}
+
+export interface TimeFieldImplementation
+  extends Omit<TextFieldImplementation, "fieldProps"> {
+  fieldProps: ProvidedTimeFieldProps;
+}
+
+export interface TimeFieldWithMessageImplementation
+  extends Omit<TextFieldWithMessageImplementation, "fieldProps"> {
+  fieldProps: ProvidedTimeFieldMessageProps;
+}
+
+export interface ValidatedTimeFieldImplementation
+  extends TimeFieldImplementation {
+  fieldProps: ProvidedTimeFieldProps | ProvidedTimeFieldMessageProps;
+}
+```
+
+## See Also
+
+- [NativeTimeField](/components/native-time-field)
+- [useTextField](./use-text-field)
+- [useNumberField](./use-number-field)

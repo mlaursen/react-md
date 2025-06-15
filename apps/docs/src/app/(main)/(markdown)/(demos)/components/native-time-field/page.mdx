@@ -1,0 +1,110 @@
+---
+title: Native Time Field
+description: The NativeTimeField can be used as a lightweight wrapper around the TextField utilizing the useTimeField hook.
+docType: Demo
+docGroup: Components
+group: Date & Time
+components: [NativeTimeField]
+---
+
+# Native Time Field
+
+The `NativeTimeField` can be used as a lightweight wrapper around the
+`TextField` utilizing the [useTimeField](/hooks/use-time-field) hook.
+
+## Simple Example
+
+The `NativeTimeField` requires a `name` and an optional `label` or `aria-label`
+for accessibility.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## Getting the Value
+
+Unlike other input elements, the `onChange` function will only be called once
+the full time has been typed and will always be in the format of `HH:mm` (24h
+time).
+
+The `defaultValue` can also be provided using the `HH:mm` format.
+
+```demo source="./GettingTheValueExample.tsx"
+
+```
+
+### Controlling the Value
+
+> !Error! Due to how the native `<input type="time">` works, the value cannot be
+> controlled since it reduces the user experience. The `onChange` event fires
+> when the user fully types all the time parts, changes any value afterwards,
+> or removes a time part. Removing a time part would result in the input having
+> a value of `""` and wiping out the other fields which is not desired.
+
+Try deleting the minutes portion in the following example to see what happens.
+
+```demo source="./ControllingTheValueExample.tsx"
+
+```
+
+## Validation
+
+The `NativeTimeField` supports validation through the `min`, `max`, `step`, and
+`required` props. The `min` and `max` props **need** to be in the format of
+`HH:mm` (24h time) and the `step` will be shown in the
+[specific time intervals](#specific-time-intervals) instead.
+
+### Min and Max Time
+
+```demo source="./MinAndMaxTimeExample.tsx"
+
+```
+
+### Specific Time Intervals
+
+> For time inputs, the value of step is given in seconds, with a scaling
+> factor of 1000 (since the underlying numeric value is in milliseconds).
+> The default value of step is 60, indicating 60 seconds(or 1 minute, or
+> 60,000 milliseconds).
+>
+> When any is set as the value for step, the default 60 seconds is used, and
+> the seconds value is not displayed in the UI.
+>
+> [Step attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/time#step)
+
+Here are a few examples:
+
+- `15` -> 15 seconds
+- `60` -> 1 minute
+- `900` -> 15 minutes
+- `3600` -> 1 hour
+
+Since this might be a bit confusing, the values can be provided in an
+object instead:
+
+- `step={{ seconds: 30 }}`
+- `step={{ minutes: 1 }}`
+- `step={{ minutes: 15 }}`
+- `step={{ hours: 1 }}`
+- `step={{ seconds: 15, minutes: 30, hours: 1 }}`
+
+> !Warn! The `min` and `max` props **must** be provided alongside the `step`
+> prop for it to work correctly.
+
+```demo source="./SpecificTimeIntervalsExample.tsx"
+
+```
+
+## Suggested Times
+
+Suggested times can be provided using the
+[datalist element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/datalist).
+For browsers that support this feature, clicking the time picker at the end of the input will
+show these values.
+
+> !Warn! Firefox does not support the datalist element for date
+> and time inputs at this time.
+
+```demo source="./SuggestedTimesExample.tsx"
+
+```
