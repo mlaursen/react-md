@@ -1,16 +1,9 @@
-import type {
-  FocusEvent,
-  FocusEventHandler,
-  KeyboardEvent,
-  KeyboardEventHandler,
-  MouseEvent,
-  MouseEventHandler,
-} from "react";
+import { type HTMLAttributes, type KeyboardEvent } from "react";
 
-import type {
-  NonNullMutableRef,
-  NonNullRef,
-  UseStateSetter,
+import {
+  type NonNullMutableRef,
+  type NonNullRef,
+  type UseStateSetter,
 } from "../types.js";
 
 /**
@@ -209,18 +202,23 @@ export interface KeyboardMovementExtensionData<E extends HTMLElement>
 }
 
 /**
+ * @since 6.3.0
+ */
+export type KeyboardMovementEventHandlers<E extends HTMLElement> = Pick<
+  HTMLAttributes<E>,
+  "onClick" | "onFocus" | "onKeyDown"
+>;
+
+/**
  * @since 6.0.0
  * @internal
  */
 export interface KeyboardMovementProviderOptions<E extends HTMLElement>
   extends KeyboardMovementBehavior,
+    KeyboardMovementEventHandlers<E>,
     KeyboardMovementConfiguration {
   /** @see {@link TabIndexBehavior} */
   tabIndexBehavior?: TabIndexBehavior;
-
-  onClick?: (event: MouseEvent<E>) => void;
-  onFocus?: (event: FocusEvent<E>) => void;
-  onKeyDown?: (event: KeyboardEvent<E>) => void;
 
   /** @defaultValue `false` */
   disabled?: boolean;
@@ -268,7 +266,8 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
  * @since 6.0.0
  * @internal
  */
-export interface KeyboardMovementProps<E extends HTMLElement> {
+export interface KeyboardMovementProps<E extends HTMLElement>
+  extends Required<KeyboardMovementEventHandlers<E>> {
   /**
    * This will only be provided if the {@link KeyboardMovementContext.tabIndexBehavior}
    * is set to `"virtual"`.
@@ -285,9 +284,6 @@ export interface KeyboardMovementProps<E extends HTMLElement> {
    *   - a child element **should** have a `tabIndex={0}` instead
    */
   tabIndex?: number;
-  onClick: MouseEventHandler<E>;
-  onFocus: FocusEventHandler<E>;
-  onKeyDown: KeyboardEventHandler<E>;
 }
 
 /**

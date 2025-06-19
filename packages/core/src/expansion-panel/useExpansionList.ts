@@ -1,12 +1,9 @@
 "use client";
 
-import type {
-  FocusEventHandler,
-  KeyboardEventHandler,
-  MouseEventHandler,
-} from "react";
-
-import type { KeyboardMovementProviderImplementation } from "../movement/types.js";
+import {
+  type KeyboardMovementEventHandlers,
+  type KeyboardMovementProviderImplementation,
+} from "../movement/types.js";
 import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 
 /**
@@ -18,11 +15,8 @@ const getPanelsOnly = (container: HTMLElement): readonly HTMLElement[] => [
 ];
 
 /** @since 6.0.0 */
-export interface ExpansionListHookOptions<E extends HTMLElement> {
-  onClick?: MouseEventHandler<E>;
-  onFocus?: FocusEventHandler<E>;
-  onKeyDown?: KeyboardEventHandler<E>;
-}
+export type ExpansionListHookOptions<E extends HTMLElement> =
+  KeyboardMovementEventHandlers<E>;
 
 /** @since 6.0.0 */
 export type ExpansionListImplementation<E extends HTMLElement> =
