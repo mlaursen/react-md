@@ -258,15 +258,21 @@ export type KeyboardMovementEventHandlers<E extends HTMLElement> = Pick<
 >;
 
 /**
+ * @since 6.3.0
+ */
+export interface SimpleKeyboardMovementWrapperOptions<E extends HTMLElement>
+  extends KeyboardMovementEventHandlers<E> {
+  ref?: Ref<E>;
+}
+
+/**
  * @since 6.0.0
  * @internal
  */
 export interface KeyboardMovementProviderOptions<E extends HTMLElement>
   extends KeyboardMovementBehavior,
-    KeyboardMovementEventHandlers<E>,
+    SimpleKeyboardMovementWrapperOptions<E>,
     KeyboardMovementConfiguration {
-  ref?: Ref<E>;
-
   /** @see {@link TabIndexBehavior} */
   tabIndexBehavior?: TabIndexBehavior;
 
