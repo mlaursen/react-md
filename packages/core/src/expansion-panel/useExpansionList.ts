@@ -1,5 +1,7 @@
 "use client";
 
+import { type Ref } from "react";
+
 import {
   type KeyboardMovementEventHandlers,
   type KeyboardMovementProviderImplementation,
@@ -16,7 +18,12 @@ const getPanelsOnly = (container: HTMLElement): readonly HTMLElement[] => [
 
 /** @since 6.0.0 */
 export type ExpansionListHookOptions<E extends HTMLElement> =
-  KeyboardMovementEventHandlers<E>;
+  KeyboardMovementEventHandlers<E> & {
+    /**
+     * @since 6.3.0
+     */
+    ref?: Ref<E>;
+  };
 
 /** @since 6.0.0 */
 export type ExpansionListImplementation<E extends HTMLElement> =

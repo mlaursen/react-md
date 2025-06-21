@@ -69,7 +69,12 @@ export interface ComboboxKeyboardMovementData<
   show: () => void;
   hide: () => void;
   visible: boolean;
-  focusLast: NonNullMutableRef<boolean>;
+
+  /**
+   * @since 6.3.0 Renamed from `focusLast` to `focusLastRef` to support the new
+   * actions.
+   */
+  focusLastRef: NonNullMutableRef<boolean>;
 }
 
 /**
@@ -280,7 +285,7 @@ export interface ComboboxMenuProps<PopupEl extends HTMLElement = HTMLDivElement>
 export interface ComboboxImplementation<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> extends KeyboardMovementProviderImplementation<ComboboxEl> {
+> extends Omit<KeyboardMovementProviderImplementation<ComboboxEl>, "nodeRef"> {
   show: () => void;
   hide: () => void;
   visible: boolean;
@@ -349,16 +354,17 @@ export function useCombobox<
 
   const popupId = useEnsuredId(propPopupId, "combobox-popup");
   const comboboxId = useEnsuredId(propComboboxId, "combobox");
-  const [comboboxRef, comboboxRefCallback] = useEnsuredRef(propComboboxRef);
   const [popupRef, popupRefCallback] = useEnsuredRef(propPopupRef);
-  const focusLast = useRef(false);
+  const focusLastRef = useRef(false);
   const {
+    nodeRef: comboboxRef,
     movementProps,
     movementContext,
     currentFocusIndex,
     activeDescendantId,
     setActiveDescendantId,
   } = useKeyboardMovementProvider<ComboboxEl>({
+    ref: propComboboxRef,
     onFocus,
     onKeyDown,
     onClick(event) {
@@ -375,7 +381,7 @@ export function useCombobox<
         show,
         hide,
         visible,
-        focusLast,
+        focusLastRef,
       });
       const { event } = movementData;
       if (event.isPropagationStopped()) {
@@ -406,7 +412,7 @@ export function useCombobox<
         case "ArrowDown":
           event.preventDefault();
           event.stopPropagation();
-          focusLast.current = event.key === "ArrowUp";
+          focusLastRef.current = event.key === "ArrowUp";
           show();
           break;
         case "Enter":
@@ -445,7 +451,7 @@ export function useCombobox<
     hide,
     visible,
     setVisible,
-    focusLast,
+    focusLast: focusLastRef,
     popupRef,
     popupProps,
     comboboxRef,
@@ -456,7 +462,6 @@ export function useCombobox<
       "aria-expanded": visible,
       "aria-haspopup": popup,
       id: comboboxId,
-      ref: comboboxRefCallback,
       role: "combobox",
     },
     movementProps,
@@ -496,11 +501,11 @@ export function useCombobox<
 
         const focusables = getFocusableElements(popup, true);
         const index = getEnterDefaultFocusedIndex({
-          focusLast: focusLast.current,
+          focusLast: focusLastRef.current,
           focusables,
           currentFocusIndex: currentFocusIndex.current,
         });
-        focusLast.current = false;
+        focusLastRef.current = false;
         currentFocusIndex.current = index;
 
         const option = focusables[index];

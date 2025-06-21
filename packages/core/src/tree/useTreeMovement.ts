@@ -4,6 +4,7 @@ import type {
   FocusEventHandler,
   KeyboardEventHandler,
   MouseEventHandler,
+  Ref,
 } from "react";
 import { useRef } from "react";
 
@@ -59,6 +60,7 @@ const getVisibleTreeItems = (
  * @internal
  */
 interface TreeMovementOptions<T extends TreeItemNode> extends TreeExpansion {
+  ref?: Ref<HTMLUListElement>;
   data: TreeData<T>;
   onClick: MouseEventHandler<HTMLUListElement> | undefined;
   onFocus: FocusEventHandler<HTMLUListElement> | undefined;
@@ -88,6 +90,7 @@ export function useTreeMovement<T extends TreeItemNode>(
   options: TreeMovementOptions<T>
 ): TreeMovement {
   const {
+    ref,
     onClick,
     onFocus,
     onKeyDown,
@@ -106,6 +109,7 @@ export function useTreeMovement<T extends TreeItemNode>(
     itemToElement: {},
   });
   const movement = useKeyboardMovementProvider({
+    ref,
     onClick,
     onFocus,
     onKeyDown,

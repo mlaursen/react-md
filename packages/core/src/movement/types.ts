@@ -1,4 +1,10 @@
-import { type HTMLAttributes, type KeyboardEvent } from "react";
+import {
+  type HTMLAttributes,
+  type KeyboardEvent,
+  type Ref,
+  type RefCallback,
+  type RefObject,
+} from "react";
 
 import {
   type NonNullMutableRef,
@@ -130,6 +136,23 @@ export interface KeyboardMovementBehavior {
 }
 
 /**
+ * @since 6.3.0
+ */
+export interface KeyboardFocusFromKeyOptions {
+  key: string;
+  /** @defaultValue `false` */
+  reversed?: boolean;
+
+  /** @defaultValue `getFocusableElementsFromRef()` */
+  focusables?: readonly HTMLElement[];
+}
+
+/**
+ * @since 6.3.0
+ */
+export type KeyboardFocusAction = (focusables?: readonly HTMLElement[]) => void;
+
+/**
  * @since 5.0.0
  * @since 6.0.0 Removed `attach`, `detach` and `watching`
  * @internal
@@ -147,6 +170,31 @@ export interface KeyboardMovementContext
    * has been set to `"roving"` or `"virtual"`.
    */
   activeDescendantId: string;
+
+  /**
+   * @since 6.3.0
+   */
+  focusFirst: KeyboardFocusAction;
+
+  /**
+   * @since 6.3.0
+   */
+  focusLast: KeyboardFocusAction;
+
+  /**
+   * @since 6.3.0
+   */
+  focusNext: KeyboardFocusAction;
+
+  /**
+   * @since 6.3.0
+   */
+  focusPrevious: KeyboardFocusAction;
+
+  /**
+   * @since 6.3.0
+   */
+  focusFromKey: (options: KeyboardFocusFromKeyOptions) => void;
 }
 
 /**
@@ -217,6 +265,8 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
   extends KeyboardMovementBehavior,
     KeyboardMovementEventHandlers<E>,
     KeyboardMovementConfiguration {
+  ref?: Ref<E>;
+
   /** @see {@link TabIndexBehavior} */
   tabIndexBehavior?: TabIndexBehavior;
 
@@ -260,6 +310,16 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
    * @defaultValue `false`
    */
   isNegativeOneAllowed?: boolean;
+
+  /**
+   * This was added to support spinbutton groups so the user can either use the
+   * ArrowLeft, ArrowRight, or Tab keys to move. Without this, switching
+   * between tab and the arrow keys would have the wrong tab index.
+   *
+   * @since 6.3.0
+   * @defaultValue `false`
+   */
+  trackTabKeys?: boolean;
 }
 
 /**
@@ -284,6 +344,8 @@ export interface KeyboardMovementProps<E extends HTMLElement>
    *   - a child element **should** have a `tabIndex={0}` instead
    */
   tabIndex?: number;
+
+  ref: RefCallback<E>;
 }
 
 /**
@@ -291,6 +353,7 @@ export interface KeyboardMovementProps<E extends HTMLElement>
  * @internal
  */
 export interface KeyboardMovementProviderImplementation<E extends HTMLElement> {
+  nodeRef: RefObject<E>;
   movementProps: Readonly<KeyboardMovementProps<E>>;
   movementContext: Readonly<KeyboardMovementContext>;
   currentFocusIndex: NonNullMutableRef<number>;

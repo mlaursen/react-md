@@ -40,7 +40,7 @@ export function useSelectCombobox<
     ...comboboxOptions,
     searchable: true,
     extendKeyDown(movementData) {
-      const { event, show, focusLast, visible } = movementData;
+      const { event, show, focusLastRef, visible } = movementData;
       if (visible) {
         return;
       }
@@ -51,7 +51,7 @@ export function useSelectCombobox<
         case "End":
           event.preventDefault();
           event.stopPropagation();
-          focusLast.current = event.key === "End";
+          focusLastRef.current = event.key === "End";
           show();
           break;
       }

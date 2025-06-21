@@ -84,6 +84,7 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
       defaultActiveId: id,
     });
     const { movementProps, movementContext } = useKeyboardMovementProvider({
+      ref,
       onClick,
       onFocus(event) {
         onFocus(event);
@@ -110,9 +111,10 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
           <div
             aria-orientation={horizontal ? "horizontal" : undefined}
             {...remaining}
-            {...(isListbox ? { onClick, onFocus, onKeyDown } : movementProps)}
+            {...(isListbox
+              ? { onClick, onFocus, onKeyDown, ref }
+              : movementProps)}
             id={id}
-            ref={ref}
             role={role}
             className={menu({
               className,

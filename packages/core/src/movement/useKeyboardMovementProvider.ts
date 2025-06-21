@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -12,6 +13,7 @@ import {
 import { getFocusableElements as defaultGetFocusableElements } from "../focus/utils.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { useDir } from "../typography/WritingDirectionProvider.js";
+import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect.js";
 import {
   DEFAULT_KEYBOARD_MOVEMENT,
@@ -19,12 +21,13 @@ import {
   DEFAULT_RTL_KEYBOARD_MOVEMENT,
 } from "./constants.js";
 import { findMatchIndex } from "./findMatchIndex.js";
-import type {
-  KeyboardMovementConfig,
-  KeyboardMovementConfiguration,
-  KeyboardMovementContext,
-  KeyboardMovementProviderImplementation,
-  KeyboardMovementProviderOptions,
+import {
+  type KeyboardFocusFromKeyOptions,
+  type KeyboardMovementConfig,
+  type KeyboardMovementConfiguration,
+  type KeyboardMovementContext,
+  type KeyboardMovementProviderImplementation,
+  type KeyboardMovementProviderOptions,
 } from "./types.js";
 import {
   getFirstFocusableIndex,
@@ -38,19 +41,36 @@ import {
   recalculateFocusIndex,
 } from "./utils.js";
 
+const noop = (): void => {
+  // do nothing
+};
+
+/**
+ * @since 6.3.0
+ */
+export const DEFAULT_KEYBOARD_MOVEMENT_CONTEXT: Readonly<KeyboardMovementContext> =
+  {
+    config: { current: DEFAULT_KEYBOARD_MOVEMENT },
+    loopable: false,
+    searchable: false,
+    horizontal: false,
+    includeDisabled: false,
+    tabIndexBehavior: undefined,
+    activeDescendantId: "",
+    focusFirst: noop,
+    focusLast: noop,
+    focusNext: noop,
+    focusPrevious: noop,
+    focusFromKey: noop,
+  };
+
 /**
  * @since 5.0.0
  * @internal
  */
-const context = createContext<KeyboardMovementContext>({
-  config: { current: DEFAULT_KEYBOARD_MOVEMENT },
-  loopable: false,
-  searchable: false,
-  horizontal: false,
-  includeDisabled: false,
-  tabIndexBehavior: undefined,
-  activeDescendantId: "",
-});
+const context = createContext<KeyboardMovementContext>(
+  DEFAULT_KEYBOARD_MOVEMENT_CONTEXT
+);
 context.displayName = "KeyboardMovement";
 export const { Provider: KeyboardMovementProvider } = context;
 
@@ -61,10 +81,6 @@ export const { Provider: KeyboardMovementProvider } = context;
 export function useKeyboardMovementContext(): Readonly<KeyboardMovementContext> {
   return useContext(context);
 }
-
-const noop = (): void => {
-  // do nothing
-};
 
 const returnNegative1 = (): number => -1;
 
@@ -193,6 +209,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
   options: KeyboardMovementProviderOptions<E> = {}
 ): KeyboardMovementProviderImplementation<E> {
   const {
+    ref: propRef,
     onClick = noop,
     onFocus = noop,
     onKeyDown = noop,
@@ -200,6 +217,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
     disabled,
     searchable = false,
     horizontal = false,
+    trackTabKeys = false,
     includeDisabled = false,
     tabIndexBehavior,
     extendKeyDown = noop,
@@ -213,6 +231,8 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
     getDefaultFocusedIndex = returnNegative1,
     isNegativeOneAllowed = false,
   } = options;
+
+  const [nodeRef, nodeRefCallback] = useEnsuredRef(propRef);
 
   const isRTL = useDir().dir === "rtl";
   let defaults: Readonly<Required<KeyboardMovementConfiguration>>;
@@ -240,29 +260,10 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
     config.current = configuration;
   });
 
-  const [activeDescendantId, setActiveDescendantId] = useState("");
-  const movementContext = useMemo<KeyboardMovementContext>(
-    () => ({
-      config,
-      loopable,
-      searchable,
-      horizontal,
-      includeDisabled,
-      tabIndexBehavior,
-      activeDescendantId,
-    }),
-    [
-      activeDescendantId,
-      horizontal,
-      includeDisabled,
-      loopable,
-      searchable,
-      tabIndexBehavior,
-    ]
-  );
-  const currentFocusIndex = useRef(-1);
   const mode = useUserInteractionMode();
   const refocus = useRef(false);
+  const currentFocusIndex = useRef(-1);
+  const [activeDescendantId, setActiveDescendantId] = useState("");
 
   if (process.env.NODE_ENV !== "production") {
     // this fixes issues during hot reloading and using the `useId()` hook
@@ -282,10 +283,155 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         : 0;
   }
 
+  const getFocusableElementsFromRef = useCallback(() => {
+    const container = nodeRef.current;
+    if (!container) {
+      return [];
+    }
+
+    return getFocusableElements(container, programmatic);
+  }, [getFocusableElements, nodeRef, programmatic]);
+  const updateFocusIndex = useCallback(
+    (index: number, focusables = getFocusableElementsFromRef()) => {
+      if (currentFocusIndex.current === index || index === -1) {
+        return;
+      }
+
+      currentFocusIndex.current = index;
+      const focused = focusables[index];
+      if (tabIndexBehavior) {
+        focused.scrollIntoView({
+          block: "nearest",
+          inline: "nearest",
+        });
+        setActiveDescendantId(focused.id);
+      }
+
+      if (tabIndexBehavior !== "virtual") {
+        focused.focus();
+      }
+
+      onFocusChange({
+        index,
+        element: focused,
+      });
+    },
+    [getFocusableElementsFromRef, onFocusChange, tabIndexBehavior]
+  );
+
+  const focusNext = useCallback(
+    (focusables = getFocusableElementsFromRef()) => {
+      updateFocusIndex(
+        getNextFocusableIndex({
+          loopable,
+          increment: true,
+          focusables,
+          includeDisabled: true,
+          currentFocusIndex: currentFocusIndex.current,
+        }),
+        focusables
+      );
+    },
+    [getFocusableElementsFromRef, loopable, updateFocusIndex]
+  );
+  const focusPrevious = useCallback(
+    (focusables = getFocusableElementsFromRef()) => {
+      updateFocusIndex(
+        getNextFocusableIndex({
+          loopable,
+          increment: false,
+          focusables,
+          includeDisabled: true,
+          currentFocusIndex: currentFocusIndex.current,
+        }),
+        focusables
+      );
+    },
+    [getFocusableElementsFromRef, loopable, updateFocusIndex]
+  );
+  const focusFirst = useCallback(
+    (focusables = getFocusableElementsFromRef()) => {
+      updateFocusIndex(
+        getFirstFocusableIndex({
+          focusables,
+          includeDisabled,
+        }),
+        focusables
+      );
+    },
+    [getFocusableElementsFromRef, includeDisabled, updateFocusIndex]
+  );
+  const focusLast = useCallback(
+    (focusables = getFocusableElementsFromRef()) => {
+      updateFocusIndex(
+        getLastFocusableIndex({
+          focusables,
+          includeDisabled,
+        }),
+        focusables
+      );
+    },
+    [getFocusableElementsFromRef, includeDisabled, updateFocusIndex]
+  );
+  const focusFromKey = useCallback(
+    (options: KeyboardFocusFromKeyOptions) => {
+      const {
+        key,
+        reversed,
+        focusables = getFocusableElementsFromRef(),
+      } = options;
+      if (!searchable) {
+        return;
+      }
+
+      const index = findMatchIndex({
+        value: key,
+        values: focusables.map((element) =>
+          getSearchText(element, !isNotFocusable(element, includeDisabled))
+        ),
+        startIndex: reversed ? -1 : currentFocusIndex.current,
+      });
+      updateFocusIndex(index, focusables);
+    },
+    [getFocusableElementsFromRef, includeDisabled, searchable, updateFocusIndex]
+  );
+
+  const movementContext = useMemo<KeyboardMovementContext>(
+    () => ({
+      config,
+      loopable,
+      searchable,
+      horizontal,
+      focusFirst,
+      focusLast,
+      focusNext,
+      focusPrevious,
+      focusFromKey,
+      includeDisabled,
+      tabIndexBehavior,
+      activeDescendantId,
+    }),
+    [
+      activeDescendantId,
+      focusFirst,
+      focusFromKey,
+      focusLast,
+      focusNext,
+      focusPrevious,
+      horizontal,
+      includeDisabled,
+      loopable,
+      searchable,
+      tabIndexBehavior,
+    ]
+  );
+
   return {
+    nodeRef,
     movementProps: {
       "aria-activedescendant":
         tabIndexBehavior === "virtual" ? activeDescendantId : undefined,
+      ref: nodeRefCallback,
       tabIndex,
 
       // Note: This used to be on the `onFocus` event, but this causes issues in
@@ -411,28 +557,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         ): void => {
           event.preventDefault();
           event.stopPropagation();
-          if (currentFocusIndex.current === index || index === -1) {
-            return;
-          }
-
-          currentFocusIndex.current = index;
-          const focused = focusables[index];
-          if (tabIndexBehavior) {
-            focused.scrollIntoView({
-              block: "nearest",
-              inline: "nearest",
-            });
-            setActiveDescendantId(focused.id);
-          }
-
-          if (tabIndexBehavior !== "virtual") {
-            focused.focus();
-          }
-
-          onFocusChange({
-            index,
-            element: focused,
-          });
+          updateFocusIndex(index, focusables);
         };
 
         extendKeyDown({
@@ -487,15 +612,14 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         } = config.current;
 
         if (searchable && isSearchableEvent(event)) {
-          const focusables = getFocusableElements(currentTarget, programmatic);
-          const index = findMatchIndex({
-            value: key,
-            values: focusables.map((element) =>
-              getSearchText(element, !isNotFocusable(element, includeDisabled))
-            ),
-            startIndex: shiftKey ? -1 : currentFocusIndex.current,
-          });
-          setFocusIndex(index, focusables);
+          event.preventDefault();
+          event.stopPropagation();
+          focusFromKey({ key, reversed: shiftKey });
+          return;
+        }
+
+        if (trackTabKeys && key === "Tab") {
+          currentFocusIndex.current += event.shiftKey ? -1 : 1;
           return;
         }
 
@@ -509,33 +633,23 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           !increment &&
           decrementKeys.includes(key);
 
-        if (!jumpToFirst && !jumpToLast && !increment && !decrement) {
-          return;
-        }
-        const focusables = getFocusableElements(currentTarget, programmatic);
-
-        let index: number;
         if (jumpToFirst) {
-          index = getFirstFocusableIndex({
-            focusables,
-            includeDisabled,
-          });
+          event.preventDefault();
+          event.stopPropagation();
+          focusFirst();
         } else if (jumpToLast) {
-          index = getLastFocusableIndex({
-            focusables,
-            includeDisabled,
-          });
-        } else {
-          index = getNextFocusableIndex({
-            loopable,
-            increment,
-            focusables,
-            includeDisabled,
-            currentFocusIndex: currentFocusIndex.current,
-          });
+          event.preventDefault();
+          event.stopPropagation();
+          focusLast();
+        } else if (increment) {
+          event.preventDefault();
+          event.stopPropagation();
+          focusNext();
+        } else if (decrement) {
+          event.preventDefault();
+          event.stopPropagation();
+          focusPrevious();
         }
-
-        setFocusIndex(index, focusables);
       },
     },
     movementContext,

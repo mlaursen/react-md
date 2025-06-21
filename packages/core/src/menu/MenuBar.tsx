@@ -89,6 +89,7 @@ export const MenuBar = forwardRef<HTMLUListElement, MenuBarProps>(
     });
     const { activeId, enableHoverMode } = menuBarContext;
     const { movementProps, movementContext } = useKeyboardMovementProvider({
+      ref,
       onClick,
       onFocus,
       onKeyDown,
@@ -110,7 +111,6 @@ export const MenuBar = forwardRef<HTMLUListElement, MenuBarProps>(
           <List
             {...remaining}
             {...movementProps}
-            ref={ref}
             role="menubar"
             horizontal={horizontal}
           >

@@ -29,6 +29,7 @@ export const ExpansionList = forwardRef<HTMLDivElement, ExpansionListProps>(
     const { onClick, onFocus, onKeyDown, children, ...remaining } = props;
 
     const { movementContext, movementProps } = useExpansionList({
+      ref,
       onClick,
       onFocus,
       onKeyDown,
@@ -36,7 +37,7 @@ export const ExpansionList = forwardRef<HTMLDivElement, ExpansionListProps>(
 
     return (
       <KeyboardMovementProvider value={movementContext}>
-        <div {...remaining} {...movementProps} ref={ref}>
+        <div {...remaining} {...movementProps}>
           {children}
         </div>
       </KeyboardMovementProvider>

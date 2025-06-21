@@ -270,6 +270,7 @@ export function Tree<T extends TreeItemNode>(
   });
 
   const { metadataLookup, movementContext, movementProps } = useTreeMovement({
+    ref: treeRef,
     onClick,
     onFocus,
     onKeyDown,
@@ -305,7 +306,6 @@ export function Tree<T extends TreeItemNode>(
           {...remaining}
           {...movementProps}
           id={treeId}
-          ref={treeRef}
           role="tree"
           tabIndex={0}
           className={tree({ className })}

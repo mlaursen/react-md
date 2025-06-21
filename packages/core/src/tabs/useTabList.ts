@@ -176,6 +176,7 @@ export function useTabList(
   const forwardRef = useRef<HTMLDivElement>(null);
   const backwardRef = useRef<HTMLDivElement>(null);
   const { movementProps, movementContext } = useKeyboardMovementProvider({
+    ref: tabListRef,
     onClick(event) {
       onClick(event);
       if (event.isPropagationStopped() || !(event.target instanceof Element)) {
@@ -226,7 +227,6 @@ export function useTabList(
   return {
     elementProps: {
       "aria-orientation": vertical ? "vertical" : "horizontal",
-      ref: tabListRef,
       style: {
         ...style,
         ...(disableTransition ? undefined : indicatorStyles),
