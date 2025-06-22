@@ -1,10 +1,10 @@
+import { type MinMaxRange } from "../types.js";
+
 /**
  * @internal
  * @since 6.0.0
  */
-export interface NearestOptions {
-  min: number;
-  max: number;
+export interface NearestOptions extends MinMaxRange {
   steps: number;
   value: number;
 

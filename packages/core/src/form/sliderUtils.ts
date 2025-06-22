@@ -6,7 +6,7 @@ import {
   type DraggableMouseEventHandlers,
   type DraggableTouchEventHandlers,
 } from "../draggable/useDraggable.js";
-import { type RenameKeysWithPrefix } from "../types.js";
+import { type MinMaxRange, type RenameKeysWithPrefix } from "../types.js";
 import {
   type ClientPositionEvent,
   getClientPosition,
@@ -18,9 +18,7 @@ import { getRangeSteps } from "../utils/getRangeSteps.js";
  * @since 6.0.0
  * @internal
  */
-interface JumpOptions {
-  min: number;
-  max: number;
+interface JumpOptions extends MinMaxRange {
   step: number;
   jump: number | undefined;
 }
@@ -178,9 +176,7 @@ function getThumbOffset(
  * @since 6.0.0
  * @internal
  */
-export interface ThumbOffsetsOptions {
-  min: number;
-  max: number;
+export interface ThumbOffsetsOptions extends MinMaxRange {
   thumb1Value: number;
   thumb1Dragging: boolean;
   thumb1DragPercentage: number;

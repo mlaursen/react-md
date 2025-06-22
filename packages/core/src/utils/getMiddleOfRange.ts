@@ -1,12 +1,11 @@
+import { type MinMaxRange } from "../types.js";
 import { getRangeSteps } from "./getRangeSteps.js";
 import { nearest } from "./nearest.js";
 
 /**
  * @since 6.0.0
  */
-export interface GetMiddleOfRangeOptions {
-  min: number;
-  max: number;
+export interface GetMiddleOfRangeOptions extends MinMaxRange {
   step: number;
 }
 

@@ -1,15 +1,7 @@
+import { type MinMaxRange } from "../types.js";
+
 /** @since 4.0.1 */
-export interface GetPercentageOptions {
-  /**
-   * The min value allowed.
-   */
-  min: number;
-
-  /**
-   * The max value allowed.
-   */
-  max: number;
-
+export interface GetPercentageOptions extends MinMaxRange {
   /**
    * The current value
    */

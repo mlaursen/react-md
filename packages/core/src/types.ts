@@ -236,6 +236,14 @@ export interface Point {
 }
 
 /**
+ * @since 6.3.0
+ */
+export interface MinMaxRange {
+  min: number;
+  max: number;
+}
+
+/**
  * @since 6.2.0
  */
 export type OverridableStringUnion<

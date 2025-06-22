@@ -1,5 +1,6 @@
 import { type MouseEvent, type RefObject, type TouchEvent } from "react";
 
+import { type MinMaxRange } from "../types.js";
 import {
   type ClientPositionEvent,
   type ClientPositionOptions,
@@ -62,9 +63,7 @@ export const getDragPosition = (options: DragPositionOptions): number => {
 /**
  * @internal
  */
-interface RelativeDragPositionOptions extends DragPositionOptions {
-  min: number;
-  max: number;
+interface RelativeDragPositionOptions extends DragPositionOptions, MinMaxRange {
   step: number;
   rangeMin: number;
   rangeMax: number;
@@ -218,9 +217,7 @@ export const updateDragPosition = (
  * @internal
  * @since 6.0.0
  */
-export interface DeserializeDraggableValueOptions {
-  min: number;
-  max: number;
+export interface DeserializeDraggableValueOptions extends MinMaxRange {
   item: string;
 }
 
