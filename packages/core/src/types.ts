@@ -228,6 +228,14 @@ export interface ElementSize {
 }
 
 /**
+ * @since 6.3.0
+ */
+export interface Point {
+  x: number;
+  y: number;
+}
+
+/**
  * @since 6.2.0
  */
 export type OverridableStringUnion<

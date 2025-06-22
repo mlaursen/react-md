@@ -1,37 +1,35 @@
 import { type KeyboardEvent, type MouseEvent, type TouchEvent } from "react";
 
 import { findSizingContainer } from "../positioning/utils.js";
+import { type Point } from "../types.js";
+import { calcHypotenuse } from "../utils/trigonometry.js";
 import {
   type ElementInteractionState,
   type RippleState,
   type RippleStyle,
 } from "./types.js";
 
-/** @internal */
-function calcHypotenuse(a: number, b: number): number {
-  return Math.sqrt(a * a + b * b);
+/**
+ * @internal
+ * @since 6.3.0
+ */
+interface GetRadiusOptions extends Point {
+  height: number;
+  width: number;
 }
 
 /**
- * Gets the current radius for a ripple based on the x and y page dimensions
- * as well as the size of the element.
- *
- * This is really just in a separate file so I can easily mock this and write
- * tests.
- *
  * @internal
+ * @since 6.3.0
  */
-function getRadius(
-  x: number,
-  y: number,
-  offsetWidth: number,
-  offsetHeight: number
-): number {
+export function getRadius(options: GetRadiusOptions): number {
+  const { x, y, height, width } = options;
+
   return Math.max(
-    calcHypotenuse(x, y),
-    calcHypotenuse(offsetWidth - x, y),
-    calcHypotenuse(offsetWidth - x, offsetHeight - y),
-    calcHypotenuse(x, offsetHeight - y)
+    calcHypotenuse({ x, y }),
+    calcHypotenuse({ x: width - x, y }),
+    calcHypotenuse({ x: width - x, y: height - y }),
+    calcHypotenuse({ x, y: height - y })
   );
 }
 
@@ -66,7 +64,7 @@ export function getRippleStyle(
     y = pageY - (top + window.scrollY);
   }
 
-  const radius = getRadius(x, y, width, height);
+  const radius = getRadius({ x, y, width, height });
   const size = radius * 2;
 
   return {

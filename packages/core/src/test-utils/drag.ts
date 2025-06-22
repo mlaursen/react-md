@@ -1,25 +1,21 @@
 import { fireEvent } from "@testing-library/dom";
 import type { MouseEvent } from "react";
 
+import { type Point } from "../types.js";
 import { wait } from "../utils/wait.js";
 
-interface XYCoords {
-  x: number;
-  y: number;
-}
-
 interface BaseDragOptions {
-  to?: XYCoords | Element;
-  from?: XYCoords;
-  delta?: XYCoords;
+  to?: Point | Element;
+  from?: Point;
+  delta?: Point;
   steps?: number;
   duration?: number;
 }
 
 type DragOptions = BaseDragOptions &
-  ({ to: XYCoords | Element; delta?: never } | { delta: XYCoords; to?: never });
+  ({ to: Point | Element; delta?: never } | { delta: Point; to?: never });
 
-const getElementClientCenter = (element: Element): XYCoords => {
+const getElementClientCenter = (element: Element): Point => {
   const { left, top, width, height } = element.getBoundingClientRect();
   return {
     x: left + width / 2,
@@ -27,7 +23,7 @@ const getElementClientCenter = (element: Element): XYCoords => {
   };
 };
 
-const getCoords = (elementOrCoords: Element | XYCoords): XYCoords =>
+const getCoords = (elementOrCoords: Element | Point): Point =>
   "x" in elementOrCoords && "y" in elementOrCoords
     ? elementOrCoords
     : getElementClientCenter(elementOrCoords);
@@ -58,7 +54,7 @@ export async function drag(
       }
     : getCoords(inTo);
 
-  const step: XYCoords = {
+  const step: Point = {
     x: (to.x - from.x) / steps,
     y: (to.y - from.y) / steps,
   };
