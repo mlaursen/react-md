@@ -1,5 +1,11 @@
 # @react-md/core
 
+## 6.2.1
+
+### Patch Changes
+
+- Fixed the Select component not showing the focus outline behavior after splitting form styles into separate files.
+
 ## 6.2.0
 
 ### Minor Changes
