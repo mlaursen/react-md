@@ -642,7 +642,7 @@ $variables: (
 
         border-radius: $thumb-border-radius;
         height: $thumb-size;
-        outline-style: none;
+        outline: 0;
         position: absolute;
         width: $thumb-size;
         z-index: $thumb-z-index;

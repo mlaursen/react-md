@@ -134,7 +134,7 @@ $item-padding: calc(
       .rmd-tree {
         display: block;
         height: 100%;
-        outline-style: none;
+        outline: 0;
         overflow: auto;
         // this is mostly for firefox. moving the mouse even 1px while clicking will
         // select the current item and all items to the tree root
