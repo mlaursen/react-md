@@ -4,19 +4,8 @@ import matter from "gray-matter";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
+import { assertBoolean, assertDate } from "@/utils/assertions.js";
 import { slug } from "@/utils/slug.js";
-
-function assertDate(value: unknown, name: string): asserts value is Date {
-  if (!(value instanceof Date)) {
-    throw new Error(`${name} must be a Date.`);
-  }
-}
-
-function assertBoolean(value: unknown, name: string): asserts value is boolean {
-  if (typeof value !== "boolean") {
-    throw new Error(`${name} must be a boolean.`);
-  }
-}
 
 export interface Blog {
   id: string;

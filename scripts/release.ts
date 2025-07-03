@@ -35,7 +35,7 @@ async function getTagPrefix(): Promise<string> {
     });
   }
 
-  return "@reactg-md/core";
+  return "@react-md/core";
 }
 
 async function createRelease(options: CreateReleaseOptions): Promise<void> {
@@ -148,9 +148,9 @@ exec("git add -u");
 exec("git add .changeset");
 
 const changeset = await getCurrentChangeset();
-const version = await getReleaseVersion();
 exec("pnpm changeset version", { stdio: "inherit" });
 exec("git add -u");
+const version = await getReleaseVersion();
 if (!(await confirm({ message: "Continue the release?" }))) {
   process.exit(1);
 }
