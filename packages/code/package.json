@@ -1,7 +1,7 @@
 {
   "name": "@react-md/code",
   "private": true,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "The core components and functionality for react-md.",
   "type": "module",
   "sass": "./dist/_code.scss",

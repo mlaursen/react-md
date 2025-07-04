@@ -1,5 +1,19 @@
 # @react-md/core
 
+## 6.3.0
+
+### Minor Changes
+
+- This release focused on some form improvements as I work towards the full date,
+  time, and datetime component implementations.
+
+  - The `useTextField` and `useNumberField` automatically reset on a form reset event
+  - The `FormMessageContainer` can now be rendered inline
+  - Added `useDateField` and `NativeDateField` component for simple date behavior
+  - Added `useTimeField` and `NativeTimeField` component for simple time behavior
+  - Refactored movement behavior to provide actions allowing for more reuse in complex widgets
+  - Increased test coverage
+
 ## 6.2.1
 
 ### Patch Changes
