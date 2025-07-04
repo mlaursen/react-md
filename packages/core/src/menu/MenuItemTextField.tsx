@@ -8,15 +8,13 @@ import { type PropsWithRef } from "../types.js";
 
 /**
  * @since 5.0.0
+ * @since 6.3.0 Removed the invalid `stretch` prop
  */
 export interface MenuItemTextFieldProps extends TextFieldProps {
   /**
    * Any additional props or a `ref` to apply to the surrounding `<li>` element.
    */
   liProps?: PropsWithRef<HTMLAttributes<HTMLLIElement>>;
-
-  /** @defaultValue `true` */
-  stretch?: boolean;
 }
 
 /**

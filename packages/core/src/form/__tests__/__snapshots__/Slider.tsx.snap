@@ -1,5 +1,83 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Slider discrete sliders should allow for marks to have custom labels 1`] = `
+<div
+  class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+>
+  <span
+    class="rmd-slider-track rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+    style="--rmd-slider-offset-1: 50%;"
+  >
+    <span
+      aria-label="Slider"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1"
+      id="slider-:r1d:"
+      role="slider"
+      tabindex="0"
+    />
+    <input
+      aria-hidden="true"
+      aria-label="Slider"
+      class="rmd-slider-thumb__input"
+      id="slider-:r1d:-value"
+      max="100"
+      min="0"
+      step="10"
+      tabindex="-1"
+      type="range"
+      value="50"
+    />
+    <span
+      class="rmd-slider-mark rmd-slider-mark--active rmd-slider-mark--h"
+      data-testid="mark-0"
+      style="--rmd-slider-mark-offset: 0%;"
+    />
+    <span
+      class="rmd-typography rmd-typography--body-2 rmd-slider-mark-label rmd-slider-mark-label--h"
+      style="--rmd-slider-mark-offset: 0%;"
+    >
+      First
+    </span>
+    <span
+      class="rmd-slider-mark rmd-slider-mark--active rmd-slider-mark--h"
+      data-testid="mark-20"
+      style="--rmd-slider-mark-offset: 20%;"
+    />
+    <span
+      class="rmd-typography rmd-typography--body-2 rmd-slider-mark-label rmd-slider-mark-label--h"
+      style="--rmd-slider-mark-offset: 20%;"
+    >
+      Second
+    </span>
+    <span
+      class="rmd-slider-mark rmd-slider-mark--inactive rmd-slider-mark--h"
+      data-testid="mark-50"
+      style="--rmd-slider-mark-offset: 50%;"
+    />
+    <span
+      class="rmd-typography rmd-typography--body-2 rmd-slider-mark-label rmd-slider-mark-label--h"
+      style="--rmd-slider-mark-offset: 50%;"
+    >
+      Third
+    </span>
+    <span
+      class="rmd-slider-mark rmd-slider-mark--inactive rmd-slider-mark--h"
+      data-testid="mark-100"
+      style="--rmd-slider-mark-offset: 100%;"
+    />
+    <span
+      class="rmd-typography rmd-typography--body-2 rmd-slider-mark-label rmd-slider-mark-label--h"
+      style="--rmd-slider-mark-offset: 100%;"
+    >
+      Fourth
+    </span>
+  </span>
+</div>
+`;
+
 exports[`Slider discrete sliders should support manually defining the marks using a list 1`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"

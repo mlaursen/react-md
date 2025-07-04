@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-import type { UseStateSetter } from "../types.js";
+import { type UseStateSetter } from "../types.js";
 import { useToggle } from "../useToggle.js";
 import { loop } from "../utils/loop.js";
-import type { SlideDirection } from "./SlideContainer.js";
+import { type SlideDirection } from "./SlideContainer.js";
 
 /** @since 6.0.0 */
 export interface CarouselSlideState {

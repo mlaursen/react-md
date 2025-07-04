@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItemTextField should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<input
+  class="rmd-text-field rmd-text-field--placeholder-hidden"
+  id="text-field-:r0:"
+  placeholder=" "
+  type="text"
+/>
+`;
+
+exports[`MenuItemTextField should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<input
+  class="rmd-text-field rmd-text-field--placeholder-hidden"
+  id="text-field-:r0:"
+  placeholder=" "
+  type="text"
+/>
+`;
+
+exports[`MenuItemTextField should support adding props to the surrounding li 1`] = `
+<li
+  class="rmd-list-item rmd-menu-item test-class-name"
+  data-testid="li"
+  role="none"
+  style="background: orange;"
+>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable"
+  >
+    <input
+      class="rmd-text-field"
+      id="text-field-:r1:"
+      placeholder=""
+      type="text"
+    />
+  </div>
+</li>
+`;

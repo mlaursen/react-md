@@ -1206,5 +1206,30 @@ describe("Slider", () => {
       expect(marks).toHaveLength(4);
       expect(sliderContainer).toMatchSnapshot();
     });
+
+    it("should allow for marks to have custom labels", () => {
+      rmdRender(
+        <SingleThumbTest
+          marks={[
+            { value: 0, label: "First" },
+            { value: 20, label: "Second" },
+            { value: 50, label: "Third" },
+            { value: 100, label: "Fourth" },
+          ]}
+          options={{ step: 10 }}
+          getMarkProps={({ value }) => ({
+            "data-testid": `mark-${value}`,
+          })}
+        />
+      );
+      const { sliderContainer } = getSliderTestElements({ name: "Slider" });
+      const marks = screen.getAllByTestId(/^mark-/);
+      expect(marks).toHaveLength(4);
+      expect(() => screen.getByText("First")).not.toThrow();
+      expect(() => screen.getByText("Second")).not.toThrow();
+      expect(() => screen.getByText("Third")).not.toThrow();
+      expect(() => screen.getByText("Fourth")).not.toThrow();
+      expect(sliderContainer).toMatchSnapshot();
+    });
   });
 });

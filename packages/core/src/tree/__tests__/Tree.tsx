@@ -732,4 +732,44 @@ describe("Tree", () => {
     fireEvent.touchEnd(folder1);
     expect(onTouchEnd).toHaveBeenCalledTimes(1);
   });
+
+  it('should expand all tree items at the same level when the "*" key is pressed', async () => {
+    const user = userEvent.setup();
+    rmdRender(
+      <Test
+        data={{
+          ...FOLDERS,
+          "folder-1-1": {
+            name: "Folder 1 Child 1",
+            itemId: "folder-1-1",
+            parentId: "folder-1",
+          },
+        }}
+      />
+    );
+
+    const tree = screen.getByRole("tree", { name: "Tree" });
+    const folder1 = screen.getByRole("treeitem", { name: "Folder 1" });
+    const folder2 = screen.getByRole("treeitem", { name: "Folder 2" });
+    const folder3 = screen.getByRole("treeitem", { name: "Folder 3" });
+    expect(folder1).toHaveAttribute("aria-expanded", "false");
+    expect(folder2).toHaveAttribute("aria-expanded", "false");
+    expect(folder3).not.toHaveAttribute("aria-expanded");
+    const groups = screen.getAllByRole("group");
+    expect(groups).toHaveLength(4);
+    groups.forEach((subtree) => {
+      expect(isElementVisible(subtree)).toBe(false);
+    });
+
+    await user.tab();
+    expect(tree).toHaveFocus();
+    expect(folder1).toHaveAttribute("aria-expanded", "false");
+    expect(folder2).toHaveAttribute("aria-expanded", "false");
+    expect(folder3).not.toHaveAttribute("aria-expanded");
+
+    await user.keyboard("*");
+    expect(folder1).toHaveAttribute("aria-expanded", "true");
+    expect(folder2).toHaveAttribute("aria-expanded", "true");
+    expect(folder3).not.toHaveAttribute("aria-expanded");
+  });
 });

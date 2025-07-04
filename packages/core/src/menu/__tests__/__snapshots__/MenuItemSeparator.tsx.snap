@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<li
+  class="rmd-divider"
+  role="separator"
+/>
+`;
+
+exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<li
+  class="rmd-divider rmd-divider--inset"
+  role="separator"
+/>
+`;
+
+exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+<li
+  aria-orientation="vertical"
+  class="rmd-divider rmd-divider--vertical"
+  role="separator"
+/>
+`;
+
+exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+<li
+  aria-orientation="vertical"
+  class="rmd-divider rmd-divider--vertical"
+  role="separator"
+/>
+`;
+
+exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and allow a ref 5`] = `
+<li
+  class="rmd-divider custom-class-name"
+  role="separator"
+  style="color: white;"
+/>
+`;

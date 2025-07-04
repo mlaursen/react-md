@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+<button
+  aria-controls="does-not-exist"
+  aria-label="Window Splitter"
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="50"
+  class="rmd-window-splitter rmd-window-splitter--h"
+  id="splitter-:r0:"
+  role="separator"
+  type="button"
+/>
+`;
+
+exports[`WindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+<button
+  aria-controls="does-not-exist"
+  aria-label="Window Splitter"
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="50"
+  class="rmd-window-splitter rmd-window-splitter--h custom-class-name"
+  id="splitter-:r0:"
+  role="separator"
+  style="color: white;"
+  type="button"
+/>
+`;
+
+exports[`WindowSplitter should be able to render vertically 1`] = `
+<button
+  aria-controls="does-not-exist"
+  aria-label="Window Splitter"
+  aria-orientation="vertical"
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="50"
+  class="rmd-window-splitter rmd-window-splitter--v"
+  id="splitter-:r1:"
+  role="separator"
+  type="button"
+/>
+`;

@@ -42,8 +42,9 @@ export type WindowSplitterOptions<E extends HTMLElement = HTMLButtonElement> =
 /**
  * @since 6.0.0
  */
-export interface WindowSplitterWidgetProps<E extends HTMLElement>
-  extends Required<DraggableMouseEventHandlers<E>>,
+export interface WindowSplitterWidgetProps<
+  E extends HTMLElement = HTMLButtonElement,
+> extends Required<DraggableMouseEventHandlers<E>>,
     Required<DraggableKeyboardEventHandlers<E>> {
   "aria-orientation": "vertical" | undefined;
   "aria-valuenow": number;
