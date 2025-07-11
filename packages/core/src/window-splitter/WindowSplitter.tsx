@@ -1,27 +1,22 @@
 import { type ButtonHTMLAttributes, forwardRef } from "react";
 
 import { type LabelRequiredForA11y } from "../types.js";
-import { windowSplitter } from "./styles.js";
+import {
+  type BaseWindowSplitterClassNameOptions,
+  windowSplitter,
+} from "./styles.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type useWindowSplitter } from "./useWindowSplitter.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-window-splitter-top"?: number | string;
-    "--rmd-window-splitter-right"?: number | string;
-    "--rmd-window-splitter-bottom"?: number | string;
-    "--rmd-window-splitter-left"?: number | string;
-    "--rmd-window-splitter-opacity"?: number | string;
-    "--rmd-window-splitter-position"?: number | string;
-  }
-}
-
 /**
- * @since 6.0.0
  * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/}
+ * @since 6.0.0
+ * @since 6.3.1 Extends BaseWindowSplitterClassNameOptions for CSSProperties
+ * module augmentation.
  */
 export interface BaseWindowSplitterProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type" | "children"> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type" | "children">,
+    BaseWindowSplitterClassNameOptions {
   /**
    * This will be provided by the {@link useWindowSplitter} hook.
    */
@@ -36,14 +31,6 @@ export interface BaseWindowSplitterProps
    * This will be provided by the {@link useWindowSplitter} hook.
    */
   reversed: boolean;
-
-  /**
-   * Set this to `true` if the window splitter should use `position: absolute`
-   * instead of `position: fixed`.
-   *
-   * @defaultValue `false`
-   */
-  disableFixed?: boolean;
 }
 
 /**

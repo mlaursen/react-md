@@ -8,17 +8,6 @@ import {
 import { type PropsWithRef } from "../types.js";
 import { type AvatarClassNameOptions, avatar, avatarImage } from "./styles.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-avatar-background-color"?: string;
-    "--rmd-avatar-color"?: string;
-    "--rmd-avatar-border-color"?: string;
-    "--rmd-avatar-border-radius"?: string | number;
-    "--rmd-avatar-size"?: string | number;
-    "--rmd-avatar-font-size"?: string | number;
-  }
-}
-
 export type AvatarImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
 
 /**

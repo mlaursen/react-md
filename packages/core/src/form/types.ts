@@ -12,6 +12,35 @@ declare module "react" {
   interface CSSProperties {
     "--rmd-form-active-color"?: string;
     "--rmd-form-focus-color"?: string;
+
+    // NOTE: The label properties are in this file since all label types are
+    // in this file. If they are able to be moved to labelStyles or Label and
+    // the compiled `.d.ts` includes the types from those files, this can be
+    // moved.
+    "--rmd-label-floating-x"?: string | number;
+    "--rmd-label-floating-y"?: string | number;
+    "--rmd-label-floating-active-x"?: string | number;
+    "--rmd-label-floating-active-y"?: string | number;
+    "--rmd-label-active-padding"?: string | number;
+    "--rmd-label-active-background-color"?: string;
+
+    // NOTE: The text field properties are in this file since there are no
+    // typedefs included from `TextFieldContainer` or
+    // `textFieldContainerStyles`.
+    "--rmd-text-field-addon-top"?: string | number;
+    "--rmd-text-field-addon-spacing"?: string | number;
+    "--rmd-text-field-addon-margin-top"?: string | number;
+    "--rmd-text-field-addon-left-offset"?: string | number;
+    "--rmd-text-field-height"?: string | number;
+    "--rmd-text-field-padding-left"?: string | number;
+    "--rmd-text-field-padding-right"?: string | number;
+    "--rmd-text-field-padding-top"?: string | number;
+    "--rmd-text-field-border-color"?: string;
+    "--rmd-text-field-hover-border-color"?: string;
+    "--rmd-text-field-filled-color"?: string;
+    "--rmd-text-field-filled-padding"?: string | number;
+    "--rmd-text-field-outlined-padding"?: string | number;
+    "--rmd-text-field-underlined-padding"?: string | number;
   }
 }
 

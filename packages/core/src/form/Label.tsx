@@ -3,17 +3,6 @@ import { forwardRef } from "react";
 import { label } from "./labelStyles.js";
 import { type LabelProps } from "./types.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-label-floating-x"?: string | number;
-    "--rmd-label-floating-y"?: string | number;
-    "--rmd-label-floating-active-x"?: string | number;
-    "--rmd-label-floating-active-y"?: string | number;
-    "--rmd-label-active-padding"?: string | number;
-    "--rmd-label-active-background-color"?: string;
-  }
-}
-
 /**
  * Most of the form components already use this `Label` internally when a
  * `label` prop has been provided. You should generally use this component if

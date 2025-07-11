@@ -10,9 +10,27 @@ import {
 
 const styles = bem("rmd-list-item");
 
-/** @since 6.0.0 */
-export interface ListItemClassNameOptions {
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-list-item-keyline"?: string | number;
+    "--rmd-list-item-padding-h"?: string | number;
+    "--rmd-list-item-padding-v"?: string | number;
+    "--rmd-list-item-height"?: string | number;
+    "--rmd-list-item-medium-height"?: string | number;
+    "--rmd-list-item-large-height"?: string | number;
+    "--rmd-list-item-extra-large-height"?: string | number;
+    "--rmd-list-item-multiline-height"?: string | number;
+    "--rmd-list-item-media-size"?: string | number;
+    "--rmd-list-item-media-spacing"?: string | number;
+    "--rmd-list-item-text-multiline-height"?: string | number;
+    "--rmd-list-item-multiline-clamp"?: string | number;
+  }
+}
+
+/** @since 6.3.1 */
+export interface BaseListItemClassNameOptions {
   className?: string;
+
   /**
    * @see {@link ListItemHeight}
    * @defaultValue `"auto"`
@@ -25,7 +43,10 @@ export interface ListItemClassNameOptions {
   multiline?: boolean;
 
   /**
+   * Note: This does nothing if the `disabled` prop is not enabled.
+   *
    * @defaultValue `false`
+   * @since 2.4.3
    */
   disabled?: boolean;
 
@@ -36,7 +57,10 @@ export interface ListItemClassNameOptions {
    * @since 2.4.3
    */
   disabledOpacity?: boolean;
+}
 
+/** @since 6.0.0 */
+export interface ListItemClassNameOptions extends BaseListItemClassNameOptions {
   /**
    * Set this to `false` if the list item should not gain the interaction
    * states: hover, focus, press, etc. This is kind of like being disabled

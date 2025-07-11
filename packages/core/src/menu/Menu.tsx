@@ -40,6 +40,8 @@ import { MenuWidget } from "./MenuWidget.js";
 import { useMenuBarContext } from "./useMenuBarProvider.js";
 import { getDefaultAnchor } from "./utils.js";
 
+// NOTE: The augmentation is in this file since no types are imported from the
+// `styles` file at this time
 declare module "react" {
   interface CSSProperties {
     "--rmd-menu-background-color"?: string;

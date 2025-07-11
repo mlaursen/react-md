@@ -22,6 +22,8 @@ import {
   useResizingTextArea,
 } from "./useResizingTextArea.js";
 
+// NOTE: The augmentation appears in this file since no type definitions are
+// ever imported from the `textAreaStylesStyles` file.
 declare module "react" {
   interface CSSProperties {
     "--rmd-text-area-height"?: string | number;

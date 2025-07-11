@@ -13,26 +13,45 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-overlay");
 
-/** @since 6.0.0 */
-export interface OverlayClassNameOptions {
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-overlay-background-color"?: string;
+    "--rmd-overlay-z-index"?: number;
+  }
+}
+
+export interface BaseOverlayClassNameOptions {
   className?: string;
 
+  /**
+   * Set this to `true` for when the overlay should be visible. Toggling this
+   * value will trigger the enter/exit animation.
+   */
   visible: boolean;
 
+  /**
+   * @defaultValue `"center"`
+   * @since 6.0.0
+   */
+  align?: BoxAlignItems;
+
+  /**
+   * @defaultValue `"center"`
+   * @since 6.0.0
+   */
+  justify?: BoxJustifyContent;
+
+  /** @defaultValue `false` */
+  clickable?: boolean;
+}
+
+/** @since 6.0.0 */
+export interface OverlayClassNameOptions extends BaseOverlayClassNameOptions {
   /** @defaultValue `false` */
   active?: boolean;
 
   /** @defaultValue `false` */
-  clickable?: boolean;
-
-  /** @defaultValue `false` */
   absolute?: boolean;
-
-  /** @defaultValue `"center"` */
-  align?: BoxAlignItems;
-
-  /** @defaultValue `"center"` */
-  justify?: BoxJustifyContent;
 }
 
 /**

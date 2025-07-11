@@ -17,7 +17,7 @@ import { RenderRecursively } from "../utils/RenderRecursively.js";
 import { identity } from "../utils/identity.js";
 import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer.js";
 import { type TreeExpansionMode, TreeProvider } from "./TreeProvider.js";
-import { tree } from "./styles.js";
+import { type TreeClassNameOptions, tree } from "./styles.js";
 import {
   type TreeData,
   type TreeItemNode,
@@ -28,15 +28,6 @@ import { type TreeExpansion } from "./useTreeExpansion.js";
 import { useTreeItems } from "./useTreeItems.js";
 import { useTreeMovement } from "./useTreeMovement.js";
 import { type TreeSelection } from "./useTreeSelection.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-tree-depth"?: number;
-    "--rmd-tree-item-padding"?: string | number;
-    "--rmd-tree-item-padding-base"?: string | number;
-    "--rmd-tree-item-padding-incrementor"?: string | number;
-  }
-}
 
 /**
  * @since 6.0.0
@@ -55,9 +46,13 @@ export type TreeHTMLAttributes = Omit<
  * - `getItemLabel`
  * - `getItemValue`
  * - `getItemProps`
+ *
+ * @since 6.3.1 Extends TreeClassNameOptions for CSSProperties module
+ * augmentation.
  */
 export interface TreeProps<T extends TreeItemNode>
   extends TreeHTMLAttributes,
+    TreeClassNameOptions,
     TreeExpansion,
     TreeSelection {
   /** @see {@link TreeData} */

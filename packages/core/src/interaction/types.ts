@@ -8,7 +8,6 @@ import type {
 
 declare module "react" {
   interface CSSProperties {
-    "--rmd-ripple-background-color"?: string;
     "--rmd-interaction-background-color"?: string;
     "--rmd-hover-background-color"?: string;
     "--rmd-focus-background-color"?: string;
@@ -16,6 +15,11 @@ declare module "react" {
     "--rmd-selected-background-color"?: string;
     "--rmd-focus-color"?: string;
     "--rmd-focus-width"?: string | number;
+    "--rmd-ripple-inset"?: string | number;
+    "--rmd-ripple-border-radius"?: string | number;
+    "--rmd-ripple-background-color"?: string;
+    "--rmd-surface-inset"?: string | number;
+    "--rmd-surface-border-radius"?: string | number;
   }
 }
 

@@ -14,33 +14,27 @@ import { getIcon } from "../icon/config.js";
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
-import { useMaxWidthTransition } from "../transition/useMaxWidthTransition.js";
+import {
+  type BaseMaxWidthTransitionOptions,
+  useMaxWidthTransition,
+} from "../transition/useMaxWidthTransition.js";
 import { type PropsWithRef } from "../types.js";
-import { chip, chipContent } from "./styles.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-chip-solid-background-color"?: string;
-    "--rmd-chip-solid-disabled-background-color"?: string;
-    "--rmd-chip-solid-color"?: string;
-    "--rmd-chip-theme-background-color"?: string;
-    "--rmd-chip-theme-color"?: string;
-    "--rmd-chip-outline-background-color"?: string;
-    "--rmd-chip-outline-color"?: string;
-  }
-}
+import { type ChipTheme, chip, chipContent } from "./styles.js";
 
 /**
  * @since 6.0.0 Renamed the `noninteractive` prop to
  * `noninteractable`.
+ * @since 6.3.1 Extends BaseMaxWidthTransitionOptions for CSSProperties module
+ * augmentation.
  */
 export interface ChipProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
+    BaseMaxWidthTransitionOptions,
     ComponentWithRippleProps {
   /**
    * @defaultValue `"solid"`
    */
-  theme?: "outline" | "solid";
+  theme?: ChipTheme;
 
   /**
    * Set this to `true` if the chip should gain additional box shadow while the

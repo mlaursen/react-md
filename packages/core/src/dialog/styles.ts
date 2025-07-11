@@ -9,8 +9,6 @@ import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 
 declare module "react" {
   interface CSSProperties {
-    "--rmd-dialog-background-color"?: string;
-    "--rmd-dialog-color"?: string;
     "--rmd-dialog-min-width"?: string | number;
     "--rmd-dialog-horizontal-margin"?: string | number;
     "--rmd-dialog-vertical-margin"?: string | number;
@@ -19,6 +17,11 @@ declare module "react" {
     "--rmd-dialog-header-padding-bottom"?: string | number;
     "--rmd-dialog-content-padding"?: string | number;
     "--rmd-dialog-footer-padding"?: string | number;
+    "--rmd-dialog-width"?: string | number;
+    "--rmd-dialog-small-width"?: string | number;
+    "--rmd-dialog-medium-width"?: string | number;
+    "--rmd-dialog-large-width"?: string | number;
+    "--rmd-dialog-extra-large-width"?: string | number;
   }
 }
 

@@ -6,6 +6,14 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-nav-item");
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-navigation-border-radius"?: string | number;
+    "--rmd-navigation-horizontal-padding"?: string | number;
+    "--rmd-navigation-padding-incrementor"?: string | number;
+  }
+}
+
 /**
  * @since 6.0.0
  */

@@ -3,7 +3,6 @@
 import { type HTMLAttributes, forwardRef } from "react";
 
 import { useSsr } from "../SsrProvider.js";
-import { type BoxAlignItems, type BoxJustifyContent } from "../box/styles.js";
 import { Portal } from "../portal/Portal.js";
 import {
   type CSSTransitionComponentProps,
@@ -11,44 +10,23 @@ import {
 } from "../transition/types.js";
 import { useCSSTransition } from "../transition/useCSSTransition.js";
 import {
+  type BaseOverlayClassNameOptions,
   DEFAULT_OVERLAY_CLASSNAMES,
   DEFAULT_OVERLAY_TIMEOUT,
   overlay,
 } from "./styles.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-overlay-background-color"?: string;
-    "--rmd-overlay-z-index"?: number;
-  }
-}
-
 /**
  * @since 6.0.0 Added `align` and `justify` props.
  * @since 6.0.0 Renamed `hidden` to `noOpacity`.
+ * @since 6.3.1 Extends BaseOverlayClassNameOptions for CSSProperties module
+ * augmentation.
  */
 export interface OverlayProps
   extends HTMLAttributes<HTMLSpanElement>,
+    BaseOverlayClassNameOptions,
     CSSTransitionComponentProps,
     TransitionActions {
-  /**
-   * @defaultValue `"center"`
-   * @since 6.0.0
-   */
-  align?: BoxAlignItems;
-
-  /**
-   * @defaultValue `"center"`
-   * @since 6.0.0
-   */
-  justify?: BoxJustifyContent;
-
-  /**
-   * Set this to `true` for when the overlay should be visible. Toggling this
-   * value will trigger the enter/exit animation.
-   */
-  visible: boolean;
-
   /**
    * Set this to `true` if the overlay should be rendered with an `opacity: 0`
    * and disabling the animation. This is useful if you'd like a "close on

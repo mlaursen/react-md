@@ -7,33 +7,21 @@ import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { ListItemChildren } from "./ListItemChildren.js";
 import { getListItemHeight } from "./getListItemHeight.js";
-import { listItem } from "./listItemStyles.js";
-import { type ListItemChildrenProps, type ListItemHeight } from "./types.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-list-item-keyline"?: string | number;
-    "--rmd-list-item-padding-h"?: string | number;
-    "--rmd-list-item-padding-v"?: string | number;
-    "--rmd-list-item-height"?: string | number;
-    "--rmd-list-item-medium-height"?: string | number;
-    "--rmd-list-item-large-height"?: string | number;
-    "--rmd-list-item-extra-large-height"?: string | number;
-    "--rmd-list-item-multiline-clamp"?: string | number;
-    "--rmd-list-item-multiline-height"?: string | number;
-    "--rmd-list-item-media-size"?: string | number;
-    "--rmd-list-item-media-spacing"?: string | number;
-    "--rmd-list-item-text-multiline-height"?: string | number;
-  }
-}
+import {
+  type BaseListItemClassNameOptions,
+  listItem,
+} from "./listItemStyles.js";
+import { type ListItemChildrenProps } from "./types.js";
 
 /**
  * @since 6.0.0 Renamed `threeLines` to `multiline` since it can
  * support more than three lines of text.
+ * @since 6.3.1 Extends the BaseListItemClassNameOptions
  */
 export interface ListItemProps
   extends HTMLAttributes<HTMLLIElement>,
     ListItemChildrenProps,
+    BaseListItemClassNameOptions,
     ComponentWithRippleProps {
   /**
    * @defaultValue `"button"`
@@ -44,30 +32,6 @@ export interface ListItemProps
    * @defaultValue `disabled ? -1 : 0`
    */
   tabIndex?: number;
-
-  /**
-   * @see {@link ListItemHeight}
-   * @defaultValue `"auto"`
-   */
-  height?: ListItemHeight;
-
-  /**
-   * @defaultValue `false`
-   */
-  multiline?: boolean;
-
-  /**
-   * @defaultValue `false`
-   */
-  disabled?: boolean;
-
-  /**
-   * Note: This does nothing if the `disabled` prop is not enabled.
-   *
-   * @defaultValue `false`
-   * @since 2.4.3
-   */
-  disabledOpacity?: boolean;
 
   /**
    * Set this to `false` if the list item should not gain the interaction

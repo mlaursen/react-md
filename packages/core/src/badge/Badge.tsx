@@ -2,6 +2,18 @@ import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
 
 import { type BadgeTheme, badge } from "./styles.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-badge-border-radius"?: string | number;
+    "--rmd-badge-greyscale-background-color"?: string;
+    "--rmd-badge-greyscale-color"?: string;
+    "--rmd-badge-size"?: string | number;
+    "--rmd-badge-offset"?: string | number;
+    "--rmd-badge-offset-top"?: string | number;
+    "--rmd-badge-offset-right"?: string | number;
+  }
+}
+
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   /** @defaultValue `"greyscale"` */
   theme?: BadgeTheme;

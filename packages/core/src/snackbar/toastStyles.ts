@@ -5,11 +5,29 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-toast");
 
-/** @since 6.0.0 */
-export interface ToastClassNameOptions {
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-toast-color"?: string;
+    "--rmd-toast-background-color"?: string;
+    "--rmd-toast-offset"?: string | number;
+  }
+}
+
+/**
+ * @since 6.3.1
+ */
+export interface BaseToastClasNameOptions {
   className?: string;
+
   /** @defaultValue `"surface"` */
   theme?: BackgroundColor;
+}
+
+/**
+ * @since 6.0.0
+ * @since 6.3.1 Extends BaseToastClasNameOptions
+ */
+export interface ToastClassNameOptions extends BaseToastClasNameOptions {
   /** @defaultValue `false` */
   action?: boolean;
   /** @defaultValue `false` */

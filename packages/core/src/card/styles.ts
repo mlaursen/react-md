@@ -3,7 +3,14 @@ import { cnb } from "cnbuilder";
 import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
-const cardStyles = bem("rmd-card");
+const styles = bem("rmd-card");
+
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-card-background-color"?: string;
+    "--rmd-card-color"?: string;
+  }
+}
 
 /** @since 6.0.0 */
 export interface CardClassNameOptions {
@@ -42,7 +49,7 @@ export function card(options: CardClassNameOptions = {}): string {
   const { className, bordered, raisable, interactable } = options;
 
   return cnb(
-    cardStyles({
+    styles({
       bordered,
       shadowed: !bordered,
       raisable: !bordered && raisable,
@@ -70,7 +77,7 @@ export function cardHeader(options: CardHeaderClassNameOptions = {}): string {
   const { className, addonAfter = false, addonBefore = false } = options;
 
   return cnb(
-    cardStyles("header", {
+    styles("header", {
       "addon-after": addonAfter && !addonBefore,
       "addon-before": addonBefore && !addonAfter,
       surrounded: addonAfter && addonBefore,
@@ -92,7 +99,7 @@ export function cardHeaderContent(
 ): string {
   const { className } = options;
 
-  return cnb(cardStyles("header-content"), className);
+  return cnb(styles("header-content"), className);
 }
 
 /** @since 6.0.0 */
@@ -106,7 +113,7 @@ export interface CardTitleClassNameOptions {
 export function cardTitle(options: CardTitleClassNameOptions = {}): string {
   const { className } = options;
 
-  return cnb(cardStyles("title"), className);
+  return cnb(styles("title"), className);
 }
 
 /** @since 6.0.0 */
@@ -122,7 +129,7 @@ export function cardSubtitle(
 ): string {
   const { className } = options;
 
-  return cnb(cardStyles("subtitle"), className);
+  return cnb(styles("subtitle"), className);
 }
 
 /** @since 6.0.0 */
@@ -165,7 +172,7 @@ export function cardContent(options: CardContentClassNameOptions = {}): string {
   } = options;
 
   return cnb(
-    cardStyles("content", {
+    styles("content", {
       padded: !disablePadding,
       "padding-bottom": !disableLastChildPadding,
     }),
@@ -187,5 +194,5 @@ export interface CardFooterClassNameOptions {
 export function cardFooter(options: CardFooterClassNameOptions = {}): string {
   const { className } = options;
 
-  return cnb(cardStyles("footer"), className);
+  return cnb(styles("footer"), className);
 }

@@ -6,6 +6,13 @@ import { type ProgressTheme } from "./types.js";
 
 const styles = bem("rmd-circular-progress");
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-progress-circular-size"?: string | number;
+    "--rmd-progress-circular-stroke-width"?: string | number;
+  }
+}
+
 /**
  * @since 6.2.0
  */

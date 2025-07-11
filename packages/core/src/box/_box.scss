@@ -169,17 +169,17 @@ $variables: (
   row-max-height,
   auto-rows-height,
   phone-columns,
-  tablet-columns,
-  desktop-columns,
-  large-desktop-columns,
-  phone-item-min-height,
-  tablet-item-min-height,
-  desktop-item-min-height,
-  large-desktop-item-min-height,
   phone-item-min-size,
+  phone-item-min-height,
+  tablet-columns,
   tablet-item-min-size,
+  tablet-item-min-height,
+  desktop-columns,
   desktop-item-min-size,
-  large-desktop-item-min-size
+  desktop-item-min-height,
+  large-desktop-columns,
+  large-desktop-item-min-size,
+  large-desktop-item-min-height
 );
 
 /// @param {String} name - The supported variable name

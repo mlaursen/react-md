@@ -1,11 +1,15 @@
 import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
 
-import { mark } from "./markStyles.js";
+import { type MarkClassNameOptions, mark } from "./markStyles.js";
 
 /**
  * @since 6.0.0
+ * @since 6.3.1 Extends MarkClassNameOptions for CSSProperties module
+ * augmentation.
  */
-export interface MarkProps extends HTMLAttributes<HTMLElement> {
+export interface MarkProps
+  extends HTMLAttributes<HTMLElement>,
+    MarkClassNameOptions {
   children: ReactNode;
 }
 

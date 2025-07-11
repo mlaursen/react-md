@@ -4,6 +4,17 @@ import { type ThemeColor, cssUtils } from "../cssUtils.js";
 import { type OverridableStringUnion } from "../types.js";
 import { bem } from "../utils/bem.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-avatar-background-color"?: string;
+    "--rmd-avatar-color"?: string;
+    "--rmd-avatar-border-color"?: string;
+    "--rmd-avatar-border-radius"?: string | number;
+    "--rmd-avatar-size"?: string | number;
+    "--rmd-avatar-font-size"?: string | number;
+  }
+}
+
 const styles = bem("rmd-avatar");
 
 /**

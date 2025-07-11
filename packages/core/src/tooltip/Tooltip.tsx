@@ -2,9 +2,7 @@
 
 import { type HTMLAttributes, forwardRef } from "react";
 
-import { type TextOverflow } from "../cssUtils.js";
 import { Portal } from "../portal/Portal.js";
-import { type SimplePosition } from "../positioning/types.js";
 import {
   type CSSTransitionClassNames,
   type CSSTransitionComponentProps,
@@ -19,15 +17,7 @@ import {
   DEFAULT_TOOLTIP_POSITION,
   DEFAULT_TOOLTIP_TIMEOUT,
 } from "./constants.js";
-import { tooltip } from "./styles.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-tooltip-background-color"?: string;
-    "--rmd-tooltip-color"?: string;
-    "--rmd-tooltip-spacing"?: string | number;
-  }
-}
+import { type TooltipClassNameOptions, tooltip } from "./styles.js";
 
 /**
  * The base props for the `Tooltip` component. This can be extended when
@@ -38,44 +28,22 @@ declare module "react" {
  * @since 6.0.0 Removed `lineWrap` for `textOverflow`
  * @since 6.0.0 No longer supports the `RenderConditionalPortalProps` other than
  * `portal` with the `disablePortal` prop.
+ * @since 6.3.1 Extends TooltipClassNameOptions for CSSProperties module
+ * augmentation.
  */
 export interface TooltipProps
   extends HTMLAttributes<HTMLSpanElement>,
+    TooltipClassNameOptions,
     CSSTransitionComponentProps,
     SSRTransitionOptions,
     TransitionActions {
   visible: boolean;
 
   /**
-   * Set this to `true` to use a smaller font size and padding on the tooltip
-   * and a smaller gap between the tooltip and tooltipped element.
-   *
-   * @defaultValue `false`
-   */
-  dense?: boolean;
-
-  /**
-   * @defaultValue `"below"`
-   */
-  position?: SimplePosition;
-
-  /**
    * @see {@link CSSTransitionComponentProps.temporary}
    * @defaultValue `true`
    */
   temporary?: boolean;
-
-  /**
-   * Set this to `"nowrap"` for tooltips that are positioned near the edge of
-   * the viewport that have a position of `"above"` or `"below"` so that the
-   * tooltip no longer aligns to the center of the tooltipped element.
-   *
-   * Set this to `"ellipsis"` if the tooltip should only show a single line of
-   * text and ellipsis once it has reached the max tooltip width.
-   *
-   * @defaultValue `"allow"`
-   */
-  textOverflow?: TextOverflow;
 
   /**
    * @see {@link CSSTransitionComponentProps.timeout}

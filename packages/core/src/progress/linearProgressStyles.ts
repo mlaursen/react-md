@@ -6,10 +6,15 @@ import { type ProgressTheme } from "./types.js";
 
 const styles = bem("rmd-linear-progress");
 
-/**
- * @since 6.2.0
- */
-export interface LinearProgressClassNameOptions {
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-progress-background-color"?: string;
+    "--rmd-progress-color"?: string;
+    "--rmd-progress-linear-size"?: string | number;
+  }
+}
+
+export interface BaseLinearProgressClassNameOptions {
   className?: string;
 
   /**
@@ -18,9 +23,21 @@ export interface LinearProgressClassNameOptions {
    */
   theme?: ProgressTheme;
 
-  /** @defaultValue `false` */
+  /**
+   * Boolean if the progress should be vertical instead of horizontal.  When
+   * this prop is set, you should also set the `verticalHeight` prop to a height
+   * value you want for your progress bar.
+   *
+   * @defaultValue `false`
+   */
   vertical?: boolean;
+}
 
+/**
+ * @since 6.2.0
+ */
+export interface LinearProgressClassNameOptions
+  extends BaseLinearProgressClassNameOptions {
   /** @defaultValue `false` */
   indeterminate?: boolean;
 }

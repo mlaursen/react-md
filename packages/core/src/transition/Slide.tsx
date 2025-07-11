@@ -12,6 +12,8 @@ import {
   useSlideTransition,
 } from "./useSlideTransition.js";
 
+// NOTE: Tis is in both `useSlideTransition` and `Slide` since there are no
+// reusable types between these two files.
 declare module "react" {
   interface CSSProperties {
     "--rmd-slide-duration"?: string | number;

@@ -19,6 +19,8 @@ import {
   type FormMessageContainerExtension,
 } from "./types.js";
 
+// NOTE: The augmentation appears in this file since no type definitions are
+// ever imported from the `switchStyles` file.
 declare module "react" {
   interface CSSProperties {
     "--rmd-switch-track-background-color"?: string;

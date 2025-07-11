@@ -1,15 +1,5 @@
 import { type ThemeColor } from "../cssUtils.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-progress-background-color"?: string;
-    "--rmd-progress-color"?: string;
-    "--rmd-progress-circular-size"?: string | number;
-    "--rmd-progress-circular-stroke-width"?: number;
-    "--rmd-progress-linear-size"?: string | number;
-  }
-}
-
 /**
  * @since 6.0.0
  */

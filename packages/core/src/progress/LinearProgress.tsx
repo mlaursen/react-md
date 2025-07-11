@@ -8,14 +8,21 @@ import {
 import { type LabelRequiredForA11y, type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { getPercentage } from "../utils/getPercentage.js";
-import { linearProgress, linearProgressBar } from "./linearProgressStyles.js";
+import {
+  type BaseLinearProgressClassNameOptions,
+  linearProgress,
+  linearProgressBar,
+} from "./linearProgressStyles.js";
 import { type ProgressProps } from "./types.js";
 
 /**
  * @since 6.0.0 Added the `theme` prop
+ * @since 6.3.1 extends BaseLinearProgressClassNameOptions for CSSProperties
+ * module augmentation.
  */
 export interface LinearProgressProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, "id" | "children">,
+    BaseLinearProgressClassNameOptions,
     ProgressProps {
   /**
    * An optional style to apply to the progress bar. This will be merged with
@@ -43,15 +50,6 @@ export interface LinearProgressProps
    * @defaultValue `false`
    */
   reverse?: boolean;
-
-  /**
-   * Boolean if the progress should be vertical instead of horizontal.  When
-   * this prop is set, you should also set the `verticalHeight` prop to a height
-   * value you want for your progress bar.
-   *
-   * @defaultValue `false`
-   */
-  vertical?: boolean;
 
   /**
    * Since there isn't really a good way to have "auto height", you'll need to

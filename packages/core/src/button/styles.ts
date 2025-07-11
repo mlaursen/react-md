@@ -19,8 +19,12 @@ declare module "react" {
     "--rmd-button-text-vertical-padding"?: string | number;
     "--rmd-button-text-min-height"?: string | number;
     "--rmd-button-text-min-width"?: string | number;
+    "--rmd-button-text-border-radius"?: string | number;
     "--rmd-button-icon-size"?: string | number;
-    "--rmd-button-icon-radius"?: string | number;
+    "--rmd-button-icon-padding"?: string | number;
+    "--rmd-button-icon-font-size"?: string | number;
+    "--rmd-button-icon-border-radius"?: string | number;
+    "--rmd-button-icon-square-border-radius"?: string | number;
   }
 }
 

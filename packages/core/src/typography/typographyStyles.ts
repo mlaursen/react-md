@@ -2,6 +2,16 @@ import { cnb } from "cnbuilder";
 
 import { type TextCssUtilsOptions, cssUtils } from "../cssUtils.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-font-size"?: string;
+    "--rmd-font-family"?: string;
+    "--rmd-font-weight"?: string | number;
+    "--rmd-font-height"?: string | number;
+    "--rmd-font-line-height"?: string | number;
+  }
+}
+
 /**
  * A union of all the material design provided typography styles. When used with
  * the Typography component, this will generate the correct typography className

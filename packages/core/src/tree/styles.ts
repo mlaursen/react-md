@@ -1,12 +1,21 @@
 import { cnb } from "cnbuilder";
 
-import type { InternalListItemClassNameOptions } from "../list/listItemStyles.js";
+import { type InternalListItemClassNameOptions } from "../list/listItemStyles.js";
 import { listItem } from "../list/listItemStyles.js";
 import { bem } from "../utils/bem.js";
 
 const treeStyles = bem("rmd-tree");
 const treeItemStyles = bem("rmd-tree-item");
 const treeGroupStyles = bem("rmd-tree-group");
+
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-tree-depth"?: number;
+    "--rmd-tree-item-padding"?: string | number;
+    "--rmd-tree-item-padding-base"?: string | number;
+    "--rmd-tree-item-padding-incrementor"?: string | number;
+  }
+}
 
 /** @since 6.0.0 */
 export interface TreeClassNameOptions {

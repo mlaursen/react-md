@@ -11,16 +11,25 @@ declare module "react" {
   interface CSSProperties {
     "--rmd-box-gap"?: string | number;
     "--rmd-box-padding"?: string | number;
+    "--rmd-box-padding-h"?: string | number;
+    "--rmd-box-padding-v"?: string | number;
     "--rmd-box-item-min-size"?: string | number;
+    "--rmd-box-item-min-height"?: string | number;
     "--rmd-box-columns"?: string | number;
+    "--rmd-box-row-max-height"?: string;
+    "--rmd-box-auto-rows-height"?: string;
     "--rmd-box-phone-columns"?: number | string;
+    "--rmd-box-phone-item-min-height"?: number | string;
     "--rmd-box-phone-item-min-size"?: number | string;
     "--rmd-box-tablet-columns"?: number | string;
     "--rmd-box-tablet-item-min-size"?: number | string;
+    "--rmd-box-tablet-item-min-height"?: number | string;
     "--rmd-box-desktop-columns"?: number | string;
     "--rmd-box-desktop-item-min-size"?: number | string;
+    "--rmd-box-desktop-item-min-height"?: number | string;
     "--rmd-box-large-desktop-columns"?: number | string;
     "--rmd-box-large-desktop-item-min-size"?: number | string;
+    "--rmd-box-large-desktop-item-min-height"?: number | string;
   }
 }
 

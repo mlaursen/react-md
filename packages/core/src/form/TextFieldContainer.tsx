@@ -7,20 +7,6 @@ import { getFormConfig } from "./formConfig.js";
 import { textFieldContainer } from "./textFieldContainerStyles.js";
 import { type TextFieldContainerOptions } from "./types.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-text-field-height"?: string | number;
-    "--rmd-text-field-padding-left"?: string | number;
-    "--rmd-text-field-padding-right"?: string | number;
-    "--rmd-text-field-padding-top"?: string | number;
-    "--rmd-text-field-border-color"?: string;
-    "--rmd-text-field-hover-border-color"?: string;
-    "--rmd-text-field-filled-color"?: string;
-    "--rmd-form-addon-top"?: string | number;
-    "--rmd-form-addon-margin-top"?: string | number;
-  }
-}
-
 export interface TextFieldContainerProps
   extends HTMLAttributes<HTMLDivElement>,
     TextFieldContainerOptions {

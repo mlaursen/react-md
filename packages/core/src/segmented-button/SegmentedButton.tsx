@@ -6,30 +6,29 @@ import { getIcon } from "../icon/config.js";
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
-import { useMaxWidthTransition } from "../transition/useMaxWidthTransition.js";
-import { segmentedButton } from "./segmentedButtonStyles.js";
+import {
+  type BaseMaxWidthTransitionOptions,
+  useMaxWidthTransition,
+} from "../transition/useMaxWidthTransition.js";
+import {
+  type BaseSegmentedButtonClassNameOptions,
+  segmentedButton,
+} from "./segmentedButtonStyles.js";
 
 /**
  * @since 6.0.0
+ * @since 6.3.1 Extends BaseMaxWidthTransitionOptions for CSS module
+ * augmentation.
+ * @since 6.3.1 Extends BaseSegmentedButtonClassNameOptions for CSSProperties
+ * module augmentation.
  */
 export interface SegmentedButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
+    BaseMaxWidthTransitionOptions,
+    BaseSegmentedButtonClassNameOptions,
     ComponentWithRippleProps {
-  /**
-   * Set this to `true` to apply selected styles and an optional
-   * {@link selectedIcon}
-   *
-   * @defaultValue `false`
-   */
-  selected?: boolean;
-
   /** @defaultValue `getIcon("selected")` */
   selectedIcon?: ReactNode;
-
-  /**
-   * An optional className to apply when {@link selected} is `true`.
-   */
-  selectedClassName?: string;
 
   /**
    * Set this to `true` to not render the {@link selectedIcon} when

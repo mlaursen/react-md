@@ -10,6 +10,14 @@ import {
 } from "./types.js";
 import { useCSSTransition } from "./useCSSTransition.js";
 
+// NOTE: Tis is in both `useSlideTransition` and `Slide` since there are no
+// reusable types between these two files.
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-slide-duration"?: string | number;
+  }
+}
+
 /** @since 6.0.0 */
 export const DEFAULT_SLIDE_TRANSITION_TIMEOUT =
   150 as const satisfies TransitionTimeout;

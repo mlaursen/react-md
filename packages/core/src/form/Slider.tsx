@@ -33,6 +33,8 @@ import { type RangeSliderState } from "./useRangeSlider.js";
 import { type SliderState, type SliderValueOptions } from "./useSlider.js";
 import { useSliderDraggable } from "./useSliderDraggable.js";
 
+// NOTE: The augmentation appears in this file since no type definitions are
+// ever imported from the `sliderStyles` file.
 declare module "react" {
   interface CSSProperties {
     "--rmd-slider-color"?: string;
@@ -47,6 +49,10 @@ declare module "react" {
     "--rmd-slider-tooltip-scale"?: string | number;
     "--rmd-slider-tooltip-translate"?: string | number;
     "--rmd-slider-mark-offset"?: string;
+    "--rmd-slider-mark-active-color"?: string;
+    "--rmd-slider-mark-active-opacity"?: string | number;
+    "--rmd-slider-mark-inactive-color"?: string;
+    "--rmd-slider-mark-inactive-opacity"?: string | number;
   }
 }
 

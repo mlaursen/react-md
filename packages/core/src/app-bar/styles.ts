@@ -8,8 +8,6 @@ import { bem } from "../utils/bem.js";
 declare module "react" {
   interface CSSProperties {
     "--rmd-app-bar-height"?: string | number;
-    "--rmd-app-bar-background-color"?: string;
-    "--rmd-app-bar-color"?: string;
     "--rmd-app-bar-surface-background-color"?: string;
     "--rmd-app-bar-surface-color"?: string;
   }

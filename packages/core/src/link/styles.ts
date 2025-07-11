@@ -4,6 +4,14 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-link");
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-link-color"?: string;
+    "--rmd-link-visited-color"?: string;
+    "--rmd-link-hover-color"?: string;
+  }
+}
+
 /** @since 6.0.0 */
 export interface LinkClassNameOptions {
   className?: string;

@@ -5,13 +5,6 @@ import {
   textContainer,
 } from "./textContainerStyles.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-line-length"?: string | number;
-    "--rmd-text-container-padding"?: string | number;
-  }
-}
-
 /**
  * @since 6.0.0 Removed the `size` option since there is no longer a
  * different line-length for mobile and desktop.

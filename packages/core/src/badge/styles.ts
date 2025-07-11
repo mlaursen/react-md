@@ -3,15 +3,6 @@ import { cnb } from "cnbuilder";
 import { type BackgroundColor, cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-badge-size"?: string | number;
-    "--rmd-badge-offset"?: string | number;
-    "--rmd-badge-offset-top"?: string | number;
-    "--rmd-badge-offset-right"?: string | number;
-  }
-}
-
 const styles = bem("rmd-badge");
 
 /**

@@ -6,14 +6,6 @@ import {
 
 import { type LinkClassNameOptions, link } from "./styles.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-link-color"?: string;
-    "--rmd-link-visited-color"?: string;
-    "--rmd-link-hover-color"?: string;
-  }
-}
-
 /**
  * @since 6.0.0
  */

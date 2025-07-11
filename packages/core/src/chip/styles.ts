@@ -5,6 +5,30 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-chip");
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-chip-gap"?: string;
+    "--rmd-chip-height"?: string;
+    "--rmd-chip-border-radius"?: string | number;
+    "--rmd-chip-horizontal-padding"?: string | number;
+    "--rmd-chip-vertical-padding"?: string | number;
+    "--rmd-chip-solid-background-color"?: string;
+    "--rmd-chip-solid-disabled-background-color"?: string;
+    "--rmd-chip-solid-color"?: string;
+    "--rmd-chip-theme-background-color"?: string;
+    "--rmd-chip-theme-color"?: string;
+    "--rmd-chip-outline-color"?: string;
+    "--rmd-chip-outline-width"?: string | number;
+    "--rmd-chip-outline-background-color"?: string;
+    "--rmd-chip-outline-text-color"?: string;
+  }
+}
+
+/**
+ * @since 6.3.1
+ */
+export type ChipTheme = "outline" | "solid";
+
 /**
  * @since 6.0.0
  *
@@ -39,10 +63,14 @@ const styles = bem("rmd-chip");
  */
 export interface ChipClassNameOptions {
   className?: string;
+
+  /**
+   * An optional className to provide only while {@link selected} is `true`.
+   */
   selectedClassName?: string;
 
   /** @defaultValue `"solid"` */
-  theme?: "outline" | "solid";
+  theme?: ChipTheme;
 
   backgroundColor?: BackgroundColor;
 

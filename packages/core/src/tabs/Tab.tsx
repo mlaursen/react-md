@@ -13,59 +13,22 @@ import { useHigherContrastChildren } from "../interaction/useHigherContrastChild
 import { type CustomLinkComponent } from "../link/Link.js";
 import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { type TabListProps } from "./TabList.js";
-import { tab } from "./tabStyles.js";
+import { type BaseTabClassNameOptions, tab } from "./tabStyles.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type useTabs } from "./useTabs.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-tab-color"?: string;
-    "--rmd-tab-active-color"?: string;
-    "--rmd-tab-inactive-color"?: string;
-    "--rmd-tab-disabled-color"?: string;
-
-    "--rmd-tab-size"?: string;
-    "--rmd-tab-offset"?: string | number;
-    "--rmd-tab-min-width"?: string;
-    "--rmd-tab-max-width"?: string;
-    "--rmd-tab-min-height"?: string;
-    "--rmd-tab-stacked-height"?: string;
-    "--rmd-tab-stacked-width"?: string;
-    "--rmd-tab-padding"?: string | number;
-    "--rmd-tab-stacked-padding"?: string | number;
-    "--rmd-tab-indicator-background"?: string;
-  }
-}
 
 /**
  * @since 6.0.0
  */
-export interface BaseTabProps extends ComponentWithRippleProps {
+export interface BaseTabProps
+  extends ComponentWithRippleProps,
+    BaseTabClassNameOptions {
   /**
    * Set this to `true` if the tab is currently active.
    *
    * This is normally provided by the {@link useTabs} hook.
    */
   active: boolean;
-
-  /**
-   * Set this to `true` if the {@link TabListProps.disableTransition} prop has
-   * also been set to `true` to disable an active indicator below the tab when
-   * {@link active} is `true`.
-   *
-   * @defaultValue `false`
-   */
-  activeIndicator?: boolean;
-
-  /**
-   * Set this to `true` when rendering the tabs vertically and
-   * {@link activeIndicator} has been enabled.
-   *
-   * @defaultValue !false
-   */
-  verticalActiveIndicator?: boolean;
 
   /**
    * An optional icon to render with the with the {@link children}. The default
@@ -82,14 +45,6 @@ export interface BaseTabProps extends ComponentWithRippleProps {
    * @defaultValue `false`
    */
   iconAfter?: boolean;
-
-  /**
-   * Set this to `true` to render the {@link icon} and {@link children} stacked
-   * instead of horizontally.
-   *
-   * @defaultValue `false`
-   */
-  stacked?: boolean;
 }
 
 /**

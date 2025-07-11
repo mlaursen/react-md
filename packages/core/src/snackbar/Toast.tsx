@@ -10,7 +10,6 @@ import {
 } from "react";
 
 import { type ButtonProps } from "../button/Button.js";
-import { type BackgroundColor } from "../cssUtils.js";
 import {
   type CSSTransitionClassNames,
   type TransitionCallbacks,
@@ -22,21 +21,14 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { ToastActionButton } from "./ToastActionButton.js";
 import { ToastCloseButton } from "./ToastCloseButton.js";
 import { ToastContent, type ToastContentProps } from "./ToastContent.js";
-import { toast } from "./toastStyles.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-toast-color"?: string;
-    "--rmd-toast-background-color"?: string;
-    "--rmd-toast-offset"?: string | number;
-  }
-}
+import { type BaseToastClasNameOptions, toast } from "./toastStyles.js";
 
 /**
  * @since 6.0.0
  */
 export interface ConfigurableToastProps
   extends HTMLAttributes<HTMLDivElement>,
+    BaseToastClasNameOptions,
     TransitionCallbacks {
   /**
    * Note: this default value will only be generated in the `Toast` component.
@@ -51,11 +43,6 @@ export interface ConfigurableToastProps
    * @defaultValue `visibleTime === null ? "alert" : "status"`
    */
   role?: AriaRole;
-
-  /**
-   * @defaultValue `"surface"`
-   */
-  theme?: BackgroundColor;
 
   /**
    * Set this to `true` to stack the content above the {@link action}. It is not

@@ -4,6 +4,13 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-text-container");
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-line-length"?: string | number;
+    "--rmd-text-container-padding"?: string | number;
+  }
+}
+
 /**
  * @since 6.0.0
  */

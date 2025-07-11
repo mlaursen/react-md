@@ -1,11 +1,15 @@
 import { type LiHTMLAttributes, type ReactNode, forwardRef } from "react";
 
-import { navItem } from "./navItemStyles.js";
+import { type NavItemClassNameOptions, navItem } from "./navItemStyles.js";
 
 /**
  * @since 6.0.0
+ * @since 6.3.1 Extends NavItemClassNameOptions to allow for CSS properties
+ * augmentation.
  */
-export interface NavItemProps extends LiHTMLAttributes<HTMLLIElement> {
+export interface NavItemProps
+  extends LiHTMLAttributes<HTMLLIElement>,
+    NavItemClassNameOptions {
   children: ReactNode;
 }
 

@@ -4,14 +4,6 @@ import { Box } from "../box/Box.js";
 import { type BoxAlignItems, type BoxOptions } from "../box/styles.js";
 import { type CardClassNameOptions, card } from "./styles.js";
 
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-card-background-color"?: string;
-    "--rmd-card-color"?: string;
-    "--rmd-card-secondary-color"?: string;
-  }
-}
-
 /**
  * @since 6.0.0 Extends the {@link CardClassNameOptions} and removed the
  * deprecated `raiseable` prop

@@ -2,6 +2,32 @@ import { type CSSProperties } from "react";
 
 import { type UseStateSetter } from "../types.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-background-color"?: string;
+    "--rmd-on-background-color"?: string;
+    "--rmd-surface-color"?: string;
+    "--rmd-primary-color"?: string;
+    "--rmd-on-primary-color"?: string;
+    "--rmd-secondary-color"?: string;
+    "--rmd-on-secondary-color"?: string;
+    "--rmd-success-color"?: string;
+    "--rmd-on-success-color"?: string;
+    "--rmd-warning-color"?: string;
+    "--rmd-on-warning-color"?: string;
+    "--rmd-error-color"?: string;
+    "--rmd-on-error-color"?: string;
+    "--rmd-text-primary-color"?: string;
+    "--rmd-text-secondary-color"?: string;
+    "--rmd-text-hint-color"?: string;
+    "--rmd-text-disabled-color"?: string;
+    "--rmd-outline-width"?: string | number;
+    "--rmd-outline-color"?: string;
+    "--rmd-outline-grey-color"?: string;
+    "--rmd-inverse-color"?: string;
+  }
+}
+
 /**
  * @since 6.0.0
  */

@@ -1,29 +1,19 @@
 import { type HTMLAttributes, forwardRef } from "react";
 
-import { list } from "./listStyles.js";
-
-declare module "react" {
-  interface CSSProperties {
-    "--rmd-list-padding-h"?: string | number;
-    "--rmd-list-padding-v"?: string | number;
-  }
-}
+import { type ListClassNameOptions, list } from "./listStyles.js";
 
 export type ListElement = HTMLUListElement | HTMLOListElement;
 
-export interface ListProps extends HTMLAttributes<ListElement> {
+/**
+ * @since 6.3.1 Extends the ListClassNameOptions
+ */
+export interface ListProps
+  extends HTMLAttributes<ListElement>,
+    ListClassNameOptions {
   /**
    * @defaultValue `"none"`
    */
   role?: HTMLAttributes<ListElement>["role"];
-
-  /**
-   * Set to `true` to decrease the amount of padding and font size within the
-   * list.
-   *
-   * @defaultValue `false`
-   */
-  dense?: boolean;
 
   /**
    * Set this to `true` to render as `<ol>` instead of `<ul>` when the children
@@ -32,13 +22,6 @@ export interface ListProps extends HTMLAttributes<ListElement> {
    * @defaultValue `false`
    */
   ordered?: boolean;
-
-  /**
-   * Set this to `true` to render horizontally instead of vertically.
-   *
-   * @defaultValue `false`
-   */
-  horizontal?: boolean;
 }
 
 /**

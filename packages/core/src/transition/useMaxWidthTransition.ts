@@ -6,14 +6,29 @@ import { Children, cloneElement, isValidElement } from "react";
 
 import { maxWidthTransition } from "./maxWidthTransition.js";
 
+declare module "react" {
+  interface CSSProperites {
+    "--rmd-max-width"?: string | number;
+    "--rmd-max-width-gap"?: string | number;
+  }
+}
+
+/**
+ * @since 6.3.1
+ */
+export interface BaseMaxWidthTransitionOptions {
+  className?: string;
+}
+
 /**
  * @since 6.0.0
+ * @since 6.3.1 Extends BaseMaxWidthTransitionOptions
  */
-export interface MaxWidthTransitionOptions {
+export interface MaxWidthTransitionOptions
+  extends BaseMaxWidthTransitionOptions {
   element: ReactNode;
   transitionIn: boolean;
 
-  className?: string;
   disabled?: boolean;
   disableTransition?: boolean;
 }

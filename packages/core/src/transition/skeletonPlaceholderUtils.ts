@@ -3,6 +3,14 @@ import { type CSSProperties } from "react";
 import { bem } from "../utils/bem.js";
 import { randomInt } from "../utils/randomInt.js";
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-skeleton-placeholder-background-color"?: string;
+    "--rmd-skeleton-placeholder-height"?: string | number;
+    "--rmd-skeleton-placeholder-width"?: string | number;
+  }
+}
+
 /**
  * @since 6.0.0
  */

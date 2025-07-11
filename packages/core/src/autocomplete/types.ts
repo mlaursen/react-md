@@ -37,6 +37,23 @@ import {
   type UseStateInitializer,
 } from "../types.js";
 
+// NOTE: The augmentation appears in this file since both
+// the `Autocomplete` and `autocompleteStyles` import this
+// file. The augmentation only works if a type definition
+// exists in the compiled `*.d.ts`
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-autocomplete-clear-button-size"?: string;
+    "--rmd-autocomplete-dropdown-button-size"?: string;
+    "--rmd-autocomplete-circular-progress-size"?: string;
+    "--rmd-autocomplete-inline-gap"?: string;
+    "--rmd-autocomplete-inline-min-width"?: string;
+    "--rmd-autocomplete-addon-gap"?: string;
+    "--rmd-autocomplete-gap-count"?: string;
+    "--rmd-autocomplete-addon-spacing"?: string;
+  }
+}
+
 /**
  * If a autocomplete value is one of these types, no additional code is required
  * to display a label in the input/chip for the autocomplete once the value has

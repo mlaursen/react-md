@@ -4,14 +4,30 @@ import { bem } from "../utils/bem.js";
 
 const styles = bem("rmd-list");
 
+declare module "react" {
+  interface CSSProperties {
+    "--rmd-list-padding-h"?: string | number;
+    "--rmd-list-padding-v"?: string | number;
+  }
+}
+
 /** @since 6.0.0 */
 export interface ListClassNameOptions {
   className?: string;
 
-  /** @defaultValue `false` */
+  /**
+   * Set to `true` to decrease the amount of padding and font size within the
+   * list.
+   *
+   * @defaultValue `false`
+   */
   dense?: boolean;
 
-  /** @defaultValue `false` */
+  /**
+   * Set this to `true` to render horizontally instead of vertically.
+   *
+   * @defaultValue `false`
+   */
   horizontal?: boolean;
 }
 
