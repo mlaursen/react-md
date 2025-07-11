@@ -1,5 +1,12 @@
 # react-md
 
+## 6.2.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-md/core@6.3.1
+
 ## 6.2.2
 
 ### Patch Changes
@@ -19,7 +26,6 @@
 ### Minor Changes
 
 - # Features
-
   - All hooks, components, and utils that required a `TextExtractor` now support `item.name` and `item.label` by default
     - `Autocomplete`
     - `alphaNumericSort`
@@ -40,12 +46,10 @@
 ### Minor Changes
 
 - # Features
-
   - prioritize theme and typography variables in dev tools
   - add border-radius and spacing variables to match latest design tokens
 
   # Internal
-
   - Throw an error if `parseCssLengthUnit` is not a number unit
   - Update Algolia searching behavior
   - Update examples to latest
@@ -117,7 +121,6 @@
   [material-ui Autocomplete](https://mui.com/material-ui/react-autocomplete/).
 
   Here's a quick summary of the new changes:
-
   - The default behavior requires a valid option to be selected and will reset to
     the last valid option or an empty string
   - Multiple values are now supported with optional inline chips or checkboxes
@@ -155,7 +158,6 @@
   ```
 
   Some other new features for snackbars and toasts are:
-
   - supports the theme colors
   - allows configuring the visible time on a per-toast basis
   - the toast timeout pauses while the user hovers the toast
@@ -188,7 +190,6 @@
   styling behavior.
 
   The `Tab` components have been updated to support:
-
   - [scrolling with buttons](https://react-md.dev/components/tabs#scrollable-tabs) instead of the
     hidden scrollbar option that existed before
   - [being rendered vertically](https://react-md.dev/components/tabs#vertical-tabs)
@@ -207,7 +208,6 @@
   Most components now expose a class name utility function to provide styles without
   using the component itself. The naming conventions are to use a
   `camelCasedName` instead of `PascalCased`. For example:
-
   - `button` for the `Button` component
   - `expansionPanel` for the `ExpansionPanel` component
   - `typography` for the `Typography` component
@@ -221,7 +221,6 @@
   on how to get started.
 
   A few new components and hooks have been added:
-
   - [AsyncButton](https://react-md.dev/components/button#async-button)
   - [CircularProgressSuspense](https://react-md.dev/components/suspense#circular-progress-suspense)
   - [ColorSchemeProvider](https://react-md.dev/components/color-scheme-provider)
@@ -261,7 +260,6 @@
 
   The documentation site has been remade to hopefully improve finding information
   with the following changes:
-
   - Navigation is based on component, hook, or feature instead of package.
   - Examples and demos have been trimmed down to focus on a single feature and
     file at a time. There are a few more complex examples near the end.
@@ -360,7 +358,6 @@
   together in the devtools.
 
   The gzipped sizes have decreased slightly with the latest version of react-md:
-
   - Javascript: 92.51 kB to 82.77 kB
   - SCSS: 18.08 kB to 16.55 kB
     - NOTE: This was the smallest theme bundle with `$primary-color: $grey-500`,
@@ -377,7 +374,6 @@
 ### Patch Changes
 
 - 093d3bf: This release is mostly around adding codemods for v5 to v6, but also:
-
   - reduced the installation size for react-md packages by excluding non-critical files
     - i.e. Ignore test files, mocks, files that aren't required for source maps, etc
   - fixed documentation
@@ -390,7 +386,6 @@
   - added the `TreeItemRenderer` utility type
 
 - a1483f0: This release focused on documentation but had a few new features:
-
   - added `Mark` and `HighlightedText` components
   - added a simple `ErrorBoundary` component
   - the `a11y` sass import can be used in the `@forward` file by using the new `@react-md/core/a11y` import
@@ -400,14 +395,12 @@
   - added `getTransitionCallbacks` to help merge transition callbacks
 
   Bug fixes:
-
   - the `List` component correctly implements dense mode
   - private files are now excluded from the `@react-md/core` package exports
   - constants and file names were updated to be more consistent
   - separate some code to allow more server/client code splitting
 
   Documentation updates:
-
   - now able to search the documentation website
   - all components and hooks should now have a link to the documentation page on the website to navigate from your editor of choice
   - all sass items now have sassdoc and can be viewed on the website
@@ -415,7 +408,6 @@
   - added `vite-ts`, `vite-js`, and `mlaursen-vite` example templates
 
 - a26803b: - Updated the `useLocalStorage` hook to be more generic and renamed to `useStorage`
-
   - Added test support for vitest using `@react-md/core/test-utils/vitest`
     - Moved `jest-globals` to `@react-md/core/test-utils/jest-globals`
   - Added additional test queries to help find `react-md` elements in tests
@@ -458,7 +450,6 @@
   - Added most remaining documentation to the website
 
 - 1a8cfaf: This release focused on starting to create the codemods for v5 to v6, which helped me find and fix:
-
   - Fixed the surface colors when `$color-scheme: light`
   - `CardSubtitle` can now remove the secondary text color like v5 using the `textColor` `Typography` prop
   - Moved the sticky styles behavior for tables into `StickyTableSection` instead of `TableHeader`/`TableFooter`
@@ -496,7 +487,6 @@
 ### Patch Changes
 
 - This release focused on documentation but had a few new features:
-
   - added `Mark` and `HighlightedText` components
   - added a simple `ErrorBoundary` component
   - the `a11y` sass import can be used in the `@forward` file by using the new `@react-md/core/a11y` import
@@ -506,14 +496,12 @@
   - added `getTransitionCallbacks` to help merge transition callbacks
 
   Bug fixes:
-
   - the `List` component correctly implements dense mode
   - private files are now excluded from the `@react-md/core` package exports
   - constants and file names were updated to be more consistent
   - separate some code to allow more server/client code splitting
 
   Documentation updates:
-
   - now able to search the documentation website
   - all components and hooks should now have a link to the documentation page on the website to navigate from your editor of choice
   - all sass items now have sassdoc and can be viewed on the website
@@ -598,7 +586,6 @@
 ### Patch Changes
 
 - This release is mostly around adding codemods for v5 to v6, but also:
-
   - reduced the installation size for react-md packages by excluding non-critical files
     - i.e. Ignore test files, mocks, files that aren't required for source maps, etc
   - fixed documentation
@@ -618,7 +605,6 @@
 ### Patch Changes
 
 - This release focused on starting to create the codemods for v5 to v6, which helped me find and fix:
-
   - Fixed the surface colors when `$color-scheme: light`
   - `CardSubtitle` can now remove the secondary text color like v5 using the `textColor` `Typography` prop
   - Moved the sticky styles behavior for tables into `StickyTableSection` instead of `TableHeader`/`TableFooter`

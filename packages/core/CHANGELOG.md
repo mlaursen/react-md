@@ -1,12 +1,21 @@
 # @react-md/core
 
+## 6.3.1
+
+### Patch Changes
+
+- - Fixed the Button icon-square border-radius
+  - Added the missing custom properties to the CSSProperties interface
+  - Fixed the NativeSelect base styles
+  - Fixed the TextArea and NativeSelect addon position styles
+  - Bumped safe dependencies to latest
+
 ## 6.3.0
 
 ### Minor Changes
 
 - This release focused on some form improvements as I work towards the full date,
   time, and datetime component implementations.
-
   - The `useTextField` and `useNumberField` automatically reset on a form reset event
   - The `FormMessageContainer` can now be rendered inline
   - Added `useDateField` and `NativeDateField` component for simple date behavior
@@ -25,7 +34,6 @@
 ### Minor Changes
 
 - # Features
-
   - All hooks, components, and utils that required a `TextExtractor` now support `item.name` and `item.label` by default
     - `Autocomplete`
     - `alphaNumericSort`
@@ -41,12 +49,10 @@
 ### Minor Changes
 
 - # Features
-
   - prioritize theme and typography variables in dev tools
   - add border-radius and spacing variables to match latest design tokens
 
   # Internal
-
   - Throw an error if `parseCssLengthUnit` is not a number unit
   - Update Algolia searching behavior
   - Update examples to latest
@@ -73,7 +79,6 @@
 - 64071b7: The next preview of v6.0.0.
 
   Breaking Changes:
-
   - An accessible label is now required for `CircularProgress` and `LinearProgress`
     - Updated `AsyncButton` to pass props to the progress component and other
       accessibility teaks
@@ -88,7 +93,6 @@
     it's easier to pass the custom link component down
 
   Features:
-
   - Added `TRANSITION_CONFIG` so transitions can be disabled
     - Updated the `@react-md/test-utils/jest-setup` to always disable transitions
       in tests
@@ -109,7 +113,6 @@
   - Updated `DropdownMenu` to support controlling the visibility
 
   Bug Fixes:
-
   - Improved performance for multiple transitions by no longer causing layout
     shifts
   - Add some missing custom properties to inline styles for Typescript
@@ -162,7 +165,6 @@
   [material-ui Autocomplete](https://mui.com/material-ui/react-autocomplete/).
 
   Here's a quick summary of the new changes:
-
   - The default behavior requires a valid option to be selected and will reset to
     the last valid option or an empty string
   - Multiple values are now supported with optional inline chips or checkboxes
@@ -200,7 +202,6 @@
   ```
 
   Some other new features for snackbars and toasts are:
-
   - supports the theme colors
   - allows configuring the visible time on a per-toast basis
   - the toast timeout pauses while the user hovers the toast
@@ -233,7 +234,6 @@
   styling behavior.
 
   The `Tab` components have been updated to support:
-
   - [scrolling with buttons](https://react-md.dev/components/tabs#scrollable-tabs) instead of the
     hidden scrollbar option that existed before
   - [being rendered vertically](https://react-md.dev/components/tabs#vertical-tabs)
@@ -252,7 +252,6 @@
   Most components now expose a class name utility function to provide styles without
   using the component itself. The naming conventions are to use a
   `camelCasedName` instead of `PascalCased`. For example:
-
   - `button` for the `Button` component
   - `expansionPanel` for the `ExpansionPanel` component
   - `typography` for the `Typography` component
@@ -266,7 +265,6 @@
   on how to get started.
 
   A few new components and hooks have been added:
-
   - [AsyncButton](https://react-md.dev/components/button#async-button)
   - [CircularProgressSuspense](https://react-md.dev/components/suspense#circular-progress-suspense)
   - [ColorSchemeProvider](https://react-md.dev/components/color-scheme-provider)
@@ -306,7 +304,6 @@
 
   The documentation site has been remade to hopefully improve finding information
   with the following changes:
-
   - Navigation is based on component, hook, or feature instead of package.
   - Examples and demos have been trimmed down to focus on a single feature and
     file at a time. There are a few more complex examples near the end.
@@ -405,7 +402,6 @@
   together in the devtools.
 
   The gzipped sizes have decreased slightly with the latest version of react-md:
-
   - Javascript: 92.51 kB to 82.77 kB
   - SCSS: 18.08 kB to 16.55 kB
     - NOTE: This was the smallest theme bundle with `$primary-color: $grey-500`,
@@ -429,7 +425,6 @@
 - bc90f77: Fixed styling issues, added additional configuration props, and added support for non-barrel file behavior
 
   ## Features
-
   - Added support for non-barrel files for `@react-md/core` to improve build performance in bundlers
     - i.e. `import { Button } from "@react-md/core/button/Button"` and `import { useToggle } from "@react-md/core/useToggle"`
   - Added a new `MenuItemCircularProgress` component
@@ -439,14 +434,12 @@
   - Updated the `useDebouncedFunction` and `useThrottledFunction` hooks to support manually cancelling timeouts
 
   ## Fixes
-
   - `Label` supports `pointer-events` while floating
   - `Select` no longer displays the soft keyboard on mobile devices
   - `TextArea` allows the `containerProps` like the `TextField` and added some fixes for the resizing behavior
   - `Snackbar` supports absolute positioning
 
   ## Documentation
-
   - Updated the documentation around using the mocked `ResizeObserver` in tests so that the example is on the `setupResizeObserverMock` instead of `ResizeObserverMock.resizeElement`
 
 ### Patch Changes
@@ -454,7 +447,6 @@
 - aaedc49: Fixed form layer application
 - 3b18106: Trying a different way to handle package.json exports.
 - 093d3bf: This release is mostly around adding codemods for v5 to v6, but also:
-
   - reduced the installation size for react-md packages by excluding non-critical files
     - i.e. Ignore test files, mocks, files that aren't required for source maps, etc
   - fixed documentation
@@ -474,7 +466,6 @@
   Check out the <https://next.react-md.dev/components/autocomplete> page to see the latest demos.
 
   Fixes:
-
   - Updated all styles to fix issues around the new [Sass Mixed Declarations](https://sass-lang.com/documentation/breaking-changes/mixed-decls/)
   - Updated most function declarations on interfaces to be arrow functions instead of methods to prevent `this` pollution
   - No longer unmount the dialog component when switching between full-page and other dialog types
@@ -482,7 +473,6 @@
   - Fixed some missing accessibility props for the `Navigation` components
 
   Features:
-
   - Updated the `Navigation` components to be controlled for the collapsed state and added a `useNavigationExpansion` hook to help control the state
   - Added the `objectFit` utility class generator
   - Added `isColorScheme` and `isColorSchemeMode` type assertion helpers
@@ -496,7 +486,6 @@
   - Added a simple `debounce` helper for usage outside of react components
 
   Other changes:
-
   - Updated `.mouse-mode`, `.keyboard-mode`, and `.touch-mode` to be prefixed with `rmd-` like all other classes
   - Started adding SCSS documentation back since I'm working on the sassdoc-parser/sass-lsp
   - Renamed `ResponsiveItemContainer` to `ResponsiveItem`
@@ -507,7 +496,6 @@
   - Renamed `useImmediateRaf` to `testImmediateRaf` so it isn't considered a hook
 
   Documentation:
-
   - Added Dark Mode docs
   - Added Breakpoints docs
   - Added Color Palette docs
@@ -517,11 +505,9 @@
   - Added `ResponsiveItem` docs
 
   Internal:
-
   - Updated to use `eslint@9.x.x`
 
 - a1483f0: This release focused on documentation but had a few new features:
-
   - added `Mark` and `HighlightedText` components
   - added a simple `ErrorBoundary` component
   - the `a11y` sass import can be used in the `@forward` file by using the new `@react-md/core/a11y` import
@@ -531,14 +517,12 @@
   - added `getTransitionCallbacks` to help merge transition callbacks
 
   Bug fixes:
-
   - the `List` component correctly implements dense mode
   - private files are now excluded from the `@react-md/core` package exports
   - constants and file names were updated to be more consistent
   - separate some code to allow more server/client code splitting
 
   Documentation updates:
-
   - now able to search the documentation website
   - all components and hooks should now have a link to the documentation page on the website to navigate from your editor of choice
   - all sass items now have sassdoc and can be viewed on the website
@@ -547,7 +531,6 @@
 
 - 31b0fa5: Experimental support for package.json exports and updated material icons.
 - a26803b: - Updated the `useLocalStorage` hook to be more generic and renamed to `useStorage`
-
   - Added test support for vitest using `@react-md/core/test-utils/vitest`
     - Moved `jest-globals` to `@react-md/core/test-utils/jest-globals`
   - Added additional test queries to help find `react-md` elements in tests
@@ -590,7 +573,6 @@
   - Added most remaining documentation to the website
 
 - 1a8cfaf: This release focused on starting to create the codemods for v5 to v6, which helped me find and fix:
-
   - Fixed the surface colors when `$color-scheme: light`
   - `CardSubtitle` can now remove the secondary text color like v5 using the `textColor` `Typography` prop
   - Moved the sticky styles behavior for tables into `StickyTableSection` instead of `TableHeader`/`TableFooter`
@@ -603,93 +585,74 @@
   # Changes
 
   ## AppBar
-
   - Updated `AppBar` to use the `Box` component and additional `cssUtils`
   - Added a `$nav-keyline` variable for the `AppBarTitle` offset
 
   ## Avatar
-
   - Fixed the `color` prop definition
 
   ## Badge
-
   - Simplified the offset variables
 
   ## Button
-
   - Added a `TooltippedButton` component
 
   ## Card
-
   - Added a `ClickableCard` component
   - Fixed the `CardSubtitle` color
 
   ## Dialog
-
   - Fixed the background colors
 
   ## Divider
-
   - Removed the `vertical-sizing` variable and updated the vertical divider to update the same way as a horizontal divider
 
   ## Expansion Panel
-
   - Renamed `preventAllClosed` to `preventAllCollapsed` to better match naming schemes
 
   ## Form
-
   - Updated `MenuItemInputToggle` to use `multiline` instead of `threeLines`
   - Fixed the `Select` focus behavior when rendering within a `Sheet`
 
   ## Icon
-
   - Fixed the styling for the `IconRotator` by setting the default rotate variables
   - Fixed the styling for the `IconSpacing` component when using `above` or `below`
 
   ## List
-
   - Renamed `threeLines` to `multiline` and updated the CSS variables to match
   - Fixed some styling by correctly passing all props down
   - Added the ability to disable the spacing for the left addons
 
   ## Portal
-
   - Updated `PortalContainerProvider` to support a `RefObject`
 
   ## Table
-
   - Fixed the `TableCheckbox` and `TableRadio` components to be client components instead of server components
 
   ## Tabs
-
   - Added support for rendering vertically
   - Added support to render a tab as a link instead of a button
   - Renamed the `--rmd-tab-width` to `--rmd-tab-size`
 
   ## Tooltip
-
   - Fixed some type definition issues for event handlers
 
   ## Transition
-
   - Updated `SkeletonPlaceholder` to `forwardRef`
   - Updated `SkeletonPlaceholder` and `useSkeletonPlaceholder` to support `animation-delay`
   - Added `randomSkeletonPlaceholder` util to generate SSR-only skeletons
   - Fixed the naming of the Sass variables since they weren't prefixed by `transition-`
 
   ## Tree
-
   - Fixed the type definitions for the `DefaultTreeItemRenderer` for the `data` prop after switching to `RenderRecursively`
   - Fixed the `Tree` components to start the `--rmd-tree-depth` at `0` instead of `-1`
   - Removed the `--padded` style since it's no longer needed
 
   ## Typography
-
   - Updated the base typography to default to `overflow-wrap: break-word`
   - Fixed the `TextContainer` styling to include the padding in the line length
 
   ## Other
-
   - Uses `:has` selectors and `:focus-visible` since all major browsers support them now
   - Uses `@media(hover: hover) and (pointer: fine)` for hover states instead of `.mouse-mode`
   - Refactored some draggable utils and fixed bugs around dragging
@@ -702,11 +665,9 @@
   password managers now if I remember correctly. There's also a lot of work into
   getting started with the new Autocomplete API.
 - 4b8b394: Breaking Changes:
-
   - `@react-md/core` no longer supports a single entrypoint and is ESM only
 
   Features:
-
   - `react-md` package is now a convenience package for the `@react-md/core` single entrypoint
   - New `@react-md/code` package for most of the code functionality within the documentation stie
   - `Box` now sets the `--rmd-box-columns` variable to the `columns` prop when it is a number
@@ -716,20 +677,17 @@
   - New `useActiveHeadingId` hook to help re-create the Table of Contents behavior in the documentation stie
 
   Bug fixes:
-
   - The `box-custom-grid` mixin should no longer error
   - The `LayoutAppBar` no longer causes layout shifts after rehydrating
   - The `ToastManager` handles repeated pause and resumes correctly
 
   Other changes
-
   - Documentation site overhaul to allow editing SCSS modules and showing the generated output
   - Simplified the @since tags in tsdoc
   - Simplified tsdoc examples
 
 - e37cc8d: Fixed Sass variable issues and other CSS tweaks.
 - ae417ce: - The `constrast-color` mixin no longer throws an error with some colors due to `color.channel` not returning an int
-
   - Fixed some type definitions for the React 19 release
   - Disable line wrapping for the current selected option in the `Select` component
   - Updated docs for lots of hooks and components
@@ -741,19 +699,16 @@
   mutliselect options, and creating chips with values.
 
   Breaking Changes
-
   - The `useAsyncAction` was renamed to `useAsyncFunction` to mimic the other `use*Function` hooks.
   - Removed the `children` prop from the `TextField` component
 
   Features
-
   - Added the `clear` icon to support the `Autocomplete` clear button behavior
   - Updated the text field padding to be easier to style with CSS custom properties
   - Added the `useTextFieldContainerAddons` hook to dynamically update the padding based on addon size with the `TextFieldContainer`
   - Added the `useMutationObserver` hook
 
   Bug Fixes
-
   - Fixed adding some `@use` statements for the Sass standard library
   - Fixed the `useDraggable` range behavior
   - Fixed the cross fade transition behavior
@@ -766,7 +721,6 @@
 ### Patch Changes
 
 - This release focused on documentation but had a few new features:
-
   - added `Mark` and `HighlightedText` components
   - added a simple `ErrorBoundary` component
   - the `a11y` sass import can be used in the `@forward` file by using the new `@react-md/core/a11y` import
@@ -776,14 +730,12 @@
   - added `getTransitionCallbacks` to help merge transition callbacks
 
   Bug fixes:
-
   - the `List` component correctly implements dense mode
   - private files are now excluded from the `@react-md/core` package exports
   - constants and file names were updated to be more consistent
   - separate some code to allow more server/client code splitting
 
   Documentation updates:
-
   - now able to search the documentation website
   - all components and hooks should now have a link to the documentation page on the website to navigate from your editor of choice
   - all sass items now have sassdoc and can be viewed on the website
@@ -862,7 +814,6 @@
   Check out the <https://react-md.dev/components/autocomplete> page to see the latest demos.
 
   Fixes:
-
   - Updated all styles to fix issues around the new [Sass Mixed Declarations](https://sass-lang.com/documentation/breaking-changes/mixed-decls/)
   - Updated most function declarations on interfaces to be arrow functions instead of methods to prevent `this` pollution
   - No longer unmount the dialog component when switching between full-page and other dialog types
@@ -870,7 +821,6 @@
   - Fixed some missing accessibility props for the `Navigation` components
 
   Features:
-
   - Updated the `Navigation` components to be controlled for the collapsed state and added a `useNavigationExpansion` hook to help control the state
   - Added the `objectFit` utility class generator
   - Added `isColorScheme` and `isColorSchemeMode` type assertion helpers
@@ -884,7 +834,6 @@
   - Added a simple `debounce` helper for usage outside of react components
 
   Other changes:
-
   - Updated `.mouse-mode`, `.keyboard-mode`, and `.touch-mode` to be prefixed with `rmd-` like all other classes
   - Started adding SCSS documentation back since I'm working on the sassdoc-parser/sass-lsp
   - Renamed `ResponsiveItemContainer` to `ResponsiveItem`
@@ -895,7 +844,6 @@
   - Renamed `useImmediateRaf` to `testImmediateRaf` so it isn't considered a hook
 
   Documentation:
-
   - Added Dark Mode docs
   - Added Breakpoints docs
   - Added Color Palette docs
@@ -905,7 +853,6 @@
   - Added `ResponsiveItem` docs
 
   Internal:
-
   - Updated to use `eslint@9.x.x`
 
 ## 1.0.0-next.16
@@ -913,7 +860,6 @@
 ### Patch Changes
 
 - This release is mostly around adding codemods for v5 to v6, but also:
-
   - reduced the installation size for react-md packages by excluding non-critical files
     - i.e. Ignore test files, mocks, files that aren't required for source maps, etc
   - fixed documentation
@@ -930,7 +876,6 @@
 ### Patch Changes
 
 - This release focused on starting to create the codemods for v5 to v6, which helped me find and fix:
-
   - Fixed the surface colors when `$color-scheme: light`
   - `CardSubtitle` can now remove the secondary text color like v5 using the `textColor` `Typography` prop
   - Moved the sticky styles behavior for tables into `StickyTableSection` instead of `TableHeader`/`TableFooter`
@@ -948,19 +893,16 @@
   mutliselect options, and creating chips with values.
 
   Breaking Changes
-
   - The `useAsyncAction` was renamed to `useAsyncFunction` to mimic the other `use*Function` hooks.
   - Removed the `children` prop from the `TextField` component
 
   Features
-
   - Added the `clear` icon to support the `Autocomplete` clear button behavior
   - Updated the text field padding to be easier to style with CSS custom properties
   - Added the `useTextFieldContainerAddons` hook to dynamically update the padding based on addon size with the `TextFieldContainer`
   - Added the `useMutationObserver` hook
 
   Bug Fixes
-
   - Fixed adding some `@use` statements for the Sass standard library
   - Fixed the `useDraggable` range behavior
   - Fixed the cross fade transition behavior
@@ -970,11 +912,9 @@
 ### Patch Changes
 
 - Breaking Changes:
-
   - `@react-md/core` no longer supports a single entrypoint and is ESM only
 
   Features:
-
   - `react-md` package is now a convenience package for the `@react-md/core` single entrypoint
   - New `@react-md/code` package for most of the code functionality within the documentation stie
   - `Box` now sets the `--rmd-box-columns` variable to the `columns` prop when it is a number
@@ -984,13 +924,11 @@
   - New `useActiveHeadingId` hook to help re-create the Table of Contents behavior in the documentation stie
 
   Bug fixes:
-
   - The `box-custom-grid` mixin should no longer error
   - The `LayoutAppBar` no longer causes layout shifts after rehydrating
   - The `ToastManager` handles repeated pause and resumes correctly
 
   Other changes
-
   - Documentation site overhaul to allow editing SCSS modules and showing the generated output
   - Simplified the @since tags in tsdoc
   - Simplified tsdoc examples
@@ -1082,93 +1020,74 @@
   # Changes
 
   ## AppBar
-
   - Updated `AppBar` to use the `Box` component and additional `cssUtils`
   - Added a `$nav-keyline` variable for the `AppBarTitle` offset
 
   ## Avatar
-
   - Fixed the `color` prop definition
 
   ## Badge
-
   - Simplified the offset variables
 
   ## Button
-
   - Added a `TooltippedButton` component
 
   ## Card
-
   - Added a `ClickableCard` component
   - Fixed the `CardSubtitle` color
 
   ## Dialog
-
   - Fixed the background colors
 
   ## Divider
-
   - Removed the `vertical-sizing` variable and updated the vertical divider to update the same way as a horizontal divider
 
   ## Expansion Panel
-
   - Renamed `preventAllClosed` to `preventAllCollapsed` to better match naming schemes
 
   ## Form
-
   - Updated `MenuItemInputToggle` to use `multiline` instead of `threeLines`
   - Fixed the `Select` focus behavior when rendering within a `Sheet`
 
   ## Icon
-
   - Fixed the styling for the `IconRotator` by setting the default rotate variables
   - Fixed the styling for the `IconSpacing` component when using `above` or `below`
 
   ## List
-
   - Renamed `threeLines` to `multiline` and updated the CSS variables to match
   - Fixed some styling by correctly passing all props down
   - Added the ability to disable the spacing for the left addons
 
   ## Portal
-
   - Updated `PortalContainerProvider` to support a `RefObject`
 
   ## Table
-
   - Fixed the `TableCheckbox` and `TableRadio` components to be client components instead of server components
 
   ## Tabs
-
   - Added support for rendering vertically
   - Added support to render a tab as a link instead of a button
   - Renamed the `--rmd-tab-width` to `--rmd-tab-size`
 
   ## Tooltip
-
   - Fixed some type definition issues for event handlers
 
   ## Transition
-
   - Updated `SkeletonPlaceholder` to `forwardRef`
   - Updated `SkeletonPlaceholder` and `useSkeletonPlaceholder` to support `animation-delay`
   - Added `randomSkeletonPlaceholder` util to generate SSR-only skeletons
   - Fixed the naming of the Sass variables since they weren't prefixed by `transition-`
 
   ## Tree
-
   - Fixed the type definitions for the `DefaultTreeItemRenderer` for the `data` prop after switching to `RenderRecursively`
   - Fixed the `Tree` components to start the `--rmd-tree-depth` at `0` instead of `-1`
   - Removed the `--padded` style since it's no longer needed
 
   ## Typography
-
   - Updated the base typography to default to `overflow-wrap: break-word`
   - Fixed the `TextContainer` styling to include the padding in the line length
 
   ## Other
-
   - Uses `:has` selectors and `:focus-visible` since all major browsers support them now
   - Uses `@media(hover: hover) and (pointer: fine)` for hover states instead of `.mouse-mode`
   - Refactored some draggable utils and fixed bugs around dragging
@@ -1191,7 +1110,6 @@
 - 117350ed79: The next preview of v6.0.0.
 
   Breaking Changes:
-
   - An accessible label is now required for `CircularProgress` and `LinearProgress`
     - Updated `AsyncButton` to pass props to the progress component and other
       accessibility teaks
@@ -1206,7 +1124,6 @@
     it's easier to pass the custom link component down
 
   Features:
-
   - Added `TRANSITION_CONFIG` so transitions can be disabled
     - Updated the `@react-md/test-utils/jest-setup` to always disable transitions
       in tests
@@ -1227,7 +1144,6 @@
   - Updated `DropdownMenu` to support controlling the visibility
 
   Bug Fixes:
-
   - Improved performance for multiple transitions by no longer causing layout
     shifts
   - Add some missing custom properties to inline styles for Typescript
