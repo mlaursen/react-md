@@ -314,6 +314,10 @@ $variables: (
       @include set-var(icon-size, $icon-size);
       @include set-var(icon-font-size, $icon-font-size);
       @include set-var(icon-padding, $icon-padding);
+
+      @if not $disable-icon-square {
+        @include set-var(icon-square-border-radius, $icon-square-border-radius);
+      }
     }
 
     @if not $disable-floating {
