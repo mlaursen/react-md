@@ -23,6 +23,7 @@ export const BUILT_IN_PARSERS = [
   "markdown",
   "mdx",
   "meriyah",
+  "mjml",
   "scss",
   "typescript",
   "vue",
