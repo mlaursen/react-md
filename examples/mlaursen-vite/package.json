@@ -15,8 +15,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-md/core": "^6.0.2",
-    "@react-md/material-icons": "^6.0.2",
+    "@react-md/core": "^6.3.1",
+    "@react-md/material-icons": "^6.2.3",
     "cnbuilder": "^3.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -28,6 +28,7 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^22.14.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",
     "@vitejs/plugin-react-swc": "^3.8.1",
@@ -38,7 +39,7 @@
     "prettier": "^3.5.3",
     "sass-embedded": "^1.86.3",
     "typescript": "~5.8.3",
-    "vite": "^6.2.5",
+    "vite": "^7.0.4",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.1.1"
   },
