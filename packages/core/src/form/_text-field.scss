@@ -665,6 +665,7 @@ $variables: (
       {
         @include use-var(margin-top, addon-margin-top);
       }
+      @include use-var(top, addon-top);
 
       // this makes it so that this container element is the same size as the
       // child (normally icons). without this, icons would have a height of 30.5px

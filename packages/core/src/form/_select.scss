@@ -107,7 +107,11 @@ $option-selected-icon-spacing: $option-padding-left !default;
     @if not $disable-native-select-multiple {
       .rmd-native-select-container {
         &--multi {
-          @include text-field.set-var(addon-top, $native-select-addon-top);
+          @include text-field.set-var(addon-top, 0);
+          @include text-field.set-var(
+            addon-margin-top,
+            $native-select-addon-top
+          );
           @include text-field.use-var(min-height, height);
 
           height: auto;

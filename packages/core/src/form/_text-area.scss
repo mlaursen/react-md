@@ -82,7 +82,8 @@ $variables: (height, padding);
 @mixin textarea-container-styles($disable-layer: false) {
   @include utils.optional-layer(text-area, $disable-layer) {
     .rmd-textarea-container {
-      @include text-field.set-var(addon-top, $addon-top);
+      @include text-field.set-var(addon-top, 0);
+      @include text-field.set-var(addon-margin-top, $addon-top);
 
       height: auto;
       max-width: 100%;
