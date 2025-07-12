@@ -8,24 +8,24 @@ import { getProjectRootDir } from "./getProjectRootDir.js";
 
 const rootDir = getProjectRootDir();
 const packagesDir = resolve(rootDir, "packages");
-const coreRoot = resolve(packagesDir, "core");
-const codeRoot = resolve(packagesDir, "code");
 const docsRoot = resolve(rootDir, "apps", "docs");
 
 export function loadDemoScssInNode(fileUrl: string): string {
   const url = fileUrl.replace(FILE_URL, "");
 
-  let filePath: string;
+  let filePath = url;
   if (url.startsWith("/docs")) {
     const name = url.replace("/docs/", "");
 
     filePath = join(docsRoot, name);
-  } else if (url.includes("/code/")) {
-    const name = url.replace("/@react-md/code/", "");
-    filePath = join(codeRoot, name);
   } else {
-    const name = url.replace("/@react-md/core/", "");
-    filePath = join(coreRoot, name);
+    // NOTE: If the regexp updates, update in compileScssModule as well
+    const [packageName = "", packageScope = ""] =
+      url.match(/\/@react-md\/([-a-z0-9]+)\//) || [];
+    if (packageScope) {
+      const name = url.replace(packageName, "");
+      filePath = join(packagesDir, packageScope, name);
+    }
   }
 
   return readFileSync(filePath, "utf8");

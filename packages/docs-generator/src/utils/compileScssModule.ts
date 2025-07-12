@@ -26,8 +26,11 @@ const canonicalize: Importer<"sync">["canonicalize"] = (url) => {
     return new URL("_colors.scss", `${FILE_URL}/@react-md/core/dist/`);
   }
 
-  if (url.endsWith("@react-md/code")) {
-    return new URL("_code.scss", `${FILE_URL}/@react-md/code/dist/`);
+  // NOTE: If the regexp updates, update in getScssCodeFile as well
+  const [packageName, packageScope] =
+    url.match(/@react-md\/([-a-z0-9]+)$/) || [];
+  if (packageScope) {
+    return new URL(`_${packageScope}.scss`, `${FILE_URL}/${packageName}/dist/`);
   }
 
   let urlWithExtension = url;
