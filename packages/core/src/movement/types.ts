@@ -137,9 +137,17 @@ export interface KeyboardMovementBehavior {
 
 /**
  * @since 6.3.0
+ * @since 6.4.0 Added `force` option.
  */
 export interface KeyboardFocusFromKeyOptions {
   key: string;
+
+  /**
+   * @since 6.4.0
+   * @defaultValue `false`
+   */
+  force?: boolean;
+
   /** @defaultValue `false` */
   reversed?: boolean;
 
@@ -150,11 +158,26 @@ export interface KeyboardFocusFromKeyOptions {
 /**
  * @since 6.3.0
  */
-export type KeyboardFocusAction = (focusables?: readonly HTMLElement[]) => void;
+export type KeyboardFocusAction = (
+  focusables?: readonly HTMLElement[],
+  force?: boolean
+) => void;
+
+/**
+ * @since 6.4.0
+ */
+export interface KeyboardMovementUpdateFocusIndexOptions {
+  index: number;
+  force?: boolean;
+  focusables?: readonly HTMLElement[];
+}
 
 /**
  * @since 5.0.0
  * @since 6.0.0 Removed `attach`, `detach` and `watching`
+ * @since 6.3.0 Added `focusFirst`, `focusLast`, `focusNext`, `focusPrevious`
+ * and `focusFromKey`.
+ * @since 6.4.0 Added `focusCurrent` and `updateFocusIndex`
  * @internal
  */
 export interface KeyboardMovementContext
@@ -195,6 +218,19 @@ export interface KeyboardMovementContext
    * @since 6.3.0
    */
   focusFromKey: (options: KeyboardFocusFromKeyOptions) => void;
+
+  /**
+   * @since 6.4.0
+   */
+  focusCurrent: (
+    focusables?: readonly HTMLElement[],
+    force?: boolean
+  ) => HTMLElement | undefined;
+
+  /**
+   * @since 6.4.0
+   */
+  updateFocusIndex: (options: KeyboardMovementUpdateFocusIndexOptions) => void;
 }
 
 /**

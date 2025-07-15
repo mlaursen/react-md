@@ -28,6 +28,7 @@ import {
   type KeyboardMovementContext,
   type KeyboardMovementProviderImplementation,
   type KeyboardMovementProviderOptions,
+  type KeyboardMovementUpdateFocusIndexOptions,
 } from "./types.js";
 import {
   getFirstFocusableIndex,
@@ -62,6 +63,8 @@ export const DEFAULT_KEYBOARD_MOVEMENT_CONTEXT: Readonly<KeyboardMovementContext
     focusNext: noop,
     focusPrevious: noop,
     focusFromKey: noop,
+    focusCurrent: (): undefined => {},
+    updateFocusIndex: noop,
   };
 
 /**
@@ -291,14 +294,18 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
 
     return getFocusableElements(container, programmatic);
   }, [getFocusableElements, nodeRef, programmatic]);
-  const updateFocusIndex = useCallback(
-    (index: number, focusables = getFocusableElementsFromRef()) => {
-      if (currentFocusIndex.current === index || index === -1) {
+  const focusCurrent = useCallback(
+    (focusables = getFocusableElementsFromRef()): HTMLElement | undefined => {
+      const index = currentFocusIndex.current;
+      if (index === -1) {
         return;
       }
 
-      currentFocusIndex.current = index;
       const focused = focusables[index];
+      if (!focused) {
+        return;
+      }
+
       if (tabIndexBehavior) {
         focused.scrollIntoView({
           block: "nearest",
@@ -311,65 +318,89 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         focused.focus();
       }
 
-      onFocusChange({
-        index,
-        element: focused,
-      });
+      return focused;
     },
-    [getFocusableElementsFromRef, onFocusChange, tabIndexBehavior]
+    [getFocusableElementsFromRef, tabIndexBehavior]
+  );
+  const updateFocusIndex = useCallback(
+    (options: KeyboardMovementUpdateFocusIndexOptions) => {
+      const {
+        index,
+        force,
+        focusables = getFocusableElementsFromRef(),
+      } = options;
+      const isSameIndex = currentFocusIndex.current === index;
+      if ((!force && isSameIndex) || index === -1) {
+        return;
+      }
+
+      currentFocusIndex.current = index;
+      const focused = focusCurrent(focusables);
+      if (focused && !isSameIndex) {
+        onFocusChange({
+          index,
+          element: focused,
+        });
+      }
+    },
+    [focusCurrent, getFocusableElementsFromRef, onFocusChange]
   );
 
   const focusNext = useCallback(
-    (focusables = getFocusableElementsFromRef()) => {
-      updateFocusIndex(
-        getNextFocusableIndex({
+    (focusables = getFocusableElementsFromRef(), force = false) => {
+      updateFocusIndex({
+        index: getNextFocusableIndex({
           loopable,
           increment: true,
           focusables,
           includeDisabled: true,
           currentFocusIndex: currentFocusIndex.current,
         }),
-        focusables
-      );
+        force,
+        focusables,
+      });
     },
     [getFocusableElementsFromRef, loopable, updateFocusIndex]
   );
   const focusPrevious = useCallback(
-    (focusables = getFocusableElementsFromRef()) => {
-      updateFocusIndex(
-        getNextFocusableIndex({
+    (focusables = getFocusableElementsFromRef(), force = false) => {
+      updateFocusIndex({
+        index: getNextFocusableIndex({
           loopable,
           increment: false,
           focusables,
           includeDisabled: true,
           currentFocusIndex: currentFocusIndex.current,
         }),
-        focusables
-      );
+        force,
+        focusables,
+      });
     },
     [getFocusableElementsFromRef, loopable, updateFocusIndex]
   );
   const focusFirst = useCallback(
-    (focusables = getFocusableElementsFromRef()) => {
-      updateFocusIndex(
-        getFirstFocusableIndex({
+    (focusables = getFocusableElementsFromRef(), force = false) => {
+      updateFocusIndex({
+        index: getFirstFocusableIndex({
           focusables,
           includeDisabled,
         }),
-        focusables
-      );
+        force,
+        focusables,
+      });
     },
     [getFocusableElementsFromRef, includeDisabled, updateFocusIndex]
   );
   const focusLast = useCallback(
-    (focusables = getFocusableElementsFromRef()) => {
-      updateFocusIndex(
-        getLastFocusableIndex({
+    (focusables = getFocusableElementsFromRef(), force = false) => {
+      updateFocusIndex({
+        index: getLastFocusableIndex({
           focusables,
           includeDisabled,
         }),
-        focusables
-      );
+        force,
+        focusables,
+      });
     },
     [getFocusableElementsFromRef, includeDisabled, updateFocusIndex]
   );
@@ -377,6 +408,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
     (options: KeyboardFocusFromKeyOptions) => {
       const {
         key,
+        force,
         reversed,
         focusables = getFocusableElementsFromRef(),
       } = options;
@@ -391,7 +423,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         ),
         startIndex: reversed ? -1 : currentFocusIndex.current,
       });
-      updateFocusIndex(index, focusables);
+      updateFocusIndex({ index, force, focusables });
     },
     [getFocusableElementsFromRef, includeDisabled, searchable, updateFocusIndex]
   );
@@ -407,12 +439,15 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
       focusNext,
       focusPrevious,
       focusFromKey,
+      focusCurrent,
+      updateFocusIndex,
       includeDisabled,
       tabIndexBehavior,
       activeDescendantId,
     }),
     [
       activeDescendantId,
+      focusCurrent,
       focusFirst,
       focusFromKey,
       focusLast,
@@ -423,6 +458,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
       loopable,
       searchable,
       tabIndexBehavior,
+      updateFocusIndex,
     ]
   );
 
@@ -557,7 +593,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         ): void => {
           event.preventDefault();
           event.stopPropagation();
-          updateFocusIndex(index, focusables);
+          updateFocusIndex({ index, focusables });
         };
 
         extendKeyDown({
@@ -633,21 +669,18 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           !increment &&
           decrementKeys.includes(key);
 
-        if (jumpToFirst) {
+        if (jumpToFirst || jumpToLast || increment || decrement) {
           event.preventDefault();
           event.stopPropagation();
+        }
+
+        if (jumpToFirst) {
           focusFirst();
         } else if (jumpToLast) {
-          event.preventDefault();
-          event.stopPropagation();
           focusLast();
         } else if (increment) {
-          event.preventDefault();
-          event.stopPropagation();
           focusNext();
         } else if (decrement) {
-          event.preventDefault();
-          event.stopPropagation();
           focusPrevious();
         }
       },
