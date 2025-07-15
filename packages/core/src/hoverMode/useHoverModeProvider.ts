@@ -111,7 +111,15 @@ export interface HoverModeContext extends SimpleHoverModeContext {
  */
 export interface CreateHoverModeContextOptions {
   /**
-   * TODO: I think this has something to do with how I implemented the MenuBar.
+   * This should only be used if creating nested hover mode behavior where the
+   * hover mode should default to being enabled if a parent element is hovered.
+   * So set this to an element's `id` if a parent element is being hovered when
+   * the component **mounts**.
+   *
+   * The use case for this is the `MenuBar` component since after clicking a
+   * menu button or hovering it long enough to enable the hover mode, all child
+   * menus should also be in the hover mode until the top-most element is
+   * closed.
    *
    * @defaultValue `""`
    */
