@@ -9,7 +9,7 @@ import {
 const MODIFIERS = "Shift|Ctrl|Alt";
 const ARROW_KEYS = "ArrowUp|ArrowRight|ArrowDown|ArrowLeft";
 const JUMP_KEYS = "Home|End|PageUp|PageDown";
-const ACTION_KEYS = "Enter|Space|Escape|Tab";
+const ACTION_KEYS = "Enter|Space|Escape|Tab|Backspace|Delete";
 const ACTION = `${ARROW_KEYS}|${JUMP_KEYS}|${ACTION_KEYS}`;
 
 const KEYBOARD_CODE_REGEX = new RegExp(`^(?:((${MODIFIERS})\\+)?(${ACTION}))$`);
