@@ -70,41 +70,42 @@ export async function importCode(options: ImportCodeOptions): Promise<void> {
     const sourceCode = await readFile(sourcePath, "utf8");
     const lang = parse(sourcePath).ext.replace(".", "");
 
-    let codeBlock: MdxJsxFlowElementHast;
+    let codeBlock: MdxJsxFlowElementHast | undefined;
     if (/^tsx?$/.test(lang)) {
       const jsCode = await transformTsToJs(sourceCode, sourcePath);
-      if (!jsCode || jsCode === sourceCode.trim()) {
-        codeElement.properties.className = [
-          `language-${lang.replace(".", "")}`,
-        ];
-        codeElement.children = [{ type: "text", value: sourceCode }];
-
-        replacePreElementWithJsxNode({
-          meta: `fileName="${fileName}"`,
-          preElement,
-          preElementParent,
+      if (jsCode && jsCode !== sourceCode.trim()) {
+        codeBlock = createJsxNode({
+          as: "TypescriptCodeBlock",
+          props: {
+            isTsx: true,
+            tsCode: sourceCode,
+            jsCode,
+            fileName,
+          },
         });
-        return;
       }
-
-      codeBlock = createJsxNode({
-        as: "TypescriptCodeBlock",
-        props: {
-          isTsx: true,
-          tsCode: sourceCode,
-          jsCode,
-          fileName,
-        },
-      });
-    } else {
-      throw new Error(`I have not added support for ".${lang}" imports yet`);
     }
 
-    replacePreElement({
-      preElement,
-      preElementParent,
-      replacements: [codeBlock],
-    });
+    if (codeBlock) {
+      replacePreElement({
+        preElement,
+        preElementParent,
+        replacements: [codeBlock],
+      });
+    } else {
+      codeElement.properties.className = [`language-${lang.replace(".", "")}`];
+      codeElement.children = [{ type: "text", value: sourceCode }];
+      const meta = new URLSearchParams();
+      if (fileName) {
+        meta.set("fileName", fileName);
+      }
+
+      replacePreElementWithJsxNode({
+        meta: meta.toString(),
+        preElement,
+        preElementParent,
+      });
+    }
   };
 
   await log(task(), "", `Imported ${sourcePath.replace(aliasDir, "src")}`);
