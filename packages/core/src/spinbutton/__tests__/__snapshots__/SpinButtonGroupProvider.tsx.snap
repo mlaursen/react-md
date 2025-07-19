@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SpinButtonGroupProvider > should allow for the event listeners to be hooked into 1`] = `
+<div
+  class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded"
+  role="group"
+>
+  <div
+    aria-label="Hours"
+    aria-valuemax="12"
+    aria-valuemin="1"
+    aria-valuetext="No value selected"
+    autocapitalize="none"
+    autocorrect="off"
+    contenteditable="true"
+    id="spinbutton-:r2:"
+    inputmode="numeric"
+    role="spinbutton"
+    spellcheck="false"
+    tabindex="0"
+  >
+    HH
+  </div>
+  <div
+    aria-label="Minutes"
+    aria-valuemax="60"
+    aria-valuemin="0"
+    aria-valuetext="No value selected"
+    autocapitalize="none"
+    autocorrect="off"
+    contenteditable="true"
+    id="spinbutton-:r3:"
+    inputmode="numeric"
+    role="spinbutton"
+    spellcheck="false"
+    tabindex="0"
+  >
+    MM
+  </div>
+</div>
+`;

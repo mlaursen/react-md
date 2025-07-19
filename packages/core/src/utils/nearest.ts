@@ -1,4 +1,5 @@
 import { type MinMaxRange } from "../types.js";
+import { getNumberOfDigits } from "./getNumberOfDigits.js";
 
 /**
  * @internal
@@ -35,7 +36,7 @@ export function nearest(options: NearestOptions): number {
   const step = range / steps;
   const decimals = Number.isInteger(step)
     ? range % steps
-    : `${step}`.split(".")[1].length;
+    : getNumberOfDigits(parseInt(`${step}`.split(".")[1]));
 
   return Math.min(
     max,

@@ -655,7 +655,13 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         }
 
         if (trackTabKeys && key === "Tab") {
-          currentFocusIndex.current += event.shiftKey ? -1 : 1;
+          currentFocusIndex.current = getNextFocusableIndex({
+            loopable,
+            increment: !event.shiftKey,
+            focusables: getFocusableElements(currentTarget, programmatic),
+            includeDisabled,
+            currentFocusIndex: currentFocusIndex.current,
+          });
           return;
         }
 

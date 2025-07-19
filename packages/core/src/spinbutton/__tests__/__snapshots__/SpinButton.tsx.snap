@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SpinButton > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+<div
+  aria-label="Example"
+  aria-valuetext="No value selected"
+  autocapitalize="none"
+  autocorrect="off"
+  contenteditable="true"
+  id="spinbutton-:r0:"
+  inputmode="numeric"
+  role="spinbutton"
+  spellcheck="false"
+  tabindex="0"
+/>
+`;
+
+exports[`SpinButton > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+<div
+  aria-label="Example"
+  aria-valuetext="No value selected"
+  autocapitalize="none"
+  autocorrect="off"
+  contenteditable="true"
+  id="spinbutton-:r0:"
+  inputmode="numeric"
+  role="spinbutton"
+  spellcheck="false"
+  tabindex="0"
+/>
+`;
+
+exports[`SpinButton > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+<div
+  aria-label="Example"
+  aria-valuetext="No value selected"
+  autocapitalize="none"
+  autocorrect="off"
+  class="custom-class-name"
+  contenteditable="true"
+  id="spinbutton-:r0:"
+  inputmode="numeric"
+  role="spinbutton"
+  spellcheck="false"
+  style="color: white;"
+  tabindex="0"
+/>
+`;

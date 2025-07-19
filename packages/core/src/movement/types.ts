@@ -299,6 +299,9 @@ export type KeyboardMovementEventHandlers<E extends HTMLElement> = Pick<
 export interface SimpleKeyboardMovementWrapperOptions<E extends HTMLElement>
   extends KeyboardMovementEventHandlers<E> {
   ref?: Ref<E>;
+
+  /** @defaultValue `false` */
+  disabled?: boolean;
 }
 
 /**
@@ -311,9 +314,6 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
     KeyboardMovementConfiguration {
   /** @see {@link TabIndexBehavior} */
   tabIndexBehavior?: TabIndexBehavior;
-
-  /** @defaultValue `false` */
-  disabled?: boolean;
 
   /**
    * This is used to implement custom keyboard movement for the `keydown` event.
