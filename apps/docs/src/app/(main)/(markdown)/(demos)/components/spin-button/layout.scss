@@ -1,0 +1,17 @@
+@use "everything";
+
+div[role="spinbutton"] {
+  @include everything.divider-border-style;
+  @include everything.interaction-outline;
+
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 3rem;
+  min-width: 3rem;
+  padding: 0.5rem;
+
+  &:focus-visible {
+    @include everything.interaction-focus-styles;
+  }
+}

@@ -125,6 +125,11 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/spin-button",
+        children: "SpinButton",
+      },
+      {
+        type: "route",
         href: "/switch",
         children: "Switch",
       },

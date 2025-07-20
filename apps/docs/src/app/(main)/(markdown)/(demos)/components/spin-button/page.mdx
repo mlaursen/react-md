@@ -1,0 +1,103 @@
+---
+title: Spin Button
+description: The SpinButton component can be used to implement the spinbutton role when a <TextField type="number" /> cannot be used.
+docType: Demo
+docGroup: Components
+group: Inputs
+components: [SpinButton, SpinButtonGroup, SpinButtonGroupProvider]
+hooks: [useSpinButton, useSpinButtonProvider]
+---
+
+# Spin Button
+
+> !Info! In most cases, use the [NumberField](/components/text-field#number) instead.
+
+The `SpinButton` component can be used to implement the
+[`spinbutton` role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/spinbutton_role).
+when a `<TextField type="number" />` cannot be used. The `SpinButton` does not have styles
+by default and will need to be provided manually.
+
+To help with the demos on this page, the following styles have been applied:
+
+```import source="./layout.scss"
+
+```
+
+## Simple SpinButton
+
+A `SpinButton` has no styles by default and requires an `aria-label` or
+`aria-labelledby` for accessibility. The value can be changed by:
+
+- using the `ArrowUp` or `ArrowDown` keys
+- typing a number
+- clearing the field with `Backspace` or `Delete`
+
+Any non-digit keys will be ignored.
+
+> !Info! All `SpinButton` on this page will be updated to have minimal styles
+> to help show the component.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+### Ranged SpinButton
+
+It is recommended to provide the `min` and `max` props to improve accessibility
+and limit the range. This also adds support for updating the value using the
+`Home` and `End` keys and will prevent the user from typing values outside of
+this range.
+
+```demo source="./RangedSpinButtonExample.tsx"
+
+```
+
+## Using a Fallback
+
+In the previous examples, the `SpinButton` content was either empty, a hyphen,
+or the current value. When there is no value, the `SpinButton` has a few
+default text content:
+
+- if `minDigits` is provided, return `-` for each digit
+- if `min` is provided, return `-` for each digit
+- if `fallback` is provided, use that value
+- otherwise, return an empty string
+
+```demo source="./UsingAFallbackExample.tsx"
+
+```
+
+## Controlling the value
+
+The value can be controlled by providing a `value` and `onValueChange`. The
+`onValueChange` callback provides an object with:
+
+- `event` - either a `KeyboardEvent`, `FormEvent`, or `FocusEvent`
+- `reason` - either `"type"`, `"cleared"`, `"typed-to-completion"`, or `"change"`
+- `value` - the next value
+
+```demo source="./ControllingTheValueExample.tsx"
+
+```
+
+### Setting a default value
+
+An alternative to controlling the value is to use a `defaultValue` instead.
+This can be useful alongside the `onValueChange` callback to only update a
+local state value when a specific change reason occurs.
+
+```demo source="./OnValueChangeCallbackExample.tsx"
+
+```
+
+## SpinButtonGroup Example
+
+When multiple `SpinButton` should be used together to create a single value,
+use the `SpinButtonGroupProvider` and `useSpinButtonGroupProvider` as a wrapper
+for the `SpinButton` components. When the user triggers the
+`"typed-to-completion"` event, the next `SpinButton` will automatically be
+focused.
+
+```demo source="./SpinButtonGroupExample.tsx"
+
+```
