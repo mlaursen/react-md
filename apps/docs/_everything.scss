@@ -1,14 +1,17 @@
 @forward "overrides";
 @forward "@react-md/code" as code-*;
+@forward "@react-md/datetime" as datetime-*;
 
 @use "@react-md/core";
 @use "@react-md/code";
+@use "@react-md/datetime";
 
 @mixin light-theme($core) {
   @if $core {
     @include core.use-light-theme;
   }
   @include code.use-light-theme;
+  @include datetime.use-light-theme;
 
   // Maybe add this one into core? Useful when you want a "transparent"
   // background on any surface that actually has a background color so it can
@@ -33,6 +36,7 @@
     @include core.use-dark-theme;
   }
   @include code.use-dark-theme;
+  @include datetime.use-dark-theme;
 
   --background-color: #{core.$dark-theme-background-color};
   --logo-shadow: #{core.$white};

@@ -19,6 +19,7 @@
   "dependencies": {
     "@react-md/code": "workspace:*",
     "@react-md/core": "workspace:*",
+    "@react-md/datetime": "workspace:*",
     "@react-md/material-icons": "workspace:*",
     "cnbuilder": "^3.1.0",
     "js-cookie": "^3.0.5",

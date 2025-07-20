@@ -1,0 +1,117 @@
+{
+  "name": "@react-md/datetime",
+  "version": "1.0.0",
+  "description": "The core components and functionality for react-md.",
+  "type": "module",
+  "sass": "./dist/_datetime.scss",
+  "exports": {
+    ".": {
+      "sass": "./dist/_datetime.scss"
+    },
+    "./*": "./dist/*.js",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "dist/**/*.scss"
+  ],
+  "scripts": {
+    "run-script": "tsx --tsconfig scripts/tsconfig.json",
+    "dev": "npm-run-all --parallel build-esm-watch build-scss-watch build-types-watch",
+    "prepare-release": "npm-run-all clean-dist build",
+    "build": "npm-run-all build-esm build-scss build-types",
+    "build-esm": "swc -d ./dist --strip-leading-paths src",
+    "build-esm-watch": "pnpm run build-esm --watch",
+    "build-types": "tsc -P tsconfig.types.json",
+    "build-types-watch": "pnpm run build-types --watch",
+    "build-scss": "pnpm run run-script scripts/copySassFiles.ts",
+    "build-scss-watch": "pnpm run build-scss --watch",
+    "clean-dist": "rm -rf dist",
+    "clean": "rm -rf .turbo dist node_modules",
+    "typecheck": "tsc --noEmit",
+    "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
+    "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
+    "lint": "npm-run-all lint-scripts lint-styles",
+    "test": "vitest"
+  },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git",
+    "directory": "packages/datetime"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "keywords": [
+    "react",
+    "material design",
+    "react-md",
+    "components",
+    "ui",
+    "library",
+    "date",
+    "time",
+    "datetime",
+    "picker"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@date-fns/tz": "^1.2.0",
+    "@react-md/core": "workspace:*",
+    "cnbuilder": "^3.1.0",
+    "date-fns": "^4.1.0"
+  },
+  "devDependencies": {
+    "@mlaursen/eslint-config": "^8.0.1",
+    "@react-md/stylelint-config": "workspace:*",
+    "@swc/cli": "^0.6.0",
+    "@swc/core": "^1.11.29",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^22.15.29",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react-swc": "^3.8.1",
+    "chokidar": "^4.0.3",
+    "eslint": "^9.28.0",
+    "glob": "11.0.3",
+    "jsdom": "^26.1.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.5.3",
+    "stylelint": "^16.20.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-recommended-scss": "^15.0.1",
+    "stylelint-order": "^7.0.0",
+    "stylelint-scss": "^6.12.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1"
+  },
+  "peerDependencies": {
+    "@react-md/core": "workspace:*",
+    "react": ">= 18",
+    "react-dom": ">= 18"
+  },
+  "peerDependenciesMeta": {
+    "@react-md/core": {
+      "optional": false
+    },
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "volta": {
+    "node": "22.13.1",
+    "pnpm": "10.8.0"
+  }
+}

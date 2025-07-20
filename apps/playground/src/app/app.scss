@@ -2,10 +2,12 @@
 
 @include everything.styles;
 @include everything.code-styles;
+@include everything.datetime-styles;
 
 :root {
   @include everything.variables;
   @include everything.code-variables;
+  @include everything.datetime-variables;
 
   @media (prefers-color-scheme: dark) {
     @include everything.dark-theme;

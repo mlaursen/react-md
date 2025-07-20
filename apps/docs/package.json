@@ -50,6 +50,7 @@
     "@next/third-parties": "^14.2.15",
     "@react-md/code": "workspace:*",
     "@react-md/core": "workspace:*",
+    "@react-md/datetime": "workspace:*",
     "@react-md/material-icons": "workspace:*",
     "algoliasearch": "^5.34.1",
     "cnbuilder": "^3.1.0",
