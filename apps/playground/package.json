@@ -1,0 +1,50 @@
+{
+  "name": "playground",
+  "type": "module",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,scss,md,yml,json}\"",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
+    "dev": "next dev"
+  },
+  "engines": {
+    "node": "22.13.1",
+    "pnpm": "10.8.0"
+  },
+  "engineStrict": true,
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "dependencies": {
+    "@react-md/code": "workspace:*",
+    "@react-md/core": "workspace:*",
+    "@react-md/material-icons": "workspace:*",
+    "cnbuilder": "^3.1.0",
+    "js-cookie": "^3.0.5",
+    "next": "^15.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@mlaursen/eslint-config": "^8.0.0",
+    "@next/eslint-plugin-next": "^15.3.1",
+    "@swc/core": "^1.11.21",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/js-cookie": "^3.0.6",
+    "@types/node": "^22.14.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "eslint": "^9.24.0",
+    "prettier": "^3.5.3",
+    "sass-embedded": "^1.86.3",
+    "serve": "^14.2.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "volta": {
+    "node": "22.13.1",
+    "pnpm": "10.8.0"
+  }
+}

@@ -1,0 +1,15 @@
+@forward "overrides";
+@forward "@react-md/code" as code-*;
+
+@use "@react-md/core";
+@use "@react-md/code";
+
+@mixin light-theme {
+  @include core.use-light-theme;
+  @include code.use-light-theme;
+}
+
+@mixin dark-theme {
+  @include core.use-dark-theme;
+  @include code.use-dark-theme;
+}

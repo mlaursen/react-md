@@ -1,0 +1,4 @@
+node_modules
+.next
+/public/site.manifest
+/out

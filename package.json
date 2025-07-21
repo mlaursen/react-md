@@ -14,6 +14,7 @@
     "build-packages": "pnpm run turbo-s run build --filter=docs^...",
     "update-sassdoc": "pnpm --filter docs sassdoc",
     "update-material-icons": "pnpm --filter material-icons update-icons",
+    "playground-dev": "pnpm --filter playground dev",
     "code-dev": "pnpm --filter code dev",
     "core-dev": "pnpm --filter core dev",
     "docs-dev": "pnpm --filter docs dev",
