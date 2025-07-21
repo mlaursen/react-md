@@ -114,20 +114,31 @@ export interface FormConfiguration extends Required<FormThemeOptions> {
 }
 
 /**
- * @since 6.0.0
+ * @since 6.4.0
  */
-export interface FormComponentStates {
-  /** @defaultValue `false` */
-  error?: boolean;
-
-  /** @defaultValue `false` */
-  active?: boolean;
-
+export interface InteractableFormComponentStates {
   /** @defaultValue `false` */
   disabled?: boolean;
 
   /** @defaultValue `false` */
   readOnly?: boolean;
+}
+
+/**
+ * @since 6.4.0
+ */
+export interface EditableFormComponentStates
+  extends InteractableFormComponentStates {
+  /** @defaultValue `false` */
+  error?: boolean;
+}
+
+/**
+ * @since 6.0.0
+ */
+export interface FormComponentStates extends EditableFormComponentStates {
+  /** @defaultValue `false` */
+  active?: boolean;
 }
 
 /**
