@@ -1,7 +1,6 @@
 export const PRIVATE_FILES = [
   "**/autocomplete/AutocompleteListboxChildren*",
   "**/autocomplete/utils*",
-  "**/draggable/utils*",
   "**/form/InputToggleIcon*",
   "**/form/ResizingTextAreaWrapper*",
   "**/form/useResizingTextArea*",
