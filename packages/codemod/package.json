@@ -65,7 +65,6 @@
     "@swc/core": "^1.12.11",
     "@swc/jest": "^0.2.39",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/glob": "^9.0.0",
     "@types/jscodeshift": "^17.3.0",
     "@types/node": "^22.15.29",
     "eslint": "^9.30.1",
