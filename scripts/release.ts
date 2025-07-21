@@ -128,7 +128,7 @@ if (!isSkipBuild) {
 
   if (!isSkipCoreGenerate) {
     // exec("pnpm core-export-map");
-    // exec("pnpm core-index-file");
+    exec("pnpm core-index-file");
     exec("git add -u");
   }
 
