@@ -1,4 +1,4 @@
-import { config, configs, gitignore } from "@mlaursen/eslint-config";
+import { config, configs, gitignore } from "@react-md/eslint-config";
 import { join } from "node:path";
 
 export default config(

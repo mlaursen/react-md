@@ -40,7 +40,7 @@
     "cnbuilder": "^3.1.0"
   },
   "devDependencies": {
-    "@mlaursen/eslint-config": "^8.0.1",
+    "@react-md/eslint-config": "workspace:*",
     "@swc/core": "^1.12.11",
     "@types/lodash": "^4.17.20",
     "@types/node": "^22.15.29",

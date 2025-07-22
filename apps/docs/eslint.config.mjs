@@ -1,6 +1,6 @@
 // @ts-check
 import { FlatCompat } from "@eslint/eslintrc";
-import { config, configs, gitignore } from "@mlaursen/eslint-config";
+import { config, configs, gitignore } from "@react-md/eslint-config";
 
 const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,

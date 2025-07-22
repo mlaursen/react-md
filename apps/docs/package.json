@@ -69,8 +69,8 @@
   "devDependencies": {
     "@algolia/client-search": "^5.32.0",
     "@eslint/eslintrc": "^3.3.1",
-    "@mlaursen/eslint-config": "^8.0.1",
     "@next/eslint-plugin-next": "^15.3.5",
+    "@react-md/eslint-config": "workspace:*",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.20",
     "@types/mdx": "^2.0.13",

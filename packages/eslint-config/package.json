@@ -1,0 +1,30 @@
+{
+  "name": "@react-md/eslint-config",
+  "type": "module",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "files": [
+    "dist/"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@mlaursen/eslint-config": "^8.0.1"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^22.15.29",
+    "prettier": "^3.6.2",
+    "typescript": "^5.8.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "volta": {
+    "node": "22.13.1",
+    "pnpm": "10.8.0"
+  }
+}
