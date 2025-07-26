@@ -5,7 +5,7 @@ import { format } from "prettier";
 
 import { compileScss } from "../utils/compileScssModule.js";
 import { loadDemoScssInNode } from "../utils/getScssCodeFile.js";
-import { log } from "../utils/log.js";
+import { log, logFailure } from "../utils/log.js";
 
 async function run(scssLookupPath: string): Promise<void> {
   const lookup: Record<string, string> = {};
@@ -32,10 +32,14 @@ async function run(scssLookupPath: string): Promise<void> {
 export async function createScssLookup(): Promise<void> {
   const src = join(process.cwd(), "src");
   const scssLookupPath = join(src, "generated", "rmdScssLookup.ts");
+  const dest = scssLookupPath.replace(src, "@");
 
-  await log(
-    run(scssLookupPath),
-    "",
-    `Generated ${scssLookupPath.replace(src, "@")}`
-  );
+  try {
+    await log(run(scssLookupPath), "", `Generated ${dest}`);
+  } catch (e) {
+    console.error();
+    logFailure(`Error generating ${dest}`);
+    console.error();
+    throw e;
+  }
 }
