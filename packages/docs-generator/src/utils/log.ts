@@ -11,6 +11,10 @@ export function logComplete(message: string, duration?: number): void {
   console.log(` ✓ ${message}${suffix}`);
 }
 
+export function logFailure(message: string): void {
+  console.error(` × ${message}`);
+}
+
 export async function log<Result>(
   task: Promise<Result>,
   startMessage: string,

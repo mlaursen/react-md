@@ -7,6 +7,9 @@ export const LOCAL_SCOPE = ":local";
 export const GLOBAL_SCOPE = ":global";
 export const FILE_URL = "file://";
 
+const REACT_MD_DIST = "@react-md/core/dist";
+const REACT_MD_DIST_URL = `${FILE_URL}/${REACT_MD_DIST}/`;
+
 const canonicalize: Importer<"sync">["canonicalize"] = (url) => {
   // The documentation site will either "enter" through
   // `@use "everything";` or `@use "@react-md/core";`
@@ -14,16 +17,16 @@ const canonicalize: Importer<"sync">["canonicalize"] = (url) => {
     return new URL("_everything.scss", `${FILE_URL}/docs/`);
   }
 
-  if (url === "@react-md/core") {
-    return new URL("_core.scss", `${FILE_URL}/@react-md/core/dist/`);
+  if (url === "@react-md/core" || url.endsWith("/dist/@react-md/core")) {
+    return new URL("_core.scss", REACT_MD_DIST_URL);
   }
 
   if (url.endsWith("core/a11y")) {
-    return new URL("_a11y.scss", `${FILE_URL}/@react-md/core/dist/`);
+    return new URL("_a11y.scss", REACT_MD_DIST_URL);
   }
 
-  if (url.endsWith("core/colors") || url.endsWith("/dist/@react-md/core")) {
-    return new URL("_colors.scss", `${FILE_URL}/@react-md/core/dist/`);
+  if (url.endsWith("core/colors")) {
+    return new URL("_colors.scss", REACT_MD_DIST_URL);
   }
 
   // NOTE: If the regexp updates, update in getScssCodeFile as well
@@ -37,10 +40,7 @@ const canonicalize: Importer<"sync">["canonicalize"] = (url) => {
   if (!urlWithExtension.endsWith(".scss")) {
     urlWithExtension = urlWithExtension.replace(/\/([0-9a-z-]+)$/, "/_$1.scss");
   }
-  urlWithExtension = urlWithExtension.replace(
-    "docs/@react-md",
-    "@react-md/core/dist"
-  );
+  urlWithExtension = urlWithExtension.replace("docs/@react-md", REACT_MD_DIST);
 
   return new URL(urlWithExtension, url);
 };
