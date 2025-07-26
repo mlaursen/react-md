@@ -19,6 +19,7 @@ export type JoinedDataType =
   | "Map|String"
   | "List|Map"
   | "List|String"
+  | "List|Map|String"
   | "Color|null"
   | "Color|String"
   | "Color|String|Number"

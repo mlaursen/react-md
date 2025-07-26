@@ -89,30 +89,38 @@ $_swappable-properties: text-align;
 /// Internal validation function to ensure the user overrides variables with
 /// accepted values.
 ///
-/// @param {List|Map} list-or-map - The list or map to validate against
+/// @since 6.4.0 Added support for strings so that single item lists can be used.
+/// @param {List|Map|String} options - The list or map of available options.
+/// This can also be a single item list.
 /// @param {String|Number} key-or-value - Either the map key or list value to
 /// check if exists
 /// @param {String} error-message - The additional error message to display
 /// @returns {any} the value from the list or map
-@function validate($list-or-map, $key-or-value, $error-message) {
-  $type: meta.type-of($list-or-map);
+@function validate($options, $key-or-value, $error-message) {
+  $options: if(
+    meta.type-of($options) == string,
+    list.append((), $options),
+    $options
+  );
+
+  $type: meta.type-of($options);
   $is-map: $type == map;
   $is-list: $type == list;
 
   @if $disable-validation {
-    @return if($is-list, $key-or-value, map.get($list-or-map, $key-or-value));
+    @return if($is-list, $key-or-value, map.get($options, $key-or-value));
   }
 
   @if not $is-map and not $is-list {
-    @error 'Unable to validate anything except for lists and maps at this time. Received: #{$list-or-map}.';
+    @error "Unable to validate anything except for lists and maps at this time. Received: '#{$options}'.";
   }
 
-  $choices: if($is-map, map.keys($list-or-map), $list-or-map);
+  $choices: if($is-map, map.keys($options), $options);
   @if not list.index($choices, $key-or-value) {
     @error "Invalid #{$error-message}: '#{$key-or-value}'. Choose one of: #{$choices}";
   }
 
-  @return if($is-list, $key-or-value, map.get($list-or-map, $key-or-value));
+  @return if($is-list, $key-or-value, map.get($options, $key-or-value));
 }
 
 /// Used to get a custom property variable name.
