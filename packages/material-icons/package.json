@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint -c scripts/eslint.config.mjs \"scripts/**/*.ts\"",
     "build": "pnpm run run-script scripts/build.ts",
+    "clean-dist": "rm -rf *Icon.d.ts *Icon.js",
     "clean": "rm -rf .turbo node_modules *Icon.d.ts *Icon.js"
   },
   "repository": {
