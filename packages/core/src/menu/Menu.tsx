@@ -420,6 +420,7 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
             break;
         }
       },
+      onEnter,
       onEntering(appearing) {
         onEntering(appearing);
         entered.current = true;
@@ -430,11 +431,12 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
         cancelUnmountFocus.current = false;
         animatedOnceRef.current = true;
       },
+      onExit,
+      onExiting,
       onExited() {
         onExited();
         entered.current = false;
       },
-      onExiting,
       disableTransition,
       isFocusTypeDisabled(type) {
         if (role === "listbox") {
@@ -461,7 +463,6 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
     const { ref, style, callbacks, updateStyle } = useFixedPositioning({
       ...transitionOptions,
       disabled: disableFixedPositioning,
-      onEnter,
       style: isSheet ? propStyle : menuStyle,
       fixedTo,
       anchor: getDefaultAnchor({
@@ -491,7 +492,6 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       },
     });
     const { rendered, disablePortal, elementProps } = useScaleTransition({
-      nodeRef: ref,
       className: cnb(!isSheet && menuClassName, className),
       transitionIn: visible,
       vertical: !horizontal,
@@ -501,10 +501,12 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
       appear,
       enter,
       exit,
-      onExit,
-      onExiting: transitionOptions.onExiting,
       exitedHidden: true,
+      // merge the transition callbacks
+      ...transitionOptions,
       ...callbacks,
+      // but prefer the latest defined ref
+      nodeRef: ref,
     });
     useScrollLock(visible && preventScroll);
 

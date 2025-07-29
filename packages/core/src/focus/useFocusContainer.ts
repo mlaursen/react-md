@@ -39,15 +39,19 @@ const noop = (): void => {
  */
 export type FocusType = "mount" | "unmount" | "keyboard";
 
-/** @since 6.0.0 */
-export type FocusContainerTransitionCallbacks = Pick<
-  TransitionCallbacks,
-  "onEntering" | "onEntered" | "onExiting" | "onExited"
->;
+/**
+ * @since 6.0.0
+ * @deprecated Use `TransitionCallbacks` instead.
+ */
+export type FocusContainerTransitionCallbacks = TransitionCallbacks;
 
-/** @since 6.0.0 */
+/**
+ * @since 6.0.0
+ * @since 6.3.2 Fixed by extending `TransitionCallbacks` after the
+ * `onEnteredOnce` and `onExitedOnce` support was added to CSS transitions.
+ */
 export interface FocusContainerTransitionOptions<E extends HTMLElement>
-  extends FocusContainerTransitionCallbacks {
+  extends TransitionCallbacks {
   /**
    * An optional ref that will be merged with the
    * {@link FocusContainerImplementation.nodeRef}
@@ -155,10 +159,12 @@ export function useFocusContainer<E extends HTMLElement>(
   const {
     nodeRef,
     activate,
-    onEntering = noop,
-    onEntered = noop,
-    onExiting = noop,
-    onExited = noop,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
     onKeyDown = noop,
     programmatic = false,
     disableTransition = false,
@@ -181,6 +187,7 @@ export function useFocusContainer<E extends HTMLElement>(
     transitionOptions: {
       nodeRef: refCallback,
       ...getTransitionCallbacks({
+        onEnter,
         onEnterOnce: () => {
           const instance = ref.current;
           if (
@@ -205,6 +212,7 @@ export function useFocusContainer<E extends HTMLElement>(
             prevFocus.current?.focus();
           });
         },
+        onExit,
         onExiting,
         onExited,
         disableTransition,

@@ -70,21 +70,27 @@ describe("useFocusContainer", () => {
     TRANSITION_CONFIG.disabled = false;
 
     const user = userEvent.setup();
+    const onEnter = jest.fn();
     const onEntering = jest.fn();
     const onEntered = jest.fn();
+    const onExit = jest.fn();
     const onExiting = jest.fn();
     const onExited = jest.fn();
     rmdRender(
       <Test
+        onEnter={onEnter}
         onEntering={onEntering}
         onEntered={onEntered}
+        onExit={onExit}
         onExiting={onExiting}
         onExited={onExited}
       />
     );
 
+    expect(onEnter).not.toHaveBeenCalled();
     expect(onEntering).not.toHaveBeenCalled();
     expect(onEntered).not.toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
     expect(onExiting).not.toHaveBeenCalled();
     expect(onExited).not.toHaveBeenCalled();
 
@@ -92,7 +98,9 @@ describe("useFocusContainer", () => {
     await waitFor(() => {
       expect(onEntering).toHaveBeenCalled();
     });
+    expect(onEnter).toHaveBeenCalled();
     expect(onEntered).not.toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
     expect(onExiting).not.toHaveBeenCalled();
     expect(onExited).not.toHaveBeenCalled();
 
@@ -101,8 +109,10 @@ describe("useFocusContainer", () => {
     });
 
     await user.click(screen.getByRole("button", { name: "Button 1" }));
+    expect(onEnter).toHaveBeenCalled();
     expect(onEntering).toHaveBeenCalled();
     expect(onEntered).toHaveBeenCalled();
+    expect(onExit).toHaveBeenCalled();
     expect(onExiting).toHaveBeenCalled();
     expect(onExited).not.toHaveBeenCalled();
 

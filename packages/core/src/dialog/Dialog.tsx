@@ -287,6 +287,10 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
     const { eventHandlers, transitionOptions } = useFocusContainer({
       nodeRef: ref,
       activate: visible,
+      onEnter(appearing) {
+        onEnter(appearing);
+        setChildVisible(type !== "full-page");
+      },
       onEntered(appear) {
         onEntered(appear);
         // this needs to be called onEnter and onEntered just in case the
@@ -294,6 +298,10 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
         setChildVisible(type !== "full-page");
       },
       onEntering,
+      onExit() {
+        onExit();
+        setChildVisible(false);
+      },
       onExiting,
       onExited() {
         onExited();
@@ -334,14 +342,6 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       appear: appear && !disableTransition && !ssr,
       enter: enter && !disableTransition,
       exit: exit && !disableTransition,
-      onEnter(appearing) {
-        onEnter(appearing);
-        setChildVisible(type !== "full-page");
-      },
-      onExit() {
-        onExit();
-        setChildVisible(false);
-      },
       temporary,
       exitedHidden,
       disablePortal: propDisablePortal,
