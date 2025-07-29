@@ -287,7 +287,7 @@ async function run({
   });
 }
 
-config({ path: join(process.cwd(), ".env.algolia") });
+config({ path: join(process.cwd(), ".env.algolia"), quiet: true });
 const envVars = await getEnvVars();
 await log(
   run(envVars),

@@ -42,11 +42,11 @@
   },
   "devDependencies": {
     "@react-md/eslint-config": "workspace:*",
-    "@swc/core": "^1.12.11",
+    "@swc/core": "^1.13.2",
     "@types/lodash": "^4.17.20",
     "@types/node": "^22.15.29",
     "@types/react": "^18.3.12",
-    "eslint": "^9.30.1",
+    "eslint": "^9.32.0",
     "glob": "^11.0.3",
     "lodash": "^4.17.21",
     "prettier": "^3.6.2",
