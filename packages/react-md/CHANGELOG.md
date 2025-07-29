@@ -1,5 +1,22 @@
 # react-md
 
+## 6.2.4
+
+### Patch Changes
+
+- Bug fixes:
+  - The `useFocusContainer` hook correctly merges `onEnter` and `onExit`
+    - Nested dialogs only show the top-most overlay animation
+    - Menus correctly merge `onEnter` and `onExit`
+
+  Other changes:
+  - Updated examples to use the latest templates (`vite` has some new deps and tsconfigs)
+  - bumped safe dependencies to latest
+  - `CreateHoverModeContextOptions` provides docs for the `defaultActiveId`
+
+- Updated dependencies
+  - @react-md/core@6.3.2
+
 ## 6.2.3
 
 ### Patch Changes
