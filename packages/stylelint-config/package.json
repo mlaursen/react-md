@@ -1,5 +1,5 @@
 {
-  "name": "@react-md/eslint-config",
+  "name": "@react-md/stylelint-config",
   "type": "module",
   "private": true,
   "version": "1.0.0",
@@ -8,13 +8,24 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@mlaursen/eslint-config": "^8.0.1"
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-recommended-scss": "^15.0.1",
+    "stylelint-order": "^7.0.0",
+    "stylelint-scss": "^6.12.1"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.15.29",
     "prettier": "^3.6.2",
     "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "stylelint": "*"
+  },
+  "peerDependenciesMeta": {
+    "stylelint": {
+      "optional": false
+    }
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",

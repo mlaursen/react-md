@@ -126,6 +126,9 @@ importers:
       '@react-md/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@react-md/stylelint-config':
+        specifier: workspace:*
+        version: link:../../packages/stylelint-config
       '@types/js-cookie':
         specifier: ^3.0.6
         version: 3.0.6
@@ -177,18 +180,6 @@ importers:
       stylelint:
         specifier: ^16.22.0
         version: 16.22.0(typescript@5.8.3)
-      stylelint-config-prettier-scss:
-        specifier: ^1.0.0
-        version: 1.0.0(stylelint@16.22.0(typescript@5.8.3))
-      stylelint-config-recommended-scss:
-        specifier: ^15.0.1
-        version: 15.0.1(postcss@8.5.6)(stylelint@16.22.0(typescript@5.8.3))
-      stylelint-order:
-        specifier: ^7.0.0
-        version: 7.0.0(stylelint@16.22.0(typescript@5.8.3))
-      stylelint-scss:
-        specifier: ^6.12.1
-        version: 6.12.1(stylelint@16.22.0(typescript@5.8.3))
       svgo:
         specifier: ^4.0.0
         version: 4.0.0
@@ -336,6 +327,9 @@ importers:
       '@react-md/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@react-md/stylelint-config':
+        specifier: workspace:*
+        version: link:../stylelint-config
       '@swc/cli':
         specifier: ^0.6.0
         version: 0.6.0(@swc/core@1.13.2)(chokidar@4.0.3)
@@ -402,18 +396,6 @@ importers:
       stylelint:
         specifier: ^16.22.0
         version: 16.22.0(typescript@5.8.3)
-      stylelint-config-prettier-scss:
-        specifier: ^1.0.0
-        version: 1.0.0(stylelint@16.22.0(typescript@5.8.3))
-      stylelint-config-recommended-scss:
-        specifier: ^15.0.1
-        version: 15.0.1(postcss@8.5.6)(stylelint@16.22.0(typescript@5.8.3))
-      stylelint-order:
-        specifier: ^7.0.0
-        version: 7.0.0(stylelint@16.22.0(typescript@5.8.3))
-      stylelint-scss:
-        specifier: ^6.12.1
-        version: 6.12.1(stylelint@16.22.0(typescript@5.8.3))
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -536,6 +518,9 @@ importers:
       '@react-md/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@react-md/stylelint-config':
+        specifier: workspace:*
+        version: link:../stylelint-config
       '@swc/cli':
         specifier: ^0.6.0
         version: 0.6.0(@swc/core@1.13.2)(chokidar@4.0.3)
@@ -608,18 +593,6 @@ importers:
       stylelint:
         specifier: ^16.22.0
         version: 16.22.0(typescript@5.8.3)
-      stylelint-config-prettier-scss:
-        specifier: ^1.0.0
-        version: 1.0.0(stylelint@16.22.0(typescript@5.8.3))
-      stylelint-config-recommended-scss:
-        specifier: ^15.0.1
-        version: 15.0.1(postcss@8.5.6)(stylelint@16.22.0(typescript@5.8.3))
-      stylelint-order:
-        specifier: ^7.0.0
-        version: 7.0.0(stylelint@16.22.0(typescript@5.8.3))
-      stylelint-scss:
-        specifier: ^6.12.1
-        version: 6.12.1(stylelint@16.22.0(typescript@5.8.3))
       ts-morph:
         specifier: ^26.0.0
         version: 26.0.0
@@ -997,6 +970,37 @@ importers:
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+
+  packages/stylelint-config:
+    dependencies:
+      stylelint:
+        specifier: '*'
+        version: 16.22.0(typescript@5.8.3)
+      stylelint-config-prettier-scss:
+        specifier: ^1.0.0
+        version: 1.0.0(stylelint@16.22.0(typescript@5.8.3))
+      stylelint-config-recommended-scss:
+        specifier: ^15.0.1
+        version: 15.0.1(postcss@8.5.6)(stylelint@16.22.0(typescript@5.8.3))
+      stylelint-order:
+        specifier: ^7.0.0
+        version: 7.0.0(stylelint@16.22.0(typescript@5.8.3))
+      stylelint-scss:
+        specifier: ^6.12.1
+        version: 6.12.1(stylelint@16.22.0(typescript@5.8.3))
+    devDependencies:
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: ^5.2.2
+        version: 5.2.2(prettier@3.6.2)
+      '@types/node':
+        specifier: ^22.15.29
+        version: 22.16.5
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
       typescript:
         specifier: ^5.8.3
         version: 5.8.3

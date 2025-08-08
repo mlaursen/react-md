@@ -59,6 +59,7 @@
     "@jest/globals": "^29.7.0",
     "@jest/types": "^29.6.3",
     "@react-md/eslint-config": "workspace:*",
+    "@react-md/stylelint-config": "workspace:*",
     "@swc/cli": "^0.6.0",
     "@swc/core": "^1.13.2",
     "@swc/jest": "^0.2.39",
@@ -81,10 +82,6 @@
     "postcss-selector-parser": "^7.1.0",
     "sass": "^1.89.2",
     "stylelint": "^16.22.0",
-    "stylelint-config-prettier-scss": "^1.0.0",
-    "stylelint-config-recommended-scss": "^15.0.1",
-    "stylelint-order": "^7.0.0",
-    "stylelint-scss": "^6.12.1",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
