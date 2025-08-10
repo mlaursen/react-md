@@ -162,24 +162,7 @@ export type SpinButtonValueOptions<E extends HTMLElement = HTMLDivElement> =
 /**
  * @since 6.4.0
  */
-export interface SpinButtonTextPlaceholderOptions extends Partial<MinMaxRange> {
-  /**
-   * An optional fallback value to display when the spin button's value is
-   * `null`. For example: if the spin button is used to set the specific hour
-   * in a time field, set the fallback to `"HH"` to show that until the user
-   * has typed a value.
-   */
-  fallback?: string;
-
-  /**
-   * This is the character to use to fill the remaining number of digits to
-   * display in the spin button.
-   *
-   * @see {@link minDigits}
-   * @defaultValue `"0"`
-   */
-  placeholderChar?: string;
-
+export interface SpinButtonDigitRangeOptions {
   /**
    * This is the minimum number of digits that should be shown in the spin
    * button as the user is typing. If the current value is less than this
@@ -240,7 +223,7 @@ export interface SpinButtonTextPlaceholderOptions extends Partial<MinMaxRange> {
    * // ^ textContent4 === "2025"
    * ```
    *
-   * @see {@link placeholderChar}
+   * @see {@link SpinButtonTextPlaceholderOptions.placeholderChar}
    * @defaultValue `fallback?.length ?? getNumberOfDigits(min)`
    */
   minDigits?: number;
@@ -288,6 +271,36 @@ export interface SpinButtonTextPlaceholderOptions extends Partial<MinMaxRange> {
    * @defaultValue `getNumberOfDigits(max)`
    */
   maxDigits?: number;
+}
+
+/**
+ * @since 6.4.0
+ */
+export interface SpinButtonRangeOptions
+  extends Partial<MinMaxRange>,
+    SpinButtonDigitRangeOptions {}
+
+/**
+ * @since 6.4.0
+ */
+export interface SpinButtonTextPlaceholderOptions
+  extends SpinButtonRangeOptions {
+  /**
+   * An optional fallback value to display when the spin button's value is
+   * `null`. For example: if the spin button is used to set the specific hour
+   * in a time field, set the fallback to `"HH"` to show that until the user
+   * has typed a value.
+   */
+  fallback?: string;
+
+  /**
+   * This is the character to use to fill the remaining number of digits to
+   * display in the spin button.
+   *
+   * @see {@link minDigits}
+   * @defaultValue `"0"`
+   */
+  placeholderChar?: string;
 }
 
 /**
