@@ -135,8 +135,8 @@
     "vitest": "^3.2.4"
   },
   "peerDependencies": {
-    "@jest/globals": "^29.7.0",
-    "@jest/types": "^29.6.3",
+    "@jest/globals": ">= 29 <=30",
+    "@jest/types": ">= 29 <=30",
     "@testing-library/dom": ">= 9",
     "@testing-library/jest-dom": ">= 6",
     "@testing-library/react": ">= 14",
