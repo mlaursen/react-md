@@ -1,6 +1,6 @@
 {
   "name": "@react-md/material-icons",
-  "version": "6.2.4",
+  "version": "6.2.5",
   "description": "Material Design Icon components for react-md",
   "type": "module",
   "exports": {

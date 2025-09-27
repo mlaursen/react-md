@@ -1,5 +1,17 @@
 # @react-md/core
 
+## 6.3.3
+
+### Patch Changes
+
+- Bug fixes:
+  - typo for `GetRangeSliderTestElementsOptions` type name
+  - stop using deprecated `clip` css property
+  - add jest@30 to peer dependencies range
+
+  Other changes:
+  - Bump dependencies to latest
+
 ## 6.3.2
 
 ### Patch Changes
