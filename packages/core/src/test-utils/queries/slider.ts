@@ -120,7 +120,7 @@ export async function findSliderTestElements(
 /**
  * @since 6.0.0
  */
-export interface GetRangetSliderTestElementsOptions {
+export interface GetRangeSliderTestElementsOptions {
   /** @defaultValue `screen` */
   container?: BoundFunctions<typeof queries>;
 
@@ -184,7 +184,7 @@ export interface RangeSliderTestElements {
  * @since 6.0.0
  */
 export function getRangeSliderTestElements(
-  options: GetRangetSliderTestElementsOptions = {}
+  options: GetRangeSliderTestElementsOptions = {}
 ): RangeSliderTestElements {
   const { container = screen, min, max } = options;
   const minSlider = container.getByRole<HTMLSpanElement>(
@@ -218,7 +218,7 @@ export function getRangeSliderTestElements(
  * @since 6.0.0
  */
 export async function findRangeSliderTestElements(
-  options: GetRangetSliderTestElementsOptions = {}
+  options: GetRangeSliderTestElementsOptions = {}
 ): Promise<RangeSliderTestElements> {
   const { container = screen, min, max } = options;
   const minSlider = await container.findByRole<HTMLSpanElement>(
