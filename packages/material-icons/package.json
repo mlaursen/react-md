@@ -42,17 +42,17 @@
   },
   "devDependencies": {
     "@react-md/eslint-config": "workspace:*",
-    "@swc/core": "^1.13.2",
+    "@swc/core": "^1.13.20",
     "@types/lodash": "^4.17.20",
     "@types/node": "^22.15.29",
     "@types/react": "^18.3.12",
-    "eslint": "^9.32.0",
+    "eslint": "^9.36.0",
     "glob": "^11.0.3",
     "lodash": "^4.17.21",
     "prettier": "^3.6.2",
-    "pretty-ms": "^9.2.0",
+    "pretty-ms": "^9.3.0",
     "svgo": "^4.0.0",
-    "tsx": "^4.20.3",
+    "tsx": "^4.20.6",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
