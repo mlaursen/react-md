@@ -272,7 +272,6 @@ $_swappable-properties: text-align;
 @mixin _sr-only-focusable {
   &:active,
   &:focus {
-    clip: auto;
     clip-path: none;
     height: auto;
     margin: auto;
@@ -294,7 +293,6 @@ $_swappable-properties: text-align;
 /// the element has been focused
 @mixin sr-only($focusable: false, $focus-selector: "&--focusable") {
   border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
   height: 1px;
   margin: -1px;
