@@ -110,9 +110,9 @@ The `Select` display value cannot be found using a normal query and instead
 can be found as the `container.getByRole("combobox", { name: "LABEL" }).firstElementChild`.
 
 ReactMD provides React Testing Library queries named
-[getSelectTestElements]($GITHUB/packages/core/src/test-utils/queries/select.ts#L68)
+[getSelectTestElements](/testing/queries#getSelectTestElements)
 and
-[findSelectTestElements]($GITHUB/packages/core/src/test-utils/queries/select.ts#L92)
+[findSelectTestElements](/testing/queries#findSelectTestElements)
 to find the important `Select` element parts with the correct type definitions.
 
 <SelectVerifyTheDisplayValue />
@@ -130,12 +130,12 @@ or keyboard events.
 Since updating through touch, drag, or keyboard events aren't convenient for
 tests, it's recommended to find the hidden `<input type="range" />` and trigger
 a change event on that instead and could be found by
-`screen.getByRole("slider", { name: "", hidden: true })`.
+`screen.getByRole("slider", { name: "THE_SLIDER_LABEL", hidden: true })`.
 
 ReactMD provides React Testing Library queries named
-[getSliderTestElements]($GITHUB/packages/core/src/test-utils/queries/slider.ts#L89)
+[getSliderTestElements](/testing/queries#getSliderTestElements)
 and
-[findSliderTestElements]($GITHUB/packages/core/src/test-utils/queries/slider.ts#L105)
+[findSliderTestElements](/testing/queries#findSliderTestElements)
 that can be used to get the `slider` element and the `sliderInput`.
 
 <SliderFindAndChangeValue />
@@ -143,9 +143,9 @@ that can be used to get the `slider` element and the `sliderInput`.
 #### Find and Change Value (Range Slider)
 
 ReactMD provides additional React Testing Library queries named
-[getRangeSliderTestElements]($GITHUB/packages/core/src/test-utils/queries/slider.ts#L186)
+[getRangeSliderTestElements](/testing/queries#getRangeSliderTestElements)
 and
-[findRangeSliderTestElements]($GITHUB/packages/core/src/test-utils/queries/slider.ts#L220)
+[findRangeSliderTestElements](/testing/queries#findRangeSliderTestElements)
 that can be used for a range slider. It will return the `minSlider`,
 `minSliderInput`, `maxSlider`, and `maxSliderInput` allowing the values to be
 verified like the normal slider.
@@ -193,8 +193,10 @@ The `MenuitemCheckbox` can be found using the `"menuitemcheckbox"` role:
 
 The `MenuItemFileInput` does not render an `<input type="file">` in the DOM, and instead
 dynamically creates the input when the menu item is clicked. To help test this flow,
-use the `uploadMenuItemFileInput` from `@react-md/core/test-utils/jest-globals`
-or `@react-md/core/test-utils/vitest`:
+use the `uploadMenuItemFileInput` from
+[@react-md/core/test-utils/jest-globals]($GITHUB/packages/core/src/test-utils/jest-globals/uploadMenuItemFileInput.ts)
+or
+[@react-md/core/test-utils/vitest]($GITHUB/packages/core/src/test-utils/vitest/uploadMenuItemFileInput.ts):
 
 <MenuItemFileInput />
 

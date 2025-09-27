@@ -789,6 +789,11 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/queries",
+        children: "Queries",
+      },
+      {
+        type: "route",
         href: "/polyfills",
         children: "Polyfills",
       },

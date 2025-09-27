@@ -9,7 +9,7 @@ import { MenuItemFileInput } from "@react-md/core/menu/MenuItemFileInput";
 import { rmdRender, screen, userEvent } from "@react-md/core/test-utils";
 import { uploadMenuItemFileInput } from "@react-md/core/test-utils/jest-globals";
 
-const handleChange = {LOCAL}.fn();
+const handleUpload = {LOCAL}.fn();
 
 function Test() {
   return (
@@ -43,7 +43,7 @@ describe("Test", () => {
     });
 
     // expect the files to be uploaded
-    expect(handleChange).toHaveBeenCalledWith(file);
+    expect(handleUpload).toHaveBeenCalledWith(file);
   });
 });
 `;
@@ -56,10 +56,9 @@ export default function MenuItemFileInput(): ReactElement {
           /{LOCAL}/g,
           "jest"
         ),
-        vitest: DEFAULT_CODE.replace(/{FRAMEWORK}/g, "vitest").replace(
-          /{LOCAL}/g,
-          "vi"
-        ),
+        vitest: DEFAULT_CODE.replace("jest-globals", "vitest")
+          .replace(/{FRAMEWORK}/g, "vitest")
+          .replace(/{LOCAL}/g, "vi"),
       }}
       lang="tsx"
     />

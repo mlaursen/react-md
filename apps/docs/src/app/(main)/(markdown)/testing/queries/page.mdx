@@ -1,0 +1,274 @@
+---
+title: Queries
+description: The page outlines additional @testing-library/react queries available for finding specific elements within react-md components.
+docType: Guides
+docGroup: Testing
+group: Polyfills
+---
+
+# Queries
+
+## Select
+
+### getSelectTestElements [$SOURCE](packages/core/src/test-utils/queries/select.ts#L68)
+
+```ts disableTransform
+function getSelectTestElements(
+  options: GetPartsByRoleOptions
+): SelectTestElements;
+```
+
+The `getSelectTestElements` can be used to get the `select`, `selectInput`, and
+`selectedOption` parts of the `Select` component for testing. See [Select
+testing recipes](/testing/recipes#select) for more examples.
+
+### findSelectTestElements [$SOURCE](packages/core/src/test-utils/queries/select.ts#L92)
+
+```ts disableTransform
+async function findSelectTestElements(
+  options: GetPartsByRoleOptions
+): Promise<SelectTestElements>;
+```
+
+The `findSelectTestElements` is just the async version of
+[getSelectTestElements](#getSelectTestElements) with the same API.
+
+### Example Usage
+
+```tsx
+import {
+  getSelectTestElements,
+  rmdRender,
+  screen,
+  userEvent,
+} from "@react-md/core/test-utils";
+
+it("should be able to verify the display value", async () => {
+  const user = userEvent.setup();
+  rmdRender(<SimpleSelect />);
+
+  const { select, selectInput, selectedOption } = getSelectTestElements({
+    name: "Label",
+  });
+  // this isn't required, but added to show what element this is
+  expect(selectedOption).toHaveClass("rmd-selected-option");
+
+  // there is currently no selected value
+  expect(selectedOption).toHaveTextContent("");
+
+  await user.click(select);
+  await user.click(screen.getByRole("option", { name: "Option 1" }));
+  expect(selectInput).toHaveValue("a");
+  expect(selectedOption).toHaveTextContent("Option 1");
+});
+```
+
+### Parameters
+
+- `options` - an object with the following definition:
+
+```ts disableTransform
+import {
+  type BoundFunctions,
+  type ByRoleOptions,
+  type queries,
+} from "@testing-library/dom";
+
+export interface GetPartsByRoleOptions extends ByRoleOptions {
+  /** @defaultValue `screen` */
+  container?: BoundFunctions<typeof queries>;
+}
+```
+
+### Returns
+
+An object with the following definition:
+
+```ts disableTransform
+export interface SelectTestElements {
+  /**
+   * The element that should be interacted with for showing and hiding the
+   * listbox of available options in the `Select`.
+   */
+  select: HTMLDivElement;
+
+  /**
+   * The input element storing the current value for the `Select`. This should
+   * be used to verify a specific option has been selected and will be the
+   * `Option`'s `value` prop.
+   *
+   * i.e. Selecting `<Option value="a">Option 1</Option>` -> `selectInput`
+   * would have value `"a"`.
+   */
+  selectInput: HTMLInputElement;
+
+  /**
+   * The current selected option that is shown in the `Select` underneath the
+   * floating label. This should be used if the selected option label needs to
+   * be verified instead of the value.
+   *
+   * i.e. Selecting `<Option value="a">Option 1</Option>` -> `selectedOption`
+   * would have text content `"Option 1"`.
+   */
+  selectedOption: HTMLDivElement;
+}
+```
+
+## Slider
+
+### getSliderTestElements [$SOURCE](packages/core/src/test-utils/queries/slider.ts#L89)
+
+```ts disableTransform
+function getSliderTestElements(
+  options: GetPartsByRoleOptions
+): SliderTestElements {
+```
+
+The `getSliderTestElements` can be used to get the `slider`, `sliderInput`,
+`sliderTrack`, and `sliderContainer` parts of the `Slider` component for
+testing. See [Slider testing recipes](/testing/recipes#select) for more
+examples.
+
+### findSliderTestElements [$SOURCE](packages/core/src/test-utils/queries/slider.ts#L105)
+
+```ts disableTransform
+async function findSliderTestElements(
+  options: GetPartsByRoleOptions
+): Promise<SliderTestElements>;
+```
+
+The `findSliderTestElements` is just the async version of
+[getSliderTestElements](#getSliderTestElements) with the same API.
+
+### Example Usage
+
+```tsx
+function Test(): ReactElement {
+  const slider = useSlider({ defaultValue: 30 });
+  return <Slider {...slider} aria-label="Example" />;
+}
+
+rmdRender(<Test />);
+
+const { slider, sliderInput } = getSliderTestElements({ name: "Example" });
+
+expect(slider).toHaveValue(30);
+expect(sliderInput).toHaveValue("30");
+
+fireEvent.change(sliderInput, { target: { value: "55" } });
+expect(slider).toHaveValue(55);
+expect(sliderInput).toHaveValue("55");
+```
+
+### Parameters
+
+- `options` - an object with the following definition:
+
+```ts disableTransform
+import {
+  type BoundFunctions,
+  type ByRoleOptions,
+  type queries,
+} from "@testing-library/dom";
+
+export interface GetPartsByRoleOptions extends ByRoleOptions {
+  /** @defaultValue `screen` */
+  container?: BoundFunctions<typeof queries>;
+}
+```
+
+### Returns
+
+An object with the following definition:
+
+```ts disableTransform
+export interface SliderTestElements {
+  /**
+   * The element that is visible to screen readers and can be updated using
+   * drag, touch, or keyboard events. Since this is usually annoying for tests,
+   * the `sliderInput` should normally be used instead.
+   */
+  slider: HTMLSpanElement;
+
+  /**
+   * The element that is hidden to screen readers but stores the current value
+   * and can be updated using
+   * `fireEvent.change(sliderInput, { target: { value: "100" }})`.
+   */
+  sliderInput: HTMLInputElement;
+
+  /**
+   * This is only useful when needing to verify that clicking somewhere on the
+   * track updates the value. Most test cases can be solved through the
+   * {@link slider} or {@link sliderInput} instead.
+   */
+  sliderTrack: HTMLSpanElement;
+
+  /**
+   * Returns the slider container element if it is needed for testing. It's
+   * useful for simple snapshot tests.
+   */
+  sliderContainer: HTMLDivElement;
+}
+```
+
+## Range Slider
+
+### getRangeSliderTestElements [$SOURCE](packages/core/src/test-utils/queries/slider.ts#L186)
+
+```ts disableTransform
+function getRangeSliderTestElements(
+  options: GetRangetSliderTestElementsOptions = {}
+): RangeSliderTestElements;
+```
+
+The `getRangeSliderTestElements` can be used to get the `minSlider`,
+`minSliderInput`, `maxSlider`, `maxSliderInput`, `sliderTrack`, and
+`sliderContainer` parts of the `Slider` component for testing. See [Slider
+testing recipes](/testing/recipes#find-and-change-value-range-slider) for more examples.
+
+### findRangeSliderTestElements [$SOURCE](packages/core/src/test-utils/queries/slider.ts#L220)
+
+```ts disableTransform
+async function findRangeSliderTestElements(
+  options: GetRangetSliderTestElementsOptions = {}
+): Promise<RangeSliderTestElements>;
+```
+
+### Parameters
+
+- `options` - an optional object with the following definition:
+
+```ts disableTransform
+export interface GetRangetSliderTestElementsOptions {
+  /** @defaultValue `screen` */
+  container?: BoundFunctions<typeof queries>;
+
+  /** @defaultValue `{ name: "Min" }` */
+  min?: ByRoleOptions;
+
+  /** @defaultValue `{ name: "Max" }` */
+  max?: ByRoleOptions;
+}
+```
+
+### Returns
+
+An object with the following definition:
+
+```ts disableTransform
+export interface RangeSliderTestElements {
+  /** @see {@link SliderTestElements.slider} */
+  minSlider: HTMLSpanElement;
+  /** @see {@link SliderTestElements.sliderInput} */
+  minSliderInput: HTMLInputElement;
+  /** @see {@link SliderTestElements.slider} */
+  maxSlider: HTMLSpanElement;
+  /** @see {@link SliderTestElements.sliderInput} */
+  maxSliderInput: HTMLInputElement;
+  /** @see {@link SliderTestElements.sliderTrack} */
+  sliderTrack: HTMLSpanElement;
+  /** @see {@link SliderTestElements.sliderContainer} */
+  sliderContainer: HTMLDivElement;
+}
+```
