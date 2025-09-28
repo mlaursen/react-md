@@ -8,21 +8,6 @@ $is_production: $env == production;
 
 @layer theme {
   :root {
-    @if everything.$disable-default-root-theme {
-      @include everything.variables;
-      @include everything.code-variables;
-
-      @if everything.$color-scheme ==
-        system and
-        everything.$disable-default-system-theme and
-        $is_production
-      {
-        @media (prefers-color-scheme: dark) {
-          @include everything.dark-theme(true);
-        }
-      }
-    }
-
     @if everything.$color-scheme ==
       system and not
       everything.$disable-default-system-theme
@@ -38,6 +23,21 @@ $is_production: $env == production;
       @include everything.light-theme(false);
     } @else {
       @include everything.dark-theme(false);
+    }
+
+    @if everything.$disable-default-root-theme {
+      @include everything.variables;
+      @include everything.code-variables;
+
+      @if everything.$color-scheme ==
+        system and
+        everything.$disable-default-system-theme and
+        $is_production
+      {
+        @media (prefers-color-scheme: dark) {
+          @include everything.dark-theme(true);
+        }
+      }
     }
   }
 }
