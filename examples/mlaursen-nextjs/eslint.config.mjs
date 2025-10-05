@@ -1,13 +1,14 @@
 // @ts-check
 import { FlatCompat } from "@eslint/eslintrc";
-import { config, configs, gitignore } from "@mlaursen/eslint-config";
+import { configs, defineConfig, gitignore } from "@mlaursen/eslint-config";
 
 const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
 });
 
-export default config(
+export default defineConfig(
   gitignore(import.meta.url),
+  // @ts-expect-error some eslint typedef mismatch
   ...compat.config({
     // extends: ["plugin:@next/next/recommended"],
     extends: ["plugin:@next/next/core-web-vitals"],

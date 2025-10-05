@@ -33,7 +33,7 @@
     "@eslint/eslintrc": "^3.3.1",
     "@jest/globals": "^29.7.0",
     "@jest/types": "^29.6.3",
-    "@mlaursen/eslint-config": "^8.0.0",
+    "@mlaursen/eslint-config": "^9.0.2",
     "@next/eslint-plugin-next": "^15.3.1",
     "@swc/core": "^1.11.21",
     "@testing-library/dom": "^10.4.0",

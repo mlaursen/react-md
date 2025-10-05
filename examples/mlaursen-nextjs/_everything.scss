@@ -1,3 +1,4 @@
+@use "sass:string";
 @use "@react-md/core/a11y";
 @use "@react-md/core/colors";
 
@@ -5,6 +6,8 @@
   $color-scheme: system,
   $primary-color: colors.$teal-500,
   $secondary-color: colors.$pink-a-200,
+  $font-family: var(--roboto-, string.unquote("Roboto, Arial, sans-serif")),
   $icon-disable-font: true,
+  $icon-disable-svg: true,
   $disable-rtl: true
 );

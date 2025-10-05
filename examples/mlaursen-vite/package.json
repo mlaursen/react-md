@@ -22,7 +22,7 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@mlaursen/eslint-config": "^8.0.0",
+    "@mlaursen/eslint-config": "^9.0.2",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",

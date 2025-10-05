@@ -5,7 +5,8 @@ import { type ReactElement, type ReactNode } from "react";
 import { RootLayout } from "@/components/RootLayout.jsx";
 import { RootProviders } from "@/components/RootProviders.jsx";
 
-import "./app.scss";
+import "./layout.scss";
+import "./symbols.scss";
 
 const roboto = Roboto_Flex({
   subsets: ["latin"],

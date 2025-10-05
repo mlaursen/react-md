@@ -1,7 +1,7 @@
 // @ts-check
-import { config, configs, gitignore } from "@mlaursen/eslint-config";
+import { configs, defineConfig, gitignore } from "@mlaursen/eslint-config";
 
-export default config(
+export default defineConfig(
   gitignore(import.meta.url),
   ...configs.frontend("vitest")
 );
