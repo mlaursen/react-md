@@ -153,6 +153,11 @@ $_breakpoints: (
   ),
 );
 
+/// @type Boolean
+/// @access private
+$_disable-media-queries: $disable-phone-columns and $disable-tablet-columns and
+  $disable-desktop-columns and $disable-large-desktop-columns;
+
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.
 /// @type List
@@ -168,6 +173,7 @@ $variables: (
   columns,
   row-max-height,
   auto-rows-height,
+  fallback-media-columns,
   phone-columns,
   phone-item-min-size,
   phone-item-min-height,
@@ -404,6 +410,10 @@ $variables: (
 
         @if not $disable-grid {
           &--grid {
+            @if not $_disable-media-queries {
+              @include set-var(fallback-media-columns, auto-fit);
+            }
+
             display: grid;
             grid-template-columns: repeat(
               get-var(columns),
@@ -412,6 +422,9 @@ $variables: (
           }
 
           &--grid-fill {
+            @if not $_disable-media-queries {
+              @include set-var(fallback-media-columns, auto-fill);
+            }
             @include set-var(columns, auto-fill);
           }
 
@@ -427,7 +440,13 @@ $variables: (
               $disable-size: map.get($feature-flags, size);
               @if not $disable-columns {
                 &--grid-#{$media} {
-                  @include set-var(columns, get-var($media + "-columns"));
+                  @include set-var(
+                    columns,
+                    get-var(
+                      $media + "-columns",
+                      get-var(fallback-media-columns)
+                    )
+                  );
                 }
               }
 

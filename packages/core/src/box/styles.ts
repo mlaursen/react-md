@@ -254,6 +254,20 @@ export interface BoxOptions {
 }
 
 /**
+ * Applies the `className` from the `Box` component to any element.
+ *
+ * @example Simple Example
+ * ```tsx
+ * return (
+ *   <form className={box({ stacked: true})}>
+ *     {children}
+ *   </form>
+ * );
+ * ```
+ *
+ * If custom media query breakpoints are required, use the {@link boxStyles}
+ * function instead which will also set the CSS variables.
+ *
  * @see {@link boxStyles}
  * @since 6.0.0
  */
@@ -442,6 +456,31 @@ export interface BoxStylesOptions extends BoxOptions {
 }
 
 /**
+ * Used to apply the styles from the `Box` component to any element by
+ * providing a `style` object with CSS variables and a `className`.
+ *
+ * If you do not need to  use
+ *
+ * @example Simple Example
+ * ```tsx
+ * return (
+ *   <form
+ *     {...boxStyles({
+ *        grid: true,
+ *        gridColumns: {
+ *          phone: 1,
+ *          desktop: 3,
+ *        },
+ *        gridItemSize:  {
+ *          tablet: "12rem",
+ *        },
+ *     })}
+ *   >
+ *     {children}
+ *   </form>
+ * );
+ * ```
+ *
  * @see {@link box}
  * @since 6.0.0
  */
