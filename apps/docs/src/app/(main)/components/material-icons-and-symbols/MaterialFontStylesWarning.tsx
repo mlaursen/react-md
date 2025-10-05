@@ -15,7 +15,7 @@ export function MaterialFontStylesWarning(): ReactElement {
         {`@use "@react-md/core";
 
 [class*="material-"] {
-  @include everything.icon-use-var(font-size, size);
+  @include core.icon-use-var(font-size, size);
 }
 `}
       </CopyCode>
