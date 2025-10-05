@@ -1,6 +1,7 @@
 import { ColorPreview } from "@react-md/code/ColorPreview";
 import { InlineCode } from "@react-md/code/InlineCode";
 import { Box } from "@react-md/core/box/Box";
+import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
 import {
   type FormattedSassDocItem,
@@ -14,6 +15,8 @@ import { GithubLink } from "@/components/GithubLink.jsx";
 import { LinkableHeading } from "@/components/LinkableHeading.jsx";
 import { Markdown } from "@/components/Markdown.jsx";
 import { MarkdownCode } from "@/components/MarkdownCode.jsx";
+import { MarkdownLink } from "@/components/MarkdownLink.jsx";
+import { GITHUB_URL } from "@/constants/env.js";
 import { slug } from "@/utils/slug.js";
 
 import { ExpandableCodeBlock } from "./ExpandableCodeBlock.jsx";
@@ -49,6 +52,7 @@ export function SassDocItem(props: SassDocItemProps): ReactElement {
     links,
     usedBy,
     requires,
+    since,
   } = item;
   const itemId = slug(`${baseId}-${name}`);
 
@@ -81,10 +85,19 @@ export function SassDocItem(props: SassDocItemProps): ReactElement {
 
   return (
     <>
-      <LinkableHeading id={itemId} level={2} className={styles.heading}>
+      <LinkableHeading id={itemId} level={2}>
         {name}
         <GithubLink file={source} float />
       </LinkableHeading>
+      {since && (
+        <Typography as="div" className={styles.since} type="body-2">
+          <MarkdownLink
+            href={`${GITHUB_URL}/releases/tag/${encodeURIComponent("@react-md/core@" + since)}`}
+          >
+            Since {since}
+          </MarkdownLink>
+        </Typography>
+      )}
       <Box disablePadding disableGap className={styles.spacing}>
         <InlineCode>{type}</InlineCode>
         {color && (

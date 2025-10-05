@@ -74,7 +74,7 @@ export function MarkdownLink(props: MarkdownLinkProps): ReactElement {
     <LinkUnstyled
       {...remaining}
       href={href.replace(GITHUB, GITHUB_LINK_URL)}
-      className={link()}
+      className={link({ className: remaining.className })}
     >
       {children}
     </LinkUnstyled>
