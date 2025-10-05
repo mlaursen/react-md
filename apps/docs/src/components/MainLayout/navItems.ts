@@ -155,6 +155,16 @@ export const navItems: readonly NavigationItem[] = [
         href: "/form-message",
         children: "FormMessage",
       },
+      {
+        type: "route",
+        href: "/fieldset",
+        children: "Fieldset",
+      },
+      {
+        type: "route",
+        href: "/legend",
+        children: "Legend",
+      },
 
       { type: "subheader", children: "Presentation" },
       {

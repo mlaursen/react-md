@@ -1,0 +1,48 @@
+---
+title: Legend
+description: The Legend component can be used to create a legend within a Fieldset that acts like a floating label or is visible to screen readers only.
+docType: Demo
+docGroup: Components
+group: Form
+components: [Legend, Fieldset]
+---
+
+# Legend
+
+The `Legend` component can be used to create a legend within a
+[Fieldset](/components/fieldset) that acts like a floating label or is visible
+to screen readers only.
+
+## Simple Example
+
+The `Legend` should be used within a `Fieldset` or `<fieldset>` and does not
+apply any custom styles by default.
+
+```demo source="./SimpleExample.tsx"
+
+```
+
+## Screen Reader Only Example
+
+When related form controls should be grouped together within a form but the legend
+should not be visible, enable the `srOnly` prop to make it visible to screen readers
+only.
+
+```demo source="./SrOnlyExample.tsx"
+
+```
+
+## Floating Label Example
+
+The `Legend` can act as a floating label by enabling the `floating` prop on the
+`Legend` and `floatingLabel` on the parent `Fieldset`.
+
+```demo source="./FloatingLabelExample.tsx"
+
+```
+
+### Floating Label Options Example
+
+```demo source="./FloatingLabelOptionsExample.tsx"
+
+```
