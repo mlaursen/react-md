@@ -14,7 +14,6 @@ const frontend = strict
 
 export default defineConfig(
   gitignore(import.meta.url),
-  // @ts-expect-error some eslint type mismatch
   ...compat.config({
     extends: ["plugin:@next/next/core-web-vitals"],
   }),
