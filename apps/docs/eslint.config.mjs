@@ -1,6 +1,6 @@
 // @ts-check
 import { FlatCompat } from "@eslint/eslintrc";
-import { config, configs, gitignore } from "@react-md/eslint-config";
+import { configs, defineConfig, gitignore } from "@react-md/eslint-config";
 
 const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
@@ -12,8 +12,9 @@ const frontend = strict
   ? configs.frontendTypeChecking(import.meta.dirname, "jest")
   : configs.frontend("jest");
 
-export default config(
+export default defineConfig(
   gitignore(import.meta.url),
+  // @ts-expect-error some eslint type mismatch
   ...compat.config({
     extends: ["plugin:@next/next/core-web-vitals"],
   }),

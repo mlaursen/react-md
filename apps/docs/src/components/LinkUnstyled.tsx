@@ -10,6 +10,7 @@ export interface LinkUnstyledProps
 export const LinkUnstyled = forwardRef<HTMLAnchorElement, LinkUnstyledProps>(
   function LinkUnstyled(props, ref) {
     if (props.href.endsWith(".html")) {
+      // eslint-disable-next-line jsx-a11y/anchor-has-content
       return <a {...props} ref={ref} />;
     }
 

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "stylelint-config-prettier-scss": "^1.0.0",
-    "stylelint-config-recommended-scss": "^16.0.1",
+    "stylelint-config-recommended-scss": "^16.0.2",
     "stylelint-order": "^7.0.0",
     "stylelint-scss": "^6.12.1"
   },
