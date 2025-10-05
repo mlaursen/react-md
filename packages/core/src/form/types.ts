@@ -31,15 +31,27 @@ declare module "react" {
     "--rmd-text-field-addon-spacing"?: string | number;
     "--rmd-text-field-addon-margin-top"?: string | number;
     "--rmd-text-field-addon-left-offset"?: string | number;
+    /** @since 6.4.0 */
+    "--rmd-text-field-base-height"?: string | number;
     "--rmd-text-field-height"?: string | number;
+    /** @since 6.4.0 */
+    "--rmd-text-field-dense-height"?: string | number;
+    /** @since 6.4.0 */
+    "--rmd-text-field-label-height"?: string | number;
+    /** @since 6.4.0 */
+    "--rmd-text-field-dense-label-height"?: string | number;
     "--rmd-text-field-padding-left"?: string | number;
     "--rmd-text-field-padding-right"?: string | number;
     "--rmd-text-field-padding-top"?: string | number;
     "--rmd-text-field-border-color"?: string;
+    /** @since 6.4.0 */
+    "--rmd-text-field-border-radius"?: string | number;
     "--rmd-text-field-hover-border-color"?: string;
     "--rmd-text-field-filled-color"?: string;
     "--rmd-text-field-filled-padding"?: string | number;
     "--rmd-text-field-outlined-padding"?: string | number;
+    /** @since 6.4.0 */
+    "--rmd-text-field-outlined-border-radius"?: string | number;
     "--rmd-text-field-underlined-padding"?: string | number;
   }
 }

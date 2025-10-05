@@ -90,7 +90,7 @@ $label-dense-height: 3.25rem !default;
 
 /// The `border-radius` for a `TextField`.
 /// @type Number
-$border-radius: border-radius.get-var(xs) !default;
+$border-radius: null !default;
 
 /// The `border-width` for a `TextField`.
 /// @type Number
@@ -109,6 +109,12 @@ $filled-padding: calc(spacing.get-var(sm) * 1.5) !default;
 /// `theme="outline"`.
 /// @type Number
 $outlined-padding: spacing.get-var(md) !default;
+
+/// The border radius to apply to a `TextField` with the `theme="outline"`.
+///
+/// @since 6.4.0
+/// @type Number
+$outlined-border-radius: border-radius.get-var(xs) !default;
 
 /// The amount of horizontal padding to apply to a `TextField` with the
 /// `theme="underline"`.
@@ -232,6 +238,11 @@ $filled-background-color: theme.get-default-color(
 
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.
+///
+/// In 6.4.0, added the following variables: `base-height`, `label-height`,
+/// `dense-height`, `dense-label-height`, `border-radius`,
+/// `outlined-border-radius`
+///
 /// @type List
 $variables: (
   addon-top,
@@ -239,14 +250,20 @@ $variables: (
   addon-margin-top,
   addon-left-offset,
   height,
+  base-height,
+  label-height,
+  dense-height,
+  dense-label-height,
   padding-left,
   padding-right,
   padding-top,
   border-color,
+  border-radius,
   hover-border-color,
   filled-color,
   filled-padding,
   outlined-padding,
+  outlined-border-radius,
   underlined-padding
 );
 
@@ -303,19 +320,36 @@ $variables: (
 /// Conditionally applies the css variables based on feature flags
 @mixin variables {
   @if not $disable-everything {
+    @if $border-radius {
+      @include set-var(border-radius, $border-radius);
+    }
+
     @if not base.$form-disable-filled-theme and $filled-padding {
       @include set-var(filled-padding, $filled-padding);
     }
 
     @if not base.$form-disable-outlined-theme and $outlined-padding {
       @include set-var(outlined-padding, $outlined-padding);
+      @include set-var(outlined-border-radius, $outlined-border-radius);
     }
 
     @if not base.$form-disable-underlined-theme and $underlined-padding {
       @include set-var(underlined-padding, $underlined-padding);
     }
 
-    @include set-var(height, $height);
+    @include set-var(base-height, $height);
+    @if not label.$disable-floating {
+      @include set-var(label-height, $label-height);
+    }
+    @if not $disable-container-dense {
+      @include set-var(dense-height, $dense-height);
+
+      @if not label.$disable-floating {
+        @include set-var(dense-label-height, $label-dense-height);
+      }
+    }
+    @include set-var(height, get-var(base-height));
+
     @include set-var(padding-left, 0px);
     @include set-var(padding-right, 0px);
     @include set-var(padding-top, 0px);
@@ -346,7 +380,8 @@ $variables: (
       @if not label.$disable-floating {
         @include label.set-var(floating-x, get-var(padding-left));
       }
-      @include use-var(height, height);
+      @include use-var(height, height, get-var(base-height));
+      @include use-var(border-radius);
 
       align-items: center;
       display: flex;
@@ -406,6 +441,7 @@ $variables: (
           @if not $disable-addon {
             @include set-var(addon-left-offset, get-var(outlined-padding));
           }
+          @include set-var(border-radius, get-var(outlined-border-radius));
 
           @if not label.$disable-floating {
             @include label.set-var(
@@ -420,7 +456,6 @@ $variables: (
             );
           }
 
-          border-radius: $border-radius;
           border-style: solid;
           border-width: $border-width;
         }
