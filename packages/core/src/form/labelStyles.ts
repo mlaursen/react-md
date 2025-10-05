@@ -9,7 +9,7 @@ const styles = bem("rmd-label");
 /**
  * @since 6.0.0
  */
-export function label(options: LabelClassNameOptions): string {
+export function label(options: LabelClassNameOptions = {}): string {
   const {
     className,
     gap,

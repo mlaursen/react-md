@@ -1,9 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Legend should allow some of the label styles 1`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--dense rmd-label--floating rmd-label--floating-dense rmd-label--floating-active"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend should allow some of the label styles 2`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-underline rmd-label rmd-label--floating rmd-label--floating-active"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend should allow some of the label styles 3`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend should allow some of the label styles 4`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--error rmd-label--floating rmd-label--floating-active rmd-error-color"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend should allow some of the label styles 5`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--disabled rmd-label--floating rmd-label--floating-active rmd-text-disabled-color"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend should allow some of the label styles 6`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--gap rmd-label--floating rmd-label--stacked-reversed rmd-label--floating-active"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
 exports[`Legend should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend"
-  data-testid="fieldset"
+  data-testid="legend"
 >
   Content
 </legend>
@@ -12,7 +66,7 @@ exports[`Legend should apply the correct styling, HTML attributes, and allow a r
 exports[`Legend should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend custom-class-name"
-  data-testid="fieldset"
+  data-testid="legend"
   style="color: white;"
 >
   Content
@@ -22,9 +76,74 @@ exports[`Legend should apply the correct styling, HTML attributes, and allow a r
 exports[`Legend should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend rmd-sr-only"
-  data-testid="fieldset"
+  data-testid="legend"
   style=""
 >
   Content
 </legend>
 `;
+
+exports[`Legend should ignore the label props if floating is not true 1`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend should ignore the label props if floating is not true 2`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend should ignore the label props if floating is not true 3`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend should ignore the label props if floating is not true 4`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend should ignore the label props if floating is not true 5`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend should ignore the label props if floating is not true 6`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend should support being styled as a floating label 1`] = `
+<legend
+  class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--floating rmd-label--floating-active"
+  data-testid="legend"
+>
+  I am legend
+</legend>
+`;
+
+exports[`Legend styling utility class should be callable without any arguments 1`] = `"rmd-legend"`;

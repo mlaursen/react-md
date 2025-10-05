@@ -1,0 +1,68 @@
+////
+/// @group legend
+/// @since 6.4.0
+////
+
+@use "../utils";
+@use "../theme/theme";
+@use "base";
+@use "label";
+@use "text-field";
+
+/// Set to `true` to disable all form styles.
+/// @type Boolean
+$disable-everything: false !default;
+
+/// Set to `true` to disable all form styles.
+/// @type Boolean
+$disable-floating: false !default;
+
+/// Generates all the styles based on feature flags.
+///
+/// @param {Boolean} disable-layer [false] - Set this to `true` to disable the
+/// layer behavior
+@mixin styles($disable-layer: false) {
+  @if not $disable-everything {
+    @include utils.optional-layer(legend, $disable-layer) {
+      .rmd-legend {
+        @if not $disable-floating {
+          &--floating {
+            @include label.set-var(floating-active-y, -50%);
+            @include label.set-var(active-padding, 0 label.$floating-padding);
+            @include label.set-var(
+              active-background-color,
+              theme.theme-get-var(background-color)
+            );
+            @include label.set-var(
+              floating-active-x,
+              text-field.get-var(padding-left)
+            );
+          }
+
+          @if not base.$form-disable-filled-theme {
+            @include text-field.set-var(
+              padding-left,
+              text-field.get-var(filled-padding)
+            );
+          }
+
+          @if not base.$form-disable-underlined-theme {
+            @include text-field.set-var(
+              padding-left,
+              text-field.get-var(underlined-padding)
+            );
+          }
+
+          @if not base.$form-disable-outlined-theme {
+            &--floating-outline {
+              @include text-field.set-var(
+                padding-left,
+                text-field.get-var(outlined-padding)
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+}

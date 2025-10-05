@@ -37,6 +37,7 @@
 @use "window-splitter/window-splitter";
 @use "form/base" as form-base;
 @use "form/label";
+@use "form/legend";
 @use "form/fieldset";
 @use "form/form-message";
 @use "form/input-toggle";
@@ -88,6 +89,7 @@ $_layer-order: (
   form-message,
   fieldset,
   label,
+  legend,
   text-field,
   text-area,
   select,
@@ -484,6 +486,7 @@ $_layer-order: (
   @include interaction.styles($disable-layer);
   @include label.styles($disable-layer);
   @include layout.styles($disable-layer);
+  @include legend.styles($disable-layer);
   @include link.styles($disable-layer);
   @include list.styles($disable-layer);
   @include menu.styles($disable-layer);

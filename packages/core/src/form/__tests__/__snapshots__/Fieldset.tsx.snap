@@ -55,4 +55,18 @@ exports[`Fieldset should apply the correct styling, HTML attributes, and allow a
 </fieldset>
 `;
 
+exports[`Fieldset should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+<fieldset
+  class="rmd-fieldset rmd-fieldset--unstyled rmd-fieldset--floating-legend"
+  data-testid="fieldset"
+  style=""
+>
+  <legend
+    class="rmd-typography rmd-typography--body-1 rmd-legend"
+  >
+    I am Legend
+  </legend>
+</fieldset>
+`;
+
 exports[`Fieldset styling utility class should be callable without any arguments 1`] = `"rmd-fieldset rmd-fieldset--unstyled"`;

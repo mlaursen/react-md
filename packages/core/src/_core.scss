@@ -39,6 +39,7 @@
 @forward "expansion-panel/expansion-panel" as expansion-panel-*;
 @forward "form/base";
 @forward "form/label" as label-*;
+@forward "form/legend" as legend-*;
 @forward "form/fieldset" as fieldset-*;
 @forward "form/form-message" as form-message-*;
 @forward "form/input-toggle" as input-toggle-*;

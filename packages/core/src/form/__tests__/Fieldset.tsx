@@ -35,6 +35,9 @@ describe("Fieldset", () => {
 
     rerender(<Fieldset {...props} fullWidth />);
     expect(fieldset).toMatchSnapshot();
+
+    rerender(<Fieldset {...props} floatingLegend />);
+    expect(fieldset).toMatchSnapshot();
   });
 
   describe("styling utility class", () => {

@@ -30,14 +30,34 @@ export interface FieldsetProps
  * }
  * ```
  *
+ * @example Floating Legend Example
+ * ```tsx
+ * import { Form } from "@react-md/core/form/Form";
+ * import { Fieldset } from "@react-md/core/form/Fieldset";
+ * import { Legend } from "@react-md/core/form/Legend";
+ *
+ * function Example(): ReactElement {
+ *   return (
+ *     <Form>
+ *       <Fieldset floatingLegend>
+ *         <Legend floating>Some Title</Legend>
+ *         // form components
+ *       </Fieldset>
+ *     </Form>
+ *   );
+ * }
+ * ```
+ * ```
+ *
  * @see {@link https://react-md.dev/components/fieldset | Fieldset Demos}
  */
 export const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
   function Fieldset(props, ref) {
     const {
       className,
-      fullWidth = false,
-      browserStyles = false,
+      fullWidth,
+      browserStyles,
+      floatingLegend,
       children,
       ...remaining
     } = props;
@@ -50,6 +70,7 @@ export const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
           className,
           fullWidth,
           browserStyles,
+          floatingLegend,
         })}
       >
         {children}

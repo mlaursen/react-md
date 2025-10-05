@@ -4,6 +4,7 @@
 
 @use "../utils";
 @use "base";
+@use "legend";
 
 /// Set to `true` to disable the `Formset` component styles
 /// @type Boolean
@@ -27,6 +28,12 @@ $disable-everything: base.$form-disable-everything !default;
         &--full-width {
           flex: 1 1 auto;
           width: 100%;
+        }
+
+        @if not legend.$disable-floating {
+          &--floating-legend {
+            position: relative;
+          }
         }
       }
     }
