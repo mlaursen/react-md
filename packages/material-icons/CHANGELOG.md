@@ -1,5 +1,12 @@
 # @react-md/material-icons
 
+## 6.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-md/core@6.3.4
+
 ## 6.2.5
 
 ### Patch Changes

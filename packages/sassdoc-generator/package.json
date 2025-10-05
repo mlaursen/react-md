@@ -1,6 +1,6 @@
 {
   "name": "sassdoc-generator",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A custom wrapper around the sassdoc package for generating docs for the website",
   "type": "module",
   "private": true,

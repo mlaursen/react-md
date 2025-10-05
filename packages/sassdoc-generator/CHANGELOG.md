@@ -1,5 +1,11 @@
 # sassdoc-generator
 
+## 0.0.12
+
+### Patch Changes
+
+- docs-generator@0.0.11
+
 ## 0.0.11
 
 ### Patch Changes

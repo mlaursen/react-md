@@ -1,5 +1,13 @@
 # @react-md/core
 
+## 6.3.4
+
+### Patch Changes
+
+- Bug fixes:
+  - The `ProvidedTextFieldProps` correctly sets the `TextFieldChangeHandlers` to `Required`
+  - The `Box` correctly applies the default `auto-fit` or `auto-fill` to columns for undefined media queries
+
 ## 6.3.3
 
 ### Patch Changes
