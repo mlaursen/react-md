@@ -138,7 +138,7 @@ export interface ProvidedFormMessageProps
 export interface ProvidedTextFieldProps<
   E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 > extends TextFieldValidationOptions,
-    TextFieldChangeHandlers<E>,
+    Required<TextFieldChangeHandlers<E>>,
     Required<Pick<TextFieldProps, "id" | "name" | "value" | "error">>,
     Pick<TextFieldProps, "aria-describedby" | "rightAddon"> {
   /**
