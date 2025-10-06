@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 
 import { type UseStateInitializer, type UseStateSetter } from "../types.js";
+import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect.js";
 import { withinRange } from "../utils/withinRange.js";
 import { useFormReset } from "./useFormReset.js";
 import {
@@ -439,35 +440,31 @@ export function useNumberField(
     },
   });
 
+  const { error, errorMessage } = remaining;
+  const prevState = useRef({
+    error,
+    errorMessage,
+    value: number,
+  } satisfies NumberFieldHookState);
+  useIsomorphicLayoutEffect(() => {
+    prevState.current = {
+      error,
+      errorMessage,
+      value: number,
+    };
+  });
   const reset = useCallback(() => {
     resetTextField();
     setNumber(initial.current);
   }, [resetTextField]);
   const setState = useCallback<UseStateSetter<NumberFieldHookState>>(
     (nextState) => {
-      if (typeof nextState === "function") {
-        setNumber((prevNumber) => {
-          let nextNumber: number | undefined = prevNumber;
-          setTextFieldState((prevState) => {
-            const updated = nextState({
-              ...prevState,
-              value: prevNumber,
-            });
+      const resolvedNextState =
+        typeof nextState === "function"
+          ? nextState(prevState.current)
+          : nextState;
 
-            nextNumber = updated.value;
-
-            return {
-              ...updated,
-              value: `${nextNumber ?? ""}`,
-            };
-          });
-
-          return nextNumber;
-        });
-        return;
-      }
-
-      const { value, error, errorMessage } = nextState;
+      const { value, error, errorMessage } = resolvedNextState;
       setNumber(value);
       setTextFieldState({
         value: `${value ?? ""}`,
