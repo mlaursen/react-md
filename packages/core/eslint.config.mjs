@@ -22,6 +22,12 @@ export default defineConfig(
           allowWithName: ".+Overrides$",
         },
       ],
+      "react-hooks/exhaustive-deps": [
+        "error",
+        {
+          additionalHooks: "(useIsomorphicLayoutEffect|useDevEffect)",
+        },
+      ],
     },
   }
 );

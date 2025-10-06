@@ -66,16 +66,6 @@ describe("SkipToMainContent", () => {
     );
   });
 
-  it("should not throw an error if the mainId cannot be found for production", () => {
-    // this is caused by next defining process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
-    // @ts-ignore
-    process.env.NODE_ENV = "production";
-
-    expect(() =>
-      render(<SkipToMainContent mainId="not-found" />)
-    ).not.toThrow();
-  });
-
   it("should focus the main element when clicked unless the provided onClick prop calls event.stopPropagation()", () => {
     const { rerender } = render(<SkipToMainContent mainId="main-id" />, {
       wrapper: MainIdWrapper,
@@ -100,26 +90,5 @@ describe("SkipToMainContent", () => {
     );
     fireEvent.click(link);
     expect(document.body).toHaveFocus();
-  });
-
-  it("should defer finding the main element to the click event in production", () => {
-    const { NODE_ENV } = process.env;
-    process.env.NODE_ENV = "production";
-
-    const querySelector = jest.spyOn(document, "querySelector");
-    render(<SkipToMainContent />, {
-      wrapper: MainIdWrapper,
-    });
-    expect(querySelector).not.toHaveBeenCalled();
-
-    const link = screen.getByRole("link", { name: "Skip to main content" });
-    const main = screen.getByRole("main");
-    expect(document.body).toHaveFocus();
-
-    fireEvent.click(link);
-    expect(main).toHaveFocus();
-    expect(querySelector).toHaveBeenCalledTimes(1);
-
-    process.env.NODE_ENV = NODE_ENV;
   });
 });

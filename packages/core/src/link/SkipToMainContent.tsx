@@ -1,7 +1,8 @@
 "use client";
 
-import { type ReactNode, forwardRef, useEffect, useRef } from "react";
+import { type ReactNode, forwardRef, useRef } from "react";
 
+import { useDevEffect } from "../utils/useDevEffect.js";
 import { Link, type LinkProps } from "./Link.js";
 import {
   type SkipToMainContentClassNameOptions,
@@ -95,30 +96,27 @@ export const SkipToMainContent = forwardRef<
   // want to warn the developer about missing main element in development
   // immediately to help prevent errors, but in production this can be lazy
   // initialized only once a keyboard user focuses and clicks this element
-  if (process.env.NODE_ENV !== "production") {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-      mainNodeRef.current = getMainElement(mainId);
+  useDevEffect(() => {
+    mainNodeRef.current = getMainElement(mainId);
 
-      if (!mainNodeRef.current) {
-        const foundMainId = document.querySelector('main,[role="main"]')?.id;
-        let message = `Unable to find a main element to focus`;
-        if (mainId) {
-          message += ` with an id of "${mainId}"`;
+    if (!mainNodeRef.current) {
+      const foundMainId = document.querySelector('main,[role="main"]')?.id;
+      let message = `Unable to find a main element to focus`;
+      if (mainId) {
+        message += ` with an id of "${mainId}"`;
 
-          if (foundMainId) {
-            message += ` but a main element was found with an id of "${foundMainId}".`;
-          }
+        if (foundMainId) {
+          message += ` but a main element was found with an id of "${foundMainId}".`;
         }
-        if (!foundMainId) {
-          message +=
-            '. There should be at least one <main> element or an element with role="main" on the page for accessibility.';
-        }
-
-        throw new Error(message);
       }
-    }, [mainId]);
-  }
+      if (!foundMainId) {
+        message +=
+          '. There should be at least one <main> element or an element with role="main" on the page for accessibility.';
+      }
+
+      throw new Error(message);
+    }
+  }, [mainId]);
 
   return (
     <Link
