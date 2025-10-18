@@ -303,6 +303,125 @@ be viewed [here](/layout-example/full-height-resizable).
 
 ```
 
+## Updating the layout to be temporary until a specific breakpoint (Optional)
+
+When using the [useExpandableLayout](/hooks/use-expandable-layout) or
+[useResizableLayout](/hooks/use-resizable-layout), the default
+behavior is to use the temporary navigation until the [tablet
+breakpoint](/customization/breakpoints#configuration). This can be configured by
+updating the `temporaryUntil` option and the
+[$SASSDOC]($layout-navigation-breakpoint) Sass variable.
+
+### Temporary Until Desktop
+
+Start by updating the Sass variables:
+
+```diff
+-@use "@react-md/core";
++@use "@react-md/core" with (
++  $layout-navigation-breakpoint: desktop
++);
+```
+
+Then update the `useExpandableLayout` or `useResizableLayout` hook to include
+the `temporaryUntil` breakpoint:
+
+```diff
+ export function ExpandableLayoutExample(
+   props: ExpandableLayoutExampleProps
+ ): ReactElement {
+   const { children } = props;
+
+   const pathname = usePathname();
+   const {
+     temporary,
+     persistent,
+     temporaryNavProps,
+     navToggleProps,
+     appBarProps,
+     mainProps,
+     expandableNavProps,
+-  } = useExpandableLayout({ pathname });
++  } = useExpandableLayout({ pathname, temporaryUntil: "desktop" });
+```
+
+Here's the same thing, but for the `useResizableLayout`:
+
+```diff
+ export function ResizableLayoutExample(
+   props: ResizableLayoutExampleProps
+ ): ReactElement {
+   const { children } = props;
+
+   const pathname = usePathname();
+   const {
+     temporary,
+     persistent,
+     appBarProps,
+     navToggleProps,
+     expandableNavProps,
+     mainProps,
+     temporaryNavProps,
+     windowSplitterProps,
+-  } = useResizableLayout({ pathname });
++  } = useResizableLayout({ pathname, temporaryUntil: "desktop" });
+```
+
+### Temporary Until Custom Media
+
+Start by updating the Sass variables:
+
+```diff
+-@use "@react-md/core";
++@use "@react-md/core" with (
++  $layout-navigation-breakpoint: "screen and (min-width: 1200px)"
++);
+```
+
+Then update the `useExpandableLayout` or `useResizableLayout` hook to include
+the `temporaryUntil` breakpoint:
+
+```diff
+ export function ExpandableLayoutExample(
+   props: ExpandableLayoutExampleProps
+ ): ReactElement {
+   const { children } = props;
+
+   const pathname = usePathname();
+   const {
+     temporary,
+     persistent,
+     temporaryNavProps,
+     navToggleProps,
+     appBarProps,
+     mainProps,
+     expandableNavProps,
+-  } = useExpandableLayout({ pathname });
++  } = useExpandableLayout({ pathname, temporaryUntil: "screen and (min-width: 1200px)" });
+```
+
+Here's the same thing, but for the `useResizableLayout`:
+
+```diff
+ export function ResizableLayoutExample(
+   props: ResizableLayoutExampleProps
+ ): ReactElement {
+   const { children } = props;
+
+   const pathname = usePathname();
+   const {
+     temporary,
+     persistent,
+     appBarProps,
+     navToggleProps,
+     expandableNavProps,
+     mainProps,
+     temporaryNavProps,
+     windowSplitterProps,
+-  } = useResizableLayout({ pathname });
++  } = useResizableLayout({ pathname, temporaryUntil: "screen and (min-width: 1200px)" });
+```
+
 ## Creating the MainNavigation
 
 Now that a layout has been setup, it's time to create the `MainNavigation`

@@ -6,10 +6,12 @@ import { useSsr } from "../SsrProvider.js";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type AppSize } from "../media-queries/appSize.js";
+import { MEDIA_QUERY_CONFIG } from "../media-queries/config.js";
 import { useMediaQuery } from "../media-queries/useMediaQuery.js";
 import { type CSSTransitionElementProps } from "../transition/types.js";
 import { type CssPosition, type UseStateInitializer } from "../types.js";
 import { useToggle } from "../useToggle.js";
+import { useDevEffect } from "../utils/useDevEffect.js";
 import { type LayoutNavProps } from "./LayoutNav.js";
 import {
   type HorizontalLayoutTransitionOptions,
@@ -25,6 +27,8 @@ import {
   type TemporaryLayoutOptions,
   useTemporaryLayout,
 } from "./useTemporaryLayout.js";
+
+let loggedOnce = false;
 
 /**
  * @since 6.0.0
@@ -263,6 +267,61 @@ export function useExpandableLayout(
   const temporary = isAppSizeMatch
     ? isPhone || (temporaryUntil === "desktop" && !isDesktop)
     : !matches;
+
+  useDevEffect(() => {
+    if (process.env.NODE_ENV === "test") {
+      return;
+    }
+
+    let query: string;
+    if (temporaryUntil === "tablet" || temporaryUntil === "desktop") {
+      const minWidth =
+        temporaryUntil === "tablet"
+          ? MEDIA_QUERY_CONFIG.tabletMinWidth
+          : MEDIA_QUERY_CONFIG.desktopMinWidth;
+      query = `screen and (min-width: ${minWidth})`;
+    } else {
+      query = temporaryUntil;
+    }
+
+    const timeout = window.setTimeout(() => {
+      let found = false;
+      for (let i = 0; i < document.styleSheets.length; i++) {
+        const sheet = document.styleSheets[i];
+
+        try {
+          const rules = sheet.cssRules;
+          for (let j = 0; j < rules.length; j++) {
+            const rule = rules[j];
+            if (
+              rule.cssText.includes(".rmd-layout") &&
+              rule.cssText.includes(`@media ${query}`)
+            ) {
+              found = true;
+              return;
+            }
+          }
+        } catch {
+          //
+        }
+      }
+
+      if (!found && !loggedOnce) {
+        loggedOnce = true;
+        // eslint-disable-next-line no-console
+        console.error(
+          `The react-md expandable layout has set \`temporaryUntil: "${temporaryUntil}"\` but the corresponding styles have not been found.` +
+            " This usually  means the `$layout-navigation-breakpoint` or `temporaryUntil` value should be updated match.\n\n" +
+            "See https://react-md.dev/getting-started/layout#updating-the-layout-to-be-temporary-until-a-specific-breakpoint-optional " +
+            "for more information."
+        );
+      }
+    }, 3000);
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
+  }, [temporaryUntil]);
 
   return {
     visible,
