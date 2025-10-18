@@ -1,9 +1,4 @@
-import {
-  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-  DEFAULT_DESKTOP_MIN_WIDTH,
-  DEFAULT_PHONE_MAX_WIDTH,
-  DEFAULT_TABLET_MIN_WIDTH,
-} from "../../media-queries/appSize.js";
+import { MEDIA_QUERY_CONFIG } from "../../media-queries/config.js";
 
 /**
  * @since 6.0.0
@@ -64,28 +59,28 @@ export type MatchMediaMatcher = (query: string) => boolean;
  * @returns `true` for phone media queries
  */
 export const matchPhone: MatchMediaMatcher = (query) =>
-  query.includes(DEFAULT_PHONE_MAX_WIDTH);
+  query.includes(`${MEDIA_QUERY_CONFIG.phoneMaxWidth}`);
 
 /**
  * @since 6.0.0
  * @returns `true` for tablet media queries
  */
 export const matchTablet: MatchMediaMatcher = (query) =>
-  query.includes(DEFAULT_TABLET_MIN_WIDTH);
+  query.includes(`${MEDIA_QUERY_CONFIG.tabletMinWidth}`);
 
 /**
  * @since 6.0.0
  * @returns `true` for desktop media queries
  */
 export const matchDesktop: MatchMediaMatcher = (query) =>
-  query.includes(DEFAULT_DESKTOP_MIN_WIDTH);
+  query.includes(`${MEDIA_QUERY_CONFIG.desktopMinWidth}`);
 
 /**
  * @since 6.0.0
  * @returns `true` for large desktop media queries
  */
 export const matchLargeDesktop: MatchMediaMatcher = (query) =>
-  query.includes(DEFAULT_DESKTOP_LARGE_MIN_WIDTH);
+  query.includes(`${MEDIA_QUERY_CONFIG.desktopLargeMinWidth}`);
 
 /**
  * @since 6.0.0

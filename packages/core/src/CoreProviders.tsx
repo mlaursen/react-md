@@ -46,6 +46,7 @@ export interface ReactMDCoreConfiguration {
   /**
    * @defaultValue `DEFAULT_APP_SIZE_QUERIES`
    * @see {@link DEFAULT_APP_SIZE_QUERIES}
+   * @deprecated Update the `MEDIA_QUERY_CONFIG` instead
    */
   appSizeQueries?: Readonly<AppSizeQueries>;
 

@@ -62,6 +62,9 @@ export interface AppSizeQueries {
   desktopLargeMinWidth?: QuerySize;
 }
 
+/**
+ * @deprecated Use `MEDIA_QUERY_CONFIG` instead.
+ */
 export const DEFAULT_APP_SIZE_QUERIES: Readonly<AppSizeQueries> = {
   phoneMaxWidth: DEFAULT_PHONE_MAX_WIDTH,
   tabletMinWidth: DEFAULT_TABLET_MIN_WIDTH,

@@ -80,38 +80,48 @@ The breakpoints can be configured by changing the following Sass variables:
 );
 ```
 
-If the Sass variables were updated, either the
-[CoreProviders](/components/core-providers) or the
-[AppSizeProvider](/components/app-size-provider) needs to be updated with the
-new values:
+If the Sass variables were updated, the `MEDIA_QUERY_CONFIG` needs to be
+updated to match using `configureMediaQueries`:
 
-```tsx
-import {
-  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-  DEFAULT_DESKTOP_MIN_WIDTH,
-  DEFAULT_PHONE_MAX_WIDTH,
-  DEFAULT_TABLET_MAX_WIDTH,
-  DEFAULT_TABLET_MIN_WIDTH,
-} from "@react-md/core/media-queries/appSize.js";
+```diff fileName="src/rmdConfig.tsx"
+ import { type ReactMDCoreConfiguration } from "@react-md/core/CoreProviders";
+ import { configureIcons } from "@react-md/core/icon/config";
++import { configureMediaQueries } from "@react-md/core/media-queries/config";
+ import ArrowDropDownIcon from "@react-md/material-icons/ArrowDropDownIcon";
+ import ArrowUpwardIcon from "@react-md/material-icons/ArrowUpwardIcon";
+ ...
 
-// change to match the sass variables
-const phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH;
-const tabletMinWidth = DEFAULT_TABLET_MIN_WIDTH;
-const tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH;
-const desktopMinWidth = DEFAULT_DESKTOP_MIN_WIDTH;
-const desktopLargeMinWidth = DEFAULT_DESKTOP_LARGE_MIN_WIDTH;
+ configureIcons({
+   back: <KeyboardArrowLeftIcon />,
+   clear: <ClearIcon />,
+   close: <CloseIcon />,
+   checkbox: <CheckBoxOutlineBlankIcon />,
+   checkboxChecked: <CheckBoxIcon />,
+   checkboxIndeterminate: <IndeterminateCheckBoxIcon />,
+   dropdown: <ArrowDropDownIcon />,
+   error: <ErrorOutlineIcon />,
+   expander: <KeyboardArrowDownIcon />,
+   forward: <KeyboardArrowRightIcon />,
+   menu: <MenuIcon />,
+   notification: <NotificationsIcon />,
+   password: <RemoveRedEyeIcon />,
+   radio: <RadioButtonUncheckedIcon />,
+   radioChecked: <RadioButtonCheckedIcon />,
+   remove: <CancelIcon />,
+   selected: <CheckIcon />,
+   sort: <ArrowUpwardIcon />,
+   upload: <FileUploadIcon />,
+ });
 
-function App() {
-  return (
-    <AppSizeProvider
-      phoneMaxWidth={phoneMaxWidth}
-      tabletMinWidth={tabletMinWidth}
-      tabletMaxWidth={tabletMaxWidth}
-      desktopMinWidth={desktopMinWidth}
-      desktopLargeMinWidth={desktopLargeMinWidth}
-    >
-      <RestOfTheApp />
-    </AppSizeProvider>
-  );
-}
++configureMediaQueries({
++  phoneMaxWidth: "new_value",
++  tabletMinWidth: "new_value",
++  tabletMaxWidth: "new_value",
++  desktopMinWidth: "new_value",
++  desktopLargeMinWidth: "new_value",
++});
++
+ export const rmdConfig: ReactMDCoreConfiguration = {
+   ssr: true,
+ };
 ```

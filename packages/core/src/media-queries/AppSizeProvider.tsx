@@ -14,12 +14,8 @@ import {
   type AppSize,
   type AppSizeQueries,
   DEFAULT_APP_SIZE,
-  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-  DEFAULT_DESKTOP_MIN_WIDTH,
-  DEFAULT_PHONE_MAX_WIDTH,
-  DEFAULT_TABLET_MAX_WIDTH,
-  DEFAULT_TABLET_MIN_WIDTH,
 } from "./appSize.js";
+import { MEDIA_QUERY_CONFIG } from "./config.js";
 import { useMediaQuery } from "./useMediaQuery.js";
 
 /** @internal */
@@ -71,6 +67,8 @@ export function useAppSize(): Readonly<AppSize> {
  * @since 6.0.0 Renamed from `AppSizeListenerProps`.
  * @since 6.0.0 Removed the `onChange` prop
  * @since 6.0.0 Renamed `defaultSize` to `ssrSize`
+ * @since 6.4.0 Deprecated the `AppSizeQueries` in favor
+ * of the `MEDIA_QUERY_CONFIG`
  */
 export interface AppSizeProviderProps extends AppSizeQueries {
   /**
@@ -95,11 +93,11 @@ export interface AppSizeProviderProps extends AppSizeQueries {
 export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
   const {
     ssrSize = DEFAULT_APP_SIZE,
-    phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH,
-    tabletMinWidth = DEFAULT_TABLET_MIN_WIDTH,
-    tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH,
-    desktopMinWidth = DEFAULT_DESKTOP_MIN_WIDTH,
-    desktopLargeMinWidth = DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+    phoneMaxWidth = MEDIA_QUERY_CONFIG.phoneMaxWidth,
+    tabletMinWidth = MEDIA_QUERY_CONFIG.tabletMinWidth,
+    tabletMaxWidth = MEDIA_QUERY_CONFIG.tabletMaxWidth,
+    desktopMinWidth = MEDIA_QUERY_CONFIG.desktopMinWidth,
+    desktopLargeMinWidth = MEDIA_QUERY_CONFIG.desktopLargeMinWidth,
     children,
   } = props;
   const { __root } = useContext(context);
