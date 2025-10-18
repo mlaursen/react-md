@@ -213,7 +213,6 @@ export type ConfigurableIconName = keyof ConfigurableIcons;
  * ICON_CONFIG.upload = <FileUploadIcon />;
  * ```
  *
- *
  * @since 6.0.0
  */
 export const ICON_CONFIG: ConfiguredIcons = {
@@ -289,13 +288,17 @@ export const ICON_CONFIG: ConfiguredIcons = {
  * @since 6.0.0
  */
 export function configureIcons(overrides: ConfiguredIcons): void {
-  Object.entries(overrides).forEach(([name, value]) => {
-    if (process.env.NODE_ENV !== "production" && !(name in ICON_CONFIG)) {
-      throw new Error(`${name} is an invalid react-md icon name.`);
-    }
+  if (process.env.NODE_ENV !== "production") {
+    Object.entries(overrides).forEach(([name, value]) => {
+      if (!(name in ICON_CONFIG)) {
+        throw new Error(`${name} is an invalid react-md icon name.`);
+      }
 
-    ICON_CONFIG[name as keyof ConfiguredIcons] = value;
-  });
+      ICON_CONFIG[name as keyof ConfiguredIcons] = value;
+    });
+  } else {
+    Object.assign(ICON_CONFIG, overrides);
+  }
 }
 
 /**
