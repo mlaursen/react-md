@@ -29,7 +29,7 @@
     "test-coverage": "pnpm run turbo-s test -- --coverage",
     "test-core": "pnpm --filter core test",
     "test-core-watch": "pnpm --filter core test-watch",
-    "test-core-coverage": "pnpm --filter core test run --coverage",
+    "test-core-coverage": "pnpm --filter core test --coverage",
     "test-core-coverage-watch": "pnpm --filter core test-watch --coverage",
     "core-export-map": "pnpm --filter core export-map",
     "core-index-file": "pnpm --filter core create-index-file",
