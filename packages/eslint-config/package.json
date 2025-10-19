@@ -19,7 +19,7 @@
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",
   "volta": {
-    "node": "22.13.1",
+    "node": "22.20.0",
     "pnpm": "10.8.0"
   }
 }

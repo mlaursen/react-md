@@ -11,7 +11,7 @@
     "dev": "next dev"
   },
   "engines": {
-    "node": "22.13.1",
+    "node": "22.20.0",
     "pnpm": "10.8.0"
   },
   "engineStrict": true,
@@ -44,7 +44,7 @@
     "typescript": "^5.9.3"
   },
   "volta": {
-    "node": "22.13.1",
+    "node": "22.20.0",
     "pnpm": "10.8.0"
   }
 }
