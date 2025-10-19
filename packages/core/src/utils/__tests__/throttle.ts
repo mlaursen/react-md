@@ -1,25 +1,18 @@
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  jest,
-} from "@jest/globals";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { throttle } from "../throttle.js";
 
 describe("throttle", () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it("should call the function immediately on first call", () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     const throttled = throttle(fn, 100);
     throttled(1);
     expect(fn).toHaveBeenCalledWith(1);
@@ -27,34 +20,34 @@ describe("throttle", () => {
   });
 
   it("should throttle subsequent calls within wait period", () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     const throttled = throttle(fn, 100);
     throttled(1);
     throttled(2);
     expect(fn).toHaveBeenCalledTimes(1);
 
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     expect(fn).toHaveBeenCalledTimes(2);
     expect(fn).toHaveBeenLastCalledWith(2);
   });
 
   it("should call function again after wait period", () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     const throttled = throttle(fn, 100);
     throttled(1);
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     throttled(2);
     expect(fn).toHaveBeenCalledTimes(2);
     expect(fn).toHaveBeenLastCalledWith(2);
   });
 
   it("should cancel prevents pending call", () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     const throttled = throttle(fn, 100);
     throttled(1);
     throttled(2);
     throttled.cancel();
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     expect(fn).toHaveBeenCalledTimes(1);
   });
 });

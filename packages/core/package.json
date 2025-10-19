@@ -72,7 +72,8 @@
     "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
     "lint": "npm-run-all lint-scripts lint-styles",
-    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest"
+    "test": "vitest run",
+    "test-watch": "vitest"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
@@ -99,14 +100,13 @@
     "remove-accents": "^0.5.0"
   },
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
-    "@jest/types": "^29.6.3",
+    "@jest/globals": "^30.2.0",
+    "@jest/types": "^30.2.0",
     "@microsoft/api-extractor": "^7.53.1",
     "@react-md/eslint-config": "workspace:*",
     "@react-md/stylelint-config": "workspace:*",
     "@swc/cli": "^0.6.0",
     "@swc/core": "^1.13.20",
-    "@swc/jest": "^0.2.39",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
@@ -116,13 +116,13 @@
     "@types/node": "^22.15.29",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react-swc": "^4.1.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "chokidar": "^4.0.3",
     "eslint": "^9.38.0",
     "filesize": "^11.0.13",
     "glob": "11.0.3",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
-    "jest-watch-typeahead": "^2.2.2",
+    "jsdom": "^27.0.1",
     "lodash": "^4.17.21",
     "lz-string": "^1.5.0",
     "npm-run-all": "^4.1.5",
@@ -137,8 +137,8 @@
     "vitest": "^3.2.4"
   },
   "peerDependencies": {
-    "@jest/globals": ">= 29 <=30",
-    "@jest/types": ">= 29 <=30",
+    "@jest/globals": ">= 29 <=31",
+    "@jest/types": ">= 29 <=31",
     "@testing-library/dom": ">= 9",
     "@testing-library/jest-dom": ">= 6",
     "@testing-library/react": ">= 14",

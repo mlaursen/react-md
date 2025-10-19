@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Tooltip should display the tooltip after focusing for 1s by default only in keyboard mode 1`] = `
+exports[`Tooltip > should display the tooltip after focusing for 1s by default only in keyboard mode 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--below rmd-tooltip--visible"
   id=":r2:-tooltip"
@@ -11,7 +11,7 @@ exports[`Tooltip should display the tooltip after focusing for 1s by default onl
 </span>
 `;
 
-exports[`Tooltip should support controlling the visibility manually with the setVisible and hideTooltip returned functions 1`] = `
+exports[`Tooltip > should support controlling the visibility manually with the setVisible and hideTooltip returned functions 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--below rmd-tooltip--enter rmd-tooltip--visible"
   id=":r6:-tooltip"
@@ -22,7 +22,7 @@ exports[`Tooltip should support controlling the visibility manually with the set
 </span>
 `;
 
-exports[`Tooltip should support controlling the visibility manually with the setVisible and hideTooltip returned functions 2`] = `
+exports[`Tooltip > should support controlling the visibility manually with the setVisible and hideTooltip returned functions 2`] = `
 <span
   class="rmd-tooltip rmd-tooltip--below rmd-tooltip--visible"
   id=":r6:-tooltip"

@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { applyRef } from "../applyRef.js";
 
@@ -7,7 +7,7 @@ const instance = document.createElement("div");
 
 describe("applyRef", () => {
   it("should call the provided ref if it is a function", () => {
-    const ref = jest.fn();
+    const ref = vi.fn();
 
     applyRef(instance, ref);
     expect(ref).toHaveBeenCalledWith(instance);

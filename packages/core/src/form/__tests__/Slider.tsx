@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { drag } from "../../test-utils/drag.js";
 import {
@@ -56,7 +56,7 @@ const setupRangeSliderDragTest = (vertical = false) => {
   const { sliderTrack, minSlider, maxSlider } = getRangeSliderTestElements();
 
   // with this setup, each value is 4px making calculations easier
-  jest.spyOn(sliderTrack, "getBoundingClientRect").mockReturnValue({
+  vi.spyOn(sliderTrack, "getBoundingClientRect").mockReturnValue({
     ...rect,
     left: 0,
     right: vertical ? 48 : TRACK_SIZE,
@@ -67,7 +67,7 @@ const setupRangeSliderDragTest = (vertical = false) => {
   });
   // so to mock how it works in the browser, set the `x` location to the `(value * 4)`
   // when vertical, a bigger y value means a lower value, so y is `height - (value * 4)`
-  jest.spyOn(minSlider, "getBoundingClientRect").mockImplementation(() => {
+  vi.spyOn(minSlider, "getBoundingClientRect").mockImplementation(() => {
     const value = parseInt(minSlider.getAttribute("aria-valuenow") || "", 10);
     const position = value * 4;
     return {
@@ -76,7 +76,7 @@ const setupRangeSliderDragTest = (vertical = false) => {
       y: vertical ? TRACK_SIZE - position : 0,
     };
   });
-  jest.spyOn(maxSlider, "getBoundingClientRect").mockImplementation(() => {
+  vi.spyOn(maxSlider, "getBoundingClientRect").mockImplementation(() => {
     const value = parseInt(maxSlider.getAttribute("aria-valuenow") || "", 10);
     const position = value * 4;
     return {
@@ -313,7 +313,7 @@ describe("Slider", () => {
       const { sliderTrack, slider } = getSliderTestElements({ name: "Slider" });
       expect(slider).toHaveValue(50);
 
-      jest.spyOn(sliderTrack, "getBoundingClientRect").mockReturnValue({
+      vi.spyOn(sliderTrack, "getBoundingClientRect").mockReturnValue({
         ...rect,
         left: 0,
         right: TRACK_SIZE,
@@ -345,7 +345,7 @@ describe("Slider", () => {
       const { sliderTrack, slider } = getSliderTestElements({ name: "Slider" });
       expect(slider).toHaveValue(50);
 
-      jest.spyOn(sliderTrack, "getBoundingClientRect").mockReturnValue({
+      vi.spyOn(sliderTrack, "getBoundingClientRect").mockReturnValue({
         ...rect,
         left: 0,
         right: TRACK_SIZE,

@@ -1,14 +1,14 @@
-import { beforeEach, describe, expect, it, jest } from "@jest/globals";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { matchPhone, render } from "../../test-utils/index.js";
-import { spyOnMatchMedia } from "../../test-utils/jest-globals/index.js";
+import { spyOnMatchMedia } from "../../test-utils/vitest/index.js";
 import { DEFAULT_DESKTOP_MIN_WIDTH } from "../appSize.js";
 import { useMediaQuery } from "../useMediaQuery.js";
 
 const matchMedia = spyOnMatchMedia();
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 describe("useMediaQuery", () => {
@@ -50,8 +50,8 @@ describe("useMediaQuery", () => {
     expect(matchMedia).toHaveBeenCalledTimes(2);
     expect(matches).toBe(true);
 
-    jest.spyOn(window.screen, "availHeight", "get").mockReturnValue(760);
-    jest.spyOn(window.screen, "availWidth", "get").mockReturnValue(360);
+    vi.spyOn(window.screen, "availHeight", "get").mockReturnValue(760);
+    vi.spyOn(window.screen, "availWidth", "get").mockReturnValue(360);
     matchMedia.changeViewport(matchPhone);
 
     expect(matchMedia).toHaveBeenCalledTimes(2);

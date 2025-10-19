@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Button floating action buttons should allow for custom props to be passed to the wrapper span element 1`] = `
+exports[`Button > floating action buttons > should allow for custom props to be passed to the wrapper span element 1`] = `
 <span
   class="rmd-fab rmd-fab--bl custom-class-name"
   style="z-index: 20;"
@@ -13,7 +13,7 @@ exports[`Button floating action buttons should allow for custom props to be pass
 </span>
 `;
 
-exports[`Button floating action buttons should allow for responsive icon with label behavior by enabling the responsive prop and using the SrOnly component 1`] = `
+exports[`Button > floating action buttons > should allow for responsive icon with label behavior by enabling the responsive prop and using the SrOnly component 1`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--responsive rmd-interaction-surface"
   type="button"
@@ -32,7 +32,7 @@ exports[`Button floating action buttons should allow for responsive icon with la
 </button>
 `;
 
-exports[`Button floating action buttons should default to a secondary themed contained icon button if the floating behavior is enabled 1`] = `
+exports[`Button > floating action buttons > should default to a secondary themed contained icon button if the floating behavior is enabled 1`] = `
 <span
   class="rmd-fab rmd-fab--br"
 >
@@ -44,7 +44,7 @@ exports[`Button floating action buttons should default to a secondary themed con
 </span>
 `;
 
-exports[`Button floating action buttons should default to a secondary themed contained icon button if the floating behavior is enabled 2`] = `
+exports[`Button > floating action buttons > should default to a secondary themed contained icon button if the floating behavior is enabled 2`] = `
 <span
   class="rmd-fab rmd-fab--tr"
 >
@@ -56,7 +56,7 @@ exports[`Button floating action buttons should default to a secondary themed con
 </span>
 `;
 
-exports[`Button floating action buttons should default to a secondary themed contained icon button if the floating behavior is enabled 3`] = `
+exports[`Button > floating action buttons > should default to a secondary themed contained icon button if the floating behavior is enabled 3`] = `
 <span
   class="rmd-fab rmd-fab--tl"
 >
@@ -68,7 +68,7 @@ exports[`Button floating action buttons should default to a secondary themed con
 </span>
 `;
 
-exports[`Button floating action buttons should default to a secondary themed contained icon button if the floating behavior is enabled 4`] = `
+exports[`Button > floating action buttons > should default to a secondary themed contained icon button if the floating behavior is enabled 4`] = `
 <span
   class="rmd-fab rmd-fab--tl"
 >
@@ -83,7 +83,7 @@ exports[`Button floating action buttons should default to a secondary themed con
 </span>
 `;
 
-exports[`Button floating action buttons should support the small and large icon button sizes which also defaults to the icon buttonType for convenience 1`] = `
+exports[`Button > floating action buttons > should support the small and large icon button sizes which also defaults to the icon buttonType for convenience 1`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--small rmd-interaction-surface"
   type="button"
@@ -94,7 +94,7 @@ exports[`Button floating action buttons should support the small and large icon 
 </button>
 `;
 
-exports[`Button floating action buttons should support the small and large icon button sizes which also defaults to the icon buttonType for convenience 2`] = `
+exports[`Button > floating action buttons > should support the small and large icon button sizes which also defaults to the icon buttonType for convenience 2`] = `
 <button
   class="rmd-button rmd-button--icon rmd-interaction-surface"
   type="button"
@@ -105,7 +105,7 @@ exports[`Button floating action buttons should support the small and large icon 
 </button>
 `;
 
-exports[`Button floating action buttons should support the small and large icon button sizes which also defaults to the icon buttonType for convenience 3`] = `
+exports[`Button > floating action buttons > should support the small and large icon button sizes which also defaults to the icon buttonType for convenience 3`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--large rmd-interaction-surface"
   type="button"
@@ -116,7 +116,7 @@ exports[`Button floating action buttons should support the small and large icon 
 </button>
 `;
 
-exports[`Button should allow for the different themes 1`] = `
+exports[`Button > should allow for the different themes 1`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface"
   type="button"
@@ -127,7 +127,7 @@ exports[`Button should allow for the different themes 1`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 2`] = `
+exports[`Button > should allow for the different themes 2`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface"
   type="button"
@@ -138,7 +138,7 @@ exports[`Button should allow for the different themes 2`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 3`] = `
+exports[`Button > should allow for the different themes 3`] = `
 <button
   class="rmd-button rmd-button--text rmd-outline rmd-greyscale-outline rmd-interaction-surface"
   type="button"
@@ -149,7 +149,7 @@ exports[`Button should allow for the different themes 3`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 4`] = `
+exports[`Button > should allow for the different themes 4`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--contained rmd-interaction-surface"
   type="button"
@@ -160,7 +160,7 @@ exports[`Button should allow for the different themes 4`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 5`] = `
+exports[`Button > should allow for the different themes 5`] = `
 <button
   class="rmd-button rmd-button--text rmd-primary-color rmd-interaction-surface"
   type="button"
@@ -171,7 +171,7 @@ exports[`Button should allow for the different themes 5`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 6`] = `
+exports[`Button > should allow for the different themes 6`] = `
 <button
   class="rmd-button rmd-button--text rmd-primary-color rmd-outline rmd-primary-outline rmd-interaction-surface"
   type="button"
@@ -182,7 +182,7 @@ exports[`Button should allow for the different themes 6`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 7`] = `
+exports[`Button > should allow for the different themes 7`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
   type="button"
@@ -193,7 +193,7 @@ exports[`Button should allow for the different themes 7`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 8`] = `
+exports[`Button > should allow for the different themes 8`] = `
 <button
   class="rmd-button rmd-button--text rmd-secondary-color rmd-interaction-surface"
   type="button"
@@ -204,7 +204,7 @@ exports[`Button should allow for the different themes 8`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 9`] = `
+exports[`Button > should allow for the different themes 9`] = `
 <button
   class="rmd-button rmd-button--text rmd-secondary-color rmd-outline rmd-secondary-outline rmd-interaction-surface"
   type="button"
@@ -215,7 +215,7 @@ exports[`Button should allow for the different themes 9`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 10`] = `
+exports[`Button > should allow for the different themes 10`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--contained rmd-background-container rmd-secondary-container rmd-interaction-surface"
   type="button"
@@ -226,7 +226,7 @@ exports[`Button should allow for the different themes 10`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 11`] = `
+exports[`Button > should allow for the different themes 11`] = `
 <button
   class="rmd-button rmd-button--text rmd-warning-color rmd-interaction-surface"
   type="button"
@@ -237,7 +237,7 @@ exports[`Button should allow for the different themes 11`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 12`] = `
+exports[`Button > should allow for the different themes 12`] = `
 <button
   class="rmd-button rmd-button--text rmd-warning-color rmd-outline rmd-warning-outline rmd-interaction-surface"
   type="button"
@@ -248,7 +248,7 @@ exports[`Button should allow for the different themes 12`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 13`] = `
+exports[`Button > should allow for the different themes 13`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--contained rmd-background-container rmd-warning-container rmd-interaction-surface"
   type="button"
@@ -259,7 +259,7 @@ exports[`Button should allow for the different themes 13`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 14`] = `
+exports[`Button > should allow for the different themes 14`] = `
 <button
   class="rmd-button rmd-button--text rmd-error-color rmd-interaction-surface"
   type="button"
@@ -270,7 +270,7 @@ exports[`Button should allow for the different themes 14`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 15`] = `
+exports[`Button > should allow for the different themes 15`] = `
 <button
   class="rmd-button rmd-button--text rmd-error-color rmd-outline rmd-error-outline rmd-interaction-surface"
   type="button"
@@ -281,7 +281,7 @@ exports[`Button should allow for the different themes 15`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 16`] = `
+exports[`Button > should allow for the different themes 16`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--contained rmd-background-container rmd-error-container rmd-interaction-surface"
   type="button"
@@ -292,7 +292,7 @@ exports[`Button should allow for the different themes 16`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 17`] = `
+exports[`Button > should allow for the different themes 17`] = `
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--text rmd-button--disabled rmd-text-disabled-color rmd-interaction-surface"
@@ -304,7 +304,7 @@ exports[`Button should allow for the different themes 17`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 18`] = `
+exports[`Button > should allow for the different themes 18`] = `
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--text rmd-button--disabled rmd-text-disabled-color rmd-outline rmd-greyscale-outline rmd-interaction-surface"
@@ -316,7 +316,7 @@ exports[`Button should allow for the different themes 18`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 19`] = `
+exports[`Button > should allow for the different themes 19`] = `
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--text rmd-button--disabled rmd-text-disabled-color rmd-interaction-surface"
@@ -328,7 +328,7 @@ exports[`Button should allow for the different themes 19`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 20`] = `
+exports[`Button > should allow for the different themes 20`] = `
 <button
   class="rmd-button rmd-button--icon rmd-interaction-surface"
   type="button"
@@ -339,7 +339,7 @@ exports[`Button should allow for the different themes 20`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 21`] = `
+exports[`Button > should allow for the different themes 21`] = `
 <button
   class="rmd-button rmd-button--icon rmd-outline rmd-greyscale-outline rmd-interaction-surface"
   type="button"
@@ -350,7 +350,7 @@ exports[`Button should allow for the different themes 21`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 22`] = `
+exports[`Button > should allow for the different themes 22`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--contained rmd-interaction-surface"
   type="button"
@@ -361,7 +361,7 @@ exports[`Button should allow for the different themes 22`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 23`] = `
+exports[`Button > should allow for the different themes 23`] = `
 <button
   class="rmd-button rmd-button--icon rmd-primary-color rmd-interaction-surface"
   type="button"
@@ -372,7 +372,7 @@ exports[`Button should allow for the different themes 23`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 24`] = `
+exports[`Button > should allow for the different themes 24`] = `
 <button
   class="rmd-button rmd-button--icon rmd-primary-color rmd-outline rmd-primary-outline rmd-interaction-surface"
   type="button"
@@ -383,7 +383,7 @@ exports[`Button should allow for the different themes 24`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 25`] = `
+exports[`Button > should allow for the different themes 25`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
   type="button"
@@ -394,7 +394,7 @@ exports[`Button should allow for the different themes 25`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 26`] = `
+exports[`Button > should allow for the different themes 26`] = `
 <button
   class="rmd-button rmd-button--icon rmd-secondary-color rmd-interaction-surface"
   type="button"
@@ -405,7 +405,7 @@ exports[`Button should allow for the different themes 26`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 27`] = `
+exports[`Button > should allow for the different themes 27`] = `
 <button
   class="rmd-button rmd-button--icon rmd-secondary-color rmd-outline rmd-secondary-outline rmd-interaction-surface"
   type="button"
@@ -416,7 +416,7 @@ exports[`Button should allow for the different themes 27`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 28`] = `
+exports[`Button > should allow for the different themes 28`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-secondary-container rmd-interaction-surface"
   type="button"
@@ -427,7 +427,7 @@ exports[`Button should allow for the different themes 28`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 29`] = `
+exports[`Button > should allow for the different themes 29`] = `
 <button
   class="rmd-button rmd-button--icon rmd-warning-color rmd-interaction-surface"
   type="button"
@@ -438,7 +438,7 @@ exports[`Button should allow for the different themes 29`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 30`] = `
+exports[`Button > should allow for the different themes 30`] = `
 <button
   class="rmd-button rmd-button--icon rmd-warning-color rmd-outline rmd-warning-outline rmd-interaction-surface"
   type="button"
@@ -449,7 +449,7 @@ exports[`Button should allow for the different themes 30`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 31`] = `
+exports[`Button > should allow for the different themes 31`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-warning-container rmd-interaction-surface"
   type="button"
@@ -460,7 +460,7 @@ exports[`Button should allow for the different themes 31`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 32`] = `
+exports[`Button > should allow for the different themes 32`] = `
 <button
   class="rmd-button rmd-button--icon rmd-error-color rmd-interaction-surface"
   type="button"
@@ -471,7 +471,7 @@ exports[`Button should allow for the different themes 32`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 33`] = `
+exports[`Button > should allow for the different themes 33`] = `
 <button
   class="rmd-button rmd-button--icon rmd-error-color rmd-outline rmd-error-outline rmd-interaction-surface"
   type="button"
@@ -482,7 +482,7 @@ exports[`Button should allow for the different themes 33`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 34`] = `
+exports[`Button > should allow for the different themes 34`] = `
 <button
   class="rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-error-container rmd-interaction-surface"
   type="button"
@@ -493,7 +493,7 @@ exports[`Button should allow for the different themes 34`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 35`] = `
+exports[`Button > should allow for the different themes 35`] = `
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--icon rmd-button--disabled rmd-text-disabled-color rmd-interaction-surface"
@@ -505,7 +505,7 @@ exports[`Button should allow for the different themes 35`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 36`] = `
+exports[`Button > should allow for the different themes 36`] = `
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--icon rmd-button--disabled rmd-text-disabled-color rmd-outline rmd-greyscale-outline rmd-interaction-surface"
@@ -517,7 +517,7 @@ exports[`Button should allow for the different themes 36`] = `
 </button>
 `;
 
-exports[`Button should allow for the different themes 37`] = `
+exports[`Button > should allow for the different themes 37`] = `
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--icon rmd-button--disabled rmd-text-disabled-color rmd-interaction-surface"
@@ -529,7 +529,7 @@ exports[`Button should allow for the different themes 37`] = `
 </button>
 `;
 
-exports[`Button should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Button > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface"
   type="button"
@@ -540,7 +540,7 @@ exports[`Button should apply the correct styling, HTML attributes, and allow a r
 </button>
 `;
 
-exports[`Button should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Button > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface custom-class-name"
   style="color: white;"
@@ -552,7 +552,7 @@ exports[`Button should apply the correct styling, HTML attributes, and allow a r
 </button>
 `;
 
-exports[`Button should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 1`] = `
+exports[`Button > should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 1`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface"
   type="button"
@@ -561,7 +561,7 @@ exports[`Button should wrap text children in span elements to enable higher cont
 </button>
 `;
 
-exports[`Button should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 2`] = `
+exports[`Button > should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 2`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface"
   type="button"

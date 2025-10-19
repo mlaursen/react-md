@@ -1,8 +1,8 @@
-import { afterEach, describe, expect, it, jest } from "@jest/globals";
 import { type ChangeEvent, type ReactElement } from "react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { render, screen } from "../../test-utils/index.js";
-import { spyOnMatchMedia } from "../../test-utils/jest-globals/match-media.js";
+import { spyOnMatchMedia } from "../../test-utils/vitest/match-media.js";
 import { type UseStateSetter } from "../../types.js";
 import { LocalStorageColorSchemeProvider } from "../LocalStorageColorSchemeProvider.js";
 import { type ColorScheme, type LightDarkColorScheme } from "../types.js";
@@ -79,7 +79,7 @@ describe("LocalStorageColorSchemeProvider", () => {
       return null;
     }
 
-    jest.spyOn(console, "error").mockImplementation(() => {});
+    vi.spyOn(console, "error").mockImplementation(() => {});
     render(<Test />);
 
     expect(() => setColorScheme?.("dark")).toThrow(

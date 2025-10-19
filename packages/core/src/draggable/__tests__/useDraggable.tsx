@@ -1,4 +1,3 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { cnb } from "cnbuilder";
 import {
   type ReactElement,
@@ -7,6 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import { useStorage } from "../../storage/useStorage.js";
@@ -68,7 +68,7 @@ function Test(props: TestProps): ReactElement {
 // this should be the same size as the window
 // this applies to the document.body and the container element since I'm
 // assuming both fill the entire viewport
-jest.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockReturnValue({
+vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockReturnValue({
   height: 768,
   width: 1024,
   left: 0,
@@ -85,9 +85,9 @@ describe("useDraggable", () => {
     expect(window.innerHeight).toBe(768);
     expect(window.innerWidth).toBe(1024);
 
-    const onMouseDown = jest.fn();
-    const onMouseMove = jest.fn();
-    const onMouseUp = jest.fn();
+    const onMouseDown = vi.fn();
+    const onMouseMove = vi.fn();
+    const onMouseUp = vi.fn();
 
     rmdRender(
       <Test
@@ -210,7 +210,7 @@ describe("useDraggable", () => {
     expect(window.innerHeight).toBe(768);
     expect(window.innerWidth).toBe(1024);
 
-    const onKeyDown = jest.fn();
+    const onKeyDown = vi.fn();
 
     rmdRender(<Test onKeyDown={onKeyDown} />);
 
@@ -258,8 +258,8 @@ describe("useDraggable", () => {
     expect(window.innerHeight).toBe(768);
     expect(window.innerWidth).toBe(1024);
 
-    const onTouchStart = jest.fn();
-    const onTouchMove = jest.fn();
+    const onTouchStart = vi.fn();
+    const onTouchMove = vi.fn();
 
     rmdRender(<Test onTouchStart={onTouchStart} onTouchMove={onTouchMove} />);
 

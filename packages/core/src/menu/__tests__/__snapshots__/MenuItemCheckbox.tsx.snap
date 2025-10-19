@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`MenuItemCheckbox should allow for a custom unchecked and checked icon 1`] = `
+exports[`MenuItemCheckbox > should allow for a custom unchecked and checked icon 1`] = `
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle"
@@ -19,7 +19,7 @@ exports[`MenuItemCheckbox should allow for a custom unchecked and checked icon 1
 </li>
 `;
 
-exports[`MenuItemCheckbox should allow for a custom unchecked and checked icon 2`] = `
+exports[`MenuItemCheckbox > should allow for a custom unchecked and checked icon 2`] = `
 <li
   aria-checked="true"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle"
@@ -42,7 +42,7 @@ exports[`MenuItemCheckbox should allow for a custom unchecked and checked icon 2
 </li>
 `;
 
-exports[`MenuItemCheckbox should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`MenuItemCheckbox > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle"
@@ -68,7 +68,7 @@ exports[`MenuItemCheckbox should apply the correct styling, HTMLAttributes, and 
 </li>
 `;
 
-exports[`MenuItemCheckbox should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`MenuItemCheckbox > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle custom-class-name"

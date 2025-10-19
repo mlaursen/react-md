@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, vi } from "vitest";
 
 import type { CSSTransitionClassNamesObject } from "../types.js";
 import type { TransitionTimeoutOptions } from "../utils.js";
@@ -142,18 +142,18 @@ describe("getElementSizing", () => {
     const element = document.createElement("div");
     const clone = document.createElement("div");
 
-    jest.spyOn(clone, "scrollHeight", "get").mockReturnValue(scrollHeight);
-    jest.spyOn(element, "cloneNode").mockReturnValue(clone);
-    const setMaxHeight = jest.spyOn(clone.style, "maxHeight", "set");
-    const setPadding = jest.spyOn(clone.style, "padding", "set");
-    const setPaddingLeft = jest.spyOn(clone.style, "paddingLeft", "set");
-    const setPaddingRight = jest.spyOn(clone.style, "paddingRight", "set");
-    const setVisibility = jest.spyOn(clone.style, "visibility", "set");
+    vi.spyOn(clone, "scrollHeight", "get").mockReturnValue(scrollHeight);
+    vi.spyOn(element, "cloneNode").mockReturnValue(clone);
+    const setMaxHeight = vi.spyOn(clone.style, "maxHeight", "set");
+    const setPadding = vi.spyOn(clone.style, "padding", "set");
+    const setPaddingLeft = vi.spyOn(clone.style, "paddingLeft", "set");
+    const setPaddingRight = vi.spyOn(clone.style, "paddingRight", "set");
+    const setVisibility = vi.spyOn(clone.style, "visibility", "set");
 
     container.appendChild(element);
-    const appendChild = jest.spyOn(container, "appendChild");
-    const removeChild = jest.spyOn(container, "removeChild");
-    const getComputedStyle = jest
+    const appendChild = vi.spyOn(container, "appendChild");
+    const removeChild = vi.spyOn(container, "removeChild");
+    const getComputedStyle = vi
       .spyOn(window, "getComputedStyle")
       .mockReturnValue({
         ...document.body.style,
@@ -186,9 +186,9 @@ describe("getElementSizing", () => {
     const clone = document.createElement("div");
     container.appendChild(element);
 
-    jest.spyOn(clone, "scrollHeight", "get").mockReturnValue(scrollHeight);
-    jest.spyOn(element, "cloneNode").mockReturnValue(clone);
-    jest.spyOn(window, "getComputedStyle").mockReturnValue({
+    vi.spyOn(clone, "scrollHeight", "get").mockReturnValue(scrollHeight);
+    vi.spyOn(element, "cloneNode").mockReturnValue(clone);
+    vi.spyOn(window, "getComputedStyle").mockReturnValue({
       ...document.body.style,
       paddingTop: "20px",
       paddingBottom: "16px",

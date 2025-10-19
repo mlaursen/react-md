@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ClickableCard should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`ClickableCard > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
   class="rmd-box rmd-box--column rmd-box--align-stretch rmd-box--justify-stretch rmd-card rmd-card--shadowed rmd-card--clickable"
   data-testid="card"
@@ -9,7 +9,7 @@ exports[`ClickableCard should apply the correct styling, HTMLAttributes, and all
 />
 `;
 
-exports[`ClickableCard should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`ClickableCard > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
   class="rmd-box rmd-box--column rmd-box--align-stretch rmd-box--justify-stretch rmd-card rmd-card--shadowed rmd-card--clickable custom-class-name"
   data-testid="card"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Snackbar should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Snackbar > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
@@ -20,7 +20,7 @@ exports[`Snackbar should apply the correct styling, HTML attributes, and allow a
 </div>
 `;
 
-exports[`Snackbar should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Snackbar > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom custom-class-name"
   data-testid="snackbar"
@@ -41,7 +41,7 @@ exports[`Snackbar should apply the correct styling, HTML attributes, and allow a
 </div>
 `;
 
-exports[`Snackbar should support different positions within the viewport 1`] = `
+exports[`Snackbar > should support different positions within the viewport 1`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
@@ -61,7 +61,7 @@ exports[`Snackbar should support different positions within the viewport 1`] = `
 </div>
 `;
 
-exports[`Snackbar should support different positions within the viewport 2`] = `
+exports[`Snackbar > should support different positions within the viewport 2`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   id="snackbar-:r2:"
@@ -80,7 +80,7 @@ exports[`Snackbar should support different positions within the viewport 2`] = `
 </div>
 `;
 
-exports[`Snackbar should support different positions within the viewport 3`] = `
+exports[`Snackbar > should support different positions within the viewport 3`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom rmd-snackbar--start"
   id="snackbar-:r2:"
@@ -99,7 +99,7 @@ exports[`Snackbar should support different positions within the viewport 3`] = `
 </div>
 `;
 
-exports[`Snackbar should support different positions within the viewport 4`] = `
+exports[`Snackbar > should support different positions within the viewport 4`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom rmd-snackbar--end"
   id="snackbar-:r2:"
@@ -118,7 +118,7 @@ exports[`Snackbar should support different positions within the viewport 4`] = `
 </div>
 `;
 
-exports[`Snackbar should support different positions within the viewport 5`] = `
+exports[`Snackbar > should support different positions within the viewport 5`] = `
 <div
   class="rmd-snackbar rmd-snackbar--top"
   id="snackbar-:r2:"
@@ -137,7 +137,7 @@ exports[`Snackbar should support different positions within the viewport 5`] = `
 </div>
 `;
 
-exports[`Snackbar should support different positions within the viewport 6`] = `
+exports[`Snackbar > should support different positions within the viewport 6`] = `
 <div
   class="rmd-snackbar rmd-snackbar--top rmd-snackbar--start"
   id="snackbar-:r2:"
@@ -156,7 +156,7 @@ exports[`Snackbar should support different positions within the viewport 6`] = `
 </div>
 `;
 
-exports[`Snackbar should support different positions within the viewport 7`] = `
+exports[`Snackbar > should support different positions within the viewport 7`] = `
 <div
   class="rmd-snackbar rmd-snackbar--top rmd-snackbar--end"
   id="snackbar-:r2:"

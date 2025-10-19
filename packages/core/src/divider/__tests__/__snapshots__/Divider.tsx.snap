@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Divider should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Divider > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <hr
   class="rmd-divider"
   role="separator"
 />
 `;
 
-exports[`Divider should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Divider > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <hr
   class="rmd-divider custom-class-name"
   role="separator"
@@ -15,7 +15,7 @@ exports[`Divider should apply the correct styling, HTML attributes, and allow a 
 />
 `;
 
-exports[`Divider should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`Divider > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <hr
   class="rmd-divider rmd-divider--inset"
   role="separator"
@@ -23,14 +23,14 @@ exports[`Divider should apply the correct styling, HTML attributes, and allow a 
 />
 `;
 
-exports[`Divider should be able to render vertically 1`] = `
+exports[`Divider > should be able to render vertically 1`] = `
 <div
   class="rmd-divider rmd-divider--vertical"
   role="separator"
 />
 `;
 
-exports[`Divider should be able to render vertically 2`] = `
+exports[`Divider > should be able to render vertically 2`] = `
 <div
   class="rmd-divider rmd-divider--vertical custom-class-name"
   role="separator"
@@ -38,7 +38,7 @@ exports[`Divider should be able to render vertically 2`] = `
 />
 `;
 
-exports[`Divider should be able to render vertically 3`] = `
+exports[`Divider > should be able to render vertically 3`] = `
 <div
   class="rmd-divider rmd-divider--vertical"
   role="separator"
@@ -46,4 +46,4 @@ exports[`Divider should be able to render vertically 3`] = `
 />
 `;
 
-exports[`Divider styling utility class should be callable without any arguments 1`] = `"rmd-divider"`;
+exports[`Divider > styling utility class > should be callable without any arguments 1`] = `"rmd-divider"`;

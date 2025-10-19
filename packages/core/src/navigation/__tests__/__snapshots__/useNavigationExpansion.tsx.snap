@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useNavigationExpansion should default the expanded ids to be each part of the pathname 1`] = `
+exports[`useNavigationExpansion > should default the expanded ids to be each part of the pathname 1`] = `
 <ul
   class="rmd-list rmd-nav-group"
   data-testid="nav"
@@ -91,7 +91,7 @@ exports[`useNavigationExpansion should default the expanded ids to be each part 
 </ul>
 `;
 
-exports[`useNavigationExpansion should default the expanded ids to be each part of the pathname 2`] = `
+exports[`useNavigationExpansion > should default the expanded ids to be each part of the pathname 2`] = `
 <ul
   class="rmd-list rmd-nav-group"
   data-testid="nav"

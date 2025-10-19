@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   ABOVE_CENTER_ANCHOR,
@@ -1021,7 +1021,7 @@ describe("getElementRect", () => {
     element.id = "element-id";
 
     const cloned = element.cloneNode(true) as HTMLElement;
-    const cloneNode = jest.spyOn(element, "cloneNode");
+    const cloneNode = vi.spyOn(element, "cloneNode");
     cloneNode.mockImplementation(() => cloned);
 
     return { element, cloned, cloneNode };
@@ -1053,10 +1053,10 @@ describe("getElementRect", () => {
     let { element, cloned } = createTestElement();
     parent.appendChild(element);
 
-    const parentAppendChild = jest.spyOn(parent, "appendChild");
-    const parentRemoveChild = jest.spyOn(parent, "removeChild");
-    const bodyAppendChild = jest.spyOn(document.body, "appendChild");
-    const bodyRemoveChild = jest.spyOn(document.body, "removeChild");
+    const parentAppendChild = vi.spyOn(parent, "appendChild");
+    const parentRemoveChild = vi.spyOn(parent, "removeChild");
+    const bodyAppendChild = vi.spyOn(document.body, "appendChild");
+    const bodyRemoveChild = vi.spyOn(document.body, "removeChild");
 
     getElementRect(parent.firstChild as HTMLElement);
     expect(bodyAppendChild).not.toHaveBeenCalled();
@@ -1084,7 +1084,7 @@ describe("findSizingContainer", () => {
     const query = ".rmd-tree-item__content, .rmd-item-text";
     const treeItem = document.createElement("li");
     treeItem.setAttribute("role", "treeitem");
-    const treeItemQS = jest.spyOn(treeItem, "querySelector");
+    const treeItemQS = vi.spyOn(treeItem, "querySelector");
 
     const treeItemContent = document.createElement("span");
     treeItemContent.className = "rmd-tree-item__content";
@@ -1096,7 +1096,7 @@ describe("findSizingContainer", () => {
 
     const listItem = document.createElement("li");
     listItem.setAttribute("role", "listitem");
-    const listItemQS = jest.spyOn(listItem, "querySelector");
+    const listItemQS = vi.spyOn(listItem, "querySelector");
 
     const listItemContent = document.createElement("span");
     listItemContent.className = "rmd-item-text";
@@ -1141,7 +1141,7 @@ describe("findSizingContainer", () => {
     child.className = "query";
     element.appendChild(child);
 
-    const getAttribute = jest.spyOn(element, "getAttribute");
+    const getAttribute = vi.spyOn(element, "getAttribute");
 
     const container = findSizingContainer(element);
     expect(getAttribute).toHaveBeenCalledWith("data-sizing-selector");
@@ -1271,10 +1271,10 @@ describe("isWithinViewport", () => {
 
     const fixedElement = document.createElement("div");
     const fixedToElement = document.createElement("div");
-    const fixedElementRect = jest
+    const fixedElementRect = vi
       .spyOn(fixedElement, "getBoundingClientRect")
       .mockReturnValue(rect);
-    const fixedToElementRect = jest
+    const fixedToElementRect = vi
       .spyOn(fixedToElement, "getBoundingClientRect")
       .mockReturnValue(rect);
 

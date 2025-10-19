@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`RenderRecursively should pass data down to each component and be strictly type-checked 1`] = `
+exports[`RenderRecursively > should pass data down to each component and be strictly type-checked 1`] = `
 <div>
   <ul
     class="rmd-list"

@@ -1,5 +1,5 @@
-import { beforeAll, describe, expect, it, jest } from "@jest/globals";
 import { type FC, type ReactNode } from "react";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 
@@ -30,7 +30,7 @@ describe("SkipToMainContent", () => {
   it("should defer finding the main element to the click event in production", async () => {
     const { SkipToMainContent } = await import("../SkipToMainContent.js");
 
-    const querySelector = jest.spyOn(document, "querySelector");
+    const querySelector = vi.spyOn(document, "querySelector");
     render(<SkipToMainContent />, {
       wrapper: MainIdWrapper,
     });

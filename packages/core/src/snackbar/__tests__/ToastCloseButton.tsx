@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type MouseEvent, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   render,
@@ -20,11 +20,11 @@ describe("ToastCloseButton", () => {
       ref,
     } as const;
     const actions: CurrentToastActions = {
-      clearTimer: jest.fn(),
-      removeToast: jest.fn(),
-      pauseRemoveTimeout: jest.fn(),
-      startRemoveTimeout: jest.fn(),
-      resumeRemoveTimeout: jest.fn(),
+      clearTimer: vi.fn(),
+      removeToast: vi.fn(),
+      pauseRemoveTimeout: vi.fn(),
+      startRemoveTimeout: vi.fn(),
+      resumeRemoveTimeout: vi.fn(),
     };
     const { rerender } = render(
       <CurrentToastActionsProvider value={actions}>
@@ -58,16 +58,16 @@ describe("ToastCloseButton", () => {
 
   it("should not call removeToast when event.stopPropagation() is called", async () => {
     const user = userEvent.setup();
-    const removeToast = jest.fn();
-    const handleClick = jest.fn((_event: MouseEvent<HTMLButtonElement>) => {
+    const removeToast = vi.fn();
+    const handleClick = vi.fn((_event: MouseEvent<HTMLButtonElement>) => {
       // do nothing
     });
     const actions: CurrentToastActions = {
       removeToast,
-      clearTimer: jest.fn(),
-      pauseRemoveTimeout: jest.fn(),
-      startRemoveTimeout: jest.fn(),
-      resumeRemoveTimeout: jest.fn(),
+      clearTimer: vi.fn(),
+      pauseRemoveTimeout: vi.fn(),
+      startRemoveTimeout: vi.fn(),
+      resumeRemoveTimeout: vi.fn(),
     };
     rmdRender(
       <CurrentToastActionsProvider value={actions}>
@@ -91,13 +91,13 @@ describe("ToastCloseButton", () => {
 
   it("should add an aria-label for text button types when an aria-labelledby has not been provided", async () => {
     const user = userEvent.setup();
-    const removeToast = jest.fn();
+    const removeToast = vi.fn();
     const actions: CurrentToastActions = {
       removeToast,
-      clearTimer: jest.fn(),
-      startRemoveTimeout: jest.fn(),
-      pauseRemoveTimeout: jest.fn(),
-      resumeRemoveTimeout: jest.fn(),
+      clearTimer: vi.fn(),
+      startRemoveTimeout: vi.fn(),
+      pauseRemoveTimeout: vi.fn(),
+      resumeRemoveTimeout: vi.fn(),
     };
     const { rerender } = rmdRender(<ToastCloseButton />, {
       wrapper: ({ children }) => (
@@ -128,7 +128,7 @@ describe("ToastCloseButton", () => {
   });
 
   it("should throw an error if mounted without a parent CurrentToastActionsProvider", () => {
-    const error = jest.spyOn(console, "error").mockImplementation(() => {
+    const error = vi.spyOn(console, "error").mockImplementation(() => {
       // do nothing
     });
     expect(() => render(<ToastCloseButton />)).toThrow(

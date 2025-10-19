@@ -1,7 +1,7 @@
 // the indeterminate checkbox should be checked, but not have aria-checked
 /* eslint-disable jest-dom/prefer-checked */
-import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
+import { describe, expect, it } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import { AppSizeProvider } from "../../media-queries/AppSizeProvider.js";

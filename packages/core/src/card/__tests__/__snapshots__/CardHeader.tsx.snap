@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CardHeader should allow addons before and after the children 1`] = `
+exports[`CardHeader > should allow addons before and after the children 1`] = `
 <div
   class="rmd-card__header rmd-card__header--surrounded"
   data-testid="header"
@@ -31,7 +31,7 @@ exports[`CardHeader should allow addons before and after the children 1`] = `
 </div>
 `;
 
-exports[`CardHeader should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`CardHeader > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-card__header"
   data-testid="header"
@@ -44,7 +44,7 @@ exports[`CardHeader should apply the correct styling, HTML attributes, and allow
 </div>
 `;
 
-exports[`CardHeader should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`CardHeader > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-card__header custom-class-name"
   data-testid="header"
@@ -58,7 +58,7 @@ exports[`CardHeader should apply the correct styling, HTML attributes, and allow
 </div>
 `;
 
-exports[`CardHeader should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`CardHeader > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <div
   class="rmd-card__header"
   data-testid="header"

@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type MouseEvent, type ReactElement } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { box } from "../box/styles.js";
 import { Button, type ButtonProps } from "../button/Button.js";
@@ -60,7 +60,7 @@ describe("useAsyncFunction", () => {
 
     // this is how you can manually resolve a promise using events
     const instance = new EventTarget();
-    const onClick = jest.fn(() => {
+    const onClick = vi.fn(() => {
       return new Promise<void>((resolve) => {
         instance.addEventListener("resolve-promise", () => {
           resolve();
@@ -106,7 +106,7 @@ describe("useAsyncFunction", () => {
 
   it("should do nothing if the disabled option was provided", async () => {
     const user = userEvent.setup();
-    const onClick = jest.fn(async () => {});
+    const onClick = vi.fn(async () => {});
     const props: TestProps = {
       onClick,
     };

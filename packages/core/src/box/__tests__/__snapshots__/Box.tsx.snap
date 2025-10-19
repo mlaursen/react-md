@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Box should allow the columns to be configured by different breakpoints 1`] = `
+exports[`Box > should allow the columns to be configured by different breakpoints 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-phone"
   data-testid="box"
@@ -10,7 +10,7 @@ exports[`Box should allow the columns to be configured by different breakpoints 
 </div>
 `;
 
-exports[`Box should allow the columns to be configured by different breakpoints 2`] = `
+exports[`Box > should allow the columns to be configured by different breakpoints 2`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-phone rmd-box--grid-phone-size rmd-box--grid-tablet rmd-box--grid-desktop"
   data-testid="box"
@@ -20,7 +20,7 @@ exports[`Box should allow the columns to be configured by different breakpoints 
 </div>
 `;
 
-exports[`Box should allow the columns to be configured by different breakpoints 3`] = `
+exports[`Box > should allow the columns to be configured by different breakpoints 3`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-tablet rmd-box--grid-tablet-size rmd-box--grid-desktop rmd-box--grid-desktop-size rmd-box--grid-large-desktop"
   data-testid="box"
@@ -30,7 +30,7 @@ exports[`Box should allow the columns to be configured by different breakpoints 
 </div>
 `;
 
-exports[`Box should allow the grid item size to be configured by different breakpoints 1`] = `
+exports[`Box > should allow the grid item size to be configured by different breakpoints 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid"
   data-testid="box"
@@ -40,7 +40,7 @@ exports[`Box should allow the grid item size to be configured by different break
 </div>
 `;
 
-exports[`Box should allow the grid item size to be configured by different breakpoints 2`] = `
+exports[`Box > should allow the grid item size to be configured by different breakpoints 2`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-phone rmd-box--grid-phone-size"
   data-testid="box"
@@ -50,7 +50,7 @@ exports[`Box should allow the grid item size to be configured by different break
 </div>
 `;
 
-exports[`Box should allow the grid item size to be configured by different breakpoints 3`] = `
+exports[`Box > should allow the grid item size to be configured by different breakpoints 3`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-phone rmd-box--grid-phone-size rmd-box--grid-tablet rmd-box--grid-tablet-size rmd-box--grid-desktop rmd-box--grid-desktop-size"
   data-testid="box"
@@ -60,7 +60,7 @@ exports[`Box should allow the grid item size to be configured by different break
 </div>
 `;
 
-exports[`Box should allow the grid item size to be configured by different breakpoints 4`] = `
+exports[`Box > should allow the grid item size to be configured by different breakpoints 4`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-tablet rmd-box--grid-tablet-size rmd-box--grid-desktop rmd-box--grid-desktop-size rmd-box--grid-large-desktop rmd-box--grid-large-desktop-size"
   data-testid="box"
@@ -70,7 +70,7 @@ exports[`Box should allow the grid item size to be configured by different break
 </div>
 `;
 
-exports[`Box should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Box > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded"
   data-testid="box"
@@ -79,7 +79,7 @@ exports[`Box should apply the correct styling, HTML attributes, and allow a ref 
 </div>
 `;
 
-exports[`Box should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Box > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded custom-class-name"
   data-testid="box"
@@ -89,7 +89,7 @@ exports[`Box should apply the correct styling, HTML attributes, and allow a ref 
 </div>
 `;
 
-exports[`Box should be able to render as a grid using the grid prop 1`] = `
+exports[`Box > should be able to render as a grid using the grid prop 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid"
   data-testid="box"
@@ -98,7 +98,7 @@ exports[`Box should be able to render as a grid using the grid prop 1`] = `
 </div>
 `;
 
-exports[`Box should be able to support the grid-auto-rows behavior 1`] = `
+exports[`Box > should be able to support the grid-auto-rows behavior 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded"
   data-testid="box"
@@ -107,7 +107,7 @@ exports[`Box should be able to support the grid-auto-rows behavior 1`] = `
 </div>
 `;
 
-exports[`Box should be able to support the grid-auto-rows behavior 2`] = `
+exports[`Box > should be able to support the grid-auto-rows behavior 2`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded"
   data-testid="box"
@@ -116,7 +116,7 @@ exports[`Box should be able to support the grid-auto-rows behavior 2`] = `
 </div>
 `;
 
-exports[`Box should be able to support the grid-auto-rows behavior 3`] = `
+exports[`Box > should be able to support the grid-auto-rows behavior 3`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-auto-rows"
   data-testid="box"
@@ -125,7 +125,7 @@ exports[`Box should be able to support the grid-auto-rows behavior 3`] = `
 </div>
 `;
 
-exports[`Box should set the --rmd-box-columns variable and grid-columsn class when gridColumns is a number 1`] = `
+exports[`Box > should set the --rmd-box-columns variable and grid-columsn class when gridColumns is a number 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid"
   data-testid="box"
@@ -134,7 +134,7 @@ exports[`Box should set the --rmd-box-columns variable and grid-columsn class wh
 </div>
 `;
 
-exports[`Box should set the --rmd-box-columns variable and grid-columsn class when gridColumns is a number 2`] = `
+exports[`Box > should set the --rmd-box-columns variable and grid-columsn class when gridColumns is a number 2`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-size"
   data-testid="box"
@@ -144,7 +144,7 @@ exports[`Box should set the --rmd-box-columns variable and grid-columsn class wh
 </div>
 `;
 
-exports[`Box should set the --rmd-box-columns variable and grid-columsn class when gridColumns is a number 3`] = `
+exports[`Box > should set the --rmd-box-columns variable and grid-columsn class when gridColumns is a number 3`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--grid rmd-box--grid-size"
   data-testid="box"
@@ -154,7 +154,7 @@ exports[`Box should set the --rmd-box-columns variable and grid-columsn class wh
 </div>
 `;
 
-exports[`Box should support common flex behavior 1`] = `
+exports[`Box > should support common flex behavior 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-start"
   data-testid="box"
@@ -163,7 +163,7 @@ exports[`Box should support common flex behavior 1`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 2`] = `
+exports[`Box > should support common flex behavior 2`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-start"
   data-testid="box"
@@ -172,7 +172,7 @@ exports[`Box should support common flex behavior 2`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 3`] = `
+exports[`Box > should support common flex behavior 3`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-center"
   data-testid="box"
@@ -181,7 +181,7 @@ exports[`Box should support common flex behavior 3`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 4`] = `
+exports[`Box > should support common flex behavior 4`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-end"
   data-testid="box"
@@ -190,7 +190,7 @@ exports[`Box should support common flex behavior 4`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 5`] = `
+exports[`Box > should support common flex behavior 5`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-end"
   data-testid="box"
@@ -199,7 +199,7 @@ exports[`Box should support common flex behavior 5`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 6`] = `
+exports[`Box > should support common flex behavior 6`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-stretch"
   data-testid="box"
@@ -208,7 +208,7 @@ exports[`Box should support common flex behavior 6`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 7`] = `
+exports[`Box > should support common flex behavior 7`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-between"
   data-testid="box"
@@ -217,7 +217,7 @@ exports[`Box should support common flex behavior 7`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 8`] = `
+exports[`Box > should support common flex behavior 8`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-around"
   data-testid="box"
@@ -226,7 +226,7 @@ exports[`Box should support common flex behavior 8`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 9`] = `
+exports[`Box > should support common flex behavior 9`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-evenly"
   data-testid="box"
@@ -235,7 +235,7 @@ exports[`Box should support common flex behavior 9`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 10`] = `
+exports[`Box > should support common flex behavior 10`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-start"
   data-testid="box"
@@ -244,7 +244,7 @@ exports[`Box should support common flex behavior 10`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 11`] = `
+exports[`Box > should support common flex behavior 11`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-start"
   data-testid="box"
@@ -253,7 +253,7 @@ exports[`Box should support common flex behavior 11`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 12`] = `
+exports[`Box > should support common flex behavior 12`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-center"
   data-testid="box"
@@ -262,7 +262,7 @@ exports[`Box should support common flex behavior 12`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 13`] = `
+exports[`Box > should support common flex behavior 13`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-end"
   data-testid="box"
@@ -271,7 +271,7 @@ exports[`Box should support common flex behavior 13`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 14`] = `
+exports[`Box > should support common flex behavior 14`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-end"
   data-testid="box"
@@ -280,7 +280,7 @@ exports[`Box should support common flex behavior 14`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 15`] = `
+exports[`Box > should support common flex behavior 15`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-stretch"
   data-testid="box"
@@ -289,7 +289,7 @@ exports[`Box should support common flex behavior 15`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 16`] = `
+exports[`Box > should support common flex behavior 16`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-between"
   data-testid="box"
@@ -298,7 +298,7 @@ exports[`Box should support common flex behavior 16`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 17`] = `
+exports[`Box > should support common flex behavior 17`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-around"
   data-testid="box"
@@ -307,7 +307,7 @@ exports[`Box should support common flex behavior 17`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 18`] = `
+exports[`Box > should support common flex behavior 18`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-start rmd-box--justify-evenly"
   data-testid="box"
@@ -316,7 +316,7 @@ exports[`Box should support common flex behavior 18`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 19`] = `
+exports[`Box > should support common flex behavior 19`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-center rmd-box--justify-start"
   data-testid="box"
@@ -325,7 +325,7 @@ exports[`Box should support common flex behavior 19`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 20`] = `
+exports[`Box > should support common flex behavior 20`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-center rmd-box--justify-start"
   data-testid="box"
@@ -334,7 +334,7 @@ exports[`Box should support common flex behavior 20`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 21`] = `
+exports[`Box > should support common flex behavior 21`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-center rmd-box--justify-center"
   data-testid="box"
@@ -343,7 +343,7 @@ exports[`Box should support common flex behavior 21`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 22`] = `
+exports[`Box > should support common flex behavior 22`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-center rmd-box--justify-end"
   data-testid="box"
@@ -352,7 +352,7 @@ exports[`Box should support common flex behavior 22`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 23`] = `
+exports[`Box > should support common flex behavior 23`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-center rmd-box--justify-end"
   data-testid="box"
@@ -361,7 +361,7 @@ exports[`Box should support common flex behavior 23`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 24`] = `
+exports[`Box > should support common flex behavior 24`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-center rmd-box--justify-stretch"
   data-testid="box"
@@ -370,7 +370,7 @@ exports[`Box should support common flex behavior 24`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 25`] = `
+exports[`Box > should support common flex behavior 25`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-center rmd-box--justify-between"
   data-testid="box"
@@ -379,7 +379,7 @@ exports[`Box should support common flex behavior 25`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 26`] = `
+exports[`Box > should support common flex behavior 26`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-center rmd-box--justify-around"
   data-testid="box"
@@ -388,7 +388,7 @@ exports[`Box should support common flex behavior 26`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 27`] = `
+exports[`Box > should support common flex behavior 27`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-center rmd-box--justify-evenly"
   data-testid="box"
@@ -397,7 +397,7 @@ exports[`Box should support common flex behavior 27`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 28`] = `
+exports[`Box > should support common flex behavior 28`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-start"
   data-testid="box"
@@ -406,7 +406,7 @@ exports[`Box should support common flex behavior 28`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 29`] = `
+exports[`Box > should support common flex behavior 29`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-start"
   data-testid="box"
@@ -415,7 +415,7 @@ exports[`Box should support common flex behavior 29`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 30`] = `
+exports[`Box > should support common flex behavior 30`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-center"
   data-testid="box"
@@ -424,7 +424,7 @@ exports[`Box should support common flex behavior 30`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 31`] = `
+exports[`Box > should support common flex behavior 31`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-end"
   data-testid="box"
@@ -433,7 +433,7 @@ exports[`Box should support common flex behavior 31`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 32`] = `
+exports[`Box > should support common flex behavior 32`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-end"
   data-testid="box"
@@ -442,7 +442,7 @@ exports[`Box should support common flex behavior 32`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 33`] = `
+exports[`Box > should support common flex behavior 33`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-stretch"
   data-testid="box"
@@ -451,7 +451,7 @@ exports[`Box should support common flex behavior 33`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 34`] = `
+exports[`Box > should support common flex behavior 34`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-between"
   data-testid="box"
@@ -460,7 +460,7 @@ exports[`Box should support common flex behavior 34`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 35`] = `
+exports[`Box > should support common flex behavior 35`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-around"
   data-testid="box"
@@ -469,7 +469,7 @@ exports[`Box should support common flex behavior 35`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 36`] = `
+exports[`Box > should support common flex behavior 36`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-evenly"
   data-testid="box"
@@ -478,7 +478,7 @@ exports[`Box should support common flex behavior 36`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 37`] = `
+exports[`Box > should support common flex behavior 37`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-start"
   data-testid="box"
@@ -487,7 +487,7 @@ exports[`Box should support common flex behavior 37`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 38`] = `
+exports[`Box > should support common flex behavior 38`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-start"
   data-testid="box"
@@ -496,7 +496,7 @@ exports[`Box should support common flex behavior 38`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 39`] = `
+exports[`Box > should support common flex behavior 39`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-center"
   data-testid="box"
@@ -505,7 +505,7 @@ exports[`Box should support common flex behavior 39`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 40`] = `
+exports[`Box > should support common flex behavior 40`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-end"
   data-testid="box"
@@ -514,7 +514,7 @@ exports[`Box should support common flex behavior 40`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 41`] = `
+exports[`Box > should support common flex behavior 41`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-end"
   data-testid="box"
@@ -523,7 +523,7 @@ exports[`Box should support common flex behavior 41`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 42`] = `
+exports[`Box > should support common flex behavior 42`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-stretch"
   data-testid="box"
@@ -532,7 +532,7 @@ exports[`Box should support common flex behavior 42`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 43`] = `
+exports[`Box > should support common flex behavior 43`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-between"
   data-testid="box"
@@ -541,7 +541,7 @@ exports[`Box should support common flex behavior 43`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 44`] = `
+exports[`Box > should support common flex behavior 44`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-around"
   data-testid="box"
@@ -550,7 +550,7 @@ exports[`Box should support common flex behavior 44`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 45`] = `
+exports[`Box > should support common flex behavior 45`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-end rmd-box--justify-evenly"
   data-testid="box"
@@ -559,7 +559,7 @@ exports[`Box should support common flex behavior 45`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 46`] = `
+exports[`Box > should support common flex behavior 46`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-stretch rmd-box--justify-start"
   data-testid="box"
@@ -568,7 +568,7 @@ exports[`Box should support common flex behavior 46`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 47`] = `
+exports[`Box > should support common flex behavior 47`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-stretch rmd-box--justify-start"
   data-testid="box"
@@ -577,7 +577,7 @@ exports[`Box should support common flex behavior 47`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 48`] = `
+exports[`Box > should support common flex behavior 48`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-stretch rmd-box--justify-center"
   data-testid="box"
@@ -586,7 +586,7 @@ exports[`Box should support common flex behavior 48`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 49`] = `
+exports[`Box > should support common flex behavior 49`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-stretch rmd-box--justify-end"
   data-testid="box"
@@ -595,7 +595,7 @@ exports[`Box should support common flex behavior 49`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 50`] = `
+exports[`Box > should support common flex behavior 50`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-stretch rmd-box--justify-end"
   data-testid="box"
@@ -604,7 +604,7 @@ exports[`Box should support common flex behavior 50`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 51`] = `
+exports[`Box > should support common flex behavior 51`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-stretch rmd-box--justify-stretch"
   data-testid="box"
@@ -613,7 +613,7 @@ exports[`Box should support common flex behavior 51`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 52`] = `
+exports[`Box > should support common flex behavior 52`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-stretch rmd-box--justify-between"
   data-testid="box"
@@ -622,7 +622,7 @@ exports[`Box should support common flex behavior 52`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 53`] = `
+exports[`Box > should support common flex behavior 53`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-stretch rmd-box--justify-around"
   data-testid="box"
@@ -631,7 +631,7 @@ exports[`Box should support common flex behavior 53`] = `
 </div>
 `;
 
-exports[`Box should support common flex behavior 54`] = `
+exports[`Box > should support common flex behavior 54`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--align-stretch rmd-box--justify-evenly"
   data-testid="box"

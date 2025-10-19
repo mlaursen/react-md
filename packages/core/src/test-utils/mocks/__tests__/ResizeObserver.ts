@@ -1,12 +1,12 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { waitFor } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   ResizeObserverManager,
   resizeObserverManager,
 } from "../../../useResizeObserver.js";
-import { cleanupResizeObserverAfterEach } from "../../jest-globals/index.js";
 import { createResizeObserverEntry } from "../../utils/createResizeObserverEntry.js";
+import { cleanupResizeObserverAfterEach } from "../../vitest/index.js";
 import { setupResizeObserverMock } from "../ResizeObserver.js";
 
 describe("ResizeObserverMock", () => {
@@ -17,7 +17,7 @@ describe("ResizeObserverMock", () => {
     const resizeObserver = setupResizeObserverMock();
     const element = document.createElement("div");
 
-    const onUpdate = jest.fn();
+    const onUpdate = vi.fn();
     resizeObserverManager.subscribe({
       element,
       onUpdate,
@@ -69,42 +69,38 @@ describe("ResizeObserverMock", () => {
     );
   });
 
-  it("should support resizing all elements so that you can do fun stuff with jest spies", () => {
+  it("should support resizing all elements so that you can do fun stuff with vi spies", () => {
     const baseRect = document.body.getBoundingClientRect();
     const element1 = document.createElement("div");
     const element2 = document.createElement("div");
     const element3 = document.createElement("div");
     const element4 = document.createElement("div");
 
-    const rect1 = jest
-      .spyOn(element1, "getBoundingClientRect")
-      .mockReturnValue({
-        ...baseRect,
-        height: 100,
-        width: 150,
-      });
-    jest.spyOn(element2, "getBoundingClientRect").mockReturnValue({
+    const rect1 = vi.spyOn(element1, "getBoundingClientRect").mockReturnValue({
       ...baseRect,
       height: 100,
       width: 150,
     });
-    jest.spyOn(element3, "getBoundingClientRect").mockReturnValue({
+    vi.spyOn(element2, "getBoundingClientRect").mockReturnValue({
       ...baseRect,
       height: 100,
       width: 150,
     });
-    const rect4 = jest
-      .spyOn(element4, "getBoundingClientRect")
-      .mockReturnValue({
-        ...baseRect,
-        height: 100,
-        width: 150,
-      });
+    vi.spyOn(element3, "getBoundingClientRect").mockReturnValue({
+      ...baseRect,
+      height: 100,
+      width: 150,
+    });
+    const rect4 = vi.spyOn(element4, "getBoundingClientRect").mockReturnValue({
+      ...baseRect,
+      height: 100,
+      width: 150,
+    });
 
-    const update1 = jest.fn();
-    const update2 = jest.fn();
-    const update3 = jest.fn();
-    const update4 = jest.fn();
+    const update1 = vi.fn();
+    const update2 = vi.fn();
+    const update3 = vi.fn();
+    const update4 = vi.fn();
     const resizeObserver = setupResizeObserverMock();
 
     resizeObserverManager.subscribe({
@@ -146,13 +142,13 @@ describe("ResizeObserverMock", () => {
   });
 
   it("should support animation frames to mimic real behavior", async () => {
-    const raf = jest.spyOn(window, "requestAnimationFrame");
+    const raf = vi.spyOn(window, "requestAnimationFrame");
     const manager = new ResizeObserverManager();
     setupResizeObserverMock({ raf: true, manager });
     expect(raf).not.toHaveBeenCalled();
 
     const element = document.createElement("div");
-    const onUpdate = jest.fn();
+    const onUpdate = vi.fn();
 
     manager.subscribe({
       element,

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`LinearProgress should allow the transition to be disabled for determinate progress bars 1`] = `
+exports[`LinearProgress > should allow the transition to be disabled for determinate progress bars 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -17,7 +17,7 @@ exports[`LinearProgress should allow the transition to be disabled for determina
 </span>
 `;
 
-exports[`LinearProgress should allow the transition to be disabled for determinate progress bars 2`] = `
+exports[`LinearProgress > should allow the transition to be disabled for determinate progress bars 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -33,7 +33,7 @@ exports[`LinearProgress should allow the transition to be disabled for determina
 </span>
 `;
 
-exports[`LinearProgress should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`LinearProgress > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -48,7 +48,7 @@ exports[`LinearProgress should apply the correct styling, HTMLAttributes, and al
 </span>
 `;
 
-exports[`LinearProgress should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`LinearProgress > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -64,7 +64,7 @@ exports[`LinearProgress should apply the correct styling, HTMLAttributes, and al
 </span>
 `;
 
-exports[`LinearProgress should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+exports[`LinearProgress > should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -81,7 +81,7 @@ exports[`LinearProgress should apply the correct styling, HTMLAttributes, and al
 </span>
 `;
 
-exports[`LinearProgress should be able to render as any of the theme colors 1`] = `
+exports[`LinearProgress > should be able to render as any of the theme colors 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -96,7 +96,7 @@ exports[`LinearProgress should be able to render as any of the theme colors 1`] 
 </span>
 `;
 
-exports[`LinearProgress should be able to render as any of the theme colors 2`] = `
+exports[`LinearProgress > should be able to render as any of the theme colors 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -111,7 +111,7 @@ exports[`LinearProgress should be able to render as any of the theme colors 2`] 
 </span>
 `;
 
-exports[`LinearProgress should be able to render as any of the theme colors 3`] = `
+exports[`LinearProgress > should be able to render as any of the theme colors 3`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -126,7 +126,7 @@ exports[`LinearProgress should be able to render as any of the theme colors 3`] 
 </span>
 `;
 
-exports[`LinearProgress should be able to render as any of the theme colors 4`] = `
+exports[`LinearProgress > should be able to render as any of the theme colors 4`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -141,7 +141,7 @@ exports[`LinearProgress should be able to render as any of the theme colors 4`] 
 </span>
 `;
 
-exports[`LinearProgress should be able to render as any of the theme colors 5`] = `
+exports[`LinearProgress > should be able to render as any of the theme colors 5`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -156,7 +156,7 @@ exports[`LinearProgress should be able to render as any of the theme colors 5`] 
 </span>
 `;
 
-exports[`LinearProgress should be able to render as any of the theme colors 6`] = `
+exports[`LinearProgress > should be able to render as any of the theme colors 6`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -171,7 +171,7 @@ exports[`LinearProgress should be able to render as any of the theme colors 6`] 
 </span>
 `;
 
-exports[`LinearProgress should be able to render vertically 1`] = `
+exports[`LinearProgress > should be able to render vertically 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -187,7 +187,7 @@ exports[`LinearProgress should be able to render vertically 1`] = `
 </span>
 `;
 
-exports[`LinearProgress should be able to render vertically 2`] = `
+exports[`LinearProgress > should be able to render vertically 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -203,7 +203,7 @@ exports[`LinearProgress should be able to render vertically 2`] = `
 </span>
 `;
 
-exports[`LinearProgress should be able to render vertically 3`] = `
+exports[`LinearProgress > should be able to render vertically 3`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -219,7 +219,7 @@ exports[`LinearProgress should be able to render vertically 3`] = `
 </span>
 `;
 
-exports[`LinearProgress should be able to reverse the animation by enabling the reverse prop 1`] = `
+exports[`LinearProgress > should be able to reverse the animation by enabling the reverse prop 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -234,7 +234,7 @@ exports[`LinearProgress should be able to reverse the animation by enabling the 
 </span>
 `;
 
-exports[`LinearProgress should be able to reverse the animation by enabling the reverse prop 2`] = `
+exports[`LinearProgress > should be able to reverse the animation by enabling the reverse prop 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -250,7 +250,7 @@ exports[`LinearProgress should be able to reverse the animation by enabling the 
 </span>
 `;
 
-exports[`LinearProgress should be able to reverse the animation by enabling the reverse prop 3`] = `
+exports[`LinearProgress > should be able to reverse the animation by enabling the reverse prop 3`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -268,7 +268,7 @@ exports[`LinearProgress should be able to reverse the animation by enabling the 
 </span>
 `;
 
-exports[`LinearProgress should be able to reverse the animation by enabling the reverse prop 4`] = `
+exports[`LinearProgress > should be able to reverse the animation by enabling the reverse prop 4`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -286,7 +286,7 @@ exports[`LinearProgress should be able to reverse the animation by enabling the 
 </span>
 `;
 
-exports[`LinearProgress should render as a determinate progress bar when the value is provided 1`] = `
+exports[`LinearProgress > should render as a determinate progress bar when the value is provided 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -303,7 +303,7 @@ exports[`LinearProgress should render as a determinate progress bar when the val
 </span>
 `;
 
-exports[`LinearProgress should render as a determinate progress bar when the value is provided 2`] = `
+exports[`LinearProgress > should render as a determinate progress bar when the value is provided 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"

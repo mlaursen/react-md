@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`SimpleTabPanels should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`SimpleTabPanels > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   data-testid="tab-panels"
 >
@@ -31,7 +31,7 @@ exports[`SimpleTabPanels should apply the correct styling, HTML attributes, and 
 </div>
 `;
 
-exports[`SimpleTabPanels should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`SimpleTabPanels > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="custom-class-name"
   data-testid="tab-panels"

@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@jest/globals";
 import { type CSSProperties, type ReactElement } from "react";
+import { describe, expect, it } from "vitest";
 
 import { render } from "../../test-utils/index.js";
 import { useInlineCSSVariables } from "../useInlineCSSVariables.js";

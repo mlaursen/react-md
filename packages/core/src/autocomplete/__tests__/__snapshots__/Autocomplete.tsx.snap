@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Autocomplete customizations should allow the button to be customized through the clearButtonProps 1`] = `
+exports[`Autocomplete > customizations > should allow the button to be customized through the clearButtonProps 1`] = `
 <button
   aria-label="Close"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-autocomplete__clear-button custom-class-name"
@@ -14,7 +14,7 @@ exports[`Autocomplete customizations should allow the button to be customized th
 </button>
 `;
 
-exports[`Autocomplete customizations should allow the dropdown button to be customized 1`] = `
+exports[`Autocomplete > customizations > should allow the dropdown button to be customized 1`] = `
 <button
   aria-controls="autocomplete-:r12o:"
   aria-expanded="false"
@@ -33,7 +33,7 @@ exports[`Autocomplete customizations should allow the dropdown button to be cust
 </button>
 `;
 
-exports[`Autocomplete customizations should pass through the visibility prop 1`] = `
+exports[`Autocomplete > customizations > should pass through the visibility prop 1`] = `
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover rmd-autocomplete__clear-button--query"
@@ -50,7 +50,7 @@ exports[`Autocomplete customizations should pass through the visibility prop 1`]
 </button>
 `;
 
-exports[`Autocomplete customizations should pass through the visibility prop 2`] = `
+exports[`Autocomplete > customizations > should pass through the visibility prop 2`] = `
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button"
@@ -67,7 +67,7 @@ exports[`Autocomplete customizations should pass through the visibility prop 2`]
 </button>
 `;
 
-exports[`Autocomplete customizations should pass through the visibility prop 3`] = `
+exports[`Autocomplete > customizations > should pass through the visibility prop 3`] = `
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover"
@@ -84,7 +84,7 @@ exports[`Autocomplete customizations should pass through the visibility prop 3`]
 </button>
 `;
 
-exports[`Autocomplete customizations should pass through the visibility prop 4`] = `
+exports[`Autocomplete > customizations > should pass through the visibility prop 4`] = `
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover rmd-autocomplete__clear-button--query"
@@ -101,7 +101,7 @@ exports[`Autocomplete customizations should pass through the visibility prop 4`]
 </button>
 `;
 
-exports[`Autocomplete multiselect should allow the options to be rendered with checkboxes by enabling the checkboxes prop and preventing the listbox from closing by default once clicked 1`] = `
+exports[`Autocomplete > multiselect > should allow the options to be rendered with checkboxes by enabling the checkboxes prop and preventing the listbox from closing by default once clicked 1`] = `
 <div
   aria-label="Fruits"
   aria-multiselectable="true"
@@ -317,7 +317,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
 </div>
 `;
 
-exports[`Autocomplete multiselect should allow the options to be rendered with checkboxes by enabling the checkboxes prop and preventing the listbox from closing by default once clicked 2`] = `
+exports[`Autocomplete > multiselect > should allow the options to be rendered with checkboxes by enabling the checkboxes prop and preventing the listbox from closing by default once clicked 2`] = `
 <div
   aria-label="Fruits"
   aria-multiselectable="true"
@@ -534,7 +534,7 @@ exports[`Autocomplete multiselect should allow the options to be rendered with c
 </div>
 `;
 
-exports[`Autocomplete multiselect should support multiselect behavior by setting the defaultValue to a list and renders inline chips 1`] = `
+exports[`Autocomplete > multiselect > should support multiselect behavior by setting the defaultValue to a list and renders inline chips 1`] = `
 <input
   aria-activedescendant=""
   aria-autocomplete="list"
@@ -554,7 +554,7 @@ exports[`Autocomplete multiselect should support multiselect behavior by setting
 />
 `;
 
-exports[`Autocomplete multiselect should support multiselect behavior by setting the defaultValue to a list and renders inline chips 2`] = `
+exports[`Autocomplete > multiselect > should support multiselect behavior by setting the defaultValue to a list and renders inline chips 2`] = `
 <input
   aria-activedescendant=""
   aria-autocomplete="list"
@@ -574,7 +574,7 @@ exports[`Autocomplete multiselect should support multiselect behavior by setting
 />
 `;
 
-exports[`Autocomplete should allow the CircularProgress bar props to be configured with loadingProps 1`] = `
+exports[`Autocomplete > should allow the CircularProgress bar props to be configured with loadingProps 1`] = `
 <span
   aria-labelledby="label-id"
   aria-valuemax="100"
@@ -597,7 +597,7 @@ exports[`Autocomplete should allow the CircularProgress bar props to be configur
 </span>
 `;
 
-exports[`Autocomplete should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Autocomplete > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-autocomplete rmd-autocomplete--cb rmd-autocomplete--db"
   data-testid="container"
@@ -661,7 +661,7 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
 </div>
 `;
 
-exports[`Autocomplete should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Autocomplete > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-autocomplete rmd-autocomplete--cb rmd-autocomplete--db custom-class-name"
   data-testid="container"
@@ -726,7 +726,7 @@ exports[`Autocomplete should apply the correct styling, HTML attributes, and all
 </div>
 `;
 
-exports[`Autocomplete should attempt to pull menu item props from the options 1`] = `
+exports[`Autocomplete > should attempt to pull menu item props from the options 1`] = `
 <div
   aria-label="Fruits"
   class="rmd-menu rmd-menu--elevated"
@@ -997,7 +997,7 @@ exports[`Autocomplete should attempt to pull menu item props from the options 1`
 </div>
 `;
 
-exports[`Autocomplete should be able to render a CircularProgress bar when the loading prop is enabled 1`] = `
+exports[`Autocomplete > should be able to render a CircularProgress bar when the loading prop is enabled 1`] = `
 <span
   aria-label="Loading"
   aria-valuemax="100"

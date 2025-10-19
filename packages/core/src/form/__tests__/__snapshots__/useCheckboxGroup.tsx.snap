@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useCheckboxGroup should not behave as an indeterminate checkbox group and check any checkboxes by default 1`] = `
+exports[`useCheckboxGroup > should not behave as an indeterminate checkbox group and check any checkboxes by default 1`] = `
 <div>
   <form>
     <label
@@ -76,7 +76,7 @@ exports[`useCheckboxGroup should not behave as an indeterminate checkbox group a
 </div>
 `;
 
-exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
+exports[`useCheckboxGroup > should support an indeterminate checkbox group 1`] = `
 <div>
   <form>
     <label
@@ -174,7 +174,7 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 1`] = `
 </div>
 `;
 
-exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
+exports[`useCheckboxGroup > should support an indeterminate checkbox group 2`] = `
 <div>
   <form>
     <label
@@ -272,7 +272,7 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 2`] = `
 </div>
 `;
 
-exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
+exports[`useCheckboxGroup > should support an indeterminate checkbox group 3`] = `
 <div>
   <form>
     <label
@@ -371,7 +371,7 @@ exports[`useCheckboxGroup should support an indeterminate checkbox group 3`] = `
 </div>
 `;
 
-exports[`useCheckboxGroup should support rendering a group of MenuItemCheckbox by enabling the \`menu\` option 1`] = `
+exports[`useCheckboxGroup > should support rendering a group of MenuItemCheckbox by enabling the \`menu\` option 1`] = `
 <div
   aria-labelledby="menubutton-:rd:"
   class="rmd-menu rmd-menu--elevated"

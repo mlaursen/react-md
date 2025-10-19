@@ -1,3 +1,4 @@
+import { type ReactElement, useState } from "react";
 import {
   afterEach,
   beforeAll,
@@ -5,9 +6,8 @@ import {
   describe,
   expect,
   it,
-  jest,
-} from "@jest/globals";
-import { type ReactElement, useState } from "react";
+  vi,
+} from "vitest";
 
 import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 import { CrossFade, type CrossFadeProps } from "../CrossFade.js";
@@ -42,7 +42,7 @@ function Test({
 
 describe("CrossFade", () => {
   beforeAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   beforeEach(() => {
@@ -50,7 +50,7 @@ describe("CrossFade", () => {
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
+    vi.clearAllTimers();
   });
 
   it("should default to using appear transitions", () => {
@@ -65,7 +65,7 @@ describe("CrossFade", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -79,7 +79,7 @@ describe("CrossFade", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -99,7 +99,7 @@ describe("CrossFade", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -112,7 +112,7 @@ describe("CrossFade", () => {
 
     // shouldn't really be any timers
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(getElement().className).toBe("");
@@ -132,7 +132,7 @@ describe("CrossFade", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -157,7 +157,7 @@ describe("CrossFade", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(getElement().className).toBe("custom-class");
@@ -171,7 +171,7 @@ describe("CrossFade", () => {
 
     // shouldn't really be any timers
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(getElement().className).toBe("custom-class");
@@ -179,12 +179,12 @@ describe("CrossFade", () => {
   });
 
   it("should correctly call the transition callbacks", () => {
-    const onEnter = jest.fn();
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
-    const onExit = jest.fn();
-    const onExiting = jest.fn();
-    const onExited = jest.fn();
+    const onEnter = vi.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
+    const onExit = vi.fn();
+    const onExiting = vi.fn();
+    const onExited = vi.fn();
     const props: TestProps = {
       onEnter,
       onEntering,
@@ -213,7 +213,7 @@ describe("CrossFade", () => {
     expect(onExited).not.toHaveBeenCalled();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(onEnter).toHaveBeenCalledTimes(1);
     expect(onEntering).toHaveBeenCalledTimes(1);

@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type MouseEvent, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   render,
@@ -21,11 +21,11 @@ describe("ToastActionButton", () => {
       children: "Button",
     } as const;
     const actions: CurrentToastActions = {
-      clearTimer: jest.fn(),
-      removeToast: jest.fn(),
-      pauseRemoveTimeout: jest.fn(),
-      startRemoveTimeout: jest.fn(),
-      resumeRemoveTimeout: jest.fn(),
+      clearTimer: vi.fn(),
+      removeToast: vi.fn(),
+      pauseRemoveTimeout: vi.fn(),
+      startRemoveTimeout: vi.fn(),
+      resumeRemoveTimeout: vi.fn(),
     };
     const { rerender } = render(
       <CurrentToastActionsProvider value={actions}>
@@ -59,16 +59,16 @@ describe("ToastActionButton", () => {
 
   it("should not call removeToast if event.stopPropagation() is called", async () => {
     const user = userEvent.setup();
-    const removeToast = jest.fn();
-    const handleClick = jest.fn((_event: MouseEvent<HTMLButtonElement>) => {
+    const removeToast = vi.fn();
+    const handleClick = vi.fn((_event: MouseEvent<HTMLButtonElement>) => {
       // do nothing
     });
     const actions: CurrentToastActions = {
-      clearTimer: jest.fn(),
+      clearTimer: vi.fn(),
       removeToast,
-      pauseRemoveTimeout: jest.fn(),
-      startRemoveTimeout: jest.fn(),
-      resumeRemoveTimeout: jest.fn(),
+      pauseRemoveTimeout: vi.fn(),
+      startRemoveTimeout: vi.fn(),
+      resumeRemoveTimeout: vi.fn(),
     };
     const { rerender } = rmdRender(
       <ToastActionButton onClick={handleClick}>Button</ToastActionButton>,
@@ -100,7 +100,7 @@ describe("ToastActionButton", () => {
   });
 
   it("should throw an error if mounted without a parent CurrentToastActionsProvider", () => {
-    const error = jest.spyOn(console, "error").mockImplementation(() => {
+    const error = vi.spyOn(console, "error").mockImplementation(() => {
       // do nothing
     });
     expect(() => render(<ToastActionButton />)).toThrow(

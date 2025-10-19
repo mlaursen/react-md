@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CardSubtitle should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`CardSubtitle > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <h6
   class="rmd-typography rmd-typography--subtitle-2 rmd-text-secondary-color rmd-no-margin rmd-card__subtitle"
 >
@@ -8,7 +8,7 @@ exports[`CardSubtitle should apply the correct styling, HTML attributes, and all
 </h6>
 `;
 
-exports[`CardSubtitle should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`CardSubtitle > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <h6
   class="rmd-typography rmd-typography--subtitle-2 rmd-text-secondary-color rmd-no-margin rmd-card__subtitle custom-class-name"
   style="color: white;"

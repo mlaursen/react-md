@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`NavSubheader should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`NavSubheader > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <li
   class="rmd-list-subheader"
   data-testid="subheader"
@@ -14,7 +14,7 @@ exports[`NavSubheader should apply the correct styling, HTML attributes, and all
 </li>
 `;
 
-exports[`NavSubheader should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`NavSubheader > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <li
   class="rmd-list-subheader custom-class-name"
   data-testid="subheader"

@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { type MouseEventHandler, type ReactElement } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
   act,
@@ -62,7 +62,7 @@ function Test(props: TestProps): ReactElement {
 
 describe("MenuBar", () => {
   beforeEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
     TRANSITION_CONFIG.disabled = false;
   });
 
@@ -138,7 +138,7 @@ describe("MenuBar", () => {
   });
 
   it("should support a custom hover timeout to start the hover mode", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     rmdRender(<Test hoverTimeout={1000} />);
 
     const font = screen.getByRole("menuitem", { name: "Font" });
@@ -147,29 +147,29 @@ describe("MenuBar", () => {
     expect(() => screen.getByRole("menu")).toThrow();
 
     act(() => {
-      jest.advanceTimersByTime(800);
+      vi.advanceTimersByTime(800);
     });
     expect(() => screen.getByRole("menu")).toThrow();
     act(() => {
-      jest.advanceTimersByTime(200);
+      vi.advanceTimersByTime(200);
     });
     expect(() => screen.getByRole("menu")).not.toThrow();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(() => screen.getByRole("menu")).not.toThrow();
 
     fireEvent.mouseLeave(font);
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(() => screen.getByRole("menu")).not.toThrow();
 
     fireEvent.mouseEnter(style);
     expect(() => screen.getByRole("menu")).not.toThrow();
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(() => screen.getByRole("menu")).not.toThrow();
     // animates into the new menu

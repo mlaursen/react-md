@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`MaterialIcon should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`MaterialIcon > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons"
@@ -10,7 +10,7 @@ exports[`MaterialIcon should apply the correct styling, HTMLAttributes, and allo
 </span>
 `;
 
-exports[`MaterialIcon should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`MaterialIcon > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons custom-class-name"
@@ -21,7 +21,7 @@ exports[`MaterialIcon should apply the correct styling, HTMLAttributes, and allo
 </span>
 `;
 
-exports[`MaterialIcon should support overriding the icon family through the MATERIAL_CONFIG 1`] = `
+exports[`MaterialIcon > should support overriding the icon family through the MATERIAL_CONFIG 1`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons"
@@ -31,7 +31,7 @@ exports[`MaterialIcon should support overriding the icon family through the MATE
 </span>
 `;
 
-exports[`MaterialIcon should support overriding the icon family through the MATERIAL_CONFIG 2`] = `
+exports[`MaterialIcon > should support overriding the icon family through the MATERIAL_CONFIG 2`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons-round"
@@ -41,7 +41,7 @@ exports[`MaterialIcon should support overriding the icon family through the MATE
 </span>
 `;
 
-exports[`MaterialIcon should support overriding the icon family through the MATERIAL_CONFIG 3`] = `
+exports[`MaterialIcon > should support overriding the icon family through the MATERIAL_CONFIG 3`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons-two-tone"
@@ -51,7 +51,7 @@ exports[`MaterialIcon should support overriding the icon family through the MATE
 </span>
 `;
 
-exports[`MaterialIcon should support overriding the icon family through the family prop 1`] = `
+exports[`MaterialIcon > should support overriding the icon family through the family prop 1`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons"
@@ -61,7 +61,7 @@ exports[`MaterialIcon should support overriding the icon family through the fami
 </span>
 `;
 
-exports[`MaterialIcon should support overriding the icon family through the family prop 2`] = `
+exports[`MaterialIcon > should support overriding the icon family through the family prop 2`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons-round"
@@ -71,7 +71,7 @@ exports[`MaterialIcon should support overriding the icon family through the fami
 </span>
 `;
 
-exports[`MaterialIcon should support overriding the icon family through the family prop 3`] = `
+exports[`MaterialIcon > should support overriding the icon family through the family prop 3`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons-two-tone"

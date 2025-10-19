@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, jest } from "@jest/globals";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
   matchAnyDesktop,
@@ -7,14 +7,14 @@ import {
   matchTablet,
   render,
 } from "../../test-utils/index.js";
-import { spyOnMatchMedia } from "../../test-utils/jest-globals/index.js";
+import { spyOnMatchMedia } from "../../test-utils/vitest/index.js";
 import { AppSizeProvider, useAppSize } from "../AppSizeProvider.js";
 import { type AppSize } from "../appSize.js";
 
 const matchMedia = spyOnMatchMedia();
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 describe("AppSizeProvider", () => {
@@ -25,7 +25,7 @@ describe("AppSizeProvider", () => {
   });
 
   it("should throw an error if multiple AppSizeProviders are mounted", () => {
-    const consoleError = jest.spyOn(console, "error");
+    const consoleError = vi.spyOn(console, "error");
     // hide React uncaught error message
     consoleError.mockImplementation(() => {});
 
@@ -46,7 +46,7 @@ describe("useAppSize", () => {
       return null;
     }
 
-    const error = jest.spyOn(console, "error");
+    const error = vi.spyOn(console, "error");
     // hide React uncaught error message
     error.mockImplementation(() => {});
 
@@ -77,8 +77,8 @@ describe("useAppSize", () => {
     });
 
     // pretend the app is resized to a phone
-    jest.spyOn(window.screen, "availHeight", "get").mockReturnValue(760);
-    jest.spyOn(window.screen, "availWidth", "get").mockReturnValue(360);
+    vi.spyOn(window.screen, "availHeight", "get").mockReturnValue(760);
+    vi.spyOn(window.screen, "availWidth", "get").mockReturnValue(360);
     matchMedia.changeViewport(matchPhone);
 
     expect(appSize).toEqual({

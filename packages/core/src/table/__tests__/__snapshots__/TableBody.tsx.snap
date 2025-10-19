@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TableBody should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`TableBody > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <tbody
   class="rmd-tbody"
   data-testid="body"
@@ -17,7 +17,7 @@ exports[`TableBody should apply the correct styling, HTML attributes, and allow 
 </tbody>
 `;
 
-exports[`TableBody should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`TableBody > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <tbody
   class="rmd-tbody custom-class-name"
   data-testid="body"
@@ -35,7 +35,7 @@ exports[`TableBody should apply the correct styling, HTML attributes, and allow 
 </tbody>
 `;
 
-exports[`TableBody should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`TableBody > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <tbody
   class="rmd-tbody"
   data-testid="body"

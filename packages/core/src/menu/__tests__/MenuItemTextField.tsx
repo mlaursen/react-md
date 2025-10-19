@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   render,
@@ -64,7 +64,7 @@ describe("MenuItemTextField", () => {
   it("should support adding props to the surrounding li", async () => {
     const user = userEvent.setup();
     const liRef = createRef<HTMLLIElement>();
-    const onLiClick = jest.fn();
+    const onLiClick = vi.fn();
     const props: MenuItemTextFieldProps = {
       liProps: {
         "data-testid": "li",
@@ -147,7 +147,7 @@ describe("MenuItemTextField", () => {
   });
 
   it("should allow for a custom onKeyDown event", async () => {
-    const onKeyDown = jest.fn();
+    const onKeyDown = vi.fn();
     const { user, field } = await setup({ onKeyDown });
 
     await user.type(field, "abc");

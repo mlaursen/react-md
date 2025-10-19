@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, vi } from "vitest";
 
 import { act, render } from "../test-utils/index.js";
 import { useOrientation } from "../useOrientation.js";
@@ -9,10 +9,10 @@ describe("useOrientation", () => {
     expect(window.screen.orientation).toBeUndefined();
 
     let _listener: (() => void) | undefined;
-    const addEventListener = jest.fn((_type, listener: any) => {
+    const addEventListener = vi.fn((_type, listener: any) => {
       _listener = listener;
     });
-    const removeEventListener = jest.fn();
+    const removeEventListener = vi.fn();
 
     Object.defineProperty(window.screen, "orientation", {
       value: {
@@ -48,8 +48,8 @@ describe("useOrientation", () => {
   });
 
   it("should fallback to comparing the availHeight and availWidth if the ScreenOrientation API is not available", () => {
-    jest.spyOn(window.screen, "availHeight", "get").mockReturnValue(760);
-    jest.spyOn(window.screen, "availWidth", "get").mockReturnValue(360);
+    vi.spyOn(window.screen, "availHeight", "get").mockReturnValue(760);
+    vi.spyOn(window.screen, "availWidth", "get").mockReturnValue(360);
 
     let orientation: OrientationType | undefined;
     function Test(): null {

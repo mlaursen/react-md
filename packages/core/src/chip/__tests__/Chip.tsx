@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { INTERACTION_CONFIG } from "../../interaction/config.js";
@@ -48,7 +48,7 @@ describe("Chip", () => {
   });
 
   it("should apply the pressed class name while raisable", () => {
-    const modeMock = jest
+    const modeMock = vi
       .spyOn(INTERACTION_CONFIG, "mode", "get")
       .mockReturnValue("press");
     const { rerender } = render(<Chip raisable>Chip</Chip>);

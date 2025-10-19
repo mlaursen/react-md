@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Tree should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Tree > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
@@ -11,7 +11,7 @@ exports[`Tree should apply the correct styling, HTML attributes, and allow a ref
 />
 `;
 
-exports[`Tree should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Tree > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
@@ -23,7 +23,7 @@ exports[`Tree should apply the correct styling, HTML attributes, and allow a ref
 />
 `;
 
-exports[`Tree should handle multi-select tree behavior 1`] = `
+exports[`Tree > should handle multi-select tree behavior 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
@@ -237,7 +237,7 @@ exports[`Tree should handle multi-select tree behavior 1`] = `
 </ul>
 `;
 
-exports[`Tree should handle multi-select tree behavior 2`] = `
+exports[`Tree > should handle multi-select tree behavior 2`] = `
 <ul
   aria-activedescendant="tree-item-:rc:"
   aria-label="Tree"
@@ -296,7 +296,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:rc:-group"
       role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1; transition-duration: 250ms;"
+      style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
       <li
         class="rmd-tree-item"
@@ -451,7 +451,7 @@ exports[`Tree should handle multi-select tree behavior 2`] = `
 </ul>
 `;
 
-exports[`Tree should handle multi-select tree behavior 3`] = `
+exports[`Tree > should handle multi-select tree behavior 3`] = `
 <ul
   aria-activedescendant="tree-item-:rc:"
   aria-label="Tree"
@@ -510,7 +510,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:rc:-group"
       role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1; transition-duration: 250ms;"
+      style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
       <li
         class="rmd-tree-item"
@@ -665,7 +665,7 @@ exports[`Tree should handle multi-select tree behavior 3`] = `
 </ul>
 `;
 
-exports[`Tree should handle multi-select tree behavior 4`] = `
+exports[`Tree > should handle multi-select tree behavior 4`] = `
 <ul
   aria-activedescendant="tree-item-:rb:"
   aria-label="Tree"
@@ -724,7 +724,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:rc:-group"
       role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1; transition-duration: 250ms;"
+      style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
       <li
         class="rmd-tree-item"
@@ -879,7 +879,7 @@ exports[`Tree should handle multi-select tree behavior 4`] = `
 </ul>
 `;
 
-exports[`Tree should handle multi-select tree behavior 5`] = `
+exports[`Tree > should handle multi-select tree behavior 5`] = `
 <ul
   aria-activedescendant="tree-item-:rc:"
   aria-label="Tree"
@@ -938,7 +938,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
       id="tree-item-:rc:-group"
       role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+      style="max-height: 0; --rmd-tree-depth: 1; padding-top: 0px; padding-bottom: 0px;"
     >
       <li
         class="rmd-tree-item"
@@ -1093,7 +1093,7 @@ exports[`Tree should handle multi-select tree behavior 5`] = `
 </ul>
 `;
 
-exports[`Tree should handle single select tree behavior 1`] = `
+exports[`Tree > should handle single select tree behavior 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
@@ -1307,7 +1307,7 @@ exports[`Tree should handle single select tree behavior 1`] = `
 </ul>
 `;
 
-exports[`Tree should handle single select tree behavior 2`] = `
+exports[`Tree > should handle single select tree behavior 2`] = `
 <ul
   aria-activedescendant="tree-item-:r3:"
   aria-label="Tree"
@@ -1366,7 +1366,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:r3:-group"
       role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1; transition-duration: 250ms;"
+      style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
       <li
         class="rmd-tree-item"
@@ -1521,7 +1521,7 @@ exports[`Tree should handle single select tree behavior 2`] = `
 </ul>
 `;
 
-exports[`Tree should handle single select tree behavior 3`] = `
+exports[`Tree > should handle single select tree behavior 3`] = `
 <ul
   aria-activedescendant="tree-item-:r3:"
   aria-label="Tree"
@@ -1580,7 +1580,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:r3:-group"
       role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1; transition-duration: 250ms;"
+      style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
       <li
         class="rmd-tree-item"
@@ -1735,7 +1735,7 @@ exports[`Tree should handle single select tree behavior 3`] = `
 </ul>
 `;
 
-exports[`Tree should handle single select tree behavior 4`] = `
+exports[`Tree > should handle single select tree behavior 4`] = `
 <ul
   aria-activedescendant="tree-item-:r2:"
   aria-label="Tree"
@@ -1794,7 +1794,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:r3:-group"
       role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1; transition-duration: 250ms;"
+      style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
       <li
         class="rmd-tree-item"
@@ -1949,7 +1949,7 @@ exports[`Tree should handle single select tree behavior 4`] = `
 </ul>
 `;
 
-exports[`Tree should handle single select tree behavior 5`] = `
+exports[`Tree > should handle single select tree behavior 5`] = `
 <ul
   aria-activedescendant="tree-item-:r3:"
   aria-label="Tree"
@@ -2008,7 +2008,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
       id="tree-item-:r3:-group"
       role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+      style="max-height: 0; --rmd-tree-depth: 1; padding-top: 0px; padding-bottom: 0px;"
     >
       <li
         class="rmd-tree-item"
@@ -2163,7 +2163,7 @@ exports[`Tree should handle single select tree behavior 5`] = `
 </ul>
 `;
 
-exports[`Tree should render the tree item as a link if the to or href exists on the item 1`] = `
+exports[`Tree > should render the tree item as a link if the to or href exists on the item 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
@@ -2238,7 +2238,7 @@ exports[`Tree should render the tree item as a link if the to or href exists on 
 </ul>
 `;
 
-exports[`Tree should support conditionally rendering child trees by enabling temporaryChildItems 1`] = `
+exports[`Tree > should support conditionally rendering child trees by enabling temporaryChildItems 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
@@ -2317,7 +2317,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
 </ul>
 `;
 
-exports[`Tree should support conditionally rendering child trees by enabling temporaryChildItems 2`] = `
+exports[`Tree > should support conditionally rendering child trees by enabling temporaryChildItems 2`] = `
 <ul
   aria-activedescendant="tree-item-:r1r:"
   aria-label="Tree"
@@ -2376,7 +2376,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:r1r:-group"
       role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1; transition-duration: 250ms;"
+      style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
       <li
         class="rmd-tree-item"
@@ -2470,7 +2470,7 @@ exports[`Tree should support conditionally rendering child trees by enabling tem
 </ul>
 `;
 
-exports[`Tree should support default selected and expanded ids 1`] = `
+exports[`Tree > should support default selected and expanded ids 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
@@ -2684,7 +2684,7 @@ exports[`Tree should support default selected and expanded ids 1`] = `
 </ul>
 `;
 
-exports[`Tree should support default selected and expanded ids 2`] = `
+exports[`Tree > should support default selected and expanded ids 2`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
@@ -2898,221 +2898,7 @@ exports[`Tree should support default selected and expanded ids 2`] = `
 </ul>
 `;
 
-exports[`Tree should support rendering the expander icon to the left of the item 1`] = `
-<ul
-  aria-activedescendant=""
-  aria-label="Tree"
-  class="rmd-list rmd-tree"
-  id="tree-:r24:"
-  role="tree"
-  tabindex="0"
->
-  <li
-    class="rmd-tree-item"
-    role="none"
-  >
-    <span
-      aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r25:"
-      role="treeitem"
-      tabindex="-1"
-    >
-      <span
-        class="rmd-list-item__text"
-      >
-        <span>
-          Folder 1
-        </span>
-      </span>
-    </span>
-  </li>
-  <li
-    class="rmd-tree-item rmd-tree-item--expander-left"
-    role="none"
-  >
-    <span
-      aria-expanded="false"
-      aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r26:"
-      role="treeitem"
-      tabindex="-1"
-    >
-      <span
-        aria-hidden="true"
-        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
-      >
-        arrow_drop_down
-      </span>
-      <span
-        class="rmd-list-item__text"
-      >
-        <span>
-          Folder 2
-        </span>
-      </span>
-    </span>
-    <ul
-      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-      id="tree-item-:r26:-group"
-      role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
-    >
-      <li
-        class="rmd-tree-item"
-        role="none"
-      >
-        <span
-          aria-selected="false"
-          class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r27:"
-          role="treeitem"
-          tabindex="-1"
-        >
-          <span
-            class="rmd-list-item__text"
-          >
-            <span>
-              Folder 2 Child 1
-            </span>
-          </span>
-        </span>
-      </li>
-      <li
-        class="rmd-tree-item rmd-tree-item--expander-left"
-        role="none"
-      >
-        <span
-          aria-expanded="false"
-          aria-selected="false"
-          class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r28:"
-          role="treeitem"
-          tabindex="-1"
-        >
-          <span
-            aria-hidden="true"
-            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
-          >
-            arrow_drop_down
-          </span>
-          <span
-            class="rmd-list-item__text"
-          >
-            <span>
-              Folder 2 Child 2
-            </span>
-          </span>
-        </span>
-        <ul
-          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:r28:-group"
-          role="group"
-          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
-        >
-          <li
-            class="rmd-tree-item rmd-tree-item--expander-left"
-            role="none"
-          >
-            <span
-              aria-expanded="false"
-              aria-selected="false"
-              class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:r29:"
-              role="treeitem"
-              tabindex="-1"
-            >
-              <span
-                aria-hidden="true"
-                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
-              >
-                arrow_drop_down
-              </span>
-              <span
-                class="rmd-list-item__text"
-              >
-                <span>
-                  Folder 2 Child 2 Child 1
-                </span>
-              </span>
-            </span>
-            <ul
-              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:r29:-group"
-              role="group"
-              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
-            >
-              <li
-                class="rmd-tree-item"
-                role="none"
-              >
-                <span
-                  aria-selected="false"
-                  class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:r2a:"
-                  role="treeitem"
-                  tabindex="-1"
-                >
-                  <span
-                    class="rmd-list-item__text"
-                  >
-                    <span>
-                      Folder 2 Child 2 Child 1 Child 1
-                    </span>
-                  </span>
-                </span>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li
-        class="rmd-tree-item"
-        role="none"
-      >
-        <span
-          aria-selected="false"
-          class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r2b:"
-          role="treeitem"
-          tabindex="-1"
-        >
-          <span
-            class="rmd-list-item__text"
-          >
-            <span>
-              Folder 2 Child 3
-            </span>
-          </span>
-        </span>
-      </li>
-    </ul>
-  </li>
-  <li
-    class="rmd-tree-item"
-    role="none"
-  >
-    <span
-      aria-selected="false"
-      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r2c:"
-      role="treeitem"
-      tabindex="-1"
-    >
-      <span
-        class="rmd-list-item__text"
-      >
-        <span>
-          Folder 3
-        </span>
-      </span>
-    </span>
-  </li>
-</ul>
-`;
-
-exports[`Tree should support rendering the expander icon to the left of the item: custom expander icon 1`] = `
+exports[`Tree > should support rendering the expander icon to the left of the item > custom expander icon 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
@@ -3323,7 +3109,7 @@ exports[`Tree should support rendering the expander icon to the left of the item
 </ul>
 `;
 
-exports[`Tree should support rendering the expander icon to the left of the item: including left icon 1`] = `
+exports[`Tree > should support rendering the expander icon to the left of the item > including left icon 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Tree"
@@ -3605,6 +3391,220 @@ exports[`Tree should support rendering the expander icon to the left of the item
           folder
         </span>
       </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 3
+        </span>
+      </span>
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Tree > should support rendering the expander icon to the left of the item 1`] = `
+<ul
+  aria-activedescendant=""
+  aria-label="Tree"
+  class="rmd-list rmd-tree"
+  id="tree-:r24:"
+  role="tree"
+  tabindex="0"
+>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
+      id="tree-item-:r25:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 1
+        </span>
+      </span>
+    </span>
+  </li>
+  <li
+    class="rmd-tree-item rmd-tree-item--expander-left"
+    role="none"
+  >
+    <span
+      aria-expanded="false"
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
+      id="tree-item-:r26:"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        arrow_drop_down
+      </span>
+      <span
+        class="rmd-list-item__text"
+      >
+        <span>
+          Folder 2
+        </span>
+      </span>
+    </span>
+    <ul
+      class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
+      id="tree-item-:r26:-group"
+      role="group"
+      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+    >
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          aria-selected="false"
+          class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
+          id="tree-item-:r27:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 1
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="rmd-tree-item rmd-tree-item--expander-left"
+        role="none"
+      >
+        <span
+          aria-expanded="false"
+          aria-selected="false"
+          class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
+          id="tree-item-:r28:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+          >
+            arrow_drop_down
+          </span>
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 2
+            </span>
+          </span>
+        </span>
+        <ul
+          class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
+          id="tree-item-:r28:-group"
+          role="group"
+          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
+        >
+          <li
+            class="rmd-tree-item rmd-tree-item--expander-left"
+            role="none"
+          >
+            <span
+              aria-expanded="false"
+              aria-selected="false"
+              class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
+              id="tree-item-:r29:"
+              role="treeitem"
+              tabindex="-1"
+            >
+              <span
+                aria-hidden="true"
+                class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+              >
+                arrow_drop_down
+              </span>
+              <span
+                class="rmd-list-item__text"
+              >
+                <span>
+                  Folder 2 Child 2 Child 1
+                </span>
+              </span>
+            </span>
+            <ul
+              class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
+              id="tree-item-:r29:-group"
+              role="group"
+              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
+            >
+              <li
+                class="rmd-tree-item"
+                role="none"
+              >
+                <span
+                  aria-selected="false"
+                  class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
+                  id="tree-item-:r2a:"
+                  role="treeitem"
+                  tabindex="-1"
+                >
+                  <span
+                    class="rmd-list-item__text"
+                  >
+                    <span>
+                      Folder 2 Child 2 Child 1 Child 1
+                    </span>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="rmd-tree-item"
+        role="none"
+      >
+        <span
+          aria-selected="false"
+          class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
+          id="tree-item-:r2b:"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            <span>
+              Folder 2 Child 3
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </li>
+  <li
+    class="rmd-tree-item"
+    role="none"
+  >
+    <span
+      aria-selected="false"
+      class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
+      id="tree-item-:r2c:"
+      role="treeitem"
+      tabindex="-1"
+    >
       <span
         class="rmd-list-item__text"
       >

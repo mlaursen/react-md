@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`SkipToMainContent should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`SkipToMainContent > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <a
   class="rmd-link rmd-link rmd-link--skip rmd-link--skip-styled"
   href="#main-id"
@@ -10,7 +10,7 @@ exports[`SkipToMainContent should apply the correct styling, HTML attributes, an
 </a>
 `;
 
-exports[`SkipToMainContent should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`SkipToMainContent > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <a
   class="rmd-link rmd-link rmd-link--skip rmd-link--skip-styled custom-class-name"
   href="#main-id"

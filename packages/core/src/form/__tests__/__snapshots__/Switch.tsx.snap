@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Switch should allow the switch to gain the error and active colors by enabling the current-color class 1`] = `
+exports[`Switch > should allow the switch to gain the error and active colors by enabling the current-color class 1`] = `
 <label
   class="rmd-label rmd-label--gap rmd-label--active rmd-label--reversed"
   data-testid="label"
@@ -26,7 +26,7 @@ exports[`Switch should allow the switch to gain the error and active colors by e
 </label>
 `;
 
-exports[`Switch should allow the switch to gain the error and active colors by enabling the current-color class 2`] = `
+exports[`Switch > should allow the switch to gain the error and active colors by enabling the current-color class 2`] = `
 <label
   class="rmd-label rmd-label--gap rmd-label--error rmd-label--reversed rmd-error-color"
 >
@@ -51,7 +51,7 @@ exports[`Switch should allow the switch to gain the error and active colors by e
 </label>
 `;
 
-exports[`Switch should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`Switch > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <label
   class="rmd-label rmd-label--gap rmd-label--reversed"
   data-testid="label"
@@ -77,7 +77,7 @@ exports[`Switch should apply the correct styling, HTMLAttributes, and allow a re
 </label>
 `;
 
-exports[`Switch should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`Switch > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <label
   class="rmd-label rmd-label--gap rmd-label--reversed custom-class-name"
   data-testid="label"
@@ -104,7 +104,7 @@ exports[`Switch should apply the correct styling, HTMLAttributes, and allow a re
 </label>
 `;
 
-exports[`Switch should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+exports[`Switch > should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
 <label
   class="rmd-label rmd-label--gap rmd-label--reversed"
   data-testid="label"
@@ -134,7 +134,7 @@ exports[`Switch should apply the correct styling, HTMLAttributes, and allow a re
 </label>
 `;
 
-exports[`Switch should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+exports[`Switch > should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
 <label
   class="rmd-label rmd-label--gap rmd-label--reversed"
   data-testid="label"
@@ -164,7 +164,7 @@ exports[`Switch should apply the correct styling, HTMLAttributes, and allow a re
 </label>
 `;
 
-exports[`Switch should merge any labelProps correctly 1`] = `
+exports[`Switch > should merge any labelProps correctly 1`] = `
 <label
   class="rmd-label rmd-label--gap rmd-label--reversed root-class-name test-class-name"
   data-testid="label"
@@ -191,7 +191,7 @@ exports[`Switch should merge any labelProps correctly 1`] = `
 </label>
 `;
 
-exports[`Switch should render correctly when disabled 1`] = `
+exports[`Switch > should render correctly when disabled 1`] = `
 <label
   class="rmd-label rmd-label--gap rmd-label--disabled rmd-label--reversed rmd-text-disabled-color"
   data-testid="label"
@@ -218,7 +218,7 @@ exports[`Switch should render correctly when disabled 1`] = `
 </label>
 `;
 
-exports[`Switch should support rendering a CircularProgress by using the ballAddon prop 1`] = `
+exports[`Switch > should support rendering a CircularProgress by using the ballAddon prop 1`] = `
 <label
   class="rmd-label rmd-label--gap rmd-label--reversed"
   data-testid="label"
@@ -265,7 +265,7 @@ exports[`Switch should support rendering a CircularProgress by using the ballAdd
 </label>
 `;
 
-exports[`Switch should support rendering the form messages with the switch 1`] = `
+exports[`Switch > should support rendering the form messages with the switch 1`] = `
 <div
   class="rmd-form-message-container"
   data-testid="container"
@@ -307,7 +307,7 @@ exports[`Switch should support rendering the form messages with the switch 1`] =
 </div>
 `;
 
-exports[`Switch should support rendering the form messages with the switch 2`] = `
+exports[`Switch > should support rendering the form messages with the switch 2`] = `
 <div
   class="rmd-form-message-container"
   data-testid="container"
@@ -349,7 +349,7 @@ exports[`Switch should support rendering the form messages with the switch 2`] =
 </div>
 `;
 
-exports[`Switch should support rendering the label before and after as well as stacked 1`] = `
+exports[`Switch > should support rendering the label before and after as well as stacked 1`] = `
 <label
   class="rmd-label rmd-label--gap"
   data-testid="label"
@@ -375,7 +375,7 @@ exports[`Switch should support rendering the label before and after as well as s
 </label>
 `;
 
-exports[`Switch should support rendering the label before and after as well as stacked 2`] = `
+exports[`Switch > should support rendering the label before and after as well as stacked 2`] = `
 <label
   class="rmd-label rmd-label--gap rmd-label--stacked-reversed"
   data-testid="label"
@@ -401,7 +401,7 @@ exports[`Switch should support rendering the label before and after as well as s
 </label>
 `;
 
-exports[`Switch should support rendering the label before and after as well as stacked 3`] = `
+exports[`Switch > should support rendering the label before and after as well as stacked 3`] = `
 <label
   class="rmd-label rmd-label--gap rmd-label--stacked"
   data-testid="label"
@@ -427,7 +427,7 @@ exports[`Switch should support rendering the label before and after as well as s
 </label>
 `;
 
-exports[`Switch should support toggling the checked state 1`] = `
+exports[`Switch > should support toggling the checked state 1`] = `
 <input
   checked=""
   class="rmd-switch__input rmd-hidden-input"
@@ -438,7 +438,7 @@ exports[`Switch should support toggling the checked state 1`] = `
 />
 `;
 
-exports[`Switch should support toggling the checked state 2`] = `
+exports[`Switch > should support toggling the checked state 2`] = `
 <input
   checked=""
   class="rmd-switch__input rmd-hidden-input"

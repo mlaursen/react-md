@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useFixedPositioning should allow for configuring the fixed position 1`] = `
+exports[`useFixedPositioning > should allow for configuring the fixed position 1`] = `
 <div>
   <button
     type="button"
@@ -16,7 +16,7 @@ exports[`useFixedPositioning should allow for configuring the fixed position 1`]
 </div>
 `;
 
-exports[`useFixedPositioning should default to fixing itself with the BELOW_CENTER_ANCHOR 1`] = `
+exports[`useFixedPositioning > should default to fixing itself with the BELOW_CENTER_ANCHOR 1`] = `
 <div>
   <button
     type="button"
@@ -26,7 +26,7 @@ exports[`useFixedPositioning should default to fixing itself with the BELOW_CENT
 </div>
 `;
 
-exports[`useFixedPositioning should default to fixing itself with the BELOW_CENTER_ANCHOR 2`] = `
+exports[`useFixedPositioning > should default to fixing itself with the BELOW_CENTER_ANCHOR 2`] = `
 <div>
   <button
     type="button"
@@ -43,7 +43,7 @@ exports[`useFixedPositioning should default to fixing itself with the BELOW_CENT
 </div>
 `;
 
-exports[`useFixedPositioning should default to fixing itself with the BELOW_CENTER_ANCHOR 3`] = `
+exports[`useFixedPositioning > should default to fixing itself with the BELOW_CENTER_ANCHOR 3`] = `
 <div>
   <button
     type="button"
@@ -59,7 +59,7 @@ exports[`useFixedPositioning should default to fixing itself with the BELOW_CENT
 </div>
 `;
 
-exports[`useFixedPositioning should default to fixing itself with the BELOW_CENTER_ANCHOR 4`] = `
+exports[`useFixedPositioning > should default to fixing itself with the BELOW_CENTER_ANCHOR 4`] = `
 <div>
   <button
     type="button"
@@ -76,7 +76,7 @@ exports[`useFixedPositioning should default to fixing itself with the BELOW_CENT
 </div>
 `;
 
-exports[`useFixedPositioning should default to fixing itself with the BELOW_CENTER_ANCHOR 5`] = `
+exports[`useFixedPositioning > should default to fixing itself with the BELOW_CENTER_ANCHOR 5`] = `
 <div>
   <button
     type="button"

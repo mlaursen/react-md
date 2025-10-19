@@ -1,10 +1,10 @@
-import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import {
   type AnchorHTMLAttributes,
   type ReactElement,
   createRef,
   forwardRef,
 } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Divider } from "../../divider/Divider.js";
 import { FontIcon } from "../../icon/FontIcon.js";
@@ -473,7 +473,7 @@ describe("Tree", () => {
       },
     } satisfies TreeData<Folder>;
 
-    const warn = jest.spyOn(console, "warn").mockImplementation(() => {});
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
     const { rerender } = rmdRender(<Test data={data} />);
     expect(warn).toHaveBeenCalledWith(
       "The following tree items are orphaned without a parent:"
@@ -669,15 +669,15 @@ describe("Tree", () => {
   });
 
   it("should support custom event handlers", () => {
-    const onClick = jest.fn();
-    const onKeyDown = jest.fn();
-    const onKeyUp = jest.fn();
-    const onMouseDown = jest.fn();
-    const onMouseLeave = jest.fn();
-    const onDragStart = jest.fn();
-    const onTouchStart = jest.fn();
-    const onTouchEnd = jest.fn();
-    const onTouchMove = jest.fn();
+    const onClick = vi.fn();
+    const onKeyDown = vi.fn();
+    const onKeyUp = vi.fn();
+    const onMouseDown = vi.fn();
+    const onMouseLeave = vi.fn();
+    const onDragStart = vi.fn();
+    const onTouchStart = vi.fn();
+    const onTouchEnd = vi.fn();
+    const onTouchMove = vi.fn();
     function CustomRenderer(
       props: RenderRecursiveItemsProps<Folder>
     ): ReactElement {

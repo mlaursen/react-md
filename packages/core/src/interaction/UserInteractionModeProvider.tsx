@@ -43,6 +43,8 @@ export function useUserInteractionMode(): UserInteractionMode {
 /** @internal */
 const TOUCH_TIMEOUT = 1200;
 
+const DATE_NOW = (): number => Date.now();
+
 export interface UserInteractionModeProviderProps {
   children: ReactNode;
 }
@@ -84,7 +86,10 @@ export interface UserInteractionModeProviderProps {
 export function UserInteractionModeProvider(
   props: UserInteractionModeProviderProps
 ): ReactElement {
-  const { children } = props;
+  const { children, now = DATE_NOW } =
+    props as UserInteractionModeProviderProps & {
+      now?: () => number;
+    };
   const { __root } = useContext(context);
   if (__root) {
     throw new Error(
@@ -145,7 +150,7 @@ export function UserInteractionModeProvider(
     };
 
     const handleTouchStart = (): void => {
-      lastTouchTime.current = Date.now();
+      lastTouchTime.current = now();
       isTouchContextMenu.current = false;
       setMode("touch");
     };
@@ -153,7 +158,7 @@ export function UserInteractionModeProvider(
     const handleMouseMove = (): void => {
       if (
         isTouchContextMenu.current ||
-        Date.now() - lastTouchTime.current < TOUCH_TIMEOUT
+        now() - lastTouchTime.current < TOUCH_TIMEOUT
       ) {
         isTouchContextMenu.current = false;
         return;
@@ -189,7 +194,7 @@ export function UserInteractionModeProvider(
         window.removeEventListener("contextmenu", handleContextMenu, true);
       }
     };
-  }, [mode]);
+  }, [mode, now]);
 
   const value = useMemo<UserInteractionModeContext>(
     () => ({

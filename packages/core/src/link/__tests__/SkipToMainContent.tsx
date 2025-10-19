@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type FC, type ReactNode, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { SkipToMainContent } from "../SkipToMainContent.js";
@@ -45,7 +45,7 @@ describe("SkipToMainContent", () => {
 
   it("should throw an error if the mainId cannot be found", () => {
     // hide thrown error in test reports
-    jest.spyOn(console, "error").mockImplementation(() => {});
+    vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => render(<SkipToMainContent mainId="not-found" />)).toThrow(
       'Unable to find a main element to focus with an id of "not-found". There should be at least one <main> element or an element with role="main" on the page for accessibility.'
     );
@@ -53,7 +53,7 @@ describe("SkipToMainContent", () => {
 
   it('should throw an error if the mainId cannot be found and suggest the id for a main element or an element with role="main"', () => {
     // hide thrown error in test reports
-    jest.spyOn(console, "error").mockImplementation(() => {});
+    vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() =>
       render(
         <>

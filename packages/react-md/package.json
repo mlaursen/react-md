@@ -73,8 +73,8 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@jest/globals": "^29.7.0",
-    "@jest/types": "^29.6.3",
+    "@jest/globals": ">= 29 <=31",
+    "@jest/types": ">= 29 <=31",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.3.0",
     "@testing-library/react": "^14.1.2",

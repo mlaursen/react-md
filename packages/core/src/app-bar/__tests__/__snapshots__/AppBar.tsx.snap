@@ -1,97 +1,97 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`AppBar should allow for different heights 1`] = `
+exports[`AppBar > should allow for different heights 1`] = `
 <div
   class="rmd-app-bar rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow for different heights 2`] = `
+exports[`AppBar > should allow for different heights 2`] = `
 <div
   class="rmd-app-bar rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow for different heights 3`] = `
+exports[`AppBar > should allow for different heights 3`] = `
 <div
   class="rmd-app-bar rmd-app-bar--prominent rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow for different heights 4`] = `
+exports[`AppBar > should allow for different heights 4`] = `
 <div
   class="rmd-app-bar rmd-app-bar--prominent-dense rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow for different heights 5`] = `
+exports[`AppBar > should allow for different heights 5`] = `
 <div
   class="rmd-app-bar rmd-app-bar--dense rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow for different heights 6`] = `
+exports[`AppBar > should allow for different heights 6`] = `
 <div
   class="rmd-app-bar rmd-app-bar--auto rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow for different theme colors 1`] = `
+exports[`AppBar > should allow for different theme colors 1`] = `
 <div
   class="rmd-app-bar rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow for different theme colors 2`] = `
+exports[`AppBar > should allow for different theme colors 2`] = `
 <div
   class="rmd-app-bar rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-secondary-container"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow for different theme colors 3`] = `
+exports[`AppBar > should allow for different theme colors 3`] = `
 <div
   class="rmd-app-bar rmd-app-bar--surface rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow for different theme colors 4`] = `
+exports[`AppBar > should allow for different theme colors 4`] = `
 <div
   class="rmd-app-bar rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow the app bar to be fixed to the top or bottom of the page 1`] = `
+exports[`AppBar > should allow the app bar to be fixed to the top or bottom of the page 1`] = `
 <header
   class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow the app bar to be fixed to the top or bottom of the page 2`] = `
+exports[`AppBar > should allow the app bar to be fixed to the top or bottom of the page 2`] = `
 <header
   class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should allow the app bar to be fixed to the top or bottom of the page 3`] = `
+exports[`AppBar > should allow the app bar to be fixed to the top or bottom of the page 3`] = `
 <header
   class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--bottom rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
 />
 `;
 
-exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`AppBar > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-app-bar rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
@@ -104,7 +104,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 </div>
 `;
 
-exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`AppBar > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-app-bar rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container custom-class-name"
   data-testid="app-bar"
@@ -118,7 +118,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 </div>
 `;
 
-exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`AppBar > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <header
   class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
@@ -131,7 +131,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 </header>
 `;
 
-exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+exports[`AppBar > should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <header
   class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--scrollbar-offset rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
@@ -144,7 +144,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 </header>
 `;
 
-exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+exports[`AppBar > should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <header
   class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--sticky rmd-app-bar--top rmd-app-bar--elevated rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
@@ -157,7 +157,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 </header>
 `;
 
-exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 6`] = `
+exports[`AppBar > should apply the correct styling, HTML attributes, and allow a ref 6`] = `
 <header
   class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--sticky rmd-app-bar--top rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"
@@ -170,7 +170,7 @@ exports[`AppBar should apply the correct styling, HTML attributes, and allow a r
 </header>
 `;
 
-exports[`AppBar should apply the correct styling, HTML attributes, and allow a ref 7`] = `
+exports[`AppBar > should apply the correct styling, HTML attributes, and allow a ref 7`] = `
 <div
   class="rmd-app-bar rmd-app-bar--auto rmd-app-bar--stacked rmd-box rmd-box--gap rmd-box--padded rmd-box--column rmd-box--full-width rmd-background-container rmd-primary-container"
   data-testid="app-bar"

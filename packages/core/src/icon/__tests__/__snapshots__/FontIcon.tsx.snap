@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`FontIcon should apply the correct classNames 1`] = `
+exports[`FontIcon > should apply the correct classNames 1`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons"
@@ -8,7 +8,7 @@ exports[`FontIcon should apply the correct classNames 1`] = `
 />
 `;
 
-exports[`FontIcon should apply the correct classNames 2`] = `
+exports[`FontIcon > should apply the correct classNames 2`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font rmd-icon--dense material-icons test-thing"
@@ -16,7 +16,7 @@ exports[`FontIcon should apply the correct classNames 2`] = `
 />
 `;
 
-exports[`FontIcon should apply the correct classNames 3`] = `
+exports[`FontIcon > should apply the correct classNames 3`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font rmd-icon--dense fa fa-github test-thing"
@@ -24,7 +24,7 @@ exports[`FontIcon should apply the correct classNames 3`] = `
 />
 `;
 
-exports[`FontIcon should render correctly 1`] = `
+exports[`FontIcon > should render correctly 1`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons"

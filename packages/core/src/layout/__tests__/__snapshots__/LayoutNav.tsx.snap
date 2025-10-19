@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`LayoutNav should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`LayoutNav > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <nav
   aria-label="Navigation"
   class="rmd-layout-nav rmd-sheet rmd-sheet--horizontal rmd-sheet--left"
@@ -9,7 +9,7 @@ exports[`LayoutNav should apply the correct styling, HTMLAttributes, and allow a
 </nav>
 `;
 
-exports[`LayoutNav should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`LayoutNav > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <nav
   aria-label="Navigation"
   class="rmd-layout-nav rmd-sheet rmd-sheet--horizontal rmd-sheet--left custom-class-name"
@@ -19,7 +19,7 @@ exports[`LayoutNav should apply the correct styling, HTMLAttributes, and allow a
 </nav>
 `;
 
-exports[`LayoutNav should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+exports[`LayoutNav > should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
 <div
   class="rmd-layout-nav rmd-sheet rmd-sheet--horizontal rmd-sheet--left"
   data-testid="div"
@@ -28,4 +28,4 @@ exports[`LayoutNav should apply the correct styling, HTMLAttributes, and allow a
 </div>
 `;
 
-exports[`LayoutNav styling utility class should be callable without any arguments 1`] = `"rmd-layout-nav"`;
+exports[`LayoutNav > styling utility class > should be callable without any arguments 1`] = `"rmd-layout-nav"`;

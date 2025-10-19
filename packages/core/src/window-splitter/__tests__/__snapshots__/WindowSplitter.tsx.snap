@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`WindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`WindowSplitter > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <button
   aria-controls="does-not-exist"
   aria-label="Window Splitter"
@@ -14,7 +14,7 @@ exports[`WindowSplitter should apply the correct styling, HTMLAttributes, and al
 />
 `;
 
-exports[`WindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`WindowSplitter > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <button
   aria-controls="does-not-exist"
   aria-label="Window Splitter"
@@ -29,7 +29,7 @@ exports[`WindowSplitter should apply the correct styling, HTMLAttributes, and al
 />
 `;
 
-exports[`WindowSplitter should be able to render vertically 1`] = `
+exports[`WindowSplitter > should be able to render vertically 1`] = `
 <button
   aria-controls="does-not-exist"
   aria-label="Window Splitter"

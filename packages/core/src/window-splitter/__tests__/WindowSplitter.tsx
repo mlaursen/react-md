@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@jest/globals";
 import { type Ref, createRef } from "react";
+import { describe, expect, it } from "vitest";
 
 import { rmdRender, screen } from "../../test-utils/index.js";
 import { WindowSplitter, type WindowSplitterProps } from "../WindowSplitter.js";

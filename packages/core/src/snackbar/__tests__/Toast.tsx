@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, createRef } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import {
@@ -18,11 +18,11 @@ const render = (ui: ReactElement): RenderResult =>
     wrapper: ({ children }) => (
       <CurrentToastActionsProvider
         value={{
-          clearTimer: jest.fn(),
-          pauseRemoveTimeout: jest.fn(),
-          removeToast: jest.fn(),
-          resumeRemoveTimeout: jest.fn(),
-          startRemoveTimeout: jest.fn(),
+          clearTimer: vi.fn(),
+          pauseRemoveTimeout: vi.fn(),
+          removeToast: vi.fn(),
+          resumeRemoveTimeout: vi.fn(),
+          startRemoveTimeout: vi.fn(),
         }}
       >
         {children}
@@ -73,7 +73,7 @@ describe("Toast", () => {
     expect(action).toBeInTheDocument();
     expect(action).toMatchSnapshot();
 
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     rerender(
       <Toast
         {...props}

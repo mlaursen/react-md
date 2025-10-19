@@ -1,4 +1,3 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import {
   type CSSProperties,
   type ReactElement,
@@ -7,6 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { textPrimaryColorVar } from "../cssVars.js";
@@ -43,7 +43,7 @@ describe("useCSSVariables", () => {
   it("should warn about overriding variables for non-production environments", () => {
     expect(process.env.NODE_ENV).not.toBe("production");
     const html = document.documentElement;
-    const warn = jest.spyOn(console, "warn").mockImplementation(() => {});
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
     html.style.setProperty("--test", "1rem");
 
     function Test(): null {
@@ -102,7 +102,7 @@ describe("useCSSVariables", () => {
     // custom properties
     fireEvent.click(button);
     expect(div.style.getPropertyValue("--test")).toBe("100px");
-    expect(div).toHaveStyle({ backgroundColor: "red" });
+    expect(div).toHaveStyle({ background: "red" });
     expect(div).toMatchSnapshot();
   });
 

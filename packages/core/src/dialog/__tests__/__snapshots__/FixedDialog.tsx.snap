@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`FixedDialog should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`FixedDialog > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
   aria-labelledby=":r0:"
   class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline"
@@ -43,7 +43,7 @@ exports[`FixedDialog should apply the correct styling, HTMLAttributes, and allow
 </div>
 `;
 
-exports[`FixedDialog should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`FixedDialog > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
   aria-labelledby=":r0:"
   class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline custom-class-name"

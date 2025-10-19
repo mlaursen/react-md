@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Sheet should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`Sheet > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
   aria-label="Sheet"
   class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width"
@@ -10,7 +10,7 @@ exports[`Sheet should apply the correct styling, HTMLAttributes, and allow a ref
 />
 `;
 
-exports[`Sheet should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`Sheet > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
   aria-label="Sheet"
   class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width custom-class-name"

@@ -1,11 +1,11 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`button should be callable without any arguments 1`] = `"rmd-button rmd-button--text rmd-interaction-surface"`;
+exports[`button > should be callable without any arguments 1`] = `"rmd-button rmd-button--text rmd-interaction-surface"`;
 
-exports[`button should force the buttonType to icon if the iconSize option exists 1`] = `"rmd-button rmd-button--icon rmd-button--small rmd-interaction-surface"`;
+exports[`button > should force the buttonType to icon if the iconSize option exists 1`] = `"rmd-button rmd-button--icon rmd-button--small rmd-interaction-surface"`;
 
-exports[`button should force the buttonType to icon if the iconSize option exists 2`] = `"rmd-button rmd-button--icon rmd-interaction-surface"`;
+exports[`button > should force the buttonType to icon if the iconSize option exists 2`] = `"rmd-button rmd-button--icon rmd-interaction-surface"`;
 
-exports[`button should force the buttonType to icon if the iconSize option exists 3`] = `"rmd-button rmd-button--icon rmd-button--large rmd-interaction-surface"`;
+exports[`button > should force the buttonType to icon if the iconSize option exists 3`] = `"rmd-button rmd-button--icon rmd-button--large rmd-interaction-surface"`;
 
-exports[`button should force the buttonType to icon if the iconSize option exists 4`] = `"rmd-button rmd-button--icon rmd-button--large rmd-interaction-surface"`;
+exports[`button > should force the buttonType to icon if the iconSize option exists 4`] = `"rmd-button rmd-button--icon rmd-button--large rmd-interaction-surface"`;

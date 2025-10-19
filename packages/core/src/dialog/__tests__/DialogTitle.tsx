@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it } from "vitest";
 
 import { render, screen } from "../../test-utils/index.js";
 import { DialogTitle } from "../DialogTitle.js";

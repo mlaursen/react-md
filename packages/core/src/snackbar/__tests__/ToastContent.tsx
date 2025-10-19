@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { render, screen, waitFor } from "../../test-utils/index.js";
 import { ToastContent } from "../ToastContent.js";
@@ -45,7 +45,7 @@ describe("ToastContent", () => {
       children: <p>Some text</p>,
     } as const;
 
-    const getComputedStyle = jest
+    const getComputedStyle = vi
       .spyOn(window, "getComputedStyle")
       .mockReturnValue(
         // @ts-expect-error
@@ -74,9 +74,7 @@ describe("ToastContent", () => {
         lineHeight: "22",
       }
     );
-    jest
-      .spyOn(HTMLElement.prototype, "scrollHeight", "get")
-      .mockReturnValue(120);
+    vi.spyOn(HTMLElement.prototype, "scrollHeight", "get").mockReturnValue(120);
     render(<ToastContent {...props} />);
     content = screen.getByTestId("content");
 

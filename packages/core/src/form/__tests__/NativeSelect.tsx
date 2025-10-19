@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import { FontIcon } from "../../icon/FontIcon.js";
@@ -189,7 +189,7 @@ describe("NativeSelect", () => {
 
     const label = screen.getByTestId("label");
     expect(label).toHaveStyle("background: orange");
-    expect(label).not.toHaveStyle("color: red");
+    expect(label).not.toHaveStyle("color: rgb(255, 0, 0)");
     expect(label).toHaveClass("label-props-class-name");
     expect(label).not.toHaveClass("label-class-name");
     expect(label).toMatchSnapshot();
@@ -208,7 +208,7 @@ describe("NativeSelect", () => {
     );
 
     expect(label).not.toHaveStyle("background: orange");
-    expect(label).toHaveStyle("color: red");
+    expect(label).toHaveStyle("color: rgb(255, 0, 0)");
     expect(label).not.toHaveClass("label-props-class-name");
     expect(label).toHaveClass("label-class-name");
     expect(label).toMatchSnapshot();
@@ -216,7 +216,7 @@ describe("NativeSelect", () => {
 
   it("should be able to be required and display a placeholder", async () => {
     const user = userEvent.setup();
-    const onSubmit = jest.fn();
+    const onSubmit = vi.fn();
     function Test() {
       return (
         <Form onSubmit={onSubmit}>
@@ -253,7 +253,7 @@ describe("NativeSelect", () => {
 
   it("should allow for multiselect behavior", async () => {
     const user = userEvent.setup();
-    const onSubmit = jest.fn();
+    const onSubmit = vi.fn();
     function Test() {
       return (
         <Form onSubmit={onSubmit}>

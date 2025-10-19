@@ -1,12 +1,13 @@
+import { type ReactElement } from "react";
 import {
+  type MockInstance,
   afterEach,
   beforeEach,
   describe,
   expect,
   it,
-  jest,
-} from "@jest/globals";
-import { type ReactElement } from "react";
+  vi,
+} from "vitest";
 
 import { fireEvent, render, screen } from "../test-utils/index.js";
 import { useEnsuredState } from "../useEnsuredState.js";
@@ -17,9 +18,9 @@ const CONTROLLED_ERROR =
 const MISSING_DEFAULT_VALUE_ERROR =
   "A `defaultValue` must be defined for uncontrolled components.";
 
-let error: jest.SpiedFunction<typeof console.error>;
+let error: MockInstance<typeof console.error>;
 beforeEach(() => {
-  error = jest.spyOn(console, "error").mockImplementation(() => {});
+  error = vi.spyOn(console, "error").mockImplementation(() => {});
 });
 
 afterEach(() => {

@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, createRef, useState } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { Avatar } from "../../avatar/Avatar.js";
 import { Button } from "../../button/Button.js";
@@ -316,8 +316,8 @@ describe("Select", () => {
 
   it("should update the active-descendant while mounting if transitions are not disabled", async () => {
     TRANSITION_CONFIG.disabled = false;
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
     const { user, select, rerender } = render({
       menuProps: { onEntering, onEntered },
     });
@@ -412,7 +412,7 @@ describe("Select", () => {
 
     it("should submit the form when the enter key is pressed while the listbox is not visible", async () => {
       const user = userEvent.setup();
-      const onSubmit = jest.fn();
+      const onSubmit = vi.fn();
       rmdRender(
         <Form name="form" onSubmit={onSubmit}>
           <Test />

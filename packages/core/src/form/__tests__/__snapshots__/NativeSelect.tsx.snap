@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`NativeSelect should allow for addons before and after the input 1`] = `
+exports[`NativeSelect > should allow for addons before and after the input 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-left rmd-text-field-container--outline-right rmd-native-select-container"
   data-testid="container"
@@ -46,7 +46,7 @@ exports[`NativeSelect should allow for addons before and after the input 1`] = `
 </div>
 `;
 
-exports[`NativeSelect should allow for multiselect behavior 1`] = `
+exports[`NativeSelect > should allow for multiselect behavior 1`] = `
 <select
   class="rmd-native-select rmd-native-select--icon"
   id="select-:rc:"
@@ -74,7 +74,7 @@ exports[`NativeSelect should allow for multiselect behavior 1`] = `
 </select>
 `;
 
-exports[`NativeSelect should allow for multiselect behavior 2`] = `
+exports[`NativeSelect > should allow for multiselect behavior 2`] = `
 <select
   class="rmd-native-select rmd-native-select--icon"
   id="select-:rc:"
@@ -102,7 +102,7 @@ exports[`NativeSelect should allow for multiselect behavior 2`] = `
 </select>
 `;
 
-exports[`NativeSelect should allow the active state to be controlled programmatically instead of with css only by using the active prop 1`] = `
+exports[`NativeSelect > should allow the active state to be controlled programmatically instead of with css only by using the active prop 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--outline-right rmd-native-select-container"
   data-testid="container"
@@ -130,7 +130,7 @@ exports[`NativeSelect should allow the active state to be controlled programmati
 </div>
 `;
 
-exports[`NativeSelect should allow the active state to be controlled programmatically instead of with css only by using the active prop 2`] = `
+exports[`NativeSelect > should allow the active state to be controlled programmatically instead of with css only by using the active prop 2`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--outline-active rmd-text-field-container--outline-right rmd-native-select-container"
   data-testid="container"
@@ -158,7 +158,7 @@ exports[`NativeSelect should allow the active state to be controlled programmati
 </div>
 `;
 
-exports[`NativeSelect should allow the active state to be controlled programmatically instead of with css only by using the active prop 3`] = `
+exports[`NativeSelect > should allow the active state to be controlled programmatically instead of with css only by using the active prop 3`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-native-select-container"
   data-testid="container"
@@ -192,7 +192,7 @@ exports[`NativeSelect should allow the active state to be controlled programmati
 </div>
 `;
 
-exports[`NativeSelect should allow the active state to be controlled programmatically instead of with css only by using the active prop 4`] = `
+exports[`NativeSelect > should allow the active state to be controlled programmatically instead of with css only by using the active prop 4`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--label rmd-text-field-container--outline-active rmd-text-field-container--outline-right rmd-native-select-container"
   data-testid="container"
@@ -226,7 +226,7 @@ exports[`NativeSelect should allow the active state to be controlled programmati
 </div>
 `;
 
-exports[`NativeSelect should allow the label to by styled by labelProps or the labelStyle/labelClassName 1`] = `
+exports[`NativeSelect > should allow the label to by styled by labelProps or the labelStyle/labelClassName 1`] = `
 <label
   class="rmd-label rmd-label--floating label-props-class-name"
   data-testid="label"
@@ -237,7 +237,7 @@ exports[`NativeSelect should allow the label to by styled by labelProps or the l
 </label>
 `;
 
-exports[`NativeSelect should allow the label to by styled by labelProps or the labelStyle/labelClassName 2`] = `
+exports[`NativeSelect > should allow the label to by styled by labelProps or the labelStyle/labelClassName 2`] = `
 <label
   class="rmd-label rmd-label--floating label-class-name"
   data-testid="label"
@@ -248,7 +248,7 @@ exports[`NativeSelect should allow the label to by styled by labelProps or the l
 </label>
 `;
 
-exports[`NativeSelect should apply the correct styles, HTMLAttributes, and allow a ref 1`] = `
+exports[`NativeSelect > should apply the correct styles, HTMLAttributes, and allow a ref 1`] = `
 <select
   class="rmd-native-select rmd-native-select--icon"
   id="select-:r0:"
@@ -261,7 +261,7 @@ exports[`NativeSelect should apply the correct styles, HTMLAttributes, and allow
 </select>
 `;
 
-exports[`NativeSelect should apply the correct styles, HTMLAttributes, and allow a ref 2`] = `
+exports[`NativeSelect > should apply the correct styles, HTMLAttributes, and allow a ref 2`] = `
 <select
   class="rmd-native-select rmd-native-select--icon"
   id="select-:r0:"
@@ -274,7 +274,7 @@ exports[`NativeSelect should apply the correct styles, HTMLAttributes, and allow
 </select>
 `;
 
-exports[`NativeSelect should automatically merge the error and theme props when messageProps have been defined 1`] = `
+exports[`NativeSelect > should automatically merge the error and theme props when messageProps have been defined 1`] = `
 <div
   class="rmd-form-message-container"
   data-testid="message-container"
@@ -324,7 +324,7 @@ exports[`NativeSelect should automatically merge the error and theme props when 
 </div>
 `;
 
-exports[`NativeSelect should render the FormMessageContainer when the messageProps have been defined 1`] = `
+exports[`NativeSelect > should render the FormMessageContainer when the messageProps have been defined 1`] = `
 <div
   class="rmd-form-message-container"
   data-testid="message-container"
@@ -374,7 +374,7 @@ exports[`NativeSelect should render the FormMessageContainer when the messagePro
 </div>
 `;
 
-exports[`NativeSelect should render the FormMessageContainer when the messageProps have been defined 2`] = `
+exports[`NativeSelect > should render the FormMessageContainer when the messageProps have been defined 2`] = `
 <div
   class="rmd-form-message-container rmd-form-message-container--inline"
   data-testid="message-container"
@@ -424,7 +424,7 @@ exports[`NativeSelect should render the FormMessageContainer when the messagePro
 </div>
 `;
 
-exports[`NativeSelect should support an error state 1`] = `
+exports[`NativeSelect > should support an error state 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-error rmd-text-field-container--outline-right rmd-error-color rmd-native-select-container"
   data-testid="container"
@@ -458,7 +458,7 @@ exports[`NativeSelect should support an error state 1`] = `
 </div>
 `;
 
-exports[`NativeSelect should support the disabled state 1`] = `
+exports[`NativeSelect > should support the disabled state 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--disabled rmd-text-field-container--label rmd-text-field-container--outline-right rmd-text-disabled-color rmd-native-select-container"
   data-testid="container"
@@ -493,7 +493,7 @@ exports[`NativeSelect should support the disabled state 1`] = `
 </div>
 `;
 
-exports[`NativeSelect should support the readOnly state 1`] = `
+exports[`NativeSelect > should support the readOnly state 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--disabled rmd-text-field-container--hoverable rmd-text-field-container--outline-right rmd-native-select-container"
   data-testid="container"

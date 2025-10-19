@@ -1,6 +1,6 @@
-/** @jest-environment node */
-import { describe, expect, it } from "@jest/globals";
+/** @vitest-environment node */
 import { renderToStaticMarkup } from "react-dom/server";
+import { describe, expect, it } from "vitest";
 
 import { AppSizeProvider, useAppSize } from "../AppSizeProvider.js";
 import { type AppSize } from "../appSize.js";

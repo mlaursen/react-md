@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
+import { describe, expect, it } from "vitest";
 
 import { fireEvent, render, screen } from "../test-utils/index.js";
 import { useToggle } from "../useToggle.js";

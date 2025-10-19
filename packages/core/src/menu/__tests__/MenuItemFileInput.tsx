@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { useFileUpload } from "../../files/useFileUpload.js";
 import {
@@ -11,7 +11,7 @@ import {
   userEvent,
   waitFor,
 } from "../../test-utils/index.js";
-import { uploadMenuItemFileUpload } from "../../test-utils/jest-globals/index.js";
+import { uploadMenuItemFileUpload } from "../../test-utils/vitest/index.js";
 import { DropdownMenu } from "../DropdownMenu.js";
 import { MenuItemFileInput } from "../MenuItemFileInput.js";
 
@@ -20,7 +20,7 @@ describe("MenuItemFileInput", () => {
     const ref = createRef<HTMLLIElement>();
     const props = {
       ref,
-      onChange: jest.fn(),
+      onChange: vi.fn(),
       children: "Upload",
     };
     const { rerender } = render(<MenuItemFileInput {...props} />);
@@ -36,14 +36,14 @@ describe("MenuItemFileInput", () => {
         className="custom-class-name"
       />
     );
-    expect(menuItem).toHaveStyle("color: orange");
+    expect(menuItem).toHaveStyle("color: rgb(255, 165, 0)");
     expect(menuItem).toHaveClass("custom-class-name");
     expect(menuItem).toMatchSnapshot();
   });
 
   it("should default to using the upload icon as the leftAddon", () => {
     const { rerender } = render(
-      <MenuItemFileInput onChange={jest.fn()}>Upload</MenuItemFileInput>
+      <MenuItemFileInput onChange={vi.fn()}>Upload</MenuItemFileInput>
     );
     const menuItem = screen.getByRole("menuitem", { name: "Upload" });
     expect(menuItem.querySelector(".rmd-icon")).toMatchSnapshot();
@@ -51,7 +51,7 @@ describe("MenuItemFileInput", () => {
 
     rerender(
       <MenuItemFileInput
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         leftAddon={<span data-testid="icon" />}
       >
         Upload
@@ -64,19 +64,19 @@ describe("MenuItemFileInput", () => {
 
   it("should be able to upload files when clicked", async () => {
     const user = userEvent.setup();
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(<MenuItemFileInput onChange={onChange}>Upload</MenuItemFileInput>);
     const menuItem = screen.getByRole("menuitem", { name: "Upload" });
 
     const file = new File(["example"], "example.txt");
     const input = document.createElement("input");
-    jest.spyOn(input, "click").mockImplementation(() => {
+    vi.spyOn(input, "click").mockImplementation(() => {
       fireEvent.change(input, {
         target: { files: createFileList(window, file) },
       });
     });
 
-    jest.spyOn(document, "createElement").mockReturnValueOnce(input);
+    vi.spyOn(document, "createElement").mockReturnValueOnce(input);
 
     await user.click(menuItem);
     expect(input.type).toBe("file");
@@ -85,10 +85,10 @@ describe("MenuItemFileInput", () => {
 
   it("should allow the stopPropagation behavior in menus", async () => {
     const user = userEvent.setup();
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const file = new File(["example"], "example.txt");
     const input = document.createElement("input");
-    jest.spyOn(input, "click").mockImplementation(() => {
+    vi.spyOn(input, "click").mockImplementation(() => {
       fireEvent.change(input, {
         target: { files: createFileList(window, file) },
       });
@@ -104,7 +104,7 @@ describe("MenuItemFileInput", () => {
     await user.click(button);
 
     let upload = screen.getByRole("menuitem", { name: "Upload" });
-    jest.spyOn(document, "createElement").mockReturnValueOnce(input);
+    vi.spyOn(document, "createElement").mockReturnValueOnce(input);
     await user.click(upload);
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(upload).not.toBeInTheDocument();
@@ -118,7 +118,7 @@ describe("MenuItemFileInput", () => {
       </DropdownMenu>
     );
     upload = screen.getByRole("menuitem", { name: "Upload" });
-    jest.spyOn(document, "createElement").mockReturnValueOnce(input);
+    vi.spyOn(document, "createElement").mockReturnValueOnce(input);
     await user.click(upload);
     expect(upload).toBeInTheDocument();
     expect(onChange).toHaveBeenCalledTimes(2);
@@ -126,21 +126,21 @@ describe("MenuItemFileInput", () => {
 
   it("should pass the useful input element props down when they are provided", async () => {
     const user = userEvent.setup();
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { rerender } = render(
       <MenuItemFileInput onChange={onChange}>Upload</MenuItemFileInput>
     );
     const menuItem = screen.getByRole("menuitem", { name: "Upload" });
 
     const input = document.createElement("input");
-    const capture = jest.fn();
-    // `jest.spyOn(input, 'capture', 'set')` throws "Property `capture` does not exist on..."
+    const capture = vi.fn();
+    // `vi.spyOn(input, 'capture', 'set')` throws "Property `capture` does not exist on..."
     Object.defineProperty(input, "capture", {
       set: capture,
     });
-    const accept = jest.spyOn(input, "accept", "set");
-    const multiple = jest.spyOn(input, "multiple", "set");
-    jest.spyOn(document, "createElement").mockReturnValueOnce(input);
+    const accept = vi.spyOn(input, "accept", "set");
+    const multiple = vi.spyOn(input, "multiple", "set");
+    vi.spyOn(document, "createElement").mockReturnValueOnce(input);
     await user.click(menuItem);
     expect(accept).not.toHaveBeenCalled();
     expect(capture).not.toHaveBeenCalled();
@@ -152,7 +152,7 @@ describe("MenuItemFileInput", () => {
       </MenuItemFileInput>
     );
 
-    jest.spyOn(document, "createElement").mockReturnValueOnce(input);
+    vi.spyOn(document, "createElement").mockReturnValueOnce(input);
     await user.click(menuItem);
     expect(accept).toHaveBeenCalledWith("video/*");
     expect(capture).toHaveBeenCalledWith("");
@@ -168,7 +168,7 @@ describe("MenuItemFileInput", () => {
         Upload
       </MenuItemFileInput>
     );
-    jest.spyOn(document, "createElement").mockReturnValueOnce(input);
+    vi.spyOn(document, "createElement").mockReturnValueOnce(input);
     await user.click(menuItem);
     expect(accept).toHaveBeenCalledWith("image/*");
     expect(capture).toHaveBeenCalledWith("user");

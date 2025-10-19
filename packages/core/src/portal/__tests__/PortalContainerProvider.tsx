@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@jest/globals";
 import { type ReactElement, useRef } from "react";
+import { describe, expect, it } from "vitest";
 
 import { render, screen } from "../../test-utils/index.js";
 import { Portal } from "../Portal.js";

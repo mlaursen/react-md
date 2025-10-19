@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`card should be callable without any arguments 1`] = `"rmd-card rmd-card--shadowed"`;
+exports[`card > should be callable without any arguments 1`] = `"rmd-card rmd-card--shadowed"`;
 
-exports[`cardFooter should be callable without any arguments 1`] = `"rmd-card__footer"`;
+exports[`cardFooter > should be callable without any arguments 1`] = `"rmd-card__footer"`;
 
-exports[`cardHeader should be callable without any arguments 1`] = `"rmd-card__header"`;
+exports[`cardHeader > should be callable without any arguments 1`] = `"rmd-card__header"`;
 
-exports[`cardHeaderContent should be callable without any arguments 1`] = `"rmd-card__header-content"`;
+exports[`cardHeaderContent > should be callable without any arguments 1`] = `"rmd-card__header-content"`;
 
-exports[`cardSubtitle should be callable without any arguments 1`] = `"rmd-card__subtitle"`;
+exports[`cardSubtitle > should be callable without any arguments 1`] = `"rmd-card__subtitle"`;
 
-exports[`cardTitle should be callable without any arguments 1`] = `"rmd-card__title"`;
+exports[`cardTitle > should be callable without any arguments 1`] = `"rmd-card__title"`;

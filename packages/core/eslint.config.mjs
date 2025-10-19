@@ -5,8 +5,8 @@ import { join } from "node:path";
 const strict = process.env.STRICT_TYPING === "true";
 
 const frontend = strict
-  ? configs.frontendTypeChecking(import.meta.dirname, "jest")
-  : configs.frontend("jest");
+  ? configs.frontendTypeChecking(import.meta.dirname, "vitest")
+  : configs.frontend("vitest");
 
 export default defineConfig(
   gitignore(join(import.meta.url, "..", "..")),

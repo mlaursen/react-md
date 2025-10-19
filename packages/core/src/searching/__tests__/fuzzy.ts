@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, vi } from "vitest";
 
 import { fuzzySearch } from "../fuzzy.js";
 
@@ -97,7 +97,7 @@ describe("fuzzySearch", () => {
   });
 
   it("should lazy-create the regexp", () => {
-    const reg = jest.spyOn(global, "RegExp");
+    const reg = vi.spyOn(global, "RegExp");
 
     const list = Array.from({ length: 100000 }, (_, i) => `${i} Item`);
     fuzzySearch({ list, query: "1" });

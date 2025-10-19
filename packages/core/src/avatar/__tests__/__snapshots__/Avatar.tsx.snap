@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Avatar should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Avatar > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <span
   aria-hidden="true"
   class="rmd-avatar"
@@ -8,7 +8,7 @@ exports[`Avatar should apply the correct styling, HTML attributes, and allow a r
 />
 `;
 
-exports[`Avatar should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Avatar > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <span
   aria-hidden="true"
   class="rmd-avatar custom-class-name"
@@ -17,7 +17,7 @@ exports[`Avatar should apply the correct styling, HTML attributes, and allow a r
 />
 `;
 
-exports[`Avatar should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`Avatar > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <span
   aria-hidden="true"
   class="rmd-avatar rmd-avatar--purple"
@@ -26,7 +26,7 @@ exports[`Avatar should apply the correct styling, HTML attributes, and allow a r
 />
 `;
 
-exports[`Avatar should render an img if a src or imgProps are provided 1`] = `
+exports[`Avatar > should render an img if a src or imgProps are provided 1`] = `
 <span
   aria-hidden="true"
   class="rmd-avatar"
@@ -40,7 +40,7 @@ exports[`Avatar should render an img if a src or imgProps are provided 1`] = `
 </span>
 `;
 
-exports[`Avatar should render an img if a src or imgProps are provided 2`] = `
+exports[`Avatar > should render an img if a src or imgProps are provided 2`] = `
 <span
   aria-hidden="true"
   class="rmd-avatar"
@@ -55,7 +55,7 @@ exports[`Avatar should render an img if a src or imgProps are provided 2`] = `
 </span>
 `;
 
-exports[`Avatar should render an img if a src or imgProps are provided 3`] = `
+exports[`Avatar > should render an img if a src or imgProps are provided 3`] = `
 <span
   aria-hidden="true"
   class="rmd-avatar"
@@ -70,4 +70,4 @@ exports[`Avatar should render an img if a src or imgProps are provided 3`] = `
 </span>
 `;
 
-exports[`Avatar styling utils should allow the avatarImage to be called without any parameters 1`] = `"rmd-avatar__image"`;
+exports[`Avatar > styling utils > should allow the avatarImage to be called without any parameters 1`] = `"rmd-avatar__image"`;

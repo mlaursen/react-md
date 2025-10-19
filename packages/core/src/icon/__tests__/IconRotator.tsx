@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@jest/globals";
 import { cnb } from "cnbuilder";
+import { describe, expect, it } from "vitest";
 
 import { render, screen } from "../../test-utils/index.js";
 import { FontIcon } from "../FontIcon.js";

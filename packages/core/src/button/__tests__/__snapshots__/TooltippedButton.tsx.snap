@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TooltippedButton should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`TooltippedButton > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <button
   class="rmd-button rmd-button--icon rmd-interaction-surface"
   id=":r0:"
@@ -12,7 +12,7 @@ exports[`TooltippedButton should apply the correct styling, HTML attributes, and
 </button>
 `;
 
-exports[`TooltippedButton should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`TooltippedButton > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <button
   class="rmd-button rmd-button--icon rmd-interaction-surface custom-class-name"
   id=":r0:"

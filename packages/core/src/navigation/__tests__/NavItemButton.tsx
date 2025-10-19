@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, type Ref, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { type IconRotatorBaseProps } from "../../icon/IconRotator.js";
 import {
@@ -94,13 +94,14 @@ describe("NavItemButton", () => {
     const button = screen.getByRole("button", { name: "Content" });
 
     const content = screen.getByTestId("content");
-    jest.spyOn(content, "scrollWidth", "get").mockReturnValue(300);
+    vi.spyOn(content, "scrollWidth", "get").mockReturnValue(300);
 
     const rect = content.getBoundingClientRect();
-    jest.spyOn(content, "offsetWidth", "get").mockReturnValue(150);
-    jest
-      .spyOn(content, "getBoundingClientRect")
-      .mockReturnValue({ ...rect, width: 150 });
+    vi.spyOn(content, "offsetWidth", "get").mockReturnValue(150);
+    vi.spyOn(content, "getBoundingClientRect").mockReturnValue({
+      ...rect,
+      width: 150,
+    });
 
     await user.hover(button);
     const tooltip = await screen.findByRole("tooltip", {

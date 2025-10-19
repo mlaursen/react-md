@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Legend should allow some of the label styles 1`] = `
+exports[`Legend > should allow some of the label styles 1`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--dense rmd-label--floating rmd-label--floating-dense rmd-label--floating-active"
   data-testid="legend"
@@ -9,7 +9,7 @@ exports[`Legend should allow some of the label styles 1`] = `
 </legend>
 `;
 
-exports[`Legend should allow some of the label styles 2`] = `
+exports[`Legend > should allow some of the label styles 2`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-underline rmd-label rmd-label--floating rmd-label--floating-active"
   data-testid="legend"
@@ -18,7 +18,7 @@ exports[`Legend should allow some of the label styles 2`] = `
 </legend>
 `;
 
-exports[`Legend should allow some of the label styles 3`] = `
+exports[`Legend > should allow some of the label styles 3`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active"
   data-testid="legend"
@@ -27,7 +27,7 @@ exports[`Legend should allow some of the label styles 3`] = `
 </legend>
 `;
 
-exports[`Legend should allow some of the label styles 4`] = `
+exports[`Legend > should allow some of the label styles 4`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--error rmd-label--floating rmd-label--floating-active rmd-error-color"
   data-testid="legend"
@@ -36,7 +36,7 @@ exports[`Legend should allow some of the label styles 4`] = `
 </legend>
 `;
 
-exports[`Legend should allow some of the label styles 5`] = `
+exports[`Legend > should allow some of the label styles 5`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--disabled rmd-label--floating rmd-label--floating-active rmd-text-disabled-color"
   data-testid="legend"
@@ -45,7 +45,7 @@ exports[`Legend should allow some of the label styles 5`] = `
 </legend>
 `;
 
-exports[`Legend should allow some of the label styles 6`] = `
+exports[`Legend > should allow some of the label styles 6`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--gap rmd-label--floating rmd-label--stacked-reversed rmd-label--floating-active"
   data-testid="legend"
@@ -54,7 +54,7 @@ exports[`Legend should allow some of the label styles 6`] = `
 </legend>
 `;
 
-exports[`Legend should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Legend > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend"
   data-testid="legend"
@@ -63,7 +63,7 @@ exports[`Legend should apply the correct styling, HTML attributes, and allow a r
 </legend>
 `;
 
-exports[`Legend should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Legend > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend custom-class-name"
   data-testid="legend"
@@ -73,7 +73,7 @@ exports[`Legend should apply the correct styling, HTML attributes, and allow a r
 </legend>
 `;
 
-exports[`Legend should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`Legend > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend rmd-sr-only"
   data-testid="legend"
@@ -83,7 +83,7 @@ exports[`Legend should apply the correct styling, HTML attributes, and allow a r
 </legend>
 `;
 
-exports[`Legend should ignore the label props if floating is not true 1`] = `
+exports[`Legend > should ignore the label props if floating is not true 1`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend"
   data-testid="legend"
@@ -92,7 +92,7 @@ exports[`Legend should ignore the label props if floating is not true 1`] = `
 </legend>
 `;
 
-exports[`Legend should ignore the label props if floating is not true 2`] = `
+exports[`Legend > should ignore the label props if floating is not true 2`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend"
   data-testid="legend"
@@ -101,7 +101,7 @@ exports[`Legend should ignore the label props if floating is not true 2`] = `
 </legend>
 `;
 
-exports[`Legend should ignore the label props if floating is not true 3`] = `
+exports[`Legend > should ignore the label props if floating is not true 3`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend"
   data-testid="legend"
@@ -110,7 +110,7 @@ exports[`Legend should ignore the label props if floating is not true 3`] = `
 </legend>
 `;
 
-exports[`Legend should ignore the label props if floating is not true 4`] = `
+exports[`Legend > should ignore the label props if floating is not true 4`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend"
   data-testid="legend"
@@ -119,7 +119,7 @@ exports[`Legend should ignore the label props if floating is not true 4`] = `
 </legend>
 `;
 
-exports[`Legend should ignore the label props if floating is not true 5`] = `
+exports[`Legend > should ignore the label props if floating is not true 5`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend"
   data-testid="legend"
@@ -128,7 +128,7 @@ exports[`Legend should ignore the label props if floating is not true 5`] = `
 </legend>
 `;
 
-exports[`Legend should ignore the label props if floating is not true 6`] = `
+exports[`Legend > should ignore the label props if floating is not true 6`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend"
   data-testid="legend"
@@ -137,7 +137,7 @@ exports[`Legend should ignore the label props if floating is not true 6`] = `
 </legend>
 `;
 
-exports[`Legend should support being styled as a floating label 1`] = `
+exports[`Legend > should support being styled as a floating label 1`] = `
 <legend
   class="rmd-typography rmd-typography--body-1 rmd-legend rmd-legend--floating rmd-legend--floating-outline rmd-label rmd-label--floating rmd-label--floating-active"
   data-testid="legend"
@@ -146,4 +146,4 @@ exports[`Legend should support being styled as a floating label 1`] = `
 </legend>
 `;
 
-exports[`Legend styling utility class should be callable without any arguments 1`] = `"rmd-legend"`;
+exports[`Legend > styling utility class > should be callable without any arguments 1`] = `"rmd-legend"`;

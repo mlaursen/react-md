@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Chip selectable chips should allow for a custom selectedIcon 1`] = `
+exports[`Chip > selectable chips > should allow for a custom selectedIcon 1`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -19,7 +19,7 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 1`] = `
 </button>
 `;
 
-exports[`Chip selectable chips should allow for a custom selectedIcon 2`] = `
+exports[`Chip > selectable chips > should allow for a custom selectedIcon 2`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon rmd-interaction-surface"
@@ -39,7 +39,7 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 2`] = `
 </button>
 `;
 
-exports[`Chip selectable chips should allow for a custom selectedIcon 3`] = `
+exports[`Chip > selectable chips > should allow for a custom selectedIcon 3`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -53,7 +53,7 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 3`] = `
 </button>
 `;
 
-exports[`Chip selectable chips should allow for a custom selectedIcon 4`] = `
+exports[`Chip > selectable chips > should allow for a custom selectedIcon 4`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon rmd-interaction-surface"
@@ -68,7 +68,7 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 4`] = `
 </button>
 `;
 
-exports[`Chip selectable chips should allow for a custom selectedIcon 5`] = `
+exports[`Chip > selectable chips > should allow for a custom selectedIcon 5`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -82,7 +82,7 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 5`] = `
 </button>
 `;
 
-exports[`Chip selectable chips should allow for a custom selectedIcon 6`] = `
+exports[`Chip > selectable chips > should allow for a custom selectedIcon 6`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--right-addon rmd-interaction-surface"
@@ -97,7 +97,7 @@ exports[`Chip selectable chips should allow for a custom selectedIcon 6`] = `
 </button>
 `;
 
-exports[`Chip selectable chips should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 1`] = `
+exports[`Chip > selectable chips > should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 1`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -116,7 +116,7 @@ exports[`Chip selectable chips should apply rmd-display-none to the icon if the 
 </button>
 `;
 
-exports[`Chip selectable chips should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 2`] = `
+exports[`Chip > selectable chips > should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 2`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon rmd-interaction-surface"
@@ -136,7 +136,7 @@ exports[`Chip selectable chips should apply rmd-display-none to the icon if the 
 </button>
 `;
 
-exports[`Chip selectable chips should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 3`] = `
+exports[`Chip > selectable chips > should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 3`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -155,7 +155,7 @@ exports[`Chip selectable chips should apply rmd-display-none to the icon if the 
 </button>
 `;
 
-exports[`Chip selectable chips should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 4`] = `
+exports[`Chip > selectable chips > should apply rmd-display-none to the icon if the disableIconTransition prop is enabled 4`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--right-addon rmd-interaction-surface"
@@ -175,7 +175,7 @@ exports[`Chip selectable chips should apply rmd-display-none to the icon if the 
 </button>
 `;
 
-exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 1`] = `
+exports[`Chip > selectable chips > should apply the selected icon when the selectedThemed prop is not true 1`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -194,7 +194,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 </button>
 `;
 
-exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 2`] = `
+exports[`Chip > selectable chips > should apply the selected icon when the selectedThemed prop is not true 2`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon rmd-interaction-surface"
@@ -214,7 +214,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 </button>
 `;
 
-exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 3`] = `
+exports[`Chip > selectable chips > should apply the selected icon when the selectedThemed prop is not true 3`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -233,7 +233,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 </button>
 `;
 
-exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 4`] = `
+exports[`Chip > selectable chips > should apply the selected icon when the selectedThemed prop is not true 4`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon rmd-interaction-surface"
@@ -253,7 +253,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 </button>
 `;
 
-exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 5`] = `
+exports[`Chip > selectable chips > should apply the selected icon when the selectedThemed prop is not true 5`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-chip--left-addon rmd-interaction-surface"
   type="button"
@@ -278,7 +278,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 </button>
 `;
 
-exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 6`] = `
+exports[`Chip > selectable chips > should apply the selected icon when the selectedThemed prop is not true 6`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon rmd-chip--right-addon rmd-interaction-surface"
@@ -304,7 +304,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 </button>
 `;
 
-exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 7`] = `
+exports[`Chip > selectable chips > should apply the selected icon when the selectedThemed prop is not true 7`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-chip--right-addon rmd-interaction-surface"
   type="button"
@@ -329,7 +329,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 </button>
 `;
 
-exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 8`] = `
+exports[`Chip > selectable chips > should apply the selected icon when the selectedThemed prop is not true 8`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--left-addon rmd-chip--right-addon rmd-interaction-surface"
@@ -355,7 +355,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 </button>
 `;
 
-exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 9`] = `
+exports[`Chip > selectable chips > should apply the selected icon when the selectedThemed prop is not true 9`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -374,7 +374,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 </button>
 `;
 
-exports[`Chip selectable chips should apply the selected icon when the selectedThemed prop is not true 10`] = `
+exports[`Chip > selectable chips > should apply the selected icon when the selectedThemed prop is not true 10`] = `
 <button
   aria-pressed="true"
   class="rmd-chip rmd-chip--selected rmd-chip--solid rmd-chip--right-addon rmd-interaction-surface"
@@ -394,7 +394,7 @@ exports[`Chip selectable chips should apply the selected icon when the selectedT
 </button>
 `;
 
-exports[`Chip should allow for addons to appear before and after the children 1`] = `
+exports[`Chip > should allow for addons to appear before and after the children 1`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-chip--left-addon rmd-chip--right-addon rmd-interaction-surface"
   type="button"
@@ -419,7 +419,7 @@ exports[`Chip should allow for addons to appear before and after the children 1`
 </button>
 `;
 
-exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Chip > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -432,7 +432,7 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
 </button>
 `;
 
-exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Chip > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface custom-class-name"
   style="color: white;"
@@ -446,7 +446,7 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
 </button>
 `;
 
-exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`Chip > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-chip--disabled rmd-text-disabled-color rmd-interaction-surface"
   disabled=""
@@ -461,7 +461,7 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
 </button>
 `;
 
-exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+exports[`Chip > should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <button
   class="rmd-chip rmd-chip--outline rmd-interaction-surface"
   style=""
@@ -475,7 +475,7 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
 </button>
 `;
 
-exports[`Chip should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+exports[`Chip > should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <button
   class="rmd-chip rmd-chip--outline rmd-chip--disabled rmd-text-disabled-color rmd-interaction-surface"
   disabled=""
@@ -490,7 +490,7 @@ exports[`Chip should apply the correct styling, HTML attributes, and allow a ref
 </button>
 `;
 
-exports[`Chip should apply the pressed class name while raisable 1`] = `
+exports[`Chip > should apply the pressed class name while raisable 1`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-chip--pressed rmd-pressed rmd-interaction-surface"
   type="button"
@@ -503,7 +503,7 @@ exports[`Chip should apply the pressed class name while raisable 1`] = `
 </button>
 `;
 
-exports[`Chip should apply the pressed class name while raisable 2`] = `
+exports[`Chip > should apply the pressed class name while raisable 2`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -516,7 +516,7 @@ exports[`Chip should apply the pressed class name while raisable 2`] = `
 </button>
 `;
 
-exports[`Chip should apply the pressed class name while raisable 3`] = `
+exports[`Chip > should apply the pressed class name while raisable 3`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-pressed rmd-interaction-surface"
   type="button"
@@ -529,7 +529,7 @@ exports[`Chip should apply the pressed class name while raisable 3`] = `
 </button>
 `;
 
-exports[`Chip should apply the pressed class name while raisable 4`] = `
+exports[`Chip > should apply the pressed class name while raisable 4`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -542,7 +542,7 @@ exports[`Chip should apply the pressed class name while raisable 4`] = `
 </button>
 `;
 
-exports[`Chip should render as a span when the noninteractive prop is enabled 1`] = `
+exports[`Chip > should render as a span when the noninteractive prop is enabled 1`] = `
 <span
   class="rmd-chip rmd-chip--solid"
   data-testid="chip"
@@ -555,7 +555,7 @@ exports[`Chip should render as a span when the noninteractive prop is enabled 1`
 </span>
 `;
 
-exports[`Chip should render as a span when the noninteractive prop is enabled 2`] = `
+exports[`Chip > should render as a span when the noninteractive prop is enabled 2`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   data-testid="chip"
@@ -569,7 +569,7 @@ exports[`Chip should render as a span when the noninteractive prop is enabled 2`
 </button>
 `;
 
-exports[`Chip should wrap the children in an additional span unless the disableContentWrap prop is enabled 1`] = `
+exports[`Chip > should wrap the children in an additional span unless the disableContentWrap prop is enabled 1`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"
@@ -583,7 +583,7 @@ exports[`Chip should wrap the children in an additional span unless the disableC
 </button>
 `;
 
-exports[`Chip should wrap the children in an additional span unless the disableContentWrap prop is enabled 2`] = `
+exports[`Chip > should wrap the children in an additional span unless the disableContentWrap prop is enabled 2`] = `
 <button
   class="rmd-chip rmd-chip--solid rmd-interaction-surface"
   type="button"

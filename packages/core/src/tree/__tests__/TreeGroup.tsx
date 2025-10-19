@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { TreeGroup } from "../TreeGroup.js";
@@ -7,7 +7,7 @@ import { TreeProvider } from "../TreeProvider.js";
 
 describe("TreeGroup", () => {
   it("should throw an error if not wrapped in a TreeProvider", () => {
-    const error = jest.spyOn(console, "error").mockImplementation(() => {});
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() =>
       render(
         <TreeGroup depth={1} collapsed={false}>
@@ -20,10 +20,10 @@ describe("TreeGroup", () => {
   });
 
   it("should stop propagation for click and mousedown events to prevent parent actions from firing", () => {
-    const onClick = jest.fn();
-    const onMouseDown = jest.fn();
-    const parentOnClick = jest.fn();
-    const parentOnMouseDown = jest.fn();
+    const onClick = vi.fn();
+    const onMouseDown = vi.fn();
+    const parentOnClick = vi.fn();
+    const parentOnMouseDown = vi.fn();
     render(
       <div onClick={parentOnClick} onMouseDown={parentOnMouseDown}>
         <TreeProvider
@@ -34,7 +34,7 @@ describe("TreeGroup", () => {
           expandedIds={new Set()}
           expanderIcon={null}
           expanderLeft={false}
-          expandMultipleTreeItems={jest.fn()}
+          expandMultipleTreeItems={vi.fn()}
           expansionMode="auto"
           metadataLookup={{
             current: {
@@ -46,9 +46,9 @@ describe("TreeGroup", () => {
           }}
           rootId={null}
           selectedIds={new Set()}
-          selectMultipleTreeItems={jest.fn()}
-          toggleTreeItemExpansion={jest.fn()}
-          toggleTreeItemSelection={jest.fn()}
+          selectMultipleTreeItems={vi.fn()}
+          toggleTreeItemExpansion={vi.fn()}
+          toggleTreeItemSelection={vi.fn()}
           multiSelect={false}
         >
           <TreeGroup

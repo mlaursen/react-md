@@ -1,20 +1,20 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`MenuItemSeparator > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <li
   class="rmd-divider"
   role="separator"
 />
 `;
 
-exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`MenuItemSeparator > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <li
   class="rmd-divider rmd-divider--inset"
   role="separator"
 />
 `;
 
-exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+exports[`MenuItemSeparator > should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
 <li
   aria-orientation="vertical"
   class="rmd-divider rmd-divider--vertical"
@@ -22,7 +22,7 @@ exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and
 />
 `;
 
-exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+exports[`MenuItemSeparator > should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
 <li
   aria-orientation="vertical"
   class="rmd-divider rmd-divider--vertical"
@@ -30,7 +30,7 @@ exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and
 />
 `;
 
-exports[`MenuItemSeparator should apply the correct styling, HTMLAttributes, and allow a ref 5`] = `
+exports[`MenuItemSeparator > should apply the correct styling, HTMLAttributes, and allow a ref 5`] = `
 <li
   class="rmd-divider custom-class-name"
   role="separator"

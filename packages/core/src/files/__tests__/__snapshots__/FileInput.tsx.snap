@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`FileInput should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`FileInput > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
   data-testid="label"
@@ -25,7 +25,7 @@ exports[`FileInput should apply the correct styling, HTMLAttributes, and allow a
 </label>
 `;
 
-exports[`FileInput should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`FileInput > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface custom-class-name"
   data-testid="label"
@@ -51,7 +51,7 @@ exports[`FileInput should apply the correct styling, HTMLAttributes, and allow a
 </label>
 `;
 
-exports[`FileInput should render as an icon button unless children are provided which will then render the icon and the text 1`] = `
+exports[`FileInput > should render as an icon button unless children are provided which will then render the icon and the text 1`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
   data-testid="label"
@@ -76,7 +76,7 @@ exports[`FileInput should render as an icon button unless children are provided 
 </label>
 `;
 
-exports[`FileInput should render as an icon button unless children are provided which will then render the icon and the text 2`] = `
+exports[`FileInput > should render as an icon button unless children are provided which will then render the icon and the text 2`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--icon-square rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
 >
@@ -100,7 +100,7 @@ exports[`FileInput should render as an icon button unless children are provided 
 </label>
 `;
 
-exports[`FileInput should render as an icon button unless children are provided which will then render the icon and the text 3`] = `
+exports[`FileInput > should render as an icon button unless children are provided which will then render the icon and the text 3`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--text rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
 >
@@ -120,7 +120,7 @@ exports[`FileInput should render as an icon button unless children are provided 
 </label>
 `;
 
-exports[`FileInput should render as an icon button unless children are provided which will then render the icon and the text 4`] = `
+exports[`FileInput > should render as an icon button unless children are provided which will then render the icon and the text 4`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--text rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
 >
@@ -140,7 +140,7 @@ exports[`FileInput should render as an icon button unless children are provided 
 </label>
 `;
 
-exports[`FileInput should render as an icon button unless children are provided which will then render the icon and the text 5`] = `
+exports[`FileInput > should render as an icon button unless children are provided which will then render the icon and the text 5`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--text rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
 >
@@ -154,7 +154,7 @@ exports[`FileInput should render as an icon button unless children are provided 
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 1`] = `
+exports[`FileInput > should support all the  button themes 1`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-interaction-surface"
 >
@@ -178,7 +178,7 @@ exports[`FileInput should support all the  button themes 1`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 2`] = `
+exports[`FileInput > should support all the  button themes 2`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-outline rmd-greyscale-outline rmd-interaction-surface"
 >
@@ -202,7 +202,7 @@ exports[`FileInput should support all the  button themes 2`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 3`] = `
+exports[`FileInput > should support all the  button themes 3`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-interaction-surface"
 >
@@ -226,7 +226,7 @@ exports[`FileInput should support all the  button themes 3`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 4`] = `
+exports[`FileInput > should support all the  button themes 4`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-primary-color rmd-interaction-surface"
 >
@@ -250,7 +250,7 @@ exports[`FileInput should support all the  button themes 4`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 5`] = `
+exports[`FileInput > should support all the  button themes 5`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-primary-color rmd-outline rmd-primary-outline rmd-interaction-surface"
 >
@@ -274,7 +274,7 @@ exports[`FileInput should support all the  button themes 5`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 6`] = `
+exports[`FileInput > should support all the  button themes 6`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-primary-container rmd-interaction-surface"
 >
@@ -298,7 +298,7 @@ exports[`FileInput should support all the  button themes 6`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 7`] = `
+exports[`FileInput > should support all the  button themes 7`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-secondary-color rmd-interaction-surface"
 >
@@ -322,7 +322,7 @@ exports[`FileInput should support all the  button themes 7`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 8`] = `
+exports[`FileInput > should support all the  button themes 8`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-secondary-color rmd-outline rmd-secondary-outline rmd-interaction-surface"
 >
@@ -346,7 +346,7 @@ exports[`FileInput should support all the  button themes 8`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 9`] = `
+exports[`FileInput > should support all the  button themes 9`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-secondary-container rmd-interaction-surface"
 >
@@ -370,7 +370,7 @@ exports[`FileInput should support all the  button themes 9`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 10`] = `
+exports[`FileInput > should support all the  button themes 10`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-warning-color rmd-interaction-surface"
 >
@@ -394,7 +394,7 @@ exports[`FileInput should support all the  button themes 10`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 11`] = `
+exports[`FileInput > should support all the  button themes 11`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-warning-color rmd-outline rmd-warning-outline rmd-interaction-surface"
 >
@@ -418,7 +418,7 @@ exports[`FileInput should support all the  button themes 11`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 12`] = `
+exports[`FileInput > should support all the  button themes 12`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-warning-container rmd-interaction-surface"
 >
@@ -442,7 +442,7 @@ exports[`FileInput should support all the  button themes 12`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 13`] = `
+exports[`FileInput > should support all the  button themes 13`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-error-color rmd-interaction-surface"
 >
@@ -466,7 +466,7 @@ exports[`FileInput should support all the  button themes 13`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 14`] = `
+exports[`FileInput > should support all the  button themes 14`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-error-color rmd-outline rmd-error-outline rmd-interaction-surface"
 >
@@ -490,7 +490,7 @@ exports[`FileInput should support all the  button themes 14`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 15`] = `
+exports[`FileInput > should support all the  button themes 15`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-error-container rmd-interaction-surface"
 >
@@ -514,7 +514,7 @@ exports[`FileInput should support all the  button themes 15`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 16`] = `
+exports[`FileInput > should support all the  button themes 16`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--disabled rmd-text-disabled-color rmd-interaction-surface"
 >
@@ -538,7 +538,7 @@ exports[`FileInput should support all the  button themes 16`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 17`] = `
+exports[`FileInput > should support all the  button themes 17`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--disabled rmd-text-disabled-color rmd-outline rmd-greyscale-outline rmd-interaction-surface"
 >
@@ -562,7 +562,7 @@ exports[`FileInput should support all the  button themes 17`] = `
 </label>
 `;
 
-exports[`FileInput should support all the  button themes 18`] = `
+exports[`FileInput > should support all the  button themes 18`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--disabled rmd-text-disabled-color rmd-interaction-surface"
 >
@@ -586,7 +586,7 @@ exports[`FileInput should support all the  button themes 18`] = `
 </label>
 `;
 
-exports[`FileInput should update the default SrOnly text to be phoneOnly when the responsive prop is enabled 1`] = `
+exports[`FileInput > should update the default SrOnly text to be phoneOnly when the responsive prop is enabled 1`] = `
 <label
   class="rmd-file-input rmd-button rmd-button--icon rmd-button--contained rmd-button--responsive rmd-background-container rmd-primary-container rmd-interaction-surface"
   data-testid="label"

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it } from "vitest";
 
 import { getLuminance, hexToRGB, isContrastCompliant } from "../utils.js";
 

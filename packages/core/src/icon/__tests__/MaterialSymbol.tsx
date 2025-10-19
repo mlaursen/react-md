@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { render, screen } from "../../test-utils/index.js";
 import { MaterialSymbol } from "../MaterialSymbol.js";

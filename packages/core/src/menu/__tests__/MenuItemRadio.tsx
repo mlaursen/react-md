@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { rmdRender, screen } from "../../test-utils/index.js";
 import { type MenuItemRadioProps } from "../MenuItemInputToggle.js";
@@ -11,7 +11,7 @@ describe("MenuItemRadio", () => {
     const props = {
       ref,
       checked: false,
-      onCheckedChange: jest.fn(),
+      onCheckedChange: vi.fn(),
       children: "Radio",
     } as const;
 
@@ -39,7 +39,7 @@ describe("MenuItemRadio", () => {
       iconAfter: true,
       children: "Radio",
       checked: false,
-      onCheckedChange: jest.fn(),
+      onCheckedChange: vi.fn(),
     };
 
     const { rerender } = rmdRender(<MenuItemRadio {...props} />);

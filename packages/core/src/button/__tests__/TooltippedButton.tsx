@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it } from "vitest";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { render, screen, userEvent } from "../../test-utils/index.js";

@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, type Ref, createRef, useId, useRef } from "react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import {
@@ -10,7 +10,7 @@ import {
   userEvent,
   waitFor,
 } from "../../test-utils/index.js";
-import { testImmediateRaf } from "../../test-utils/jest-globals/timers.js";
+import { testImmediateRaf } from "../../test-utils/vitest/timers.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { DEFAULT_SCALE_CLASSNAMES } from "../../transition/useScaleTransition.js";
 import { Typography } from "../../typography/Typography.js";
@@ -67,7 +67,7 @@ function Test(props: TestProps): ReactElement {
 
 describe("FixedDialog", () => {
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
     TRANSITION_CONFIG.disabled = true;
   });
 
@@ -88,7 +88,7 @@ describe("FixedDialog", () => {
         className="custom-class-name"
       />
     );
-    expect(dialog).toHaveStyle("color: orange");
+    expect(dialog).toHaveStyle("color: rgb(255, 165, 0)");
     expect(dialog).toHaveClass("custom-class-name");
     expect(dialog).toMatchSnapshot();
   });
@@ -114,7 +114,7 @@ describe("FixedDialog", () => {
   });
 
   it("should default to using the SCALE_CLASSNAMES over the DEFAULT_DIALOG_CLASSNAMES for the transition", async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     TRANSITION_CONFIG.disabled = false;
 
     const user = userEvent.setup({
@@ -127,19 +127,19 @@ describe("FixedDialog", () => {
     expect(dialog).toHaveClass(DEFAULT_SCALE_CLASSNAMES.enter);
     expect(dialog).toHaveClass(DEFAULT_SCALE_CLASSNAMES.enterActive);
     act(() => {
-      jest.runOnlyPendingTimers();
+      vi.runOnlyPendingTimers();
     });
     expect(dialog).not.toHaveClass(DEFAULT_SCALE_CLASSNAMES.enter);
     expect(dialog).not.toHaveClass(DEFAULT_SCALE_CLASSNAMES.enterActive);
 
     act(() => {
-      jest.runOnlyPendingTimers();
+      vi.runOnlyPendingTimers();
     });
     await user.click(screen.getByTestId("overlay"));
     expect(dialog).toHaveClass(DEFAULT_SCALE_CLASSNAMES.exit);
     expect(dialog).toHaveClass(DEFAULT_SCALE_CLASSNAMES.exitActive);
     act(() => {
-      jest.runOnlyPendingTimers();
+      vi.runOnlyPendingTimers();
     });
     expect(dialog).not.toBeInTheDocument();
   });
@@ -172,12 +172,12 @@ describe("FixedDialog", () => {
     dialog = screen.getByRole("dialog", { name: "Hello, world!" });
     expect(dialog).toHaveFocus();
 
-    jest.spyOn(button, "getBoundingClientRect").mockReturnValue({
+    vi.spyOn(button, "getBoundingClientRect").mockReturnValue({
       ...document.body.getBoundingClientRect(),
       top: -300,
       bottom: -200,
     });
-    jest.spyOn(dialog, "getBoundingClientRect").mockReturnValueOnce({
+    vi.spyOn(dialog, "getBoundingClientRect").mockReturnValueOnce({
       ...document.body.getBoundingClientRect(),
       top: -280,
       bottom: -100,

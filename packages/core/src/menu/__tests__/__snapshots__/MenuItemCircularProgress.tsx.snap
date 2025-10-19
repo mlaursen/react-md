@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`MenuItemCircularProgress should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`MenuItemCircularProgress > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <li
   class="rmd-list-item rmd-interaction-surface"
   data-testid="li"
@@ -33,7 +33,7 @@ exports[`MenuItemCircularProgress should apply the correct styling, HTML attribu
 </li>
 `;
 
-exports[`MenuItemCircularProgress should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`MenuItemCircularProgress > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <li
   class="rmd-list-item rmd-interaction-surface custom-class-name"
   data-testid="li"

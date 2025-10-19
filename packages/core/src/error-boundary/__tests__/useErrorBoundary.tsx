@@ -1,9 +1,9 @@
-import { beforeAll, describe, expect, it, jest } from "@jest/globals";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 
 import { render } from "../../test-utils/index.js";
 import { useErrorBoundary } from "../useErrorBoundary.js";
 
-const error = jest.spyOn(console, "error");
+const error = vi.spyOn(console, "error");
 beforeAll(() => {
   // hide error messages
   error.mockImplementation(() => {});

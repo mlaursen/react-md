@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CircularProgress should allow the animation to be simplified when the disableShrink prop is enabled 1`] = `
+exports[`CircularProgress > should allow the animation to be simplified when the disableShrink prop is enabled 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -23,7 +23,7 @@ exports[`CircularProgress should allow the animation to be simplified when the d
 </span>
 `;
 
-exports[`CircularProgress should allow the animation to be simplified when the disableShrink prop is enabled 2`] = `
+exports[`CircularProgress > should allow the animation to be simplified when the disableShrink prop is enabled 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -48,7 +48,7 @@ exports[`CircularProgress should allow the animation to be simplified when the d
 </span>
 `;
 
-exports[`CircularProgress should allow the transition to be disabled for determinate progress bars 1`] = `
+exports[`CircularProgress > should allow the transition to be disabled for determinate progress bars 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -73,7 +73,7 @@ exports[`CircularProgress should allow the transition to be disabled for determi
 </span>
 `;
 
-exports[`CircularProgress should allow the transition to be disabled for determinate progress bars 2`] = `
+exports[`CircularProgress > should allow the transition to be disabled for determinate progress bars 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -97,7 +97,7 @@ exports[`CircularProgress should allow the transition to be disabled for determi
 </span>
 `;
 
-exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`CircularProgress > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -120,7 +120,7 @@ exports[`CircularProgress should apply the correct styling, HTMLAttributes, and 
 </span>
 `;
 
-exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`CircularProgress > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -144,7 +144,7 @@ exports[`CircularProgress should apply the correct styling, HTMLAttributes, and 
 </span>
 `;
 
-exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+exports[`CircularProgress > should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -169,7 +169,7 @@ exports[`CircularProgress should apply the correct styling, HTMLAttributes, and 
 </span>
 `;
 
-exports[`CircularProgress should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+exports[`CircularProgress > should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -195,7 +195,7 @@ exports[`CircularProgress should apply the correct styling, HTMLAttributes, and 
 </span>
 `;
 
-exports[`CircularProgress should be able to render as a dense size 1`] = `
+exports[`CircularProgress > should be able to render as a dense size 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -218,7 +218,7 @@ exports[`CircularProgress should be able to render as a dense size 1`] = `
 </span>
 `;
 
-exports[`CircularProgress should be able to render as a dense size 2`] = `
+exports[`CircularProgress > should be able to render as a dense size 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -241,7 +241,7 @@ exports[`CircularProgress should be able to render as a dense size 2`] = `
 </span>
 `;
 
-exports[`CircularProgress should be able to render as any of the theme colors 1`] = `
+exports[`CircularProgress > should be able to render as any of the theme colors 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -264,7 +264,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 1`
 </span>
 `;
 
-exports[`CircularProgress should be able to render as any of the theme colors 2`] = `
+exports[`CircularProgress > should be able to render as any of the theme colors 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -287,7 +287,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 2`
 </span>
 `;
 
-exports[`CircularProgress should be able to render as any of the theme colors 3`] = `
+exports[`CircularProgress > should be able to render as any of the theme colors 3`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -310,7 +310,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 3`
 </span>
 `;
 
-exports[`CircularProgress should be able to render as any of the theme colors 4`] = `
+exports[`CircularProgress > should be able to render as any of the theme colors 4`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -333,7 +333,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 4`
 </span>
 `;
 
-exports[`CircularProgress should be able to render as any of the theme colors 5`] = `
+exports[`CircularProgress > should be able to render as any of the theme colors 5`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -356,7 +356,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 5`
 </span>
 `;
 
-exports[`CircularProgress should be able to render as any of the theme colors 6`] = `
+exports[`CircularProgress > should be able to render as any of the theme colors 6`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -379,7 +379,7 @@ exports[`CircularProgress should be able to render as any of the theme colors 6`
 </span>
 `;
 
-exports[`CircularProgress should default to being centered but can be removed by enabling the disableCentered prop 1`] = `
+exports[`CircularProgress > should default to being centered but can be removed by enabling the disableCentered prop 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -402,7 +402,7 @@ exports[`CircularProgress should default to being centered but can be removed by
 </span>
 `;
 
-exports[`CircularProgress should default to being centered but can be removed by enabling the disableCentered prop 2`] = `
+exports[`CircularProgress > should default to being centered but can be removed by enabling the disableCentered prop 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -425,7 +425,7 @@ exports[`CircularProgress should default to being centered but can be removed by
 </span>
 `;
 
-exports[`CircularProgress should render as a determinate progress bar when the value is provided 1`] = `
+exports[`CircularProgress > should render as a determinate progress bar when the value is provided 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -450,7 +450,7 @@ exports[`CircularProgress should render as a determinate progress bar when the v
 </span>
 `;
 
-exports[`CircularProgress should render as a determinate progress bar when the value is provided 2`] = `
+exports[`CircularProgress > should render as a determinate progress bar when the value is provided 2`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"
@@ -475,7 +475,7 @@ exports[`CircularProgress should render as a determinate progress bar when the v
 </span>
 `;
 
-exports[`CircularProgress should support customizing the svg through the radio, center, and dashoffset props even though I don't know what they do 1`] = `
+exports[`CircularProgress > should support customizing the svg through the radio, center, and dashoffset props even though I don't know what they do 1`] = `
 <span
   aria-label="Progressbar"
   aria-valuemax="100"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CardFooter should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`CardFooter > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--justify-end rmd-card__footer"
   data-testid="footer"
@@ -9,7 +9,7 @@ exports[`CardFooter should apply the correct styling, HTML attributes, and allow
 </div>
 `;
 
-exports[`CardFooter should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`CardFooter > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--justify-end rmd-card__footer custom-class-name"
   data-testid="footer"
@@ -19,7 +19,7 @@ exports[`CardFooter should apply the correct styling, HTML attributes, and allow
 </div>
 `;
 
-exports[`CardFooter should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`CardFooter > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--wrap rmd-box--padded rmd-box--justify-between rmd-card__footer"
   data-testid="footer"

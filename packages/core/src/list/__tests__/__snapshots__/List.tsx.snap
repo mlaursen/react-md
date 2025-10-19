@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`List should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`List > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <ul
   class="rmd-list"
   role="none"
 />
 `;
 
-exports[`List should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`List > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <ul
   class="rmd-list custom-class-name"
   role="none"
@@ -15,7 +15,7 @@ exports[`List should apply the correct styling, HTML attributes, and allow a ref
 />
 `;
 
-exports[`List should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`List > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <ul
   class="rmd-list rmd-list--dense rmd-list--horizontal custom-class-name"
   role="none"
@@ -23,14 +23,14 @@ exports[`List should apply the correct styling, HTML attributes, and allow a ref
 />
 `;
 
-exports[`List should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+exports[`List > should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <ol
   class="rmd-list"
   role="none"
 />
 `;
 
-exports[`List should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+exports[`List > should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <ol
   class="rmd-list rmd-list--dense rmd-list--horizontal custom-class-name"
   role="none"

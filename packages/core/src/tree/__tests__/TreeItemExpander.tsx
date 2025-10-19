@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render } from "../../test-utils/index.js";
 import { TreeItemExpander } from "../TreeItemExpander.js";
@@ -6,7 +6,7 @@ import { TreeProvider } from "../TreeProvider.js";
 
 describe("TreeItemExpander", () => {
   it("should throw an error if not wrapped in a TreeProvider", () => {
-    const error = jest.spyOn(console, "error").mockImplementation(() => {});
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() =>
       render(
         <TreeItemExpander
@@ -23,7 +23,7 @@ describe("TreeItemExpander", () => {
   });
 
   it("should force wrapping the icon in a span and move the click props to the span if the icon is not cloneable", () => {
-    const toggleTreeItemExpansion = jest.fn();
+    const toggleTreeItemExpansion = vi.fn();
     const { container } = render(
       <TreeProvider
         temporaryChildItems={false}
@@ -33,7 +33,7 @@ describe("TreeItemExpander", () => {
         expandedIds={new Set()}
         expanderIcon="icon"
         expanderLeft={false}
-        expandMultipleTreeItems={jest.fn()}
+        expandMultipleTreeItems={vi.fn()}
         expansionMode="manual"
         metadataLookup={{
           current: {
@@ -45,9 +45,9 @@ describe("TreeItemExpander", () => {
         }}
         rootId={null}
         selectedIds={new Set()}
-        selectMultipleTreeItems={jest.fn()}
+        selectMultipleTreeItems={vi.fn()}
         toggleTreeItemExpansion={toggleTreeItemExpansion}
-        toggleTreeItemSelection={jest.fn()}
+        toggleTreeItemSelection={vi.fn()}
         multiSelect={false}
       >
         <TreeItemExpander

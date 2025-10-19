@@ -1,12 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useHigherContrastChildren should not wrap fragments since I don't care for my use cases 1`] = `
+exports[`useHigherContrastChildren > should not wrap fragments since I don't care for my use cases 1`] = `
 <div>
   String
 </div>
 `;
 
-exports[`useHigherContrastChildren should wrap a list of children correctly 1`] = `
+exports[`useHigherContrastChildren > should wrap a list of children correctly 1`] = `
 <div>
   <span>
     String 1
@@ -20,7 +20,7 @@ exports[`useHigherContrastChildren should wrap a list of children correctly 1`] 
 </div>
 `;
 
-exports[`useHigherContrastChildren should wrap a list of children correctly 2`] = `
+exports[`useHigherContrastChildren > should wrap a list of children correctly 2`] = `
 <div>
   <span>
     String 1
@@ -34,7 +34,7 @@ exports[`useHigherContrastChildren should wrap a list of children correctly 2`] 
 </div>
 `;
 
-exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 1`] = `
+exports[`useHigherContrastChildren > should wrap string and number DIRECT children in spans to enable higher contrast 1`] = `
 <div>
   <span>
     String
@@ -42,13 +42,13 @@ exports[`useHigherContrastChildren should wrap string and number DIRECT children
 </div>
 `;
 
-exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 2`] = `
+exports[`useHigherContrastChildren > should wrap string and number DIRECT children in spans to enable higher contrast 2`] = `
 <div>
   String
 </div>
 `;
 
-exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 3`] = `
+exports[`useHigherContrastChildren > should wrap string and number DIRECT children in spans to enable higher contrast 3`] = `
 <div>
   <span>
     0
@@ -56,13 +56,13 @@ exports[`useHigherContrastChildren should wrap string and number DIRECT children
 </div>
 `;
 
-exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 4`] = `
+exports[`useHigherContrastChildren > should wrap string and number DIRECT children in spans to enable higher contrast 4`] = `
 <div>
   0
 </div>
 `;
 
-exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 5`] = `
+exports[`useHigherContrastChildren > should wrap string and number DIRECT children in spans to enable higher contrast 5`] = `
 <div>
   <p>
     Text
@@ -70,7 +70,7 @@ exports[`useHigherContrastChildren should wrap string and number DIRECT children
 </div>
 `;
 
-exports[`useHigherContrastChildren should wrap string and number DIRECT children in spans to enable higher contrast 6`] = `
+exports[`useHigherContrastChildren > should wrap string and number DIRECT children in spans to enable higher contrast 6`] = `
 <div>
   <p>
     Text

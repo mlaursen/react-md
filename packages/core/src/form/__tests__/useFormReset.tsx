@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, useRef, useState } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import { act, rmdRender, screen, userEvent } from "../../test-utils/index.js";
@@ -41,7 +41,7 @@ function TestImplementation({
 describe("useFormReset", () => {
   it("should reset the value when a form is reset", async () => {
     const user = userEvent.setup();
-    const onReset = jest.fn();
+    const onReset = vi.fn();
     function Test(): ReactElement {
       return (
         <form name="form" onReset={onReset}>
@@ -104,7 +104,7 @@ describe("useFormReset", () => {
 
   it("should do nothing if an elementRef was not set", async () => {
     const user = userEvent.setup();
-    const onReset = jest.fn();
+    const onReset = vi.fn();
 
     function Broken(): ReactElement {
       const elementRef = useRef<HTMLInputElement>(null);
@@ -151,7 +151,7 @@ describe("useFormReset", () => {
 
   it("should do nothing if a form cannot be found", async () => {
     const user = userEvent.setup();
-    const onReset = jest.fn();
+    const onReset = vi.fn();
 
     function Broken(): ReactElement {
       const elementRef = useRef<HTMLInputElement>(null);

@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from "@jest/globals";
 import { type ReactNode } from "react";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
@@ -20,7 +20,7 @@ import {
   waitFor,
   within,
 } from "../../test-utils/index.js";
-import { spyOnMatchMedia } from "../../test-utils/jest-globals/index.js";
+import { spyOnMatchMedia } from "../../test-utils/vitest/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { parseCssLengthUnit } from "../../utils/parseCssLengthUnit.js";

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`MenuBar should support a click-first hover mode behavior by default 1`] = `
+exports[`MenuBar > should support a click-first hover mode behavior by default 1`] = `
 <ul
   aria-label="Example"
   class="rmd-list rmd-list--horizontal"

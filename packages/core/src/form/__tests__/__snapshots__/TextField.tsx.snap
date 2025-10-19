@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TextField should allow for addons before and after the input 1`] = `
+exports[`TextField > should allow for addons before and after the input 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-left rmd-text-field-container--outline-right"
   data-testid="container"
@@ -42,7 +42,7 @@ exports[`TextField should allow for addons before and after the input 1`] = `
 </div>
 `;
 
-exports[`TextField should allow the active state to be controlled programmatically instead of with css only by using the active prop 1`] = `
+exports[`TextField > should allow the active state to be controlled programmatically instead of with css only by using the active prop 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable"
   data-testid="container"
@@ -56,7 +56,7 @@ exports[`TextField should allow the active state to be controlled programmatical
 </div>
 `;
 
-exports[`TextField should allow the active state to be controlled programmatically instead of with css only by using the active prop 2`] = `
+exports[`TextField > should allow the active state to be controlled programmatically instead of with css only by using the active prop 2`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--outline-active"
   data-testid="container"
@@ -70,7 +70,7 @@ exports[`TextField should allow the active state to be controlled programmatical
 </div>
 `;
 
-exports[`TextField should allow the active state to be controlled programmatically instead of with css only by using the active prop 3`] = `
+exports[`TextField > should allow the active state to be controlled programmatically instead of with css only by using the active prop 3`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label"
   data-testid="container"
@@ -90,7 +90,7 @@ exports[`TextField should allow the active state to be controlled programmatical
 </div>
 `;
 
-exports[`TextField should allow the active state to be controlled programmatically instead of with css only by using the active prop 4`] = `
+exports[`TextField > should allow the active state to be controlled programmatically instead of with css only by using the active prop 4`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--label rmd-text-field-container--outline-active"
   data-testid="container"
@@ -110,7 +110,7 @@ exports[`TextField should allow the active state to be controlled programmatical
 </div>
 `;
 
-exports[`TextField should allow the label to by styled by labelProps or the labelStyle/labelClassName 1`] = `
+exports[`TextField > should allow the label to by styled by labelProps or the labelStyle/labelClassName 1`] = `
 <label
   class="rmd-label rmd-label--floating label-props-class-name"
   data-testid="label"
@@ -121,18 +121,18 @@ exports[`TextField should allow the label to by styled by labelProps or the labe
 </label>
 `;
 
-exports[`TextField should allow the label to by styled by labelProps or the labelStyle/labelClassName 2`] = `
+exports[`TextField > should allow the label to by styled by labelProps or the labelStyle/labelClassName 2`] = `
 <label
   class="rmd-label rmd-label--floating label-class-name"
   data-testid="label"
   for="text-field-:rb:"
-  style="color: red;"
+  style="color: rgb(255, 0, 0);"
 >
   Label
 </label>
 `;
 
-exports[`TextField should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`TextField > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <input
   class="rmd-text-field rmd-text-field--placeholder-hidden"
   id="text-field-:r0:"
@@ -141,7 +141,7 @@ exports[`TextField should apply the correct styling, HTML attributes, and allow 
 />
 `;
 
-exports[`TextField should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`TextField > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <input
   class="rmd-text-field rmd-text-field--placeholder-hidden"
   id="text-field-:r0:"
@@ -150,7 +150,7 @@ exports[`TextField should apply the correct styling, HTML attributes, and allow 
 />
 `;
 
-exports[`TextField should automatically merge the error and theme props when messageProps have been defined 1`] = `
+exports[`TextField > should automatically merge the error and theme props when messageProps have been defined 1`] = `
 <div
   class="rmd-form-message-container"
   data-testid="message-container"
@@ -186,7 +186,7 @@ exports[`TextField should automatically merge the error and theme props when mes
 </div>
 `;
 
-exports[`TextField should render the FormMessageContainer when the messageProps have been defined 1`] = `
+exports[`TextField > should render the FormMessageContainer when the messageProps have been defined 1`] = `
 <div
   class="rmd-form-message-container"
   data-testid="message-container"
@@ -222,7 +222,7 @@ exports[`TextField should render the FormMessageContainer when the messageProps 
 </div>
 `;
 
-exports[`TextField should render the FormMessageContainer when the messageProps have been defined 2`] = `
+exports[`TextField > should render the FormMessageContainer when the messageProps have been defined 2`] = `
 <div
   class="rmd-form-message-container rmd-form-message-container--inline"
   data-testid="message-container"
@@ -258,7 +258,7 @@ exports[`TextField should render the FormMessageContainer when the messageProps 
 </div>
 `;
 
-exports[`TextField should support an error state 1`] = `
+exports[`TextField > should support an error state 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-error rmd-error-color"
   data-testid="container"
@@ -278,7 +278,7 @@ exports[`TextField should support an error state 1`] = `
 </div>
 `;
 
-exports[`TextField should support the disabled state 1`] = `
+exports[`TextField > should support the disabled state 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--disabled rmd-text-field-container--label rmd-text-disabled-color"
   data-testid="container"
@@ -299,7 +299,7 @@ exports[`TextField should support the disabled state 1`] = `
 </div>
 `;
 
-exports[`TextField should support the readOnly state 1`] = `
+exports[`TextField > should support the readOnly state 1`] = `
 <div
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--disabled rmd-text-field-container--hoverable"
   data-testid="container"

@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`DialogHeader should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`DialogHeader > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--padded rmd-box--align-center rmd-dialog__header"
   data-testid="header"
 />
 `;
 
-exports[`DialogHeader should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`DialogHeader > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
   class="rmd-box rmd-box--gap rmd-box--padded rmd-box--align-center rmd-dialog__header custom-class-name"
   data-testid="header"
@@ -15,4 +15,4 @@ exports[`DialogHeader should apply the correct styling, HTMLAttributes, and allo
 />
 `;
 
-exports[`dialogHeader class name utility should be callable with no arguments 1`] = `"rmd-dialog__header"`;
+exports[`dialogHeader class name utility > should be callable with no arguments 1`] = `"rmd-dialog__header"`;

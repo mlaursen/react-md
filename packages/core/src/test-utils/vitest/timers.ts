@@ -27,7 +27,7 @@ export type RafSpy = MockInstance<typeof requestAnimationFrame>;
  * import { testImmediateRaf } from "@react-md/core/test-utils/vitest";
  *
  * afterEach(() => {
- *   jest.restoreAllMocks();
+ *   vi.restoreAllMocks();
  * });
  *
  * describe("some test suite", () => {

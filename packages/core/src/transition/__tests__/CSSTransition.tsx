@@ -1,3 +1,4 @@
+import { type ReactElement, useState } from "react";
 import {
   afterEach,
   beforeAll,
@@ -5,9 +6,8 @@ import {
   describe,
   expect,
   it,
-  jest,
-} from "@jest/globals";
-import { type ReactElement, useState } from "react";
+  vi,
+} from "vitest";
 
 import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 import { CSSTransition, type CSSTransitionProps } from "../CSSTransition.js";
@@ -58,7 +58,7 @@ function Test({
 
 describe("CSSTransition", () => {
   beforeAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   beforeEach(() => {
@@ -66,7 +66,7 @@ describe("CSSTransition", () => {
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
+    vi.clearAllTimers();
   });
 
   it("should render correctly", () => {
@@ -82,7 +82,7 @@ describe("CSSTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -92,7 +92,7 @@ describe("CSSTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -106,7 +106,7 @@ describe("CSSTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -116,19 +116,19 @@ describe("CSSTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).toThrow();
     expect(container).toMatchSnapshot();
   });
 
   it("should correctly call the transition callbacks", () => {
-    const onEnter = jest.fn();
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
-    const onExit = jest.fn();
-    const onExiting = jest.fn();
-    const onExited = jest.fn();
+    const onEnter = vi.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
+    const onExit = vi.fn();
+    const onExiting = vi.fn();
+    const onExited = vi.fn();
     const props: TestProps = {
       onEnter,
       onEntering,
@@ -157,7 +157,7 @@ describe("CSSTransition", () => {
     expect(onExited).not.toHaveBeenCalled();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(onEnter).toHaveBeenCalledTimes(1);
     expect(onEntering).toHaveBeenCalledTimes(1);
@@ -175,7 +175,7 @@ describe("CSSTransition", () => {
     expect(onExited).not.toHaveBeenCalled();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(onEnter).toHaveBeenCalledTimes(1);
     expect(onEntering).toHaveBeenCalledTimes(1);

@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useColorSchemeMetaTag should modify create and update a color-scheme meta tag for the current color scheme 1`] = `
+exports[`useColorSchemeMetaTag > should modify create and update a color-scheme meta tag for the current color scheme 1`] = `
 <meta
   content="light"
   name="color-scheme"
 />
 `;
 
-exports[`useColorSchemeMetaTag should modify create and update a color-scheme meta tag for the current color scheme 2`] = `
+exports[`useColorSchemeMetaTag > should modify create and update a color-scheme meta tag for the current color scheme 2`] = `
 <meta
   content="dark"
   name="color-scheme"

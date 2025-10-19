@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CrossFade should allow for temporary CSS Transition behavior 1`] = `
+exports[`CrossFade > should allow for temporary CSS Transition behavior 1`] = `
 <div>
   <button
     type="button"
@@ -10,7 +10,7 @@ exports[`CrossFade should allow for temporary CSS Transition behavior 1`] = `
 </div>
 `;
 
-exports[`CrossFade should allow for temporary CSS Transition behavior 2`] = `
+exports[`CrossFade > should allow for temporary CSS Transition behavior 2`] = `
 <div>
   <button
     type="button"
@@ -26,7 +26,7 @@ exports[`CrossFade should allow for temporary CSS Transition behavior 2`] = `
 </div>
 `;
 
-exports[`CrossFade should allow for temporary CSS Transition behavior 3`] = `
+exports[`CrossFade > should allow for temporary CSS Transition behavior 3`] = `
 <div>
   <button
     type="button"
@@ -41,7 +41,7 @@ exports[`CrossFade should allow for temporary CSS Transition behavior 3`] = `
 </div>
 `;
 
-exports[`CrossFade should correctly merge the className prop 1`] = `
+exports[`CrossFade > should correctly merge the className prop 1`] = `
 <div>
   <button
     type="button"
@@ -57,7 +57,7 @@ exports[`CrossFade should correctly merge the className prop 1`] = `
 </div>
 `;
 
-exports[`CrossFade should correctly merge the className prop 2`] = `
+exports[`CrossFade > should correctly merge the className prop 2`] = `
 <div>
   <button
     type="button"
@@ -73,7 +73,7 @@ exports[`CrossFade should correctly merge the className prop 2`] = `
 </div>
 `;
 
-exports[`CrossFade should correctly merge the className prop 3`] = `
+exports[`CrossFade > should correctly merge the className prop 3`] = `
 <div>
   <button
     type="button"
@@ -89,7 +89,7 @@ exports[`CrossFade should correctly merge the className prop 3`] = `
 </div>
 `;
 
-exports[`CrossFade should correctly merge the className prop 4`] = `
+exports[`CrossFade > should correctly merge the className prop 4`] = `
 <div>
   <button
     type="button"
@@ -105,7 +105,7 @@ exports[`CrossFade should correctly merge the className prop 4`] = `
 </div>
 `;
 
-exports[`CrossFade should correctly merge the className prop 5`] = `
+exports[`CrossFade > should correctly merge the className prop 5`] = `
 <div>
   <button
     type="button"
@@ -121,7 +121,7 @@ exports[`CrossFade should correctly merge the className prop 5`] = `
 </div>
 `;
 
-exports[`CrossFade should default to not using appear transitions 1`] = `
+exports[`CrossFade > should default to not using appear transitions 1`] = `
 <div>
   <button
     type="button"
@@ -136,7 +136,7 @@ exports[`CrossFade should default to not using appear transitions 1`] = `
 </div>
 `;
 
-exports[`CrossFade should default to not using appear transitions 2`] = `
+exports[`CrossFade > should default to not using appear transitions 2`] = `
 <div>
   <button
     type="button"
@@ -151,7 +151,7 @@ exports[`CrossFade should default to not using appear transitions 2`] = `
 </div>
 `;
 
-exports[`CrossFade should default to not using appear transitions 3`] = `
+exports[`CrossFade > should default to not using appear transitions 3`] = `
 <div>
   <button
     type="button"
@@ -166,7 +166,7 @@ exports[`CrossFade should default to not using appear transitions 3`] = `
 </div>
 `;
 
-exports[`CrossFade should default to not using appear transitions 4`] = `
+exports[`CrossFade > should default to not using appear transitions 4`] = `
 <div>
   <button
     type="button"
@@ -181,7 +181,7 @@ exports[`CrossFade should default to not using appear transitions 4`] = `
 </div>
 `;
 
-exports[`CrossFade should transition correctly when not appearing 1`] = `
+exports[`CrossFade > should transition correctly when not appearing 1`] = `
 <div>
   <button
     type="button"
@@ -196,7 +196,7 @@ exports[`CrossFade should transition correctly when not appearing 1`] = `
 </div>
 `;
 
-exports[`CrossFade should transition correctly when not appearing 2`] = `
+exports[`CrossFade > should transition correctly when not appearing 2`] = `
 <div>
   <button
     type="button"
@@ -212,7 +212,7 @@ exports[`CrossFade should transition correctly when not appearing 2`] = `
 </div>
 `;
 
-exports[`CrossFade should transition correctly when not appearing 3`] = `
+exports[`CrossFade > should transition correctly when not appearing 3`] = `
 <div>
   <button
     type="button"
@@ -227,7 +227,7 @@ exports[`CrossFade should transition correctly when not appearing 3`] = `
 </div>
 `;
 
-exports[`CrossFade should transition correctly when not appearing 4`] = `
+exports[`CrossFade > should transition correctly when not appearing 4`] = `
 <div>
   <button
     type="button"
@@ -242,7 +242,7 @@ exports[`CrossFade should transition correctly when not appearing 4`] = `
 </div>
 `;
 
-exports[`CrossFade should transition correctly when not appearing 5`] = `
+exports[`CrossFade > should transition correctly when not appearing 5`] = `
 <div>
   <button
     type="button"

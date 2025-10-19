@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Slider discrete sliders should allow for marks to have custom labels 1`] = `
+exports[`Slider > discrete sliders > should allow for marks to have custom labels 1`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
 >
@@ -78,7 +78,7 @@ exports[`Slider discrete sliders should allow for marks to have custom labels 1`
 </div>
 `;
 
-exports[`Slider discrete sliders should support manually defining the marks using a list 1`] = `
+exports[`Slider > discrete sliders > should support manually defining the marks using a list 1`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
 >
@@ -132,7 +132,7 @@ exports[`Slider discrete sliders should support manually defining the marks usin
 </div>
 `;
 
-exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop 1`] = `
+exports[`Slider > discrete sliders > should support rendering a tooltip while focused or dragging by enabling the discrete prop 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
   id="tooltip-:rv:"
@@ -142,7 +142,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 </span>
 `;
 
-exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop 2`] = `
+exports[`Slider > discrete sliders > should support rendering a tooltip while focused or dragging by enabling the discrete prop 2`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
   id="tooltip-:rv:"
@@ -152,7 +152,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 </span>
 `;
 
-exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 1`] = `
+exports[`Slider > discrete sliders > should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
   id="tooltip-:r15:"
@@ -162,7 +162,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 </span>
 `;
 
-exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 2`] = `
+exports[`Slider > discrete sliders > should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 2`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
   id="tooltip-:r15:"
@@ -172,7 +172,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 </span>
 `;
 
-exports[`Slider discrete sliders should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 3`] = `
+exports[`Slider > discrete sliders > should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 3`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h2"
   id="tooltip-:r16:"
@@ -182,7 +182,7 @@ exports[`Slider discrete sliders should support rendering a tooltip while focuse
 </span>
 `;
 
-exports[`Slider discrete sliders should support rendering marks at each step on the slider 1`] = `
+exports[`Slider > discrete sliders > should support rendering marks at each step on the slider 1`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
 >
@@ -271,7 +271,7 @@ exports[`Slider discrete sliders should support rendering marks at each step on 
 </div>
 `;
 
-exports[`Slider range slider should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Slider > range slider > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
 >
@@ -327,7 +327,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
 </div>
 `;
 
-exports[`Slider range slider should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Slider > range slider > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right custom-class-name"
   style="color: white;"
@@ -362,7 +362,7 @@ exports[`Slider range slider should apply the correct styling, HTML attributes, 
 </div>
 `;
 
-exports[`Slider range slider should support a disabled state 1`] = `
+exports[`Slider > range slider > should support a disabled state 1`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
   data-testid="container"
@@ -429,7 +429,7 @@ exports[`Slider range slider should support a disabled state 1`] = `
 </div>
 `;
 
-exports[`Slider single thumb slider should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Slider > single thumb slider > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
 >
@@ -463,7 +463,7 @@ exports[`Slider single thumb slider should apply the correct styling, HTML attri
 </div>
 `;
 
-exports[`Slider single thumb slider should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Slider > single thumb slider > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right custom-class-name"
   style="color: white;"
@@ -498,7 +498,7 @@ exports[`Slider single thumb slider should apply the correct styling, HTML attri
 </div>
 `;
 
-exports[`Slider single thumb slider should be able to render addons before and after the slider 1`] = `
+exports[`Slider > single thumb slider > should be able to render addons before and after the slider 1`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h"
   data-testid="container"
@@ -537,7 +537,7 @@ exports[`Slider single thumb slider should be able to render addons before and a
 </div>
 `;
 
-exports[`Slider single thumb slider should be able to render addons before and after the slider 2`] = `
+exports[`Slider > single thumb slider > should be able to render addons before and after the slider 2`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left"
   data-testid="container"
@@ -573,7 +573,7 @@ exports[`Slider single thumb slider should be able to render addons before and a
 </div>
 `;
 
-exports[`Slider single thumb slider should be able to render addons before and after the slider 3`] = `
+exports[`Slider > single thumb slider > should be able to render addons before and after the slider 3`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-right"
   data-testid="container"
@@ -611,7 +611,7 @@ exports[`Slider single thumb slider should be able to render addons before and a
 </div>
 `;
 
-exports[`Slider single thumb slider should be able to render addons before and after the slider 4`] = `
+exports[`Slider > single thumb slider > should be able to render addons before and after the slider 4`] = `
 <div
   class="rmd-slider-container rmd-slider-container--v"
   data-testid="container"
@@ -651,7 +651,7 @@ exports[`Slider single thumb slider should be able to render addons before and a
 </div>
 `;
 
-exports[`Slider single thumb slider should be able to render addons before and after the slider 5`] = `
+exports[`Slider > single thumb slider > should be able to render addons before and after the slider 5`] = `
 <div
   class="rmd-slider-container rmd-slider-container--v rmd-slider-container--pad-bottom"
   data-testid="container"
@@ -688,7 +688,7 @@ exports[`Slider single thumb slider should be able to render addons before and a
 </div>
 `;
 
-exports[`Slider single thumb slider should be able to render addons before and after the slider 6`] = `
+exports[`Slider > single thumb slider > should be able to render addons before and after the slider 6`] = `
 <div
   class="rmd-slider-container rmd-slider-container--v rmd-slider-container--pad-top"
   data-testid="container"
@@ -727,7 +727,7 @@ exports[`Slider single thumb slider should be able to render addons before and a
 </div>
 `;
 
-exports[`Slider single thumb slider should support a disabled state 1`] = `
+exports[`Slider > single thumb slider > should support a disabled state 1`] = `
 <div
   class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
   data-testid="container"

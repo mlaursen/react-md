@@ -1,6 +1,6 @@
 /* eslint-disable jest-dom/prefer-to-have-value */
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import { AppSizeProvider } from "../../media-queries/AppSizeProvider.js";
@@ -65,7 +65,7 @@ describe("useRadioGroup", () => {
   });
 
   it("should support creating a required radio group", () => {
-    const onInvalid = jest.fn();
+    const onInvalid = vi.fn();
     function Test(): ReactElement {
       const { getRadioProps } = useRadioGroup({
         name: "example",
@@ -102,7 +102,7 @@ describe("useRadioGroup", () => {
   it("should support a default value and inferring the valid types from that default value", () => {
     type ExampleValue = "a" | "b" | "c" | "d";
 
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const defaultValue: ExampleValue = "a";
 
     function Test(): ReactElement {

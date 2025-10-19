@@ -1,11 +1,12 @@
-import { afterAll, beforeAll, describe, expect, it, jest } from "@jest/globals";
 import { cnb } from "cnbuilder";
-import { type ReactElement, act, createRef, useEffect, useState } from "react";
+import { type ReactElement, createRef, useEffect, useState } from "react";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { type MenuItemProps } from "../../menu/MenuItem.js";
 import { fuzzySearch } from "../../searching/fuzzy.js";
 import {
+  act,
   rmdRender,
   screen,
   userEvent,
@@ -14,7 +15,7 @@ import {
 import {
   type RafSpy,
   testImmediateRaf,
-} from "../../test-utils/jest-globals/index.js";
+} from "../../test-utils/vitest/index.js";
 import { SrOnly } from "../../typography/SrOnly.js";
 import { Autocomplete } from "../Autocomplete.js";
 import {
@@ -403,7 +404,7 @@ describe("Autocomplete", () => {
   });
 
   it("should allow for a creatable version by inserting an option into the fultered result list", async () => {
-    const onValueChange = jest.fn();
+    const onValueChange = vi.fn();
     function Test(): ReactElement {
       return (
         <Autocomplete
@@ -483,7 +484,7 @@ describe("Autocomplete", () => {
   });
 
   it("should not require the getOptionLabel prop for options that the label can be inferred", async () => {
-    const error = jest.spyOn(console, "error").mockImplementation(() => {});
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
     const BASE_PROPS = {
       label: "Autocomplete",
       listboxLabel: "Autocomplete",
@@ -727,7 +728,7 @@ describe("Autocomplete", () => {
   describe("type safety", () => {
     it("should require the extractor for when the options are not a list of strings or a list of objects with a label", async () => {
       const user = userEvent.setup();
-      const error = jest.spyOn(console, "error").mockImplementation(() => {});
+      const error = vi.spyOn(console, "error").mockImplementation(() => {});
       const { rerender } = rmdRender(
         // @ts-expect-error
         <Autocomplete listboxLabel="Options" options={[0, 1, 2, 3]} />
@@ -943,7 +944,7 @@ describe("Autocomplete", () => {
 
     it("should allow the chips to be customized through the getChipProps", async () => {
       const user = userEvent.setup();
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       rmdRender(
         <Autocomplete
           {...FRUIT_PROPS}
@@ -1016,7 +1017,7 @@ describe("Autocomplete", () => {
 
     it("should allow the button to be customized through the clearButtonProps", async () => {
       const user = userEvent.setup();
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
       rmdRender(
         <Autocomplete
           {...FRUIT_PROPS}
@@ -1051,7 +1052,7 @@ describe("Autocomplete", () => {
 
     it("should allow the dropdown button to be customized", async () => {
       const user = userEvent.setup();
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
       rmdRender(
         <Autocomplete
           {...FRUIT_PROPS}

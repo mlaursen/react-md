@@ -1,6 +1,6 @@
-import { afterEach, describe, expect, it } from "@jest/globals";
 import lzString from "lz-string";
 import { type ReactElement, useEffect } from "react";
+import { afterEach, describe, expect, it } from "vitest";
 
 import { SsrProvider } from "../../SsrProvider.js";
 import { Button } from "../../button/Button.js";

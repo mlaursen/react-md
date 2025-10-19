@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`MenuItemFileInput should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`MenuItemFileInput > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <li
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
   id="menu-item-:r0:"
@@ -21,7 +21,7 @@ exports[`MenuItemFileInput should apply the correct styling, HTMLAttributes, and
 </li>
 `;
 
-exports[`MenuItemFileInput should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`MenuItemFileInput > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <li
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item custom-class-name"
   id="menu-item-:r0:"
@@ -43,7 +43,7 @@ exports[`MenuItemFileInput should apply the correct styling, HTMLAttributes, and
 </li>
 `;
 
-exports[`MenuItemFileInput should default to using the upload icon as the leftAddon 1`] = `
+exports[`MenuItemFileInput > should default to using the upload icon as the leftAddon 1`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
@@ -52,7 +52,7 @@ exports[`MenuItemFileInput should default to using the upload icon as the leftAd
 </span>
 `;
 
-exports[`MenuItemFileInput should default to using the upload icon as the leftAddon 2`] = `
+exports[`MenuItemFileInput > should default to using the upload icon as the leftAddon 2`] = `
 <li
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
   id="menu-item-:r2:"
@@ -73,7 +73,7 @@ exports[`MenuItemFileInput should default to using the upload icon as the leftAd
 </li>
 `;
 
-exports[`MenuItemFileInput should default to using the upload icon as the leftAddon 3`] = `
+exports[`MenuItemFileInput > should default to using the upload icon as the leftAddon 3`] = `
 <li
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
   id="menu-item-:r2:"

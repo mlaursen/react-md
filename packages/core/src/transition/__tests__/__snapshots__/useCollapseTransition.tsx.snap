@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useCollapseTransition should apply the correct appear transitionDuration 1`] = `
+exports[`useCollapseTransition > should apply the correct appear transitionDuration 1`] = `
 <div>
   <button
     type="button"
@@ -10,14 +10,14 @@ exports[`useCollapseTransition should apply the correct appear transitionDuratio
   <div
     class="rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
     data-testid="element"
-    style="max-height: 0; padding-top: 0px; padding-bottom: 0px; transition-duration: 100ms;"
+    style="max-height: 0; transition-duration: 100ms;"
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should apply the correct appear transitionDuration 2`] = `
+exports[`useCollapseTransition > should apply the correct appear transitionDuration 2`] = `
 <div>
   <button
     type="button"
@@ -27,14 +27,14 @@ exports[`useCollapseTransition should apply the correct appear transitionDuratio
   <div
     class="rmd-collapse"
     data-testid="element"
-    style="padding-top: 0px; padding-bottom: 0px;"
+    style=""
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should apply the correct appear transitionDuration 3`] = `
+exports[`useCollapseTransition > should apply the correct appear transitionDuration 3`] = `
 <div>
   <button
     type="button"
@@ -44,14 +44,14 @@ exports[`useCollapseTransition should apply the correct appear transitionDuratio
   <div
     class="rmd-collapse rmd-collapse--leave rmd-collapse--no-overflow"
     data-testid="element"
-    style="padding-top: 0px; padding-bottom: 0px; max-height: 0; transition-duration: 200ms;"
+    style="max-height: 0; transition-duration: 200ms; padding-top: 0px; padding-bottom: 0px;"
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should apply the correct appear transitionDuration 4`] = `
+exports[`useCollapseTransition > should apply the correct appear transitionDuration 4`] = `
 <div>
   <button
     type="button"
@@ -61,7 +61,7 @@ exports[`useCollapseTransition should apply the correct appear transitionDuratio
 </div>
 `;
 
-exports[`useCollapseTransition should apply the correct appear transitionDuration 5`] = `
+exports[`useCollapseTransition > should apply the correct appear transitionDuration 5`] = `
 <div>
   <button
     type="button"
@@ -71,14 +71,14 @@ exports[`useCollapseTransition should apply the correct appear transitionDuratio
   <div
     class="rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
     data-testid="element"
-    style="max-height: 0; padding-top: 0px; padding-bottom: 0px; transition-duration: 250ms;"
+    style="max-height: 0; transition-duration: 250ms;"
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should apply the correct appear transitionDuration 6`] = `
+exports[`useCollapseTransition > should apply the correct appear transitionDuration 6`] = `
 <div>
   <button
     type="button"
@@ -88,14 +88,14 @@ exports[`useCollapseTransition should apply the correct appear transitionDuratio
   <div
     class="rmd-collapse"
     data-testid="element"
-    style="padding-top: 0px; padding-bottom: 0px;"
+    style=""
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should apply the rmd-display-none if the temporary behavior is disabled 1`] = `
+exports[`useCollapseTransition > should apply the rmd-display-none if the temporary behavior is disabled 1`] = `
 <div>
   <button
     type="button"
@@ -112,7 +112,7 @@ exports[`useCollapseTransition should apply the rmd-display-none if the temporar
 </div>
 `;
 
-exports[`useCollapseTransition should apply the rmd-display-none if the temporary behavior is disabled 2`] = `
+exports[`useCollapseTransition > should apply the rmd-display-none if the temporary behavior is disabled 2`] = `
 <div>
   <button
     type="button"
@@ -122,14 +122,14 @@ exports[`useCollapseTransition should apply the rmd-display-none if the temporar
   <div
     class="rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
     data-testid="element"
-    style="max-height: 0; padding-top: 0px; padding-bottom: 0px; transition-duration: 250ms;"
+    style="max-height: 0; transition-duration: 250ms;"
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should apply the rmd-display-none if the temporary behavior is disabled 3`] = `
+exports[`useCollapseTransition > should apply the rmd-display-none if the temporary behavior is disabled 3`] = `
 <div>
   <button
     type="button"
@@ -139,14 +139,14 @@ exports[`useCollapseTransition should apply the rmd-display-none if the temporar
   <div
     class="rmd-collapse"
     data-testid="element"
-    style="padding-top: 0px; padding-bottom: 0px;"
+    style=""
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should apply the rmd-display-none if the temporary behavior is disabled 4`] = `
+exports[`useCollapseTransition > should apply the rmd-display-none if the temporary behavior is disabled 4`] = `
 <div>
   <button
     type="button"
@@ -156,14 +156,14 @@ exports[`useCollapseTransition should apply the rmd-display-none if the temporar
   <div
     class="rmd-collapse rmd-collapse--leave rmd-collapse--no-overflow"
     data-testid="element"
-    style="padding-top: 0px; padding-bottom: 0px; max-height: 0; transition-duration: 200ms;"
+    style="max-height: 0; transition-duration: 200ms; padding-top: 0px; padding-bottom: 0px;"
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should apply the rmd-display-none if the temporary behavior is disabled 5`] = `
+exports[`useCollapseTransition > should apply the rmd-display-none if the temporary behavior is disabled 5`] = `
 <div>
   <button
     type="button"
@@ -173,14 +173,14 @@ exports[`useCollapseTransition should apply the rmd-display-none if the temporar
   <div
     class="rmd-collapse rmd-collapse--no-overflow rmd-display-none"
     data-testid="element"
-    style="padding-top: 0px; padding-bottom: 0px; max-height: 0;"
+    style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should default to not being temporary if the minHeight, minPaddingTop, or minPaddingBottom are not 0 1`] = `
+exports[`useCollapseTransition > should default to not being temporary if the minHeight, minPaddingTop, or minPaddingBottom are not 0 1`] = `
 <div>
   <button
     type="button"
@@ -197,7 +197,7 @@ exports[`useCollapseTransition should default to not being temporary if the minH
 </div>
 `;
 
-exports[`useCollapseTransition should default to not being temporary if the minHeight, minPaddingTop, or minPaddingBottom are not 0 2`] = `
+exports[`useCollapseTransition > should default to not being temporary if the minHeight, minPaddingTop, or minPaddingBottom are not 0 2`] = `
 <div>
   <button
     type="button"
@@ -214,7 +214,7 @@ exports[`useCollapseTransition should default to not being temporary if the minH
 </div>
 `;
 
-exports[`useCollapseTransition should default to not being temporary if the minHeight, minPaddingTop, or minPaddingBottom are not 0 3`] = `
+exports[`useCollapseTransition > should default to not being temporary if the minHeight, minPaddingTop, or minPaddingBottom are not 0 3`] = `
 <div>
   <button
     type="button"
@@ -231,7 +231,7 @@ exports[`useCollapseTransition should default to not being temporary if the minH
 </div>
 `;
 
-exports[`useCollapseTransition should default to not being temporary if the minHeight, minPaddingTop, or minPaddingBottom are not 0 4`] = `
+exports[`useCollapseTransition > should default to not being temporary if the minHeight, minPaddingTop, or minPaddingBottom are not 0 4`] = `
 <div>
   <button
     type="button"
@@ -241,7 +241,7 @@ exports[`useCollapseTransition should default to not being temporary if the minH
 </div>
 `;
 
-exports[`useCollapseTransition should default to not rendering the element when transitionIn is false 1`] = `
+exports[`useCollapseTransition > should default to not rendering the element when transitionIn is false 1`] = `
 <div>
   <button
     type="button"
@@ -251,14 +251,14 @@ exports[`useCollapseTransition should default to not rendering the element when 
   <div
     class="rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
     data-testid="element"
-    style="max-height: 0; padding-top: 0px; padding-bottom: 0px; transition-duration: 250ms;"
+    style="max-height: 0; transition-duration: 250ms;"
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should default to not rendering the element when transitionIn is false 2`] = `
+exports[`useCollapseTransition > should default to not rendering the element when transitionIn is false 2`] = `
 <div>
   <button
     type="button"
@@ -268,14 +268,14 @@ exports[`useCollapseTransition should default to not rendering the element when 
   <div
     class="rmd-collapse"
     data-testid="element"
-    style="padding-top: 0px; padding-bottom: 0px;"
+    style=""
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should default to not rendering the element when transitionIn is false 3`] = `
+exports[`useCollapseTransition > should default to not rendering the element when transitionIn is false 3`] = `
 <div>
   <button
     type="button"
@@ -285,14 +285,14 @@ exports[`useCollapseTransition should default to not rendering the element when 
   <div
     class="rmd-collapse rmd-collapse--leave rmd-collapse--no-overflow"
     data-testid="element"
-    style="padding-top: 0px; padding-bottom: 0px; max-height: 0; transition-duration: 200ms;"
+    style="max-height: 0; transition-duration: 200ms; padding-top: 0px; padding-bottom: 0px;"
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should default to not rendering the element when transitionIn is false 4`] = `
+exports[`useCollapseTransition > should default to not rendering the element when transitionIn is false 4`] = `
 <div>
   <button
     type="button"
@@ -302,7 +302,7 @@ exports[`useCollapseTransition should default to not rendering the element when 
 </div>
 `;
 
-exports[`useCollapseTransition should not apply any class names if the timeout is disabled 1`] = `
+exports[`useCollapseTransition > should not apply any class names if the timeout is disabled 1`] = `
 <div>
   <button
     type="button"
@@ -312,7 +312,7 @@ exports[`useCollapseTransition should not apply any class names if the timeout i
 </div>
 `;
 
-exports[`useCollapseTransition should not apply any class names if the timeout is disabled 2`] = `
+exports[`useCollapseTransition > should not apply any class names if the timeout is disabled 2`] = `
 <div>
   <button
     type="button"
@@ -321,14 +321,14 @@ exports[`useCollapseTransition should not apply any class names if the timeout i
   </button>
   <div
     data-testid="element"
-    style="padding-top: 0px; padding-bottom: 0px;"
+    style=""
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should not apply any class names if the timeout is disabled 3`] = `
+exports[`useCollapseTransition > should not apply any class names if the timeout is disabled 3`] = `
 <div>
   <button
     type="button"
@@ -337,14 +337,14 @@ exports[`useCollapseTransition should not apply any class names if the timeout i
   </button>
   <div
     data-testid="element"
-    style="padding-top: 0px; padding-bottom: 0px;"
+    style=""
   >
     This is some content.
   </div>
 </div>
 `;
 
-exports[`useCollapseTransition should not apply any style if it mounts while transitionIn is true 1`] = `
+exports[`useCollapseTransition > should not apply any style if it mounts while transitionIn is true 1`] = `
 <div>
   <button
     type="button"

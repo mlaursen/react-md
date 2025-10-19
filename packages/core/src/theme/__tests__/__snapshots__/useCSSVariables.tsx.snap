@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useCSSVariables should allow for a custom root node using refs 1`] = `
+exports[`useCSSVariables > should allow for a custom root node using refs 1`] = `
 <div
   data-testid="div"
   style="--test: 100px;"
@@ -13,7 +13,7 @@ exports[`useCSSVariables should allow for a custom root node using refs 1`] = `
 </div>
 `;
 
-exports[`useCSSVariables should allow for a custom root node using refs 2`] = `
+exports[`useCSSVariables > should allow for a custom root node using refs 2`] = `
 <div
   data-testid="div"
   style="--test: 100px; background: red;"

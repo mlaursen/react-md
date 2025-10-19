@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, useEffect } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   act,
@@ -9,7 +9,7 @@ import {
   setupResizeObserverMock,
   waitFor,
 } from "../test-utils/index.js";
-import { cleanupResizeObserverAfterEach } from "../test-utils/jest-globals/index.js";
+import { cleanupResizeObserverAfterEach } from "../test-utils/vitest/index.js";
 import {
   type ResizeObserverEntryCallback,
   useResizeObserver,
@@ -19,13 +19,13 @@ cleanupResizeObserverAfterEach();
 
 describe("useResizeObserver", () => {
   it("should only create a single shared observer to improve performance", () => {
-    const observe = jest.fn();
-    const resizeObserverSpy = jest
+    const observe = vi.fn();
+    const resizeObserverSpy = vi
       .spyOn(window, "ResizeObserver")
       .mockImplementation(() => ({
         observe,
-        disconnect: jest.fn(),
-        unobserve: jest.fn(),
+        disconnect: vi.fn(),
+        unobserve: vi.fn(),
       }));
 
     function UpdateTest({
@@ -37,11 +37,11 @@ describe("useResizeObserver", () => {
       return <div ref={ref} />;
     }
 
-    const onUpdate1 = jest.fn();
-    const onUpdate2 = jest.fn();
-    const onUpdate3 = jest.fn();
-    const onUpdate4 = jest.fn();
-    const onUpdate5 = jest.fn();
+    const onUpdate1 = vi.fn();
+    const onUpdate2 = vi.fn();
+    const onUpdate3 = vi.fn();
+    const onUpdate4 = vi.fn();
+    const onUpdate5 = vi.fn();
 
     function Test(): ReactElement {
       return (
@@ -61,10 +61,10 @@ describe("useResizeObserver", () => {
   });
 
   it("should do nothing when disabled, both the height and width are disabled, or there is no element", () => {
-    const resizeObserverSpy = jest.spyOn(window, "ResizeObserver");
-    const noRefUpdate = jest.fn();
-    const disabledUpdate = jest.fn();
-    const disabledSizesUpdate = jest.fn();
+    const resizeObserverSpy = vi.spyOn(window, "ResizeObserver");
+    const noRefUpdate = vi.fn();
+    const disabledUpdate = vi.fn();
+    const disabledSizesUpdate = vi.fn();
 
     function Test(): ReactElement {
       useResizeObserver({ onUpdate: noRefUpdate });
@@ -92,8 +92,8 @@ describe("useResizeObserver", () => {
   });
 
   it("should wait an animation frame before updating the entries to prevent the `ResizeObserver loop limit exceeded` error", async () => {
-    const frameCalled = jest.fn();
-    const onUpdate = jest.fn();
+    const frameCalled = vi.fn();
+    const onUpdate = vi.fn();
     function Test(): ReactElement {
       const ref = useResizeObserver({ onUpdate });
       useEffect(() => {
@@ -130,9 +130,9 @@ describe("useResizeObserver", () => {
   it("should only trigger the onUpdate callback if the height and width have changed and the height or width change is not disabled", () => {
     const resizeObserver = setupResizeObserverMock();
 
-    const allowBothUpdate = jest.fn();
-    const allowHeightUpdate = jest.fn();
-    const allowWidthUpdate = jest.fn();
+    const allowBothUpdate = vi.fn();
+    const allowHeightUpdate = vi.fn();
+    const allowWidthUpdate = vi.fn();
 
     function Test(): ReactElement {
       const ref1 = useResizeObserver({

@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { act, render, screen } from "../../test-utils/index.js";
 import { type PropsWithRef } from "../../types.js";

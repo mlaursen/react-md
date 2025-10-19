@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Select should allow for the OptGroup to be used 1`] = `
+exports[`Select > should allow for the OptGroup to be used 1`] = `
 <div
   aria-labelledby="select-label-:r1q:"
   class="rmd-menu rmd-menu--elevated"
@@ -160,7 +160,7 @@ exports[`Select should allow for the OptGroup to be used 1`] = `
 </div>
 `;
 
-exports[`Select should allow the selected icon to appear after the option instead of before 1`] = `
+exports[`Select > should allow the selected icon to appear after the option instead of before 1`] = `
 <li
   aria-selected="true"
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon rmd-option--selected"
@@ -182,7 +182,7 @@ exports[`Select should allow the selected icon to appear after the option instea
 </li>
 `;
 
-exports[`Select should allow the selected icon to appear after the option instead of before 2`] = `
+exports[`Select > should allow the selected icon to appear after the option instead of before 2`] = `
 <li
   aria-selected="true"
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon rmd-option--selected"
@@ -204,7 +204,7 @@ exports[`Select should allow the selected icon to appear after the option instea
 </li>
 `;
 
-exports[`Select should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`Select > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
   aria-activedescendant=""
   aria-controls="combobox-popup-:r3:"
@@ -248,7 +248,7 @@ exports[`Select should apply the correct styling, HTMLAttributes, and allow a re
 </div>
 `;
 
-exports[`Select should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`Select > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
   aria-activedescendant=""
   aria-controls="combobox-popup-:r3:"
@@ -293,7 +293,7 @@ exports[`Select should apply the correct styling, HTMLAttributes, and allow a re
 </div>
 `;
 
-exports[`Select should automatically pull options from the children and update when selected 1`] = `
+exports[`Select > should automatically pull options from the children and update when selected 1`] = `
 <div
   aria-labelledby="select-label-:r8:"
   class="rmd-menu rmd-menu--elevated"
@@ -370,7 +370,7 @@ exports[`Select should automatically pull options from the children and update w
 </div>
 `;
 
-exports[`Select should automatically pull options from the children and update when selected 2`] = `
+exports[`Select > should automatically pull options from the children and update when selected 2`] = `
 <div
   aria-labelledby="select-label-:r8:"
   class="rmd-menu rmd-menu--elevated"
@@ -451,7 +451,7 @@ exports[`Select should automatically pull options from the children and update w
 </div>
 `;
 
-exports[`Select should include the leftAddon of the selected option unless disableOptionAddon is true 1`] = `
+exports[`Select > should include the leftAddon of the selected option unless disableOptionAddon is true 1`] = `
 <div
   class="rmd-box rmd-box--gap rmd-selected-option rmd-text-field"
   data-testid="selected"
@@ -471,7 +471,7 @@ exports[`Select should include the leftAddon of the selected option unless disab
 </div>
 `;
 
-exports[`Select should include the leftAddon of the selected option unless disableOptionAddon is true 2`] = `
+exports[`Select > should include the leftAddon of the selected option unless disableOptionAddon is true 2`] = `
 <div
   class="rmd-box rmd-box--gap rmd-selected-option rmd-text-field"
   data-testid="selected"

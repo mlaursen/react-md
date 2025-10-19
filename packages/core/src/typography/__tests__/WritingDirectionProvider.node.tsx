@@ -1,6 +1,6 @@
-/** @jest-environment node */
-import { describe, expect, it } from "@jest/globals";
+/** @vitest-environment node */
 import { renderToString } from "react-dom/server";
+import { describe, expect, it } from "vitest";
 
 import {
   type Dir,

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TabList should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`TabList > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   aria-orientation="horizontal"
   class="rmd-tablist rmd-tablist--left rmd-tablist--full-width rmd-tablist--no-scrollbar rmd-tab-indicator rmd-tab-indicator--h rmd-tab-indicator--tablist-h"
@@ -51,7 +51,7 @@ exports[`TabList should apply the correct styling, HTML attributes, and allow a 
 </div>
 `;
 
-exports[`TabList should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`TabList > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   aria-orientation="horizontal"
   class="rmd-tablist rmd-tablist--left rmd-tablist--full-width rmd-tablist--no-scrollbar rmd-tab-indicator rmd-tab-indicator--h rmd-tab-indicator--tablist-h custom-class-name"
@@ -102,7 +102,7 @@ exports[`TabList should apply the correct styling, HTML attributes, and allow a 
 </div>
 `;
 
-exports[`TabList should update the tab indicator styles based on the active index 1`] = `
+exports[`TabList > should update the tab indicator styles based on the active index 1`] = `
 <div
   aria-orientation="horizontal"
   class="rmd-tablist rmd-tablist--left rmd-tablist--full-width rmd-tablist--no-scrollbar rmd-tab-indicator rmd-tab-indicator--h rmd-tab-indicator--tablist-h"

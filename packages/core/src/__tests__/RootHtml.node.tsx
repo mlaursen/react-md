@@ -1,7 +1,7 @@
-/** @jest-environment node */
+/** @vitest-environment node */
 /* eslint-disable testing-library/render-result-naming-convention */
-import { describe, expect, it } from "@jest/globals";
 import { renderToString } from "react-dom/server";
+import { describe, expect, it } from "vitest";
 
 import { RootHtml } from "../RootHtml.js";
 

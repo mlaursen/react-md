@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ScaleTransition should default using the horizontal transition 1`] = `
+exports[`ScaleTransition > should default using the horizontal transition 1`] = `
 <div>
   <button
     type="button"
@@ -10,7 +10,7 @@ exports[`ScaleTransition should default using the horizontal transition 1`] = `
 </div>
 `;
 
-exports[`ScaleTransition should default using the horizontal transition 2`] = `
+exports[`ScaleTransition > should default using the horizontal transition 2`] = `
 <div>
   <button
     type="button"
@@ -26,7 +26,7 @@ exports[`ScaleTransition should default using the horizontal transition 2`] = `
 </div>
 `;
 
-exports[`ScaleTransition should default using the horizontal transition 3`] = `
+exports[`ScaleTransition > should default using the horizontal transition 3`] = `
 <div>
   <button
     type="button"
@@ -41,7 +41,7 @@ exports[`ScaleTransition should default using the horizontal transition 3`] = `
 </div>
 `;
 
-exports[`ScaleTransition should default using the horizontal transition 4`] = `
+exports[`ScaleTransition > should default using the horizontal transition 4`] = `
 <div>
   <button
     type="button"
@@ -57,7 +57,7 @@ exports[`ScaleTransition should default using the horizontal transition 4`] = `
 </div>
 `;
 
-exports[`ScaleTransition should default using the horizontal transition 5`] = `
+exports[`ScaleTransition > should default using the horizontal transition 5`] = `
 <div>
   <button
     type="button"
@@ -67,7 +67,7 @@ exports[`ScaleTransition should default using the horizontal transition 5`] = `
 </div>
 `;
 
-exports[`ScaleTransition should merge the className and allow to be rendered by default 1`] = `
+exports[`ScaleTransition > should merge the className and allow to be rendered by default 1`] = `
 <div>
   <button
     type="button"
@@ -83,7 +83,7 @@ exports[`ScaleTransition should merge the className and allow to be rendered by 
 </div>
 `;
 
-exports[`ScaleTransition should merge the className and allow to be rendered by default 2`] = `
+exports[`ScaleTransition > should merge the className and allow to be rendered by default 2`] = `
 <div>
   <button
     type="button"
@@ -99,7 +99,7 @@ exports[`ScaleTransition should merge the className and allow to be rendered by 
 </div>
 `;
 
-exports[`ScaleTransition should merge the className and allow to be rendered by default 3`] = `
+exports[`ScaleTransition > should merge the className and allow to be rendered by default 3`] = `
 <div>
   <button
     type="button"
@@ -109,7 +109,7 @@ exports[`ScaleTransition should merge the className and allow to be rendered by 
 </div>
 `;
 
-exports[`ScaleTransition should merge the className and allow to be rendered by default 4`] = `
+exports[`ScaleTransition > should merge the className and allow to be rendered by default 4`] = `
 <div>
   <button
     type="button"
@@ -125,7 +125,7 @@ exports[`ScaleTransition should merge the className and allow to be rendered by 
 </div>
 `;
 
-exports[`ScaleTransition should merge the className and allow to be rendered by default 5`] = `
+exports[`ScaleTransition > should merge the className and allow to be rendered by default 5`] = `
 <div>
   <button
     type="button"
@@ -141,7 +141,7 @@ exports[`ScaleTransition should merge the className and allow to be rendered by 
 </div>
 `;
 
-exports[`ScaleTransition should render correctly for a vertical transition 1`] = `
+exports[`ScaleTransition > should render correctly for a vertical transition 1`] = `
 <div>
   <button
     type="button"
@@ -151,7 +151,7 @@ exports[`ScaleTransition should render correctly for a vertical transition 1`] =
 </div>
 `;
 
-exports[`ScaleTransition should render correctly for a vertical transition 2`] = `
+exports[`ScaleTransition > should render correctly for a vertical transition 2`] = `
 <div>
   <button
     type="button"
@@ -167,7 +167,7 @@ exports[`ScaleTransition should render correctly for a vertical transition 2`] =
 </div>
 `;
 
-exports[`ScaleTransition should render correctly for a vertical transition 3`] = `
+exports[`ScaleTransition > should render correctly for a vertical transition 3`] = `
 <div>
   <button
     type="button"
@@ -182,7 +182,7 @@ exports[`ScaleTransition should render correctly for a vertical transition 3`] =
 </div>
 `;
 
-exports[`ScaleTransition should render correctly for a vertical transition 4`] = `
+exports[`ScaleTransition > should render correctly for a vertical transition 4`] = `
 <div>
   <button
     type="button"
@@ -198,7 +198,7 @@ exports[`ScaleTransition should render correctly for a vertical transition 4`] =
 </div>
 `;
 
-exports[`ScaleTransition should render correctly for a vertical transition 5`] = `
+exports[`ScaleTransition > should render correctly for a vertical transition 5`] = `
 <div>
   <button
     type="button"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ToastActionButton should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`ToastActionButton > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <button
   class="rmd-button rmd-button--text rmd-secondary-color rmd-interaction-surface rmd-toast-action"
   type="button"
@@ -11,7 +11,7 @@ exports[`ToastActionButton should apply the correct styling, HTML attributes, an
 </button>
 `;
 
-exports[`ToastActionButton should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`ToastActionButton > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <button
   class="rmd-button rmd-button--text rmd-secondary-color rmd-interaction-surface rmd-toast-action custom-class-name"
   style="color: white;"
@@ -23,7 +23,7 @@ exports[`ToastActionButton should apply the correct styling, HTML attributes, an
 </button>
 `;
 
-exports[`ToastActionButton should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`ToastActionButton > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <button
   class="rmd-button rmd-button--text rmd-secondary-color rmd-interaction-surface rmd-toast-action rmd-toast-action--reordered"
   style=""

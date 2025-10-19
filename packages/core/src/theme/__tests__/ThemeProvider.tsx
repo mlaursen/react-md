@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import lodash from "lodash";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { render } from "../../test-utils/index.js";
 import { ThemeProvider, useTheme } from "../ThemeProvider.js";
@@ -7,7 +7,7 @@ import { DEFAULT_DARK_THEME, DEFAULT_LIGHT_THEME } from "../constants.js";
 import { type ConfigurableThemeColors } from "../types.js";
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 describe("ThemeProvider", () => {
@@ -17,7 +17,7 @@ describe("ThemeProvider", () => {
       return null;
     }
 
-    const error = jest.spyOn(console, "error");
+    const error = vi.spyOn(console, "error");
     // hide React uncaught error message
     error.mockImplementation(() => {});
 
@@ -30,7 +30,7 @@ describe("ThemeProvider", () => {
     const defaultComputedStyle = window.getComputedStyle(
       document.documentElement
     );
-    const getComputedStyle = jest
+    const getComputedStyle = vi
       .spyOn(window, "getComputedStyle")
       .mockReturnValue({
         ...defaultComputedStyle,
@@ -63,7 +63,7 @@ describe("ThemeProvider", () => {
   });
 
   it("should use the provided theme if it was provided", () => {
-    const getComputedStyle = jest.spyOn(window, "getComputedStyle");
+    const getComputedStyle = vi.spyOn(window, "getComputedStyle");
     let theme: ConfigurableThemeColors | undefined;
     function Test(): null {
       theme = useTheme();

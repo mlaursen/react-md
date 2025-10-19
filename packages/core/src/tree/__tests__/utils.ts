@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it } from "vitest";
 
 import type { TreeData } from "../types.js";
 import { getChildTreeItems, getTreeItemsFrom } from "../utils.js";

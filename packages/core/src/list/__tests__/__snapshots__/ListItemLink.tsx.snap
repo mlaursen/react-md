@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ListItemLink should allow for a custom link component using the as prop 1`] = `
+exports[`ListItemLink > should allow for a custom link component using the as prop 1`] = `
 <div>
   <ul
     class="rmd-list"
@@ -24,7 +24,7 @@ exports[`ListItemLink should allow for a custom link component using the as prop
 </div>
 `;
 
-exports[`ListItemLink should render as an <a> element by default 1`] = `
+exports[`ListItemLink > should render as an <a> element by default 1`] = `
 <div>
   <ul
     class="rmd-list"
@@ -48,7 +48,7 @@ exports[`ListItemLink should render as an <a> element by default 1`] = `
 </div>
 `;
 
-exports[`ListItemLink should support the to prop for routing libraries like react-router-dom 1`] = `
+exports[`ListItemLink > should support the to prop for routing libraries like react-router-dom 1`] = `
 <div>
   <ul
     class="rmd-list"

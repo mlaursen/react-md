@@ -1,12 +1,5 @@
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  jest,
-} from "@jest/globals";
 import { type ReactElement } from "react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import { FontIcon } from "../../icon/FontIcon.js";
@@ -78,12 +71,12 @@ describe("Tooltip", () => {
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   it("should display the tooltip after hovering for 1s by default", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     rmdRender(<Test />);
     const button = screen.getByRole("button", { name: "Button" });
     expect(() => screen.getByRole("tooltip")).toThrow();
@@ -92,59 +85,59 @@ describe("Tooltip", () => {
     expect(() => screen.getByRole("tooltip")).toThrow();
 
     act(() => {
-      jest.advanceTimersByTime(800);
+      vi.advanceTimersByTime(800);
     });
     expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.mouseLeave(button);
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.mouseEnter(button);
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(() => screen.getByRole("tooltip")).not.toThrow();
   });
 
   it("should display the tooltip after focusing for 1s by default only in keyboard mode", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     rmdRender(<Test />);
     const button = screen.getByRole("button", { name: "Button" });
     expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.focus(button);
     act(() => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(() => screen.getByRole("tooltip")).toThrow();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.keyDown(document.body);
     fireEvent.focus(button);
     act(() => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     const tooltip = screen.getByRole("tooltip");
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(tooltip).toMatchSnapshot();
 
     fireEvent.blur(button);
     act(() => {
-      jest.runOnlyPendingTimers();
+      vi.runOnlyPendingTimers();
     });
     expect(tooltip).toHaveClass("rmd-tooltip--exit");
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(tooltip).not.toBeInTheDocument();
   });
@@ -152,7 +145,7 @@ describe("Tooltip", () => {
   it("should show the tooltip after touching for the hoverTimeout or if the onContextMenu is called on mobile", () => {
     // some mobile devices will trigger the context menu for long presses, so
     // need to make sure that does not happen for tooltipped elements on mobile
-    jest.useFakeTimers();
+    vi.useFakeTimers();
 
     rmdRender(<Test />);
     const button = screen.getByRole("button", { name: "Button" });
@@ -161,13 +154,13 @@ describe("Tooltip", () => {
     fireEvent.touchStart(button);
     expect(() => screen.getByRole("tooltip")).toThrow();
     act(() => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     const tooltip = screen.getByRole("tooltip");
     expect(tooltip).toHaveClass("rmd-tooltip--enter");
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).not.toHaveClass("rmd-tooltip--enter");
@@ -176,7 +169,7 @@ describe("Tooltip", () => {
     expect(tooltip).toHaveClass("rmd-tooltip--exit");
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(tooltip).not.toBeInTheDocument();
 
@@ -184,27 +177,27 @@ describe("Tooltip", () => {
     fireEvent.mouseEnter(button);
     fireEvent.contextMenu(button);
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.touchStart(button);
     expect(() => screen.getByRole("tooltip")).toThrow();
     act(() => {
-      jest.advanceTimersByTime(800);
+      vi.advanceTimersByTime(800);
     });
     expect(() => screen.getByRole("tooltip")).toThrow();
 
-    const empty = jest.spyOn(Selection.prototype, "empty");
+    const empty = vi.spyOn(Selection.prototype, "empty");
     fireEvent.contextMenu(button);
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(() => screen.getByRole("tooltip")).not.toThrow();
     expect(empty).not.toHaveBeenCalled();
 
-    const empty2 = jest.fn();
-    jest.spyOn(window, "getSelection").mockReturnValue({
+    const empty2 = vi.fn();
+    vi.spyOn(window, "getSelection").mockReturnValue({
       empty: empty2,
       anchorNode: {
         parentElement: button,
@@ -317,8 +310,7 @@ describe("Tooltip", () => {
       expect(tooltip).not.toHaveClass("rmd-tooltip--enter");
     });
 
-    jest
-      .spyOn(document, "visibilityState", "get")
+    vi.spyOn(document, "visibilityState", "get")
       .mockReturnValueOnce("hidden")
       .mockReturnValueOnce("visible");
 
@@ -344,7 +336,7 @@ describe("Tooltip", () => {
     expect(() => screen.getByRole("tooltip")).toThrow();
 
     const baseRect = document.body.getBoundingClientRect();
-    jest.spyOn(button, "getBoundingClientRect").mockReturnValue({
+    vi.spyOn(button, "getBoundingClientRect").mockReturnValue({
       ...baseRect,
       top: vh / 2,
     });
@@ -361,7 +353,7 @@ describe("Tooltip", () => {
     await user.tab();
     await waitForElementToBeRemoved(tooltip);
 
-    jest.spyOn(button, "getBoundingClientRect").mockReturnValue({
+    vi.spyOn(button, "getBoundingClientRect").mockReturnValue({
       ...baseRect,
       top: 0,
     });
@@ -405,7 +397,7 @@ describe("Tooltip", () => {
     const spacing = "0.825rem";
     const spacingPixels = parseCssLengthUnit({ value: spacing });
 
-    const getComputedStyle = jest
+    const getComputedStyle = vi
       .spyOn(window, "getComputedStyle")
       .mockImplementation(
         // @ts-expect-error
@@ -488,11 +480,11 @@ describe("Tooltip", () => {
     expect(() => screen.getByRole("tooltip")).toThrow();
 
     const rect = resizeNode.getBoundingClientRect();
-    jest.spyOn(resizeNode, "scrollWidth", "get").mockReturnValue(300);
-    const offsetWidth = jest
+    vi.spyOn(resizeNode, "scrollWidth", "get").mockReturnValue(300);
+    const offsetWidth = vi
       .spyOn(resizeNode, "offsetWidth", "get")
       .mockReturnValue(300);
-    const getBoundingClientRect = jest
+    const getBoundingClientRect = vi
       .spyOn(resizeNode, "getBoundingClientRect")
       .mockReturnValue({ ...rect, width: 300 });
 

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`MenuItemSwitch should allow for a custom unchecked and checked icon 1`] = `
+exports[`MenuItemSwitch > should allow for a custom unchecked and checked icon 1`] = `
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-switch-menu-item rmd-menu-item-input-toggle rmd-menu-item-input-toggle--switch"
@@ -23,7 +23,7 @@ exports[`MenuItemSwitch should allow for a custom unchecked and checked icon 1`]
 </li>
 `;
 
-exports[`MenuItemSwitch should allow for a custom unchecked and checked icon 2`] = `
+exports[`MenuItemSwitch > should allow for a custom unchecked and checked icon 2`] = `
 <li
   aria-checked="true"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-switch-menu-item rmd-menu-item-input-toggle rmd-menu-item-input-toggle--switch"
@@ -46,7 +46,7 @@ exports[`MenuItemSwitch should allow for a custom unchecked and checked icon 2`]
 </li>
 `;
 
-exports[`MenuItemSwitch should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`MenuItemSwitch > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-switch-menu-item rmd-menu-item-input-toggle rmd-menu-item-input-toggle--switch"
@@ -69,7 +69,7 @@ exports[`MenuItemSwitch should apply the correct styling, HTMLAttributes, and al
 </li>
 `;
 
-exports[`MenuItemSwitch should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`MenuItemSwitch > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-switch-menu-item rmd-menu-item-input-toggle rmd-menu-item-input-toggle--switch custom-class-name"

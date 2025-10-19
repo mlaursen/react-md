@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TableRow should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`TableRow > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <tr
   class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
   data-testid="row"
@@ -13,7 +13,7 @@ exports[`TableRow should apply the correct styling, HTML attributes, and allow a
 </tr>
 `;
 
-exports[`TableRow should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`TableRow > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <tr
   class="rmd-tr rmd-tr--bordered rmd-tr--hoverable custom-class-name"
   data-testid="row"
@@ -27,7 +27,7 @@ exports[`TableRow should apply the correct styling, HTML attributes, and allow a
 </tr>
 `;
 
-exports[`TableRow should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`TableRow > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <tr
   class="rmd-tr rmd-tr--bordered rmd-tr--hoverable"
   data-testid="row"
@@ -41,7 +41,7 @@ exports[`TableRow should apply the correct styling, HTML attributes, and allow a
 </tr>
 `;
 
-exports[`TableRow should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+exports[`TableRow > should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <tr
   class="rmd-tr"
   data-testid="row"

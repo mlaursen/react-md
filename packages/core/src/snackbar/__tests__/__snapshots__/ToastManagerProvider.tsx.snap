@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ToastManagerProvider default toast manager should work without needing to setup a toast manager yourself 1`] = `
+exports[`ToastManagerProvider > default toast manager > should work without needing to setup a toast manager yourself 1`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
@@ -20,7 +20,7 @@ exports[`ToastManagerProvider default toast manager should work without needing 
 </div>
 `;
 
-exports[`ToastManagerProvider default toast manager should work without needing to setup a toast manager yourself 2`] = `
+exports[`ToastManagerProvider > default toast manager > should work without needing to setup a toast manager yourself 2`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
@@ -40,7 +40,7 @@ exports[`ToastManagerProvider default toast manager should work without needing 
 </div>
 `;
 
-exports[`ToastManagerProvider toast queue should add a toast next in queue if a different toast is being displayed and duplicates are allowed or the toast does not exist in the queue yet 1`] = `
+exports[`ToastManagerProvider > toast queue > should add a toast next in queue if a different toast is being displayed and duplicates are allowed or the toast does not exist in the queue yet 1`] = `
 <div
   class="rmd-toast"
   id="toast-:r10:"
@@ -54,7 +54,7 @@ exports[`ToastManagerProvider toast queue should add a toast next in queue if a 
 </div>
 `;
 
-exports[`ToastManagerProvider toast queue should allow a toast to replace the currently shown toast 1`] = `
+exports[`ToastManagerProvider > toast queue > should allow a toast to replace the currently shown toast 1`] = `
 <div
   class="rmd-toast"
   id="toast-:rk:"
@@ -68,7 +68,7 @@ exports[`ToastManagerProvider toast queue should allow a toast to replace the cu
 </div>
 `;
 
-exports[`ToastManagerProvider toast queue should not trigger a timeout if the visibleTime is null and set the toast to have an alert role 1`] = `
+exports[`ToastManagerProvider > toast queue > should not trigger a timeout if the visibleTime is null and set the toast to have an alert role 1`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
@@ -100,7 +100,7 @@ exports[`ToastManagerProvider toast queue should not trigger a timeout if the vi
 </div>
 `;
 
-exports[`ToastManagerProvider toast queue should not trigger a timeout if the visibleTime is null and set the toast to have an alert role 2`] = `
+exports[`ToastManagerProvider > toast queue > should not trigger a timeout if the visibleTime is null and set the toast to have an alert role 2`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
@@ -132,7 +132,7 @@ exports[`ToastManagerProvider toast queue should not trigger a timeout if the vi
 </div>
 `;
 
-exports[`ToastManagerProvider toast queue should support rendering multiple toasts as once using the limit prop 1`] = `
+exports[`ToastManagerProvider > toast queue > should support rendering multiple toasts as once using the limit prop 1`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
@@ -174,7 +174,7 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
 </div>
 `;
 
-exports[`ToastManagerProvider toast queue should support rendering multiple toasts as once using the limit prop 2`] = `
+exports[`ToastManagerProvider > toast queue > should support rendering multiple toasts as once using the limit prop 2`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
@@ -216,7 +216,7 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
 </div>
 `;
 
-exports[`ToastManagerProvider toast queue should support rendering multiple toasts as once using the limit prop 3`] = `
+exports[`ToastManagerProvider > toast queue > should support rendering multiple toasts as once using the limit prop 3`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
@@ -258,7 +258,7 @@ exports[`ToastManagerProvider toast queue should support rendering multiple toas
 </div>
 `;
 
-exports[`ToastManagerProvider toast queue should support rendering multiple toasts as once using the limit prop 4`] = `
+exports[`ToastManagerProvider > toast queue > should support rendering multiple toasts as once using the limit prop 4`] = `
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"

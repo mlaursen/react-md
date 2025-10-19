@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`ResponsiveItem > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div>
   <span
     class="rmd-responsive-item rmd-responsive-item--auto"
@@ -13,7 +13,7 @@ exports[`ResponsiveItem should apply the correct styling, HTML attributes, and a
 </div>
 `;
 
-exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`ResponsiveItem > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div>
   <span
     class="rmd-responsive-item rmd-responsive-item--auto rmd-responsive-item--full-width"
@@ -26,7 +26,7 @@ exports[`ResponsiveItem should apply the correct styling, HTML attributes, and a
 </div>
 `;
 
-exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`ResponsiveItem > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <div>
   <span
     class="rmd-responsive-item rmd-responsive-item--auto custom-class-name"
@@ -40,7 +40,7 @@ exports[`ResponsiveItem should apply the correct styling, HTML attributes, and a
 </div>
 `;
 
-exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+exports[`ResponsiveItem > should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <div>
   <span
     class="rmd-responsive-item"
@@ -54,7 +54,7 @@ exports[`ResponsiveItem should apply the correct styling, HTML attributes, and a
 </div>
 `;
 
-exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+exports[`ResponsiveItem > should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <div>
   <span
     class="rmd-responsive-item rmd-responsive-item--auto rmd-responsive-item--auto-scale"
@@ -68,7 +68,7 @@ exports[`ResponsiveItem should apply the correct styling, HTML attributes, and a
 </div>
 `;
 
-exports[`ResponsiveItem should apply the correct styling, HTML attributes, and allow a ref 6`] = `
+exports[`ResponsiveItem > should apply the correct styling, HTML attributes, and allow a ref 6`] = `
 <div>
   <span
     class="rmd-responsive-item rmd-responsive-item--auto rmd-responsive-item--aspect-ratio rmd-responsive-item--16-9"

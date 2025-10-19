@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`DialogFooter should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`DialogFooter > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <footer
   class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
   data-testid="footer"
 />
 `;
 
-exports[`DialogFooter should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`DialogFooter > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <footer
   class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class-name"
   data-testid="footer"
@@ -15,7 +15,7 @@ exports[`DialogFooter should apply the correct styling, HTMLAttributes, and allo
 />
 `;
 
-exports[`DialogFooter should support different alignments 1`] = `
+exports[`DialogFooter > should support different alignments 1`] = `
 <footer
   class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
   data-testid="footer"
@@ -39,7 +39,7 @@ exports[`DialogFooter should support different alignments 1`] = `
 </footer>
 `;
 
-exports[`DialogFooter should support different alignments 2`] = `
+exports[`DialogFooter > should support different alignments 2`] = `
 <footer
   class="rmd-dialog__footer"
   data-testid="footer"
@@ -63,7 +63,7 @@ exports[`DialogFooter should support different alignments 2`] = `
 </footer>
 `;
 
-exports[`DialogFooter should support different alignments 3`] = `
+exports[`DialogFooter > should support different alignments 3`] = `
 <footer
   class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--start"
   data-testid="footer"
@@ -87,7 +87,7 @@ exports[`DialogFooter should support different alignments 3`] = `
 </footer>
 `;
 
-exports[`DialogFooter should support different alignments 4`] = `
+exports[`DialogFooter > should support different alignments 4`] = `
 <footer
   class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
   data-testid="footer"
@@ -111,7 +111,7 @@ exports[`DialogFooter should support different alignments 4`] = `
 </footer>
 `;
 
-exports[`DialogFooter should support different alignments 5`] = `
+exports[`DialogFooter > should support different alignments 5`] = `
 <footer
   class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--between"
   data-testid="footer"
@@ -135,7 +135,7 @@ exports[`DialogFooter should support different alignments 5`] = `
 </footer>
 `;
 
-exports[`DialogFooter should support different alignments 6`] = `
+exports[`DialogFooter > should support different alignments 6`] = `
 <footer
   class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--flex-v rmd-dialog__footer--start"
   data-testid="footer"
@@ -159,7 +159,7 @@ exports[`DialogFooter should support different alignments 6`] = `
 </footer>
 `;
 
-exports[`DialogFooter should support different alignments 7`] = `
+exports[`DialogFooter > should support different alignments 7`] = `
 <footer
   class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--flex-v rmd-dialog__footer--end"
   data-testid="footer"
@@ -183,4 +183,4 @@ exports[`DialogFooter should support different alignments 7`] = `
 </footer>
 `;
 
-exports[`dialogFooter class name utility should be callable with no arguments 1`] = `"rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"`;
+exports[`dialogFooter class name utility > should be callable with no arguments 1`] = `"rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"`;

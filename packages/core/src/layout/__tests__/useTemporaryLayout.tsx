@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from "@jest/globals";
 import { type ReactNode } from "react";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";

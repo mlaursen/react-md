@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`ResponsiveItemOverlay > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div>
   <span
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--bottom"
@@ -14,7 +14,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
 </div>
 `;
 
-exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`ResponsiveItemOverlay > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div>
   <span
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--bottom"
@@ -28,7 +28,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
 </div>
 `;
 
-exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`ResponsiveItemOverlay > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <div>
   <span
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--bottom custom-class-name"
@@ -43,7 +43,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
 </div>
 `;
 
-exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+exports[`ResponsiveItemOverlay > should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <div>
   <span
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--top"
@@ -58,7 +58,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
 </div>
 `;
 
-exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+exports[`ResponsiveItemOverlay > should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <div>
   <span
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--right rmd-responsive-item-overlay--horizontal"
@@ -73,7 +73,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
 </div>
 `;
 
-exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes, and allow a ref 6`] = `
+exports[`ResponsiveItemOverlay > should apply the correct styling, HTML attributes, and allow a ref 6`] = `
 <div>
   <span
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--bottom"
@@ -88,7 +88,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
 </div>
 `;
 
-exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes, and allow a ref 7`] = `
+exports[`ResponsiveItemOverlay > should apply the correct styling, HTML attributes, and allow a ref 7`] = `
 <div>
   <span
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--left rmd-responsive-item-overlay--horizontal"
@@ -103,7 +103,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
 </div>
 `;
 
-exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes, and allow a ref 8`] = `
+exports[`ResponsiveItemOverlay > should apply the correct styling, HTML attributes, and allow a ref 8`] = `
 <div>
   <span
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--middle"
@@ -118,7 +118,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
 </div>
 `;
 
-exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes, and allow a ref 9`] = `
+exports[`ResponsiveItemOverlay > should apply the correct styling, HTML attributes, and allow a ref 9`] = `
 <div>
   <span
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--center rmd-responsive-item-overlay--horizontal"
@@ -133,7 +133,7 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
 </div>
 `;
 
-exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes, and allow a ref 10`] = `
+exports[`ResponsiveItemOverlay > should apply the correct styling, HTML attributes, and allow a ref 10`] = `
 <div>
   <span
     class="rmd-responsive-item-overlay rmd-responsive-item-overlay--absolute-center rmd-responsive-item-overlay--horizontal"
@@ -148,4 +148,4 @@ exports[`ResponsiveItemOverlay should apply the correct styling, HTML attributes
 </div>
 `;
 
-exports[`ResponsiveItemOverlay style utility function should be callable without any arguments 1`] = `"rmd-responsive-item-overlay rmd-responsive-item-overlay--bottom"`;
+exports[`ResponsiveItemOverlay > style utility function > should be callable without any arguments 1`] = `"rmd-responsive-item-overlay rmd-responsive-item-overlay--bottom"`;

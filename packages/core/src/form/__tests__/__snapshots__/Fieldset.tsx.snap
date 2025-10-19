@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Fieldset should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Fieldset > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <fieldset
   class="rmd-fieldset rmd-fieldset--unstyled"
   data-testid="fieldset"
@@ -13,7 +13,7 @@ exports[`Fieldset should apply the correct styling, HTML attributes, and allow a
 </fieldset>
 `;
 
-exports[`Fieldset should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Fieldset > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <fieldset
   class="rmd-fieldset rmd-fieldset--unstyled custom-class-name"
   data-testid="fieldset"
@@ -27,7 +27,7 @@ exports[`Fieldset should apply the correct styling, HTML attributes, and allow a
 </fieldset>
 `;
 
-exports[`Fieldset should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`Fieldset > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <fieldset
   class="rmd-fieldset"
   data-testid="fieldset"
@@ -41,7 +41,7 @@ exports[`Fieldset should apply the correct styling, HTML attributes, and allow a
 </fieldset>
 `;
 
-exports[`Fieldset should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+exports[`Fieldset > should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <fieldset
   class="rmd-fieldset rmd-fieldset--unstyled rmd-fieldset--full-width"
   data-testid="fieldset"
@@ -55,7 +55,7 @@ exports[`Fieldset should apply the correct styling, HTML attributes, and allow a
 </fieldset>
 `;
 
-exports[`Fieldset should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+exports[`Fieldset > should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <fieldset
   class="rmd-fieldset rmd-fieldset--unstyled rmd-fieldset--floating-legend"
   data-testid="fieldset"
@@ -69,4 +69,4 @@ exports[`Fieldset should apply the correct styling, HTML attributes, and allow a
 </fieldset>
 `;
 
-exports[`Fieldset styling utility class should be callable without any arguments 1`] = `"rmd-fieldset rmd-fieldset--unstyled"`;
+exports[`Fieldset > styling utility class > should be callable without any arguments 1`] = `"rmd-fieldset rmd-fieldset--unstyled"`;

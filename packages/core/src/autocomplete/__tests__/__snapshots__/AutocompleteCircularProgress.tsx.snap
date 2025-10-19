@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`AutocompleteCircularProgress should apply the correct styling and HTML attributes 1`] = `
+exports[`AutocompleteCircularProgress > should apply the correct styling and HTML attributes 1`] = `
 <span
   aria-label="Loading"
   aria-valuemax="100"
@@ -23,7 +23,7 @@ exports[`AutocompleteCircularProgress should apply the correct styling and HTML 
 </span>
 `;
 
-exports[`AutocompleteCircularProgress should apply the correct styling and HTML attributes 2`] = `
+exports[`AutocompleteCircularProgress > should apply the correct styling and HTML attributes 2`] = `
 <span
   aria-label="Loading"
   aria-valuemax="100"

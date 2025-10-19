@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { ClickableCard } from "../ClickableCard.js";
@@ -10,7 +10,7 @@ describe("ClickableCard", () => {
     const props = {
       "data-testid": "card",
       ref,
-      onClick: jest.fn(),
+      onClick: vi.fn(),
     } as const;
     const { rerender } = render(<ClickableCard {...props} />);
 
@@ -30,14 +30,14 @@ describe("ClickableCard", () => {
   });
 
   it("should not have a tabIndex while disabled", () => {
-    render(<ClickableCard data-testid="card" disabled onClick={jest.fn()} />);
+    render(<ClickableCard data-testid="card" disabled onClick={vi.fn()} />);
     const card = screen.getByTestId("card");
     expect(card).toHaveAttribute("aria-disabled");
     expect(card).not.toHaveAttribute("tabIndex");
   });
 
   it("should keyboard click correctly", () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(<ClickableCard data-testid="card" onClick={onClick} />);
 
     const card = screen.getByTestId("card");
@@ -51,7 +51,7 @@ describe("ClickableCard", () => {
   });
 
   it("should not fire the click event while disabled", () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(<ClickableCard data-testid="card" onClick={onClick} disabled />);
     const card = screen.getByTestId("card");
 

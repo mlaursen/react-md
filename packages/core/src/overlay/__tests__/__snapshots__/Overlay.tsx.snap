@@ -1,34 +1,34 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Overlay should allow for overriding CSS transition options 1`] = `
+exports[`Overlay > should allow for overriding CSS transition options 1`] = `
 <span
   class="rmd-overlay rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-display-none"
   data-testid="overlay"
 />
 `;
 
-exports[`Overlay should allow for overriding CSS transition options 2`] = `
+exports[`Overlay > should allow for overriding CSS transition options 2`] = `
 <span
   class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"
   data-testid="overlay"
 />
 `;
 
-exports[`Overlay should allow for overriding CSS transition options 3`] = `
+exports[`Overlay > should allow for overriding CSS transition options 3`] = `
 <span
   class="rmd-overlay rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-display-none"
   data-testid="overlay"
 />
 `;
 
-exports[`Overlay should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`Overlay > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <span
   class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"
   data-testid="overlay"
 />
 `;
 
-exports[`Overlay should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`Overlay > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <span
   class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center custom-class-name rmd-overlay--active"
   data-testid="overlay"
@@ -36,21 +36,21 @@ exports[`Overlay should apply the correct styling, HTMLAttributes, and allow a r
 />
 `;
 
-exports[`Overlay should disable the transition if the noOpacity prop is true 1`] = `
+exports[`Overlay > should disable the transition if the noOpacity prop is true 1`] = `
 <span
   class="rmd-overlay rmd-overlay--visible rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
   data-testid="overlay"
 />
 `;
 
-exports[`Overlay should support passing the box align/justify to the box class name utils 1`] = `
+exports[`Overlay > should support passing the box align/justify to the box class name utils 1`] = `
 <span
   class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-start rmd-box--justify-end rmd-overlay--active"
   data-testid="overlay"
 />
 `;
 
-exports[`Overlay should support rendering inline if disablePortal prop is true 1`] = `
+exports[`Overlay > should support rendering inline if disablePortal prop is true 1`] = `
 <div>
   <span
     class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center rmd-overlay--active"
@@ -59,7 +59,7 @@ exports[`Overlay should support rendering inline if disablePortal prop is true 1
 </div>
 `;
 
-exports[`Overlay should support rendering inline if it was visible by default and rendered through ssr 1`] = `
+exports[`Overlay > should support rendering inline if it was visible by default and rendered through ssr 1`] = `
 <div>
   <button
     class="rmd-button rmd-button--text rmd-interaction-surface"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ToastContent should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`ToastContent > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-toast-content"
   data-testid="content"
@@ -9,7 +9,7 @@ exports[`ToastContent should apply the correct styling, HTML attributes, and all
 </div>
 `;
 
-exports[`ToastContent should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`ToastContent > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-toast-content custom-class-name"
   data-testid="content"
@@ -19,7 +19,7 @@ exports[`ToastContent should apply the correct styling, HTML attributes, and all
 </div>
 `;
 
-exports[`ToastContent should only render the children if the disableWrapper prop is enabled 1`] = `
+exports[`ToastContent > should only render the children if the disableWrapper prop is enabled 1`] = `
 <div>
   Content
 </div>

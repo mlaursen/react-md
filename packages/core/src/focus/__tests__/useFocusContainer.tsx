@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import {
@@ -70,12 +70,12 @@ describe("useFocusContainer", () => {
     TRANSITION_CONFIG.disabled = false;
 
     const user = userEvent.setup();
-    const onEnter = jest.fn();
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
-    const onExit = jest.fn();
-    const onExiting = jest.fn();
-    const onExited = jest.fn();
+    const onEnter = vi.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
+    const onExit = vi.fn();
+    const onExiting = vi.fn();
+    const onExited = vi.fn();
     rmdRender(
       <Test
         onEnter={onEnter}
@@ -125,10 +125,10 @@ describe("useFocusContainer", () => {
     TRANSITION_CONFIG.disabled = false;
 
     const user = userEvent.setup();
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
-    const onExiting = jest.fn();
-    const onExited = jest.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
+    const onExiting = vi.fn();
+    const onExited = vi.fn();
     rmdRender(
       <Test
         onEntering={onEntering}
@@ -174,10 +174,10 @@ describe("useFocusContainer", () => {
     TRANSITION_CONFIG.disabled = false;
 
     const user = userEvent.setup();
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
-    const onExiting = jest.fn();
-    const onExited = jest.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
+    const onExiting = vi.fn();
+    const onExited = vi.fn();
     rmdRender(
       <Test
         onEntering={onEntering}
@@ -207,10 +207,10 @@ describe("useFocusContainer", () => {
 
   it("should still move focus when the TRANSITION_CONFIG.disabled is true", async () => {
     const user = userEvent.setup();
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
-    const onExiting = jest.fn();
-    const onExited = jest.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
+    const onExiting = vi.fn();
+    const onExited = vi.fn();
     rmdRender(
       <Test
         onEntering={onEntering}

@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { useState } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { Button } from "../button/Button.js";
 import { TextField } from "../form/TextField.js";
@@ -14,7 +14,7 @@ import {
 import { useDebouncedFunction } from "../useDebouncedFunction.js";
 
 function setup(delay?: number | null) {
-  const fired = jest.fn();
+  const fired = vi.fn();
   const user = userEvent.setup({ delay });
   function Test() {
     const [value, setValue] = useState("");
@@ -70,20 +70,20 @@ describe("useDebouncedFunction", () => {
       expect(field).toHaveValue("Hello, world!");
     });
     expect(fired).toHaveBeenCalledTimes(1);
-    expect(fired).toHaveBeenCalledWith("Hello, world!");
+    expect(fired).toHaveBeenCalledExactlyOnceWith("Hello, world!");
 
-    jest.useFakeTimers();
+    vi.useFakeTimers();
 
     fireEvent.change(field, { target: { value: "Hello, w" } });
     unmount();
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(fired).toHaveBeenCalledTimes(1);
   });
 
   it("should allow the timeout to be cancelled manually", async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { user, fired, cancel, output, field } = setup(null);
 
     expect(output).toHaveTextContent("");
@@ -94,13 +94,13 @@ describe("useDebouncedFunction", () => {
     expect(field).toHaveValue("Hello, world!");
 
     act(() => {
-      jest.advanceTimersByTime(300);
+      vi.advanceTimersByTime(300);
     });
 
     expect(fired).not.toHaveBeenCalled();
     await user.click(cancel);
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
 
     expect(fired).not.toHaveBeenCalled();

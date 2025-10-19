@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useTemporaryLayout should allow you to create a temporary layout quickly 1`] = `
+exports[`useTemporaryLayout > should allow you to create a temporary layout quickly 1`] = `
 <header
   class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
 >
@@ -24,7 +24,7 @@ exports[`useTemporaryLayout should allow you to create a temporary layout quickl
 </header>
 `;
 
-exports[`useTemporaryLayout should allow you to create a temporary layout quickly 2`] = `
+exports[`useTemporaryLayout > should allow you to create a temporary layout quickly 2`] = `
 <main
   class="rmd-layout-main rmd-layout-main--offset-v"
   id="main-:r0:"
@@ -33,7 +33,7 @@ exports[`useTemporaryLayout should allow you to create a temporary layout quickl
 </main>
 `;
 
-exports[`useTemporaryLayout should allow you to create a temporary layout quickly 3`] = `
+exports[`useTemporaryLayout > should allow you to create a temporary layout quickly 3`] = `
 <div
   aria-label="Navigation"
   class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width"
@@ -113,7 +113,7 @@ exports[`useTemporaryLayout should allow you to create a temporary layout quickl
 </div>
 `;
 
-exports[`useTemporaryLayout should not offset the main element for static app bar layouts 1`] = `
+exports[`useTemporaryLayout > should not offset the main element for static app bar layouts 1`] = `
 <main
   class="rmd-layout-main"
   id="main-:r5:"
@@ -122,7 +122,7 @@ exports[`useTemporaryLayout should not offset the main element for static app ba
 </main>
 `;
 
-exports[`useTemporaryLayout should not offset the main element for static app bar layouts 2`] = `
+exports[`useTemporaryLayout > should not offset the main element for static app bar layouts 2`] = `
 <main
   class="rmd-layout-main rmd-layout-main--offset-v"
   id="main-:r5:"
@@ -131,7 +131,7 @@ exports[`useTemporaryLayout should not offset the main element for static app ba
 </main>
 `;
 
-exports[`useTemporaryLayout should not offset the main element for static app bar layouts 3`] = `
+exports[`useTemporaryLayout > should not offset the main element for static app bar layouts 3`] = `
 <main
   class="rmd-layout-main rmd-layout-main--offset-v"
   id="main-:r5:"

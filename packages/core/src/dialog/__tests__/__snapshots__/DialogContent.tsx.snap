@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`DialogContent should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`DialogContent > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
   class="rmd-dialog__content rmd-dialog__content--padded"
   data-testid="content"
 />
 `;
 
-exports[`DialogContent should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`DialogContent > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
   class="rmd-dialog__content rmd-dialog__content--padded custom-class-name"
   data-testid="content"
@@ -15,7 +15,7 @@ exports[`DialogContent should apply the correct styling, HTMLAttributes, and all
 />
 `;
 
-exports[`DialogContent should support disabling padding 1`] = `
+exports[`DialogContent > should support disabling padding 1`] = `
 <div
   class="rmd-dialog__content rmd-dialog__content--padded"
   data-testid="content"
@@ -24,7 +24,7 @@ exports[`DialogContent should support disabling padding 1`] = `
 </div>
 `;
 
-exports[`DialogContent should support disabling padding 2`] = `
+exports[`DialogContent > should support disabling padding 2`] = `
 <div
   class="rmd-dialog__content"
   data-testid="content"
@@ -33,4 +33,4 @@ exports[`DialogContent should support disabling padding 2`] = `
 </div>
 `;
 
-exports[`dialogContent class name utility should be callable with no arguments 1`] = `"rmd-dialog__content rmd-dialog__content--padded"`;
+exports[`dialogContent class name utility > should be callable with no arguments 1`] = `"rmd-dialog__content rmd-dialog__content--padded"`;

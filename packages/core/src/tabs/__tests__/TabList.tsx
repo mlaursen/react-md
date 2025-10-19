@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, type Ref, createRef } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
   act,
@@ -11,8 +11,8 @@ import {
   userEvent,
   waitFor,
 } from "../../test-utils/index.js";
-import { spyOnMatchMedia } from "../../test-utils/jest-globals/match-media.js";
-import { cleanupResizeObserverAfterEach } from "../../test-utils/jest-globals/resize-observer.js";
+import { spyOnMatchMedia } from "../../test-utils/vitest/match-media.js";
+import { cleanupResizeObserverAfterEach } from "../../test-utils/vitest/resize-observer.js";
 import { Tooltip } from "../../tooltip/Tooltip.js";
 import { useTooltip } from "../../tooltip/useTooltip.js";
 import { WritingDirectionProvider } from "../../typography/WritingDirectionProvider.js";
@@ -22,7 +22,7 @@ import { type GetTabListScrollToOptions } from "../getTabListScrollToOptions.js"
 import { type ProvidedTabListProps, useTabs } from "../useTabs.js";
 
 // make it so the back button defaults to intersecting
-const getIntersectionRatio = jest.fn((target: Element): number =>
+const getIntersectionRatio = vi.fn((target: Element): number =>
   target.nextElementSibling ? 1 : 0
 );
 
@@ -117,11 +117,9 @@ describe("TabList", () => {
     getIntersectionRatio.mockImplementation((element) =>
       element.nextElementSibling ? 1 : 0
     );
-    jest
-      .spyOn(window, "IntersectionObserver")
-      .mockImplementation(
-        (callback, options) => new MockedObserver(callback, options)
-      );
+    vi.spyOn(window, "IntersectionObserver").mockImplementation(
+      (callback, options) => new MockedObserver(callback, options)
+    );
   });
 
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
@@ -146,10 +144,10 @@ describe("TabList", () => {
   });
 
   it("should update the tab indicator styles based on the active index", async () => {
-    const offsetLeft = jest
+    const offsetLeft = vi
       .spyOn(HTMLButtonElement.prototype, "offsetLeft", "get")
       .mockReturnValue(0);
-    const offsetWidth = jest
+    const offsetWidth = vi
       .spyOn(HTMLButtonElement.prototype, "offsetWidth", "get")
       .mockReturnValue(120);
 
@@ -212,9 +210,8 @@ describe("TabList", () => {
     it("should support rendering scroll buttons to scroll horizontally by setting the scrollButtons prop to true", async () => {
       let backObserver: Observer;
       let forwardObserver: Observer;
-      jest
-        .spyOn(window, "IntersectionObserver")
-        .mockImplementation((callback, options) => {
+      vi.spyOn(window, "IntersectionObserver").mockImplementation(
+        (callback, options) => {
           if (!backObserver) {
             backObserver = new MockedObserver(callback, options);
             return backObserver;
@@ -226,7 +223,8 @@ describe("TabList", () => {
           }
 
           throw new Error();
-        });
+        }
+      );
 
       const user = userEvent.setup();
       rmdRender(<Test scrollButtons />);
@@ -242,10 +240,10 @@ describe("TabList", () => {
         throw new Error();
       }
 
-      const scrollLeft = jest
+      const scrollLeft = vi
         .spyOn(tablist, "scrollLeft", "get")
         .mockReturnValue(0);
-      jest.spyOn(tablist, "scrollWidth", "get").mockReturnValue(100);
+      vi.spyOn(tablist, "scrollWidth", "get").mockReturnValue(100);
 
       const back = screen.getByRole("button", { name: "back" });
       const forward = screen.getByRole("button", { name: "forward" });
@@ -253,15 +251,15 @@ describe("TabList", () => {
       expect(back).toBeDisabled();
       expect(forward).toBeEnabled();
 
-      tablist.scrollTo ??= jest.fn();
-      const scrollTo = jest
-        .spyOn(tablist, "scrollTo")
-        .mockImplementation(() => {
-          act(() => {
-            backObserver?.trigger();
-            forwardObserver?.trigger();
-          });
+      // it is sometimes undefined
+      // eslint-disable-next-line vitest/prefer-spy-on
+      tablist.scrollTo ??= vi.fn();
+      const scrollTo = vi.spyOn(tablist, "scrollTo").mockImplementation(() => {
+        act(() => {
+          backObserver?.trigger();
+          forwardObserver?.trigger();
         });
+      });
       getIntersectionRatio.mockImplementation(() => 0);
 
       await user.click(forward);
@@ -309,9 +307,8 @@ describe("TabList", () => {
     it("should support rendering scroll buttons to scroll vertically by setting the scrollButtons prop to true", async () => {
       let backObserver: Observer;
       let forwardObserver: Observer;
-      jest
-        .spyOn(window, "IntersectionObserver")
-        .mockImplementation((callback, options) => {
+      vi.spyOn(window, "IntersectionObserver").mockImplementation(
+        (callback, options) => {
           if (!backObserver) {
             backObserver = new MockedObserver(callback, options);
             return backObserver;
@@ -323,7 +320,8 @@ describe("TabList", () => {
           }
 
           throw new Error();
-        });
+        }
+      );
 
       const user = userEvent.setup();
       rmdRender(<Test scrollButtons vertical />);
@@ -339,11 +337,11 @@ describe("TabList", () => {
         throw new Error();
       }
 
-      const scrollTop = jest
+      const scrollTop = vi
         .spyOn(tablist, "scrollTop", "get")
         .mockReturnValue(0);
-      jest.spyOn(tablist, "scrollHeight", "get").mockReturnValue(100);
-      jest.spyOn(tablist, "scrollWidth", "get").mockReturnValue(40);
+      vi.spyOn(tablist, "scrollHeight", "get").mockReturnValue(100);
+      vi.spyOn(tablist, "scrollWidth", "get").mockReturnValue(40);
 
       const back = screen.getByRole("button", { name: "back" });
       const forward = screen.getByRole("button", { name: "forward" });
@@ -351,15 +349,15 @@ describe("TabList", () => {
       expect(back).toBeDisabled();
       expect(forward).toBeEnabled();
 
-      tablist.scrollTo ??= jest.fn();
-      const scrollTo = jest
-        .spyOn(tablist, "scrollTo")
-        .mockImplementation(() => {
-          act(() => {
-            backObserver?.trigger();
-            forwardObserver?.trigger();
-          });
+      // it is sometimes undefined
+      // eslint-disable-next-line vitest/prefer-spy-on
+      tablist.scrollTo ??= vi.fn();
+      const scrollTo = vi.spyOn(tablist, "scrollTo").mockImplementation(() => {
+        act(() => {
+          backObserver?.trigger();
+          forwardObserver?.trigger();
         });
+      });
       getIntersectionRatio.mockImplementation(() => 0);
 
       await user.click(forward);
@@ -448,9 +446,8 @@ describe("TabList", () => {
     it("should support scrolling correctly in RTL mode", async () => {
       let backObserver: Observer;
       let forwardObserver: Observer;
-      jest
-        .spyOn(window, "IntersectionObserver")
-        .mockImplementation((callback, options) => {
+      vi.spyOn(window, "IntersectionObserver").mockImplementation(
+        (callback, options) => {
           if (!backObserver) {
             backObserver = new MockedObserver(callback, options);
             return backObserver;
@@ -462,7 +459,8 @@ describe("TabList", () => {
           }
 
           throw new Error();
-        });
+        }
+      );
 
       const user = userEvent.setup();
       rmdRender(<Test scrollButtons />, {
@@ -484,10 +482,10 @@ describe("TabList", () => {
         throw new Error();
       }
 
-      const scrollLeft = jest
+      const scrollLeft = vi
         .spyOn(tablist, "scrollLeft", "get")
         .mockReturnValue(0);
-      jest.spyOn(tablist, "scrollWidth", "get").mockReturnValue(100);
+      vi.spyOn(tablist, "scrollWidth", "get").mockReturnValue(100);
 
       const back = screen.getByRole("button", { name: "back" });
       const forward = screen.getByRole("button", { name: "forward" });
@@ -495,15 +493,15 @@ describe("TabList", () => {
       expect(back).toBeDisabled();
       expect(forward).toBeEnabled();
 
-      tablist.scrollTo ??= jest.fn();
-      const scrollTo = jest
-        .spyOn(tablist, "scrollTo")
-        .mockImplementation(() => {
-          act(() => {
-            backObserver?.trigger();
-            forwardObserver?.trigger();
-          });
+      // it is sometimes undefined
+      // eslint-disable-next-line vitest/prefer-spy-on
+      tablist.scrollTo ??= vi.fn();
+      const scrollTo = vi.spyOn(tablist, "scrollTo").mockImplementation(() => {
+        act(() => {
+          backObserver?.trigger();
+          forwardObserver?.trigger();
         });
+      });
       getIntersectionRatio.mockImplementation(() => 0);
 
       await user.click(forward);
@@ -551,7 +549,7 @@ describe("TabList", () => {
     it("should support scrolling a custom distance with the getScrollToOptions prop", async () => {
       // just allow both buttons to always be enabled for this test
       getIntersectionRatio.mockReturnValue(0.5);
-      const getScrollToOptions = jest.fn<GetTabListScrollToOptions>(() => ({
+      const getScrollToOptions = vi.fn<GetTabListScrollToOptions>(() => ({
         top: 10,
         left: 200,
         behavior: "auto",
@@ -559,8 +557,11 @@ describe("TabList", () => {
       const user = userEvent.setup();
       rmdRender(<Test scrollButtons getScrollToOptions={getScrollToOptions} />);
       const tablist = screen.getByRole("tablist");
-      tablist.scrollTo ??= jest.fn();
-      const scrollTo = jest.spyOn(tablist, "scrollTo");
+
+      // it is sometimes undefined
+      // eslint-disable-next-line vitest/prefer-spy-on
+      tablist.scrollTo ??= vi.fn();
+      const scrollTo = vi.spyOn(tablist, "scrollTo");
 
       const back = screen.getByRole("button", { name: "back" });
       const forward = screen.getByRole("button", { name: "forward" });
@@ -665,8 +666,8 @@ describe("TabList", () => {
       expect(() => screen.getByRole("button", { name: "back" })).toThrow();
       expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
 
-      jest.spyOn(tablist, "offsetWidth", "get").mockReturnValue(300);
-      const scrollWidth = jest
+      vi.spyOn(tablist, "offsetWidth", "get").mockReturnValue(300);
+      const scrollWidth = vi
         .spyOn(tablist, "scrollWidth", "get")
         .mockReturnValue(300);
 
@@ -695,8 +696,8 @@ describe("TabList", () => {
       expect(() => screen.getByRole("button", { name: "back" })).toThrow();
       expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
 
-      jest.spyOn(tablist, "offsetWidth", "get").mockReturnValue(300);
-      const scrollWidth = jest
+      vi.spyOn(tablist, "offsetWidth", "get").mockReturnValue(300);
+      const scrollWidth = vi
         .spyOn(tablist, "scrollWidth", "get")
         .mockReturnValue(300);
 

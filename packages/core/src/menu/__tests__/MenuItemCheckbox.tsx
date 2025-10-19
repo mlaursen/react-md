@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { rmdRender, screen } from "../../test-utils/index.js";
 import { MenuItemCheckbox } from "../MenuItemCheckbox.js";
@@ -11,7 +11,7 @@ describe("MenuItemCheckbox", () => {
     const props = {
       ref,
       checked: false,
-      onCheckedChange: jest.fn(),
+      onCheckedChange: vi.fn(),
       children: "Checkbox",
     } as const;
 
@@ -39,7 +39,7 @@ describe("MenuItemCheckbox", () => {
       iconAfter: true,
       children: "Checkbox",
       checked: false,
-      onCheckedChange: jest.fn(),
+      onCheckedChange: vi.fn(),
     };
 
     const { rerender } = rmdRender(<MenuItemCheckbox {...props} />);

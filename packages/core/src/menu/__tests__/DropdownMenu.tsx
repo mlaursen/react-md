@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import { DialogFooter } from "../../dialog/DialogFooter.js";
@@ -19,7 +19,7 @@ import {
   waitForElementToBeRemoved,
   within,
 } from "../../test-utils/index.js";
-import { testImmediateRaf } from "../../test-utils/jest-globals/index.js";
+import { testImmediateRaf } from "../../test-utils/vitest/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { DropdownMenu } from "../DropdownMenu.js";
 import { MenuItem } from "../MenuItem.js";
@@ -32,9 +32,9 @@ describe("DropdownMenu", () => {
 
   it("should render as a button and toggle the visibility when clicked", async () => {
     const user = userEvent.setup();
-    const onItem1Click = jest.fn();
-    const onItem2Click = jest.fn();
-    const onItem3Click = jest.fn();
+    const onItem1Click = vi.fn();
+    const onItem2Click = vi.fn();
+    const onItem3Click = vi.fn();
 
     rmdRender(
       <>
@@ -292,13 +292,13 @@ describe("DropdownMenu", () => {
 
     // pretend the user scrolled the menu out of the viewport by scrolling down
     const baseRect = document.body.getBoundingClientRect();
-    jest.spyOn(menu, "getBoundingClientRect").mockReturnValue({
+    vi.spyOn(menu, "getBoundingClientRect").mockReturnValue({
       ...baseRect,
       top: -200,
       left: 16,
       bottom: -1,
     });
-    jest.spyOn(button, "getBoundingClientRect").mockReturnValue({
+    vi.spyOn(button, "getBoundingClientRect").mockReturnValue({
       ...baseRect,
       top: -200,
       left: 16,
@@ -320,7 +320,7 @@ describe("DropdownMenu", () => {
     type Listener = (event: MediaQueryListEvent) => void;
     const noop = (): void => {};
     const listeners = new Map<string, Listener>();
-    const matchMedia = jest
+    const matchMedia = vi
       .spyOn(window, "matchMedia")
       .mockImplementation((query) => ({
         media: query,
@@ -586,7 +586,7 @@ describe("DropdownMenu", () => {
   });
 
   it("should include disabled menu items for the keyboard movement", async () => {
-    const onItemClick = jest.fn();
+    const onItemClick = vi.fn();
     const user = userEvent.setup();
     rmdRender(
       <DropdownMenu buttonChildren="Dropdown">

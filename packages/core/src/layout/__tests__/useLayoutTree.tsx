@@ -1,4 +1,3 @@
-import { beforeEach, describe, expect, it } from "@jest/globals";
 import {
   type AnchorHTMLAttributes,
   type ReactElement,
@@ -8,6 +7,7 @@ import {
   useContext,
   useState,
 } from "react";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { rmdRender, screen, userEvent } from "../../test-utils/index.js";

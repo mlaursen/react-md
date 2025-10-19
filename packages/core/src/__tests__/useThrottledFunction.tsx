@@ -1,10 +1,10 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import {
   type MutableRefObject,
   type ReactElement,
   useEffect,
   useState,
 } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { Button } from "../button/Button.js";
 import { TextField } from "../form/TextField.js";
@@ -42,7 +42,7 @@ function SyncTest(): ReactElement {
   );
 }
 
-const fakeFetch = jest.fn((search: string) =>
+const fakeFetch = vi.fn((search: string) =>
   Promise.resolve({
     json: () => Promise.resolve({ search }),
   })
@@ -127,14 +127,14 @@ describe("useThrottledFunction", () => {
   });
 
   it("should support async functions but they require custom unmount logic", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
 
     const unmounted = { current: false };
-    const onUnmounted = jest.fn();
+    const onUnmounted = vi.fn();
     render(<AsyncTest unmounted={unmounted} onUnmounted={onUnmounted} />);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     const value = screen.getByTestId("value");
     const field = screen.getByRole("textbox", { name: "Field" });
@@ -146,35 +146,35 @@ describe("useThrottledFunction", () => {
     // pretend typing. can't use userEvent here since I have fake timers
     fireEvent.change(field, { value: "H" });
     act(() => {
-      jest.advanceTimersByTime(20);
+      vi.advanceTimersByTime(20);
     });
     fireEvent.change(field, { target: { value: "He" } });
     act(() => {
-      jest.advanceTimersByTime(20);
+      vi.advanceTimersByTime(20);
     });
     fireEvent.change(field, { target: { value: "Hel" } });
     act(() => {
-      jest.advanceTimersByTime(20);
+      vi.advanceTimersByTime(20);
     });
     fireEvent.change(field, { target: { value: "Hell" } });
     act(() => {
-      jest.advanceTimersByTime(20);
+      vi.advanceTimersByTime(20);
     });
     fireEvent.change(field, { target: { value: "Hello" } });
 
     expect(value).toHaveTextContent("");
     expect(field).toHaveValue("Hello");
     act(() => {
-      jest.runOnlyPendingTimers();
+      vi.runOnlyPendingTimers();
     });
     expect(value).toHaveTextContent("");
     expect(field).toHaveValue("Hello");
   });
 
   it("should allow the timeout to be cancelled", async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const user = userEvent.setup({ delay: null });
-    const fired = jest.fn();
+    const fired = vi.fn();
 
     function Test() {
       const [value, setValue] = useState("");
@@ -218,7 +218,7 @@ describe("useThrottledFunction", () => {
 
     await user.click(cancel);
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
 
     expect(fired).toHaveBeenCalledTimes(1);

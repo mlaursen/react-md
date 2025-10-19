@@ -1,5 +1,5 @@
-import { beforeAll, describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, type ReactNode } from "react";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import { render, screen, userEvent } from "../../test-utils/index.js";
@@ -48,7 +48,7 @@ function ErrorOnUpdateTest({
   );
 }
 
-const error = jest.spyOn(console, "error");
+const error = vi.spyOn(console, "error");
 beforeAll(() => {
   // hide error messages
   error.mockImplementation(() => {});
@@ -143,7 +143,7 @@ describe("ErrorBoundary", () => {
 
   it("should allow for an onError callback", async () => {
     const user = userEvent.setup();
-    const onError = jest.fn();
+    const onError = vi.fn();
     render(<ErrorOnUpdateTest onError={onError} />);
     expect(onError).not.toHaveBeenCalled();
 

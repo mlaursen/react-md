@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ButtonUnstyled should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`ButtonUnstyled > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <button
   class="rmd-button-unstyled"
   type="button"
@@ -9,7 +9,7 @@ exports[`ButtonUnstyled should apply the correct styling, HTML attributes, and a
 </button>
 `;
 
-exports[`ButtonUnstyled should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`ButtonUnstyled > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <button
   class="rmd-button-unstyled custom-class-name"
   style="color: white;"
@@ -19,4 +19,4 @@ exports[`ButtonUnstyled should apply the correct styling, HTML attributes, and a
 </button>
 `;
 
-exports[`ButtonUnstyled styling utility class should be callable without any arguments 1`] = `"rmd-button-unstyled"`;
+exports[`ButtonUnstyled > styling utility class > should be callable without any arguments 1`] = `"rmd-button-unstyled"`;

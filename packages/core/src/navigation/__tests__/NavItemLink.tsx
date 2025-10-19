@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, createRef } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import {
@@ -14,13 +14,10 @@ import { useToggle } from "../../useToggle.js";
 import { CollapsibleNavGroup } from "../CollapsibleNavGroup.js";
 import { NavItemLink } from "../NavItemLink.js";
 
-const scrollIntoView = jest.spyOn(
-  HTMLAnchorElement.prototype,
-  "scrollIntoView"
-);
+const scrollIntoView = vi.spyOn(HTMLAnchorElement.prototype, "scrollIntoView");
 
 beforeEach(() => {
-  jest.resetAllMocks();
+  vi.resetAllMocks();
 });
 
 describe("NavItemLink", () => {
@@ -71,13 +68,14 @@ describe("NavItemLink", () => {
     const link = screen.getByRole("link", { name: "Home" });
 
     const content = screen.getByTestId("content");
-    jest.spyOn(content, "scrollWidth", "get").mockReturnValue(300);
+    vi.spyOn(content, "scrollWidth", "get").mockReturnValue(300);
 
     const rect = content.getBoundingClientRect();
-    jest.spyOn(content, "offsetWidth", "get").mockReturnValue(150);
-    jest
-      .spyOn(content, "getBoundingClientRect")
-      .mockReturnValue({ ...rect, width: 150 });
+    vi.spyOn(content, "offsetWidth", "get").mockReturnValue(150);
+    vi.spyOn(content, "getBoundingClientRect").mockReturnValue({
+      ...rect,
+      width: 150,
+    });
 
     await user.hover(link);
     const tooltip = await screen.findByRole("tooltip", {

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   aria-labelledby="expansion-panel-:rk:"
   class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
@@ -12,7 +12,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
 </div>
 `;
 
-exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   aria-labelledby="expansion-panel-:rk:"
   class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
@@ -24,7 +24,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
 </div>
 `;
 
-exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref on the content element 1`] = `
+exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and allow a ref on the content element 1`] = `
 <div
   class="rmd-box rmd-box--column rmd-box--full-width rmd-box--align-stretch rmd-box--justify-stretch rmd-card rmd-card--shadowed rmd-expansion-panel rmd-expansion-panel--animate"
   id="expansion-panel-:rl:-container"
@@ -58,7 +58,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
 </div>
 `;
 
-exports[`ExpansionPanel should apply the correct styling, HTML attributes, and allow a ref on the content element 2`] = `
+exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and allow a ref on the content element 2`] = `
 <div
   class="rmd-box rmd-box--column rmd-box--full-width rmd-box--align-stretch rmd-box--justify-stretch rmd-card rmd-card--shadowed rmd-expansion-panel rmd-expansion-panel--animate custom-class-name"
   id="expansion-panel-:rl:-container"
@@ -93,7 +93,7 @@ exports[`ExpansionPanel should apply the correct styling, HTML attributes, and a
 </div>
 `;
 
-exports[`ExpansionPanel should default to single expansion, allowing all panels to be closed, no expanded ids, and apply hidden while collapsed 1`] = `
+exports[`ExpansionPanel > should default to single expansion, allowing all panels to be closed, no expanded ids, and apply hidden while collapsed 1`] = `
 <div>
   <div>
     <div

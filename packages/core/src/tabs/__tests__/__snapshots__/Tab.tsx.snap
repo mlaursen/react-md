@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Tab should support rendering an icon in different positions around the children 1`] = `
+exports[`Tab > should support rendering an icon in different positions around the children 1`] = `
 <button
   aria-selected="false"
   class="rmd-tab rmd-interaction-surface"
@@ -21,7 +21,7 @@ exports[`Tab should support rendering an icon in different positions around the 
 </button>
 `;
 
-exports[`Tab should support rendering an icon in different positions around the children 2`] = `
+exports[`Tab > should support rendering an icon in different positions around the children 2`] = `
 <button
   aria-selected="false"
   class="rmd-tab rmd-tab--stacked rmd-interaction-surface"
@@ -42,7 +42,7 @@ exports[`Tab should support rendering an icon in different positions around the 
 </button>
 `;
 
-exports[`Tab should support rendering an icon in different positions around the children 3`] = `
+exports[`Tab > should support rendering an icon in different positions around the children 3`] = `
 <button
   aria-selected="false"
   class="rmd-tab rmd-tab--reversed rmd-interaction-surface"
@@ -63,7 +63,7 @@ exports[`Tab should support rendering an icon in different positions around the 
 </button>
 `;
 
-exports[`Tab should support rendering an icon in different positions around the children 4`] = `
+exports[`Tab > should support rendering an icon in different positions around the children 4`] = `
 <button
   aria-selected="false"
   class="rmd-tab rmd-tab--stacked rmd-tab--stacked-reversed rmd-interaction-surface"

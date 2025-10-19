@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`NavItemButton should allow an addon to be rendered before or after the children so that the addons are not included in the overflowing tooltip 1`] = `
+exports[`NavItemButton > should allow an addon to be rendered before or after the children so that the addons are not included in the overflowing tooltip 1`] = `
 <button
   aria-expanded="false"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
@@ -27,7 +27,7 @@ exports[`NavItemButton should allow an addon to be rendered before or after the 
 </button>
 `;
 
-exports[`NavItemButton should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`NavItemButton > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <button
   aria-expanded="false"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
@@ -48,7 +48,7 @@ exports[`NavItemButton should apply the correct styling, HTML attributes, and al
 </button>
 `;
 
-exports[`NavItemButton should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`NavItemButton > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <button
   aria-expanded="false"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content custom-class-name"
@@ -70,7 +70,7 @@ exports[`NavItemButton should apply the correct styling, HTML attributes, and al
 </button>
 `;
 
-exports[`NavItemButton should support an overflow only tooltip by default 1`] = `
+exports[`NavItemButton > should support an overflow only tooltip by default 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--right rmd-tooltip--visible"
   id=":r4:-tooltip"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`LayoutWindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`LayoutWindowSplitter > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <button
   aria-controls="does-not-exist"
   aria-label="Resize Navigation"
@@ -14,7 +14,7 @@ exports[`LayoutWindowSplitter should apply the correct styling, HTMLAttributes, 
 />
 `;
 
-exports[`LayoutWindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`LayoutWindowSplitter > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <button
   aria-controls="does-not-exist"
   aria-label="Resize Navigation"
@@ -29,7 +29,7 @@ exports[`LayoutWindowSplitter should apply the correct styling, HTMLAttributes, 
 />
 `;
 
-exports[`LayoutWindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+exports[`LayoutWindowSplitter > should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
 <button
   aria-controls="does-not-exist"
   aria-labelledby="another-id"
@@ -44,7 +44,7 @@ exports[`LayoutWindowSplitter should apply the correct styling, HTMLAttributes, 
 />
 `;
 
-exports[`LayoutWindowSplitter should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+exports[`LayoutWindowSplitter > should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
 <button
   aria-controls="does-not-exist"
   aria-label="Custom Label"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`DialogTitle should allow for the Typography component defaults to be overwritten 1`] = `
+exports[`DialogTitle > should allow for the Typography component defaults to be overwritten 1`] = `
 <h3
   class="rmd-typography rmd-typography--caption rmd-no-margin-bottom rmd-dialog__title"
 >
@@ -8,7 +8,7 @@ exports[`DialogTitle should allow for the Typography component defaults to be ov
 </h3>
 `;
 
-exports[`DialogTitle should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`DialogTitle > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <h2
   class="rmd-typography rmd-typography--headline-4 rmd-no-margin rmd-dialog__title"
 >
@@ -16,7 +16,7 @@ exports[`DialogTitle should apply the correct styling, HTMLAttributes, and allow
 </h2>
 `;
 
-exports[`DialogTitle should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`DialogTitle > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <h2
   class="rmd-typography rmd-typography--headline-4 rmd-no-margin rmd-dialog__title custom-class-name"
   style="color: white;"

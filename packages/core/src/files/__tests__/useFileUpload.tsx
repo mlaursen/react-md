@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { useEffect } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
   act,
@@ -38,21 +38,21 @@ class MockFileReader implements FileReader {
   _progressEvents: ((event: Event) => void)[] = [];
   _loadEvents: ((event: Event) => void)[] = [];
 
-  onerror = jest.fn();
-  onabort = jest.fn();
-  onload = jest.fn();
-  onloadstart = jest.fn();
-  onloadend = jest.fn();
-  onprogress = jest.fn();
+  onerror = vi.fn();
+  onabort = vi.fn();
+  onload = vi.fn();
+  onloadstart = vi.fn();
+  onloadend = vi.fn();
+  onprogress = vi.fn();
 
-  abort = jest.fn();
-  readAsText = jest.fn();
-  readAsDataURL = jest.fn();
-  readAsArrayBuffer = jest.fn();
-  readAsBinaryString = jest.fn();
+  abort = vi.fn();
+  readAsText = vi.fn();
+  readAsDataURL = vi.fn();
+  readAsArrayBuffer = vi.fn();
+  readAsBinaryString = vi.fn();
 
-  removeEventListener = jest.fn();
-  dispatchEvent = jest.fn(() => false);
+  removeEventListener = vi.fn();
+  dispatchEvent = vi.fn(() => false);
 
   addEventListener(
     name: "progress" | "load",
@@ -90,18 +90,18 @@ class MockFileReader implements FileReader {
   }
 }
 
-const abort = jest.fn();
-const readAsText = jest.fn();
-const readAsDataURL = jest.fn();
-const readAsArrayBuffer = jest.fn();
+const abort = vi.fn();
+const readAsText = vi.fn();
+const readAsDataURL = vi.fn();
+const readAsArrayBuffer = vi.fn();
 let mockFileReader = new MockFileReader();
 
-let fileReader = jest.spyOn(window, "FileReader");
+let fileReader = vi.spyOn(window, "FileReader");
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   mockFileReader = new MockFileReader();
-  fileReader = jest.spyOn(window, "FileReader");
+  fileReader = vi.spyOn(window, "FileReader");
 
   fileReader.mockImplementation(() => mockFileReader);
   mockFileReader.abort = abort;

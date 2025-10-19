@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   rmdRender,
@@ -47,7 +47,7 @@ describe("useTabs", () => {
     const tab1 = screen.getByRole("tab", { name: "Tab 1" });
     const tab2 = screen.getByRole("tab", { name: "Tab 2" });
 
-    const scrollTop = jest.spyOn(panels, "scrollTop", "set");
+    const scrollTop = vi.spyOn(panels, "scrollTop", "set");
 
     await user.click(tab2);
     expect(scrollTop).not.toHaveBeenCalled();

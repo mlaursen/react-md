@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TableCheckbox should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`TableCheckbox > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <td
   class="rmd-table-cell rmd-table-cell--input-toggle rmd-align-left rmd-nowrap rmd-ellipsis"
 >
@@ -35,7 +35,7 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
 </td>
 `;
 
-exports[`TableCheckbox should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`TableCheckbox > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <td
   class="rmd-table-cell rmd-table-cell--input-toggle rmd-align-left rmd-nowrap rmd-ellipsis custom-class-name"
   style="pointer-events: none;"
@@ -71,7 +71,7 @@ exports[`TableCheckbox should apply the correct styling, HTML attributes, and al
 </td>
 `;
 
-exports[`TableCheckbox should handle the aria-label/aria-labelledby props correctly 1`] = `
+exports[`TableCheckbox > should handle the aria-label/aria-labelledby props correctly 1`] = `
 <td
   class="rmd-table-cell rmd-table-cell--input-toggle rmd-align-left rmd-nowrap rmd-ellipsis"
 >
@@ -106,7 +106,7 @@ exports[`TableCheckbox should handle the aria-label/aria-labelledby props correc
 </td>
 `;
 
-exports[`TableCheckbox should handle the aria-label/aria-labelledby props correctly 2`] = `
+exports[`TableCheckbox > should handle the aria-label/aria-labelledby props correctly 2`] = `
 <td
   class="rmd-table-cell rmd-table-cell--input-toggle rmd-align-left rmd-nowrap rmd-ellipsis"
 >

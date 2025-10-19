@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, vi } from "vitest";
 
 import { parseCssLengthUnit } from "../parseCssLengthUnit.js";
 
@@ -15,7 +15,7 @@ describe("parseCssLengthUnit", () => {
 
   it("should parse the fontSize style for em/rem units", () => {
     const defaultStyle = window.getComputedStyle(document.documentElement);
-    const getComputedStyle = jest
+    const getComputedStyle = vi
       .spyOn(window, "getComputedStyle")
       .mockImplementation((element) => {
         if (element === document.documentElement) {

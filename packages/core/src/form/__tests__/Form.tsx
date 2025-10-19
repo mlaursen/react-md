@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type FormEvent, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { type NonNullMutableRef } from "../../types.js";
@@ -29,9 +29,9 @@ describe("Form", () => {
 
   it("should prevent default form behavior unless disablePreventDefault is enabled", () => {
     // hide the `Error: Not implemented: HTMLFormElement.prototype.requestSubmit`
-    const error = jest.spyOn(console, "error").mockImplementation(() => {});
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
     const prevented: NonNullMutableRef<boolean> = { current: false };
-    const onSubmit = jest.fn((event: FormEvent<HTMLFormElement>) => {
+    const onSubmit = vi.fn((event: FormEvent<HTMLFormElement>) => {
       prevented.current = event.isDefaultPrevented();
     });
     const { rerender } = render(

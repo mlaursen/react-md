@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ListItem should allow for custom props to be passed to the primary text wrapper 1`] = `
+exports[`ListItem > should allow for custom props to be passed to the primary text wrapper 1`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface"
   role="button"
@@ -15,7 +15,7 @@ exports[`ListItem should allow for custom props to be passed to the primary text
 </li>
 `;
 
-exports[`ListItem should allow for custom props to be passed to the secondary text wrapper 1`] = `
+exports[`ListItem > should allow for custom props to be passed to the secondary text wrapper 1`] = `
 <li
   class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface"
   role="button"
@@ -35,7 +35,7 @@ exports[`ListItem should allow for custom props to be passed to the secondary te
 </li>
 `;
 
-exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`ListItem > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface"
   role="button"
@@ -49,7 +49,7 @@ exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a 
 </li>
 `;
 
-exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`ListItem > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface custom-class-name"
   role="button"
@@ -64,7 +64,7 @@ exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a 
 </li>
 `;
 
-exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
+exports[`ListItem > should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
 <li
   aria-disabled="true"
   class="rmd-list-item rmd-list-item--normal rmd-list-item--disabled-color rmd-interaction-surface custom-class-name"
@@ -80,7 +80,7 @@ exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a 
 </li>
 `;
 
-exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
+exports[`ListItem > should apply the correct styling, HTMLAttributes, and allow a ref 4`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface custom-class-name"
   role="button"
@@ -95,7 +95,7 @@ exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a 
 </li>
 `;
 
-exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a ref 5`] = `
+exports[`ListItem > should apply the correct styling, HTMLAttributes, and allow a ref 5`] = `
 <li
   aria-disabled="true"
   class="rmd-list-item rmd-list-item--normal rmd-list-item--disabled-opacity rmd-interaction-surface custom-class-name"
@@ -111,7 +111,7 @@ exports[`ListItem should apply the correct styling, HTMLAttributes, and allow a 
 </li>
 `;
 
-exports[`ListItem should update the height based on the provided addons and render correctly 1`] = `
+exports[`ListItem > should update the height based on the provided addons and render correctly 1`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface"
   role="button"
@@ -125,7 +125,7 @@ exports[`ListItem should update the height based on the provided addons and rend
 </li>
 `;
 
-exports[`ListItem should update the height based on the provided addons and render correctly 2`] = `
+exports[`ListItem > should update the height based on the provided addons and render correctly 2`] = `
 <li
   class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface"
   role="button"
@@ -144,7 +144,7 @@ exports[`ListItem should update the height based on the provided addons and rend
 </li>
 `;
 
-exports[`ListItem should update the height based on the provided addons and render correctly 3`] = `
+exports[`ListItem > should update the height based on the provided addons and render correctly 3`] = `
 <li
   class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface"
   role="button"
@@ -165,7 +165,7 @@ exports[`ListItem should update the height based on the provided addons and rend
 </li>
 `;
 
-exports[`ListItem should update the height based on the provided addons and render correctly 4`] = `
+exports[`ListItem > should update the height based on the provided addons and render correctly 4`] = `
 <li
   class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface"
   role="button"
@@ -187,7 +187,7 @@ exports[`ListItem should update the height based on the provided addons and rend
 </li>
 `;
 
-exports[`ListItem should update the height based on the provided addons and render correctly 5`] = `
+exports[`ListItem > should update the height based on the provided addons and render correctly 5`] = `
 <li
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface"
   role="button"
@@ -206,7 +206,7 @@ exports[`ListItem should update the height based on the provided addons and rend
 </li>
 `;
 
-exports[`ListItem should update the height based on the provided addons and render correctly 6`] = `
+exports[`ListItem > should update the height based on the provided addons and render correctly 6`] = `
 <li
   class="rmd-list-item rmd-list-item--large rmd-interaction-surface"
   role="button"
@@ -230,7 +230,7 @@ exports[`ListItem should update the height based on the provided addons and rend
 </li>
 `;
 
-exports[`ListItem should update the height based on the provided addons and render correctly 7`] = `
+exports[`ListItem > should update the height based on the provided addons and render correctly 7`] = `
 <li
   class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface"
   role="button"
@@ -254,7 +254,7 @@ exports[`ListItem should update the height based on the provided addons and rend
 </li>
 `;
 
-exports[`ListItem should update the height based on the provided addons and render correctly 8`] = `
+exports[`ListItem > should update the height based on the provided addons and render correctly 8`] = `
 <li
   class="rmd-list-item rmd-list-item--extra-large rmd-interaction-surface"
   role="button"
@@ -278,7 +278,7 @@ exports[`ListItem should update the height based on the provided addons and rend
 </li>
 `;
 
-exports[`ListItem should update the height based on the provided addons and render correctly 9`] = `
+exports[`ListItem > should update the height based on the provided addons and render correctly 9`] = `
 <li
   class="rmd-list-item rmd-list-item--extra-large rmd-list-item--multiline rmd-interaction-surface"
   role="button"
@@ -307,7 +307,7 @@ exports[`ListItem should update the height based on the provided addons and rend
 </li>
 `;
 
-exports[`ListItem should wrap text children in span elements to enable higher contrast 1`] = `
+exports[`ListItem > should wrap text children in span elements to enable higher contrast 1`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface"
   role="button"
@@ -321,7 +321,7 @@ exports[`ListItem should wrap text children in span elements to enable higher co
 </li>
 `;
 
-exports[`ListItem should wrap text children in span elements to enable higher contrast 2`] = `
+exports[`ListItem > should wrap text children in span elements to enable higher contrast 2`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface"
   role="button"
@@ -333,7 +333,7 @@ exports[`ListItem should wrap text children in span elements to enable higher co
 </li>
 `;
 
-exports[`ListItem should wrap text children in span elements to enable higher contrast 3`] = `
+exports[`ListItem > should wrap text children in span elements to enable higher contrast 3`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface"
   role="button"
@@ -349,7 +349,7 @@ exports[`ListItem should wrap text children in span elements to enable higher co
 </li>
 `;
 
-exports[`ListItem should wrap text children in span elements to enable higher contrast 4`] = `
+exports[`ListItem > should wrap text children in span elements to enable higher contrast 4`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface"
   role="button"
@@ -361,7 +361,7 @@ exports[`ListItem should wrap text children in span elements to enable higher co
 </li>
 `;
 
-exports[`ListItem should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 1`] = `
+exports[`ListItem > should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 1`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface"
   role="button"
@@ -375,7 +375,7 @@ exports[`ListItem should wrap text children in span elements to enable higher co
 </li>
 `;
 
-exports[`ListItem should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 2`] = `
+exports[`ListItem > should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 2`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface"
   role="button"
@@ -385,7 +385,7 @@ exports[`ListItem should wrap text children in span elements to enable higher co
 </li>
 `;
 
-exports[`ListItem should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 3`] = `
+exports[`ListItem > should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 3`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface"
   role="button"
@@ -401,7 +401,7 @@ exports[`ListItem should wrap text children in span elements to enable higher co
 </li>
 `;
 
-exports[`ListItem should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 4`] = `
+exports[`ListItem > should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled 4`] = `
 <li
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface"
   role="button"

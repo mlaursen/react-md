@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { createRef, useState } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import {
@@ -9,7 +9,7 @@ import {
   setupResizeObserverMock,
   userEvent,
 } from "../../test-utils/index.js";
-import { cleanupResizeObserverAfterEach } from "../../test-utils/jest-globals/index.js";
+import { cleanupResizeObserverAfterEach } from "../../test-utils/vitest/index.js";
 import { TextArea, type TextAreaProps } from "../TextArea.js";
 
 describe("TextArea", () => {
@@ -188,7 +188,7 @@ describe("TextArea", () => {
 
     const label = screen.getByTestId("label");
     expect(label).toHaveStyle("background: orange");
-    expect(label).not.toHaveStyle("color: red");
+    expect(label).not.toHaveStyle("color: rgb(255, 0, 0)");
     expect(label).toHaveClass("label-props-class-name");
     expect(label).not.toHaveClass("label-class-name");
     expect(label).toMatchSnapshot();
@@ -205,7 +205,7 @@ describe("TextArea", () => {
     );
 
     expect(label).not.toHaveStyle("background: orange");
-    expect(label).toHaveStyle("color: red");
+    expect(label).toHaveStyle("color: rgb(255, 0, 0)");
     expect(label).not.toHaveClass("label-props-class-name");
     expect(label).toHaveClass("label-class-name");
     expect(label).toMatchSnapshot();
@@ -303,7 +303,7 @@ describe("TextArea", () => {
         window
           .getComputedStyle(container)
           .getPropertyValue("--rmd-text-area-height");
-      const maskScrollHeight = jest
+      const maskScrollHeight = vi
         .spyOn(mask, "scrollHeight", "get")
         // the default height of 3.5rem
         .mockReturnValue(56);
@@ -367,7 +367,7 @@ describe("TextArea", () => {
       baseStyle.borderTopWidth = "1px";
       baseStyle.borderBottomWidth = "1px";
 
-      const getComputedStyle = jest
+      const getComputedStyle = vi
         .spyOn(window, "getComputedStyle")
         .mockImplementationOnce(() => {
           baseStyle.boxSizing = "border-box";

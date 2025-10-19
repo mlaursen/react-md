@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import {
@@ -9,7 +9,7 @@ import {
 
 describe("UserInteractionModeProvider", () => {
   it("should throw an error if multiple instances are mounted", () => {
-    const error = jest.spyOn(console, "error");
+    const error = vi.spyOn(console, "error");
     error.mockImplementation(() => {});
     expect(() =>
       render(
@@ -47,8 +47,8 @@ describe("UserInteractionModeProvider", () => {
 
   it("should swap from touch back to mouse only when the mousemove event has not been triggered after a touchstart event", () => {
     // this is really a test that should be done in a browser.
-    const now = jest
-      .spyOn(Date, "now")
+    const now = vi
+      .fn()
       // first touchstart
       .mockImplementationOnce(() => 0)
       // "fake" mousemove after touchstart
@@ -66,7 +66,8 @@ describe("UserInteractionModeProvider", () => {
       .mockImplementationOnce(() => 6000);
 
     render(
-      <UserInteractionModeProvider>
+      // @ts-expect-error this is a hidden type only added for tests
+      <UserInteractionModeProvider now={now}>
         <span />
       </UserInteractionModeProvider>
     );

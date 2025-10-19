@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`HighlightText should be able to highlight text if the children are an array 1`] = `
+exports[`HighlightText > should be able to highlight text if the children are an array 1`] = `
 <div
   data-testid="wrapper"
 >
@@ -44,7 +44,7 @@ exports[`HighlightText should be able to highlight text if the children are an a
 </div>
 `;
 
-exports[`HighlightText should default to find all matches of the query string and wrap in the highlight component 1`] = `
+exports[`HighlightText > should default to find all matches of the query string and wrap in the highlight component 1`] = `
 <div
   data-testid="wrapper"
 >
@@ -87,7 +87,7 @@ exports[`HighlightText should default to find all matches of the query string an
 </div>
 `;
 
-exports[`HighlightText should default to find all matches of the query string and wrap in the highlight component 2`] = `
+exports[`HighlightText > should default to find all matches of the query string and wrap in the highlight component 2`] = `
 <div
   data-testid="wrapper"
 >
@@ -102,7 +102,7 @@ exports[`HighlightText should default to find all matches of the query string an
 </div>
 `;
 
-exports[`HighlightText should handle diacritics correctly 1`] = `
+exports[`HighlightText > should handle diacritics correctly 1`] = `
 <div
   data-testid="wrapper"
 >
@@ -117,7 +117,7 @@ exports[`HighlightText should handle diacritics correctly 1`] = `
 </div>
 `;
 
-exports[`HighlightText should highlight the text by wrapping in a Mark by default 1`] = `
+exports[`HighlightText > should highlight the text by wrapping in a Mark by default 1`] = `
 <div
   data-testid="wrapper"
 >
@@ -131,7 +131,7 @@ exports[`HighlightText should highlight the text by wrapping in a Mark by defaul
 </div>
 `;
 
-exports[`HighlightText should ignore whitespace 1`] = `
+exports[`HighlightText > should ignore whitespace 1`] = `
 <div
   data-testid="wrapper"
 >
@@ -145,7 +145,7 @@ exports[`HighlightText should ignore whitespace 1`] = `
 </div>
 `;
 
-exports[`HighlightText should ignore whitespace 2`] = `
+exports[`HighlightText > should ignore whitespace 2`] = `
 <div
   data-testid="wrapper"
 >
@@ -153,7 +153,7 @@ exports[`HighlightText should ignore whitespace 2`] = `
 </div>
 `;
 
-exports[`HighlightText should return the children as-is if there is no query, the children are not a string, or the children is an empty string 1`] = `
+exports[`HighlightText > should return the children as-is if there is no query, the children are not a string, or the children is an empty string 1`] = `
 <div
   data-testid="wrapper"
 >

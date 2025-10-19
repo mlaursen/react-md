@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`NavItemLink should allow an addon to be rendered before or after the children so that the addons are not included in the overflowing tooltip 1`] = `
+exports[`NavItemLink > should allow an addon to be rendered before or after the children so that the addons are not included in the overflowing tooltip 1`] = `
 <li
   class="rmd-nav-item"
 >
@@ -25,7 +25,7 @@ exports[`NavItemLink should allow an addon to be rendered before or after the ch
 </li>
 `;
 
-exports[`NavItemLink should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`NavItemLink > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <li
   class="rmd-nav-item"
 >
@@ -43,7 +43,7 @@ exports[`NavItemLink should apply the correct styling, HTML attributes, and allo
 </li>
 `;
 
-exports[`NavItemLink should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`NavItemLink > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <li
   class="rmd-nav-item"
 >
@@ -62,7 +62,7 @@ exports[`NavItemLink should apply the correct styling, HTML attributes, and allo
 </li>
 `;
 
-exports[`NavItemLink should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`NavItemLink > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <li
   class="rmd-nav-item"
 >
@@ -82,7 +82,7 @@ exports[`NavItemLink should apply the correct styling, HTML attributes, and allo
 </li>
 `;
 
-exports[`NavItemLink should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+exports[`NavItemLink > should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <li
   class="rmd-nav-item"
 >
@@ -102,7 +102,7 @@ exports[`NavItemLink should apply the correct styling, HTML attributes, and allo
 </li>
 `;
 
-exports[`NavItemLink should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+exports[`NavItemLink > should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <li
   class="rmd-nav-item"
 >
@@ -121,7 +121,7 @@ exports[`NavItemLink should apply the correct styling, HTML attributes, and allo
 </li>
 `;
 
-exports[`NavItemLink should support an overflow only tooltip by default 1`] = `
+exports[`NavItemLink > should support an overflow only tooltip by default 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--right rmd-tooltip--visible"
   id=":r2:-tooltip"

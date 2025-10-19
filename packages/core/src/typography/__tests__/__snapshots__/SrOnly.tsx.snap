@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`SrOnly > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div>
   <span
     class="rmd-sr-only"
@@ -10,7 +10,7 @@ exports[`SrOnly should apply the correct styling, HTML attributes, and allow a r
 </div>
 `;
 
-exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`SrOnly > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div>
   <span
     class="rmd-sr-only custom-class-name"
@@ -21,7 +21,7 @@ exports[`SrOnly should apply the correct styling, HTML attributes, and allow a r
 </div>
 `;
 
-exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`SrOnly > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <div>
   <span
     class="rmd-sr-only rmd-sr-only--focusable"
@@ -33,7 +33,7 @@ exports[`SrOnly should apply the correct styling, HTML attributes, and allow a r
 </div>
 `;
 
-exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+exports[`SrOnly > should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <div>
   <span
     class="rmd-sr-only rmd-sr-only--focusable"
@@ -45,7 +45,7 @@ exports[`SrOnly should apply the correct styling, HTML attributes, and allow a r
 </div>
 `;
 
-exports[`SrOnly should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+exports[`SrOnly > should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <div>
   <h4
     class="rmd-sr-only"

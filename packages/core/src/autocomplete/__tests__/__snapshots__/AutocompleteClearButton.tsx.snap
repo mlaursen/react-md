@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`AutocompleteClearButton should apply different classes based on the visibility prop 1`] = `
+exports[`AutocompleteClearButton > should apply different classes based on the visibility prop 1`] = `
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button"
@@ -17,7 +17,7 @@ exports[`AutocompleteClearButton should apply different classes based on the vis
 </button>
 `;
 
-exports[`AutocompleteClearButton should apply different classes based on the visibility prop 2`] = `
+exports[`AutocompleteClearButton > should apply different classes based on the visibility prop 2`] = `
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button"
@@ -34,7 +34,7 @@ exports[`AutocompleteClearButton should apply different classes based on the vis
 </button>
 `;
 
-exports[`AutocompleteClearButton should apply different classes based on the visibility prop 3`] = `
+exports[`AutocompleteClearButton > should apply different classes based on the visibility prop 3`] = `
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover"
@@ -51,7 +51,7 @@ exports[`AutocompleteClearButton should apply different classes based on the vis
 </button>
 `;
 
-exports[`AutocompleteClearButton should apply different classes based on the visibility prop 4`] = `
+exports[`AutocompleteClearButton > should apply different classes based on the visibility prop 4`] = `
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover rmd-autocomplete__clear-button--query"
@@ -68,7 +68,7 @@ exports[`AutocompleteClearButton should apply different classes based on the vis
 </button>
 `;
 
-exports[`AutocompleteClearButton should apply the correct styling and HTML attributes 1`] = `
+exports[`AutocompleteClearButton > should apply the correct styling and HTML attributes 1`] = `
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button"
@@ -85,7 +85,7 @@ exports[`AutocompleteClearButton should apply the correct styling and HTML attri
 </button>
 `;
 
-exports[`AutocompleteClearButton should apply the correct styling and HTML attributes 2`] = `
+exports[`AutocompleteClearButton > should apply the correct styling and HTML attributes 2`] = `
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button custom-class-name"

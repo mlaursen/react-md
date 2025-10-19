@@ -1,12 +1,5 @@
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  jest,
-} from "@jest/globals";
 import { type ReactElement, type ReactNode } from "react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import {
@@ -49,15 +42,15 @@ const expectToastTimeoutFlow = (
 ): void => {
   expect(message).toHaveTextContent(content);
   act(() => {
-    jest.runOnlyPendingTimers();
+    vi.runOnlyPendingTimers();
   });
   expect(message).not.toHaveClass(ENTER_CLASS_NAME);
   act(() => {
-    jest.runOnlyPendingTimers();
+    vi.runOnlyPendingTimers();
   });
   expect(message).toHaveClass(LEAVE_CLASS_NAME);
   act(() => {
-    jest.runOnlyPendingTimers();
+    vi.runOnlyPendingTimers();
   });
   expect(message).not.toBeInTheDocument();
 };
@@ -211,13 +204,13 @@ describe("ToastManagerProvider", () => {
 
   describe("toast queue", () => {
     beforeEach(() => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       TRANSITION_CONFIG.disabled = false;
     });
 
     afterEach(() => {
-      jest.clearAllTimers();
-      jest.useRealTimers();
+      vi.clearAllTimers();
+      vi.useRealTimers();
     });
 
     const init = async (props?: SimpleTestProps) => {
@@ -230,12 +223,12 @@ describe("ToastManagerProvider", () => {
       const message = await screen.findByRole("status");
 
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).toBeInTheDocument();
 
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
@@ -253,12 +246,12 @@ describe("ToastManagerProvider", () => {
       const { message } = await init();
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
       expect(message).toBeInTheDocument();
       expect(message).toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).not.toBeInTheDocument();
     });
@@ -268,7 +261,7 @@ describe("ToastManagerProvider", () => {
 
       await user.hover(message);
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
@@ -277,12 +270,12 @@ describe("ToastManagerProvider", () => {
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
       expect(message).toBeInTheDocument();
       expect(message).toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).not.toBeInTheDocument();
     });
@@ -292,19 +285,18 @@ describe("ToastManagerProvider", () => {
 
       await user.hover(message);
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
 
-      jest
-        .spyOn(document, "visibilityState", "get")
+      vi.spyOn(document, "visibilityState", "get")
         .mockReturnValueOnce("hidden")
         .mockReturnValueOnce("visible");
 
       act(() => {
         document.dispatchEvent(new Event("visibilitychange"));
-        jest.advanceTimersByTime(10000);
+        vi.advanceTimersByTime(10000);
       });
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
@@ -315,12 +307,12 @@ describe("ToastManagerProvider", () => {
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
       expect(message).toBeInTheDocument();
       expect(message).toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).not.toBeInTheDocument();
     });
@@ -330,7 +322,7 @@ describe("ToastManagerProvider", () => {
 
       await user.hover(message);
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
@@ -340,7 +332,7 @@ describe("ToastManagerProvider", () => {
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
       await user.hover(message);
       act(() => {
-        jest.advanceTimersByTime(8000);
+        vi.advanceTimersByTime(8000);
       });
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
@@ -349,12 +341,12 @@ describe("ToastManagerProvider", () => {
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
       expect(message).toBeInTheDocument();
       expect(message).toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).not.toBeInTheDocument();
     });
@@ -368,31 +360,31 @@ describe("ToastManagerProvider", () => {
       const message = await screen.findByRole("status");
 
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).toBeInTheDocument();
 
       act(() => {
-        jest.advanceTimersByTime(3000);
+        vi.advanceTimersByTime(3000);
       });
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
 
       await user.click(button);
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
       expect(message).toBeInTheDocument();
       expect(message).toHaveClass(LEAVE_CLASS_NAME);
@@ -418,24 +410,24 @@ describe("ToastManagerProvider", () => {
       const replace = screen.getByRole("button", { name: "Replace!" });
       await user.click(replace);
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).not.toBeInTheDocument();
       expect(snackbar).not.toBeEmptyDOMElement();
 
       const replaceMessage = snackbar.firstElementChild;
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(replaceMessage).not.toHaveClass(ENTER_CLASS_NAME);
       expect(replaceMessage).toMatchSnapshot();
       act(() => {
-        jest.advanceTimersByTime(5000);
+        vi.advanceTimersByTime(5000);
       });
       expect(replaceMessage).toHaveClass(LEAVE_CLASS_NAME);
 
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(replaceMessage).not.toBeInTheDocument();
       expect(snackbar).toBeEmptyDOMElement();
@@ -486,11 +478,11 @@ describe("ToastManagerProvider", () => {
         children: <Children />,
       });
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).not.toBeInTheDocument();
 
@@ -504,29 +496,29 @@ describe("ToastManagerProvider", () => {
         const nextMessage = within(snackbar).getByRole("status");
         expect(nextMessage).toHaveClass(ENTER_CLASS_NAME);
         act(() => {
-          jest.runOnlyPendingTimers();
+          vi.runOnlyPendingTimers();
         });
         expect(nextMessage).not.toHaveClass(ENTER_CLASS_NAME);
 
         act(() => {
-          jest.advanceTimersByTime(3000);
+          vi.advanceTimersByTime(3000);
         });
         expect(nextMessage).toBeInTheDocument();
         expect(nextMessage).not.toHaveClass(LEAVE_CLASS_NAME);
 
         await user.click(button);
         act(() => {
-          jest.advanceTimersByTime(2000);
+          vi.advanceTimersByTime(2000);
         });
         expect(nextMessage).toBeInTheDocument();
         expect(nextMessage).not.toHaveClass(LEAVE_CLASS_NAME);
 
         act(() => {
-          jest.runOnlyPendingTimers();
+          vi.runOnlyPendingTimers();
         });
         expect(nextMessage).toHaveClass(LEAVE_CLASS_NAME);
         act(() => {
-          jest.runOnlyPendingTimers();
+          vi.runOnlyPendingTimers();
         });
         expect(nextMessage).not.toBeInTheDocument();
         expect(snackbar).toBeEmptyDOMElement();
@@ -594,7 +586,7 @@ describe("ToastManagerProvider", () => {
       await user.click(replace);
       expect(message).toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
 
       expectToastTimeoutFlow(snackbar.firstElementChild, "Toast 3");
@@ -644,11 +636,11 @@ describe("ToastManagerProvider", () => {
       expect(message).toMatchSnapshot();
 
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).not.toBeInTheDocument();
       expect(snackbar).not.toBeEmptyDOMElement();
@@ -702,17 +694,17 @@ describe("ToastManagerProvider", () => {
       expect(message).toBeInTheDocument();
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
       expect(message).toBeInTheDocument();
 
       act(() => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
       expect(message).toHaveClass(LEAVE_CLASS_NAME);
 
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).not.toBeInTheDocument();
 
@@ -748,7 +740,7 @@ describe("ToastManagerProvider", () => {
       await user.click(immediate);
       expect(message).toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(message).not.toBeInTheDocument();
 
@@ -787,12 +779,12 @@ describe("ToastManagerProvider", () => {
       expect(snackbar).toMatchSnapshot();
 
       act(() => {
-        jest.advanceTimersByTime(5000);
+        vi.advanceTimersByTime(5000);
       });
 
       expect(alert).not.toHaveClass(LEAVE_CLASS_NAME);
       act(() => {
-        jest.advanceTimersByTime(5000);
+        vi.advanceTimersByTime(5000);
       });
       expect(alert).toBeInTheDocument();
 
@@ -817,20 +809,20 @@ describe("ToastManagerProvider", () => {
       expect(snackbar).toMatchSnapshot();
 
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
       expect(snackbar.childElementCount).toBe(3);
       expect(message).toHaveClass(LEAVE_CLASS_NAME);
 
       act(() => {
-        jest.advanceTimersByTime(200);
+        vi.advanceTimersByTime(200);
       });
       expect(message).not.toBeInTheDocument();
       expect(snackbar.childElementCount).toBe(3);
       expect(snackbar).toMatchSnapshot();
 
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(snackbar.childElementCount).toBe(3);
       expect(snackbar.firstElementChild).toHaveClass(LEAVE_CLASS_NAME);
@@ -841,24 +833,24 @@ describe("ToastManagerProvider", () => {
       expect(snackbar).toMatchSnapshot();
 
       act(() => {
-        jest.runAllTimers();
+        vi.runAllTimers();
       });
       expect(snackbar.childElementCount).toBe(2);
       expect(snackbar).toMatchSnapshot();
 
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(snackbar.childElementCount).toBe(1);
       expect(snackbar.firstElementChild).not.toHaveClass(ENTER_CLASS_NAME);
 
       act(() => {
-        jest.runOnlyPendingTimers();
+        vi.runOnlyPendingTimers();
       });
       expect(snackbar.firstElementChild).toHaveClass(LEAVE_CLASS_NAME);
 
       act(() => {
-        jest.runAllTimers();
+        vi.runAllTimers();
       });
       expect(snackbar).toBeEmptyDOMElement();
     });

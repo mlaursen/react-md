@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, type Ref, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { UserInteractionModeProvider } from "../../interaction/UserInteractionModeProvider.js";
 import { INTERACTION_CONFIG } from "../../interaction/config.js";
@@ -68,7 +68,7 @@ describe("ListItem", () => {
   });
 
   it("should implement the correct click behavior", async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const props: TestProps = { onClick };
     const { rerender } = render(<Test {...props} />, {
       wrapper: UserInteractionModeProvider,
@@ -137,7 +137,7 @@ describe("ListItem", () => {
   });
 
   it("should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled", () => {
-    const higherContrastMock = jest
+    const higherContrastMock = vi
       .spyOn(INTERACTION_CONFIG, "higherContrast", "get")
       .mockReturnValue(false);
     const { rerender } = render(<Test />);

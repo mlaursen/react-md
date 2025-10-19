@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`AutocompleteChip should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`AutocompleteChip > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <button
   aria-description="Remove "Option 1""
   class="rmd-chip rmd-chip--solid rmd-chip--right-addon rmd-interaction-surface rmd-autocomplete__chip"
@@ -20,7 +20,7 @@ exports[`AutocompleteChip should apply the correct styling, HTML attributes, and
 </button>
 `;
 
-exports[`AutocompleteChip should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`AutocompleteChip > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <button
   aria-description="Remove "Option 1""
   class="rmd-chip rmd-chip--solid rmd-chip--right-addon rmd-interaction-surface rmd-autocomplete__chip custom-class-name"

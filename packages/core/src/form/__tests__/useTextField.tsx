@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import {
@@ -160,7 +160,7 @@ describe("useTextField", () => {
     });
 
     it("should allow for a custom isErrored function", async () => {
-      const isErrored = jest.fn(() => false);
+      const isErrored = vi.fn(() => false);
       const { user, field, container, message } = setup({
         isErrored,
         maxLength: 3,
@@ -188,7 +188,7 @@ describe("useTextField", () => {
     });
 
     it("should call the onErrorChange option correctly", async () => {
-      const onErrorChange = jest.fn();
+      const onErrorChange = vi.fn();
       const { user, field } = setup({
         onErrorChange,
         maxLength: 3,
@@ -215,7 +215,7 @@ describe("useTextField", () => {
     });
 
     it("should allow for custom logic for displaying the error icon", async () => {
-      const getErrorIcon = jest.fn((options: GetErrorIconOptions) => {
+      const getErrorIcon = vi.fn((options: GetErrorIconOptions) => {
         const { error, errorIcon } = options;
         if (!error) {
           return <span data-testid="right-addon" />;

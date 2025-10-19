@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from "@jest/globals";
 import { type ReactElement } from "react";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import {

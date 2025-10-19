@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CardTitle should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`CardTitle > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <h5
   class="rmd-typography rmd-typography--headline-5 rmd-no-margin rmd-card__title"
 >
@@ -8,7 +8,7 @@ exports[`CardTitle should apply the correct styling, HTML attributes, and allow 
 </h5>
 `;
 
-exports[`CardTitle should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`CardTitle > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <h5
   class="rmd-typography rmd-typography--headline-5 rmd-no-margin rmd-card__title custom-class-name"
   style="color: white;"

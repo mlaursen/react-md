@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Navigation should allow route groups to be expanded 1`] = `
+exports[`Navigation > should allow route groups to be expanded 1`] = `
 <li
   class="rmd-nav-item"
 >
@@ -25,7 +25,7 @@ exports[`Navigation should allow route groups to be expanded 1`] = `
   <ul
     class="rmd-list rmd-nav-group rmd-nav-group--np rmd-collapse"
     role="none"
-    style="padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+    style="--rmd-tree-depth: 1;"
   >
     <li
       class="rmd-list-subheader"
@@ -77,7 +77,7 @@ exports[`Navigation should allow route groups to be expanded 1`] = `
 </li>
 `;
 
-exports[`Navigation should be able to render dividers, subheaders, groups, links, and nested items out of the box 1`] = `
+exports[`Navigation > should be able to render dividers, subheaders, groups, links, and nested items out of the box 1`] = `
 <ul
   class="rmd-list rmd-nav-group"
   data-testid="nav"

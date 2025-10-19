@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Toast should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Toast > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
   data-testid="toast"
@@ -12,7 +12,7 @@ exports[`Toast should apply the correct styling, HTML attributes, and allow a re
 </div>
 `;
 
-exports[`Toast should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Toast > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-toast custom-class-name rmd-scale-transition--enter rmd-scale-transition--enter-active"
   data-testid="toast"
@@ -25,7 +25,7 @@ exports[`Toast should apply the correct styling, HTML attributes, and allow a re
 </div>
 `;
 
-exports[`Toast should render any valid element within the ToastActionButton 1`] = `
+exports[`Toast > should render any valid element within the ToastActionButton 1`] = `
 <button
   class="rmd-button rmd-button--text rmd-secondary-color rmd-interaction-surface rmd-toast-action"
   type="button"
@@ -36,7 +36,7 @@ exports[`Toast should render any valid element within the ToastActionButton 1`] 
 </button>
 `;
 
-exports[`Toast should render any valid element within the ToastActionButton 2`] = `
+exports[`Toast > should render any valid element within the ToastActionButton 2`] = `
 <button
   aria-label="New Action"
   class="rmd-button rmd-button--icon rmd-secondary-color rmd-interaction-surface rmd-toast-action"

@@ -1,5 +1,5 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`chip should be callable without any arguments 1`] = `"rmd-chip rmd-chip--solid"`;
+exports[`chip > should be callable without any arguments 1`] = `"rmd-chip rmd-chip--solid"`;
 
-exports[`chipContent should be callable without any arguments 1`] = `"rmd-chip__content"`;
+exports[`chipContent > should be callable without any arguments 1`] = `"rmd-chip__content"`;

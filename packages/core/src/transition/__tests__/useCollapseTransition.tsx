@@ -1,3 +1,4 @@
+import { type ReactElement, useState } from "react";
 import {
   afterEach,
   beforeAll,
@@ -5,9 +6,8 @@ import {
   describe,
   expect,
   it,
-  jest,
-} from "@jest/globals";
-import { type ReactElement, useState } from "react";
+  vi,
+} from "vitest";
 
 import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
@@ -53,7 +53,7 @@ function Test({
 
 describe("useCollapseTransition", () => {
   beforeAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   beforeEach(() => {
@@ -61,7 +61,7 @@ describe("useCollapseTransition", () => {
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
+    vi.clearAllTimers();
   });
 
   it("should default to not rendering the element when transitionIn is false", () => {
@@ -76,7 +76,7 @@ describe("useCollapseTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
@@ -86,7 +86,7 @@ describe("useCollapseTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).toThrow();
     expect(container).toMatchSnapshot();
@@ -105,7 +105,7 @@ describe("useCollapseTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(element).not.toHaveClass(DISPLAY_NONE_CLASS);
     expect(container).toMatchSnapshot();
@@ -115,7 +115,7 @@ describe("useCollapseTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(element).toBeInTheDocument();
     expect(element).toHaveClass(DISPLAY_NONE_CLASS);
@@ -162,12 +162,12 @@ describe("useCollapseTransition", () => {
   });
 
   it("should correctly call the transition callbacks", () => {
-    const onEnter = jest.fn();
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
-    const onExit = jest.fn();
-    const onExiting = jest.fn();
-    const onExited = jest.fn();
+    const onEnter = vi.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
+    const onExit = vi.fn();
+    const onExiting = vi.fn();
+    const onExited = vi.fn();
     const props: TestProps = {
       onEnter,
       onEntering,
@@ -196,7 +196,7 @@ describe("useCollapseTransition", () => {
     expect(onExited).not.toHaveBeenCalled();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(onEnter).toHaveBeenCalledTimes(1);
     expect(onEntering).toHaveBeenCalledTimes(1);
@@ -214,7 +214,7 @@ describe("useCollapseTransition", () => {
     expect(onExited).not.toHaveBeenCalled();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(onEnter).toHaveBeenCalledTimes(1);
     expect(onEntering).toHaveBeenCalledTimes(1);
@@ -239,7 +239,7 @@ describe("useCollapseTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(element).toHaveStyle({ transitionDuration: "" });
     expect(container).toMatchSnapshot();
@@ -249,7 +249,7 @@ describe("useCollapseTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(element).not.toBeInTheDocument();
     expect(container).toMatchSnapshot();
@@ -260,7 +260,7 @@ describe("useCollapseTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(element).toHaveStyle({ transitionDuration: "" });
     expect(container).toMatchSnapshot();
@@ -280,7 +280,7 @@ describe("useCollapseTransition", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).not.toThrow();
     expect(getElement().className).toBe("");
@@ -319,7 +319,7 @@ describe("useCollapseTransition", () => {
 
     fireEvent.click(button);
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(element).not.toHaveClass(DISPLAY_NONE_CLASS);
   });

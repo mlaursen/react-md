@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Mark should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Mark > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <mark
   class="rmd-mark"
   data-testid="mark"
@@ -9,7 +9,7 @@ exports[`Mark should apply the correct styling, HTML attributes, and allow a ref
 </mark>
 `;
 
-exports[`Mark should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Mark > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <mark
   class="rmd-mark custom-class-name"
   data-testid="mark"

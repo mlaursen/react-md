@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <label
   class="rmd-label"
   data-testid="label"
@@ -9,7 +9,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <label
   class="rmd-label custom-class-name"
   data-testid="label"
@@ -19,7 +19,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <label
   class="rmd-label rmd-label--floating"
   data-testid="label"
@@ -29,7 +29,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <label
   class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active"
   data-testid="label"
@@ -39,7 +39,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <label
   class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active rmd-text-secondary-color"
   data-testid="label"
@@ -49,7 +49,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 6`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 6`] = `
 <label
   class="rmd-label rmd-label--active rmd-label--floating rmd-text-secondary-color"
   data-testid="label"
@@ -59,7 +59,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 7`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 7`] = `
 <label
   class="rmd-label rmd-label--dense"
   data-testid="label"
@@ -69,7 +69,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 8`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 8`] = `
 <label
   class="rmd-label rmd-label--error rmd-error-color"
   data-testid="label"
@@ -79,7 +79,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 9`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 9`] = `
 <label
   class="rmd-label rmd-label--error rmd-label--active rmd-error-color"
   data-testid="label"
@@ -89,7 +89,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 10`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 10`] = `
 <label
   class="rmd-label rmd-label--error rmd-label--active rmd-label--floating rmd-label--floating-active rmd-error-color"
   data-testid="label"
@@ -99,7 +99,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 11`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 11`] = `
 <label
   class="rmd-label rmd-label--gap"
   data-testid="label"
@@ -109,7 +109,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 12`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 12`] = `
 <label
   class="rmd-label rmd-label--stacked"
   data-testid="label"
@@ -119,7 +119,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 13`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 13`] = `
 <label
   class="rmd-label rmd-label--stacked-reversed"
   data-testid="label"
@@ -129,7 +129,7 @@ exports[`Label should apply the correct styling, HTML attributes, and allow a re
 </label>
 `;
 
-exports[`Label should apply the correct styling, HTML attributes, and allow a ref 14`] = `
+exports[`Label > should apply the correct styling, HTML attributes, and allow a ref 14`] = `
 <label
   class="rmd-label rmd-label--reversed"
   data-testid="label"

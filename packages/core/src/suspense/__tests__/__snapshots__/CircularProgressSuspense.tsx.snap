@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CircularProgressSuspense should pass props to the CircularProgress component 1`] = `
+exports[`CircularProgressSuspense > should pass props to the CircularProgress component 1`] = `
 <span
   aria-label="Custom"
   aria-valuemax="100"

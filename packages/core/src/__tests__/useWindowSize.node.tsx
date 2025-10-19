@@ -1,7 +1,7 @@
-/** @jest-environment node */
-import { describe, expect, it } from "@jest/globals";
+/** @vitest-environment node */
 import { type MutableRefObject } from "react";
 import { renderToString } from "react-dom/server";
+import { describe, expect, it } from "vitest";
 
 import { type ElementSize } from "../types.js";
 import { useWindowSize } from "../useWindowSize.js";

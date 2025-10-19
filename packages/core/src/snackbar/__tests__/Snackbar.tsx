@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@jest/globals";
 import { type ReactElement, createRef } from "react";
+import { describe, expect, it } from "vitest";
 
 import {
   type ReactMDRenderOptions,

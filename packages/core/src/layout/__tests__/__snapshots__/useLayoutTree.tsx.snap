@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useLayoutTree should automatically expand parent items if the pathname changed outside of clicking one of the navigation items 1`] = `
+exports[`useLayoutTree > should automatically expand parent items if the pathname changed outside of clicking one of the navigation items 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Navigation"
@@ -225,7 +225,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
 </ul>
 `;
 
-exports[`useLayoutTree should automatically expand parent items if the pathname changed outside of clicking one of the navigation items 2`] = `
+exports[`useLayoutTree > should automatically expand parent items if the pathname changed outside of clicking one of the navigation items 2`] = `
 <ul
   aria-activedescendant=""
   aria-label="Navigation"
@@ -352,7 +352,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-:rk:-group"
       role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1; transition-duration: 250ms;"
+      style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
       <li
         class="rmd-tree-item rmd-tree-item--expander-right"
@@ -385,7 +385,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
           id="tree-item-:rl:-group"
           role="group"
-          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2; transition-duration: 250ms;"
+          style="max-height: 0; --rmd-tree-depth: 2; transition-duration: 250ms;"
         >
           <li
             class="rmd-tree-item rmd-tree-item--expander-right"
@@ -418,7 +418,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
               id="tree-item-:rm:-group"
               role="group"
-              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3; transition-duration: 250ms;"
+              style="max-height: 0; --rmd-tree-depth: 3; transition-duration: 250ms;"
             >
               <li
                 class="rmd-tree-item"
@@ -450,7 +450,7 @@ exports[`useLayoutTree should automatically expand parent items if the pathname 
 </ul>
 `;
 
-exports[`useLayoutTree should default to expanding all parent items from the starting pathname 1`] = `
+exports[`useLayoutTree > should default to expanding all parent items from the starting pathname 1`] = `
 <ul
   aria-activedescendant=""
   aria-label="Navigation"

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it } from "vitest";
 
 import type { GetPercentageOptions } from "../getPercentage.js";
 import { getPercentage } from "../getPercentage.js";

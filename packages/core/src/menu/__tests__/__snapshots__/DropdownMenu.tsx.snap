@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`DropdownMenu should allow for a custom dropdown icon before or after the children 1`] = `
+exports[`DropdownMenu > should allow for a custom dropdown icon before or after the children 1`] = `
 <button
   aria-haspopup="menu"
   class="rmd-button rmd-button--text rmd-interaction-surface"
@@ -19,7 +19,7 @@ exports[`DropdownMenu should allow for a custom dropdown icon before or after th
 </button>
 `;
 
-exports[`DropdownMenu should allow for a custom dropdown icon before or after the children 2`] = `
+exports[`DropdownMenu > should allow for a custom dropdown icon before or after the children 2`] = `
 <button
   aria-haspopup="menu"
   class="rmd-button rmd-button--text rmd-interaction-surface"
@@ -38,7 +38,7 @@ exports[`DropdownMenu should allow for a custom dropdown icon before or after th
 </button>
 `;
 
-exports[`DropdownMenu should allow for a custom dropdown icon before or after the children 3`] = `
+exports[`DropdownMenu > should allow for a custom dropdown icon before or after the children 3`] = `
 <button
   aria-haspopup="menu"
   class="rmd-button rmd-button--text rmd-interaction-surface"
@@ -57,7 +57,7 @@ exports[`DropdownMenu should allow for a custom dropdown icon before or after th
 </button>
 `;
 
-exports[`DropdownMenu should be able to render as a sheet 1`] = `
+exports[`DropdownMenu > should be able to render as a sheet 1`] = `
 <div
   aria-labelledby="menubutton-:r1f:"
   class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline rmd-sheet rmd-sheet--vertical rmd-sheet--raised rmd-sheet--bottom rmd-sheet--touchable-height"
@@ -141,7 +141,7 @@ exports[`DropdownMenu should be able to render as a sheet 1`] = `
 </div>
 `;
 
-exports[`DropdownMenu should remove the dropdown icon when rendered as an icon button 1`] = `
+exports[`DropdownMenu > should remove the dropdown icon when rendered as an icon button 1`] = `
 <button
   aria-haspopup="menu"
   aria-label="Options"
@@ -158,7 +158,7 @@ exports[`DropdownMenu should remove the dropdown icon when rendered as an icon b
 </button>
 `;
 
-exports[`DropdownMenu should remove the dropdown icon when rendered as an icon button 2`] = `
+exports[`DropdownMenu > should remove the dropdown icon when rendered as an icon button 2`] = `
 <button
   aria-haspopup="menu"
   aria-label="Options"
@@ -175,7 +175,7 @@ exports[`DropdownMenu should remove the dropdown icon when rendered as an icon b
 </button>
 `;
 
-exports[`DropdownMenu should render as a button and toggle the visibility when clicked 1`] = `
+exports[`DropdownMenu > should render as a button and toggle the visibility when clicked 1`] = `
 <button
   aria-haspopup="menu"
   class="rmd-button rmd-button--text rmd-interaction-surface"
@@ -194,7 +194,7 @@ exports[`DropdownMenu should render as a button and toggle the visibility when c
 </button>
 `;
 
-exports[`DropdownMenu should render as a button and toggle the visibility when clicked 2`] = `
+exports[`DropdownMenu > should render as a button and toggle the visibility when clicked 2`] = `
 <div
   aria-labelledby="menubutton-:r0:"
   class="rmd-menu rmd-menu--elevated"
@@ -247,7 +247,7 @@ exports[`DropdownMenu should render as a button and toggle the visibility when c
 </div>
 `;
 
-exports[`DropdownMenu should render as a menuitem when a DropdownMenu is a child of another DropdownMenu 1`] = `
+exports[`DropdownMenu > should render as a menuitem when a DropdownMenu is a child of another DropdownMenu 1`] = `
 <li
   aria-haspopup="menu"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
@@ -269,7 +269,7 @@ exports[`DropdownMenu should render as a menuitem when a DropdownMenu is a child
 </li>
 `;
 
-exports[`DropdownMenu should render as a menuitem when a DropdownMenu is a child of another DropdownMenu 2`] = `
+exports[`DropdownMenu > should render as a menuitem when a DropdownMenu is a child of another DropdownMenu 2`] = `
 <li
   aria-haspopup="dialog"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"

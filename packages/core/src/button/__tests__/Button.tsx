@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { INTERACTION_CONFIG } from "../../interaction/config.js";
@@ -37,7 +37,7 @@ describe("Button", () => {
   });
 
   it("should wrap text children in span elements to enable higher contrast unless the higher contrast is disabled", () => {
-    const higherContrastMock = jest
+    const higherContrastMock = vi
       .spyOn(INTERACTION_CONFIG, "higherContrast", "get")
       .mockReturnValue(false);
     const { rerender } = render(<Button>Content</Button>);
@@ -91,7 +91,7 @@ describe("Button", () => {
   });
 
   it("should not fire the onClick event handler when the theme is set to disabled", () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(
       <Button onClick={onClick} theme="disabled">
         Button

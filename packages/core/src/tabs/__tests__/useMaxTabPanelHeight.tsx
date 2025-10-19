@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type CSSProperties, type ReactElement } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   act,
@@ -7,7 +7,7 @@ import {
   screen,
   setupResizeObserverMock,
 } from "../../test-utils/index.js";
-import { cleanupResizeObserverAfterEach } from "../../test-utils/jest-globals/resize-observer.js";
+import { cleanupResizeObserverAfterEach } from "../../test-utils/vitest/resize-observer.js";
 import { Slide } from "../../transition/Slide.js";
 import { SlideContainer } from "../../transition/SlideContainer.js";
 import { Tab } from "../Tab.js";
@@ -66,20 +66,20 @@ describe("useMaxTabPanelHeight", () => {
 
     expect(panels).toHaveStyle({ height: "" });
 
-    const getHeight = jest.spyOn(panels.style, "height", "get");
-    const setHeight = jest.spyOn(panels.style, "height", "set");
-    const panel1ScrollHeight = jest
+    const getHeight = vi.spyOn(panels.style, "height", "get");
+    const setHeight = vi.spyOn(panels.style, "height", "set");
+    const panel1ScrollHeight = vi
       .spyOn(panel1, "scrollHeight", "get")
       .mockReturnValue(200);
-    const panel1ClassList = jest.spyOn(panel1.classList, "toggle");
-    const panel2ScrollHeight = jest
+    const panel1ClassList = vi.spyOn(panel1.classList, "toggle");
+    const panel2ScrollHeight = vi
       .spyOn(panel2, "scrollHeight", "get")
       .mockReturnValue(350);
-    const panel2ClassList = jest.spyOn(panel2.classList, "toggle");
-    const panel3ScrollHeight = jest
+    const panel2ClassList = vi.spyOn(panel2.classList, "toggle");
+    const panel3ScrollHeight = vi
       .spyOn(panel3, "scrollHeight", "get")
       .mockReturnValue(100);
-    const panel3ClassList = jest.spyOn(panel3.classList, "toggle");
+    const panel3ClassList = vi.spyOn(panel3.classList, "toggle");
 
     act(() => {
       observer.resizeElement(panels, { height: 200, width: 1000 });
@@ -128,7 +128,7 @@ describe("useMaxTabPanelHeight", () => {
     const panels = screen.getByTestId("panels");
     expect(panels).toHaveStyle({
       height: "10rem",
-      color: "red",
+      color: "rgb(255, 0, 0)",
       background: "blue",
     });
 
@@ -142,7 +142,7 @@ describe("useMaxTabPanelHeight", () => {
     );
     expect(panels).toHaveStyle({
       height: "10rem",
-      color: "blue",
+      color: "rgb(0, 0, 255)",
     });
 
     // style can override the height if you really want..
@@ -151,7 +151,7 @@ describe("useMaxTabPanelHeight", () => {
     );
     expect(panels).toHaveStyle({
       height: "12rem",
-      color: "red",
+      color: "rgb(255, 0, 0)",
     });
   });
 });

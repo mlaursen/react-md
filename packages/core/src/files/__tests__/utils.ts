@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   type FileUploadStats,
@@ -26,6 +26,11 @@ function createFile(name: string, bytes: number): File {
 
   return new File([content.buffer], name);
 }
+
+// Mock to allow Error equal to work
+vi.mock("nanoid", async () => ({
+  nanoid: () => "fake-nanoid",
+}));
 
 const file = new File(["pretend-bytes"], "file1.txt");
 const png = new File([""], "file.png");

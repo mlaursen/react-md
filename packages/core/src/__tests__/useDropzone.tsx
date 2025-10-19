@@ -1,6 +1,6 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../test-utils/index.js";
 import { type DropzoneOptions, useDropzone } from "../useDropzone.js";
@@ -24,10 +24,10 @@ function Test({
 
 describe("useDropzone", () => {
   it("should work correctly", () => {
-    const onDragOver = jest.fn();
-    const onDragEnter = jest.fn();
-    const onDragLeave = jest.fn();
-    const onDrop = jest.fn();
+    const onDragOver = vi.fn();
+    const onDragEnter = vi.fn();
+    const onDragLeave = vi.fn();
+    const onDrop = vi.fn();
 
     render(
       <Test
@@ -74,10 +74,10 @@ describe("useDropzone", () => {
   });
 
   it("should prevent default and stop propagation", () => {
-    const onDragOver = jest.fn();
-    const onDragEnter = jest.fn();
-    const onDragLeave = jest.fn();
-    const onDrop = jest.fn();
+    const onDragOver = vi.fn();
+    const onDragEnter = vi.fn();
+    const onDragLeave = vi.fn();
+    const onDrop = vi.fn();
     render(
       <div
         data-testid="container"

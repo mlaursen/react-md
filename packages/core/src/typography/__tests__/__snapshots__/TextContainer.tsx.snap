@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TextContainer should render correctly and apply the correct class names 1`] = `
+exports[`TextContainer > should render correctly and apply the correct class names 1`] = `
 <div
   class="rmd-text-container"
   data-testid="container"
@@ -13,7 +13,7 @@ exports[`TextContainer should render correctly and apply the correct class names
 </div>
 `;
 
-exports[`TextContainer should render correctly and apply the correct class names 2`] = `
+exports[`TextContainer > should render correctly and apply the correct class names 2`] = `
 <div
   class="rmd-text-container custom-1 custom-2"
   data-testid="container"
@@ -26,4 +26,4 @@ exports[`TextContainer should render correctly and apply the correct class names
 </div>
 `;
 
-exports[`TextContainer styling utility class should be callable without any arguments 1`] = `"rmd-text-container"`;
+exports[`TextContainer > styling utility class > should be callable without any arguments 1`] = `"rmd-text-container"`;

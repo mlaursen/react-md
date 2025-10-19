@@ -1,10 +1,10 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { type NonNullMutableRef } from "../../types.js";
-import { createFuzzyRegExp } from "../fuzzy.js";
+import * as fuzzy from "../fuzzy.js";
 import { toSearchQuery } from "../toSearchQuery.js";
 import { useFuzzyMatch } from "../useFuzzyMatch.js";
 
@@ -47,7 +47,7 @@ const NON_DEPRECATED_STRING_PROPERTY_NAMES = [
 
 describe("useFuzzyMatch", () => {
   it("should only re-create the fuzzy regexp when the query changes", () => {
-    const regexp = jest.spyOn(window, "RegExp");
+    const regexp = vi.spyOn(fuzzy, "createFuzzyRegExp");
 
     function Test() {
       const [value, setValue] = useState("");
@@ -163,7 +163,7 @@ describe("useFuzzyMatch", () => {
       for (const item of items) {
         if (
           item.length > 0 &&
-          createFuzzyRegExp(query).test(toSearchQuery(item))
+          fuzzy.createFuzzyRegExp(query).test(toSearchQuery(item))
         ) {
           filtered.current.push(item);
         }

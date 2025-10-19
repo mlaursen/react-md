@@ -1,3 +1,4 @@
+import { type ReactElement, useRef, useState } from "react";
 import {
   afterEach,
   beforeAll,
@@ -5,9 +6,8 @@ import {
   describe,
   expect,
   it,
-  jest,
-} from "@jest/globals";
-import { type ReactElement, useRef, useState } from "react";
+  vi,
+} from "vitest";
 
 import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
@@ -61,7 +61,7 @@ function Test({ defaultVisible = false, ...options }: TestProps): ReactElement {
 
 describe("useFixedPositioning", () => {
   beforeAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   beforeEach(() => {
@@ -69,7 +69,7 @@ describe("useFixedPositioning", () => {
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
+    vi.clearAllTimers();
   });
 
   it("should default to fixing itself with the BELOW_CENTER_ANCHOR", () => {
@@ -85,7 +85,7 @@ describe("useFixedPositioning", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(container).toMatchSnapshot();
 
@@ -94,27 +94,27 @@ describe("useFixedPositioning", () => {
     expect(container).toMatchSnapshot();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(getElement).toThrow();
     expect(container).toMatchSnapshot();
   });
 
   it("should detect if the fixed element is still visible in the viewport on scroll events", () => {
-    const onScroll = jest.fn();
+    const onScroll = vi.fn();
     render(<Test onScroll={onScroll} />);
     const toggle = screen.getByRole("button");
 
     fireEvent.click(toggle);
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(onScroll).not.toHaveBeenCalled();
 
     const scrollEvent = new UIEvent("scroll");
     act(() => {
       window.dispatchEvent(scrollEvent);
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
 
     // this logic is really handled in the utils tests.
@@ -126,28 +126,28 @@ describe("useFixedPositioning", () => {
   });
 
   it("should automatically update the style when the page is resized", () => {
-    const onResize = jest.fn();
+    const onResize = vi.fn();
     render(<Test onResize={onResize} />);
     const toggle = screen.getByRole("button");
 
     fireEvent.click(toggle);
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(onResize).not.toHaveBeenCalled();
 
     act(() => {
       window.dispatchEvent(new UIEvent("resize"));
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(onResize).toHaveBeenCalled();
   });
 
   it("should correctly call the transition callbacks", () => {
-    const onEnter = jest.fn();
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
-    const onExited = jest.fn();
+    const onEnter = vi.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
+    const onExited = vi.fn();
     const props: Required<FixedPositioningTransitionCallbacks> = {
       onEnter,
       onEntering,
@@ -170,7 +170,7 @@ describe("useFixedPositioning", () => {
     expect(onExited).not.toHaveBeenCalled();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(onEnter).toHaveBeenCalledTimes(1);
     expect(onEntering).toHaveBeenCalledTimes(1);
@@ -184,7 +184,7 @@ describe("useFixedPositioning", () => {
     expect(onExited).not.toHaveBeenCalled();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(onEnter).toHaveBeenCalledTimes(1);
     expect(onEntering).toHaveBeenCalledTimes(1);
@@ -200,7 +200,7 @@ describe("useFixedPositioning", () => {
 
     fireEvent.click(toggle);
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(container).toMatchSnapshot();
   });

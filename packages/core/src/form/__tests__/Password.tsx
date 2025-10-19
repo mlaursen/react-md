@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type MouseEventHandler, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { render, screen, userEvent } from "../../test-utils/index.js";
 import { Password } from "../Password.js";
@@ -116,7 +116,7 @@ describe("Password", () => {
     const toggle = screen.getByRole("button", { name: "Show password" });
     expect(toggle).toMatchSnapshot();
 
-    const onClick = jest.fn<MouseEventHandler<HTMLButtonElement>>();
+    const onClick = vi.fn<MouseEventHandler<HTMLButtonElement>>();
     rerender(
       <Password
         visibilityProps={{

@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { render, screen } from "../../test-utils/index.js";
 import { AutocompleteChip } from "../AutocompleteChip.js";
@@ -9,7 +9,7 @@ describe("AutocompleteChip", () => {
     const ref = createRef<HTMLButtonElement>();
     const props = {
       ref,
-      onClick: jest.fn(),
+      onClick: vi.fn(),
       children: "Option 1",
     } as const;
     const { rerender } = render(<AutocompleteChip {...props} />);

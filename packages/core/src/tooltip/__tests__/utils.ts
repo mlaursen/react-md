@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   ABOVE_CENTER_ANCHOR,
@@ -35,7 +35,7 @@ describe("getPosition", () => {
 
     const baseRect = document.body.getBoundingClientRect();
     const container = document.createElement("div");
-    const rect = jest.spyOn(container, "getBoundingClientRect");
+    const rect = vi.spyOn(container, "getBoundingClientRect");
 
     const outOfBoundsVertical = vh * DEFAULT_TOOLTIP_THRESHOLD;
     const belowOptions: GetPositionOptions = {

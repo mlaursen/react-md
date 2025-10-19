@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { Button } from "../../button/Button.js";
 import { PORTAL_CONTAINER_ID } from "../../portal/PortalContainerProvider.js";
@@ -328,14 +328,14 @@ describe("Dialog", () => {
   it("should allow the appear transition when not using SSR mode", () => {
     expect(TRANSITION_CONFIG.disabled).toBe(true);
     TRANSITION_CONFIG.disabled = false;
-    jest.useFakeTimers();
+    vi.useFakeTimers();
 
     rmdRender(<Test appear defaultVisible />, { rmdConfig: { ssr: false } });
     const dialog = screen.getByRole("dialog", { name: "Dialog" });
     expect(dialog).toHaveClass(DEFAULT_DIALOG_CLASSNAMES.appear);
     expect(dialog).toHaveClass(DEFAULT_DIALOG_CLASSNAMES.appearActive);
     act(() => {
-      jest.runOnlyPendingTimers();
+      vi.runOnlyPendingTimers();
     });
     expect(dialog).not.toHaveClass(DEFAULT_DIALOG_CLASSNAMES.appear);
     expect(dialog).not.toHaveClass(DEFAULT_DIALOG_CLASSNAMES.appearActive);
@@ -344,14 +344,14 @@ describe("Dialog", () => {
   it("should disable the appear transition when rendered in SSR mode", () => {
     expect(TRANSITION_CONFIG.disabled).toBe(true);
     TRANSITION_CONFIG.disabled = false;
-    jest.useFakeTimers();
+    vi.useFakeTimers();
 
     rmdRender(<Test appear defaultVisible />, { rmdConfig: { ssr: true } });
     const dialog = screen.getByRole("dialog", { name: "Dialog" });
     expect(dialog).not.toHaveClass(DEFAULT_DIALOG_CLASSNAMES.appear);
     expect(dialog).not.toHaveClass(DEFAULT_DIALOG_CLASSNAMES.appearActive);
     act(() => {
-      jest.runOnlyPendingTimers();
+      vi.runOnlyPendingTimers();
     });
     expect(dialog).not.toHaveClass(DEFAULT_DIALOG_CLASSNAMES.appear);
     expect(dialog).not.toHaveClass(DEFAULT_DIALOG_CLASSNAMES.appearActive);

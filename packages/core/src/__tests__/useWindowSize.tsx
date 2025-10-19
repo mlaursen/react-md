@@ -1,5 +1,5 @@
-import { beforeAll, beforeEach, describe, expect, it } from "@jest/globals";
 import { type MutableRefObject, type ReactElement, createRef } from "react";
+import { beforeAll, beforeEach, describe, expect, it } from "vitest";
 
 import { SsrProvider } from "../SsrProvider.js";
 import { act, render, screen, waitFor } from "../test-utils/index.js";

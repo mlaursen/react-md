@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`SimpleTabPanel should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`SimpleTabPanel > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   aria-labelledby="fake-tab-id"
   class="rmd-display-none"
@@ -11,7 +11,7 @@ exports[`SimpleTabPanel should apply the correct styling, HTML attributes, and a
 </div>
 `;
 
-exports[`SimpleTabPanel should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`SimpleTabPanel > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   aria-labelledby="fake-tab-id"
   class="rmd-display-none custom-class-name"

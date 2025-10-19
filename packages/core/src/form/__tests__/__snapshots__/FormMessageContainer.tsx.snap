@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`FormMessageContainer should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`FormMessageContainer > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-form-message-container"
   data-testid="container"
@@ -23,7 +23,7 @@ exports[`FormMessageContainer should apply the correct styling, HTML attributes,
 </div>
 `;
 
-exports[`FormMessageContainer should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`FormMessageContainer > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-form-message-container custom-class-name"
   data-testid="container"
@@ -47,7 +47,7 @@ exports[`FormMessageContainer should apply the correct styling, HTML attributes,
 </div>
 `;
 
-exports[`FormMessageContainer should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`FormMessageContainer > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <div
   class="rmd-form-message-container rmd-form-message-container--inline custom-class-name"
   data-testid="container"

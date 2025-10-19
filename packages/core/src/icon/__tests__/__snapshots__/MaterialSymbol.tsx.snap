@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`MaterialSymbol should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`MaterialSymbol > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--symbol material-symbols-outlined"
@@ -10,7 +10,7 @@ exports[`MaterialSymbol should apply the correct styling, HTMLAttributes, and al
 </span>
 `;
 
-exports[`MaterialSymbol should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`MaterialSymbol > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--symbol material-symbols-outlined custom-class-name"
@@ -21,7 +21,7 @@ exports[`MaterialSymbol should apply the correct styling, HTMLAttributes, and al
 </span>
 `;
 
-exports[`MaterialSymbol should support overriding the symbol configuration through the MATERIAL_CONFIG object 1`] = `
+exports[`MaterialSymbol > should support overriding the symbol configuration through the MATERIAL_CONFIG object 1`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--symbol material-symbols-outlined"
@@ -31,7 +31,7 @@ exports[`MaterialSymbol should support overriding the symbol configuration throu
 </span>
 `;
 
-exports[`MaterialSymbol should support overriding the symbol configuration through the MATERIAL_CONFIG object 2`] = `
+exports[`MaterialSymbol > should support overriding the symbol configuration through the MATERIAL_CONFIG object 2`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--symbol material-symbols-rounded"
@@ -41,7 +41,7 @@ exports[`MaterialSymbol should support overriding the symbol configuration throu
 </span>
 `;
 
-exports[`MaterialSymbol should use inline styles for font variation settings when they do not match the MATERIAL_CONFIG 1`] = `
+exports[`MaterialSymbol > should use inline styles for font variation settings when they do not match the MATERIAL_CONFIG 1`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--symbol material-symbols-outlined"
@@ -52,7 +52,7 @@ exports[`MaterialSymbol should use inline styles for font variation settings whe
 </span>
 `;
 
-exports[`MaterialSymbol should use inline styles for font variation settings when they do not match the MATERIAL_CONFIG 2`] = `
+exports[`MaterialSymbol > should use inline styles for font variation settings when they do not match the MATERIAL_CONFIG 2`] = `
 <span
   aria-hidden="true"
   class="rmd-icon rmd-icon--symbol material-symbols-outlined"

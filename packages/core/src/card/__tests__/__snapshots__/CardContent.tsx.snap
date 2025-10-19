@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`CardContent > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
   class="rmd-card__content rmd-card__content--padded rmd-card__content--padding-bottom rmd-text-secondary-color"
   data-testid="content"
@@ -9,7 +9,7 @@ exports[`CardContent should apply the correct styling, HTML attributes, and allo
 </div>
 `;
 
-exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`CardContent > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
   class="rmd-card__content rmd-card__content--padded rmd-card__content--padding-bottom rmd-text-secondary-color custom-class-name"
   data-testid="content"
@@ -19,7 +19,7 @@ exports[`CardContent should apply the correct styling, HTML attributes, and allo
 </div>
 `;
 
-exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`CardContent > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <div
   class="rmd-card__content rmd-card__content--padding-bottom rmd-text-secondary-color"
   data-testid="content"
@@ -29,7 +29,7 @@ exports[`CardContent should apply the correct styling, HTML attributes, and allo
 </div>
 `;
 
-exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 4`] = `
+exports[`CardContent > should apply the correct styling, HTML attributes, and allow a ref 4`] = `
 <div
   class="rmd-card__content rmd-card__content--padded rmd-card__content--padding-bottom"
   data-testid="content"
@@ -39,7 +39,7 @@ exports[`CardContent should apply the correct styling, HTML attributes, and allo
 </div>
 `;
 
-exports[`CardContent should apply the correct styling, HTML attributes, and allow a ref 5`] = `
+exports[`CardContent > should apply the correct styling, HTML attributes, and allow a ref 5`] = `
 <div
   class="rmd-card__content rmd-card__content--padded rmd-text-secondary-color"
   data-testid="content"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`MenuItemTextField should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`MenuItemTextField > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <input
   class="rmd-text-field rmd-text-field--placeholder-hidden"
   id="text-field-:r0:"
@@ -9,7 +9,7 @@ exports[`MenuItemTextField should apply the correct styling, HTMLAttributes, and
 />
 `;
 
-exports[`MenuItemTextField should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`MenuItemTextField > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <input
   class="rmd-text-field rmd-text-field--placeholder-hidden"
   id="text-field-:r0:"
@@ -18,7 +18,7 @@ exports[`MenuItemTextField should apply the correct styling, HTMLAttributes, and
 />
 `;
 
-exports[`MenuItemTextField should support adding props to the surrounding li 1`] = `
+exports[`MenuItemTextField > should support adding props to the surrounding li 1`] = `
 <li
   class="rmd-list-item rmd-menu-item test-class-name"
   data-testid="li"

@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, createRef } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { SsrProvider } from "../../SsrProvider.js";
 import { Button } from "../../button/Button.js";
@@ -95,12 +95,12 @@ describe("Overlay", () => {
   });
 
   it("should allow for overriding CSS transition options", async () => {
-    const onEnter = jest.fn();
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
-    const onExit = jest.fn();
-    const onExiting = jest.fn();
-    const onExited = jest.fn();
+    const onEnter = vi.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
+    const onExit = vi.fn();
+    const onExiting = vi.fn();
+    const onExited = vi.fn();
 
     const props: Partial<OverlayProps> = {
       "data-testid": "overlay",
@@ -152,12 +152,12 @@ describe("Overlay", () => {
   });
 
   it("should disable the transition if the noOpacity prop is true", async () => {
-    const onEnter = jest.fn();
-    const onEntering = jest.fn();
-    const onEntered = jest.fn();
-    const onExit = jest.fn();
-    const onExiting = jest.fn();
-    const onExited = jest.fn();
+    const onEnter = vi.fn();
+    const onEntering = vi.fn();
+    const onEntered = vi.fn();
+    const onExit = vi.fn();
+    const onExiting = vi.fn();
+    const onExited = vi.fn();
     const props = {
       "data-testid": "overlay",
       visible: false,

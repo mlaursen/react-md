@@ -1,12 +1,5 @@
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  jest,
-} from "@jest/globals";
 import { type ReactNode } from "react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { AppBar } from "../../app-bar/AppBar.js";
 import { AppBarTitle } from "../../app-bar/AppBarTitle.js";
@@ -147,7 +140,7 @@ describe("useResizableLayout", () => {
     expect(isElementVisible(windowSplitter)).toBe(true);
     expect(windowSplitter).toMatchSnapshot();
 
-    jest.spyOn(windowSplitter, "getBoundingClientRect").mockReturnValue({
+    vi.spyOn(windowSplitter, "getBoundingClientRect").mockReturnValue({
       ...document.body.getBoundingClientRect(),
       left: 256,
       width: 8,
@@ -159,7 +152,8 @@ describe("useResizableLayout", () => {
       to: { x: 286, y: 32 },
     });
 
-    expect(getSizeVar()).toBe("286px");
+    // it's 286.0000000002px now
+    expect(parseFloat(getSizeVar())).toBeCloseTo(286);
     expect(windowSplitter).toMatchSnapshot();
 
     await drag(windowSplitter, {

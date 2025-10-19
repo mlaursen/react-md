@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`IconRotator should default to cloning the icon rotator class names into the child element 1`] = `
+exports[`IconRotator > should default to cloning the icon rotator class names into the child element 1`] = `
 <div>
   <i
     class="custom-icon rmd-icon-rotator rmd-icon-rotator--animate"
@@ -9,7 +9,7 @@ exports[`IconRotator should default to cloning the icon rotator class names into
 </div>
 `;
 
-exports[`IconRotator should default to cloning the icon rotator class names into the child element 2`] = `
+exports[`IconRotator > should default to cloning the icon rotator class names into the child element 2`] = `
 <div>
   <i
     class="custom-icon rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
@@ -18,7 +18,7 @@ exports[`IconRotator should default to cloning the icon rotator class names into
 </div>
 `;
 
-exports[`IconRotator should work automatically with the FontIcon component 1`] = `
+exports[`IconRotator > should work automatically with the FontIcon component 1`] = `
 <div>
   <span
     aria-hidden="true"
@@ -29,7 +29,7 @@ exports[`IconRotator should work automatically with the FontIcon component 1`] =
 </div>
 `;
 
-exports[`IconRotator should work automatically with the FontIcon component 2`] = `
+exports[`IconRotator > should work automatically with the FontIcon component 2`] = `
 <div>
   <span
     aria-hidden="true"
@@ -40,7 +40,7 @@ exports[`IconRotator should work automatically with the FontIcon component 2`] =
 </div>
 `;
 
-exports[`IconRotator should work automatically with the SVGIcon component 1`] = `
+exports[`IconRotator > should work automatically with the SVGIcon component 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -55,7 +55,7 @@ exports[`IconRotator should work automatically with the SVGIcon component 1`] = 
 </div>
 `;
 
-exports[`IconRotator should work automatically with the SVGIcon component 2`] = `
+exports[`IconRotator > should work automatically with the SVGIcon component 2`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -70,7 +70,7 @@ exports[`IconRotator should work automatically with the SVGIcon component 2`] = 
 </div>
 `;
 
-exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 1`] = `
+exports[`IconRotator > should wrap the children with a span if the forceIconWrap prop is enabled 1`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate"
@@ -83,7 +83,7 @@ exports[`IconRotator should wrap the children with a span if the forceIconWrap p
 </div>
 `;
 
-exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 2`] = `
+exports[`IconRotator > should wrap the children with a span if the forceIconWrap prop is enabled 2`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
@@ -96,7 +96,7 @@ exports[`IconRotator should wrap the children with a span if the forceIconWrap p
 </div>
 `;
 
-exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 3`] = `
+exports[`IconRotator > should wrap the children with a span if the forceIconWrap prop is enabled 3`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate"
@@ -111,7 +111,7 @@ exports[`IconRotator should wrap the children with a span if the forceIconWrap p
 </div>
 `;
 
-exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 4`] = `
+exports[`IconRotator > should wrap the children with a span if the forceIconWrap prop is enabled 4`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
@@ -126,7 +126,7 @@ exports[`IconRotator should wrap the children with a span if the forceIconWrap p
 </div>
 `;
 
-exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 5`] = `
+exports[`IconRotator > should wrap the children with a span if the forceIconWrap prop is enabled 5`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate"
@@ -145,7 +145,7 @@ exports[`IconRotator should wrap the children with a span if the forceIconWrap p
 </div>
 `;
 
-exports[`IconRotator should wrap the children with a span if the forceIconWrap prop is enabled 6`] = `
+exports[`IconRotator > should wrap the children with a span if the forceIconWrap prop is enabled 6`] = `
 <div>
   <span
     class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"

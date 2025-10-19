@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`SkeletonPlaceholder should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
+exports[`SkeletonPlaceholder > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
   class="rmd-skeleton-placeholder"
   data-testid="placeholder"
@@ -8,7 +8,7 @@ exports[`SkeletonPlaceholder should apply the correct styling, HTMLAttributes, a
 />
 `;
 
-exports[`SkeletonPlaceholder should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
+exports[`SkeletonPlaceholder > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
   class="custom-class-name rmd-skeleton-placeholder"
   data-testid="placeholder"
@@ -16,7 +16,7 @@ exports[`SkeletonPlaceholder should apply the correct styling, HTMLAttributes, a
 />
 `;
 
-exports[`SkeletonPlaceholder should support disabling the random values by enabling the disabled prop 1`] = `
+exports[`SkeletonPlaceholder > should support disabling the random values by enabling the disabled prop 1`] = `
 <div
   class=""
   data-testid="placeholder"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useResizableLayout should allow you to create a resizable layout quickly 1`] = `
+exports[`useResizableLayout > should allow you to create a resizable layout quickly 1`] = `
 <header
   class="rmd-app-bar rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--elevated rmd-app-bar--scrollbar-offset rmd-box rmd-box--gap rmd-box--padded rmd-box--full-width rmd-background-container rmd-primary-container"
 >
@@ -24,7 +24,7 @@ exports[`useResizableLayout should allow you to create a resizable layout quickl
 </header>
 `;
 
-exports[`useResizableLayout should allow you to create a resizable layout quickly 2`] = `
+exports[`useResizableLayout > should allow you to create a resizable layout quickly 2`] = `
 <main
   class="rmd-layout-main rmd-layout-main--offset-v rmd-layout-h"
   id="main-:r5:"
@@ -38,7 +38,7 @@ exports[`useResizableLayout should allow you to create a resizable layout quickl
 </main>
 `;
 
-exports[`useResizableLayout should allow you to create a resizable layout quickly 3`] = `
+exports[`useResizableLayout > should allow you to create a resizable layout quickly 3`] = `
 <button
   aria-controls="layout-nav-:r0:"
   aria-label="Resize Navigation"
@@ -52,7 +52,7 @@ exports[`useResizableLayout should allow you to create a resizable layout quickl
 />
 `;
 
-exports[`useResizableLayout should allow you to create a resizable layout quickly 4`] = `
+exports[`useResizableLayout > should allow you to create a resizable layout quickly 4`] = `
 <button
   aria-controls="layout-nav-:r0:"
   aria-label="Resize Navigation"
@@ -66,7 +66,7 @@ exports[`useResizableLayout should allow you to create a resizable layout quickl
 />
 `;
 
-exports[`useResizableLayout should allow you to create a resizable layout quickly 5`] = `
+exports[`useResizableLayout > should allow you to create a resizable layout quickly 5`] = `
 <button
   aria-controls="layout-nav-:r0:"
   aria-label="Resize Navigation"
@@ -80,7 +80,7 @@ exports[`useResizableLayout should allow you to create a resizable layout quickl
 />
 `;
 
-exports[`useResizableLayout should allow you to create a resizable layout quickly 6`] = `
+exports[`useResizableLayout > should allow you to create a resizable layout quickly 6`] = `
 <button
   aria-controls="layout-nav-:r0:"
   aria-label="Resize Navigation"

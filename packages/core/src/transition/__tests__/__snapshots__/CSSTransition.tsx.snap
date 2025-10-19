@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CSSTransition should render correctly 1`] = `
+exports[`CSSTransition > should render correctly 1`] = `
 <div>
   <button
     type="button"
@@ -15,79 +15,7 @@ exports[`CSSTransition should render correctly 1`] = `
 </div>
 `;
 
-exports[`CSSTransition should render correctly 2`] = `
-<div>
-  <button
-    type="button"
-  >
-    Toggle
-  </button>
-  <div
-    class="some-transition--enter some-transition--enter-active"
-    data-testid="element"
-  >
-    This is some content.
-  </div>
-</div>
-`;
-
-exports[`CSSTransition should render correctly 3`] = `
-<div>
-  <button
-    type="button"
-  >
-    Toggle
-  </button>
-  <div
-    data-testid="element"
-  >
-    This is some content.
-  </div>
-</div>
-`;
-
-exports[`CSSTransition should render correctly 4`] = `
-<div>
-  <button
-    type="button"
-  >
-    Toggle
-  </button>
-  <div
-    class="some-transition--exit some-transition--exit-active"
-    data-testid="element"
-  >
-    This is some content.
-  </div>
-</div>
-`;
-
-exports[`CSSTransition should render correctly 5`] = `
-<div>
-  <button
-    type="button"
-  >
-    Toggle
-  </button>
-  <div
-    data-testid="element"
-  >
-    This is some content.
-  </div>
-</div>
-`;
-
-exports[`CSSTransition should render correctly 6`] = `
-<div>
-  <button
-    type="button"
-  >
-    Toggle
-  </button>
-</div>
-`;
-
-exports[`CSSTransition should render correctly 7`] = `
+exports[`CSSTransition > should render correctly 2`] = `
 <div>
   <button
     type="button"
@@ -103,7 +31,7 @@ exports[`CSSTransition should render correctly 7`] = `
 </div>
 `;
 
-exports[`CSSTransition should render correctly 8`] = `
+exports[`CSSTransition > should render correctly 3`] = `
 <div>
   <button
     type="button"
@@ -118,7 +46,7 @@ exports[`CSSTransition should render correctly 8`] = `
 </div>
 `;
 
-exports[`CSSTransition should render correctly 9`] = `
+exports[`CSSTransition > should render correctly 4`] = `
 <div>
   <button
     type="button"
@@ -134,7 +62,79 @@ exports[`CSSTransition should render correctly 9`] = `
 </div>
 `;
 
-exports[`CSSTransition should render correctly 10`] = `
+exports[`CSSTransition > should render correctly 5`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+  <div
+    data-testid="element"
+  >
+    This is some content.
+  </div>
+</div>
+`;
+
+exports[`CSSTransition > should render correctly 6`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+</div>
+`;
+
+exports[`CSSTransition > should render correctly 7`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+  <div
+    class="some-transition--enter some-transition--enter-active"
+    data-testid="element"
+  >
+    This is some content.
+  </div>
+</div>
+`;
+
+exports[`CSSTransition > should render correctly 8`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+  <div
+    data-testid="element"
+  >
+    This is some content.
+  </div>
+</div>
+`;
+
+exports[`CSSTransition > should render correctly 9`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+  <div
+    class="some-transition--exit some-transition--exit-active"
+    data-testid="element"
+  >
+    This is some content.
+  </div>
+</div>
+`;
+
+exports[`CSSTransition > should render correctly 10`] = `
 <div>
   <button
     type="button"

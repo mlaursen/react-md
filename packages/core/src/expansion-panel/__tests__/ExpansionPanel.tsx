@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from "@jest/globals";
 import { type ReactElement, createRef } from "react";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import {
   fireEvent,

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 1`] = `
+exports[`ToastCloseButton > should add an aria-label for text button types when an aria-labelledby has not been provided 1`] = `
 <button
   aria-label="Close"
   class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x"
@@ -15,7 +15,7 @@ exports[`ToastCloseButton should add an aria-label for text button types when an
 </button>
 `;
 
-exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 2`] = `
+exports[`ToastCloseButton > should add an aria-label for text button types when an aria-labelledby has not been provided 2`] = `
 <button
   aria-label="Custom"
   class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x"
@@ -30,7 +30,7 @@ exports[`ToastCloseButton should add an aria-label for text button types when an
 </button>
 `;
 
-exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 3`] = `
+exports[`ToastCloseButton > should add an aria-label for text button types when an aria-labelledby has not been provided 3`] = `
 <button
   aria-labelledby="custom-id"
   class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x"
@@ -45,7 +45,7 @@ exports[`ToastCloseButton should add an aria-label for text button types when an
 </button>
 `;
 
-exports[`ToastCloseButton should add an aria-label for text button types when an aria-labelledby has not been provided 4`] = `
+exports[`ToastCloseButton > should add an aria-label for text button types when an aria-labelledby has not been provided 4`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-toast-x"
   type="button"
@@ -56,7 +56,7 @@ exports[`ToastCloseButton should add an aria-label for text button types when an
 </button>
 `;
 
-exports[`ToastCloseButton should apply the correct styling, HTML attributes, and allow a ref 1`] = `
+exports[`ToastCloseButton > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <button
   aria-label="Close"
   class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x"
@@ -71,7 +71,7 @@ exports[`ToastCloseButton should apply the correct styling, HTML attributes, and
 </button>
 `;
 
-exports[`ToastCloseButton should apply the correct styling, HTML attributes, and allow a ref 2`] = `
+exports[`ToastCloseButton > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <button
   aria-label="Close"
   class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x custom-class-name"
@@ -87,7 +87,7 @@ exports[`ToastCloseButton should apply the correct styling, HTML attributes, and
 </button>
 `;
 
-exports[`ToastCloseButton should apply the correct styling, HTML attributes, and allow a ref 3`] = `
+exports[`ToastCloseButton > should apply the correct styling, HTML attributes, and allow a ref 3`] = `
 <button
   aria-label="Close"
   class="rmd-button rmd-button--icon rmd-button--icon-square rmd-interaction-surface rmd-toast-x rmd-toast-x--reordered"

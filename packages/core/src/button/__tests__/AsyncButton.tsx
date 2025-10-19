@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import {
@@ -42,7 +42,7 @@ describe("AsyncButton", () => {
 
     // this is how you can manually resolve a promise using events
     const instance = new EventTarget();
-    const onClick = jest.fn(() => {
+    const onClick = vi.fn(() => {
       return new Promise<void>((resolve) => {
         instance.addEventListener("resolve-promise", () => {
           resolve();
@@ -101,7 +101,7 @@ describe("AsyncButton", () => {
     expect(button).toBeEnabled();
     expect(() => within(button).getByRole("progressbar")).toThrow();
 
-    const onClick = jest.fn(() => {});
+    const onClick = vi.fn(() => {});
     rerender(<AsyncButton onClick={onClick}>Button</AsyncButton>);
     await user.click(button);
 

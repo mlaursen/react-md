@@ -1,5 +1,5 @@
-import { describe, expect, it, jest } from "@jest/globals";
 import { type ReactElement, type Ref, createRef } from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   act,
@@ -7,7 +7,7 @@ import {
   screen,
   setupResizeObserverMock,
 } from "../../test-utils/index.js";
-import { cleanupResizeObserverAfterEach } from "../../test-utils/jest-globals/index.js";
+import { cleanupResizeObserverAfterEach } from "../../test-utils/vitest/index.js";
 import { LayoutAppBar, type LayoutAppBarProps } from "../LayoutAppBar.js";
 import { Main } from "../Main.js";
 
@@ -82,7 +82,7 @@ describe("LayoutAppBar", () => {
   it("should automatically apply the app bar height as css variables while waiting for the first observer event to prevent layout shifts", () => {
     const observer = setupResizeObserverMock();
     // pretend it was set in CSS
-    const getComputedStyle = jest
+    const getComputedStyle = vi
       .spyOn(window, "getComputedStyle")
       .mockReturnValue({
         getPropertyValue: () => "3.5rem",
@@ -102,7 +102,7 @@ describe("LayoutAppBar", () => {
   });
 
   it("should throw an if there is no main element since it renders the SkipToMainContent component", () => {
-    const error = jest.spyOn(console, "error").mockImplementation(() => {});
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => rmdRender(<LayoutAppBar />)).toThrow();
     error.mockRestore();
   });

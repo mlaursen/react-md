@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@jest/globals";
 import { createRef } from "react";
+import { describe, expect, it } from "vitest";
 
 import { FontIcon } from "../../icon/FontIcon.js";
 import { render, screen } from "../../test-utils/index.js";
@@ -181,7 +181,7 @@ describe("TextField", () => {
 
     const label = screen.getByTestId("label");
     expect(label).toHaveStyle("background: orange");
-    expect(label).not.toHaveStyle("color: red");
+    expect(label).not.toHaveStyle("color: rgb(255, 0, 0)");
     expect(label).toHaveClass("label-props-class-name");
     expect(label).not.toHaveClass("label-class-name");
     expect(label).toMatchSnapshot();
@@ -189,7 +189,7 @@ describe("TextField", () => {
     rerender(
       <TextField
         label="Label"
-        labelStyle={{ color: "red" }}
+        labelStyle={{ color: "rgb(255, 0, 0)" }}
         labelClassName="label-class-name"
         labelProps={{
           "data-testid": "label",
@@ -198,7 +198,7 @@ describe("TextField", () => {
     );
 
     expect(label).not.toHaveStyle("background: orange");
-    expect(label).toHaveStyle("color: red");
+    expect(label).toHaveStyle("color: rgb(255, 0, 0)");
     expect(label).not.toHaveClass("label-props-class-name");
     expect(label).toHaveClass("label-class-name");
     expect(label).toMatchSnapshot();
