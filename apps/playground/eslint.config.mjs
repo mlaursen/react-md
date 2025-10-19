@@ -8,7 +8,6 @@ const compat = new FlatCompat({
 
 export default defineConfig(
   gitignore(import.meta.url),
-  // @ts-expect-error some eslint type mismatch
   ...compat.config({
     // extends: ["plugin:@next/next/recommended"],
     extends: ["plugin:@next/next/core-web-vitals"],

@@ -51,7 +51,7 @@
     "@react-md/code": "workspace:*",
     "@react-md/core": "workspace:*",
     "@react-md/material-icons": "workspace:*",
-    "algoliasearch": "^5.39.0",
+    "algoliasearch": "^5.40.1",
     "cnbuilder": "^3.1.0",
     "docs-generator": "workspace:*",
     "filesize": "^11.0.13",
@@ -67,9 +67,9 @@
     "sharp": "^0.34.4"
   },
   "devDependencies": {
-    "@algolia/client-search": "^5.39.0",
+    "@algolia/client-search": "^5.40.1",
     "@eslint/eslintrc": "^3.3.1",
-    "@inquirer/confirm": "^5.1.18",
+    "@inquirer/confirm": "^5.1.19",
     "@next/eslint-plugin-next": "^15.5.4",
     "@react-md/eslint-config": "workspace:*",
     "@react-md/stylelint-config": "workspace:*",
@@ -82,18 +82,18 @@
     "@types/react-window": "^1.8.8",
     "chokidar": "^4.0.3",
     "dotenv": "^17.2.3",
-    "eslint": "^9.37.0",
+    "eslint": "^9.38.0",
     "glob": "^11.0.3",
     "nodemon": "^3.1.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.6.2",
     "sass": "^1.93.2",
     "sassdoc-generator": "workspace:*",
-    "stylelint": "^16.24.0",
+    "stylelint": "^16.25.0",
     "svgo": "^4.0.0",
     "tsx": "^4.20.6",
-    "typedoc": "^0.28.13",
-    "typescript": "^5.8.3"
+    "typedoc": "^0.28.14",
+    "typescript": "^5.9.3"
   },
   "volta": {
     "node": "22.13.1",

@@ -47,9 +47,9 @@
     "@swc/core": "^1.13.20",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.15.29",
-    "eslint": "^9.37.0",
+    "eslint": "^9.38.0",
     "npm-run-all": "^4.1.5",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   },
   "volta": {
     "node": "22.13.1",

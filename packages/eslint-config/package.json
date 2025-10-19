@@ -14,7 +14,7 @@
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.15.29",
     "prettier": "^3.6.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",

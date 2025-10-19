@@ -36,12 +36,12 @@
     "@types/node": "^22.14.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "eslint": "^9.37.0",
+    "eslint": "^9.38.0",
     "prettier": "^3.5.3",
     "sass-embedded": "^1.93.2",
     "serve": "^14.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   },
   "volta": {
     "node": "22.13.1",
