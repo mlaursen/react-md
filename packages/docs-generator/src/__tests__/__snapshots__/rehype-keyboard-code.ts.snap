@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`rehypeKeyboardCode should be able to handle coverting a single modifier with an action to multiple kbd 1`] = `
 "import {jsx as _jsx, jsxs as _jsxs} from "react/jsx-runtime";
