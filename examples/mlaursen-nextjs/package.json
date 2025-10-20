@@ -15,11 +15,6 @@
     "start": "next start",
     "start-static": "serve -p 3000 ./out"
   },
-  "engines": {
-    "pnpm": "10.11.0",
-    "node": "22.14.0"
-  },
-  "engineStrict": true,
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "dependencies": {
     "@react-md/core": "^6.3.1",
@@ -61,6 +56,11 @@
       "prettier --write"
     ]
   },
+  "engines": {
+    "pnpm": "10.18.3",
+    "node": "22.22.0"
+  },
+  "engineStrict": true,
   "volta": {
     "node": "22.20.0",
     "pnpm": "10.18.0"

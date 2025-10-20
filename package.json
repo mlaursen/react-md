@@ -59,19 +59,19 @@
     "turbo": "^2.5.8",
     "typescript": "^5.9.3"
   },
-  "engines": {
-    "pnpm": ">=9",
-    "node": ">=20"
-  },
-  "engineStrict": true,
-  "packageManager": "pnpm@10.8.0",
   "lint-staged": {
     "**/*.{scss,js,jsx,md,yml,json,ts,tsx}": [
       "prettier --write"
     ]
   },
+  "engines": {
+    "node": "22.20.0",
+    "pnpm": "10.18.3"
+  },
+  "engineStrict": true,
+  "packageManager": "pnpm@10.18.3",
   "volta": {
     "node": "22.20.0",
-    "pnpm": "10.8.0"
+    "pnpm": "10.18.3"
   }
 }

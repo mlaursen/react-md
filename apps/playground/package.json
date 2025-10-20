@@ -10,11 +10,6 @@
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
     "dev": "next dev"
   },
-  "engines": {
-    "node": "22.20.0",
-    "pnpm": "10.8.0"
-  },
-  "engineStrict": true,
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "dependencies": {
     "@react-md/code": "workspace:*",
@@ -45,6 +40,6 @@
   },
   "volta": {
     "node": "22.20.0",
-    "pnpm": "10.8.0"
+    "pnpm": "10.18.3"
   }
 }
