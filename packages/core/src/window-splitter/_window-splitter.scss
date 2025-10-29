@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../utils";
+@use "../divider/divider";
 @use "../interaction/interaction";
 @use "../transition/transition";
 
@@ -27,6 +28,11 @@ $disable-reversed: false !default;
 /// @type Boolean
 $disable-absolute-position: false !default;
 
+/// Set to `true` to disable the inactive `background-color` styles.
+/// @since 6.4.0
+/// @type Boolean
+$disable-inactive-background-color: false !default;
+
 /// The default `WindowSplitter` draggable area.
 /// @type Number
 $size: 1rem !default;
@@ -35,9 +41,14 @@ $size: 1rem !default;
 /// @type Number
 $background-size: 0.25rem !default;
 
-/// The default `background-color` for the `WindowSplitter`.
+/// The default `background-color` for the `WindowSplitter` while being
+/// interacted with by the user.
 /// @type Color
 $background-color: interaction.get-var(focus-color) !default;
+
+/// An optional `background-color` to use while the
+/// @type Color
+$inactive-background-color: divider.get-var(color) !default;
 
 /// The default `z-index` for the `WindowSplitter`.
 /// @type Number
@@ -54,6 +65,7 @@ $variables: (
   z,
   position,
   background-color,
+  inactive-background-color,
   opacity
 );
 
@@ -97,6 +109,13 @@ $variables: (
     @if $background-color != interaction.get-var(focus-color) {
       @include set-var(background-color, $background-color);
     }
+    @if not
+      $disable-inactive-background-color and
+      $inactive-background-color !=
+      divider.get-var(color)
+    {
+      @include set-var(background-color, $inactive-background-color);
+    }
   }
 }
 
@@ -106,6 +125,13 @@ $variables: (
 /// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
+    $pseudo-selectors: if(
+        not $disable-inactive-background-color,
+        "&::before, ",
+        ""
+      ) +
+      "&::after";
+
     @include utils.optional-layer(window-splitter, $disable-layer) {
       .rmd-window-splitter {
         background-color: transparent;
@@ -116,6 +142,12 @@ $variables: (
         position: fixed;
         transform: translate3d(get-var(x, 0), get-var(y, 0), get-var(z, 0));
         z-index: $z-index;
+
+        #{$pseudo-selectors} {
+          content: "";
+          inset: 0;
+          position: absolute;
+        }
 
         &::after {
           @include use-var(
@@ -128,10 +160,27 @@ $variables: (
           );
           @include use-var(opacity);
 
-          content: "";
-          inset: 0;
-          position: absolute;
           transition: opacity transition.$linear-duration;
+        }
+
+        @if not $disable-inactive-background-color {
+          &--no-inactive-bg::before {
+            display: none;
+          }
+
+          &::before {
+            @include use-var(
+              background-color,
+              inactive-background-color,
+              if(
+                $inactive-background-color == divider.get-var(color),
+                $inactive-background-color,
+                null
+              )
+            );
+
+            pointer-events: none;
+          }
         }
 
         @if not $disable-horizontal {
@@ -141,7 +190,7 @@ $variables: (
 
             cursor: col-resize;
 
-            &::after {
+            #{$pseudo-selectors} {
               @include use-var(width, background-size);
             }
 
@@ -157,7 +206,7 @@ $variables: (
                 calc(100dvw - get-var(size) - get-var(position))
               );
 
-              &::after {
+              #{$pseudo-selectors} {
                 margin-left: auto;
               }
 
@@ -167,7 +216,7 @@ $variables: (
                   calc(-100dvw + get-var(size) + get-var(position))
                 );
 
-                &::after {
+                #{$pseudo-selectors} {
                   margin-left: 0;
                   margin-right: auto;
                 }
@@ -184,7 +233,7 @@ $variables: (
             cursor: row-resize;
             width: 100%;
 
-            &::after {
+            #{$pseudo-selectors} {
               @include use-var(height, background-size);
             }
           }
@@ -196,7 +245,7 @@ $variables: (
                 calc(100dvh - get-var(size) - get-var(position))
               );
 
-              &::after {
+              #{$pseudo-selectors} {
                 transform: translateY(
                   calc(get-var(size) - get-var(background-size))
                 );

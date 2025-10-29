@@ -91,7 +91,8 @@ export const WindowSplitter = forwardRef<
     className,
     dragging,
     reversed,
-    disableFixed = false,
+    disableFixed,
+    inactiveBackground,
     ...remaining
   } = props;
   const vertical = props["aria-orientation"] === "vertical";
@@ -108,6 +109,7 @@ export const WindowSplitter = forwardRef<
         dragging,
         vertical,
         disableFixed,
+        inactiveBackground,
       })}
     />
   );

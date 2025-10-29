@@ -13,6 +13,7 @@ declare module "react" {
     "--rmd-window-splitter-z"?: string | number;
     "--rmd-window-splitter-position"?: string | number;
     "--rmd-window-splitter-backgrond-color"?: string;
+    "--rmd-window-splitter-inactive-backgrond-color"?: string;
     "--rmd-window-splitter-opacity"?: string | number;
   }
 }
@@ -30,6 +31,15 @@ export interface BaseWindowSplitterClassNameOptions {
    * @defaultValue `false`
    */
   disableFixed?: boolean;
+
+  /**
+   * Set to `true` to enable a background-color to the `WindowSplitter` even
+   * while not being interacted with by the user.
+   *
+   * @since 6.4.0
+   * @defaultValue `false`
+   */
+  inactiveBackground?: boolean;
 }
 
 /**
@@ -54,6 +64,7 @@ export function windowSplitter(
     dragging,
     reversed,
     disableFixed,
+    inactiveBackground,
     className,
   } = options;
 
@@ -65,6 +76,7 @@ export function windowSplitter(
       vr: vertical && reversed,
       a: disableFixed,
       dragging,
+      "no-inactive-bg": !inactiveBackground,
     }),
     className
   );

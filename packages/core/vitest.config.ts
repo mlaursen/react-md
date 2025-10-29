@@ -2,6 +2,7 @@ import react from "@vitejs/plugin-react-swc";
 import { coverageConfigDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
+  root: import.meta.dirname,
   plugins: [react()],
   test: {
     environment: "jsdom",

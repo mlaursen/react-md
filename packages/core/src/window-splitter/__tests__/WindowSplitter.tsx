@@ -66,4 +66,33 @@ describe("WindowSplitter", () => {
 
     expect(windowSplitter).toMatchSnapshot();
   });
+
+  it("should be able to show an inactive bg while horizontal or vertical", () => {
+    const props = {
+      "aria-controls": "whatever",
+    };
+    const { rerender } = rmdRender(<Test {...props} />);
+    const windowSplitter = screen.getByRole("separator", {
+      name: "Window Splitter",
+    });
+
+    expect(windowSplitter).toHaveClass("rmd-window-splitter--no-inactive-bg");
+    expect(windowSplitter).toMatchSnapshot();
+
+    rerender(<Test {...props} inactiveBackground />);
+    expect(windowSplitter).not.toHaveClass(
+      "rmd-window-splitter--no-inactive-bg"
+    );
+    expect(windowSplitter).toMatchSnapshot();
+
+    rerender(<Test {...props} vertical />);
+    expect(windowSplitter).toHaveClass("rmd-window-splitter--no-inactive-bg");
+    expect(windowSplitter).toMatchSnapshot();
+
+    rerender(<Test {...props} vertical inactiveBackground />);
+    expect(windowSplitter).not.toHaveClass(
+      "rmd-window-splitter--no-inactive-bg"
+    );
+    expect(windowSplitter).toMatchSnapshot();
+  });
 });
