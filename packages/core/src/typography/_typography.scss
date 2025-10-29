@@ -175,7 +175,6 @@ $line-height: 1.5rem !default;
 /// @type Map
 $base-recommended-font-styles: (
   font-family: var(--rmd-font-family),
-  overflow: inherit,
   overflow-wrap: break-word,
   text-overflow: inherit,
   -moz-osx-font-smoothing: grayscale,
