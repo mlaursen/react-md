@@ -30,7 +30,7 @@
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",
   "volta": {
-    "node": "22.20.0",
-    "pnpm": "10.18.3"
+    "node": "24.11.1",
+    "pnpm": "10.24.0"
   }
 }

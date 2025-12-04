@@ -65,13 +65,13 @@
     ]
   },
   "engines": {
-    "node": "22.20.0",
-    "pnpm": "10.18.3"
+    "node": "24.11.1",
+    "pnpm": "10.24.0"
   },
   "engineStrict": true,
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.24.0",
   "volta": {
-    "node": "22.20.0",
-    "pnpm": "10.18.3"
+    "node": "24.11.1",
+    "pnpm": "10.24.0"
   }
 }
