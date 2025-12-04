@@ -1,22 +1,19 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.icon-set-var(size, 4rem);
-  @include everything.interaction-outline();
+  @include icon-set-var(size, 4rem);
+  @include interaction-outline();
 
   min-height: 30vh;
   position: relative;
 }
 
 .dragging {
-  @include everything.interaction-focus-styles($disable-background: true);
+  @include interaction-focus-styles($disable-background: true);
 }
 
 .dragover {
-  @include everything.interaction-set-var(
-    focus-color,
-    everything.theme-get-var(success-color)
-  );
+  @include interaction-set-var(focus-color, theme-get-var(success-color));
 }
 
 .invisible {

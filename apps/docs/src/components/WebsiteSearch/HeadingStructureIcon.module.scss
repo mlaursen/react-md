@@ -1,23 +1,23 @@
-@use "everything";
+@use "everything" as *;
 
 $line-size: 2px;
 
 .container {
-  @include everything.icon-use-var(width, size);
+  @include icon-use-var(width, size);
 
   display: inline-block;
   position: relative;
 
   &::before,
   &::after {
-    @include everything.pseudo-element($inset: null);
-    @include everything.theme-use-var(background-color, text-hint-color);
+    @include pseudo-element($inset: null);
+    @include theme-use-var(background-color, text-hint-color);
 
     left: 0.5rem;
     top: 0;
     transform: translateY(-50%);
 
-    @include everything.rtl {
+    @include rtl {
       left: auto;
       right: 0.5rem;
     }
@@ -25,8 +25,8 @@ $line-size: 2px;
 
   &::before {
     height: calc(
-      everything.list-get-var(item-height) - calc(
-          everything.list-get-var(item-vertical-padding) * 2
+      list-get-var(item-height) - calc(
+          list-get-var(item-vertical-padding) * 2
         ) -
         0.5rem
     );

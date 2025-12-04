@@ -1,9 +1,9 @@
-@use "everything";
+@use "everything" as *;
 
 .end {
   margin-left: auto;
 
-  @include everything.rtl {
+  @include rtl {
     margin-left: 0;
     margin-right: auto;
   }

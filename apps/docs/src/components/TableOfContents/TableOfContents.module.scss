@@ -1,29 +1,27 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.layout-use-var(top, header-height);
+  @include layout-use-var(top, header-height);
 
   display: none;
   padding: 0 1rem;
   position: fixed;
-  right: everything.scrollbar-size();
+  right: scrollbar-size();
   width: var(--toc-width);
 
-  @include everything.rtl {
+  @include rtl {
     left: 0;
     right: auto;
   }
-  @include everything.media-or-media-query(
-    everything.$layout-navigation-breakpoint
-  ) {
+  @include media-or-media-query($layout-navigation-breakpoint) {
     display: grid;
-    max-height: calc(100dvh - everything.layout-get-var(header-height));
+    max-height: calc(100dvh - layout-get-var(header-height));
     overflow: auto;
   }
 }
 
 .sticky {
-  @include everything.theme-use-var(background-color);
+  @include theme-use-var(background-color);
 
   padding: 1rem 0;
   position: sticky;

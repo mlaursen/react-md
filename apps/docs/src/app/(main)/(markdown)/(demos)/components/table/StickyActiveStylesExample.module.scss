@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
   max-height: 20rem;
@@ -6,5 +6,5 @@
 }
 
 .active {
-  @include everything.table-set-var(cell-color, currentcolor);
+  @include table-set-var(cell-color, currentcolor);
 }

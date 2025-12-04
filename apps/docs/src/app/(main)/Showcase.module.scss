@@ -1,9 +1,9 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
   min-width: 0;
 
-  @include everything.tablet-media {
+  @include tablet-media {
     min-width: 35.875rem;
   }
 }

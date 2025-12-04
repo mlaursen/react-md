@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 @use "sass:math";
 
 $vertical-inset: 0.5rem;
@@ -6,13 +6,10 @@ $inset: $vertical-inset 0;
 $border-radius: 0.5rem;
 
 .tabs {
-  @include everything.interaction-set-var(ripple-inset, $inset);
-  @include everything.interaction-set-var(ripple-border-radius, $border-radius);
-  @include everything.interaction-set-var(surface-inset, $inset);
-  @include everything.interaction-set-var(
-    surface-border-radius,
-    $border-radius
-  );
+  @include interaction-set-var(ripple-inset, $inset);
+  @include interaction-set-var(ripple-border-radius, $border-radius);
+  @include interaction-set-var(surface-inset, $inset);
+  @include interaction-set-var(surface-border-radius, $border-radius);
 }
 
 .tab {

@@ -1,9 +1,9 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.box-set-var(gap, 0.25rem);
-  @include everything.chip-set-var(height, 1.25rem);
-  @include everything.chip-set-var(horizontal-padding, 0.5rem);
+  @include box-set-var(gap, 0.25rem);
+  @include chip-set-var(height, 1.25rem);
+  @include chip-set-var(horizontal-padding, 0.5rem);
 
   max-width: 16rem;
   width: 100%;
@@ -14,13 +14,13 @@
 }
 
 .button {
-  @include everything.interaction-set-var(hover-background-color, transparent);
+  @include interaction-set-var(hover-background-color, transparent);
 
   justify-content: space-between;
   padding: 0;
   width: 100%;
 
-  @include everything.mouse-hover {
+  @include mouse-hover {
     color: #4493f8;
   }
 }
@@ -28,18 +28,18 @@
 .dialog {
   // I just grabbed the color variables in dark mode and moved them here. not
   // going to do both light/dark mode
-  @include everything.interaction-use-dark-surface;
-  @include everything.theme-set-var(text-primary-color, everything.$white);
-  @include everything.theme-set-var(background-color, #151b23);
-  @include everything.list-set-var(vertical-padding, 0);
-  @include everything.list-set-var(item-height, auto);
-  @include everything.list-set-var(item-vertical-padding, 0.5rem);
-  @include everything.list-set-var(item-horizontal-padding, 0.5rem);
-  @include everything.icon-set-var(size, 1rem);
-  @include everything.avatar-set-var(size, 1rem);
+  @include interaction-use-dark-surface;
+  @include theme-set-var(text-primary-color, $white);
+  @include theme-set-var(background-color, #151b23);
+  @include list-set-var(vertical-padding, 0);
+  @include list-set-var(item-height, auto);
+  @include list-set-var(item-vertical-padding, 0.5rem);
+  @include list-set-var(item-horizontal-padding, 0.5rem);
+  @include icon-set-var(size, 1rem);
+  @include avatar-set-var(size, 1rem);
 
   :global(.rmd-list-item) {
-    @include everything.divider-border-style;
+    @include divider-border-style;
 
     font-size: 0.75rem;
     height: auto;

@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
   max-height: 25rem;
@@ -7,12 +7,12 @@
 .sticky {
   // if you don't need auto-RTL support, you could just set the `left` value
   // instead of using the mixin and updating the css variable
-  // @include everything.table-set-var(sticky-cell, 4rem);
-  @include everything.table-set-var(
+  // @include  table-set-var(sticky-cell, 4rem);
+  @include table-set-var(
     sticky-cell,
     calc(
-      everything.$table-cell-input-toggle-horizontal-padding * 2 +
-        everything.$input-toggle-normal-size * 2
+      $table-cell-input-toggle-horizontal-padding * 2 +
+        $input-toggle-normal-size * 2
     )
   );
 }

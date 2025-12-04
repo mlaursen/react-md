@@ -1,11 +1,8 @@
-@use "everything";
+@use "everything" as *;
 
 .sheet {
-  @include everything.theme-set-var(
-    background-color,
-    everything.theme-get-var(surface-color)
-  );
-  @include everything.phone-media {
+  @include theme-set-var(background-color, theme-get-var(surface-color));
+  @include phone-media {
     width: 100%;
   }
 }

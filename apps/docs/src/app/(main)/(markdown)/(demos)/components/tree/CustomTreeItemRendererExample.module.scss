@@ -1,5 +1,5 @@
-@use "everything";
+@use "everything" as *;
 
 .selected {
-  @include everything.icon-set-var(color, currentcolor);
+  @include icon-set-var(color, currentcolor);
 }

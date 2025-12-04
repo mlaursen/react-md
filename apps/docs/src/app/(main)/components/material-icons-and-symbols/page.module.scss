@@ -1,10 +1,7 @@
-@use "everything";
+@use "everything" as *;
 
 .sheet {
-  @include everything.desktop-media {
-    top: calc(
-      everything.layout-get-var(header-height) +
-        everything.app-bar-get-var(height)
-    );
+  @include desktop-media {
+    top: calc(layout-get-var(header-height) + app-bar-get-var(height));
   }
 }

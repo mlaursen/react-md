@@ -1,7 +1,7 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.icon-set-var(spacing, 1rem);
+  @include icon-set-var(spacing, 1rem);
 
   align-items: center;
   display: flex;

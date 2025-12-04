@@ -1,7 +1,7 @@
-@use "everything";
+@use "everything" as *;
 
 .header {
-  @include everything.icon-set-var(size, 2.25rem);
+  @include icon-set-var(size, 2.25rem);
 
   gap: 1rem;
 }
@@ -10,7 +10,7 @@
   flex-grow: 0;
   margin-right: auto;
 
-  @include everything.rtl {
+  @include rtl {
     margin-left: auto;
     margin-right: 0;
   }

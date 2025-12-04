@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 
 .spacing {
   margin-bottom: 1.5em;
@@ -11,7 +11,7 @@
     --color-preview-outer-width: 0.125em;
     --color-preview-border-width: 0.15625em;
 
-    @include everything.code-color-preview-box-shadow;
+    @include code-color-preview-box-shadow;
   }
 }
 

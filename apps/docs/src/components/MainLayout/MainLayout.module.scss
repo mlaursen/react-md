@@ -1,15 +1,15 @@
-@use "everything";
+@use "everything" as *;
 
 .navigation {
-  @include everything.divider-set-var(size, 2px);
-  @include everything.divider-border-style(right);
-  @include everything.list-set-var(item-height, auto);
+  @include divider-set-var(size, 2px);
+  @include divider-border-style(right);
+  @include list-set-var(item-height, auto);
 
   background-color: var(--background-color);
   box-shadow: none;
 
-  @include everything.rtl {
-    @include everything.divider-border-style(left);
+  @include rtl {
+    @include divider-border-style(left);
 
     border-right: 0;
   }
@@ -20,9 +20,7 @@
 }
 
 .mainGrid {
-  @include everything.media-or-media-query(
-    everything.$layout-navigation-breakpoint
-  ) {
+  @include media-or-media-query($layout-navigation-breakpoint) {
     display: grid;
     grid-template-columns: 1fr var(--toc-width);
   }

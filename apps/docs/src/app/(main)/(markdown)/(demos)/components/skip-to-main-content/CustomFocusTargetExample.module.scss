@@ -1,14 +1,14 @@
-@use "everything";
+@use "everything" as *;
 
 .link {
-  @include everything.theme-use-var(color, text-primary-color);
+  @include theme-use-var(color, text-primary-color);
 }
 
 // The `main` focus styles use `position: fixed` by default so need to update
 // the `top` value to be the dialog header's height which defaults to 5.75rem
 // with padding
 .content {
-  @include everything.layout-set-var(header-height, 5.75rem);
+  @include layout-set-var(header-height, 5.75rem);
 }
 
 // An alternative would be to just set the `DialogContent` to have position
@@ -29,9 +29,9 @@
 //   position: relative;
 
 //   &::before {
-//     @include everything.pseudo-element;
-//     @include everything.interaction-outline(
-//       $color: everything.interaction-get-var(focus-color)
+//     @include  pseudo-element;
+//     @include  interaction-outline(
+//       $color:  interaction-get-var(focus-color)
 //     );
 
 //     opacity: 0;

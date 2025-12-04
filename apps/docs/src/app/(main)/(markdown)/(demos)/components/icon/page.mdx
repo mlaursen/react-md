@@ -33,10 +33,10 @@ The icon's size will also automatically scale to the current `font-size` when se
 or can be configured using the [icon-set-var](/sassdoc/icon#mixin-set-var) mixin:
 
 ```scss
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.icon-set-var(size, 2rem);
+  @include icon-set-var(size, 2rem);
 }
 ```
 

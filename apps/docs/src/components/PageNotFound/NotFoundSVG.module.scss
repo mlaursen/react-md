@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 
 .svg {
   margin-top: 4rem;
@@ -7,5 +7,5 @@
 }
 
 .oval {
-  @include everything.theme-use-var(fill, secondary-color);
+  @include theme-use-var(fill, secondary-color);
 }

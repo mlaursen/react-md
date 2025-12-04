@@ -1,13 +1,13 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.box-set-var(padding, 2rem);
-  @include everything.box-set-var(gap, 0.5rem);
-  @include everything.box-set-var(item-min-size, 5rem);
+  @include box-set-var(padding, 2rem);
+  @include box-set-var(gap, 0.5rem);
+  @include box-set-var(item-min-size, 5rem);
 }
 
 .override {
-  @include everything.box-set-var(item-min-size, 12rem);
+  @include box-set-var(item-min-size, 12rem);
 
   gap: 1.25rem;
   padding: 0.25rem;

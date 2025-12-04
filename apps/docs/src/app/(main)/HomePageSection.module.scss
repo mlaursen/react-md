@@ -1,11 +1,11 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.large-desktop-media {
+  @include large-desktop-media {
     column-gap: 2rem;
     display: grid;
     grid-template-columns:
-      minmax(0, everything.typography-get-var(line-length))
+      minmax(0, typography-get-var(line-length))
       1fr;
     max-width: none;
     padding: 0 4rem;

@@ -1,7 +1,7 @@
-@use "everything";
+@use "everything" as *;
 
 .tooltip {
-  background-color: everything.$black;
+  background-color: $black;
   font-family: var(--code-font-family);
   font-size: var(--code-font-size);
   margin: 0;
@@ -11,7 +11,7 @@
   top: 0.25rem;
   z-index: 10;
 
-  @include everything.rtl {
+  @include rtl {
     left: 1.25rem;
     right: auto;
   }

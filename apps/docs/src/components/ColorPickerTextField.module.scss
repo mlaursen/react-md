@@ -1,5 +1,5 @@
-@use "everything";
+@use "everything" as *;
 
 .underlined {
-  @include everything.text-field-set-var(addon-margin-top, 1em);
+  @include text-field-set-var(addon-margin-top, 1em);
 }

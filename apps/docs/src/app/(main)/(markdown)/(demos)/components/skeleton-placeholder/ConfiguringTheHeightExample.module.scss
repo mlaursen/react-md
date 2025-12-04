@@ -1,5 +1,5 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.transition-set-var(skeleton-placeholder-height, 3rem);
+  @include transition-set-var(skeleton-placeholder-height, 3rem);
 }

@@ -1,14 +1,11 @@
-@use "everything";
+@use "everything" as *;
 
-$tree-padding: calc(everything.tree-get-var(depth) * 1.125rem + 1rem);
+$tree-padding: calc(tree-get-var(depth) * 1.125rem + 1rem);
 
 .link {
-  @include everything.theme-use-var(color, text-secondary-color);
-  @include everything.interaction-surface(
-    $disabled-selector: null,
-    $css-modules: true
-  );
-  @include everything.rtl {
+  @include theme-use-var(color, text-secondary-color);
+  @include interaction-surface($disabled-selector: null, $css-modules: true);
+  @include rtl {
     padding-left: 1rem;
     padding-right: $tree-padding;
   }
@@ -21,34 +18,34 @@ $tree-padding: calc(everything.tree-get-var(depth) * 1.125rem + 1rem);
     text-decoration: none;
   }
 
-  @include everything.mouse-hover {
-    @include everything.link-use-var(color);
+  @include mouse-hover {
+    @include link-use-var(color);
   }
 
   &::after {
-    @include everything.divider-use-var(background-color, color);
+    @include divider-use-var(background-color, color);
 
     content: "";
     inset: 0 auto 0 0;
     position: absolute;
-    transition: background-color everything.$linear-duration;
+    transition: background-color $linear-duration;
     width: 0.25rem;
   }
 
   &[aria-current] {
-    @include everything.theme-use-var(color, text-primary-color);
+    @include theme-use-var(color, text-primary-color);
 
-    font-weight: everything.$font-weight-bold;
+    font-weight: $font-weight-bold;
 
     &::before {
-      @include everything.interaction-set-var(
+      @include interaction-set-var(
         background-color,
-        everything.interaction-get-var(selected-background-color)
+        interaction-get-var(selected-background-color)
       );
     }
 
     &::after {
-      @include everything.theme-use-var(background-color, primary-color);
+      @include theme-use-var(background-color, primary-color);
     }
   }
 }

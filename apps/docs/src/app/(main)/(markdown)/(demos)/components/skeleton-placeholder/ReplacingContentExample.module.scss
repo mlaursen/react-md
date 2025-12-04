@@ -1,7 +1,7 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.divider-border-style;
+  @include divider-border-style;
 
   max-width: 40rem;
   padding: 1rem;

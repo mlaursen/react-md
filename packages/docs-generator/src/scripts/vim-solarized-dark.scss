@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 @use "sass:map";
 
 $base-03: #002b36;
@@ -39,7 +39,7 @@ $green: #859900;
     color: $base-1;
     hyphens: none;
     margin: 0.5em 0;
-    min-height: calc(everything.button-get-var(text-min-height) + 0.5em);
+    min-height: calc(button-get-var(text-min-height) + 0.5em);
     overflow: auto;
     padding: 1em;
     white-space: pre;
@@ -104,7 +104,7 @@ $green: #859900;
 
     &.important,
     &.bold {
-      font-weight: everything.$font-weight-bold;
+      font-weight: $font-weight-bold;
     }
 
     &.italic {

@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 
 .span {
   grid-column: span var(--cell-span, 1);
@@ -15,7 +15,7 @@
 $breakpoints: (phone, tablet, desktop);
 
 @each $breakpoint in $breakpoints {
-  @include everything.media($breakpoint) {
+  @include media($breakpoint) {
     .#{$breakpoint}Span {
       --cell-span: var(--cell-#{$breakpoint}-span);
     }

@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 
 .enter {
   opacity: 0;
@@ -6,8 +6,7 @@
 
 .enterActive {
   opacity: 1;
-  transition: opacity everything.$enter-duration
-    everything.$deceleration-timing-function;
+  transition: opacity $enter-duration $deceleration-timing-function;
 }
 
 .exit {
@@ -16,8 +15,7 @@
 
 .exitActive {
   opacity: 0;
-  transition: opacity everything.$enter-duration
-    everything.$acceleration-timing-function;
+  transition: opacity $enter-duration $acceleration-timing-function;
 }
 
 .dialog {

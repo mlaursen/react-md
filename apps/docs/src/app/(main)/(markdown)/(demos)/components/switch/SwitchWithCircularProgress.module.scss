@@ -1,10 +1,7 @@
-@use "everything";
+@use "everything" as *;
 
 .pending {
   // set the background color to the inactive color so that the circular
   // progress bar will be visible while checked
-  @include everything.switch-set-var(
-    ball-background-color,
-    everything.$switch-ball-background-color
-  );
+  @include switch-set-var(ball-background-color, $switch-ball-background-color);
 }

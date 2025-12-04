@@ -1,16 +1,13 @@
-@use "everything";
+@use "everything" as *;
 
 .avatarField {
-  @include everything.text-field-set-var(
+  @include text-field-set-var(
     padding-left,
-    calc(everything.avatar-get-var(size) + 1.5rem)
+    calc(avatar-get-var(size) + 1.5rem)
   );
-  @include everything.text-field-set-var(
-    padding-right,
-    calc(everything.avatar-get-var(size) + 1rem)
-  );
+  @include text-field-set-var(padding-right, calc(avatar-get-var(size) + 1rem));
 }
 
 .buttonField {
-  @include everything.text-field-set-var(padding-right, 4rem);
+  @include text-field-set-var(padding-right, 4rem);
 }

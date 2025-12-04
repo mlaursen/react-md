@@ -1,8 +1,8 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.theme-use-var(background-color, primary-color);
-  @include everything.theme-use-var(color, on-primary-color);
+  @include theme-use-var(background-color, primary-color);
+  @include theme-use-var(color, on-primary-color);
 
   padding-bottom: 2em;
 }

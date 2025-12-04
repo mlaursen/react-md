@@ -1,14 +1,14 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.theme-use-var(color, text-secondary-color);
+  @include theme-use-var(color, text-secondary-color);
 
   font-family: Helvetica, sans-serif;
   font-size: var(--emoji-size, 6rem);
   line-height: 1.5em;
   margin: 0 0 0.25em;
 
-  @include everything.tablet-media {
+  @include tablet-media {
     font-size: var(--emoji-large-size, 12.5rem);
   }
 }

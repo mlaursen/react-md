@@ -1,5 +1,5 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.dark-theme(true);
+  @include dark-theme(true);
 }

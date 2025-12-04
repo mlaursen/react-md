@@ -1,5 +1,5 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.box-set-var(item-min-size, 10rem);
+  @include box-set-var(item-min-size, 10rem);
 }

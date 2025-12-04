@@ -1,8 +1,8 @@
-@use "everything";
+@use "everything" as *;
 
 div[role="spinbutton"] {
-  @include everything.divider-border-style;
-  @include everything.interaction-outline;
+  @include divider-border-style;
+  @include interaction-outline;
 
   align-items: center;
   display: inline-flex;
@@ -12,6 +12,6 @@ div[role="spinbutton"] {
   padding: 0.5rem;
 
   &:focus-visible {
-    @include everything.interaction-focus-styles;
+    @include interaction-focus-styles;
   }
 }

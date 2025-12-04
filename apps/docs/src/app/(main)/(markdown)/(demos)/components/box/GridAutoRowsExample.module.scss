@@ -1,24 +1,24 @@
-@use "everything";
+@use "everything" as *;
 
 $min-size: 15rem;
 
 .container {
-  @include everything.box-set-var(item-min-size, $min-size);
+  @include box-set-var(item-min-size, $min-size);
 }
 
 .auto {
-  @include everything.box-set-var(auto-rows-height, $min-size * 2);
+  @include box-set-var(auto-rows-height, $min-size * 2);
 
   // this is about the same since it is applied to the `Box` component
   // max-height: $min-size * 2;
 
   // the rows can have a min height by updating this variable
   // this is the default value
-  @include everything.box-set-var(item-min-height, $min-size);
+  @include box-set-var(item-min-height, $min-size);
 
   // a max height can be set as well which is useful when there
   // could only be one row of content. you'd probably want something
   // close to the `item-min-size` as another value
   // this is the default value
-  @include everything.box-set-var(row-max-height, 1fr);
+  @include box-set-var(row-max-height, 1fr);
 }

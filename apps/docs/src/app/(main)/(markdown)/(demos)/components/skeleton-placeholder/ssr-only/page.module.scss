@@ -1,8 +1,8 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.box-set-var(padding, 4rem);
-  @include everything.box-set-var(columns, 3);
+  @include box-set-var(padding, 4rem);
+  @include box-set-var(columns, 3);
 
   grid-column-end: span 2;
 }

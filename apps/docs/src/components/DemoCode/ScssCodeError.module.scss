@@ -1,34 +1,33 @@
-@use "everything";
+@use "everything" as *;
 
 .fab,
 .tooltip {
   right: 1.25rem;
   top: 0.25rem;
 
-  @include everything.rtl {
+  @include rtl {
     left: 1.25rem;
     right: auto;
   }
 }
 
 .tooltip {
-  background-color: everything.$black;
-  border-top-right-radius: everything.$button-icon-small-size;
+  background-color: $black;
+  border-top-right-radius: $button-icon-small-size;
   font-family: var(--code-font-family);
   font-size: var(--code-font-size);
   margin: 0;
   padding: 0.75em;
   position: absolute;
-  transition: opacity everything.$linear-duration
-    everything.$linear-timing-function;
-  z-index: everything.$button-floating-absolute-z-index - 1;
+  transition: opacity $linear-duration $linear-timing-function;
+  z-index: $button-floating-absolute-z-index - 1;
 
   &:not(:global(.rmd-overlay--active)) {
     opacity: 0;
   }
 
-  @include everything.rtl {
-    border-top-left-radius: everything.$button-icon-small-size;
+  @include rtl {
+    border-top-left-radius: $button-icon-small-size;
     border-top-right-radius: 0;
   }
 }

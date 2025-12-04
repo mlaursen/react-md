@@ -1,19 +1,19 @@
-@use "everything";
+@use "everything" as *;
 
 .sheet {
   // note: should be the same value as layout size in ./FullScreenVirtualizedList.module.scss
-  @include everything.sheet-set-var(static-width, 20rem);
-  @include everything.desktop-media {
+  @include sheet-set-var(static-width, 20rem);
+  @include desktop-media {
     will-change: left, right, transform;
   }
 }
 
 .offset {
-  @include everything.desktop-media {
-    @include everything.layout-use-var(left, size);
+  @include desktop-media {
+    @include layout-use-var(left, size);
 
-    @include everything.rtl {
-      @include everything.layout-use-var(right, size);
+    @include rtl {
+      @include layout-use-var(right, size);
 
       left: 0;
     }
@@ -21,13 +21,11 @@
 }
 
 .enter {
-  transition: left everything.$layout-enter-duration
-    everything.$layout-enter-timing-function;
+  transition: left $layout-enter-duration $layout-enter-timing-function;
 }
 
 .exit {
-  transition: left everything.$layout-leave-duration
-    everything.$layout-leave-timing-function;
+  transition: left $layout-leave-duration $layout-leave-timing-function;
 }
 
 .button {

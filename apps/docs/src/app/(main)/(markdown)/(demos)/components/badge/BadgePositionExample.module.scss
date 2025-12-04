@@ -1,13 +1,13 @@
-@use "everything";
+@use "everything" as *;
 
 .offset {
-  @include everything.badge-set-var(offset, -1em);
+  @include badge-set-var(offset, -1em);
 }
 
 .offsetTop {
-  @include everything.badge-set-var(offset-top, -1em);
+  @include badge-set-var(offset-top, -1em);
 }
 
 .offsetRight {
-  @include everything.badge-set-var(offset-right, -1em);
+  @include badge-set-var(offset-right, -1em);
 }

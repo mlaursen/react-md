@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 
 .fieldset {
   padding-bottom: 2rem;
@@ -7,7 +7,7 @@
 .firstLabel {
   transform: translateX(0);
 
-  @include everything.rtl {
+  @include rtl {
     transform: translateX(0);
   }
 }
@@ -15,7 +15,7 @@
 .lastLabel {
   transform: translateX(-100%);
 
-  @include everything.rtl {
+  @include rtl {
     transform: translateX(100%);
   }
 }

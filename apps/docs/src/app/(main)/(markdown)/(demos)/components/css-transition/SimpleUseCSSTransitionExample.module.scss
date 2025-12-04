@@ -1,29 +1,29 @@
-@use "everything";
+@use "everything" as *;
 
 .enter {
-  color: everything.$green-900;
+  color: $green-900;
 }
 
 .enterActive {
-  color: everything.$green-100;
-  transition: color 2s everything.$deceleration-timing-function;
+  color: $green-100;
+  transition: color 2s $deceleration-timing-function;
 }
 
 .enterDone {
   // optional
-  color: everything.$green-100;
+  color: $green-100;
 }
 
 .exit {
-  color: everything.$red-700;
+  color: $red-700;
 }
 
 .exitActive {
-  color: everything.$red-300;
-  transition: color 1.5s everything.$acceleration-timing-function;
+  color: $red-300;
+  transition: color 1.5s $acceleration-timing-function;
 }
 
 .exitDone {
   // optional
-  color: everything.$red-300;
+  color: $red-300;
 }

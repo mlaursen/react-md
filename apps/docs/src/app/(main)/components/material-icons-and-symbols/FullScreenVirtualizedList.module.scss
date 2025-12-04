@@ -1,28 +1,28 @@
-@use "everything";
+@use "everything" as *;
 
 .grid {
   display: grid;
   grid-template-columns: 1fr var(--how-to-use-size, 0px);
 }
 
-@include everything.desktop-media {
+@include desktop-media {
   .gridEnter {
-    transition: grid-template-columns everything.$sheet-enter-duration
-      everything.$sheet-enter-timing-function;
+    transition: grid-template-columns $sheet-enter-duration
+      $sheet-enter-timing-function;
   }
 
   .gridExit {
-    transition: grid-template-columns everything.$sheet-leave-duration
-      everything.$sheet-leave-timing-function;
+    transition: grid-template-columns $sheet-leave-duration
+      $sheet-leave-timing-function;
   }
 
   .gridOffset {
-    --how-to-use-size: #{everything.window-splitter-get-var(position, 26rem)};
+    --how-to-use-size: #{window-splitter-get-var(position, 26rem)};
   }
 }
 
 .container {
-  @include everything.layout-set-var(size, 20rem);
+  @include layout-set-var(size, 20rem);
 
   overflow: hidden;
 }
@@ -32,14 +32,14 @@
 }
 
 .dark :global(.material-icons-two-tone) {
-  color: rgba(everything.$black, 0.87);
+  color: rgba($black, 0.87);
   filter: contrast(4) invert(1);
 }
 
 .system {
   @media (prefers-color-scheme: dark) {
     :global(.material-icons-two-tone) {
-      color: rgba(everything.$black, 0.87);
+      color: rgba($black, 0.87);
       filter: contrast(4) invert(1);
     }
   }

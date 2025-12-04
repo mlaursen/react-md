@@ -1,8 +1,8 @@
-@use "everything";
+@use "everything" as *;
 
 .divider {
-  @include everything.tablet-media {
-    @include everything.divider-set-var(spacing, 4rem);
+  @include tablet-media {
+    @include divider-set-var(spacing, 4rem);
 
     width: calc(100% - 8rem);
   }

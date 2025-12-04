@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 
 .slider {
   align-items: flex-start;
@@ -9,5 +9,5 @@
 }
 
 .label {
-  @include everything.slider-use-var(line-height, size);
+  @include slider-use-var(line-height, size);
 }

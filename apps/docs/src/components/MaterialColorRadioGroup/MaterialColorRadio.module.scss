@@ -1,7 +1,7 @@
-@use "everything";
+@use "everything" as *;
 
-$focus-width: everything.interaction-get-var(focus-width);
-$inverse-color: everything.theme-get-var(inverse-color);
+$focus-width: interaction-get-var(focus-width);
+$inverse-color: theme-get-var(inverse-color);
 
 /// I ended up trying some new stuff here, so here are a few notes about the
 /// implementation:
@@ -28,8 +28,8 @@ $inverse-color: everything.theme-get-var(inverse-color);
 /// normally 12% opacity and the hover color is 10% opacity and can be
 /// accomplished with `color-mix()`.
 .container {
-  @include everything.icon-set-var(size, 2.5rem);
-  @include everything.interaction-set-var(
+  @include icon-set-var(size, 2.5rem);
+  @include interaction-set-var(
     ripple-background-color,
     color-mix(in srgb, currentcolor 12%, transparent)
   );
@@ -60,7 +60,7 @@ $inverse-color: everything.theme-get-var(inverse-color);
 
   &::before,
   &::after {
-    @include everything.pseudo-element;
+    @include pseudo-element;
 
     box-shadow: inset 0 0 0 $focus-width $inverse-color;
   }
@@ -71,7 +71,7 @@ $inverse-color: everything.theme-get-var(inverse-color);
     inset: $focus-width;
   }
 
-  @include everything.mouse-hover {
+  @include mouse-hover {
     --hover-color: currentcolor 10%;
   }
 }
@@ -80,6 +80,5 @@ $inverse-color: everything.theme-get-var(inverse-color);
 .container::before,
 .container::after {
   opacity: 0;
-  transition: opacity everything.$linear-duration
-    everything.$linear-timing-function;
+  transition: opacity $linear-duration $linear-timing-function;
 }

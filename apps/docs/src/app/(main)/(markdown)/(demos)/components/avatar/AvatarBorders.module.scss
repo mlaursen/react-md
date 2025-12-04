@@ -1,9 +1,9 @@
-@use "everything";
+@use "everything" as *;
 
 .box {
-  @include everything.avatar-set-var(border-color, currentcolor);
+  @include avatar-set-var(border-color, currentcolor);
 }
 
 .red {
-  @include everything.avatar-set-var(border-color, everything.$red-900);
+  @include avatar-set-var(border-color, $red-900);
 }

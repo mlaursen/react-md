@@ -1,5 +1,5 @@
 @use "sass:map";
-@use "everything";
+@use "everything" as *;
 
 .logo {
   max-height: 100%;
@@ -7,17 +7,17 @@
 }
 
 .primary {
-  @include everything.theme-use-var(fill, primary-color);
+  @include theme-use-var(fill, primary-color);
 }
 
 .secondary {
-  @include everything.theme-use-var(fill, secondary-color);
+  @include theme-use-var(fill, secondary-color);
 }
 
 .text {
   transform: translateX(-0.875em);
 
-  @include everything.rtl {
+  @include rtl {
     transform: translateX(0.8em);
   }
 }

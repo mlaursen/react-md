@@ -39,11 +39,11 @@ validate and generate the custom property names.
 This code example just prints out all the available theme variables.
 
 ```scss compile
-@use "everything";
+@use "everything" as *;
 
 :root {
-  @each $var in everything.$theme-variables {
-    @include everything.theme-set-var($var, inherit);
+  @each $var in $theme-variables {
+    @include theme-set-var($var, inherit);
   }
 }
 ```
@@ -54,12 +54,12 @@ The `use-var` mixin should be used to apply the variable as a css property
 value.
 
 ```scss compile
-@use "everything";
+@use "everything" as *;
 
 .example {
-  @include everything.theme-use-var(background-color);
-  @include everything.theme-use-var(color, text-primary-color);
-  @include everything.button-use-var(padding, text-horizontal-padding);
+  @include theme-use-var(background-color);
+  @include theme-use-var(color, text-primary-color);
+  @include button-use-var(padding, text-horizontal-padding);
 }
 ```
 
@@ -69,16 +69,13 @@ The `set-var` mixin should be used to override the current value for a part of
 the app.
 
 ```scss compile
-@use "everything";
+@use "everything" as *;
 
 .example {
-  @include everything.theme-set-var(background-color, surface-color);
-  @include everything.theme-set-var(primary-color, blue);
-  @include everything.theme-set-var(
-    on-primary-color,
-    everything.contrast-color(blue)
-  );
-  @include everything.button-set-var(text-horizontal-padding, 8px);
+  @include theme-set-var(background-color, surface-color);
+  @include theme-set-var(primary-color, blue);
+  @include theme-set-var(on-primary-color, contrast-color(blue));
+  @include button-set-var(text-horizontal-padding, 8px);
 }
 ```
 
@@ -91,11 +88,10 @@ property in a
 `var(--rmd-{name})` or `var(--rmd-{name}, $fallback)`.
 
 ```scss compile
-@use "everything";
+@use "everything" as *;
 
 .example {
-  padding: everything.icon-get-var(spacing)
-    everything.button-get-var(text-horizontal-padding);
+  padding: icon-get-var(spacing) button-get-var(text-horizontal-padding);
 }
 ```
 

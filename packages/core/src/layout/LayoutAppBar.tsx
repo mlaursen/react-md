@@ -42,21 +42,21 @@ export interface LayoutAppBarProps extends AppBarProps {
  *
  * @example Static Height
  * ```scss
- * @use "everything";
+ * @use "everything" as *;
  *
  * :root {
- *   @include everything.layout-set-var(header-height, everything.$app-bar-height);
+ *   @include layout-set-var(header-height, $app-bar-height);
  * }
  * ```
  *
  * @example Media Query Height Changes
  * ```scss
- * @use "everything";
+ * @use "everything" as *;
  *
  * :root {
- *   @include everything.layout-set-var(header-height, everything.$app-bar-height);
- *   @include everything.tablet-media {
- *     @include everything.layout-set-var(header-height, everything.$app-bar-dense-height);
+ *   @include layout-set-var(header-height, $app-bar-height);
+ *   @include tablet-media {
+ *     @include layout-set-var(header-height, $app-bar-dense-height);
  *   }
  * }
  * ```

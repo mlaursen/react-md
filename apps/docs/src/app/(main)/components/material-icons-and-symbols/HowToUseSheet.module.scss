@@ -1,8 +1,5 @@
-@use "everything";
+@use "everything" as *;
 
 .sheet {
-  @include everything.sheet-set-var(
-    static-width,
-    var(--how-to-use-size, 26rem)
-  );
+  @include sheet-set-var(static-width, var(--how-to-use-size, 26rem));
 }

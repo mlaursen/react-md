@@ -1,7 +1,7 @@
-@use "everything";
+@use "everything" as *;
 
 .blockquote {
-  $border-style: 0.25em solid everything.divider-get-var(color);
+  $border-style: 0.25em solid divider-get-var(color);
 
   border-left: $border-style;
   font-style: italic;
@@ -17,22 +17,22 @@
     margin-bottom: 0;
   }
 
-  @include everything.rtl {
+  @include rtl {
     border-left: 0;
     border-right: $border-style;
   }
 }
 
 .themed {
-  @include everything.icon-set-var(color, currentcolor);
-  @include everything.link-set-var(color, currentcolor);
+  @include icon-set-var(color, currentcolor);
+  @include link-set-var(color, currentcolor);
 
   border: 0;
   border-radius: 0.25rem;
   padding: 1em;
 
   svg:nth-child(1) {
-    margin-right: everything.$icon-spacing;
+    margin-right: $icon-spacing;
     vertical-align: bottom;
   }
 

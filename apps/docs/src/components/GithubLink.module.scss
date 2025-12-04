@@ -1,9 +1,9 @@
-@use "everything";
+@use "everything" as *;
 
 .float {
   float: right;
 
-  @include everything.rtl {
+  @include rtl {
     float: left;
   }
 }

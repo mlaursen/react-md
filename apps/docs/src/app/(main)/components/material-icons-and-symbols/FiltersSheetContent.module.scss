@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 
 .title {
   margin: 1em 0 0.5em;
@@ -6,5 +6,5 @@
 }
 
 .darker {
-  @include everything.switch-set-var(track-background-color, #000);
+  @include switch-set-var(track-background-color, #000);
 }

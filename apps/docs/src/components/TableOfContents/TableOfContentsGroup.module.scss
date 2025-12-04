@@ -1,11 +1,8 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.theme-set-var(
-    surface-color,
-    everything.get-dark-elevation-color(0)
-  );
-  @include everything.theme-use-var(background-color, surface-color);
+  @include theme-set-var(surface-color, get-dark-elevation-color(0));
+  @include theme-use-var(background-color, surface-color);
 }
 
 .noPadding {

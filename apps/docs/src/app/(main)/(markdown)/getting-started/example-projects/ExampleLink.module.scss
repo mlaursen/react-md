@@ -1,7 +1,7 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.mouse-hover {
+  @include mouse-hover {
     .icon {
       transform: scale(1.25);
     }
@@ -10,6 +10,5 @@
 
 .icon {
   transform-origin: 0 50%;
-  transition: transform everything.$linear-duration
-    everything.$linear-timing-function;
+  transition: transform $linear-duration $linear-timing-function;
 }

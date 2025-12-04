@@ -1,6 +1,6 @@
-@use "everything";
+@use "everything" as *;
 
 .form {
-  @include everything.box-set-var(gap, 3rem);
-  @include everything.slider-set-var(vertical-size, 25rem);
+  @include box-set-var(gap, 3rem);
+  @include slider-set-var(vertical-size, 25rem);
 }

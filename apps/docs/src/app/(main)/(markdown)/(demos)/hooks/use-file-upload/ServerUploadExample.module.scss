@@ -1,23 +1,20 @@
-@use "everything";
+@use "everything" as *;
 
 .card {
   max-width: 30rem;
 }
 
 .list {
-  @include everything.interaction-outline();
+  @include interaction-outline();
   position: relative;
 }
 
 .dragging {
-  @include everything.interaction-focus-styles($disable-background: true);
+  @include interaction-focus-styles($disable-background: true);
 }
 
 .dragover {
-  @include everything.interaction-set-var(
-    focus-color,
-    everything.theme-get-var(success-color)
-  );
+  @include interaction-set-var(focus-color, theme-get-var(success-color));
 }
 
 .upload {
@@ -26,13 +23,13 @@
 }
 
 .phoneHidden {
-  @include everything.phone-media {
+  @include phone-media {
     display: none;
   }
 }
 
 .progress {
-  @include everything.progress-set-var(color, currentcolor);
+  @include progress-set-var(color, currentcolor);
 }
 
 .uploadProgress {

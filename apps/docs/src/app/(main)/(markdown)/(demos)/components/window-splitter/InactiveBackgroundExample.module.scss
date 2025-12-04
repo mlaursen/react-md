@@ -1,8 +1,8 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
   grid-template-columns:
-    minmax(0, calc(everything.window-splitter-get-var(position) - 0.25rem))
+    minmax(0, calc(window-splitter-get-var(position) - 0.25rem))
     1fr;
   position: relative;
 }

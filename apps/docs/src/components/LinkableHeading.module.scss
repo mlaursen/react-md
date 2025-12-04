@@ -1,17 +1,17 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
   --spacing: 1em;
 
   margin-bottom: var(--heading-margin-bottom, 0.5em);
-  margin-left: everything.negate-var(var(--spacing));
+  margin-left: negate-var(var(--spacing));
   margin-top: 1.25em;
   padding-left: var(--spacing);
   position: relative;
   // NOTE: This was moved to the root layout.scss
-  // scroll-margin-top: calc(0.5rem + everything.layout-get-var(header-height));
+  // scroll-margin-top: calc(0.5rem +  layout-get-var(header-height));
 
-  @include everything.mouse-hover {
+  @include mouse-hover {
     .link {
       opacity: 1;
       pointer-events: auto;
@@ -24,12 +24,12 @@
     display: block;
   }
 
-  @include everything.touch-only($css-modules: true) {
+  @include touch-only($css-modules: true) {
     --spacing: 0;
   }
-  @include everything.rtl {
+  @include rtl {
     margin-left: 0;
-    margin-right: everything.negate-var(var(--spacing));
+    margin-right: negate-var(var(--spacing));
     padding-left: 0;
     padding-right: var(--spacing);
   }
@@ -44,7 +44,7 @@
   text-decoration: none;
   top: 50%;
   transform: translateY(-50%);
-  transition: opacity everything.$linear-duration;
+  transition: opacity $linear-duration;
 
   &:focus {
     opacity: 1;
@@ -58,7 +58,7 @@
     text-decoration: underline;
   }
 
-  @include everything.rtl {
+  @include rtl {
     left: auto;
     right: 0;
   }

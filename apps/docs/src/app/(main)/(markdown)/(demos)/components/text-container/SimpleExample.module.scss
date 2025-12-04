@@ -1,14 +1,14 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
   // these are the defaults. uncomment and change the values to see how the demo
   // changes
-  // @include everything.typography-set-var(
+  // @include  typography-set-var(
   //   line-length,
-  //   everything.$text-line-length
+  //    $text-line-length
   // );
-  // @include everything.typography-set-var(
+  // @include  typography-set-var(
   //   text-container-padding,
-  //   everything.$text-container-padding
+  //    $text-container-padding
   // );
 }

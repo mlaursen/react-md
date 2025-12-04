@@ -1,13 +1,13 @@
-@use "everything";
+@use "everything" as *;
 
 .selected {
-  @include everything.table-set-var(cell-color, currentcolor);
+  @include table-set-var(cell-color, currentcolor);
 
-  @include everything.mouse-hover {
+  @include mouse-hover {
     background-color: color-mix(
       in srgb,
-      everything.theme-get-var(primary-color) 80%,
-      everything.theme-get-var(on-primary-color)
+      theme-get-var(primary-color) 80%,
+      theme-get-var(on-primary-color)
     );
   }
 }

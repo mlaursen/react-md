@@ -1,10 +1,7 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
   // just to show the defaults
-  @include everything.divider-set-var(
-    vertical-spacing,
-    everything.$divider-vertical-spacing
-  );
-  @include everything.divider-set-var(max-size, everything.$divider-max-size);
+  @include divider-set-var(vertical-spacing, $divider-vertical-spacing);
+  @include divider-set-var(max-size, $divider-max-size);
 }

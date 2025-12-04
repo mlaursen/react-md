@@ -1,4 +1,4 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
   margin: 0 auto;
@@ -14,9 +14,7 @@
     grid-column: 1 / -1;
   }
 
-  @include everything.media-or-media-query(
-    everything.$layout-navigation-breakpoint
-  ) {
+  @include media-or-media-query($layout-navigation-breakpoint) {
     --hp: 4rem;
   }
 }

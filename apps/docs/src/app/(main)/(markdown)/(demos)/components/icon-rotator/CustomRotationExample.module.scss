@@ -1,6 +1,6 @@
-@use "everything";
+@use "everything" as *;
 
 .container {
-  @include everything.icon-set-var(rotate-from, 33deg);
-  @include everything.icon-set-var(rotate-to, 103deg);
+  @include icon-set-var(rotate-from, 33deg);
+  @include icon-set-var(rotate-to, 103deg);
 }

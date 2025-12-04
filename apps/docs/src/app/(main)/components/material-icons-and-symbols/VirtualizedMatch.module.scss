@@ -1,27 +1,24 @@
 @use "sass:map";
-@use "everything";
+@use "everything" as *;
 
 .button {
-  @include everything.icon-set-var(size, 2rem);
+  @include icon-set-var(size, 2rem);
 
   gap: 1rem;
   line-height: normal;
 }
 
 .selected {
-  @include everything.theme-set-var(
-    outline-color,
-    everything.theme-get-var(primary-color)
-  );
-  @include everything.theme-set-var(outline-width, 0.25rem);
+  @include theme-set-var(outline-color, theme-get-var(primary-color));
+  @include theme-set-var(outline-width, 0.25rem);
 }
 
 .selectedDark {
-  background-color: rgba(everything.$primary-color, 0.2);
-  color: everything.$white;
+  background-color: rgba($primary-color, 0.2);
+  color: $white;
 }
 
 .selectedLight {
-  background-color: rgba(everything.$primary-color, 0.2);
-  color: everything.$black;
+  background-color: rgba($primary-color, 0.2);
+  color: $black;
 }

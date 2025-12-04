@@ -6,11 +6,11 @@ import { Blockquote } from "@/components/Blockquote.jsx";
 import { CopyCode } from "./CopyCode.jsx";
 import styles from "./TwoToneIconWarning.module.scss";
 
-const EXAMPLE_CODE = `@use "everything";
+const EXAMPLE_CODE = `@use "everything" as *;
 
 @mixin _dark-two-tone {
   :global(.material-icons-two-tone) {
-    color: rgba(everything.$black, 0.87);
+    color: rgba($black, 0.87);
     filter: contrast(4) invert(1);
   }
 }

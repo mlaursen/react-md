@@ -1,7 +1,7 @@
-@use "everything";
+@use "everything" as *;
 
 .card {
-  @include everything.button-set-var(color, everything.$white);
+  @include button-set-var(color, $white);
 
   max-width: 42rem;
 }
@@ -24,7 +24,7 @@
 }
 
 .slide {
-  @include everything.transition-set-var(slide-duration, 0.5s);
+  @include transition-set-var(slide-duration, 0.5s);
 
   height: 22.5rem;
   overflow: hidden;
@@ -53,12 +53,12 @@
 }
 
 .indicator {
-  background-color: rgba(everything.$white, 0.54);
+  background-color: rgba($white, 0.54);
   min-height: 0.75rem;
   min-width: 3rem;
   width: 3rem;
 
   &[aria-selected="true"] {
-    background-color: everything.$white;
+    background-color: $white;
   }
 }
