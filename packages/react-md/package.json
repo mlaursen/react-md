@@ -59,17 +59,17 @@
     "@react-md/core": "workspace:*"
   },
   "devDependencies": {
-    "@swc/cli": "^0.6.0",
-    "@swc/core": "^1.13.20",
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^22.15.29",
-    "chokidar": "^4.0.3",
-    "glob": "^11.0.3",
+    "@swc/cli": "^0.7.9",
+    "@swc/core": "^1.15.3",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
+    "@types/node": "^24.10.1",
+    "chokidar": "^5.0.0",
+    "glob": "^13.0.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tsx": "^4.20.6",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {

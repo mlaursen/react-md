@@ -11,9 +11,9 @@
     "@mlaursen/eslint-config": "^9.0.3"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^22.15.29",
-    "prettier": "^3.6.2",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
+    "@types/node": "^24.10.1",
+    "prettier": "^3.7.4",
     "typescript": "^5.9.3"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
