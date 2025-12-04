@@ -16,8 +16,7 @@ import {
  * @internal
  */
 export interface ListboxProps<Value extends ListboxValue>
-  extends MenuProps,
-    ListboxProviderOptions<Value> {
+  extends MenuProps, ListboxProviderOptions<Value> {
   nodeRef?: Ref<HTMLDivElement>;
   children: ReactNode;
 }

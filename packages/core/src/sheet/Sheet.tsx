@@ -21,8 +21,7 @@ export type SheetDialogProps = Omit<BaseDialogProps, "role" | "type" | "modal">;
  * and exports the `SheetDialogProps`.
  */
 export interface BaseSheetProps
-  extends SheetDialogProps,
-    BaseSheetClassNameOptions {
+  extends SheetDialogProps, BaseSheetClassNameOptions {
   /**
    * @defaultValue `"dialog"`
    */

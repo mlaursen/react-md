@@ -8,7 +8,8 @@ import { type FieldsetClassNameOptions, fieldset } from "./fieldsetStyles.js";
  * yourself manually instead of using a prop.
  */
 export interface FieldsetProps
-  extends FieldsetHTMLAttributes<HTMLFieldSetElement>,
+  extends
+    FieldsetHTMLAttributes<HTMLFieldSetElement>,
     FieldsetClassNameOptions {}
 
 /**

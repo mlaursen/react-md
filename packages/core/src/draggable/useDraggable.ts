@@ -84,8 +84,7 @@ export interface ControllableDraggableStateOptions {
  * @since 6.0.0
  */
 export interface BaseDraggableOptions<E extends HTMLElement>
-  extends DraggableEventHandlers<E>,
-    ControllableDraggableStateOptions {
+  extends DraggableEventHandlers<E>, ControllableDraggableStateOptions {
   /**
    * An optional ref to merge with the returned
    * {@link DraggableImplementation.draggableRef}.
@@ -275,8 +274,9 @@ export type DraggableOptions<E extends HTMLElement = HTMLElement> =
 /**
  * @since 6.0.0
  */
-export interface DraggableImplementation<E extends HTMLElement = HTMLElement>
-  extends Required<DraggableEventHandlers<E>> {
+export interface DraggableImplementation<
+  E extends HTMLElement = HTMLElement,
+> extends Required<DraggableEventHandlers<E>> {
   mouseEventHandlers: Required<DraggableMouseEventHandlers<E>>;
   touchEventHandlers: Required<DraggableTouchEventHandlers<E>>;
   keyboardEventHandlers: Required<DraggableKeyboardEventHandlers<E>>;

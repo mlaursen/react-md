@@ -17,8 +17,7 @@ import { ExampleNavigation } from "./ExampleNavigation.jsx";
 import { type ExampleLayoutProps } from "./layouts.js";
 
 export interface ExpandableLayoutExampleProps
-  extends ExampleLayoutProps,
-    Omit<ExpandableLayoutOptions, "pathname"> {}
+  extends ExampleLayoutProps, Omit<ExpandableLayoutOptions, "pathname"> {}
 
 export function ExpandableLayoutExample(
   props: ExpandableLayoutExampleProps

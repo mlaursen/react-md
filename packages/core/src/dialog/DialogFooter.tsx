@@ -3,8 +3,7 @@ import { type HTMLAttributes, forwardRef } from "react";
 import { type DialogFooterClassNameOptions, dialogFooter } from "./styles.js";
 
 export interface DialogFooterProps
-  extends HTMLAttributes<HTMLDivElement>,
-    DialogFooterClassNameOptions {}
+  extends HTMLAttributes<HTMLDivElement>, DialogFooterClassNameOptions {}
 
 /**
  * The `DialogFooter` is a simple `<footer>` with simple `display: flex` styles

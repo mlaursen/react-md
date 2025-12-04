@@ -16,8 +16,10 @@ import {
 } from "../ScaleTransition.js";
 import { TRANSITION_CONFIG } from "../config.js";
 
-interface TestProps
-  extends Omit<ScaleTransitionProps<HTMLElement>, "transitionIn" | "children"> {
+interface TestProps extends Omit<
+  ScaleTransitionProps<HTMLElement>,
+  "transitionIn" | "children"
+> {
   defaultTransitionIn?: boolean;
 }
 

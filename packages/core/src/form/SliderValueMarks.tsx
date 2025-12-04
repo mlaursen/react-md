@@ -127,8 +127,7 @@ export interface SliderMarksOptions {
  * @since 6.0.0
  */
 export interface SliderValueMarksProps
-  extends RangeStepsOptions,
-    Required<SliderMarksOptions> {
+  extends RangeStepsOptions, Required<SliderMarksOptions> {
   vertical: boolean;
   thumb1Value: number;
   thumb2Value: number;

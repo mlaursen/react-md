@@ -44,8 +44,7 @@ export const isTableFooterStickyActive: IsStickyTableSectionActive = (
 };
 
 /** @since 6.0.0 */
-export interface TableStickySectionOptions
-  extends TableStickySectionConfiguration {
+export interface TableStickySectionOptions extends TableStickySectionConfiguration {
   ref?: Ref<HTMLTableSectionElement>;
   type: "header" | "footer";
 }

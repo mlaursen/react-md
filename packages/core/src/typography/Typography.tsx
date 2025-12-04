@@ -72,8 +72,7 @@ function getComponent(
  * `typography` class name utility instead.
  */
 export interface TypographyProps
-  extends HTMLAttributes<TypographyHTMLElement>,
-    TypographyClassNameOptions {
+  extends HTMLAttributes<TypographyHTMLElement>, TypographyClassNameOptions {
   /**
    * The component to render as when the children are not a render function. If
    * this prop is omitted, the component will be determined by the `type` prop

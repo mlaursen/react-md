@@ -65,7 +65,8 @@ const noop = (): undefined => {
  * @since 2.5.0
  */
 export interface BaseSliderProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends
+    HTMLAttributes<HTMLDivElement>,
     SliderThumbPresentation,
     SliderValueOptions,
     SliderAddonProps,

@@ -46,8 +46,7 @@ export interface BaseWindowSplitterClassNameOptions {
  * @since 6.0.0
  * @since 6.3.1 Extends BaseWindowSplitterClassNameOptions
  */
-export interface WindowSplitterClassNameOptions
-  extends BaseWindowSplitterClassNameOptions {
+export interface WindowSplitterClassNameOptions extends BaseWindowSplitterClassNameOptions {
   dragging?: boolean;
   reversed?: boolean;
   vertical?: boolean;

@@ -5,8 +5,7 @@ import { dialogContainer } from "./styles.js";
 /**
  * @since 6.0.0
  */
-export interface ConfigurableDialogContainerProps
-  extends HTMLAttributes<HTMLDivElement> {
+export interface ConfigurableDialogContainerProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Set to `true` to force the `Dialog` to be wrapped in a `DialogContainer`
    * div. This defaults to `true` for `type !== "custom"`.

@@ -11,8 +11,7 @@ import {
 } from "./skeletonPlaceholderUtils.js";
 
 /** @since 6.0.0 */
-export interface SkeletonPlaceholderOptions
-  extends SkeletonPlaceholderRandomOptions {
+export interface SkeletonPlaceholderOptions extends SkeletonPlaceholderRandomOptions {
   style?: CSSProperties;
   className?: string;
 

@@ -17,7 +17,8 @@ import { type ListItemClassNameOptions, listItem } from "./listItemStyles.js";
 import { type ListItemChildrenProps } from "./types.js";
 
 export interface ListItemLinkProps
-  extends AnchorHTMLAttributes<HTMLAnchorElement>,
+  extends
+    AnchorHTMLAttributes<HTMLAnchorElement>,
     ListItemClassNameOptions,
     ListItemChildrenProps,
     ComponentWithRippleProps {

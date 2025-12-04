@@ -74,10 +74,8 @@ export interface NumberFieldConstraints {
 }
 
 export interface NumberFieldHookOptions
-  extends Omit<
-      TextFieldHookOptions<HTMLInputElement>,
-      "defaultValue" | "isNumber"
-    >,
+  extends
+    Omit<TextFieldHookOptions<HTMLInputElement>, "defaultValue" | "isNumber">,
     NumberFieldConstraints {
   /**
    * @defaultValue `undefined`
@@ -145,11 +143,10 @@ The return type has the following shape, but changes depending on the provided o
 Just know that it is always save to pass the `fieldProps` to the `TextField` component.
 
 ```ts disableTransform
-export interface ValidatedNumberFieldImplementation
-  extends Omit<
-    ValidatedTextFieldImplementation<HTMLInputElement>,
-    "value" | "setState"
-  > {
+export interface ValidatedNumberFieldImplementation extends Omit<
+  ValidatedTextFieldImplementation<HTMLInputElement>,
+  "value" | "setState"
+> {
   // value will only be `undefined` if the `defaultValue` was `undefined`
   value: number | undefined;
   setState: UseStateSetter<NumberFieldHookState>;

@@ -227,5 +227,4 @@ export interface ListItemChildrenTextProps {
  * @since 6.0.0 Renamed `textChildren` to `disableTextChildren`
  */
 export interface ListItemChildrenProps
-  extends ListItemChildrenTextProps,
-    ListItemChildrenAddonProps {}
+  extends ListItemChildrenTextProps, ListItemChildrenAddonProps {}

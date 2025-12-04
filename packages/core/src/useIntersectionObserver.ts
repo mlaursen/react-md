@@ -130,8 +130,9 @@ export interface BaseIntersectionObserverHookOptions {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#intersection_observer_options}
  * @since 6.0.0
  */
-export interface IntersectionObserverHookOptions<E extends HTMLElement>
-  extends BaseIntersectionObserverHookOptions {
+export interface IntersectionObserverHookOptions<
+  E extends HTMLElement,
+> extends BaseIntersectionObserverHookOptions {
   /**
    * An optional ref to merge with the ref returned by this hook.
    */

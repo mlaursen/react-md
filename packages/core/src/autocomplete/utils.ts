@@ -16,8 +16,9 @@ import {
  * @since 6.0.0
  * @internal
  */
-export interface GetDefaultValueOptions<Option extends AutocompleteOption>
-  extends Required<AutocompleteGetOptionLabel<Option>> {
+export interface GetDefaultValueOptions<
+  Option extends AutocompleteOption,
+> extends Required<AutocompleteGetOptionLabel<Option>> {
   query: string | undefined;
   multiselect?: boolean;
   defaultQuery: UseStateInitializer<string> | undefined;
@@ -86,8 +87,9 @@ export function getDefaultValue<Option extends AutocompleteOption>(
  * @since 6.0.0
  * @internal
  */
-interface GetDefaultQueryOptions<Option extends AutocompleteOption>
-  extends Required<AutocompleteGetOptionLabel<Option>> {
+interface GetDefaultQueryOptions<
+  Option extends AutocompleteOption,
+> extends Required<AutocompleteGetOptionLabel<Option>> {
   value: Option | null | readonly Option[];
   defaultQuery?: UseStateInitializer<string>;
 }
@@ -122,8 +124,9 @@ export function getDefaultQuery<Option extends AutocompleteOption>(
  * @since 6.0.0
  * @internal
  */
-export interface EnforceSelectedValueOptions<Option extends AutocompleteOption>
-  extends Required<AutocompleteGetOptionLabel<Option>> {
+export interface EnforceSelectedValueOptions<
+  Option extends AutocompleteOption,
+> extends Required<AutocompleteGetOptionLabel<Option>> {
   value: Option | readonly Option[] | null;
   visible: boolean;
   container: HTMLElement | null;

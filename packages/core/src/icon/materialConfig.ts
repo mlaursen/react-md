@@ -152,8 +152,7 @@ export type MaterialSymbolConfiguration = Required<MaterialSymbolCustomization>;
  * @since 6.0.0
  */
 export interface MaterialConfiguration
-  extends MaterialIconConfiguration,
-    MaterialSymbolConfiguration {}
+  extends MaterialIconConfiguration, MaterialSymbolConfiguration {}
 
 /**
  * @since 6.0.0

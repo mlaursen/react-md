@@ -13,16 +13,15 @@ import { HiddenInput } from "./HiddenInput.jsx";
 import { StackBlitzForm } from "./StackBlitzForm.jsx";
 import { StackBlitzIcon } from "./StackBlitzIcon.jsx";
 
-export interface CreateStackBlitzProjectProps
-  extends Pick<
-    DemoCodeEditorProps,
-    | "tsCodeFile"
-    | "scssCodeFile"
-    | "demoName"
-    | "disableBox"
-    | "disablePadding"
-    | "forceDarkMode"
-  > {
+export interface CreateStackBlitzProjectProps extends Pick<
+  DemoCodeEditorProps,
+  | "tsCodeFile"
+  | "scssCodeFile"
+  | "demoName"
+  | "disableBox"
+  | "disablePadding"
+  | "forceDarkMode"
+> {
   title: string;
   dependencies: readonly string[];
   readOnlyFiles?: readonly ReadonlyCodeFile[];

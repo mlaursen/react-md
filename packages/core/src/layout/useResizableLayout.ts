@@ -16,8 +16,7 @@ import {
  * @since 6.0.0
  */
 export interface ResizableLayoutOptions
-  extends ExpandableLayoutOptions,
-    LayoutWindowSplitterOptions {
+  extends ExpandableLayoutOptions, LayoutWindowSplitterOptions {
   /**
    * This id will be used as the `aria-controls` prop for the
    * `LayoutWindowSplitter` and should be applied to the `LayoutNav` as an `id`.
@@ -30,16 +29,14 @@ export interface ResizableLayoutOptions
 /**
  * @since 6.0.0
  */
-export interface ProvidedResizableLayoutNavProps
-  extends ProvidedLayoutNavProps {
+export interface ProvidedResizableLayoutNavProps extends ProvidedLayoutNavProps {
   id: string;
 }
 
 /**
  * @since 6.0.0
  */
-export interface ResizableLayoutImplementation
-  extends ExpandableLayoutImplementation {
+export interface ResizableLayoutImplementation extends ExpandableLayoutImplementation {
   expandableNavProps: ProvidedResizableLayoutNavProps;
   windowSplitterProps: LayoutWindowSplitterProps;
 }

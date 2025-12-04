@@ -17,8 +17,7 @@ import { expansionPanelButton, expansionPanelHeading } from "./styles.js";
  * @since 6.0.0 Updated to include additional heading/Typography
  * props.
  */
-export interface ExpansionPanelHeaderProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ExpansionPanelHeaderProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   id: string;
 
   /**

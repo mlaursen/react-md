@@ -4,15 +4,14 @@ import type { ListItemChildrenProps, ListItemHeight } from "./types.js";
  * @since 6.0.0
  * @internal
  */
-export interface ListItemHeightOptions
-  extends Pick<
-    ListItemChildrenProps,
-    | "leftAddon"
-    | "rightAddon"
-    | "leftAddonType"
-    | "rightAddonType"
-    | "secondaryText"
-  > {
+export interface ListItemHeightOptions extends Pick<
+  ListItemChildrenProps,
+  | "leftAddon"
+  | "rightAddon"
+  | "leftAddonType"
+  | "rightAddonType"
+  | "secondaryText"
+> {
   /**
    * @see {@link ListItemHeight}
    */

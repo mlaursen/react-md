@@ -19,8 +19,7 @@ export type TableCellContentsIconRotatorProps = Omit<
  * can be passed to the `ButtonUnstyled`
  * @internal
  */
-export interface TableCellContentProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface TableCellContentProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * The current sort order for this cell. Setting this to `null` will prevent
    * the button from being rendered.

@@ -69,7 +69,8 @@ export interface TimeFieldConstraints {
 
 /** @since 6.3.0 */
 export interface TimeFieldOptions
-  extends Omit<
+  extends
+    Omit<
       TextFieldHookOptions,
       | "isNumber"
       | "counter"
@@ -82,7 +83,8 @@ export interface TimeFieldOptions
 
 /** @since 6.3.0 */
 export interface ProvidedTimeFieldProps
-  extends Omit<ProvidedTextFieldProps, "value">,
+  extends
+    Omit<ProvidedTextFieldProps, "value">,
     Omit<TimeFieldConstraints, "step"> {
   type: "time";
   step?: number | "any";
@@ -99,20 +101,23 @@ export interface ProvidedTimeFieldMessageProps extends ProvidedTimeFieldProps {
 }
 
 /** @since 6.3.0 */
-export interface TimeFieldImplementation
-  extends Omit<TextFieldImplementation, "fieldProps"> {
+export interface TimeFieldImplementation extends Omit<
+  TextFieldImplementation,
+  "fieldProps"
+> {
   fieldProps: ProvidedTimeFieldProps;
 }
 
 /** @since 6.3.0 */
-export interface TimeFieldWithMessageImplementation
-  extends Omit<TextFieldWithMessageImplementation, "fieldProps"> {
+export interface TimeFieldWithMessageImplementation extends Omit<
+  TextFieldWithMessageImplementation,
+  "fieldProps"
+> {
   fieldProps: ProvidedTimeFieldMessageProps;
 }
 
 /** @since 6.3.0 */
-export interface ValidatedTimeFieldImplementation
-  extends TimeFieldImplementation {
+export interface ValidatedTimeFieldImplementation extends TimeFieldImplementation {
   fieldProps: ProvidedTimeFieldProps | ProvidedTimeFieldMessageProps;
 }
 

@@ -42,8 +42,9 @@ export type FixedPositioningTransitionCallbacks = Pick<
  * transition.
  * @since 4.0.0
  */
-export interface FixedPositioningTransitionOptions<E extends HTMLElement>
-  extends FixedPositioningTransitionCallbacks {
+export interface FixedPositioningTransitionOptions<
+  E extends HTMLElement,
+> extends FixedPositioningTransitionCallbacks {
   /** {@inheritDoc TransitionOptions.nodeRef} */
   nodeRef?: Ref<E>;
 }
@@ -94,7 +95,9 @@ export type TransitionScrollCallback<
 export interface FixedPositioningOptions<
   FixedToElement extends HTMLElement,
   FixedElement extends HTMLElement,
-> extends FixedPositioningTransitionOptions<FixedElement>,
+>
+  extends
+    FixedPositioningTransitionOptions<FixedElement>,
     CalculateFixedPositionOptions {
   /**
    * An optional style that will be merged with the fixed positioning required

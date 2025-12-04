@@ -23,8 +23,7 @@ const noop = (): void => {
  * @since 5.0.0
  */
 export interface MenuItemButtonProps
-  extends BaseMenuButtonProps,
-    MenuItemProps {}
+  extends BaseMenuButtonProps, MenuItemProps {}
 
 /**
  * **Client Component**

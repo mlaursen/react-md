@@ -26,8 +26,7 @@ function useTransition<E extends HTMLElement>(
 
 ```ts disableTransform
 export interface TransitionHookOptions<E extends HTMLElement>
-  extends TransitionOptions<E>,
-    SSRTransitionOptions {
+  extends TransitionOptions<E>, SSRTransitionOptions {
   /**
    * Boolean if the DOM should forcefully be reflow each time a transition
    * change occurs. This is generally required for any CSS transition and is
@@ -52,13 +51,15 @@ export interface SSRTransitionOptions {
   disablePortal?: boolean;
 }
 
-export interface TransitionOptions<E extends HTMLElement>
-  extends PreconfiguredTransitionOptions<E> {
+export interface TransitionOptions<
+  E extends HTMLElement,
+> extends PreconfiguredTransitionOptions<E> {
   timeout: TransitionTimeout;
 }
 
-export interface PreconfiguredTransitionOptions<E extends HTMLElement>
-  extends PreconfiguredTransitionInDefaultedOptions<E> {
+export interface PreconfiguredTransitionOptions<
+  E extends HTMLElement,
+> extends PreconfiguredTransitionInDefaultedOptions<E> {
   transitionIn: boolean;
 }
 
@@ -79,8 +80,8 @@ export type TransitionTimeout = number | Readonly<TransitionTimeoutObject>;
 
 export interface PreconfiguredTransitionInDefaultedOptions<
   E extends HTMLElement,
-> extends TransitionActions,
-    TransitionCallbacks {
+>
+  extends TransitionActions, TransitionCallbacks {
   /**
    * An optional ref that will be merged with the
    * {@link TransitionHookReturnValue.ref}
@@ -192,8 +193,7 @@ An object with the following definition:
 
 ````ts disableTransform
 export interface TransitionHookReturnValue<E extends HTMLElement>
-  extends TransitionState,
-    Required<SSRTransitionOptions> {
+  extends TransitionState, Required<SSRTransitionOptions> {
   /**
    * A ref that is required for the transition to occur and should be passed to
    * the element affected by the transition.

@@ -19,8 +19,7 @@ import styles from "./GithubLink.module.scss";
 import { LinkUnstyled } from "./LinkUnstyled.jsx";
 
 export interface GithubLinkProps
-  extends AnchorHTMLAttributes<HTMLAnchorElement>,
-    ButtonClassNameOptions {
+  extends AnchorHTMLAttributes<HTMLAnchorElement>, ButtonClassNameOptions {
   file?: string;
 
   /** @defaultValue ``file ? `${GITHUB_LINK_URL}/${file}` : GITHUB_URL`` */

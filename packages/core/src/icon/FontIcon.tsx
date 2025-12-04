@@ -12,8 +12,7 @@ import { type FontIconClassNameOptions, icon } from "./styles.js";
  * `inline` and `theme` props.
  */
 export interface FontIconProps
-  extends HTMLAttributes<HTMLSpanElement>,
-    FontIconClassNameOptions {
+  extends HTMLAttributes<HTMLSpanElement>, FontIconClassNameOptions {
   /** @defaultValue `true` */
   "aria-hidden"?: AriaAttributes["aria-hidden"];
 

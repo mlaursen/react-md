@@ -23,7 +23,8 @@ import {
  * augmentation.
  */
 export interface OverlayProps
-  extends HTMLAttributes<HTMLSpanElement>,
+  extends
+    HTMLAttributes<HTMLSpanElement>,
     BaseOverlayClassNameOptions,
     CSSTransitionComponentProps,
     TransitionActions {

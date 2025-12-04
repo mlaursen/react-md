@@ -33,7 +33,8 @@ declare module "react" {
  * `FormMessage` behavior.
  */
 export interface SwitchProps
-  extends InputHTMLAttributes<HTMLInputElement>,
+  extends
+    InputHTMLAttributes<HTMLInputElement>,
     InputToggleLabelProps,
     FormMessageContainerExtension,
     FormComponentStates {

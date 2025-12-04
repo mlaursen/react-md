@@ -40,8 +40,9 @@ export const DEFAULT_CROSS_FADE_CLASSNAMES = {
  * transition.
  * @since 4.0.0
  */
-export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
-  extends PreconfiguredCSSTransitionInDefaultedOptions<E> {
+export interface CrossFadeTransitionHookOptions<
+  E extends HTMLElement,
+> extends PreconfiguredCSSTransitionInDefaultedOptions<E> {
   /**
    * @see {@link TransitionTimeout}
    * @see {@link DEFAULT_CROSS_FADE_TIMEOUT}

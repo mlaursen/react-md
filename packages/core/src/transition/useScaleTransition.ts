@@ -66,8 +66,9 @@ export const DEFAULT_SCALE_Y_CLASSNAMES = {
  * transition.
  * @since 4.0.0
  */
-export interface ScaleTransitionHookOptions<E extends HTMLElement>
-  extends PreconfiguredCSSTransitionOptions<E> {
+export interface ScaleTransitionHookOptions<
+  E extends HTMLElement,
+> extends PreconfiguredCSSTransitionOptions<E> {
   /**
    * Boolean if the scale transition should be vertical instead of horizontal.
    * This really only changes the default value for the {@link classNames}.

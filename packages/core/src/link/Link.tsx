@@ -23,8 +23,7 @@ export type CustomLinkComponent =
  * @since 6.0.0 Renamed `flexCentered` to `flex`.
  */
 export interface LinkProps
-  extends AnchorHTMLAttributes<HTMLAnchorElement>,
-    LinkClassNameOptions {
+  extends AnchorHTMLAttributes<HTMLAnchorElement>, LinkClassNameOptions {
   /**
    * All links **must** have a valid href.
    */

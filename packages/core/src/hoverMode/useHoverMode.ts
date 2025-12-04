@@ -36,8 +36,7 @@ export interface HoverModeConfigurationOptions extends SimpleHoverModeContext {
 /**
  * @since 6.0.0
  */
-export interface ControlledHoverModeOptions
-  extends HoverModeConfigurationOptions {
+export interface ControlledHoverModeOptions extends HoverModeConfigurationOptions {
   setVisible: UseStateSetter<boolean>;
 }
 
@@ -53,16 +52,14 @@ export interface ControlledHoverModeImplementation {
 /**
  * @since 6.0.0
  */
-export interface UncontrolledHoverModeOptions
-  extends HoverModeConfigurationOptions {
+export interface UncontrolledHoverModeOptions extends HoverModeConfigurationOptions {
   defaultVisible?: UseStateInitializer<boolean>;
 }
 
 /**
  * @since 6.0.0
  */
-export interface UncontrolledHoverModeImplementation
-  extends ControlledHoverModeImplementation {
+export interface UncontrolledHoverModeImplementation extends ControlledHoverModeImplementation {
   visible: boolean;
   setVisible: UseStateSetter<boolean>;
 }
@@ -70,8 +67,7 @@ export interface UncontrolledHoverModeImplementation
 /**
  * @since 6.0.0
  */
-export interface HoverModeImplementation
-  extends ControlledHoverModeImplementation {
+export interface HoverModeImplementation extends ControlledHoverModeImplementation {
   visible?: boolean;
   setVisible?: UseStateSetter<boolean>;
 }

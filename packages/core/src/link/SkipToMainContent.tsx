@@ -22,8 +22,7 @@ const getMainElement = (mainId: string): HTMLElement | null =>
  * @since 6.0.0 The `mainId` is optional
  */
 export interface SkipToMainContentProps
-  extends Omit<LinkProps, "href">,
-    SkipToMainContentClassNameOptions {
+  extends Omit<LinkProps, "href">, SkipToMainContentClassNameOptions {
   /**
    * @since 6.0.0 Changed default value from `"skip-to-main-content"`
    * @defaultValue `"skip-to-main"`

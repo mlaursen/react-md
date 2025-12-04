@@ -93,8 +93,9 @@ export interface CollapseStyle extends CollapseConfigurationStyle {
  * transition.
  * @since 4.0.0
  */
-export interface CollapseElementProps<E extends HTMLElement>
-  extends CSSTransitionElementProps<E> {
+export interface CollapseElementProps<
+  E extends HTMLElement,
+> extends CSSTransitionElementProps<E> {
   /**
    * A merged styled object required for the collapse transition to work.
    *
@@ -110,7 +111,8 @@ export interface CollapseElementProps<E extends HTMLElement>
  * @since 4.0.0
  */
 export interface CollapseTransitionHookOptions<E extends HTMLElement>
-  extends Omit<PreconfiguredCSSTransitionOptions<E>, "exitedHidden">,
+  extends
+    Omit<PreconfiguredCSSTransitionOptions<E>, "exitedHidden">,
     CollapseConfigurationStyle {
   /**
    * An optional style to merge with the required collapse transition styles.
@@ -140,8 +142,7 @@ export interface CollapseTransitionHookOptions<E extends HTMLElement>
  * @since 4.0.0
  */
 export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
-  extends CSSTransitionHookReturnValue<E>,
-    CollapseElementProps<E> {
+  extends CSSTransitionHookReturnValue<E>, CollapseElementProps<E> {
   /**
    * This is just a convenience object so that you don't need to destructure as
    * many variables to pass to an element.

@@ -29,7 +29,8 @@ import { MenuVisibilityProvider } from "./MenuVisibilityProvider.js";
 import { useMenuBarContext } from "./useMenuBarProvider.js";
 
 export interface BaseDropdownMenuProps
-  extends MenuConfiguration,
+  extends
+    MenuConfiguration,
     MenuListConvenienceProps,
     MenuSheetConvenienceProps,
     MenuConvenienceProps {
@@ -37,12 +38,10 @@ export interface BaseDropdownMenuProps
 }
 
 export interface DropdownMenuButtonProps
-  extends MenuButtonProps,
-    BaseDropdownMenuProps {}
+  extends MenuButtonProps, BaseDropdownMenuProps {}
 
 export interface DropdownMenuItemButtonProps
-  extends MenuItemButtonProps,
-    BaseDropdownMenuProps {}
+  extends MenuItemButtonProps, BaseDropdownMenuProps {}
 
 /**
  * @since 6.0.0

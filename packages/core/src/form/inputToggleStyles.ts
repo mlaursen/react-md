@@ -22,8 +22,10 @@ const styles = bem("rmd-input-toggle");
 export type InputToggleSize = "auto" | "small" | "dense" | "normal" | "large";
 
 /** @since 6.0.0 */
-export interface InputToggleClassNameOptions
-  extends Omit<FormComponentStates, "readOnly"> {
+export interface InputToggleClassNameOptions extends Omit<
+  FormComponentStates,
+  "readOnly"
+> {
   className?: string;
   type: "checkbox" | "radio";
 

@@ -8,7 +8,8 @@ import { type ProvidedTabPanelProps } from "./useTabs.js";
  * @since 6.0.0
  */
 export interface SimpleTabPanelProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, keyof ProvidedTabPanelProps>,
+  extends
+    Omit<HTMLAttributes<HTMLDivElement>, keyof ProvidedTabPanelProps>,
     ProvidedTabPanelProps {
   children: ReactNode;
 }

@@ -15,8 +15,7 @@ import { type IconRotatorClassNameOptions, iconRotator } from "./styles.js";
  * @since 6.0.0 Removed `animate` prop and added `disableTransition`
  */
 export interface IconRotatorBaseProps
-  extends HTMLAttributes<HTMLSpanElement>,
-    IconRotatorClassNameOptions {
+  extends HTMLAttributes<HTMLSpanElement>, IconRotatorClassNameOptions {
   /**
    * An optional style to apply to the surrounding span when the `forceIconWrap`
    * prop is enabled or the children is not a single react element.

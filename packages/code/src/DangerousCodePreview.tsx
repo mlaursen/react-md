@@ -10,8 +10,7 @@ import {
 } from "./useDangerousCodeRunner.js";
 
 export interface DangerousCodePreviewProps
-  extends ConfigurableCodePreviewProps,
-    DangerouslyRunCodeOptions {}
+  extends ConfigurableCodePreviewProps, DangerouslyRunCodeOptions {}
 
 export function DangerousCodePreview(
   props: DangerousCodePreviewProps

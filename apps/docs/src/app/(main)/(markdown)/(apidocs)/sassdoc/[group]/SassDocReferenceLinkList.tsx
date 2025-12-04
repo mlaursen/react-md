@@ -7,8 +7,7 @@ import {
 
 import { getSassDocLink } from "@/utils/sassdoc.js";
 
-export interface SassDocReferenceLinkListProps
-  extends HTMLAttributes<HTMLUListElement> {
+export interface SassDocReferenceLinkListProps extends HTMLAttributes<HTMLUListElement> {
   links: readonly (ItemReferenceLink | FormattedItemLink)[] | undefined;
 }
 

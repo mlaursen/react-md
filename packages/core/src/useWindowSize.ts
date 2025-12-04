@@ -12,8 +12,10 @@ import {
 /**
  * @since 6.0.0
  */
-export interface WindowSizeOptions
-  extends Omit<ResizeListenerOptions, "disabled" | "onUpdate"> {
+export interface WindowSizeOptions extends Omit<
+  ResizeListenerOptions,
+  "disabled" | "onUpdate"
+> {
   /**
    * The default value to use in SSR environments for the window's height.
    *

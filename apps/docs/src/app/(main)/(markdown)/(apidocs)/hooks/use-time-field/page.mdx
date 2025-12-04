@@ -44,7 +44,8 @@ function Example() {
 
 ````ts disableTransform
 export interface TimeFieldOptions
-  extends Omit<
+  extends
+    Omit<
       TextFieldHookOptions,
       | "isNumber"
       | "counter"
@@ -124,18 +125,21 @@ export interface ProvidedTimeFieldMessageProps extends ProvidedTimeFieldProps {
   messageProps: ProvidedFormMessageProps;
 }
 
-export interface TimeFieldImplementation
-  extends Omit<TextFieldImplementation, "fieldProps"> {
+export interface TimeFieldImplementation extends Omit<
+  TextFieldImplementation,
+  "fieldProps"
+> {
   fieldProps: ProvidedTimeFieldProps;
 }
 
-export interface TimeFieldWithMessageImplementation
-  extends Omit<TextFieldWithMessageImplementation, "fieldProps"> {
+export interface TimeFieldWithMessageImplementation extends Omit<
+  TextFieldWithMessageImplementation,
+  "fieldProps"
+> {
   fieldProps: ProvidedTimeFieldMessageProps;
 }
 
-export interface ValidatedTimeFieldImplementation
-  extends TimeFieldImplementation {
+export interface ValidatedTimeFieldImplementation extends TimeFieldImplementation {
   fieldProps: ProvidedTimeFieldProps | ProvidedTimeFieldMessageProps;
 }
 ```

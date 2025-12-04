@@ -28,8 +28,9 @@ See the [ScaleTransition demo](/components/scale-transition#scale-transition-hoo
 - `options` - An object with the following definition:
 
 ```ts disableTransform
-export interface ScaleTransitionHookOptions<E extends HTMLElement>
-  extends PreconfiguredCSSTransitionOptions<E> {
+export interface ScaleTransitionHookOptions<
+  E extends HTMLElement,
+> extends PreconfiguredCSSTransitionOptions<E> {
   /**
    * Boolean if the scale transition should be vertical instead of horizontal.
    * This really only changes the default value for the {@link classNames}.

@@ -35,8 +35,7 @@ export function listSubheader(
  * @since 6.0.0 The `role` prop defaults to `"presentation"`
  */
 export interface ListSubheaderProps
-  extends HTMLAttributes<HTMLLIElement>,
-    ListSubheaderClassNameOptions {
+  extends HTMLAttributes<HTMLLIElement>, ListSubheaderClassNameOptions {
   /**
    * @defaultValue `"presentation"`
    */

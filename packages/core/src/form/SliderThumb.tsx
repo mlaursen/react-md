@@ -83,8 +83,10 @@ export interface SliderThumbPresentation {
 /**
  * @since 6.0.0
  */
-export interface ConfigurableSliderThumbProps
-  extends Omit<HTMLAttributes<HTMLSpanElement>, "onChange"> {
+export interface ConfigurableSliderThumbProps extends Omit<
+  HTMLAttributes<HTMLSpanElement>,
+  "onChange"
+> {
   name?: string;
 }
 
@@ -94,7 +96,8 @@ export interface ConfigurableSliderThumbProps
  * @since 6.0.0 Internal only component.
  */
 export interface SliderThumbProps
-  extends ConfigurableSliderThumbProps,
+  extends
+    ConfigurableSliderThumbProps,
     Required<SliderValueOptions>,
     Required<SliderThumbPresentation> {
   id: string;

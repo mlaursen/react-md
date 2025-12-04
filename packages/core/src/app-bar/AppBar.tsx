@@ -27,8 +27,7 @@ export type CustomAppBarComponent = ElementType<
  * @since 6.0.0 Added the {@link stacked} and {@link scrollbarOffset} props.
  */
 export interface AppBarProps
-  extends HTMLAttributes<HTMLDivElement>,
-    AppBarClassNameOptions {
+  extends HTMLAttributes<HTMLDivElement>, AppBarClassNameOptions {
   /** @defaultValue `fixed ? "header" : "div"` */
   as?: CustomAppBarComponent;
 }

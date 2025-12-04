@@ -18,8 +18,7 @@ import { ExampleNavigation } from "./ExampleNavigation.jsx";
 import { type ExampleLayoutProps } from "./layouts.js";
 
 export interface ResizableLayoutExampleProps
-  extends ExampleLayoutProps,
-    Omit<ResizableLayoutOptions, "pathname"> {}
+  extends ExampleLayoutProps, Omit<ResizableLayoutOptions, "pathname"> {}
 
 export function ResizableLayoutExample(
   props: ResizableLayoutExampleProps

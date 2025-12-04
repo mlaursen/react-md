@@ -51,8 +51,7 @@ upload files to the server using this hook.
 
 ````ts disableTransform
 interface FileUploadOptions<E extends HTMLElement, CustomError = never>
-  extends FileUploadHandlers<E>,
-    FileValidationOptions {
+  extends FileUploadHandlers<E>, FileValidationOptions {
   /**
    * Setting this value to a number greater than `0` will update the browser
    * upload process to queue the uploads in chunks instead of all at once. This
@@ -159,8 +158,8 @@ export interface FileUploadState<CustomError = never> {
 export interface FileUploadHookReturnValue<
   E extends HTMLElement = HTMLElement,
   CustomError = never,
-> extends FileUploadActions,
-    Required<FileUploadHandlers<E>> {
+>
+  extends FileUploadActions, Required<FileUploadHandlers<E>> {
   errors: readonly FileValidationError<CustomError>[];
 
   /**

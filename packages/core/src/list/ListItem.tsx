@@ -19,7 +19,8 @@ import { type ListItemChildrenProps } from "./types.js";
  * @since 6.3.1 Extends the BaseListItemClassNameOptions
  */
 export interface ListItemProps
-  extends HTMLAttributes<HTMLLIElement>,
+  extends
+    HTMLAttributes<HTMLLIElement>,
     ListItemChildrenProps,
     BaseListItemClassNameOptions,
     ComponentWithRippleProps {

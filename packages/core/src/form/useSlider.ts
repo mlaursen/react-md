@@ -45,8 +45,7 @@ export interface SliderState {
  * @since 6.0.0
  */
 export interface SliderImplementation
-  extends Required<SliderValueOptions>,
-    SliderState {}
+  extends Required<SliderValueOptions>, SliderState {}
 
 /**
  * @since 6.0.0

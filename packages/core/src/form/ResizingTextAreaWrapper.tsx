@@ -13,8 +13,7 @@ import { textArea } from "./textAreaStyles.js";
  * @since 6.0.0
  * @internal
  */
-export interface ResizingTextAreaWrapperProps
-  extends HTMLAttributes<HTMLDivElement> {
+export interface ResizingTextAreaWrapperProps extends HTMLAttributes<HTMLDivElement> {
   maskId: string;
   maskRef: Ref<HTMLTextAreaElement>;
   defaultValue?: TextareaHTMLAttributes<HTMLTextAreaElement>["defaultValue"];

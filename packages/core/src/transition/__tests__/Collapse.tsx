@@ -14,8 +14,10 @@ import { DISPLAY_NONE_CLASS } from "../../utils/isElementVisible.js";
 import { Collapse, type CollapseProps } from "../Collapse.js";
 import { TRANSITION_CONFIG } from "../config.js";
 
-interface TestProps
-  extends Omit<CollapseProps<HTMLElement>, "collapsed" | "children"> {
+interface TestProps extends Omit<
+  CollapseProps<HTMLElement>,
+  "collapsed" | "children"
+> {
   defaultCollapsed?: boolean;
 }
 

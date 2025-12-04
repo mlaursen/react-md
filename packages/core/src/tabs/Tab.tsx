@@ -21,8 +21,7 @@ import { type useTabs } from "./useTabs.js";
  * @since 6.0.0
  */
 export interface BaseTabProps
-  extends ComponentWithRippleProps,
-    BaseTabClassNameOptions {
+  extends ComponentWithRippleProps, BaseTabClassNameOptions {
   /**
    * Set this to `true` if the tab is currently active.
    *
@@ -51,8 +50,7 @@ export interface BaseTabProps
  * @since 6.0.0
  */
 export interface TabButtonProps
-  extends BaseTabProps,
-    ButtonHTMLAttributes<HTMLButtonElement> {
+  extends BaseTabProps, ButtonHTMLAttributes<HTMLButtonElement> {
   as?: "button";
 }
 
@@ -60,8 +58,7 @@ export interface TabButtonProps
  * @since 6.0.0
  */
 export interface TabLinkProps
-  extends BaseTabProps,
-    AnchorHTMLAttributes<HTMLAnchorElement> {
+  extends BaseTabProps, AnchorHTMLAttributes<HTMLAnchorElement> {
   as: CustomLinkComponent;
 }
 

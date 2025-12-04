@@ -146,8 +146,8 @@ export interface LayoutTreeOptions<
 ```ts disableTransform
 export interface LayoutTreeImplementation<
   T extends TreeItemNode = DefaultTreeItemNode,
-> extends Pick<TreeProps<T>, "data">,
-    TreeImplementation {}
+>
+  extends Pick<TreeProps<T>, "data">, TreeImplementation {}
 ```
 
 ## See Also

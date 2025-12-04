@@ -27,7 +27,8 @@ import { type BaseToastClasNameOptions, toast } from "./toastStyles.js";
  * @since 6.0.0
  */
 export interface ConfigurableToastProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends
+    HTMLAttributes<HTMLDivElement>,
     BaseToastClasNameOptions,
     TransitionCallbacks {
   /**

@@ -25,7 +25,8 @@ export interface NavItemButtonRotatorProps {
  * @since 6.0.0
  */
 export interface NavItemButtonProps
-  extends Omit<ButtonProps, "children">,
+  extends
+    Omit<ButtonProps, "children">,
     NavItemButtonRotatorProps,
     NavItemContentProps {
   onClick: MouseEventHandler<HTMLButtonElement>;

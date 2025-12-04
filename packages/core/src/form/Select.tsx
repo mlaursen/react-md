@@ -95,7 +95,8 @@ export type SelectChangeEvent<Value extends string> =
  * @since 6.0.0 Rewritten with a new API.
  */
 export interface SelectProps<Value extends string>
-  extends Omit<TextFieldContainerProps, "label">,
+  extends
+    Omit<TextFieldContainerProps, "label">,
     Pick<InputHTMLAttributes<HTMLInputElement>, "form" | "required">,
     UserAgentAutocompleteProps {
   /**

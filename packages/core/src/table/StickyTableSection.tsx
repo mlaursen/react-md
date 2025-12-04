@@ -14,7 +14,8 @@ import { useTableSectionConfig } from "./useTableSectionConfig.js";
 
 /** @since 6.0.0 */
 export interface StickyTableSectionProps
-  extends HTMLAttributes<HTMLTableSectionElement>,
+  extends
+    HTMLAttributes<HTMLTableSectionElement>,
     TableStickySectionConfiguration,
     TableSectionConfiguration {
   type: "header" | "footer";

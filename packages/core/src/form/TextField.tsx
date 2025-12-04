@@ -51,7 +51,8 @@ export type TextFieldInputAttributes = Omit<
  * @since 6.0.0 Removed the `containerRef` prop.
  */
 export interface TextFieldProps
-  extends TextFieldInputAttributes,
+  extends
+    TextFieldInputAttributes,
     UserAgentAutocompleteProps,
     FormFieldOptions {
   /**

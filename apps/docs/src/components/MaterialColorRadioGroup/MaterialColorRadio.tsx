@@ -14,8 +14,7 @@ import {
 
 import styles from "./MaterialColorRadio.module.scss";
 
-export interface MaterialColorRadioProps
-  extends InputHTMLAttributes<HTMLInputElement> {
+export interface MaterialColorRadioProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   value: string;
   label: ReactNode;

@@ -215,7 +215,8 @@ export type MenuFixedPositioningOptions = Omit<
  * @since 6.0.0 Updated to use the latest Menu, Transition, and Portal API.
  */
 export interface MenuProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends
+    HTMLAttributes<HTMLDivElement>,
     MenuConfiguration,
     MenuConfigurationProps,
     MenuFixedPositioningOptions,

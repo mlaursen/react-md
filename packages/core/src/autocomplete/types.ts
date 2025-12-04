@@ -301,8 +301,9 @@ export type AutocompleteOptionLabelExtractor<
 /**
  * @since 6.0.0
  */
-export interface AutocompleteFilteringOptions<Option extends AutocompleteOption>
-  extends AutocompleteGetOptionLabel<Option> {
+export interface AutocompleteFilteringOptions<
+  Option extends AutocompleteOption,
+> extends AutocompleteGetOptionLabel<Option> {
   /**
    * The list of options that can be shown within the autocomplete and filtered
    * based on the current query.
@@ -390,7 +391,9 @@ export interface AutocompleteFilteringOptions<Option extends AutocompleteOption>
  */
 export interface AutocompleteFilterAndListboxOptions<
   Option extends AutocompleteOption,
-> extends AutocompleteFilteringOptions<Option>,
+>
+  extends
+    AutocompleteFilteringOptions<Option>,
     AutocompleteGetOptionProps<Option>,
     OptionSelectedIconProps {
   /**
@@ -429,7 +432,9 @@ export interface AutocompleteEditableComboboxOptions<
   Option extends AutocompleteOption,
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> extends EditableComboboxOptions<ComboboxEl, PopupEl>,
+>
+  extends
+    EditableComboboxOptions<ComboboxEl, PopupEl>,
     AutocompleteFilterAndListboxOptions<Option> {
   onBlur?: FocusEventHandler<ComboboxEl>;
   onChange?: ChangeEventHandler<ComboboxEl>;
@@ -481,7 +486,9 @@ export interface AutocompleteOptions<
   Option extends AutocompleteOption,
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> extends AutocompleteEditableComboboxOptions<Option, ComboboxEl, PopupEl>,
+>
+  extends
+    AutocompleteEditableComboboxOptions<Option, ComboboxEl, PopupEl>,
     AutocompleteUnknownQueryAndValueOptions<Option> {}
 
 /**
@@ -502,8 +509,8 @@ export interface AutocompleteComboboxProps<
 export interface AutocompleteListboxProps<
   T extends AutocompleteOption = AutocompleteOption,
   PopupEl extends HTMLElement = HTMLElement,
-> extends Omit<ComboboxMenuProps<PopupEl>, "ref">,
-    OptionSelectedIconProps {
+>
+  extends Omit<ComboboxMenuProps<PopupEl>, "ref">, OptionSelectedIconProps {
   value: T | null | readonly T[];
   setValue: Dispatch<T>;
   onEnter: (appearing: boolean) => void;
@@ -513,8 +520,7 @@ export interface AutocompleteListboxProps<
  * @since 6.0.0
  */
 export interface ConfigurableAutocompleteListboxProps
-  extends ConfigurableComboboxMenuProps,
-    OptionSelectedIconProps {
+  extends ConfigurableComboboxMenuProps, OptionSelectedIconProps {
   id?: string;
 }
 
@@ -550,16 +556,14 @@ export interface ConfigurableAutocompleteClearButtonProps extends ButtonProps {
  * @internal
  * @since 6.0.0
  */
-export interface AutocompleteClearButtonProps
-  extends ConfigurableAutocompleteClearButtonProps {
+export interface AutocompleteClearButtonProps extends ConfigurableAutocompleteClearButtonProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 /**
  * @since 6.0.0
  */
-export interface ConfigurableAutocompleteDropdownButtonProps
-  extends ButtonProps {
+export interface ConfigurableAutocompleteDropdownButtonProps extends ButtonProps {
   /** @defaultValue `AutocompleteProps.listboxLabel` */
   "aria-label"?: string;
   /** @defaultValue `AutocompleteProps.listboxLabelledby` */
@@ -576,8 +580,7 @@ export interface ConfigurableAutocompleteDropdownButtonProps
 /**
  * @since 6.0.0
  */
-export interface AutocompleteDropdownButtonProps
-  extends ConfigurableAutocompleteDropdownButtonProps {
+export interface AutocompleteDropdownButtonProps extends ConfigurableAutocompleteDropdownButtonProps {
   "aria-controls": string;
   onClick: MouseEventHandler<HTMLButtonElement>;
   visible: boolean;
@@ -586,8 +589,7 @@ export interface AutocompleteDropdownButtonProps
 /**
  * @since 6.0.0
  */
-export interface AutocompleteCircularProgressProps
-  extends CircularProgressProps {
+export interface AutocompleteCircularProgressProps extends CircularProgressProps {
   /** @defaultValue `"Loading"` */
   "aria-label"?: string;
 
@@ -616,7 +618,9 @@ export interface AutocompleteWithQueryImplementation<
   Option extends AutocompleteOption,
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> extends EditableComboboxImplementation<ComboboxEl, PopupEl>,
+>
+  extends
+    EditableComboboxImplementation<ComboboxEl, PopupEl>,
     Required<AutocompleteGetOptionProps<Option>>,
     Required<AutocompleteGetOptionLabel<Option>> {
   query: string;
@@ -700,7 +704,8 @@ export interface AutocompleteImplementation<
  * @since 6.0.0
  */
 export interface AutocompleteBaseProps<Option extends AutocompleteOption>
-  extends Omit<TextFieldProps, "value" | "defaultValue">,
+  extends
+    Omit<TextFieldProps, "value" | "defaultValue">,
     AutocompleteFilterAndListboxOptions<Option>,
     ComboboxVisibilityOptions {
   inputRef?: Ref<HTMLInputElement>;

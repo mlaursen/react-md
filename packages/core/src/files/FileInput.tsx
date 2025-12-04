@@ -27,7 +27,8 @@ export type FileInputHTMLAttributes = Omit<
  * longer required.
  */
 export interface FileInputProps
-  extends ButtonClassNameThemeOptions,
+  extends
+    ButtonClassNameThemeOptions,
     FileInputHTMLAttributes,
     ComponentWithRippleProps {
   /**

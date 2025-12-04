@@ -6,8 +6,7 @@ import {
   type TypescriptCodeBlockContainerProps,
 } from "./TypescriptCodeBlockContainer.jsx";
 
-export interface TypescriptCodeBlockProps
-  extends TypescriptCodeBlockContainerProps {
+export interface TypescriptCodeBlockProps extends TypescriptCodeBlockContainerProps {
   isTsx: boolean;
 }
 

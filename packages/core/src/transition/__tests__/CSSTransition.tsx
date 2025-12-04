@@ -17,11 +17,10 @@ import {
   type TransitionTimeout,
 } from "../types.js";
 
-interface TestProps
-  extends Omit<
-    CSSTransitionProps<HTMLDivElement>,
-    "transitionIn" | "timeout" | "classNames" | "children"
-  > {
+interface TestProps extends Omit<
+  CSSTransitionProps<HTMLDivElement>,
+  "transitionIn" | "timeout" | "classNames" | "children"
+> {
   defaultTransitionIn?: boolean;
   timeout?: TransitionTimeout;
   classNames?: CSSTransitionClassNames;

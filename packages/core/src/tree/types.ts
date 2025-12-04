@@ -19,8 +19,7 @@ export interface TreeItemNode {
  * @since 6.0.0
  */
 export interface DefaultTreeItemNode
-  extends TreeItemNode,
-    ListItemChildrenProps {
+  extends TreeItemNode, ListItemChildrenProps {
   /**
    * If this is defined, the `TreeItem` will render the content within a `Link`
    * instead of a `<span>`.

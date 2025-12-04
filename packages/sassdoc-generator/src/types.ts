@@ -191,8 +191,7 @@ export interface ParameterizedItem {
 export type ParameterizedItemParameter = ItemParameter<SupportedItemDataType>;
 
 export interface FormattedFunctionItem
-  extends FormattedItem,
-    ParameterizedItem {
+  extends FormattedItem, ParameterizedItem {
   type: "function";
   returns: ItemReturn<SupportedItemDataType>;
 }

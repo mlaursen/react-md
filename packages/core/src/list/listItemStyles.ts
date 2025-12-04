@@ -72,8 +72,7 @@ export interface ListItemClassNameOptions extends BaseListItemClassNameOptions {
 }
 
 /** @since 6.0.0 */
-export interface InternalListItemClassNameOptions
-  extends ListItemClassNameOptions {
+export interface InternalListItemClassNameOptions extends ListItemClassNameOptions {
   /**
    * @defaultValue `false`
    */

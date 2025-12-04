@@ -32,8 +32,7 @@ export interface SliderAddonProps {
  * a `Fieldset` instead.
  */
 export interface SliderContainerProps
-  extends HTMLAttributes<HTMLDivElement>,
-    SliderAddonProps {
+  extends HTMLAttributes<HTMLDivElement>, SliderAddonProps {
   vertical: boolean;
 }
 

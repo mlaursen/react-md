@@ -24,8 +24,10 @@ import {
 
 const TRACK_SIZE = 400;
 
-interface SingleThumbTestProps
-  extends Omit<SliderProps, keyof SliderImplementation> {
+interface SingleThumbTestProps extends Omit<
+  SliderProps,
+  keyof SliderImplementation
+> {
   options?: SliderOptions;
 }
 
@@ -36,8 +38,10 @@ function SingleThumbTest(props: SingleThumbTestProps): ReactElement {
   return <Slider {...slider} aria-label="Slider" {...remaining} />;
 }
 
-interface RangeSliderTestProps
-  extends Omit<RangeSliderProps, keyof RangeSliderImplementation> {
+interface RangeSliderTestProps extends Omit<
+  RangeSliderProps,
+  keyof RangeSliderImplementation
+> {
   options?: RangeSliderOptions;
 }
 

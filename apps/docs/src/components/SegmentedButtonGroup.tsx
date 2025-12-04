@@ -7,8 +7,9 @@ import {
   type SegmentedButtonsProps,
 } from "./SegmentedButtons.jsx";
 
-export interface SegmentedButtonGroupProps<V extends string>
-  extends SegmentedButtonsProps<V> {
+export interface SegmentedButtonGroupProps<
+  V extends string,
+> extends SegmentedButtonsProps<V> {
   label: ReactNode;
 }
 

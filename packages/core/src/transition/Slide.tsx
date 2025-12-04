@@ -22,7 +22,8 @@ declare module "react" {
 
 /** @since 6.0.0 */
 export interface SlideProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends
+    HTMLAttributes<HTMLDivElement>,
     CSSTransitionComponentProps,
     TransitionActions {
   /**

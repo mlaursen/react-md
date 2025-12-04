@@ -23,7 +23,8 @@ import {
  * module augmentation.
  */
 export interface SegmentedButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
+  extends
+    ButtonHTMLAttributes<HTMLButtonElement>,
     BaseMaxWidthTransitionOptions,
     BaseSegmentedButtonClassNameOptions,
     ComponentWithRippleProps {

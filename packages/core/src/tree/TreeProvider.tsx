@@ -78,8 +78,7 @@ export interface TreeItemMetadataLookup {
  * @since 6.0.0
  */
 export interface TreeContext<T extends TreeItemNode = DefaultTreeItemNode>
-  extends TreeExpansion,
-    TreeSelection {
+  extends TreeExpansion, TreeSelection {
   data: TreeData<T>;
   rootId: string | null;
   disableTransition: boolean;
@@ -124,8 +123,9 @@ export function useTreeContext<
  * @internal
  * @since 6.0.0
  */
-export interface TreeProviderProps<T extends TreeItemNode = DefaultTreeItemNode>
-  extends TreeContext<T> {
+export interface TreeProviderProps<
+  T extends TreeItemNode = DefaultTreeItemNode,
+> extends TreeContext<T> {
   children: ReactNode;
 }
 

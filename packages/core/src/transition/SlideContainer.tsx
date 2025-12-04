@@ -72,8 +72,7 @@ export function slideContainer(
 
 /** @since 6.0.0 */
 export interface SlideContainerProps
-  extends HTMLAttributes<HTMLDivElement>,
-    SlideContainerClassNameOptions {}
+  extends HTMLAttributes<HTMLDivElement>, SlideContainerClassNameOptions {}
 
 /**
  * The `SlideContainer` is used to enable a slide transition when child `Slide`

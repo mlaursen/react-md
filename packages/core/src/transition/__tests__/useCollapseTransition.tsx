@@ -17,8 +17,10 @@ import {
   useCollapseTransition,
 } from "../useCollapseTransition.js";
 
-interface TestProps
-  extends Omit<CollapseTransitionHookOptions<HTMLElement>, "transitionIn"> {
+interface TestProps extends Omit<
+  CollapseTransitionHookOptions<HTMLElement>,
+  "transitionIn"
+> {
   defaultTransitionIn?: boolean;
 }
 

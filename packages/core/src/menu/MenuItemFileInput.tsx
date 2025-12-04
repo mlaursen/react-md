@@ -19,7 +19,8 @@ const noop = (): void => {
  * implementation.
  */
 export interface MenuItemFileInputProps
-  extends Omit<MenuItemProps, "onChange">,
+  extends
+    Omit<MenuItemProps, "onChange">,
     Pick<
       InputHTMLAttributes<HTMLInputElement>,
       "accept" | "capture" | "multiple"

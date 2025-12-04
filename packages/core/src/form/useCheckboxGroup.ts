@@ -70,8 +70,9 @@ export interface CheckboxGroupImplementation<V extends string> {
 }
 
 /** @since 6.0.0 */
-export interface IndeterminateCheckboxGroupImplementation<V extends string>
-  extends CheckboxGroupImplementation<V> {
+export interface IndeterminateCheckboxGroupImplementation<
+  V extends string,
+> extends CheckboxGroupImplementation<V> {
   getIndeterminateProps: () => {
     "aria-checked": "mixed" | undefined;
     name: string;

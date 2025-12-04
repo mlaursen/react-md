@@ -7,8 +7,10 @@ const jscodeshiftExecutable = fileURLToPath(
   import.meta.resolve("jscodeshift/bin/jscodeshift", import.meta.url)
 );
 
-export interface RunJSCodeshiftOptions
-  extends Omit<ProgramOptions, "autoConfirm"> {
+export interface RunJSCodeshiftOptions extends Omit<
+  ProgramOptions,
+  "autoConfirm"
+> {
   files: readonly string[];
   transform: string;
 }

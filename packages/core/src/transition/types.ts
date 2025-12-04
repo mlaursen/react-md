@@ -172,8 +172,8 @@ export interface TransitionCallbacks {
  */
 export interface PreconfiguredTransitionInDefaultedOptions<
   E extends HTMLElement,
-> extends TransitionActions,
-    TransitionCallbacks {
+>
+  extends TransitionActions, TransitionCallbacks {
   /**
    * An optional ref that will be merged with the
    * {@link TransitionHookReturnValue.ref}
@@ -205,8 +205,9 @@ export interface PreconfiguredTransitionInDefaultedOptions<
  * transition.
  * @since 4.0.0
  */
-export interface PreconfiguredTransitionOptions<E extends HTMLElement>
-  extends PreconfiguredTransitionInDefaultedOptions<E> {
+export interface PreconfiguredTransitionOptions<
+  E extends HTMLElement,
+> extends PreconfiguredTransitionInDefaultedOptions<E> {
   /** {@inheritDoc PreconfiguredTransitionInDefaultedOptions.transitionIn} */
   transitionIn: boolean;
 }
@@ -216,8 +217,9 @@ export interface PreconfiguredTransitionOptions<E extends HTMLElement>
  * transition.
  * @since 4.0.0
  */
-export interface TransitionOptions<E extends HTMLElement>
-  extends PreconfiguredTransitionOptions<E> {
+export interface TransitionOptions<
+  E extends HTMLElement,
+> extends PreconfiguredTransitionOptions<E> {
   /** {@inheritDoc TransitionTimeout} */
   timeout: TransitionTimeout;
 }
@@ -383,8 +385,9 @@ export interface PreconfiguredCSSTransitionInDefaultedOptions<
  * transition.
  * @since 4.0.0
  */
-export interface PreconfiguredCSSTransitionOptions<E extends HTMLElement>
-  extends PreconfiguredCSSTransitionInDefaultedOptions<E> {
+export interface PreconfiguredCSSTransitionOptions<
+  E extends HTMLElement,
+> extends PreconfiguredCSSTransitionInDefaultedOptions<E> {
   /** {@inheritDoc PreconfiguredTransitionInDefaultedOptions.transitionIn} */
   transitionIn: boolean;
 }
@@ -412,8 +415,7 @@ export interface SSRTransitionOptions {
  * @since 4.0.0
  */
 export interface TransitionHookOptions<E extends HTMLElement>
-  extends TransitionOptions<E>,
-    SSRTransitionOptions {
+  extends TransitionOptions<E>, SSRTransitionOptions {
   /**
    * Boolean if the DOM should forcefully be reflow each time a transition
    * change occurs. This is generally required for any CSS transition and is
@@ -453,8 +455,7 @@ export interface TransitionState {
  * @since 4.0.0
  */
 export interface TransitionHookReturnValue<E extends HTMLElement>
-  extends TransitionState,
-    Required<SSRTransitionOptions> {
+  extends TransitionState, Required<SSRTransitionOptions> {
   /**
    * A ref that is required for the transition to occur and should be passed to
    * the element affected by the transition.
@@ -506,8 +507,7 @@ export interface TransitionHookReturnValue<E extends HTMLElement>
  * @since 4.0.0
  */
 export interface CSSTransitionHookOptions<E extends HTMLElement>
-  extends PreconfiguredCSSTransitionOptions<E>,
-    SSRTransitionOptions {
+  extends PreconfiguredCSSTransitionOptions<E>, SSRTransitionOptions {
   /** {@inheritDoc TransitionTimeout} */
   timeout: TransitionTimeout;
   /** {@inheritDoc CSSTransitionClassNames} */
@@ -535,8 +535,7 @@ export interface CSSTransitionElementProps<E extends HTMLElement> {
  * @since 4.0.0
  */
 export interface CSSTransitionHookReturnValue<E extends HTMLElement>
-  extends TransitionHookReturnValue<E>,
-    CSSTransitionElementProps<E> {
+  extends TransitionHookReturnValue<E>, CSSTransitionElementProps<E> {
   /**
    * This can be used so that you don't need to destructure multiple props from
    * the hook return value to pass to the transitioning component.

@@ -48,7 +48,8 @@ export interface NumberFieldConstraints {
  * - Renamed `fixOnBlur` to `updateValueOnBlur`
  */
 export interface NumberFieldHookOptions
-  extends Omit<TextFieldHookOptions, "defaultValue" | "isNumber">,
+  extends
+    Omit<TextFieldHookOptions, "defaultValue" | "isNumber">,
     NumberFieldConstraints {
   /**
    * @defaultValue `undefined`
@@ -113,42 +114,45 @@ export interface NumberFieldHookOptions
 }
 
 /** @since 6.0.0 */
-export interface NumberFieldHookState
-  extends Omit<TextFieldHookState, "value"> {
+export interface NumberFieldHookState extends Omit<
+  TextFieldHookState,
+  "value"
+> {
   value: number | undefined;
 }
 
 /** @since 2.5.6 */
 export interface ProvidedNumberFieldProps
-  extends ProvidedTextFieldProps,
-    NumberFieldConstraints {
+  extends ProvidedTextFieldProps, NumberFieldConstraints {
   type: "number";
 }
 
 /** @since 2.5.6 */
 export interface ProvidedNumberFieldMessageProps
-  extends ProvidedTextFieldMessageProps,
-    NumberFieldConstraints {
+  extends ProvidedTextFieldMessageProps, NumberFieldConstraints {
   type: "number";
 }
 
 /** @since 6.0.0 */
-export interface NumberFieldImplementation
-  extends Omit<TextFieldImplementation, "value" | "setState"> {
+export interface NumberFieldImplementation extends Omit<
+  TextFieldImplementation,
+  "value" | "setState"
+> {
   value: number | undefined;
   setState: UseStateSetter<NumberFieldHookState>;
   fieldProps: ProvidedNumberFieldProps;
 }
 
 /** @since 6.0.0 */
-export interface NumberFieldWithMessageImplementation
-  extends NumberFieldImplementation {
+export interface NumberFieldWithMessageImplementation extends NumberFieldImplementation {
   fieldProps: ProvidedNumberFieldMessageProps;
 }
 
 /** @since 6.0.0 */
-export interface ValidatedNumberFieldImplementation
-  extends Omit<ValidatedTextFieldImplementation, "value" | "setState"> {
+export interface ValidatedNumberFieldImplementation extends Omit<
+  ValidatedTextFieldImplementation,
+  "value" | "setState"
+> {
   value: number | undefined;
   setState: UseStateSetter<NumberFieldHookState>;
   fieldProps: ProvidedNumberFieldProps | ProvidedNumberFieldMessageProps;

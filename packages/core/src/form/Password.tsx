@@ -64,8 +64,10 @@ export interface ConfigurableVisibilityIcon {
  * @since 6.0.0 Merged the `getVisibilityIcon` prop behavior into the
  * `visibilityIcon` prop.
  */
-export interface PasswordProps
-  extends Omit<TextFieldProps, "type" | "rightAddon"> {
+export interface PasswordProps extends Omit<
+  TextFieldProps,
+  "type" | "rightAddon"
+> {
   /**
    * @defaultValue `"password"`
    * @since 6.0.0 Defaults to `"password"`

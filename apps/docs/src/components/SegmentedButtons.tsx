@@ -9,8 +9,10 @@ import { type ReactElement, type ReactNode } from "react";
 
 const noop = (): ReactNode => undefined;
 
-export interface SegmentedButtonsProps<V extends string>
-  extends Omit<SegmentedButtonContainerProps, "children"> {
+export interface SegmentedButtonsProps<V extends string> extends Omit<
+  SegmentedButtonContainerProps,
+  "children"
+> {
   textTransform?: TextTransform;
   icon?: Record<V, ReactNode> | ((item: V) => ReactNode);
   items: readonly V[];

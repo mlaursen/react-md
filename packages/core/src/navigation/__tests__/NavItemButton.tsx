@@ -11,8 +11,10 @@ import {
 import { useToggle } from "../../useToggle.js";
 import { NavItemButton, type NavItemButtonProps } from "../NavItemButton.js";
 
-interface TestProps
-  extends Omit<Partial<NavItemButtonProps>, "collapsed" | "onClick"> {
+interface TestProps extends Omit<
+  Partial<NavItemButtonProps>,
+  "collapsed" | "onClick"
+> {
   nodeRef?: Ref<HTMLButtonElement>;
 }
 

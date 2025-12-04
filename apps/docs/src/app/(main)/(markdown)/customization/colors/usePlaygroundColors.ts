@@ -14,11 +14,10 @@ import { getMaterialColorName } from "@/utils/theme.js";
 
 export type SimpleThemeColor = "primaryColor" | "secondaryColor";
 
-export interface PlaygroundColors
-  extends Pick<
-    ConfigurableThemeColors,
-    SimpleThemeColor | `on${Capitalize<SimpleThemeColor>}`
-  > {
+export interface PlaygroundColors extends Pick<
+  ConfigurableThemeColors,
+  SimpleThemeColor | `on${Capitalize<SimpleThemeColor>}`
+> {
   primaryColorVar: string;
   secondaryColorVar: string;
 }

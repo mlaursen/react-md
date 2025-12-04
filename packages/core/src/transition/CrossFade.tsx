@@ -16,7 +16,8 @@ import {
  * @since 4.0.0 Updated for the new CSS Transition API
  */
 export interface CrossFadeProps<E extends HTMLElement>
-  extends CrossFadeTransitionHookOptions<E>,
+  extends
+    CrossFadeTransitionHookOptions<E>,
     CSSTransitionComponentImplementation<E> {
   /**
    * Unlike the {@link useCrossFadeTransition}, the `appear` value is defaulted

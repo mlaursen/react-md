@@ -5,8 +5,7 @@ import { type ReactElement } from "react";
 import { MarkdownCode } from "./MarkdownCode.jsx";
 import { TypescriptCodeBlock } from "./TypescriptCodeBlock.jsx";
 
-export interface TransformTypescriptCodeBlockProps
-  extends HighlightedCodeBlockWithAppBarAdditionalProps {
+export interface TransformTypescriptCodeBlockProps extends HighlightedCodeBlockWithAppBarAdditionalProps {
   isTsx: boolean;
   code: string;
 }

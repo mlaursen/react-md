@@ -18,11 +18,10 @@ import {
 } from "../useMaxTabPanelHeight.js";
 import { useTabs } from "../useTabs.js";
 
-interface TestProps
-  extends Pick<
-    MaxTabPanelHeightOptions<HTMLDivElement>,
-    "defaultHeight" | "style"
-  > {
+interface TestProps extends Pick<
+  MaxTabPanelHeightOptions<HTMLDivElement>,
+  "defaultHeight" | "style"
+> {
   extraStyle?: CSSProperties;
 }
 

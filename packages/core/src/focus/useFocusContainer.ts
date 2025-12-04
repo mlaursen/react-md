@@ -50,8 +50,9 @@ export type FocusContainerTransitionCallbacks = TransitionCallbacks;
  * @since 6.3.2 Fixed by extending `TransitionCallbacks` after the
  * `onEnteredOnce` and `onExitedOnce` support was added to CSS transitions.
  */
-export interface FocusContainerTransitionOptions<E extends HTMLElement>
-  extends TransitionCallbacks {
+export interface FocusContainerTransitionOptions<
+  E extends HTMLElement,
+> extends TransitionCallbacks {
   /**
    * An optional ref that will be merged with the
    * {@link FocusContainerImplementation.nodeRef}
@@ -83,8 +84,7 @@ export interface FocusContainerComponentProps {
 
 /** @since 6.0.0 */
 export interface FocusContainerOptions<E extends HTMLElement>
-  extends FocusContainerTransitionOptions<E>,
-    FocusContainerComponentProps {
+  extends FocusContainerTransitionOptions<E>, FocusContainerComponentProps {
   onKeyDown?: KeyboardEventHandler<E>;
   /**
    * This to `true` will capture the current focused element as a focus target

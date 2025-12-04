@@ -24,7 +24,8 @@ declare module "react" {
  * @since 6.0.0
  */
 export interface MaterialSymbolProps
-  extends HTMLAttributes<HTMLSpanElement>,
+  extends
+    HTMLAttributes<HTMLSpanElement>,
     MaterialSymbolCustomization,
     Partial<MaterialSymbolClassNameOptions> {
   /** @defaultValue `true` */

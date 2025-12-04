@@ -15,8 +15,7 @@ import {
  * {@link ResponsiveItemProps.responsive} prop.
  */
 export interface ResponsiveItemProps
-  extends HTMLAttributes<HTMLSpanElement>,
-    ResponsiveItemClassNameOptions {}
+  extends HTMLAttributes<HTMLSpanElement>, ResponsiveItemClassNameOptions {}
 
 /**
  * @example Image Example

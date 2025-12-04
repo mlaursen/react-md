@@ -8,7 +8,8 @@ import { useMenuConfiguration } from "./MenuConfigurationProvider.js";
 
 /** @since 5.0.0 */
 export interface MenuItemSeparatorProps
-  extends HTMLAttributes<HTMLLIElement>,
+  extends
+    HTMLAttributes<HTMLLIElement>,
     Pick<DividerProps, "inset" | "vertical"> {}
 
 /**

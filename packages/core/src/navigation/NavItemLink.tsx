@@ -25,7 +25,8 @@ import {
  * @since 6.0.0
  */
 export interface NavItemLinkProps
-  extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "children">,
+  extends
+    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "children">,
     NavItemContentProps,
     ComponentWithRippleProps {
   /** @defaultValue `"a"` */

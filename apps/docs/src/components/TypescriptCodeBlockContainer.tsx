@@ -8,8 +8,7 @@ import { type ReactElement, type ReactNode } from "react";
 
 import { ConfigureTypescriptEnabled } from "./MainLayout/ConfigureTypescriptEnabled.jsx";
 
-export interface TypescriptCodeBlockContainerProps
-  extends HighlightedCodeBlockWithAppBarAdditionalProps {
+export interface TypescriptCodeBlockContainerProps extends HighlightedCodeBlockWithAppBarAdditionalProps {
   tsCode: ReactNode;
   jsCode: ReactNode;
   disableAppBar?: boolean;

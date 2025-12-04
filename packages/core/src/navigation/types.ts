@@ -265,8 +265,7 @@ export interface TableOfContentsHeading extends HeadingReference {
 
 /** @since 6.0.0 */
 export interface TableOfContentsHeadingItem
-  extends TableOfContentsHeading,
-    HeadingReferenceWithChildren {
+  extends TableOfContentsHeading, HeadingReferenceWithChildren {
   items?: TableOfContentsHeadingItem[];
 }
 

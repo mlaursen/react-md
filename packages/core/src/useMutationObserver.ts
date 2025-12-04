@@ -5,8 +5,9 @@ import { useEnsuredRef } from "./useEnsuredRef.js";
 /**
  * @since 6.0.0
  */
-export interface MutationObserverHookOptions<E extends HTMLElement>
-  extends MutationObserverInit {
+export interface MutationObserverHookOptions<
+  E extends HTMLElement,
+> extends MutationObserverInit {
   ref?: Ref<E>;
 
   /**

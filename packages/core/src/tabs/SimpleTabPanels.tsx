@@ -6,7 +6,8 @@ import { type ProvidedTabPanelsProps } from "./useTabs.js";
  * @since 6.0.0
  */
 export interface SimpleTabPanelsProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends
+    HTMLAttributes<HTMLDivElement>,
     Omit<ProvidedTabPanelsProps<HTMLDivElement>, "ref"> {
   children: ReactNode;
 }

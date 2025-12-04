@@ -4,11 +4,10 @@ import { type ReactElement } from "react";
 
 import { STACKBLITZ_DEPENDENCIES } from "@/generated/stackblitz.js";
 
-export interface HiddenInputProps
-  extends Pick<
-    CodePreviewProps,
-    "disableBox" | "disablePadding" | "forceDarkMode"
-  > {
+export interface HiddenInputProps extends Pick<
+  CodePreviewProps,
+  "disableBox" | "disablePadding" | "forceDarkMode"
+> {
   name: string;
   value: string;
   demoCode: string;

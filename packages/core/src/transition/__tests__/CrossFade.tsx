@@ -13,8 +13,10 @@ import { act, fireEvent, render, screen } from "../../test-utils/index.js";
 import { CrossFade, type CrossFadeProps } from "../CrossFade.js";
 import { TRANSITION_CONFIG } from "../config.js";
 
-interface TestProps
-  extends Omit<CrossFadeProps<HTMLElement>, "transitionIn" | "children"> {
+interface TestProps extends Omit<
+  CrossFadeProps<HTMLElement>,
+  "transitionIn" | "children"
+> {
   defaultTransitionIn?: boolean;
 }
 

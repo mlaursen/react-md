@@ -27,7 +27,8 @@ import { type useTabs } from "./useTabs.js";
  * @since 6.0.0
  */
 export interface TabListProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends
+    HTMLAttributes<HTMLDivElement>,
     Omit<TabListClassNameOptions, "animate" | "indicator"> {
   activeIndex: number;
   setActiveIndex: (nextActiveIndex: number) => void;

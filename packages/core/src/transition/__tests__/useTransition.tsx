@@ -35,11 +35,10 @@ const createStageRef = (): MutableRefObject<TransitionStage[]> => ({
   current: [],
 });
 
-interface TestProps
-  extends Omit<
-    TransitionHookOptions<HTMLLIElement>,
-    "transitionIn" | "timeout"
-  > {
+interface TestProps extends Omit<
+  TransitionHookOptions<HTMLLIElement>,
+  "transitionIn" | "timeout"
+> {
   timeout?: TransitionTimeout;
   stageRef?: MutableRefObject<TransitionStage[]>;
   defaultTransitionIn?: boolean;

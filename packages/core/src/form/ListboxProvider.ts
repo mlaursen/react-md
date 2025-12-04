@@ -47,8 +47,9 @@ export type ListboxValue = string | number | null | object;
 /**
  * @since 6.3.0
  */
-export interface ListboxProviderOptions<Value extends ListboxValue>
-  extends OptionSelectedIconProps {
+export interface ListboxProviderOptions<
+  Value extends ListboxValue,
+> extends OptionSelectedIconProps {
   value: ListboxValue | readonly NonNullable<ListboxValue>[];
   setValue: Dispatch<NonNullable<Value>>;
 }

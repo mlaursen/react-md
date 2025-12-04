@@ -9,7 +9,8 @@ import { type CardClassNameOptions, card } from "./styles.js";
  * deprecated `raiseable` prop
  */
 export interface CardProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends
+    HTMLAttributes<HTMLDivElement>,
     CardClassNameOptions,
     Pick<BoxOptions, "align" | "justify" | "fullWidth" | "disableWrap"> {
   /** @defaultValue `"stretch"` */

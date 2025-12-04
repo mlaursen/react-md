@@ -42,11 +42,10 @@ const getRowHeight = (row: CategoryOrIconNames, isFirst: boolean): number => {
  */
 export type CategoryOrIconNames = string | readonly MaterialIconAndSymbolName[];
 
-export interface VirtualizedWindowProps
-  extends Pick<
-    Required<VariableSizeListProps<VirtualizedData>>,
-    "height" | "outerRef" | "itemSize" | "itemCount" | "style" | "itemData"
-  > {
+export interface VirtualizedWindowProps extends Pick<
+  Required<VariableSizeListProps<VirtualizedData>>,
+  "height" | "outerRef" | "itemSize" | "itemCount" | "style" | "itemData"
+> {
   ref: RefObject<VariableSizeList>;
 }
 

@@ -28,7 +28,8 @@ import { type ChipTheme, chip, chipContent } from "./styles.js";
  * augmentation.
  */
 export interface ChipProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
+  extends
+    ButtonHTMLAttributes<HTMLButtonElement>,
     BaseMaxWidthTransitionOptions,
     ComponentWithRippleProps {
   /**

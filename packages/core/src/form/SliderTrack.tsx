@@ -14,7 +14,8 @@ import {
  * @since 6.0.0 Updated to be internal only.
  */
 export interface SliderTrackProps
-  extends HTMLAttributes<HTMLSpanElement>,
+  extends
+    HTMLAttributes<HTMLSpanElement>,
     ClosestThumbEventHandlersOptions,
     ThumbOffsetsOptions {
   animate: boolean;

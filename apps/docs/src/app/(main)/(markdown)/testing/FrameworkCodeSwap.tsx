@@ -4,8 +4,10 @@ import TestFrameworkCodeBlock, {
   type TestFrameworkCodeBlockProps,
 } from "./TestFrameworkCodeBlock.jsx";
 
-export interface FrameworkCodeSwapProps
-  extends Omit<TestFrameworkCodeBlockProps, "code"> {
+export interface FrameworkCodeSwapProps extends Omit<
+  TestFrameworkCodeBlockProps,
+  "code"
+> {
   code: string;
   replacement?: {
     jest?: string;

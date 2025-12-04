@@ -87,8 +87,8 @@ export interface LayoutTreeOptions<
  */
 export interface LayoutTreeImplementation<
   T extends TreeItemNode = DefaultTreeItemNode,
-> extends Pick<TreeProps<T>, "data">,
-    TreeImplementation {}
+>
+  extends Pick<TreeProps<T>, "data">, TreeImplementation {}
 
 /**
  * Before considering to use a `Tree` for site navigation, it is important to

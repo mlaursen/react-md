@@ -27,8 +27,7 @@ declare module "react" {
 }
 
 export interface TableProps
-  extends TableHTMLAttributes<HTMLTableElement>,
-    TableConfiguration {}
+  extends TableHTMLAttributes<HTMLTableElement>, TableConfiguration {}
 
 /**
  * **Client Component**

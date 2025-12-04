@@ -15,7 +15,8 @@ import { useCSSTransition } from "./useCSSTransition.js";
  * @since 4.0.0
  */
 export interface CSSTransitionProps<E extends HTMLElement>
-  extends CSSTransitionHookOptions<E>,
+  extends
+    CSSTransitionHookOptions<E>,
     CSSTransitionComponentImplementation<E> {}
 
 /**

@@ -29,7 +29,8 @@ import { type DefaultTreeItemNode } from "./types.js";
  * `contentComponent`, and `readOnly` props were removed.
  */
 export interface TreeItemProps
-  extends Omit<DefaultTreeItemNode, "parentId">,
+  extends
+    Omit<DefaultTreeItemNode, "parentId">,
     HTMLAttributes<HTMLLIElement>,
     ComponentWithRippleProps {
   /**

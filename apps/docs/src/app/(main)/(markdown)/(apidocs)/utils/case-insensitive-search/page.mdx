@@ -167,8 +167,7 @@ caseInsensitiveSearch({
 
 ````ts disableTransform
 export interface CaseInsensitiveOptions<T>
-  extends BaseSearchOptions<T>,
-    CaseInsensitiveStartsWithOptions {}
+  extends BaseSearchOptions<T>, CaseInsensitiveStartsWithOptions {}
 
 export interface BaseSearchOptions<T> {
   list: readonly T[];

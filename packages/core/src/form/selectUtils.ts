@@ -6,8 +6,9 @@ import { type MenuItemProps } from "../menu/MenuItem.js";
  * @internal
  * @since 6.0.0
  */
-export interface SelectOption<Value extends string | number = string>
-  extends MenuItemProps {
+export interface SelectOption<
+  Value extends string | number = string,
+> extends MenuItemProps {
   value: Value;
 }
 

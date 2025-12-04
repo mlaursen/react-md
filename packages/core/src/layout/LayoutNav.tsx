@@ -22,7 +22,8 @@ import { layoutNav } from "./layoutNavStyles.js";
  * @since 6.0.0
  */
 export interface LayoutNavProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends
+    HTMLAttributes<HTMLDivElement>,
     BaseSheetClassNameOptions,
     TransitionCallbacks,
     TransitionActions {

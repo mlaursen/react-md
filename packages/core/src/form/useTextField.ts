@@ -125,7 +125,8 @@ export interface TextFieldHookState {
  * @since 2.5.0
  */
 export interface ProvidedFormMessageProps
-  extends Pick<FormMessageProps, "id" | "theme" | "children">,
+  extends
+    Pick<FormMessageProps, "id" | "theme" | "children">,
     Required<Pick<TextFieldProps, "error">>,
     Partial<Pick<FormMessageInputLengthCounterProps, "length" | "maxLength">> {}
 
@@ -137,7 +138,9 @@ export interface ProvidedFormMessageProps
  */
 export interface ProvidedTextFieldProps<
   E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
-> extends TextFieldValidationOptions,
+>
+  extends
+    TextFieldValidationOptions,
     Required<TextFieldChangeHandlers<E>>,
     Required<Pick<TextFieldProps, "id" | "name" | "value" | "error">>,
     Pick<TextFieldProps, "aria-describedby" | "rightAddon"> {
@@ -288,7 +291,9 @@ export interface TextFieldHookComponentOptions<
 /** @since 2.5.6 */
 export interface TextFieldHookOptions<
   E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
-> extends TextFieldValidationOptions,
+>
+  extends
+    TextFieldValidationOptions,
     TextFieldHookComponentOptions<E>,
     TextFieldChangeHandlers<E> {
   /**

@@ -16,8 +16,10 @@ import {
   useCrossFadeTransition,
 } from "../useCrossFadeTransition.js";
 
-interface TestProps
-  extends Omit<CrossFadeTransitionHookOptions<HTMLElement>, "transitionIn"> {
+interface TestProps extends Omit<
+  CrossFadeTransitionHookOptions<HTMLElement>,
+  "transitionIn"
+> {
   defaultTransitionIn?: boolean;
 }
 

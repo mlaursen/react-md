@@ -7,8 +7,10 @@ import {
   type CompiledScssCodeBlockContainerProps,
 } from "./CompiledScssCodeBlockContainer.jsx";
 
-export interface CompiledScssCodeBlockProps
-  extends Omit<CompiledScssCodeBlockContainerProps, "css" | "scss"> {
+export interface CompiledScssCodeBlockProps extends Omit<
+  CompiledScssCodeBlockContainerProps,
+  "css" | "scss"
+> {
   css: string;
   scss: string;
 }

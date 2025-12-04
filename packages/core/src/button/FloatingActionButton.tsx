@@ -62,7 +62,8 @@ export function fab(options: FloatingActionButtonClassNameOptions): string {
 
 /** @since 6.0.0 */
 export interface FloatingActionButtonProps
-  extends HTMLAttributes<HTMLSpanElement>,
+  extends
+    HTMLAttributes<HTMLSpanElement>,
     FloatingActionButtonClassNameOptions {}
 
 /**

@@ -11,8 +11,7 @@ import { transformTsToJs } from "./transformTsToJs.js";
 
 const DISABLE_TRANSFORM = "disableTransform";
 
-export interface CreateTypescriptCodeBlockOptions
-  extends ReplacePreElementWithJsxNodeOptions {
+export interface CreateTypescriptCodeBlockOptions extends ReplacePreElementWithJsxNodeOptions {
   as: string;
   lang: string;
   filepath: string;

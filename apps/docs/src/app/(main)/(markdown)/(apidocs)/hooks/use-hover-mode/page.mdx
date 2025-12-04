@@ -89,13 +89,11 @@ export type HoverModeOptions =
   | ControlledHoverModeOptions
   | UncontrolledHoverModeOptions;
 
-export interface ControlledHoverModeOptions
-  extends HoverModeConfigurationOptions {
+export interface ControlledHoverModeOptions extends HoverModeConfigurationOptions {
   setVisible: UseStateSetter<boolean>;
 }
 
-export interface UncontrolledHoverModeOptions
-  extends HoverModeConfigurationOptions {
+export interface UncontrolledHoverModeOptions extends HoverModeConfigurationOptions {
   defaultVisible?: UseStateInitializer<boolean>;
 }
 

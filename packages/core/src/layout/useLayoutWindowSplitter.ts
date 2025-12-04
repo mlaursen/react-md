@@ -13,8 +13,10 @@ import {
 /**
  * @since 6.0.0
  */
-export interface LayoutWindowSplitterOptions
-  extends Omit<WindowSplitterOptions, "min" | "max"> {
+export interface LayoutWindowSplitterOptions extends Omit<
+  WindowSplitterOptions,
+  "min" | "max"
+> {
   /**
    * @see {@link WindowSplitterOptions.min}
    * @defaultValue `96`
@@ -51,8 +53,7 @@ export interface LayoutWindowSplitterOptions
 /**
  * @since 6.0.0
  */
-export interface ProvidedLayoutWindowSplitterProps
-  extends WindowSplitterWidgetProps<HTMLButtonElement> {
+export interface ProvidedLayoutWindowSplitterProps extends WindowSplitterWidgetProps<HTMLButtonElement> {
   /** @defaultValue {@link WindowSplitterImplementation.value} */
   navWidth: number;
 }
@@ -60,8 +61,7 @@ export interface ProvidedLayoutWindowSplitterProps
 /**
  * @since 6.0.0
  */
-export interface LayoutWindowSplitterImplementation
-  extends WindowSplitterImplementation {
+export interface LayoutWindowSplitterImplementation extends WindowSplitterImplementation {
   splitterProps: ProvidedLayoutWindowSplitterProps;
 }
 

@@ -8,7 +8,8 @@ import { highlightCode } from "@react-md/code/prismjs/highlight";
 import { type ReactElement } from "react";
 
 export interface MarkdownCodeProps
-  extends InlineCodeProps,
+  extends
+    InlineCodeProps,
     Omit<HighlightedCodeBlockWithAppBarProps, "children" | "highlightCode"> {
   multiline?: boolean;
 }

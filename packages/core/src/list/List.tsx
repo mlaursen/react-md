@@ -8,8 +8,7 @@ export type ListElement = HTMLUListElement | HTMLOListElement;
  * @since 6.3.1 Extends the ListClassNameOptions
  */
 export interface ListProps
-  extends HTMLAttributes<ListElement>,
-    ListClassNameOptions {
+  extends HTMLAttributes<ListElement>, ListClassNameOptions {
   /**
    * @defaultValue `"none"`
    */

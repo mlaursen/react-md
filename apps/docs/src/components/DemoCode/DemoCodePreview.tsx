@@ -11,8 +11,7 @@ import {
 } from "./PreviewContainer.jsx";
 
 export interface DemoCodePreviewProps
-  extends DangerousCodePreviewProps,
-    PreviewContainerOptions {}
+  extends DangerousCodePreviewProps, PreviewContainerOptions {}
 
 export function DemoCodePreview(props: DemoCodePreviewProps): ReactElement {
   const { card, phone, code, scope, onRendered, ...remaining } = props;

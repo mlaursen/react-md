@@ -55,8 +55,7 @@ export function replacePreElement(options: ReplacePreElementOptions): void {
   );
 }
 
-export interface ReplacePreElementWithJsxNodeOptions
-  extends CreatePreJsxNodeOptions {
+export interface ReplacePreElementWithJsxNodeOptions extends CreatePreJsxNodeOptions {
   preElement: Element;
   preElementParent:
     | MdxJsxTextElementHast

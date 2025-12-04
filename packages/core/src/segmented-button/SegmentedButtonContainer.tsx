@@ -9,7 +9,8 @@ import {
  * @since 6.0.0
  */
 export interface SegmentedButtonContainerProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends
+    HTMLAttributes<HTMLDivElement>,
     SegmentedButtonContainerClassNameOptions {
   children: ReactNode;
 }

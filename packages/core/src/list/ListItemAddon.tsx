@@ -10,7 +10,8 @@ import {
 } from "./listItemStyles.js";
 
 export interface ListItemAddonProps
-  extends Omit<TextIconSpacingProps, "icon" | "iconAfter" | "forceIconWrap">,
+  extends
+    Omit<TextIconSpacingProps, "icon" | "iconAfter" | "forceIconWrap">,
     ListItemAddonClassNameOptions {
   /**
    * The addon that should be rendered.

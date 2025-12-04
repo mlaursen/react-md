@@ -19,11 +19,10 @@ import {
   useFixedPositioning,
 } from "../useFixedPositioning.js";
 
-interface TestProps
-  extends Omit<
-    FixedPositioningOptions<HTMLButtonElement, HTMLDivElement>,
-    "fixedTo"
-  > {
+interface TestProps extends Omit<
+  FixedPositioningOptions<HTMLButtonElement, HTMLDivElement>,
+  "fixedTo"
+> {
   defaultVisible?: boolean;
 }
 

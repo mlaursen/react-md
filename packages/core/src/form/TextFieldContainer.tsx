@@ -8,8 +8,7 @@ import { textFieldContainer } from "./textFieldContainerStyles.js";
 import { type TextFieldContainerOptions } from "./types.js";
 
 export interface TextFieldContainerProps
-  extends HTMLAttributes<HTMLDivElement>,
-    TextFieldContainerOptions {
+  extends HTMLAttributes<HTMLDivElement>, TextFieldContainerOptions {
   /**
    * Set this to `true` if there is a floating label with the `TextField` or
    * `TextArea`.

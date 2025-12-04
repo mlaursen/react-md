@@ -132,11 +132,10 @@ const FRUITS_FOLDERS = {
   },
 } satisfies TreeData<Folder>;
 
-interface TestProps
-  extends Omit<
-    TreeProps<Folder & TreeItemNode>,
-    "data" | keyof TreeExpansion | keyof TreeSelection
-  > {
+interface TestProps extends Omit<
+  TreeProps<Folder & TreeItemNode>,
+  "data" | keyof TreeExpansion | keyof TreeSelection
+> {
   data?: TreeData<Folder>;
   options?: TreeHookOptions;
 }

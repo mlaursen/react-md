@@ -87,8 +87,7 @@ export interface MaterialIconClassNameOptions extends SVGIconClassNameOptions {
 }
 
 /** @since 6.0.0 */
-export interface MaterialSymbolClassNameOptions
-  extends SVGIconClassNameOptions {
+export interface MaterialSymbolClassNameOptions extends SVGIconClassNameOptions {
   family: MaterialSymbolFamily;
 }
 

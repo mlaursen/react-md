@@ -12,8 +12,7 @@ import {
  * behavior. Use the `textContainer` class name utility instead.
  */
 export interface TextContainerProps
-  extends HTMLAttributes<HTMLDivElement>,
-    TextContainerClassNameOptions {}
+  extends HTMLAttributes<HTMLDivElement>, TextContainerClassNameOptions {}
 
 /**
  * This component should be used to render text based content with an

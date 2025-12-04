@@ -120,8 +120,10 @@ export const getRelativeDragPosition = (
 /**
  * @internal
  */
-interface UpdateDragPositionOptions
-  extends Omit<RelativeDragPositionOptions, "container"> {
+interface UpdateDragPositionOptions extends Omit<
+  RelativeDragPositionOptions,
+  "container"
+> {
   event: ClientPositionEvent;
   nodeRef: RefObject<HTMLElement>;
   focus?: boolean;

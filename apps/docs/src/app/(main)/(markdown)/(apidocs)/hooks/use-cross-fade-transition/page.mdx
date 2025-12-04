@@ -24,8 +24,9 @@ See the [CrossFade demos](/components/cross-fade#cross-fade-transition-hook) for
 - `options` (optional) - An object with the following definition:
 
 ```ts disableTransform
-export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
-  extends PreconfiguredCSSTransitionInDefaultedOptions<E> {
+export interface CrossFadeTransitionHookOptions<
+  E extends HTMLElement,
+> extends PreconfiguredCSSTransitionInDefaultedOptions<E> {
   /**
    * @see {@link TransitionTimeout}
    * @see {@link CROSS_FADE_TIMEOUT}

@@ -93,8 +93,9 @@ function CustomComponent(props: Props): ReactElement {
 - `options` (optional) - An object with the following definition:
 
 ```ts disableTransform
-export interface ElementInteractionOptions<E extends HTMLElement>
-  extends Parital<ElementInteractionHandlers<E>> {
+export interface ElementInteractionOptions<
+  E extends HTMLElement,
+> extends Parital<ElementInteractionHandlers<E>> {
   /**
    * This can be used to override the {@link INTERACTION_CONFIG.mode}
    *

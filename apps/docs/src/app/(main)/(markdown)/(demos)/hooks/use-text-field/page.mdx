@@ -113,8 +113,8 @@ export type TextFieldChangeHandlers<
 
 export interface TextFieldHookOptions<
   E extends HTMLInputElement | HTMLTextAreaElement,
-> extends TextFieldValidationOptions,
-    TextFieldChangeHandlers<E> {
+>
+  extends TextFieldValidationOptions, TextFieldChangeHandlers<E> {
   /**
    * An optional id to use for the `TextField` or `TextArea` that is also used
    * to create an id for the inline help/error messages.
@@ -299,7 +299,9 @@ export interface TextFieldImplementation<
 
 export interface ProvidedTextFieldProps<
   E extends HTMLInputElement | HTMLTextAreaElement,
-> extends TextFieldValidationOptions,
+>
+  extends
+    TextFieldValidationOptions,
     TextFieldChangeHandlers<E>,
     Required<Pick<TextFieldProps, "id" | "name" | "value" | "error">>,
     Pick<TextFieldProps, "aria-describedby" | "rightAddon"> {

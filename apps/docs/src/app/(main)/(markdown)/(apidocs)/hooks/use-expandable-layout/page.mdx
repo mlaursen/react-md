@@ -168,8 +168,7 @@ export interface ExpandableLayoutOptions extends TemporaryLayoutOptions {
 ## Returns
 
 ```ts disableTransform
-export interface ExpandableLayoutImplementation
-  extends TemporaryLayoutImplementation {
+export interface ExpandableLayoutImplementation extends TemporaryLayoutImplementation {
   temporary: boolean;
   persistent: boolean;
   expanded: boolean;
@@ -191,11 +190,11 @@ export type ProvidedLayoutNavProps = Pick<
 >;
 
 export interface ProvidedLayoutMainProps
-  extends ProvidedTemporaryLayoutMainProps,
+  extends
+    ProvidedTemporaryLayoutMainProps,
     CSSTransitionElementProps<HTMLElement> {}
 
-export interface ProvidedExpandableLayoutNavToggleProps
-  extends ProvidedLayoutNavToggleProps {
+export interface ProvidedExpandableLayoutNavToggleProps extends ProvidedLayoutNavToggleProps {
   className: string;
 }
 ```

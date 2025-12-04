@@ -9,8 +9,7 @@ import {
   replacePreElement,
 } from "./replacePreElement.js";
 
-export interface CompileScssCodeOptions
-  extends ReplacePreElementWithJsxNodeOptions {
+export interface CompileScssCodeOptions extends ReplacePreElementWithJsxNodeOptions {
   as: string;
   codeElement: Element;
 }

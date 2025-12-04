@@ -629,8 +629,9 @@ declare module "sassdoc" {
    * However they should be defined if writing "good" documentation, so I
    * set them to required.
    */
-  export interface FunctionItem<T extends string = ItemDataType>
-    extends BaseItem {
+  export interface FunctionItem<
+    T extends string = ItemDataType,
+  > extends BaseItem {
     context: FunctionContext;
     return?: ItemReturn<T>;
     parameter?: ItemParameter<T>[];

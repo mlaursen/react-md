@@ -8,8 +8,7 @@ import { type NavItemClassNameOptions, navItem } from "./navItemStyles.js";
  * augmentation.
  */
 export interface NavItemProps
-  extends LiHTMLAttributes<HTMLLIElement>,
-    NavItemClassNameOptions {
+  extends LiHTMLAttributes<HTMLLIElement>, NavItemClassNameOptions {
   children: ReactNode;
 }
 

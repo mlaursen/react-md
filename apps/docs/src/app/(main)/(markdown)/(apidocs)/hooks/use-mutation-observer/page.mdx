@@ -61,8 +61,9 @@ function Example(props: HTMLAttributes<HTMLDivElement>): ReactElement {
 - `options` - An object with the following definition:
 
 ```ts disableTransform
-export interface MutationObserverHookOptions<E extends HTMLElement>
-  extends MutationObserverInit {
+export interface MutationObserverHookOptions<
+  E extends HTMLElement,
+> extends MutationObserverInit {
   ref?: Ref<E>;
 
   /**

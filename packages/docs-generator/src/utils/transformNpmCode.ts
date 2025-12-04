@@ -22,8 +22,7 @@ export function getTransformedNpmCode(
   };
 }
 
-export interface TransformNpmCodeOptions
-  extends ReplacePreElementWithJsxNodeOptions {
+export interface TransformNpmCodeOptions extends ReplacePreElementWithJsxNodeOptions {
   as: string;
   code: string;
 }

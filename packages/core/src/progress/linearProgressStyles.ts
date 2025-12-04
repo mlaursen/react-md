@@ -36,8 +36,7 @@ export interface BaseLinearProgressClassNameOptions {
 /**
  * @since 6.2.0
  */
-export interface LinearProgressClassNameOptions
-  extends BaseLinearProgressClassNameOptions {
+export interface LinearProgressClassNameOptions extends BaseLinearProgressClassNameOptions {
   /** @defaultValue `false` */
   indeterminate?: boolean;
 }

@@ -21,7 +21,8 @@ import { type ProgressProps } from "./types.js";
  * module augmentation.
  */
 export interface LinearProgressProps
-  extends Omit<HTMLAttributes<HTMLSpanElement>, "id" | "children">,
+  extends
+    Omit<HTMLAttributes<HTMLSpanElement>, "id" | "children">,
     BaseLinearProgressClassNameOptions,
     ProgressProps {
   /**

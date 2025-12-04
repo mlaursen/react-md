@@ -129,8 +129,9 @@ export interface TooltippedElementEventHandlers<
  * @since 2.8.0
  * @since 6.0.0 Renamed from `TooltipHookProvidedElementProps`
  */
-export interface ProvidedTooltippedElementProps<E extends HTMLElement>
-  extends Required<TooltippedElementEventHandlers<E>> {
+export interface ProvidedTooltippedElementProps<
+  E extends HTMLElement,
+> extends Required<TooltippedElementEventHandlers<E>> {
   "aria-describedby": string | undefined;
   id: string;
 }
@@ -144,7 +145,9 @@ export interface ProvidedTooltippedElementProps<E extends HTMLElement>
  */
 export interface TooltipOptions<
   TooltippedElement extends HTMLElement = HTMLButtonElement,
-> extends FixedPositioningTransitionCallbacks,
+>
+  extends
+    FixedPositioningTransitionCallbacks,
     TooltippedElementEventHandlers<TooltippedElement>,
     TooltipPositioningOptions,
     TooltipPositionHookOptions {
@@ -263,8 +266,9 @@ export interface TooltipOptions<
  * @since 2.8.0
  * @since 6.0.0 This was renamed from `TooltipHookProvidedTooltipProps`
  */
-export interface ProvidedTooltipProps<E extends HTMLElement = HTMLSpanElement>
-  extends Required<FixedPositioningTransitionCallbacks> {
+export interface ProvidedTooltipProps<
+  E extends HTMLElement = HTMLSpanElement,
+> extends Required<FixedPositioningTransitionCallbacks> {
   id: string;
   ref: Ref<E>;
   dense: boolean;

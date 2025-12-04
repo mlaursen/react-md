@@ -7,8 +7,7 @@ import { tableRow } from "./tableRowStyles.js";
 import { type TableRowConfiguration } from "./types.js";
 
 export interface TableRowProps
-  extends HTMLAttributes<HTMLTableRowElement>,
-    TableRowConfiguration {
+  extends HTMLAttributes<HTMLTableRowElement>, TableRowConfiguration {
   /**
    * Boolean if the current row has been selected and should apply the selected
    * background-color.

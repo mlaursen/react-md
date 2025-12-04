@@ -15,7 +15,8 @@ import { useSpinButton } from "./useSpinButton.js";
  * @since 6.4.0
  */
 export interface SpinButtonProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, keyof SpinButtonOptions>,
+  extends
+    Omit<HTMLAttributes<HTMLDivElement>, keyof SpinButtonOptions>,
     Omit<SpinButtonOptions<HTMLDivElement>, "ref" | "children"> {}
 
 /**

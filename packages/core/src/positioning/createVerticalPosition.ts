@@ -27,17 +27,16 @@ export interface VerticalFixConfig extends YCoordConfig {
 }
 
 /** @internal */
-export interface CreateVerticalPositionOptions
-  extends Required<
-    Pick<
-      FixedPositionOptions,
-      | "yMargin"
-      | "vhMargin"
-      | "preventOverlap"
-      | "disableSwapping"
-      | "disableVHBounds"
-    >
-  > {
+export interface CreateVerticalPositionOptions extends Required<
+  Pick<
+    FixedPositionOptions,
+    | "yMargin"
+    | "vhMargin"
+    | "preventOverlap"
+    | "disableSwapping"
+    | "disableVHBounds"
+  >
+> {
   y: VerticalPosition;
   vh: number;
   initialY?: number;

@@ -18,7 +18,8 @@ import {
  * @since 6.0.0
  */
 export interface LayoutWindowSplitterProps
-  extends WindowSplitterWidgetProps<HTMLButtonElement>,
+  extends
+    WindowSplitterWidgetProps<HTMLButtonElement>,
     Omit<
       BaseWindowSplitterProps,
       keyof WindowSplitterWidgetProps<HTMLButtonElement>

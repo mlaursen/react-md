@@ -73,8 +73,7 @@ interface TreeMovementOptions<T extends TreeItemNode> extends TreeExpansion {
  * @since 6.0.0
  * @internal
  */
-interface TreeMovement
-  extends KeyboardMovementProviderImplementation<HTMLUListElement> {
+interface TreeMovement extends KeyboardMovementProviderImplementation<HTMLUListElement> {
   /**
    * This will be mutated by the `TreeItem` component and used to handle
    * keyboard movement.

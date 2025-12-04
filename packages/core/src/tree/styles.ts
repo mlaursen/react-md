@@ -67,8 +67,7 @@ export function treeItem(options: TreeItemClassNameOptions = {}): string {
 }
 
 /** @since 6.0.0 */
-export interface TreeItemContentClassNameOptions
-  extends InternalListItemClassNameOptions {
+export interface TreeItemContentClassNameOptions extends InternalListItemClassNameOptions {
   /**
    * Set this
    *

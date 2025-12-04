@@ -32,7 +32,8 @@ import { type TooltipClassNameOptions, tooltip } from "./styles.js";
  * augmentation.
  */
 export interface TooltipProps
-  extends HTMLAttributes<HTMLSpanElement>,
+  extends
+    HTMLAttributes<HTMLSpanElement>,
     TooltipClassNameOptions,
     CSSTransitionComponentProps,
     SSRTransitionOptions,

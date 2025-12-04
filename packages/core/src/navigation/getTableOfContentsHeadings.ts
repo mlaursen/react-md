@@ -8,8 +8,7 @@ import {
  * @internal
  * @since 6.0.0
  */
-export interface GetTableOfContentsHeadingsOptions
-  extends Required<TableOfContentsHeadingsOptions> {
+export interface GetTableOfContentsHeadingsOptions extends Required<TableOfContentsHeadingsOptions> {
   ssr: boolean;
 }
 

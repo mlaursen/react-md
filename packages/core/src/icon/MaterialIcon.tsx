@@ -6,7 +6,8 @@ import { type MaterialIconClassNameOptions, icon } from "./styles.js";
 
 /** @since 6.0.0 */
 export interface MaterialIconProps
-  extends HTMLAttributes<HTMLSpanElement>,
+  extends
+    HTMLAttributes<HTMLSpanElement>,
     Partial<MaterialIconClassNameOptions> {
   /**
    * The icon name to use

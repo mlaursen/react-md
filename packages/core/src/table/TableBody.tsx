@@ -10,7 +10,8 @@ import {
 import { type TableConfig, type TableConfigContext } from "./types.js";
 
 export interface TableBodyProps
-  extends HTMLAttributes<HTMLTableSectionElement>,
+  extends
+    HTMLAttributes<HTMLTableSectionElement>,
     Omit<TableConfig, "header"> {}
 
 /**

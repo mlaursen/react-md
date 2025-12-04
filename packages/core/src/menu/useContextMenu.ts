@@ -48,8 +48,10 @@ export interface ContextMenuHookOptions {
  * `ContextMenuImplementation` and dropped the `menuRef` and `menuNodeRef`
  * fields.
  */
-export interface ContextMenuImplementation
-  extends UseStateObject<"visible", boolean> {
+export interface ContextMenuImplementation extends UseStateObject<
+  "visible",
+  boolean
+> {
   menuProps: ContextMenuProps;
   onContextMenu: <E extends HTMLElement>(event: MouseEvent<E>) => void;
 }

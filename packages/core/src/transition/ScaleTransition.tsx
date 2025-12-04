@@ -17,7 +17,8 @@ import {
  * @since 6.0.0 Removed portal props
  */
 export interface ScaleTransitionProps<E extends HTMLElement>
-  extends CSSTransitionComponentImplementation<E>,
+  extends
+    CSSTransitionComponentImplementation<E>,
     ScaleTransitionHookOptions<E> {}
 
 /**

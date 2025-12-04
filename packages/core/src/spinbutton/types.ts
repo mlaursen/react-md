@@ -277,14 +277,12 @@ export interface SpinButtonDigitRangeOptions {
  * @since 6.4.0
  */
 export interface SpinButtonRangeOptions
-  extends Partial<MinMaxRange>,
-    SpinButtonDigitRangeOptions {}
+  extends Partial<MinMaxRange>, SpinButtonDigitRangeOptions {}
 
 /**
  * @since 6.4.0
  */
-export interface SpinButtonTextPlaceholderOptions
-  extends SpinButtonRangeOptions {
+export interface SpinButtonTextPlaceholderOptions extends SpinButtonRangeOptions {
   /**
    * An optional fallback value to display when the spin button's value is
    * `null`. For example: if the spin button is used to set the specific hour
@@ -306,8 +304,7 @@ export interface SpinButtonTextPlaceholderOptions
 /**
  * @since 6.4.0
  */
-export interface GetSpinButtonTextContentOptions
-  extends SpinButtonTextPlaceholderOptions {
+export interface GetSpinButtonTextContentOptions extends SpinButtonTextPlaceholderOptions {
   /**
    * The current value in the spin button to convert to text. **This will be
    * called with numbers outside of the allowed range**.
@@ -332,8 +329,10 @@ export type GetSpinButtonValueText = (
 /**
  * @since 6.4.0
  */
-export interface SpinButtonFormStates
-  extends Omit<FormComponentStates, "active"> {
+export interface SpinButtonFormStates extends Omit<
+  FormComponentStates,
+  "active"
+> {
   required?: boolean;
 }
 
@@ -341,7 +340,8 @@ export interface SpinButtonFormStates
  * @since 6.4.0
  */
 export interface SpinButtonOptions<E extends HTMLElement = HTMLDivElement>
-  extends SpinButtonEventHandlers<E>,
+  extends
+    SpinButtonEventHandlers<E>,
     SpinButtonUnknownValueOptions<E>,
     SpinButtonFormStates,
     SpinButtonTextPlaceholderOptions {
@@ -387,8 +387,7 @@ export interface SpinButtonOptions<E extends HTMLElement = HTMLDivElement>
  * @since 6.4.0
  */
 export interface ProvidedSpinButtonProps<E extends HTMLElement = HTMLDivElement>
-  extends Required<SpinButtonEventHandlers<E>>,
-    SpinButtonAriaAttributes {
+  extends Required<SpinButtonEventHandlers<E>>, SpinButtonAriaAttributes {
   id: string;
   ref: Ref<E>;
   role: "spinbutton";

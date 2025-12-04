@@ -16,8 +16,10 @@ import {
  * @since 2.0.0
  * @since 4.0.0 Updated for the new CSS Transition API.
  */
-export interface CollapseProps<E extends HTMLElement>
-  extends Omit<CollapseTransitionHookOptions<E>, "transitionIn"> {
+export interface CollapseProps<E extends HTMLElement> extends Omit<
+  CollapseTransitionHookOptions<E>,
+  "transitionIn"
+> {
   /**
    * The child element that should have a `ref` and the `style`/`className`
    * props cloned into using the `cloneElement` API. If the child is a custom

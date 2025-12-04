@@ -283,8 +283,7 @@ export interface FileValidationOptions {
 }
 
 /** @since 2.9.0 */
-export interface FilesValidationOptions
-  extends Required<FileValidationOptions> {
+export interface FilesValidationOptions extends Required<FileValidationOptions> {
   /**
    * The total number of bytes in the {@link FileUploadHookReturnValue.stats}
    * list. This is really just:

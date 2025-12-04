@@ -6,16 +6,14 @@ import { type HighlightCode, type SupportedCodeLanguage } from "./types.js";
 
 const LANGUAGE_REGEX = /language-([a-z]+)/;
 
-export interface BaseHighlightedCodeBlockProps
-  extends CodeBlockConfigurableProps {
+export interface BaseHighlightedCodeBlockProps extends CodeBlockConfigurableProps {
   children: string;
   language?: SupportedCodeLanguage;
   className?: string;
   codeProps?: HTMLAttributes<HTMLElement>;
 }
 
-export interface HighlightedCodeBlockProps
-  extends BaseHighlightedCodeBlockProps {
+export interface HighlightedCodeBlockProps extends BaseHighlightedCodeBlockProps {
   highlightCode: HighlightCode;
 }
 

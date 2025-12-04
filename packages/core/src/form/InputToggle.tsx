@@ -149,7 +149,8 @@ export interface InputToggleLabelProps {
  * @since 6.0.0
  */
 export interface BaseInputToggleProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
+  extends
+    Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
     FormMessageContainerExtension,
     FormComponentStates,
     ConfigurableInputToggleIconProps,
@@ -194,8 +195,7 @@ export interface IndeterminateCheckboxProps {
 }
 
 export interface CheckboxProps
-  extends BaseInputToggleProps,
-    IndeterminateCheckboxProps {}
+  extends BaseInputToggleProps, IndeterminateCheckboxProps {}
 
 /** @since 6.0.0 */
 export interface CheckboxInputToggleProps extends CheckboxProps {

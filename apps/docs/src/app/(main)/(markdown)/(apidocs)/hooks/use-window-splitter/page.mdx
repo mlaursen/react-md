@@ -121,7 +121,8 @@ export interface WindowSplitterImplementation<
 }
 
 export interface WindowSplitterWidgetProps<E extends HTMLElement>
-  extends Required<DraggableMouseEventHandlers<E>>,
+  extends
+    Required<DraggableMouseEventHandlers<E>>,
     Required<DraggableKeyboardEventHandlers<E>> {
   "aria-orientation": "vertical" | undefined;
   "aria-valuenow": number;

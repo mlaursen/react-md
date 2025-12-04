@@ -34,8 +34,9 @@ declare module "react" {
 export const PRESSED_CLASS_NAME = "rmd-pressed";
 
 /** @since 6.0.0 */
-export interface ElementInteractionOptions<E extends HTMLElement>
-  extends Partial<ElementInteractionHandlers<E>> {
+export interface ElementInteractionOptions<
+  E extends HTMLElement,
+> extends Partial<ElementInteractionHandlers<E>> {
   /**
    * This can be used to override the {@link INTERACTION_CONFIG.mode}
    *

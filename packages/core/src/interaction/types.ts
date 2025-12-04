@@ -187,8 +187,7 @@ export interface RippleTransitionCallbacks {
  * @since 6.0.0
  * @internal
  */
-export interface ProvidedRippleContainerProps
-  extends RippleTransitionCallbacks {
+export interface ProvidedRippleContainerProps extends RippleTransitionCallbacks {
   ripples: RippleStateList;
 }
 

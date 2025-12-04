@@ -9,7 +9,8 @@ import { type TimeFieldOptions, useTimeField } from "./useTimeField.js";
  * @since 6.3.0
  */
 export interface NativeTimeFieldProps
-  extends Omit<TextFieldProps, keyof TimeFieldOptions | "value">,
+  extends
+    Omit<TextFieldProps, keyof TimeFieldOptions | "value">,
     Omit<TimeFieldOptions, "ref"> {}
 
 /**

@@ -46,7 +46,8 @@ export type MenuItemInputToggleCheckedCallback = (
 
 /** @since 2.8.0 */
 export interface BaseMenuItemInputToggleProps
-  extends HTMLAttributes<HTMLLIElement>,
+  extends
+    HTMLAttributes<HTMLLIElement>,
     ConfigurableInputToggleIconProps,
     ListItemChildrenTextProps {
   checked: boolean;
@@ -98,8 +99,7 @@ export interface BaseMenuItemInputToggleProps
 }
 
 export interface MenuItemCheckboxProps
-  extends BaseMenuItemInputToggleProps,
-    IndeterminateCheckboxProps {}
+  extends BaseMenuItemInputToggleProps, IndeterminateCheckboxProps {}
 
 export type MenuItemRadioProps = BaseMenuItemInputToggleProps;
 

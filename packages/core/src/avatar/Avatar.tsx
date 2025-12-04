@@ -15,7 +15,8 @@ export type AvatarImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
  * the `role="presentation"`.
  */
 export interface AvatarProps
-  extends Omit<HTMLAttributes<HTMLSpanElement>, "color">,
+  extends
+    Omit<HTMLAttributes<HTMLSpanElement>, "color">,
     AvatarClassNameOptions {
   /**
    * Since avatars are normally presentational data, they are hidden from screen

@@ -12,8 +12,7 @@ import { type FormMessageProps } from "./types.js";
  * @since 2.5.0
  */
 export interface FormMessageContainerProps
-  extends HTMLAttributes<HTMLDivElement>,
-    FormMessageContainerClassNameOptions {
+  extends HTMLAttributes<HTMLDivElement>, FormMessageContainerClassNameOptions {
   /**
    * If the extension doesn't actually want to render the `FormMessage`
    * component, these props are optional. It kind of eliminates the whole

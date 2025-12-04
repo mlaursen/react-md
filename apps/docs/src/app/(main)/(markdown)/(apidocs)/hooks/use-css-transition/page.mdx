@@ -283,8 +283,7 @@ An object with the following definition:
 
 ````ts disableTransform
 export interface CSSTransitionHookReturnValue<E extends HTMLElement>
-  extends TransitionHookReturnValue<E>,
-    CSSTransitionElementProps<E> {
+  extends TransitionHookReturnValue<E>, CSSTransitionElementProps<E> {
   /**
    * This can be used so that you don't need to destructure multiple props from
    * the hook return value to pass to the transitioning component.

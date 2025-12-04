@@ -24,8 +24,7 @@ export interface BaseMaxWidthTransitionOptions {
  * @since 6.0.0
  * @since 6.3.1 Extends BaseMaxWidthTransitionOptions
  */
-export interface MaxWidthTransitionOptions
-  extends BaseMaxWidthTransitionOptions {
+export interface MaxWidthTransitionOptions extends BaseMaxWidthTransitionOptions {
   element: ReactNode;
   transitionIn: boolean;
 

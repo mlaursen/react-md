@@ -18,11 +18,10 @@ import {
 } from "../types.js";
 import { useCSSTransition } from "../useCSSTransition.js";
 
-interface TestProps
-  extends Omit<
-    CSSTransitionHookOptions<HTMLElement>,
-    "transitionIn" | "timeout" | "classNames"
-  > {
+interface TestProps extends Omit<
+  CSSTransitionHookOptions<HTMLElement>,
+  "transitionIn" | "timeout" | "classNames"
+> {
   timeout?: TransitionTimeout;
   classNames?: CSSTransitionClassNames;
   defaultTransitionIn?: boolean;

@@ -42,7 +42,8 @@ const noop = (): void => {
 const noopBool = (): boolean => false;
 
 export interface BaseDialogProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends
+    HTMLAttributes<HTMLDivElement>,
     CSSTransitionComponentProps,
     TransitionActions,
     FocusContainerComponentProps {

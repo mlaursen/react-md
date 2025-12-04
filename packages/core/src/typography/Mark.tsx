@@ -8,8 +8,7 @@ import { type MarkClassNameOptions, mark } from "./markStyles.js";
  * augmentation.
  */
 export interface MarkProps
-  extends HTMLAttributes<HTMLElement>,
-    MarkClassNameOptions {
+  extends HTMLAttributes<HTMLElement>, MarkClassNameOptions {
   children: ReactNode;
 }
 

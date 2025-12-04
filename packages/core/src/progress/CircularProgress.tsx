@@ -24,7 +24,8 @@ import { type ProgressProps } from "./types.js";
  * longer rotates while increasing value.
  */
 export interface CircularProgressProps
-  extends Omit<HTMLAttributes<HTMLSpanElement>, "id">,
+  extends
+    Omit<HTMLAttributes<HTMLSpanElement>, "id">,
     ProgressProps,
     CircularProgressClassNameOptions {
   /**

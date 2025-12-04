@@ -67,8 +67,9 @@ export interface FileUploadState<CustomError = never> {
  * @since 2.9.0
  * @internal
  */
-export interface FileUploadHookState<CustomError = never>
-  extends FileUploadState<CustomError> {
+export interface FileUploadHookState<
+  CustomError = never,
+> extends FileUploadState<CustomError> {
   /**
    * All the current readers used for uploading files to the browser.
    *
@@ -86,8 +87,7 @@ export interface FileUploadHookState<CustomError = never>
  * @since 2.9.0
  */
 export interface FileUploadOptions<E extends HTMLElement, CustomError = never>
-  extends FileUploadHandlers<E>,
-    FileValidationOptions {
+  extends FileUploadHandlers<E>, FileValidationOptions {
   /**
    * Setting this value to a number greater than `0` will update the browser
    * upload process to queue the uploads in chunks instead of all at once. This
@@ -153,8 +153,8 @@ export interface FileUploadActions {
 export interface FileUploadHookReturnValue<
   E extends HTMLElement = HTMLElement,
   CustomError = never,
-> extends FileUploadActions,
-    Required<FileUploadHandlers<E>> {
+>
+  extends FileUploadActions, Required<FileUploadHandlers<E>> {
   /** {@inheritDoc FileUploadState.errors} */
   errors: readonly FileValidationError<CustomError>[];
 

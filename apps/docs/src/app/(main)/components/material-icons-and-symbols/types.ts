@@ -36,8 +36,7 @@ export interface MaterialIconsAndSymbolsRef {
   selectedIconName: MaterialIconAndSymbolName | null;
 }
 
-export interface MaterialIconsAndSymbolsState
-  extends MaterialIconsAndSymbolsRef {
+export interface MaterialIconsAndSymbolsState extends MaterialIconsAndSymbolsRef {
   filtersVisible: boolean;
 }
 
@@ -62,8 +61,7 @@ export type MaterialIconsAndSymbolsAction =
     }
   | { type: "setSymbolStylesheet"; payload: boolean };
 
-export interface MaterialIconsAndSymbolsContext
-  extends MaterialIconsAndSymbolsState {
+export interface MaterialIconsAndSymbolsContext extends MaterialIconsAndSymbolsState {
   fill: MaterialSymbolFill;
   weight: MaterialSymbolWeight;
   grade: MaterialSymbolGrade;

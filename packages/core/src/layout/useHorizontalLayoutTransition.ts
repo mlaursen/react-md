@@ -25,8 +25,7 @@ export const DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES = {
 /**
  * @since 6.0.0
  */
-export interface HorizontalLayoutTransitionOptions
-  extends PreconfiguredCSSTransitionOptions<HTMLElement> {
+export interface HorizontalLayoutTransitionOptions extends PreconfiguredCSSTransitionOptions<HTMLElement> {
   /**
    * @see {@link DEFAULT_SHEET_TIMEOUT}
    * @defaultValue `DEFAULT_SHEET_TIMEOUT`

@@ -8,8 +8,7 @@ import {
 import { formMessageCounter } from "./formMessageStyles.js";
 
 /** @since 2.9.0 */
-export interface FormMessageCounterProps
-  extends HTMLAttributes<HTMLSpanElement> {
+export interface FormMessageCounterProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * The children to display in the counter. This is normally a string like:
    *

@@ -8,8 +8,7 @@ export type DividerElement = HTMLHRElement | HTMLDivElement;
  * @since 6.0.0 Extends the {@link DividerClassNameOptions}
  */
 export interface DividerProps
-  extends HTMLAttributes<DividerElement>,
-    DividerClassNameOptions {}
+  extends HTMLAttributes<DividerElement>, DividerClassNameOptions {}
 
 /**
  * @example Simple Example

@@ -43,8 +43,7 @@ export type TableRadioSupportedRadioProps = Pick<
  * @since 6.0.0
  */
 export interface TableRadioProps
-  extends TableRadioTdHTMLAttributes,
-    TableRadioSupportedRadioProps {
+  extends TableRadioTdHTMLAttributes, TableRadioSupportedRadioProps {
   /**
    * @defaultValue `!props["aria-labelledby"] ? "Select Row" : undefined`
    */

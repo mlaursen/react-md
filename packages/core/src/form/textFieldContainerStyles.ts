@@ -8,8 +8,7 @@ const styles = bem("rmd-text-field-container");
 
 /** @since 6.0.0 */
 export interface TextFieldContainerClassNameOptions
-  extends FormThemeOptions,
-    FormComponentStates {
+  extends FormThemeOptions, FormComponentStates {
   className?: string;
 
   /** @defaultValue `false` */

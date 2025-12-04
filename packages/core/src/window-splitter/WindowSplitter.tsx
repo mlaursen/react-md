@@ -15,7 +15,8 @@ import { type useWindowSplitter } from "./useWindowSplitter.js";
  * module augmentation.
  */
 export interface BaseWindowSplitterProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type" | "children">,
+  extends
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type" | "children">,
     BaseWindowSplitterClassNameOptions {
   /**
    * This will be provided by the {@link useWindowSplitter} hook.

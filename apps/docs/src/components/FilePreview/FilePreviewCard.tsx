@@ -19,8 +19,7 @@ import styles from "./FilePreviewCard.module.scss";
 import { SimpleFilePreview } from "./SimpleFilePreview.jsx";
 
 export interface FilePreviewCardProps
-  extends HTMLAttributes<HTMLDivElement>,
-    Omit<FileUploadStats, "key"> {
+  extends HTMLAttributes<HTMLDivElement>, Omit<FileUploadStats, "key"> {
   fileKey: string;
   result?: FileReaderResult;
   remove: FileUploadActions["remove"];

@@ -78,8 +78,7 @@ export type DraggableOptions<E extends HTMLElement = HTMLElement> =
   BaseDraggableOptions<E> & DraggableStateOptions;
 
 export interface BaseDraggableOptions<E extends HTMLElement>
-  extends DraggableEventHandlers<E>,
-    ControllableDraggableStateOptions {
+  extends DraggableEventHandlers<E>, ControllableDraggableStateOptions {
   /**
    * An optional ref to merge with the returned
    * {@link DraggableImplementation.draggableRef}.
@@ -213,8 +212,9 @@ export interface BaseDraggableOptions<E extends HTMLElement>
 ## Returns
 
 ````ts disableTransform
-export interface DraggableImplementation<E extends HTMLElement = HTMLElement>
-  extends Required<DraggableEventHandlers<E>> {
+export interface DraggableImplementation<
+  E extends HTMLElement = HTMLElement,
+> extends Required<DraggableEventHandlers<E>> {
   mouseEventHandlers: Required<DraggableMouseEventHandlers<E>>;
   touchEventHandlers: Required<DraggableTouchEventHandlers<E>>;
   keyboardEventHandlers: Required<DraggableKeyboardEventHandlers<E>>;

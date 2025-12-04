@@ -18,7 +18,8 @@ export interface HighlightedCodeBlockWithAppBarAdditionalProps {
 }
 
 export interface HighlightedCodeBlockWithAppBarProps
-  extends HighlightedCodeBlockProps,
+  extends
+    HighlightedCodeBlockProps,
     HighlightedCodeBlockWithAppBarAdditionalProps {}
 
 export function HighlightedCodeBlockWithAppBar(

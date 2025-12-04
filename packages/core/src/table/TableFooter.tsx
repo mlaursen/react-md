@@ -8,8 +8,7 @@ import { type TableSectionConfiguration } from "./types.js";
 import { useTableSectionConfig } from "./useTableSectionConfig.js";
 
 export interface TableFooterProps
-  extends HTMLAttributes<HTMLTableSectionElement>,
-    TableSectionConfiguration {
+  extends HTMLAttributes<HTMLTableSectionElement>, TableSectionConfiguration {
   /**
    * NOTE: It is recommended to use the `StickyTableSection` component instead
    * of enabling this prop since it supports dynamically adding styles while the

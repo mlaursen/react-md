@@ -31,13 +31,12 @@ export interface HorizontalFixConfig extends XCoordConfig {
 /**
  * @internal
  */
-export interface CreateHorizontalPositionOptions
-  extends Required<
-    Pick<
-      FixedPositionOptions,
-      "vwMargin" | "xMargin" | "width" | "disableSwapping"
-    >
-  > {
+export interface CreateHorizontalPositionOptions extends Required<
+  Pick<
+    FixedPositionOptions,
+    "vwMargin" | "xMargin" | "width" | "disableSwapping"
+  >
+> {
   x: HorizontalPosition;
   vw: number;
   elWidth: number;
@@ -205,11 +204,10 @@ export function createAnchoredRight(config: HorizontalFixConfig): XPosition {
   return { actualX, left };
 }
 
-export interface EqualWidthOptions
-  extends Pick<
-    CreateHorizontalPositionOptions,
-    "x" | "elWidth" | "xMargin" | "vwMargin" | "containerRect" | "initialX"
-  > {
+export interface EqualWidthOptions extends Pick<
+  CreateHorizontalPositionOptions,
+  "x" | "elWidth" | "xMargin" | "vwMargin" | "containerRect" | "initialX"
+> {
   screenRight: number;
   isMinWidth: boolean;
 }

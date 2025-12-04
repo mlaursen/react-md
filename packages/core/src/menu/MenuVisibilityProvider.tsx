@@ -14,8 +14,10 @@ import { type NonNullMutableRef, type UseStateObject } from "../types.js";
  * @since 5.0.0
  * @since 6.0.0 Added the `defaultFocusIndex` ref.
  */
-export interface MenuVisibilityContext
-  extends UseStateObject<"visible", boolean> {
+export interface MenuVisibilityContext extends UseStateObject<
+  "visible",
+  boolean
+> {
   defaultFocusIndex: NonNullMutableRef<number>;
 }
 

@@ -6,8 +6,7 @@ import { type SVGIconClassNameOptions, icon } from "./styles.js";
  * @since 6.0.0 Added the `inline` and `theme` props.
  */
 export interface SVGIconProps
-  extends HTMLAttributes<SVGSVGElement>,
-    SVGIconClassNameOptions {
+  extends HTMLAttributes<SVGSVGElement>, SVGIconClassNameOptions {
   /**
    * Boolean if the SVG should gain the `focusable` attribute. This is disabled
    * by default since IE11 and Edge actually default this to true and keyboard's

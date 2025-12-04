@@ -14,8 +14,7 @@ import {
 
 /** @since 6.0.0 */
 export interface SkeletonPlaceholderProps
-  extends HTMLAttributes<HTMLDivElement>,
-    SkeletonPlaceholderOptions {
+  extends HTMLAttributes<HTMLDivElement>, SkeletonPlaceholderOptions {
   /**
    * @defaultValue `!!children`
    * @see {@link SkeletonPlaceholderOptions.disabled}

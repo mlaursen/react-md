@@ -48,8 +48,7 @@ export type TableCheckboxSupportedCheckboxProps = Pick<
  * `"Toggle Row Selection"` to `"Select Row"`.
  */
 export interface TableCheckboxProps
-  extends TableCheckboxTdHTMLAttributes,
-    TableCheckboxSupportedCheckboxProps {
+  extends TableCheckboxTdHTMLAttributes, TableCheckboxSupportedCheckboxProps {
   /**
    * @defaultValue `!props["aria-labelledby"] ? "Select Row" : undefined`
    */

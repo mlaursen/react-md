@@ -180,8 +180,7 @@ export interface KeyboardMovementUpdateFocusIndexOptions {
  * @since 6.4.0 Added `focusCurrent` and `updateFocusIndex`
  * @internal
  */
-export interface KeyboardMovementContext
-  extends Required<KeyboardMovementBehavior> {
+export interface KeyboardMovementContext extends Required<KeyboardMovementBehavior> {
   /** {@inheritDoc KeyboardMovementConfig} */
   config: NonNullRef<KeyboardMovementConfig>;
 
@@ -277,8 +276,9 @@ export type KeyboardMovementFocusChangeEventHandler = (
  * @since 6.0.0
  * @internal
  */
-export interface KeyboardMovementExtensionData<E extends HTMLElement>
-  extends KeyboardMovementContext {
+export interface KeyboardMovementExtensionData<
+  E extends HTMLElement,
+> extends KeyboardMovementContext {
   event: KeyboardEvent<E>;
   currentFocusIndex: NonNullMutableRef<number>;
   setFocusIndex: (index: number, focusables: readonly HTMLElement[]) => void;
@@ -296,8 +296,9 @@ export type KeyboardMovementEventHandlers<E extends HTMLElement> = Pick<
 /**
  * @since 6.3.0
  */
-export interface SimpleKeyboardMovementWrapperOptions<E extends HTMLElement>
-  extends KeyboardMovementEventHandlers<E> {
+export interface SimpleKeyboardMovementWrapperOptions<
+  E extends HTMLElement,
+> extends KeyboardMovementEventHandlers<E> {
   ref?: Ref<E>;
 
   /** @defaultValue `false` */
@@ -309,7 +310,8 @@ export interface SimpleKeyboardMovementWrapperOptions<E extends HTMLElement>
  * @internal
  */
 export interface KeyboardMovementProviderOptions<E extends HTMLElement>
-  extends KeyboardMovementBehavior,
+  extends
+    KeyboardMovementBehavior,
     SimpleKeyboardMovementWrapperOptions<E>,
     KeyboardMovementConfiguration {
   /** @see {@link TabIndexBehavior} */
@@ -368,8 +370,9 @@ export interface KeyboardMovementProviderOptions<E extends HTMLElement>
  * @since 6.0.0
  * @internal
  */
-export interface KeyboardMovementProps<E extends HTMLElement>
-  extends Required<KeyboardMovementEventHandlers<E>> {
+export interface KeyboardMovementProps<E extends HTMLElement> extends Required<
+  KeyboardMovementEventHandlers<E>
+> {
   /**
    * This will only be provided if the {@link KeyboardMovementContext.tabIndexBehavior}
    * is set to `"virtual"`.

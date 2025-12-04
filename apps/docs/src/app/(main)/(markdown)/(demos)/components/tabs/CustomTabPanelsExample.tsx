@@ -31,8 +31,10 @@ export default function CustomTabPanelsExample(): ReactElement {
   );
 }
 
-interface TabPanelsProps
-  extends Omit<ProvidedTabPanelsProps<HTMLDivElement>, "ref"> {
+interface TabPanelsProps extends Omit<
+  ProvidedTabPanelsProps<HTMLDivElement>,
+  "ref"
+> {
   children: ReactNode;
 }
 

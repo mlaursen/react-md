@@ -38,8 +38,7 @@ export function useTooltipHoverMode(): Readonly<TooltipHoverModeContext> {
 /**
  * @since 6.0.0
  */
-export interface TooltipHoverModeProviderProps
-  extends Partial<HoverModeConfiguration> {
+export interface TooltipHoverModeProviderProps extends Partial<HoverModeConfiguration> {
   children: ReactNode;
 
   /**

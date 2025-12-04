@@ -12,7 +12,8 @@ import {
  * `ResponsiveItemOverlayProps`.
  */
 export interface ResponsiveItemOverlayProps
-  extends HTMLAttributes<HTMLSpanElement>,
+  extends
+    HTMLAttributes<HTMLSpanElement>,
     ResponsiveItemOverlayClassNameOptions {}
 
 /**

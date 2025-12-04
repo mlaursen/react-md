@@ -31,8 +31,7 @@ export interface RangeSliderOptions extends SliderValueOptions {
  * @since 6.0.0
  */
 export interface RangeSliderImplementation
-  extends Required<SliderValueOptions>,
-    RangeSliderState {}
+  extends Required<SliderValueOptions>, RangeSliderState {}
 
 /**
  * @example Range Slider Example

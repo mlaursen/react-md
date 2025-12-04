@@ -51,7 +51,8 @@ export type TreeHTMLAttributes = Omit<
  * augmentation.
  */
 export interface TreeProps<T extends TreeItemNode>
-  extends TreeHTMLAttributes,
+  extends
+    TreeHTMLAttributes,
     TreeClassNameOptions,
     TreeExpansion,
     TreeSelection {

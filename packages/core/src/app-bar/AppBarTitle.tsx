@@ -13,8 +13,7 @@ import { type AppBarTitleClassNameOptions, appBarTitle } from "./styles.js";
  * will default to `"ellipsis"` which is new as well.
  */
 export interface AppBarTitleProps
-  extends TypographyProps,
-    AppBarTitleClassNameOptions {
+  extends TypographyProps, AppBarTitleClassNameOptions {
   /** @defaultValue `"headline-6"` */
   type?: TypographyType;
 

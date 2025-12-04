@@ -62,8 +62,7 @@ export interface CaseInsensitiveStartsWithOptions {
 /**
  * @since 6.0.0
  */
-export interface IsCaseInsensitiveMatchOptions
-  extends CaseInsensitiveStartsWithOptions {
+export interface IsCaseInsensitiveMatchOptions extends CaseInsensitiveStartsWithOptions {
   /**
    * The current search query.
    */
@@ -94,8 +93,7 @@ export function isCaseInsensitiveMatch(
  * @since 6.0.0
  */
 export interface CaseInsensitiveOptions<T>
-  extends BaseSearchOptions<T>,
-    CaseInsensitiveStartsWithOptions {}
+  extends BaseSearchOptions<T>, CaseInsensitiveStartsWithOptions {}
 
 /**
  * @example String list

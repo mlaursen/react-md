@@ -27,8 +27,7 @@ export type CustomMainElement = ElementType<
  * @since 6.0.0
  */
 export interface MainProps
-  extends HTMLAttributes<HTMLElement>,
-    MainClassNameOptions {
+  extends HTMLAttributes<HTMLElement>, MainClassNameOptions {
   /**
    * @defaultValue `"main"`
    */

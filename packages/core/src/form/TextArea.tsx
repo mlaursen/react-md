@@ -35,8 +35,7 @@ declare module "react" {
  * @since 6.0.0 Added `containerProps`.
  */
 export interface TextAreaProps
-  extends FormFieldOptions,
-    TextareaHTMLAttributes<HTMLTextAreaElement> {
+  extends FormFieldOptions, TextareaHTMLAttributes<HTMLTextAreaElement> {
   /** @defaultValue `"text-area-" + useId()` */
   id?: string;
 

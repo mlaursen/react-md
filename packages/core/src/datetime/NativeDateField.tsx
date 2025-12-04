@@ -7,7 +7,8 @@ import { type DateFieldOptions, useDateField } from "./useDateField.js";
 
 /** @since 6.3.0 */
 export interface NativeDateFieldProps
-  extends Omit<TextFieldProps, keyof DateFieldOptions | "value">,
+  extends
+    Omit<TextFieldProps, keyof DateFieldOptions | "value">,
     Omit<DateFieldOptions, "ref"> {}
 
 /**

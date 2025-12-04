@@ -3,8 +3,7 @@ import { type HTMLAttributes, forwardRef } from "react";
 import { type DialogContentClassNameOptions, dialogContent } from "./styles.js";
 
 export interface DialogContentProps
-  extends HTMLAttributes<HTMLDivElement>,
-    DialogContentClassNameOptions {}
+  extends HTMLAttributes<HTMLDivElement>, DialogContentClassNameOptions {}
 
 /**
  * The `DialogContent` component should be used as a child of the `Dialog`

@@ -42,7 +42,8 @@ export interface DateFieldConstraints {
 
 /** @since 6.3.0 */
 export interface DateFieldOptions
-  extends Omit<
+  extends
+    Omit<
       TextFieldHookOptions,
       | "isNumber"
       | "counter"
@@ -55,7 +56,8 @@ export interface DateFieldOptions
 
 /** @since 6.3.0 */
 export interface ProvidedDateFieldProps
-  extends Omit<ProvidedTextFieldProps, "value">,
+  extends
+    Omit<ProvidedTextFieldProps, "value">,
     Omit<DateFieldConstraints, "step"> {
   type: "date";
   step?: number | "any";
@@ -72,20 +74,23 @@ export interface ProvidedDateFieldMessageProps extends ProvidedDateFieldProps {
 }
 
 /** @since 6.3.0 */
-export interface DateFieldImplementation
-  extends Omit<TextFieldImplementation, "fieldProps"> {
+export interface DateFieldImplementation extends Omit<
+  TextFieldImplementation,
+  "fieldProps"
+> {
   fieldProps: ProvidedDateFieldProps;
 }
 
 /** @since 6.3.0 */
-export interface DateFieldWithMessageImplementation
-  extends Omit<TextFieldWithMessageImplementation, "fieldProps"> {
+export interface DateFieldWithMessageImplementation extends Omit<
+  TextFieldWithMessageImplementation,
+  "fieldProps"
+> {
   fieldProps: ProvidedDateFieldMessageProps;
 }
 
 /** @since 6.3.0 */
-export interface ValidatedDateFieldImplementation
-  extends DateFieldImplementation {
+export interface ValidatedDateFieldImplementation extends DateFieldImplementation {
   fieldProps: ProvidedDateFieldProps | ProvidedDateFieldMessageProps;
 }
 

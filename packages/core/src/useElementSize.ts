@@ -11,8 +11,10 @@ import {
 /**
  * @since 6.0.0
  */
-export interface ElementSizeOptions<E extends HTMLElement>
-  extends Omit<ResizeObserverHookOptions<E>, "onUpdate"> {
+export interface ElementSizeOptions<E extends HTMLElement> extends Omit<
+  ResizeObserverHookOptions<E>,
+  "onUpdate"
+> {
   /** @defaultValue `{ height: 0, width: 0 }` */
   defaultValue?: UseStateInitializer<ElementSize>;
 }
@@ -20,8 +22,9 @@ export interface ElementSizeOptions<E extends HTMLElement>
 /**
  * @since 6.0.0
  */
-export interface ElementSizeImplementation<E extends HTMLElement>
-  extends ElementSize {
+export interface ElementSizeImplementation<
+  E extends HTMLElement,
+> extends ElementSize {
   elementRef: RefCallback<E>;
 
   /**

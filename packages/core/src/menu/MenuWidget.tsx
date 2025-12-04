@@ -23,8 +23,7 @@ const noop = (): void => {
  * @internal
  */
 export interface MenuWidgetProps
-  extends HTMLAttributes<HTMLDivElement>,
-    MenuListConvenienceProps {
+  extends HTMLAttributes<HTMLDivElement>, MenuListConvenienceProps {
   isSheet: boolean;
   horizontal: boolean;
   disableElevation?: boolean;

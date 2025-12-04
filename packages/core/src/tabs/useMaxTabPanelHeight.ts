@@ -12,8 +12,10 @@ import { getTabPanelRoleOnly } from "./utils.js";
 /**
  * @since 6.0.0
  */
-export interface MaxTabPanelHeightOptions<E extends HTMLElement>
-  extends Pick<TabsImplementation, "getTabPanelsProps"> {
+export interface MaxTabPanelHeightOptions<E extends HTMLElement> extends Pick<
+  TabsImplementation,
+  "getTabPanelsProps"
+> {
   ref?: Ref<E>;
   style?: CSSProperties;
 
@@ -26,8 +28,9 @@ export interface MaxTabPanelHeightOptions<E extends HTMLElement>
 /**
  * @since 6.0.0
  */
-export interface ProvidedMaxTabPanelsHeightProps<E extends HTMLElement>
-  extends ProvidedTabPanelsProps<E> {
+export interface ProvidedMaxTabPanelsHeightProps<
+  E extends HTMLElement,
+> extends ProvidedTabPanelsProps<E> {
   style: CSSProperties;
 }
 

@@ -8,8 +8,7 @@ import { type ReactElement } from "react";
 import { LinkUnstyled, type LinkUnstyledProps } from "./LinkUnstyled.jsx";
 
 export interface ButtonStyledLinkProps
-  extends LinkUnstyledProps,
-    ButtonClassNameThemeOptions {}
+  extends LinkUnstyledProps, ButtonClassNameThemeOptions {}
 
 export function ButtonStyledLink(props: ButtonStyledLinkProps): ReactElement {
   const {

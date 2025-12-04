@@ -7,8 +7,7 @@ import { Mark, type MarkProps } from "./Mark.js";
  * @since 6.0.0
  */
 export interface HighlightTextMarkProps
-  extends HighlightTextComponentProps,
-    Omit<MarkProps, "children"> {}
+  extends HighlightTextComponentProps, Omit<MarkProps, "children"> {}
 
 /**
  * This is the default implementation for the `HighlightText` component that

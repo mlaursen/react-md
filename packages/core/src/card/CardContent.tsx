@@ -7,8 +7,7 @@ import { type CardContentClassNameOptions, cardContent } from "./styles.js";
  * removed the `disableParagraphMargin` prop.
  */
 export interface CardContentProps
-  extends HTMLAttributes<HTMLDivElement>,
-    CardContentClassNameOptions {}
+  extends HTMLAttributes<HTMLDivElement>, CardContentClassNameOptions {}
 
 /**
  * @see {@link https://react-md.dev/components/card | Card Demos}

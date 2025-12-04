@@ -14,7 +14,8 @@ import {
 import { type ButtonClassNameThemeOptions, button } from "./styles.js";
 
 export interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
+  extends
+    ButtonHTMLAttributes<HTMLButtonElement>,
     ButtonClassNameThemeOptions,
     ComponentWithRippleProps {
   /** @defaultValue `"button"` */

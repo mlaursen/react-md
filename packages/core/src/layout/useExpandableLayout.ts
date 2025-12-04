@@ -82,7 +82,8 @@ export interface ExpandableLayoutOptions extends TemporaryLayoutOptions {
  * @since 6.0.0
  */
 export interface ProvidedLayoutMainProps
-  extends ProvidedTemporaryLayoutMainProps,
+  extends
+    ProvidedTemporaryLayoutMainProps,
     CSSTransitionElementProps<HTMLElement> {}
 
 /**
@@ -102,16 +103,14 @@ export type ProvidedLayoutAppBarProps = ProvidedTemporaryLayoutAppBarProps &
 /**
  * @since 6.0.0
  */
-export interface ProvidedExpandableLayoutNavToggleProps
-  extends ProvidedLayoutNavToggleProps {
+export interface ProvidedExpandableLayoutNavToggleProps extends ProvidedLayoutNavToggleProps {
   className: string;
 }
 
 /**
  * @since 6.0.0
  */
-export interface ExpandableLayoutImplementation
-  extends TemporaryLayoutImplementation {
+export interface ExpandableLayoutImplementation extends TemporaryLayoutImplementation {
   temporary: boolean;
   persistent: boolean;
   expanded: boolean;

@@ -127,8 +127,7 @@ export interface InteractableFormComponentStates {
 /**
  * @since 6.4.0
  */
-export interface EditableFormComponentStates
-  extends InteractableFormComponentStates {
+export interface EditableFormComponentStates extends InteractableFormComponentStates {
   /** @defaultValue `false` */
   error?: boolean;
 }
@@ -278,7 +277,8 @@ export interface FormMessageClassNameOptions {
 }
 
 export interface FormMessageProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "minLength" | "maxLength">,
+  extends
+    Omit<HTMLAttributes<HTMLDivElement>, "minLength" | "maxLength">,
     FormMessageClassNameOptions {
   /**
    * If this component is acting as a form-level error message handler, the role
@@ -382,8 +382,7 @@ export interface FormMessageInputLengthCounterProps {
 }
 
 export interface FormMessageWithCounterProps
-  extends FormMessageProps,
-    FormMessageInputLengthCounterProps {}
+  extends FormMessageProps, FormMessageInputLengthCounterProps {}
 
 /**
  * @since 6.0.0
@@ -500,14 +499,12 @@ export interface LabelClassNameOptions {
 }
 
 export interface LabelProps
-  extends LabelHTMLAttributes<HTMLLabelElement>,
-    LabelClassNameOptions {}
+  extends LabelHTMLAttributes<HTMLLabelElement>, LabelClassNameOptions {}
 
 /**
  * @since 6.0.0
  */
-export interface ConfigurableTextFieldAddonProps
-  extends HTMLAttributes<HTMLSpanElement> {
+export interface ConfigurableTextFieldAddonProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * Boolean if the addon should be presentational only and prevent pointer
    * events.
@@ -542,8 +539,7 @@ export interface TextFieldAddonProps extends ConfigurableTextFieldAddonProps {
  * `leftAddonProps` / `rightAddonProps`. Removed `stretch`
  */
 export interface TextFieldContainerOptions
-  extends FormThemeOptions,
-    FormComponentStates {
+  extends FormThemeOptions, FormComponentStates {
   /**
    * Set this to `true` to enable the dense spec which reduces the height.
    *
@@ -601,8 +597,7 @@ export interface TextFieldContainerOptions
 }
 
 export interface FormFieldOptions
-  extends TextFieldContainerOptions,
-    FormMessageContainerExtension {
+  extends TextFieldContainerOptions, FormMessageContainerExtension {
   /**
    * An optional floating label to use with the text field. A label is generally
    * recommended for accessibility, but can be omitted if an `aria-label` or

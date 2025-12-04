@@ -141,7 +141,9 @@ export interface ComboboxVisibilityOptions {
 export interface ConfigurableComboboxOptions<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
-> extends ComboboxKeyboardMovementOptions<ComboboxEl>,
+>
+  extends
+    ComboboxKeyboardMovementOptions<ComboboxEl>,
     ComboboxVisibilityOptions {
   /**
    * This is the {@link InputHTMLAttributes.form} attribute and is used to
@@ -259,7 +261,9 @@ export type ConfigurableComboboxMenuProps = Partial<
  */
 export interface ProvidedComboboxMenuProps<
   PopupEl extends HTMLElement = HTMLDivElement,
-> extends Required<ComboboxTransitionCallbacks>,
+>
+  extends
+    Required<ComboboxTransitionCallbacks>,
     ComboboxWidgetPopupProps<PopupEl> {
   visible: boolean;
   onRequestClose: () => void;
@@ -276,7 +280,8 @@ export interface ProvidedComboboxMenuProps<
  * @since 6.0.0
  */
 export interface ComboboxMenuProps<PopupEl extends HTMLElement = HTMLDivElement>
-  extends Omit<ConfigurableComboboxMenuProps, keyof ProvidedComboboxMenuProps>,
+  extends
+    Omit<ConfigurableComboboxMenuProps, keyof ProvidedComboboxMenuProps>,
     ProvidedComboboxMenuProps<PopupEl> {}
 
 /**

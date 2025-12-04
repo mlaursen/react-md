@@ -42,8 +42,7 @@ export interface BaseSegmentedButtonClassNameOptions {
  * @since 6.0.0
  * @since 6.3.1 Extends BaseSegmentedButtonClassNameOptions
  */
-export interface SegmentedButtonClassNameOptions
-  extends BaseSegmentedButtonClassNameOptions {
+export interface SegmentedButtonClassNameOptions extends BaseSegmentedButtonClassNameOptions {
   /** @internal */
   pressedClassName?: string;
 }
