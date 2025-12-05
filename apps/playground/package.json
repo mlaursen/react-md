@@ -5,9 +5,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,scss,md,yml,json}\"",
+    "check-format": "prettier --check .",
+    "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
+    "lint-fix": "pnpm lint --fix",
     "dev": "next dev"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
