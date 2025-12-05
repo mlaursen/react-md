@@ -33,7 +33,7 @@ jobs:
       - run: pnpm lint
       - run: pnpm typecheck
 
-      - run: pnpm test-coverage
+      - run: pnpm test-run-coverage
       - run: pnpx codecov -t ${{ secrets.CODECOV_TOKEN }}
 
   # validate_matrix:

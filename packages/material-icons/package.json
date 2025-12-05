@@ -6,7 +6,7 @@
   "exports": {
     "./*": {
       "types": "./types.d.ts",
-      "default": "./*.js"
+      "default": "./dist/*.js"
     }
   },
   "sideEffects": false,
@@ -15,9 +15,12 @@
     "update-icons": "pnpm run run-script scripts/updateMaterialIcons.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint -c scripts/eslint.config.mjs \"scripts/**/*.ts\"",
+    "lint-fix": "pnpm lint --fix",
+    "check-format": "prettier --check .",
+    "format": "prettier --write .",
     "build": "pnpm run run-script scripts/build.ts",
-    "clean-dist": "rm -rf *Icon.d.ts *Icon.js",
-    "clean": "rm -rf .turbo node_modules *Icon.d.ts *Icon.js"
+    "clean-dist": "rm -rf dist",
+    "clean": "rm -rf .turbo node_modules dist"
   },
   "repository": {
     "type": "git",

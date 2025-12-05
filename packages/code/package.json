@@ -28,7 +28,13 @@
     "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
     "lint": "npm-run-all lint-scripts lint-styles",
-    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest"
+    "lint-fix": "npm-run-all \"lint-scripts --fix\" \"lint-styles --fix\"",
+    "check-format": "prettier --check .",
+    "format": "prettier --write .",
+    "test-run": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
+    "test": "pnpm test-run --watch",
+    "test-run-coverage": "pnpm test-run --coverage",
+    "test-run-snapshot": "pnpm test-run -u"
   },
   "engines": {
     "pnpm": ">=9",

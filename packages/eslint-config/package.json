@@ -7,6 +7,10 @@
     ".": "./index.js",
     "./package.json": "./package.json"
   },
+  "scripts": {
+    "check-format": "prettier --check .",
+    "format": "prettier --write ."
+  },
   "dependencies": {
     "@mlaursen/eslint-config": "^9.0.3"
   },
@@ -20,6 +24,6 @@
   "license": "MIT",
   "volta": {
     "node": "24.11.1",
-    "pnpm": "10.18.0"
+    "pnpm": "10.24.0"
   }
 }

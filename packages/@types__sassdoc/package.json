@@ -10,6 +10,10 @@
     },
     "./package.json": "./package.json"
   },
+  "scripts": {
+    "check-format": "prettier --check .",
+    "format": "prettier --write ."
+  },
   "engines": {
     "pnpm": ">=9",
     "node": ">=20"

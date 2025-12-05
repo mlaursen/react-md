@@ -2,12 +2,6 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
-    "@react-md/material-icons#build": {
-      "outputs": ["*Icon.d.ts", "*Icon.js"]
-    },
-    "@react-md/codemod#build": {
-      "outputs": ["dist/**"]
-    },
     "docs#build": {
       "dependsOn": ["^build"],
       "outputs": [
@@ -21,11 +15,22 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "types/**"]
     },
-    "test": {
-      "outputs": ["coverage/**"],
-      "dependsOn": []
-    },
     "lint": {},
+    "lint-fix": {},
+    "format": {},
+    "check-format": {},
+    "typecheck": {},
+    "test": {
+      "cache": false
+    },
+    "test-run": {},
+    "test-coverage": {
+      "outputs": ["coverage/**"]
+    },
+    "test-run-coverage": {
+      "outputs": ["coverage/**"]
+    },
+    "test-run-snapshot": {},
     "dev": {
       "cache": false,
       "persistent": true
@@ -35,7 +40,6 @@
     },
     "clean-dist": {
       "cache": false
-    },
-    "typecheck": {}
+    }
   }
 }

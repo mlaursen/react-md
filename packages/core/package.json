@@ -69,11 +69,17 @@
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
     "typecheck": "tsc --noEmit",
+    "check-format": "prettier --check .",
+    "format": "prettier --write .",
     "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
     "lint": "npm-run-all lint-scripts lint-styles",
-    "test": "vitest run",
-    "test-watch": "vitest"
+    "lint-fix": "npm-run-all \"lint-scripts --fix\" \"lint-styles --fix\"",
+    "test": "vitest",
+    "test-run": "vitest run",
+    "test-coverage": "vitest --coverage",
+    "test-run-coverage": "pnpm test-run --coverage",
+    "test-run-snapshot": "pnpm test-run -u"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {

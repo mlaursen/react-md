@@ -35,6 +35,8 @@
     "build-scss-watch": "pnpm run build-scss --watch",
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
+    "check-format": "prettier --check .",
+    "format": "prettier --write .",
     "typecheck": "tsc --noEmit"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
