@@ -1,5 +1,23 @@
 # react-md
 
+## 6.3.0
+
+### Minor Changes
+
+- 931ce93: Added a new `MEDIA_QUERY_CONFIG` mutable object to allow global media query changes -
+- 12affc4: The `Legend` is now able to act as a floating label within a `Fieldset`
+- 224dcfa: Updated the WindowSplitter component so it can have a custom background color while inactive -
+- 12affc4: Added more CSS variables for the text field component: `base-height`, `label-height`, `dense-height`, `dense-label-height`, `border-radius`, `outlined-border-radius`
+
+### Patch Changes
+
+- b7315e0: Typography no longer inherit overflow by default since it causes clipping in header elements
+- 29b1b5b: The `useNumberField` hook should now hopefully work correctly in React 19
+- d85581c: Updated the layout package to add an error when the `temporaryUntil` value does not match CSS to help debug issues
+- 12affc4: Started implementing the datetime package by adding a new SpinButton component
+- Updated dependencies [12affc4]
+  - @react-md/core@6.4.0
+
 ## 6.2.6
 
 ### Patch Changes
