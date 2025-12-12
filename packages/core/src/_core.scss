@@ -15,9 +15,9 @@
 @forward "box-shadows";
 @forward "interaction/interaction" as interaction-*;
 @forward "draggable/draggable" as draggable-*;
+@forward "divider/divider" as divider-*;
 @forward "window-splitter/window-splitter" as window-splitter-*;
 @forward "icon/icon" as icon-*;
-@forward "divider/divider" as divider-*;
 @forward "progress/progress" as progress-*;
 @forward "overlay/overlay" as overlay-*;
 @forward "button/button" as button-*;
