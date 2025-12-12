@@ -19,13 +19,13 @@
     "@react-md/material-icons": "workspace:*",
     "cnbuilder": "^3.1.0",
     "js-cookie": "^3.0.5",
-    "next": "^15.5.7",
+    "next": "^15.5.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
-    "@next/eslint-plugin-next": "^15.5.7",
+    "@next/eslint-plugin-next": "^15.5.9",
     "@react-md/eslint-config": "workspace:*",
     "@swc/core": "^1.15.3",
     "@trivago/prettier-plugin-sort-imports": "^6.0.0",
@@ -35,7 +35,7 @@
     "@types/react-dom": "^18.3.7",
     "eslint": "^9.39.1",
     "prettier": "^3.7.4",
-    "sass-embedded": "^1.93.3",
+    "sass-embedded": "^1.96.0",
     "serve": "^14.2.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
