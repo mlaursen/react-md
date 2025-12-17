@@ -520,6 +520,15 @@ $variables: (
   }
 }
 
+//Helper function for default focus selector
+@function _default-focus-selector() {
+  @if utils.$disable-focus-visible {
+    @return "&:focus";
+  } @else {
+    @return "&:focus-visible";
+  }
+}
+
 /// Creates a "surface" for an interactable element that:
 /// - applies a focus outline/box-shadow
 /// - applies different background colors based on the `focus` and `hover` states
@@ -552,7 +561,7 @@ $variables: (
 /// @param {Boolean} $disable-background [$disable-focus-background] - Set to
 /// `true` to disable the focus background color styles.
 @mixin surface(
-  $focus-selector: "&:focus" + if(utils.$disable-focus-visible, "", "-visible"),
+  $focus-selector: _default-focus-selector(),
   $keyboard-only-focus: utils.$disable-focus-visible,
   $disabled-selector: "&:disabled",
   $clickable: true,
@@ -584,9 +593,15 @@ $variables: (
       @include use-var(background-color);
     }
 
+    $transition-property: null;
+    @if $focus-box-shadow {
+      $transition-property: background-color, box-shadow;
+    } @else {
+      $transition-property: background-color, outline-color;
+    }
+
     transition-duration: transition.$linear-duration;
-    transition-property:
-      background-color, if($focus-box-shadow, box-shadow, outline-color);
+    transition-property: $transition-property;
     transition-timing-function: transition.$linear-timing-function;
   }
 

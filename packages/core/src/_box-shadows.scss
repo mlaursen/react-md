@@ -203,7 +203,12 @@ $box-shadow-3-layers: (
   $create-pseudo: true,
   $position-relative: true
 ) {
-  $pseudo-selector: if($pseudo-before, "&::before", "&::after");
+  $pseudo-selector: null;
+  @if $pseudo-before {
+    $pseudo-selector: "&::before";
+  } @else {
+    $pseudo-selector: "&::after";
+  }
   $suffix: string.slice($pseudo-selector, 2);
   $active-string: "";
 
@@ -230,7 +235,11 @@ $box-shadow-3-layers: (
       @for $i from 1 to list.length($active-selectors) + 1 {
         $selector: list.nth($active-selectors, $i);
 
-        $prefix: $active-string + if($i > 1, ", ", "");
+        @if $i > 1 {
+          $prefix: $active-string + ", ";
+        } @else {
+          $prefix: $active-string + "";
+        }
         $active-string: $prefix + $selector + $suffix;
       }
     }
@@ -282,16 +291,23 @@ $box-shadow-3-layers: (
   $opacity-boost: 0,
   $position-relative: true
 ) {
-  $start-shadow: if(
-    $start-z-value == none or $start-z-value == 0,
-    none,
-    box-shadow($start-z-value, $color, $opacity-boost)
-  );
-  $end-shadow: if(
-    $end-z-value == none or $end-z-value == 0,
-    none,
-    if($end-z-value, box-shadow($end-z-value, $color, $opacity-boost), null)
-  );
+  $start-shadow: null;
+  @if $start-z-value == none or $start-z-value == 0 {
+    $start-shadow: none;
+  } @else {
+    $start-shadow: box-shadow($start-z-value, $color, $opacity-boost);
+  }
+
+  $end-shadow: null;
+  @if $end-z-value == none or $end-z-value == 0 {
+    $end-shadow: none;
+  } @else {
+    @if $end-z-value {
+      $end-shadow: box-shadow($end-z-value, $color, $opacity-boost);
+    } @else {
+      $end-shadow: null;
+    }
+  }
 
   @include box-shadow-transition(
     $start-shadow,

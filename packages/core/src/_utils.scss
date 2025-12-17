@@ -97,30 +97,43 @@ $_swappable-properties: text-align;
 /// @param {String} error-message - The additional error message to display
 /// @returns {any} the value from the list or map
 @function validate($options, $key-or-value, $error-message) {
-  $options: if(
-    meta.type-of($options) == string,
-    list.append((), $options),
-    $options
-  );
+  @if meta.type-of($options) == string {
+    $options: list.append((), $options);
+  }
 
   $type: meta.type-of($options);
   $is-map: $type == map;
   $is-list: $type == list;
 
   @if $disable-validation {
-    @return if($is-list, $key-or-value, map.get($options, $key-or-value));
+    @if $is-list {
+      @return $key-or-value;
+    } @else {
+      @return map.get($options, $key-or-value);
+    }
   }
 
   @if not $is-map and not $is-list {
     @error "Unable to validate anything except for lists and maps at this time. Received: '#{$options}'.";
   }
 
-  $choices: if($is-map, map.keys($options), $options);
+  $choices: null;
+
+  @if $is-map {
+    $choices: map.keys($options);
+  } @else {
+    $choices: $options;
+  }
+
   @if not list.index($choices, $key-or-value) {
     @error "Invalid #{$error-message}: '#{$key-or-value}'. Choose one of: #{$choices}";
   }
 
-  @return if($is-list, $key-or-value, map.get($options, $key-or-value));
+  @if $is-list {
+    @return $key-or-value;
+  } @else {
+    @return map.get($options, $key-or-value);
+  }
 }
 
 /// Used to get a custom property variable name.
@@ -272,7 +285,11 @@ $_swappable-properties: text-align;
   content: "";
   inset: $inset;
   pointer-events: none;
-  position: if($fixed, fixed, absolute);
+  @if $fixed {
+    position: fixed;
+  } @else {
+    position: absolute;
+  }
   z-index: $z-index;
 }
 
@@ -349,8 +366,13 @@ $_swappable-properties: text-align;
   $css-modules: false,
   $parent-selector: true
 ) {
-  $selector: if($css-modules, ":global #{$selector} :local", $selector);
-  $selector: if($parent-selector, "#{$selector} &", $selector);
+  @if $css-modules {
+    $selector: ":global #{$selector} :local";
+  }
+
+  @if $parent-selector {
+    $selector: "#{$selector} &";
+  }
 
   #{$selector} {
     @content;
