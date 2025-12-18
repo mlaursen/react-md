@@ -28,33 +28,42 @@ $disable-floating: false !default;
         @if not $disable-floating {
           &--floating {
             @include label.set-var(floating-active-y, -50%);
-            @include label.set-var(active-padding, 0 label.$floating-padding);
-            @include label.set-var(
-              active-background-color,
-              theme.theme-get-var(background-color)
-            );
             @include label.set-var(
               floating-active-x,
               text-field.get-var(padding-left)
             );
+
+            .rmd-fieldset:has(:focus-within) & {
+              @include label.active-styles;
+            }
           }
 
           @if not base.$form-disable-filled-theme {
-            @include text-field.set-var(
-              padding-left,
-              text-field.get-var(filled-padding)
-            );
+            &--floating-filled {
+              @include text-field.set-var(
+                padding-left,
+                text-field.get-var(filled-padding)
+              );
+              @include label.set-var(floating-active-y, -100%);
+            }
           }
 
           @if not base.$form-disable-underlined-theme {
-            @include text-field.set-var(
-              padding-left,
-              text-field.get-var(underlined-padding)
-            );
+            &--floating-underline {
+              @include text-field.set-var(
+                padding-left,
+                text-field.get-var(underlined-padding)
+              );
+            }
           }
 
           @if not base.$form-disable-outlined-theme {
             &--floating-outline {
+              @include label.set-var(active-padding, 0 label.$floating-padding);
+              @include label.set-var(
+                active-background-color,
+                theme.theme-get-var(background-color)
+              );
               @include text-field.set-var(
                 padding-left,
                 text-field.get-var(outlined-padding)

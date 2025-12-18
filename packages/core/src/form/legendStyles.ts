@@ -13,7 +13,7 @@ const styles = bem("rmd-legend");
  */
 export type LegendLabelClassNameOptions = Pick<
   LabelClassNameOptions,
-  "active" | "gap" | "dense" | "error" | "stacked" | "disabled" | "reversed"
+  "active" | "gap" | "error" | "stacked" | "disabled" | "reversed"
 >;
 
 /**
