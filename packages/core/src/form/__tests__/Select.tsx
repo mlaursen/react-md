@@ -7,6 +7,7 @@ import { FontIcon } from "../../icon/FontIcon.js";
 import { CircularProgress } from "../../progress/CircularProgress.js";
 import {
   act,
+  fireEvent,
   getSelectTestElements,
   rmdRender,
   screen,
@@ -25,11 +26,7 @@ function Test<Value extends string = string>(
   props: Partial<SelectProps<Value>>
 ): ReactElement {
   return (
-    <Select
-      label="Select"
-      {...props}
-      selectedOptionProps={{ "data-testid": "selected" }}
-    >
+    <Select label="Select" {...props}>
       <Option value="a">Option 1</Option>
       <Option value="b">Option 2</Option>
       <Option value="c">Option 3</Option>
@@ -352,6 +349,31 @@ describe("Select", () => {
     );
 
     TRANSITION_CONFIG.disabled = true;
+  });
+
+  it("should allow for a placeholder while no option is selected", () => {
+    const { selectInput, selectedOption } = render({
+      placeholder: "Select an option",
+    });
+
+    expect(selectedOption).toHaveTextContent("Select an option");
+
+    fireEvent.change(selectInput, { target: { value: "a" } });
+    expect(selectedOption).toHaveTextContent("Option 1");
+  });
+
+  it("should allow the selectedOptionProps.children to override the display value", () => {
+    const { selectInput, selectedOption } = render({
+      placeholder: "Placeholder",
+      selectedOptionProps: {
+        children: "Always shown",
+      },
+    });
+
+    expect(selectedOption).toHaveTextContent("Always shown");
+
+    fireEvent.change(selectInput, { target: { value: "a" } });
+    expect(selectedOption).toHaveTextContent("Always shown");
   });
 
   describe("keyboard behavior", () => {

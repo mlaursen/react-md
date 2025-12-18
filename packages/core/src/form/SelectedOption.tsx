@@ -33,7 +33,7 @@ export function SelectedOption(props: SelectedOptionProps): ReactElement {
     ...remaining
   } = props;
 
-  let children = option?.children || placeholder;
+  let children = remaining.children ?? (option?.children || placeholder);
   // when the children are a string or number, wrap it in additional span so
   // that overflow can be ellipsis-ed
   if (typeof children === "string" || typeof children === "number") {

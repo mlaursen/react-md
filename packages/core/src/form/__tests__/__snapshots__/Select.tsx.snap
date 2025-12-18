@@ -218,7 +218,6 @@ exports[`Select > should apply the correct styling, HTMLAttributes, and allow a 
 >
   <div
     class="rmd-box rmd-box--gap rmd-selected-option rmd-text-field"
-    data-testid="selected"
   />
   <input
     aria-hidden="true"
@@ -263,7 +262,6 @@ exports[`Select > should apply the correct styling, HTMLAttributes, and allow a 
 >
   <div
     class="rmd-box rmd-box--gap rmd-selected-option rmd-text-field"
-    data-testid="selected"
   />
   <input
     aria-hidden="true"
