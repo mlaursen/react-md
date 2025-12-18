@@ -224,10 +224,8 @@ $variables: (
 /// @param {String} addon-selector
 /// @returns {String} a class name selector
 @function _add-has-selector($appending-selector, $addon-selector) {
-  $prefix: null;
-  @if string.length($appending-selector) {
-    $prefix: "";
-  } @else {
+  $prefix: "";
+  @if not string.length($appending-selector) {
     $prefix: "&";
   }
 

@@ -125,13 +125,9 @@ $variables: (
 /// @param {String} position [null] - This should be one of `left`, `right`,
 /// `top`, `bottom`
 @mixin border-style($position: null) {
-  $property: null;
-  $var-name: null;
-
-  @if not $position {
-    $property: border;
-    $var-name: size;
-  } @else {
+  $property: border;
+  $var-name: size;
+  @if $position {
     $property: "border-#{$position}";
     $var-name: border-size;
   }

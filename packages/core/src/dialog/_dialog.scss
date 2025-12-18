@@ -87,23 +87,19 @@ $z-index: utils.$temporary-element-z-index !default;
 
 /// The default background color for a dialog.
 /// @type Color
-$background-color: null;
-@if theme.$disable-dark-elevation {
-  $background-color: theme.theme-get-var(surface-color);
-} @else {
-  $background-color: null;
-}
-$background-color: $background-color !default;
+// prettier-ignore
+$background-color: if(
+  sass(theme.$disable-dark-elevation): theme.theme-get-var(surface-color);
+  else: null
+) !default;
 
 /// The default text color for a dialog.
 /// @type Color
-$color: null;
-@if theme.$disable-dark-elevation {
-  $color: theme.theme-get-var(text-primary-color);
-} @else {
-  $color: null;
-}
-$color: $color !default;
+// prettier-ignore
+$color: if(
+  sass(theme.$disable-dark-elevation): theme.theme-get-var(text-primary-color);
+  else: null,
+) !default;
 
 /// The `min-width` to apply to all `Dialog`s.
 ///

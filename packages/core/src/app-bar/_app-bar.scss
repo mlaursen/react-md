@@ -115,16 +115,11 @@ $light-theme-surface-color: a11y.contrast-color(
 /// The background color to use when `theme="surface"` and using the global dark
 /// theme
 /// @type Color
-$dark-theme-surface-background-color: null;
-@if theme.$disable-dark-elevation {
-  $dark-theme-surface-background-color: theme.$dark-theme-surface-color;
-} @else {
-  $dark-theme-surface-background-color: map.get(
-    theme.$dark-elevation-colors,
-    $fixed-elevation
-  );
-}
-$dark-theme-surface-background-color: $dark-theme-surface-background-color !default;
+// prettier-ignore
+$dark-theme-surface-background-color: if(
+  sass(theme.$disable-dark-elevation): theme.$dark-theme-surface-color;
+  else: map.get(theme.$dark-elevation-colors, $fixed-elevation)
+) !default;
 
 /// The text color to use when `theme="surface"` and using the global dark theme
 /// @type Color

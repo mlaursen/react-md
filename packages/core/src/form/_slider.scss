@@ -634,18 +634,13 @@ $variables: (
       }
 
       .rmd-slider-thumb {
-        $color-var-name: null;
+        $color-name: active-color;
         $color-fallback: null;
-
         @if $track-color {
-          $color-var-name: color;
+          $color-name: color;
           $color-fallback: theme.theme-color-var-fallback($track-color);
-        } @else {
-          $color-var-name: active-color;
-          $color-fallback: null;
         }
-
-        @include use-var(background-color, $color-var-name, $color-fallback);
+        @include use-var(background-color, $color-name, $color-fallback);
 
         border-radius: $thumb-border-radius;
         height: $thumb-size;

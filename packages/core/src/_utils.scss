@@ -108,21 +108,18 @@ $_swappable-properties: text-align;
   @if $disable-validation {
     @if $is-list {
       @return $key-or-value;
-    } @else {
-      @return map.get($options, $key-or-value);
     }
+
+    @return map.get($options, $key-or-value);
   }
 
   @if not $is-map and not $is-list {
     @error "Unable to validate anything except for lists and maps at this time. Received: '#{$options}'.";
   }
 
-  $choices: null;
-
+  $choices: $options;
   @if $is-map {
     $choices: map.keys($options);
-  } @else {
-    $choices: $options;
   }
 
   @if not list.index($choices, $key-or-value) {
@@ -131,9 +128,9 @@ $_swappable-properties: text-align;
 
   @if $is-list {
     @return $key-or-value;
-  } @else {
-    @return map.get($options, $key-or-value);
   }
+
+  @return map.get($options, $key-or-value);
 }
 
 /// Used to get a custom property variable name.
@@ -285,11 +282,7 @@ $_swappable-properties: text-align;
   content: "";
   inset: $inset;
   pointer-events: none;
-  @if $fixed {
-    position: fixed;
-  } @else {
-    position: absolute;
-  }
+  position: if(sass($fixed): fixed; else: absolute);
   z-index: $z-index;
 }
 
@@ -369,7 +362,6 @@ $_swappable-properties: text-align;
   @if $css-modules {
     $selector: ":global #{$selector} :local";
   }
-
   @if $parent-selector {
     $selector: "#{$selector} &";
   }

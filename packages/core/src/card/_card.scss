@@ -59,16 +59,11 @@ $light-theme-background-color: theme.theme-get-var(surface-color) !default;
 
 /// The background color to use when using the global dark theme
 /// @type Color
-$dark-theme-background-color: null;
-@if theme.$disable-dark-elevation {
-  $dark-theme-background-color: theme.$dark-theme-surface-color;
-} @else {
-  $dark-theme-background-color: map.get(
-    theme.$dark-elevation-colors,
-    $elevation
-  );
-}
-$dark-theme-background-color: $dark-theme-background-color !default;
+// prettier-ignore
+$dark-theme-background-color: if(
+  sass(theme.$disable-dark-elevation): theme.$dark-theme-surface-color;
+  else: map.get(theme.$dark-elevation-colors, $elevation)
+) !default;
 
 /// The default card background color
 /// @type Color
@@ -231,14 +226,11 @@ $variables: (background-color, color);
           column-gap: $header-spacing;
           display: flex;
           max-width: 100%;
-          $padding-value: null;
-          @if $header-padding == $header-padding-top or not $header-padding-top
-          {
-            $padding-value: $header-padding;
-          } @else {
-            $padding-value: $header-padding-top $header-padding $header-padding;
-          }
-          padding: $padding-value;
+          // prettier-ignore
+          padding: if(
+            sass($header-padding == $header-padding-top or not $header-padding-top): $header-padding;
+            else: $header-padding-top $header-padding $header-padding
+          );
         }
 
         &__header-content {

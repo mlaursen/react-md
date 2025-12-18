@@ -91,15 +91,14 @@ $large-size: 2rem !default;
       @include hidden-input-styles(true);
 
       .rmd-input-toggle {
-        @include icon.set-var(color, currentcolor);
-        $focus-selector-value: null;
+        $focus-selector: "&:has(:focus-visible)";
         @if utils.$disable-has-selectors or utils.$disable-focus-visible {
-          $focus-selector-value: "&:focus-within";
-        } @else {
-          $focus-selector-value: "&:has(:focus-visible)";
+          $focus-selector: "&:focus-within";
         }
+
+        @include icon.set-var(color, currentcolor);
         @include interaction.surface(
-          $focus-selector: $focus-selector-value,
+          $focus-selector: $focus-selector,
           $keyboard-only-focus: utils.$disable-has-selectors or
             utils.$disable-focus-visible,
           $disabled-selector: "&--disabled",

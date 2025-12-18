@@ -183,9 +183,7 @@ $_linear-channel-values: (
   $light-contrast: _contrast($background-color, $light-color);
   $dark-contrast: _contrast($background-color, $dark-color);
 
-  @if $light-contrast > $dark-contrast {
-    @return $light-color;
-  } @else {
-    @return $dark-color;
-  }
+  @return if(
+    sass($light-contrast > $dark-contrast): $light-color; else: $dark-color
+  );
 }

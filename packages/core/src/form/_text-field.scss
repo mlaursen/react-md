@@ -593,14 +593,14 @@ $variables: (
         }
 
         @if not $disable-addon {
-          $padding-part: "";
+          $maybe-padding: "";
           @if $underlined-padding {
-            $padding-part: "#{$underlined-padding} + ";
+            $maybe-padding: "#{$underlined-padding} + ";
           }
 
           $addon-offset: calc(
             #{icon.get-var(size) +
-              $padding-part} +
+              $maybe-padding} +
               $underlined-label-left-offset *
               2
           );

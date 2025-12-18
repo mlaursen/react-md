@@ -165,12 +165,8 @@ $variables: (
 /// @param {Boolean} disable-prefix [false] - Set to `true` to disable the
 /// `.rmd-avatar--` prefix for the class name
 @mixin custom-color($name, $color, $background-color, $disable-prefix: false) {
-  $class-name: null;
-  @if $disable-prefix {
-    $class-name: $name;
-  } @else {
-    $class-name: ".rmd-avatar--#{$name}";
-  }
+  // prettier-ignore
+  $class-name: if(sass($disable-prefix): $name; else: ".rmd-avatar--#{$name}");
 
   #{$class-name} {
     @include set-var(background-color, $background-color);

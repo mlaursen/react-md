@@ -80,13 +80,11 @@ $track-light-background-color: colors.$grey-400 !default;
 
 /// The background color to apply to the `SwitchTrack` in the dark theme.
 /// @type Color
-$track-dark-background-color: null;
-@if theme.$disable-dark-elevation {
-  $track-dark-background-color: $track-light-background-color;
-} @else {
-  $track-dark-background-color: map.get(theme.$dark-elevation-colors, 24);
-}
-$track-dark-background-color: $track-dark-background-color !default;
+// prettier-ignore
+$track-dark-background-color: if(
+  sass(theme.$disable-dark-elevation): $track-light-background-color;
+  else: map.get(theme.$dark-elevation-colors, 24)
+) !default;
 
 /// The default background color to apply to the `SwitchTrack`.
 /// @type Color
@@ -276,11 +274,9 @@ $variables: (track-background-color, ball-background-color);
             z-index: 0;
           }
 
-          $active-selector: null;
-          @if $disable-menu-item-switch {
-            $active-selector: ".rmd-switch__input:checked + &";
-          } @else {
-            $active-selector: ".rmd-switch__input:checked + &" + ", &--active";
+          $active-selector: ".rmd-switch__input:checked + &";
+          @if not $disable-menu-item-switch {
+            $active-selector: $active-selector + ", &--active";
           }
 
           #{$active-selector} {

@@ -408,6 +408,14 @@ $variables: (
         }
 
         @if not $disable-contained {
+          $contained-elevation-end: null;
+          @if not
+            $disable-contained-pressed-elevation and
+            $contained-pressed-elevation
+          {
+            $contained-elevation-end: $contained-pressed-elevation;
+          }
+
           &--contained {
             // contained buttons should _normally_ always force dark background
             // colors for the interaction states This means use the default light
@@ -422,14 +430,9 @@ $variables: (
             );
             @include set-var(color, get-var(contained-color));
 
-            $pressed-elevation: null;
-            @if not $disable-contained-pressed-elevation {
-              $pressed-elevation: $contained-pressed-elevation;
-            }
-
             @include box-shadows.elevation-transition(
               $contained-elevation,
-              $pressed-elevation,
+              $contained-elevation-end,
               "&.rmd-button--pressed",
               $pseudo-before: false,
               $position-relative: false

@@ -222,13 +222,11 @@ $dark-theme-background-color: #121212 !default;
 /// color depending on its elevation.
 ///
 /// @type Color
-$dark-theme-surface-color: null;
-@if $disable-dark-elevation {
-  $dark-theme-surface-color: colors.$grey-800;
-} @else {
-  $dark-theme-surface-color: null;
-}
-$dark-theme-surface-color: $dark-theme-surface-color !default;
+// prettier-ignore
+$dark-theme-surface-color: if(
+  sass($disable-dark-elevation): colors.$grey-800;
+  else: null
+) !default;
 
 /// The primary text color when using the dark theme.
 /// @type Color
@@ -252,11 +250,7 @@ $dark-theme-text-disabled-color: rgba($dark-theme-inverse-color, 0.38) !default;
 /// @param {Color} dark-color - The dark theme color
 /// @returns {Color} The correct color depending on the `$color-scheme`
 @function get-default-color($light-color, $dark-color) {
-  @if $color-scheme == dark {
-    @return $dark-color;
-  } @else {
-    @return $light-color;
-  }
+  @return if(sass($color-scheme == dark): $dark-color; else: $light-color);
 }
 
 /// The default background color
@@ -525,11 +519,7 @@ $theme-variables: (
 /// @param {any} value - The value to maybe return
 /// @return {any} the `$value` if it was theme var, otherwise null
 @function theme-color-var-fallback($value) {
-  @if is-theme-color-var($value) {
-    @return $value;
-  } @else {
-    @return null;
-  }
+  @return if(sass(is-theme-color-var($value)): $value; else: null);
 }
 
 /// @param {Number} z-value - The dark elevation value
@@ -787,11 +777,9 @@ $theme-variables: (
 
   @if not $current-color-index {
     @if not $fallback-color {
-      $fallback: null;
+      $fallback: "a fallback color";
       @if $fallback-name {
         $fallback: "the '$#{$fallback-name}' variable";
-      } @else {
-        $fallback: "a fallback color";
       }
 
       $error-msg: "Invalid material design color: '#{$color}'. If this was intentional because your app does " +
@@ -805,19 +793,16 @@ $theme-variables: (
     }
   }
 
-  $color-suffixes: null;
-  @if $accent {
-    $color-suffixes: colors.$accent-suffixes;
-  } @else {
-    $color-suffixes: colors.$primary-suffixes;
-  }
-
+  // prettier-ignore
+  $current-suffixes: if(
+    sass(not $accent): colors.$primary-suffixes;
+    else: colors.$accent-suffixes
+  );
   $suffixes: utils.validate(
-    $color-suffixes,
+    $current-suffixes,
     $swatch,
     "material design color swatch"
   );
-
   $current-color-name: list.nth(
     map.keys(colors.$color-map),
     $current-color-index
@@ -848,13 +833,7 @@ $theme-variables: (
     }
   }
 
-  $accent-suffix: null;
-  @if $accent {
-    $accent-suffix: "-a";
-  } @else {
-    $accent-suffix: "";
-  }
-  $color-name: "#{$current-color-name}#{$accent-suffix}-#{$swatch}";
+  $color-name: "#{$current-color-name}#{if(sass(not $accent): ""; else: "-a")}-#{$swatch}";
 
   @return map.get(colors.$color-map, $color-name);
 }

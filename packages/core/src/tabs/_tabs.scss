@@ -368,11 +368,9 @@ $variables: (
     }
 
     @include utils.rtl {
-      $button-selector: null;
-      @if $disable-tablist-scroll-button-vertical {
-        $button-selector: "&__button";
-      } @else {
-        $button-selector: "&__button" +
+      $button-selector: "&__button";
+      @if not $disable-tablist-scroll-button-vertical {
+        $button-selector: $button-selector +
           ":where(:not(.rmd-tablist-button__button--v))";
       }
 
