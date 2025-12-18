@@ -1,5 +1,20 @@
 # @react-md/core
 
+## 6.5.0
+
+### Minor Changes
+
+- c9efa12: Updated the `Select` component to have a new `getSelectedOptionChildren` prop to dynamically configure the selected option display children for additional customization. #1470
+
+### Patch Changes
+
+- 01c4e0a: Fixed the filled text field theme styling for floating labels
+- 81a0b0e: Allow the selectedOptionProps.children to override the Select display value
+- 7a98aec: Updated the floating label transform behavior to make positioning calculations easiser
+- 16dc984: Fixed the Sass circular dependency for divider
+- fc2cd20: Fixed the floating legend styles for underline and filled themes
+- 99fe90c: Updated all Sass files for the new [if function behavior](https://sass-lang.com/documentation/breaking-changes/if-function/). This might require updating `sass-embedded` or `sass` to the latest version
+
 ## 6.4.0
 
 ### Minor Changes

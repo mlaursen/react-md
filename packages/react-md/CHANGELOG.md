@@ -1,5 +1,18 @@
 # react-md
 
+## 6.3.1
+
+### Patch Changes
+
+- Updated dependencies [01c4e0a]
+- Updated dependencies [81a0b0e]
+- Updated dependencies [7a98aec]
+- Updated dependencies [16dc984]
+- Updated dependencies [c9efa12]
+- Updated dependencies [fc2cd20]
+- Updated dependencies [99fe90c]
+  - @react-md/core@6.5.0
+
 ## 6.3.0
 
 ### Minor Changes
