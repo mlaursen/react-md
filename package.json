@@ -51,7 +51,7 @@
     "@mlaursen/release-script": "^0.0.6",
     "@trivago/prettier-plugin-sort-imports": "^6.0.0",
     "cross-env": "^10.1.0",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "npm-run-all2": "^8.0.2",

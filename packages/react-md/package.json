@@ -62,9 +62,9 @@
   },
   "devDependencies": {
     "@swc/cli": "^0.7.9",
-    "@swc/core": "^1.15.3",
+    "@swc/core": "^1.15.7",
     "@trivago/prettier-plugin-sort-imports": "^6.0.0",
-    "@types/node": "^24.10.1",
+    "@types/node": "^24.10.4",
     "chokidar": "^5.0.0",
     "glob": "^13.0.0",
     "npm-run-all2": "^8.0.2",

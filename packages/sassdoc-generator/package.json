@@ -41,16 +41,16 @@
     "@types/sassdoc": "workspace:*",
     "docs-generator": "workspace:*",
     "prettier": "^3.7.4",
-    "sass": "^1.96.0",
+    "sass": "^1.97.0",
     "sassdoc": "^2.7.4"
   },
   "devDependencies": {
     "@react-md/eslint-config": "workspace:*",
     "@swc/cli": "^0.7.9",
-    "@swc/core": "^1.15.3",
+    "@swc/core": "^1.15.7",
     "@trivago/prettier-plugin-sort-imports": "^6.0.0",
-    "@types/node": "^24.10.1",
-    "eslint": "^9.39.1",
+    "@types/node": "^24.10.4",
+    "eslint": "^9.39.2",
     "npm-run-all2": "^8.0.2",
     "typescript": "^5.9.3"
   },
