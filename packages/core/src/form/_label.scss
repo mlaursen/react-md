@@ -151,8 +151,8 @@ $variables: (
   @include use-var(background-color, active-background-color);
   @include use-var(padding, active-padding);
 
-  transform: scale($floating-scale)
-    translate(get-var(floating-active-x), get-var(floating-active-y));
+  transform: translate(get-var(floating-active-x), get-var(floating-active-y))
+    scale($floating-scale);
   // need to add the `transform-origin` because of the scaling applied.
   // it'll change the position based on the size of the label otherwise
   transform-origin: 0 0;
