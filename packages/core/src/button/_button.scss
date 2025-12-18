@@ -422,13 +422,14 @@ $variables: (
             );
             @include set-var(color, get-var(contained-color));
 
+            $pressed-elevation: null;
+            @if not $disable-contained-pressed-elevation {
+              $pressed-elevation: $contained-pressed-elevation;
+            }
+
             @include box-shadows.elevation-transition(
               $contained-elevation,
-              if(
-                $disable-contained-pressed-elevation,
-                null,
-                $contained-pressed-elevation
-              ),
+              $pressed-elevation,
               "&.rmd-button--pressed",
               $pseudo-before: false,
               $position-relative: false

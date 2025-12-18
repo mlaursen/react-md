@@ -182,11 +182,13 @@ $solid-light-color: a11y.contrast-color($solid-light-background-color) !default;
 
 /// The dark theme background color for the `theme="solid"`
 /// @type Color
-$solid-dark-background-color: if(
-  theme.$disable-dark-elevation,
-  colors.$grey-900,
-  map.get(theme.$dark-elevation-colors, 12)
-) !default;
+$solid-dark-background-color: null;
+@if theme.$disable-dark-elevation {
+  $solid-dark-background-color: colors.$grey-900;
+} @else {
+  $solid-dark-background-color: map.get(theme.$dark-elevation-colors, 12);
+}
+$solid-dark-background-color: $solid-dark-background-color !default;
 
 /// The dark theme background color for the `theme="solid"` and the `Chip` is
 /// disabled.
@@ -261,11 +263,16 @@ $outline-dark-color: $outline-light-color !default;
 
 /// The background-color to use in dark themes when `theme="outline"`
 /// @type Color
-$outline-dark-background-color: if(
-  theme.$disable-dark-elevation,
-  theme.$dark-theme-surface-color,
-  map.get(theme.$dark-elevation-colors, $outline-raisable-box-shadow-z-value)
-) !default;
+$outline-dark-background-color: null;
+@if theme.$disable-dark-elevation {
+  $outline-dark-background-color: theme.$dark-theme-surface-color;
+} @else {
+  $outline-dark-background-color: map.get(
+    theme.$dark-elevation-colors,
+    $outline-raisable-box-shadow-z-value
+  );
+}
+$outline-dark-background-color: $outline-dark-background-color !default;
 
 /// The text color to use in dark themes when `theme="outline"`
 /// @type Color

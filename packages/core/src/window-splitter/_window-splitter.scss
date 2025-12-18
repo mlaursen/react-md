@@ -125,12 +125,12 @@ $variables: (
 /// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $disable-everything {
-    $pseudo-selectors: if(
-        not $disable-inactive-background-color,
-        "&::before, ",
-        ""
-      ) +
-      "&::after";
+    $pseudo-selectors: null;
+    @if not $disable-inactive-background-color {
+      $pseudo-selectors: "&::before, " + "&::after";
+    } @else {
+      $pseudo-selectors: "&::after";
+    }
 
     @include utils.optional-layer(window-splitter, $disable-layer) {
       .rmd-window-splitter {
@@ -150,14 +150,12 @@ $variables: (
         }
 
         &::after {
-          @include use-var(
-            background-color,
-            $fallback: if(
-                $background-color == interaction.get-var(focus-color),
-                $background-color,
-                null
-              )
-          );
+          $fallback-value: null;
+          @if $background-color == interaction.get-var(focus-color) {
+            $fallback-value: $background-color;
+          }
+
+          @include use-var(background-color, $fallback: $fallback-value);
           @include use-var(opacity);
 
           transition: opacity transition.$linear-duration;
@@ -169,14 +167,15 @@ $variables: (
           }
 
           &::before {
+            $inactive-fallback: null;
+            @if $inactive-background-color == divider.get-var(color) {
+              $inactive-fallback: $inactive-background-color;
+            }
+
             @include use-var(
               background-color,
               inactive-background-color,
-              if(
-                $inactive-background-color == divider.get-var(color),
-                $inactive-background-color,
-                null
-              )
+              $inactive-fallback
             );
 
             pointer-events: none;

@@ -195,21 +195,22 @@ $variables: (
 @function _right-addon-calc() {
   $calc-spacing: get-var(addon-spacing);
   $calc-total-gap: calc(get-var(gap-count, 0) * get-var(addon-gap));
-  $calc-clear-button: if(
-    $disable-clear-button,
-    "",
-    " + " + get-var(clear-button-size, 0px)
-  );
-  $calc-dropdown-button: if(
-    $disable-dropdown-button,
-    "",
-    " + " + get-var(dropdown-button-size, 0px)
-  );
-  $calc-circular-progress: if(
-    $disable-circular-progress,
-    "",
-    " + " + get-var(circular-progress-size, 0px)
-  );
+
+  $calc-clear-button: "";
+  @if not $disable-clear-button {
+    $calc-clear-button: " + " + get-var(clear-button-size, 0px);
+  }
+
+  $calc-dropdown-button: "";
+  @if not $disable-dropdown-button {
+    $calc-dropdown-button: " + " + get-var(dropdown-button-size, 0px);
+  }
+
+  $calc-circular-progress: "";
+  @if not $disable-circular-progress {
+    $calc-circular-progress: " + " + get-var(circular-progress-size, 0px);
+  }
+
   $calc-addon-size: $calc-clear-button + $calc-dropdown-button +
     $calc-circular-progress;
 
@@ -223,7 +224,12 @@ $variables: (
 /// @param {String} addon-selector
 /// @returns {String} a class name selector
 @function _add-has-selector($appending-selector, $addon-selector) {
-  $prefix: if(string.length($appending-selector), "", "&");
+  $prefix: null;
+  @if string.length($appending-selector) {
+    $prefix: "";
+  } @else {
+    $prefix: "&";
+  }
 
   @return $appending-selector + $prefix + ":has(" + $addon-selector + ")";
 }
