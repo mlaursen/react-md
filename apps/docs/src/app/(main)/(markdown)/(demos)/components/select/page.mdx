@@ -125,6 +125,17 @@ prop on the `Option`.
 
 ```
 
+## Displaying the Selected Option
+
+The `Select` defaults to attempting to render the `leftAddon` and `children` of
+the matching `<Option>` component. If this is too restrictive due to having
+complex `Option` children, use the `getSelectedOptionChildren` function to
+dynamically configure it instead:
+
+```demo source="./DisplayingTheSelectedOptionExample.tsx"
+
+```
+
 ## Menu Options
 
 The `Select` uses the [Menu](/components/menu) behind the scenes and can pass
