@@ -26,6 +26,7 @@ import {
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { Listbox } from "./Listbox.js";
+import { type OptionProps } from "./Option.js";
 import { SelectedOption } from "./SelectedOption.js";
 import {
   TextFieldContainer,
@@ -44,6 +45,41 @@ import { triggerManualChangeEvent } from "./utils.js";
 const EMPTY_STRING = "" as const;
 const noop = (): void => {
   // do nothing
+};
+
+/**
+ * @since 6.5.0
+ */
+export interface GetSelectedOptionChildrenOptions<
+  Value extends string = string,
+> {
+  value: "" | Value;
+
+  /**
+   * The option will be undefined if there is no value or matching option.
+   */
+  option: OptionProps | undefined;
+
+  /**
+   * This is a pass-through of the {@link SelectProps.placeholder}
+   */
+  placeholder?: ReactNode;
+
+  /**
+   * This is a pass-through of the {@link SelectProps.selectedOptionProps}
+   */
+  children?: ReactNode;
+}
+
+/**
+ * @since 6.5.0
+ */
+const defaultGetSelectedOptionChildren = (
+  options: GetSelectedOptionChildrenOptions
+): ReactNode => {
+  const { children, option, placeholder } = options;
+
+  return children ?? (option?.children || placeholder);
 };
 
 /**
@@ -207,6 +243,14 @@ export interface SelectProps<Value extends string>
   disableSelectedIcon?: boolean;
 
   /**
+   * @since 6.5.0
+   * @defaultValue `({ children, option, placeholder }) => children ?? (option?.children || placeholder)`
+   */
+  getSelectedOptionChildren?: (
+    options: GetSelectedOptionChildrenOptions<Value>
+  ) => ReactNode;
+
+  /**
    * This should be the available `Option`s for the select to choose from. It
    * can also contain `OptGroup` or any other elements but only clicking on an
    * `Option` component will update the value.
@@ -266,6 +310,7 @@ export function Select<Value extends string>(
     label,
     labelProps = {},
     selectedOptionProps,
+    getSelectedOptionChildren = defaultGetSelectedOptionChildren,
     icon: propIcon,
     value,
     defaultValue,
@@ -351,10 +396,16 @@ export function Select<Value extends string>(
       >
         <SelectedOption
           option={currentOption}
-          placeholder={placeholder}
           disableAddon={disableOptionAddon}
           {...selectedOptionProps}
-        />
+        >
+          {getSelectedOptionChildren({
+            value: currentValue,
+            option: currentOption,
+            placeholder,
+            children: selectedOptionProps?.children,
+          })}
+        </SelectedOption>
         <input
           aria-hidden
           id={inputId}

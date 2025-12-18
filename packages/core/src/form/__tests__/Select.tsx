@@ -376,6 +376,44 @@ describe("Select", () => {
     expect(selectedOption).toHaveTextContent("Always shown");
   });
 
+  it("should allow for a function to dynamically get the display value", () => {
+    const { selectInput, selectedOption } = render({
+      placeholder: "Placeholder",
+      selectedOptionProps: {
+        children: "Always shown",
+      },
+      getSelectedOptionChildren: ({ value, placeholder, children, option }) => {
+        if (!value) {
+          return placeholder;
+        }
+
+        if (value === "a") {
+          return "This overrides option A";
+        }
+
+        if (value === "b") {
+          return option?.children;
+        }
+
+        return children ?? option?.children;
+      },
+    });
+
+    expect(selectedOption).toHaveTextContent("Placeholder");
+
+    fireEvent.change(selectInput, { target: { value: "a" } });
+    expect(selectedOption).toHaveTextContent("This overrides option A");
+
+    fireEvent.change(selectInput, { target: { value: "b" } });
+    expect(selectedOption).toHaveTextContent("Option 2");
+
+    fireEvent.change(selectInput, { target: { value: "c" } });
+    expect(selectedOption).toHaveTextContent("Always shown");
+
+    fireEvent.change(selectInput, { target: { value: "d" } });
+    expect(selectedOption).toHaveTextContent("Always shown");
+  });
+
   describe("keyboard behavior", () => {
     it("should open the listbox when the spacebar key is pressed and automatically focus the first element", async () => {
       const { user, select, selectInput } = render();

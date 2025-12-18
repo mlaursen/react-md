@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import { type ReactElement, type ReactNode } from "react";
+import { type ReactElement } from "react";
 
 import { Box, type BoxProps } from "../box/Box.js";
 import { cssUtils } from "../cssUtils.js";
@@ -12,7 +12,6 @@ import { textField } from "./textFieldStyles.js";
  */
 export interface SelectedOptionProps extends BoxProps {
   option: OptionProps | undefined;
-  placeholder?: ReactNode;
   disableAddon: boolean;
 }
 
@@ -29,11 +28,10 @@ export function SelectedOption(props: SelectedOptionProps): ReactElement {
     className,
     disableWrap = true,
     disablePadding = true,
-    placeholder,
     ...remaining
   } = props;
 
-  let children = remaining.children ?? (option?.children || placeholder);
+  let { children } = remaining;
   // when the children are a string or number, wrap it in additional span so
   // that overflow can be ellipsis-ed
   if (typeof children === "string" || typeof children === "number") {
