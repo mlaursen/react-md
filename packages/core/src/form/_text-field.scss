@@ -271,6 +271,11 @@ $variables: (
 /// @param {any} fallback [null] - An optional fallback value
 /// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
+  @if $name == underlined-padding and not $underlined-padding and not $fallback
+  {
+    $fallback: 0px;
+  }
+
   $var: utils.get-var-name($variables, $name, "text-field");
   @if $fallback {
     @return var(#{$var}, #{$fallback});
@@ -502,17 +507,14 @@ $variables: (
         &--filled {
           @include theme.theme-set-var(background-color, get-var(filled-color));
           @include theme.theme-use-var(background-color);
-          @include set-var(padding-left, $filled-padding);
-          @include set-var(padding-right, $filled-padding);
+          @include set-var(padding-left, get-var(filled-padding));
+          @include set-var(padding-right, get-var(filled-padding));
           @if not label.$disable-floating {
-            @include label.set-var(
-              floating-active-x,
-              $filled-padding + label.$floating-padding
-            );
+            @include label.set-var(floating-active-x, get-var(filled-padding));
           }
 
           @if not $disable-addon {
-            @include set-var(addon-left-offset, $filled-padding);
+            @include set-var(addon-left-offset, get-var(filled-padding));
           }
         }
       }
@@ -529,8 +531,8 @@ $variables: (
           border-bottom-width: $border-width;
 
           @if $underlined-padding {
-            @include set-var(padding-left, $underlined-padding);
-            @include set-var(padding-right, $underlined-padding);
+            @include set-var(padding-left, get-var(underlined-padding));
+            @include set-var(padding-right, get-var(underlined-padding));
           }
 
           &::after {
@@ -593,14 +595,9 @@ $variables: (
         }
 
         @if not $disable-addon {
-          $maybe-padding: "";
-          @if $underlined-padding {
-            $maybe-padding: "#{$underlined-padding} + ";
-          }
-
           $addon-offset: calc(
-            #{icon.get-var(size) +
-              $maybe-padding} +
+            icon.get-var(size) +
+              get-var(underlined-padding) +
               $underlined-label-left-offset *
               2
           );
