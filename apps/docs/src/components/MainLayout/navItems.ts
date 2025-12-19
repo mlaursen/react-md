@@ -475,7 +475,7 @@ export const navItems: readonly NavigationItem[] = [
       {
         type: "route",
         href: "/use-date-field",
-        children: "useTimeField",
+        children: "useDateField",
       },
       {
         type: "route",
