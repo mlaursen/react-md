@@ -95,7 +95,7 @@ export function useStickyTableSection(
       if (exists) {
         topOffset = section.offsetHeight - 1;
       } else {
-        const top = parseFloat(window.getComputedStyle(section).top);
+        const top = Number.parseFloat(globalThis.getComputedStyle(section).top);
         topOffset = Number.isNaN(top) ? 1 : top + 1;
       }
 

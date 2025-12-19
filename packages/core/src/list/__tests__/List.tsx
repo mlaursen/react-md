@@ -46,7 +46,7 @@ describe("List", () => {
   it("should allow the role to be overridden", () => {
     render(<List role="menu" />);
 
-    expect(() => screen.getByRole("none")).toThrow();
-    expect(() => screen.getByRole("menu")).not.toThrow();
+    expect(() => screen.getByRole("none")).toThrowError();
+    expect(() => screen.getByRole("menu")).not.toThrowError();
   });
 });

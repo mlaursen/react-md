@@ -3,7 +3,7 @@ export function assertDate(
   name: string
 ): asserts value is Date {
   if (!(value instanceof Date)) {
-    throw new Error(`${name} must be a Date.`);
+    throw new TypeError(`${name} must be a Date.`);
   }
 }
 
@@ -12,6 +12,6 @@ export function assertBoolean(
   name: string
 ): asserts value is boolean {
   if (typeof value !== "boolean") {
-    throw new Error(`${name} must be a boolean.`);
+    throw new TypeError(`${name} must be a boolean.`);
   }
 }

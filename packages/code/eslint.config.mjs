@@ -1,8 +1,13 @@
 // @ts-check
-import { configs, defineConfig, gitignore } from "@react-md/eslint-config";
+import { configs, gitignore } from "@react-md/eslint-config";
+import { defineConfig } from "eslint/config";
 import { join } from "node:path";
 
-export default defineConfig(
+export default defineConfig([
   gitignore(join(import.meta.url, "..", "..")),
-  ...configs.frontendTypeChecking(import.meta.dirname, "jest")
-);
+  ...configs.recommendedFrontend({
+    testFramework: "jest",
+    tsconfigRootDir:
+      process.env.STRICT_TYPING === "true" ? import.meta.dirname : undefined,
+  }),
+]);

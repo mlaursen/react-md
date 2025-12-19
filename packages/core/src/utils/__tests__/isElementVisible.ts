@@ -21,7 +21,7 @@ describe("isElementVisible", () => {
   it("should check if any parent elements have the DISPLAY_NONE_CLASS", () => {
     const container = document.createElement("div");
     const child = document.createElement("div");
-    container.appendChild(child);
+    container.append(child);
 
     expect(isElementVisible(child)).toBe(true);
     expect(isElementVisible(container)).toBe(true);

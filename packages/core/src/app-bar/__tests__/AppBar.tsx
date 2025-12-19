@@ -81,10 +81,10 @@ describe("AppBar", () => {
     const appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
-    positions.forEach((position) => {
+    for (const position of positions) {
       rerender(<AppBar {...props} pagePosition={position} />);
       expect(appBar).toMatchSnapshot();
-    });
+    }
   });
 
   it("should allow for different heights", () => {
@@ -103,9 +103,9 @@ describe("AppBar", () => {
     const appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();
 
-    heights.forEach((height) => {
+    for (const height of heights) {
       rerender(<AppBar {...props} height={height} />);
       expect(appBar).toMatchSnapshot();
-    });
+    }
   });
 });

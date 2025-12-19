@@ -81,8 +81,8 @@ describe("Dialog", () => {
     const { rerender } = rmdRender(<Test />);
 
     let show = screen.getByRole("button", { name: "Show" });
-    expect(() => screen.getByRole("dialog")).toThrow();
-    expect(() => screen.getByRole("button", { name: "Close" })).toThrow();
+    expect(() => screen.getByRole("dialog")).toThrowError();
+    expect(() => screen.getByRole("button", { name: "Close" })).toThrowError();
 
     await user.click(show);
     let dialog = screen.getByRole("dialog", { name: "Dialog" });
@@ -117,21 +117,25 @@ describe("Dialog", () => {
     const { rerender } = rmdRender(<Test />);
 
     const show = screen.getByRole("button", { name: "Show" });
-    expect(() => screen.getByTestId("overlay")).toThrow();
+    expect(() => screen.getByTestId("overlay")).toThrowError();
 
     await user.click(show);
-    expect(() => screen.getByTestId("overlay")).not.toThrow();
-    expect(() => screen.getByRole("dialog", { name: "Dialog" })).not.toThrow();
+    expect(() => screen.getByTestId("overlay")).not.toThrowError();
+    expect(() =>
+      screen.getByRole("dialog", { name: "Dialog" })
+    ).not.toThrowError();
 
     await user.click(screen.getByRole("button", { name: "Close" }));
-    expect(() => screen.getByTestId("overlay")).toThrow();
-    expect(() => screen.getByRole("dialog")).toThrow();
+    expect(() => screen.getByTestId("overlay")).toThrowError();
+    expect(() => screen.getByRole("dialog")).toThrowError();
 
     rerender(<Test disableOverlay />);
 
     await user.click(show);
-    expect(() => screen.getByTestId("overlay")).toThrow();
-    expect(() => screen.getByRole("dialog", { name: "Dialog" })).not.toThrow();
+    expect(() => screen.getByTestId("overlay")).toThrowError();
+    expect(() =>
+      screen.getByRole("dialog", { name: "Dialog" })
+    ).not.toThrowError();
   });
 
   it("should allow the user to close the dialog by clicking on the overlay", async () => {
@@ -139,9 +143,11 @@ describe("Dialog", () => {
     rmdRender(<Test />);
     await user.click(screen.getByRole("button", { name: "Show" }));
 
-    expect(() => screen.getByRole("dialog", { name: "Dialog" })).not.toThrow();
+    expect(() =>
+      screen.getByRole("dialog", { name: "Dialog" })
+    ).not.toThrowError();
     await user.click(screen.getByTestId("overlay"));
-    expect(() => screen.getByRole("dialog")).toThrow();
+    expect(() => screen.getByRole("dialog")).toThrowError();
   });
 
   it("should move the focus onto the dialog when it becomes visible and back to the previous element once it is closed", async () => {

@@ -76,11 +76,11 @@ describe("useFixedPositioning", () => {
     const getElement = (): HTMLElement => screen.getByTestId("element");
     const button = screen.getByRole("button");
 
-    expect(getElement).toThrow();
+    expect(getElement).toThrowError();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(button);
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     act(() => {
@@ -89,13 +89,13 @@ describe("useFixedPositioning", () => {
     expect(container).toMatchSnapshot();
 
     fireEvent.click(button);
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).toThrow();
+    expect(getElement).toThrowError();
     expect(container).toMatchSnapshot();
   });
 
@@ -112,7 +112,7 @@ describe("useFixedPositioning", () => {
 
     const scrollEvent = new UIEvent("scroll");
     act(() => {
-      window.dispatchEvent(scrollEvent);
+      globalThis.dispatchEvent(scrollEvent);
       vi.runAllTimers();
     });
 
@@ -136,7 +136,7 @@ describe("useFixedPositioning", () => {
     expect(onResize).not.toHaveBeenCalled();
 
     act(() => {
-      window.dispatchEvent(new UIEvent("resize"));
+      globalThis.dispatchEvent(new UIEvent("resize"));
       vi.runAllTimers();
     });
     expect(onResize).toHaveBeenCalled();

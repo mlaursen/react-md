@@ -20,7 +20,7 @@ export function HowToUseSheetHeader(): ReactElement {
     hoverTimeout: 0,
     overflowOnly: true,
   });
-  const name = (selectedIconName || "").replace(/_/g, " ");
+  const name = (selectedIconName || "").replaceAll("_", " ");
 
   return (
     <DialogHeader className={styles.header}>
@@ -46,7 +46,7 @@ export function HowToUseSheetHeader(): ReactElement {
       <CopyToClipboard
         aria-label="Share"
         tooltip="Copy url to clipboard"
-        getCopyText={() => window.location.href}
+        getCopyText={() => globalThis.location.href}
         onCopied={() => {
           // addAppToast({ toastId: "copied" });
         }}

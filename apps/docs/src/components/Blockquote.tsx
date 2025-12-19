@@ -58,7 +58,7 @@ export function Blockquote(props: BlockquoteProps): ReactElement {
             cloneElement(
               child,
               { key: index },
-              childChildren.substring(themeMatch.length + 2)
+              childChildren.slice(Math.max(0, themeMatch.length + 2))
             )
           );
           return;
@@ -69,7 +69,7 @@ export function Blockquote(props: BlockquoteProps): ReactElement {
           const [, themeMatch] = maybeTheme.match(THEME_REGEX) || [];
           if (themeMatch) {
             theme = getTheme(themeMatch);
-            const text = maybeTheme.substring(themeMatch.length + 2);
+            const text = maybeTheme.slice(Math.max(0, themeMatch.length + 2));
             const cloned = cloneElement(
               child,
               {

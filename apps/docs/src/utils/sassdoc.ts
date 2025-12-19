@@ -40,13 +40,13 @@ export function createTOC(
   children: string
 ): TableOfContentsHeadings {
   const toc: TableOfContentsHeading[] = [];
-  if (!lookup.size) {
+  if (lookup.size === 0) {
     return toc;
   }
 
   const baseId = slug(children);
   toc.push({ id: baseId, depth: 1, children });
-  lookup.forEach((item) => {
+  for (const [, item] of lookup) {
     const itemId = slug(`${baseId}-${item.name}`);
     toc.push({
       id: itemId,
@@ -84,9 +84,9 @@ export function createTOC(
         children: "Examples",
       });
 
-      item.examples.forEach((example) => {
+      for (const example of item.examples) {
         if (!example.description) {
-          return;
+          continue;
         }
 
         toc.push({
@@ -94,9 +94,9 @@ export function createTOC(
           depth: 4,
           children: example.description,
         });
-      });
+      }
     }
-  });
+  }
 
   return toc;
 }

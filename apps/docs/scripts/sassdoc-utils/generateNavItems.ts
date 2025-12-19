@@ -13,13 +13,19 @@ export async function generateNavItems(
 ): Promise<void> {
   const { mixins, functions, variables } = options;
   const groups = new Set<string>();
-  mixins.forEach((item) => groups.add(item.group));
-  functions.forEach((item) => groups.add(item.group));
-  variables.forEach((item) => groups.add(item.group));
+  for (const [, item] of mixins) {
+    groups.add(item.group);
+  }
+  for (const [, item] of functions) {
+    groups.add(item.group);
+  }
+  for (const [, item] of variables) {
+    groups.add(item.group);
+  }
 
   const components: NavigationItemStringChildrenRoute[] = [];
   const remainingItems: NavigationItemStringChildrenRoute[] = [];
-  groups.forEach((group) => {
+  for (const group of groups) {
     if (group.startsWith("core.")) {
       const withoutCore = group.replace("core.", "");
       if (withoutCore === "form") {
@@ -42,7 +48,7 @@ export async function generateNavItems(
         children: titleCase(group, "-"),
       });
     }
-  });
+  }
 
   await createNavItems({
     name: "SASSDOC_NAV_ITEMS",

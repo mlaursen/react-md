@@ -38,8 +38,8 @@ describe("useEnsuredState", () => {
       return null;
     }
 
-    expect(() => render(<Test1 />)).toThrow(CONTROLLED_ERROR);
-    expect(() => render(<Test2 />)).toThrow(CONTROLLED_ERROR);
+    expect(() => render(<Test1 />)).toThrowError(CONTROLLED_ERROR);
+    expect(() => render(<Test2 />)).toThrowError(CONTROLLED_ERROR);
   });
 
   it("should throw an error if the value, setValue, and defaultValue are undefined", () => {
@@ -52,8 +52,8 @@ describe("useEnsuredState", () => {
       return null;
     }
 
-    expect(() => render(<Test1 />)).toThrow(MISSING_DEFAULT_VALUE_ERROR);
-    expect(() => render(<Test2 />)).not.toThrow();
+    expect(() => render(<Test1 />)).toThrowError(MISSING_DEFAULT_VALUE_ERROR);
+    expect(() => render(<Test2 />)).not.toThrowError();
   });
 
   it("should throw an error if changing the controlled state", () => {
@@ -76,7 +76,7 @@ describe("useEnsuredState", () => {
     render(<Test />);
 
     const button = screen.getByRole("button", { name: "Toggle" });
-    expect(() => fireEvent.click(button)).toThrow(
+    expect(() => fireEvent.click(button)).toThrowError(
       "Rendered fewer hooks than expected. This may be caused by an accidental early return statement."
     );
   });
@@ -115,8 +115,8 @@ describe("useEnsuredState", () => {
       "Visible"
     );
 
-    expect(() => render(<Test1 />)).toThrow(visibleError);
-    expect(() => render(<Test2 />)).toThrow(visibleError);
-    expect(() => render(<Test3 />)).toThrow(defaultVisibleError);
+    expect(() => render(<Test1 />)).toThrowError(visibleError);
+    expect(() => render(<Test2 />)).toThrowError(visibleError);
+    expect(() => render(<Test3 />)).toThrowError(defaultVisibleError);
   });
 });

@@ -389,7 +389,7 @@ export function validateFiles<CustomError>(
   const extraFiles: File[] = [];
   const extensionRegExp =
     extensions.length > 0
-      ? new RegExp(`\\.(${extensions.join("|")})$`, "i")
+      ? new RegExp(String.raw`\.(${extensions.join("|")})$`, "i")
       : undefined;
 
   let maxFilesReached = maxFiles > 0 && totalFiles >= maxFiles;
@@ -398,9 +398,7 @@ export function validateFiles<CustomError>(
   const minErrors: File[] = [];
   const maxErrors: File[] = [];
   const totalSizeErrors: File[] = [];
-  for (let i = 0; i < files.length; i += 1) {
-    const file = files[i];
-
+  for (const file of files) {
     let valid = true;
     const { size } = file;
     if (!isValidFileName(file, extensionRegExp, extensions)) {
@@ -433,23 +431,23 @@ export function validateFiles<CustomError>(
     }
   }
 
-  if (extensionErrors.length) {
+  if (extensionErrors.length > 0) {
     errors.push(new FileExtensionError(extensionErrors, extensions));
   }
 
-  if (minErrors.length) {
+  if (minErrors.length > 0) {
     errors.push(new FileSizeError(minErrors, "min", minFileSize));
   }
 
-  if (maxErrors.length) {
+  if (maxErrors.length > 0) {
     errors.push(new FileSizeError(maxErrors, "max", maxFileSize));
   }
 
-  if (totalSizeErrors.length) {
+  if (totalSizeErrors.length > 0) {
     errors.push(new FileSizeError(totalSizeErrors, "total", totalFileSize));
   }
 
-  if (extraFiles.length) {
+  if (extraFiles.length > 0) {
     errors.push(new TooManyFilesError(extraFiles, maxFiles));
   }
 

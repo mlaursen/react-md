@@ -62,10 +62,7 @@ export function useSelectCombobox<
         return values.length - 1;
       }
 
-      return Math.max(
-        0,
-        values.findIndex((option) => option === value)
-      );
+      return Math.max(0, values.indexOf(value));
     },
   });
 }

@@ -17,7 +17,7 @@ const LIST = [
   "(˚Δ˚)b",
   "(o^^)o",
   "(・・?",
-  "\\(^o^)/",
+  String.raw`\(^o^)/`,
 ];
 
 export interface RandomEmojiProps extends HTMLAttributes<HTMLDivElement> {

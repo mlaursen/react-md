@@ -9,16 +9,16 @@ import { touch } from "./sassdoc-utils/touch.js";
 
 if (process.argv.includes("--touch")) {
   await touch();
-  process.exit(0);
-}
+} else {
+  async function run(): Promise<void> {
+    await ensureGeneratedDir();
+    const generated = await generate({ src: CORE_SRC });
+    await Promise.all([
+      createSassDocFile(generated),
+      generateNavItems(generated),
+    ]);
+  }
 
-async function run(): Promise<void> {
-  await ensureGeneratedDir();
-  const generated = await generate({ src: CORE_SRC });
-  await Promise.all([
-    createSassDocFile(generated),
-    generateNavItems(generated),
-  ]);
+  // eslint-disable-next-line unicorn/prefer-top-level-await
+  await log(run(), "", "sassdoc script completed");
 }
-
-await log(run(), "", "sassdoc script completed");

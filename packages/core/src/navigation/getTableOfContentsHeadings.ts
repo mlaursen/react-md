@@ -28,7 +28,7 @@ export function getTableOfContentsHeadings(
 ): TableOfContentsHeadings {
   const { ssr, selector, getDepth, getHeadingText } = options;
 
-  if (ssr || typeof window === "undefined") {
+  if (ssr || globalThis.window === undefined) {
     return [];
   }
 
@@ -41,7 +41,7 @@ export function getTableOfContentsHeadings(
   let previous: TableOfContentsHeadingItem = root;
   const parents: TableOfContentsHeadingItem[] = [];
   const headings = document.querySelectorAll(selector);
-  headings.forEach((heading) => {
+  for (const heading of headings) {
     const depth = getDepth(heading);
     const item: TableOfContentsHeadingItem = {
       id: heading.id,
@@ -56,6 +56,7 @@ export function getTableOfContentsHeadings(
 
       parents.push(previous);
     } else if (depth < previous.depth) {
+      // eslint-disable-next-line unicorn/prefer-at
       while (parents[parents.length - 1].depth >= depth) {
         parents.pop();
       }
@@ -63,7 +64,7 @@ export function getTableOfContentsHeadings(
     const i = parents.length - 1;
     parents[i].items = [...(parents[i].items ?? []), item];
     previous = item;
-  });
+  }
 
   return root.items;
 }

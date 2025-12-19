@@ -56,7 +56,7 @@ beforeAll(() => {
 
 describe("ErrorBoundary", () => {
   it("should be able to capture errors without crashing the entire app", () => {
-    expect(() => render(<ErrorOnMountTest />)).not.toThrow();
+    expect(() => render(<ErrorOnMountTest />)).not.toThrowError();
   });
 
   it("should display the fallback if the component mounts with an error", () => {
@@ -71,7 +71,7 @@ describe("ErrorBoundary", () => {
     const button = screen.getByRole("button", { name: "Button" });
 
     await user.click(button);
-    expect(() => screen.getByTestId("fallback")).not.toThrow();
+    expect(() => screen.getByTestId("fallback")).not.toThrowError();
   });
 
   it("should allow trying to reset the error using the useErrorBoundary hook from the fallback component to handle nested failures", async () => {
@@ -128,17 +128,17 @@ describe("ErrorBoundary", () => {
     await user.click(firstError);
     expect(reallyBroke).toBeInTheDocument();
     expect(firstError).not.toBeInTheDocument();
-    expect(() => screen.getByTestId("full-error")).not.toThrow();
+    expect(() => screen.getByTestId("full-error")).not.toThrowError();
 
     const resetError = screen.getByRole("button", { name: "Reset Error" });
     await user.click(resetError);
-    expect(() => screen.getByTestId("broke")).toThrow();
+    expect(() => screen.getByTestId("broke")).toThrowError();
     expect(reallyBroke).toBeInTheDocument();
     expect(firstError).not.toBeInTheDocument();
     expect(resetError).not.toBeInTheDocument();
 
     await user.click(reallyBroke);
-    expect(() => screen.getByTestId("broke")).not.toThrow();
+    expect(() => screen.getByTestId("broke")).not.toThrowError();
   });
 
   it("should allow for an onError callback", async () => {

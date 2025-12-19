@@ -38,10 +38,10 @@ const createCache = (): {
 } => {
   const colorNameCache = new Map<string, string>();
   const colorValuesCache = new Map<string, string>();
-  Object.entries(colors).forEach(([name, color]) => {
+  for (const [name, color] of Object.entries(colors)) {
     colorNameCache.set(color, name);
     colorValuesCache.set(name, color);
-  });
+  }
 
   return {
     colorNameCache,

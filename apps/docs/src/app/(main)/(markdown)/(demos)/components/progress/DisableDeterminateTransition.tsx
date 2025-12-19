@@ -46,7 +46,7 @@ function useProgress(): ProgressControls {
       return;
     }
 
-    const timeout = window.setTimeout(() => {
+    const timeout = globalThis.setTimeout(() => {
       const nextProgress = Math.min(100, progress + 0.1);
       setState({
         running: progress !== nextProgress && progress !== 100,
@@ -54,7 +54,7 @@ function useProgress(): ProgressControls {
       });
     }, UPDATE_INTERVAL);
     return () => {
-      window.clearTimeout(timeout);
+      globalThis.clearTimeout(timeout);
     };
   }, [progress, running]);
 

@@ -4,14 +4,15 @@ import { type NavigationItem } from "./types.js";
  * @since 6.0.0
  */
 export function getHrefFromParents(parents: readonly NavigationItem[]): string {
-  return parents.reduce<string>((result, parent) => {
+  let result = "";
+  for (const parent of parents) {
     if ("href" in parent && parent.href) {
       const { href } = parent;
-      return result + href;
+      result += href;
     }
+  }
 
-    return result;
-  }, "");
+  return result;
 }
 
 /**
@@ -33,7 +34,7 @@ export function getNavigationGroupId(
  */
 export function getPartsFromPathname(pathname: string): ReadonlySet<string> {
   // remove trailing slashes just in case there aren't rewrites in place
-  const href = pathname.replace(/\/{2,}/g, "/").replace(/\/+$/, "");
+  const href = pathname.replaceAll(/\/{2,}/g, "/").replace(/\/+$/, "");
   const parts = href.split("/");
   const set = new Set<string>();
   let prefix = "";

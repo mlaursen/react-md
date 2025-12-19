@@ -11,7 +11,7 @@ import {
  * @since 6.0.0
  */
 export interface MatchMediaMockFunction {
-  mockImplementation(fn: typeof window.matchMedia): this;
+  mockImplementation(fn: typeof globalThis.matchMedia): this;
 }
 
 /**
@@ -84,16 +84,16 @@ export function createMatchMediaSpy<SpyFunction extends MatchMediaMockFunction>(
     disableAct = false
   ): void => {
     const update = (): void => {
-      window.dispatchEvent(new Event("resize"));
+      globalThis.dispatchEvent(new Event("resize"));
 
       const event = new Event("change");
-      listeners.forEach((listener, query) => {
+      for (const [query, listener] of listeners.entries()) {
         listener({
           ...event,
           media: "",
           matches: matcher(query),
         });
-      });
+      }
     };
     if (disableAct) {
       update();

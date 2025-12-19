@@ -100,10 +100,10 @@ export async function formatCode(
     return {
       formatted,
     };
-  } catch (e) {
+  } catch (error) {
     return {
       formatted: code,
-      error: e instanceof Error ? e.message : "Unable to format code",
+      error: error instanceof Error ? error.message : "Unable to format code",
     };
   }
 }

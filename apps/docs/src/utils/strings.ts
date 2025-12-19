@@ -1,7 +1,7 @@
 import { type KebabCase } from "./types.js";
 
 // eslint-disable-next-line no-control-regex
-const ASCI_REGEX = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+const ASCI_REGEX = /[^\u0000-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007F]+/g;
 
 /**
  * @see https://github.com/lodash/lodash/blob/c7c70a7da5172111b99bb45e45532ed034d7b5b9/src/words.ts
@@ -19,6 +19,7 @@ export const upperFirst = <S extends string>(s: S): Capitalize<S> =>
  * @param separator - An optional separator for each "word" in the string
  */
 export const camelCase = (s: string, separator = ""): string =>
+  // eslint-disable-next-line unicorn/no-array-reduce
   words(s).reduce((result, word, i) => {
     const w = word.toLowerCase();
     return result + (i ? separator : "") + (i ? upperFirst(w) : w);

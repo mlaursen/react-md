@@ -41,7 +41,7 @@ export function getFormConfig<N extends keyof FormConfiguration>(
   name: N,
   override?: FormConfiguration[N]
 ): FormConfiguration[N] {
-  if (typeof override !== "undefined") {
+  if (override !== undefined) {
     return override;
   }
 

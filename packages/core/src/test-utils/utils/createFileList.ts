@@ -13,11 +13,13 @@ export function createFileList(
     // needs to be `any` to match the FileList definition
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [Symbol.iterator]: function* nextFile(): Generator<File, any, any> {
+      // eslint-disable-next-line unicorn/no-for-loop
       for (let i = 0; i < fileList.length; i++) {
         yield fileList[i];
       }
     },
   };
+  // eslint-disable-next-line unicorn/no-immediate-mutation
   fileList.constructor = window.FileList;
   if (window.FileList) {
     Object.setPrototypeOf(fileList, window.FileList.prototype);

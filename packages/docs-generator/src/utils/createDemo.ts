@@ -85,9 +85,9 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
   const readOnlyImports = new Set<string>();
 
   const errors = new Set<string>();
-  code.attributes.forEach((attr) => {
+  for (const attr of code.attributes) {
     if (attr.type !== "mdxJsxAttribute") {
-      return;
+      continue;
     }
 
     const { name, value } = attr;
@@ -112,12 +112,12 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
       case "readOnlyImports":
         try {
           if (typeof value !== "object" || typeof value?.value !== "string") {
-            throw new Error("not object or no value");
+            throw new TypeError("not object or no value");
           }
 
           const parsed = JSON.parse(value.value);
           assertStringArray(parsed);
-          parsed.forEach((item) => {
+          for (const item of parsed) {
             if (/\.tsx?$/.test(item)) {
               throw new Error(
                 `readOnlyImports must import jsx extensions but ${item} was found`
@@ -125,10 +125,10 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
             }
 
             readOnlyImports.add(item);
-          });
-        } catch (e) {
+          }
+        } catch (error) {
           // eslint-disable-next-line no-console
-          console.error(e);
+          console.error(error);
           throw new Error(
             `readOnlyImports must be in the format of \`readOnlyImports={["@/componenents/Example.jsx"]}\``
           );
@@ -137,17 +137,16 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
       default:
         errors.add(`\`${name}\` is not a valid demo prop`);
     }
-  });
+  }
   if (props.phone && !props.card) {
     errors.add(
       "`phone` must be used with the `card` prop, but it was missing."
     );
   }
 
-  if (errors.size) {
+  if (errors.size > 0) {
     errors.add(`Valid demo props are:
-${Object.keys(props)
-  .concat("disableImportOnlySCSS")
+${[...Object.keys(props), "disableImportOnlySCSS"]
   .map((name) => `- ${name}`)
   .join("\n")}
 `);
@@ -157,7 +156,7 @@ ${Object.keys(props)
     errors.add("`source` is required and must be a relative path");
   }
 
-  if (errors.size) {
+  if (errors.size > 0) {
     const message = [...errors]
       .map((error) =>
         error.startsWith("Valid demo props are") ? error : `- ${error}`

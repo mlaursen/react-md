@@ -197,12 +197,12 @@ export function ThemeProvider(props: ThemeProviderProps): ReactElement {
     // NOTE: This will not be correct the first time a new theme is lazy-loaded
     // and applied. It might be good to have a way to manually force this flow
     // again?
-    const frame = window.requestAnimationFrame(() => {
+    const frame = globalThis.requestAnimationFrame(() => {
       setDerivedTheme(getDerivedTheme(document.documentElement));
     });
 
     return () => {
-      window.cancelAnimationFrame(frame);
+      globalThis.cancelAnimationFrame(frame);
     };
   }, [theme, currentColor, colorScheme]);
 

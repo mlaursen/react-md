@@ -69,27 +69,27 @@ describe("ScaleTransition", () => {
     const getElement = (): HTMLElement => screen.getByTestId("element");
     const toggle = screen.getByRole("button");
 
-    expect(getElement).toThrow();
+    expect(getElement).toThrowError();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).toThrow();
+    expect(getElement).toThrowError();
     expect(container).toMatchSnapshot();
   });
 
@@ -98,27 +98,27 @@ describe("ScaleTransition", () => {
     const getElement = (): HTMLElement => screen.getByTestId("element");
     const toggle = screen.getByRole("button");
 
-    expect(getElement).toThrow();
+    expect(getElement).toThrowError();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).toThrow();
+    expect(getElement).toThrowError();
     expect(container).toMatchSnapshot();
   });
 
@@ -140,7 +140,7 @@ describe("ScaleTransition", () => {
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).toThrow();
+    expect(getElement).toThrowError();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);

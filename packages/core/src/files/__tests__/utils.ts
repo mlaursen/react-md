@@ -130,12 +130,12 @@ describe("isFileExtensionError", () => {
 
 describe("getFileParser", () => {
   it("should have reasonable defaults for known file extensions", () => {
-    MEDIA_LIKE_FILES.forEach((file) => {
+    for (const file of MEDIA_LIKE_FILES) {
       expect(getFileParser(file)).toBe("readAsDataURL");
-    });
-    TEXT_LIKE_FILES.forEach((file) => {
+    }
+    for (const file of TEXT_LIKE_FILES) {
       expect(getFileParser(file)).toBe("readAsText");
-    });
+    }
 
     expect(getFileParser(new File([""], "file.jar"))).toBe("readAsArrayBuffer");
     expect(getFileParser(new File([""], "file.tar"))).toBe("readAsArrayBuffer");

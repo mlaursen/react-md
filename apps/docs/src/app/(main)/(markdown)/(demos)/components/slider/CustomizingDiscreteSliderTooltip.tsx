@@ -1,7 +1,7 @@
 "use client";
 
 import { box } from "@react-md/core/box/styles";
-import { cssUtils } from "@react-md/core/cssUtils";
+import { type BackgroundColor, cssUtils } from "@react-md/core/cssUtils";
 import { Fieldset } from "@react-md/core/form/Fieldset";
 import { Form } from "@react-md/core/form/Form";
 import { Legend } from "@react-md/core/form/Legend";
@@ -40,12 +40,18 @@ export default function CustomizingDiscreteSliderTooltip(): ReactElement {
           {...slider}
           vertical={vertical}
           tooltipVisibility="always"
-          getTooltipProps={(value) => ({
-            className: cssUtils({
-              backgroundColor:
-                value <= 3 ? "warning" : value >= 8 ? "error" : undefined,
-            }),
-          })}
+          getTooltipProps={(value) => {
+            let backgroundColor: BackgroundColor | undefined;
+            if (value <= 3) {
+              backgroundColor = "warning";
+            } else if (value >= 8) {
+              backgroundColor = "error";
+            }
+
+            return {
+              className: cssUtils({ backgroundColor }),
+            };
+          }}
           getTooltipChildren={(value) => `${value}°`}
         />
       </Fieldset>

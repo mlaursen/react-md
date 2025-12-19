@@ -70,7 +70,7 @@ describe("useMaxWidthTransition", () => {
     rmdRender(<Test />);
     const icon = screen.getByTestId("icon").firstElementChild;
     if (!(icon instanceof HTMLElement)) {
-      throw new Error("Unable to find icon");
+      throw new TypeError("Unable to find icon");
     }
     const toggle = screen.getByRole("button", { name: "Toggle" });
 
@@ -107,7 +107,7 @@ describe("useMaxWidthTransition", () => {
     rmdRender(<Test />);
     const icon = screen.getByTestId("icon").firstElementChild;
     if (!(icon instanceof HTMLElement)) {
-      throw new Error("Unable to find icon");
+      throw new TypeError("Unable to find icon");
     }
     const toggle = screen.getByRole("button", { name: "Toggle" });
 

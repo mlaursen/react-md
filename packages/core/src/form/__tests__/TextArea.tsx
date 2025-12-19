@@ -101,7 +101,7 @@ describe("TextArea", () => {
         messageContainerProps={{ "data-testid": "message-container" }}
       />
     );
-    expect(() => screen.getByTestId("message-container")).toThrow();
+    expect(() => screen.getByTestId("message-container")).toThrowError();
 
     rerender(
       <TextArea
@@ -167,8 +167,8 @@ describe("TextArea", () => {
     );
 
     const container = screen.getByTestId("container");
-    expect(() => screen.getByTestId("favorite")).not.toThrow();
-    expect(() => screen.getByTestId("close")).not.toThrow();
+    expect(() => screen.getByTestId("favorite")).not.toThrowError();
+    expect(() => screen.getByTestId("close")).not.toThrowError();
     expect(container).toMatchSnapshot();
   });
 
@@ -220,23 +220,23 @@ describe("TextArea", () => {
     const getResizeContainer = () => screen.getByTestId("resize-container");
 
     const container = screen.getByTestId("container");
-    expect(getResizeContainer).toThrow();
+    expect(getResizeContainer).toThrowError();
     expect(container).toMatchSnapshot();
 
     rerender(<TextArea {...props} resize="vertical" />);
-    expect(getResizeContainer).toThrow();
+    expect(getResizeContainer).toThrowError();
     expect(container).toMatchSnapshot();
 
     rerender(<TextArea {...props} resize="horizontal" />);
-    expect(getResizeContainer).toThrow();
+    expect(getResizeContainer).toThrowError();
     expect(container).toMatchSnapshot();
 
     rerender(<TextArea {...props} resize="both" />);
-    expect(getResizeContainer).toThrow();
+    expect(getResizeContainer).toThrowError();
     expect(container).toMatchSnapshot();
 
     rerender(<TextArea {...props} resize="auto" />);
-    expect(getResizeContainer).not.toThrow();
+    expect(getResizeContainer).not.toThrowError();
     expect(container).toMatchSnapshot();
   });
 
@@ -300,7 +300,7 @@ describe("TextArea", () => {
       expect(textarea).not.toBe(mask);
 
       const getHeightVar = () =>
-        window
+        globalThis
           .getComputedStyle(container)
           .getPropertyValue("--rmd-text-area-height");
       const maskScrollHeight = vi
@@ -363,12 +363,12 @@ describe("TextArea", () => {
       const { mask, container, getHeightVar, observer } = setup();
       expect(getHeightVar()).toBe("");
 
-      const baseStyle = window.getComputedStyle(container);
+      const baseStyle = globalThis.getComputedStyle(container);
       baseStyle.borderTopWidth = "1px";
       baseStyle.borderBottomWidth = "1px";
 
       const getComputedStyle = vi
-        .spyOn(window, "getComputedStyle")
+        .spyOn(globalThis, "getComputedStyle")
         .mockImplementationOnce(() => {
           baseStyle.boxSizing = "border-box";
           return baseStyle;
@@ -435,7 +435,7 @@ describe("TextArea", () => {
       const container = screen.getByTestId("container");
       const textarea = screen.getByRole("textbox", { name: "Label" });
       const getHeightVar = () =>
-        window
+        globalThis
           .getComputedStyle(container)
           .getPropertyValue("--rmd-textarea-height");
       expect(getHeightVar()).toBe("");

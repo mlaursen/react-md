@@ -14,7 +14,7 @@ function getElements(slider: HTMLSpanElement): Elements {
   const sliderTrack = slider.parentElement;
   const sliderContainer = sliderTrack?.parentElement;
   if (!(sliderInput instanceof HTMLInputElement)) {
-    throw new Error("Unable to find the `Slider` input element");
+    throw new TypeError("Unable to find the `Slider` input element");
   }
   if (
     !(sliderTrack instanceof HTMLSpanElement) ||

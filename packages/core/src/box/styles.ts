@@ -428,14 +428,14 @@ function applyBoxVarGroup(
     value,
   });
   if (value && typeof value === "object") {
-    BREAKPOINTS.forEach((media) => {
+    for (const media of BREAKPOINTS) {
       style = applyBoxVar({
         type,
         style,
         media,
         value: value[media],
       });
-    });
+    }
   }
   return style;
 }

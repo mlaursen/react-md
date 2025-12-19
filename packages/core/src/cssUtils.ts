@@ -116,20 +116,26 @@ export interface TextCssUtilsOptions {
 }
 
 /**
+ * Set this to `true` to allow the content to only be visible for screen
+ * readers. Set this to `"focusable"` to allow the content to be visible to
+ * screen readers and once focused. Set this to `"phone"` to only render the
+ * content as screen reader only text on phones.
+ *
+ * @since 6.5.1
+ */
+export type SrOnlyBehavior = boolean | "focusable" | "phone";
+
+/**
  * @since 6.0.0
  */
 export interface CssUtilsOptions extends TextCssUtilsOptions {
   className?: string;
 
   /**
-   * Set this to `true` to allow the content to only be visible for screen
-   * readers. Set this to `"focusable"` to allow the content to be visible to
-   * screen readers and once focused. Set this to `"phone"` to only render the
-   * the content as screen reader only text on phones.
-   *
+   * @see {@link SrOnlyBehavior}
    * @defaultValue `false`
    */
-  srOnly?: boolean | "focusable" | "phone";
+  srOnly?: SrOnlyBehavior;
 
   /**
    * Set this to `"current-color"` to inherit the current text color or a

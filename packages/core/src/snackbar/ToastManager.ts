@@ -121,7 +121,7 @@ export interface ToastVisibilityTimers {
   inactive: boolean;
   startTime: number;
   elapsedTime: number;
-  exitTimeout?: number;
+  exitTimeout?: NodeJS.Timeout;
 }
 
 /**
@@ -154,9 +154,9 @@ export class ToastManager {
   #emit = (): void => {
     // shallow clone to ensure react updates
     this.#queue = [...this.#queue];
-    this.#listeners.forEach((callback) => {
+    for (const callback of this.#listeners) {
       callback(this.#queue);
-    });
+    }
   };
 
   #getToastIndex = (toastId: string | undefined): number => {
@@ -404,7 +404,7 @@ export class ToastManager {
       startTime: Date.now(),
       elapsedTime: 0,
     };
-    window.clearTimeout(timers.exitTimeout);
+    globalThis.clearTimeout(timers.exitTimeout);
 
     let duration = visibleTime;
     if (timers.elapsedTime) {
@@ -412,7 +412,7 @@ export class ToastManager {
     }
 
     timers.inactive = false;
-    timers.exitTimeout = window.setTimeout(() => {
+    timers.exitTimeout = globalThis.setTimeout(() => {
       this.removeToast(toastId, true);
     }, duration);
     this.#timers.set(toastId, timers);
@@ -431,9 +431,8 @@ export class ToastManager {
       return;
     }
 
-    window.clearTimeout(cached.exitTimeout);
-    const timers = { ...cached };
-    timers.inactive = true;
+    globalThis.clearTimeout(cached.exitTimeout);
+    const timers = { ...cached, inactive: true };
     timers.elapsedTime = Date.now() - timers.startTime + timers.elapsedTime;
     this.#timers.set(toastId, timers);
     this.#updateToast(toastId, { paused: true });
@@ -499,7 +498,7 @@ export class ToastManager {
    */
   clearTimer = (toastId: string): void => {
     const timer = this.#timers.get(toastId);
-    window.clearTimeout(timer?.exitTimeout);
+    globalThis.clearTimeout(timer?.exitTimeout);
     this.#timers.delete(toastId);
   };
 
@@ -520,9 +519,9 @@ export class ToastManager {
    */
   clearToasts = (disableEmit = false): void => {
     this.#queue = [];
-    this.#timers.forEach((meta) => {
-      window.clearTimeout(meta.exitTimeout);
-    });
+    for (const [, meta] of this.#timers) {
+      globalThis.clearTimeout(meta.exitTimeout);
+    }
     this.#timers.clear();
     if (!disableEmit) {
       this.#emit();

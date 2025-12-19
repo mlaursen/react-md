@@ -22,7 +22,7 @@ export function SassDocLinks({
   itemId,
   children,
 }: SassDocLinksProps): ReactElement | null {
-  if (!see.length && !links.length) {
+  if (see.length === 0 && links.length === 0) {
     return null;
   }
 

@@ -11,7 +11,7 @@ describe("selectNode", () => {
     const selectNodeContents = vi.spyOn(Range.prototype, "selectNodeContents");
     const removeAllRanges = vi.spyOn(Selection.prototype, "removeAllRanges");
     const addRange = vi.spyOn(Selection.prototype, "addRange");
-    const getSelection = vi.spyOn(window, "getSelection");
+    const getSelection = vi.spyOn(globalThis, "getSelection");
     const createRange = vi.spyOn(document, "createRange");
 
     const node = document.createElement("div");
@@ -29,7 +29,9 @@ describe("selectNode", () => {
     const selectNodeContents = vi.spyOn(Range.prototype, "selectNodeContents");
     const removeAllRanges = vi.spyOn(Selection.prototype, "removeAllRanges");
     const addRange = vi.spyOn(Selection.prototype, "addRange");
-    const getSelection = vi.spyOn(window, "getSelection").mockReturnValue(null);
+    const getSelection = vi
+      .spyOn(globalThis, "getSelection")
+      .mockReturnValue(null);
     const createRange = vi.spyOn(document, "createRange");
 
     const node = document.createElement("div");
@@ -46,10 +48,10 @@ describe("selectNode", () => {
   it("should be able to select text", () => {
     const node = document.createElement("div");
     node.textContent = "Hello, world!";
-    document.body.appendChild(node);
+    document.body.append(node);
 
     selectNode(node);
     expect(node).toHaveSelection("Hello, world!");
-    document.body.removeChild(node);
+    node.remove();
   });
 });

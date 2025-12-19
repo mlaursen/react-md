@@ -40,7 +40,7 @@ describe("PortalContainerProvider", () => {
 
   it("should allow for a custom container element", () => {
     const container = document.createElement("div");
-    document.body.appendChild(container);
+    document.body.append(container);
     render(
       <PortalContainerProvider container={container}>
         <Portal>
@@ -57,7 +57,8 @@ describe("PortalContainerProvider", () => {
     expect(document.getElementById(PORTAL_CONTAINER_ID)).toBe(null);
     expect(container).toContainElement(div1);
     expect(container).toContainElement(div2);
-    document.body.removeChild(container);
+    // eslint-disable-next-line testing-library/no-container
+    container.remove();
   });
 
   it("should allow for a ref container", () => {

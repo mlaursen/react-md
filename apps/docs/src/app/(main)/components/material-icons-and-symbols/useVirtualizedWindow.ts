@@ -82,9 +82,7 @@ export function useVirtualizedWindow(options: Options): Result {
     if (searchTerm) {
       // when searching, remove the categories from the results and just display
       // all the matching icons
-      const allIcons = Object.values(iconsByCategory).reduce<
-        MaterialIconAndSymbolName[]
-      >((names, icons) => [...names, ...icons], []);
+      const allIcons = Object.values(iconsByCategory).flat();
 
       const fuse = new Fuse(allIcons, {
         // make matching more strict to limit results
@@ -98,10 +96,9 @@ export function useVirtualizedWindow(options: Options): Result {
       const sorted = alphaNumericSort(Object.entries(iconsByCategory), {
         extractor: (item) => item[0],
       });
-      sorted.forEach(([category, icons]) => {
-        available.push(category);
-        available.push(...chunk(icons, columns));
-      });
+      for (const [category, icons] of sorted) {
+        available.push(category, ...chunk(icons, columns));
+      }
     }
 
     return available;
@@ -132,7 +129,7 @@ export function useVirtualizedWindow(options: Options): Result {
       virtualizedList.scrollTo(scrollTop);
     };
 
-    const scrollHandler = delegateEvent("scroll", window, true, {
+    const scrollHandler = delegateEvent("scroll", globalThis.window, true, {
       passive: true,
     });
 
@@ -158,8 +155,7 @@ export function useVirtualizedWindow(options: Options): Result {
     }
 
     let offset = -(container.offsetTop + getRowHeight(list[0], true));
-    for (let i = 0; i < list.length; i++) {
-      const row = list[i];
+    for (const [i, row] of list.entries()) {
       offset += getRowHeight(row, i === 0);
       if (typeof row !== "string" && row.includes(selectedIconName)) {
         const viewportBottom = window.innerHeight - container.offsetTop - 48;

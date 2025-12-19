@@ -43,7 +43,7 @@ export function VirtualizedMatch(props: VirtualizedMatchProps): ReactElement {
       themeType={selected ? "outline" : "flat"}
     >
       {icon}
-      <span>{name.replace(/_/g, " ")}</span>
+      <span>{name.replaceAll("_", " ")}</span>
     </Button>
   );
 }

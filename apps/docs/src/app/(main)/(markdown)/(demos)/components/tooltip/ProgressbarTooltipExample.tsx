@@ -2,7 +2,7 @@
 
 import { box } from "@react-md/core/box/styles";
 import { Button } from "@react-md/core/button/Button";
-import { cssUtils } from "@react-md/core/cssUtils";
+import { type BackgroundColor, cssUtils } from "@react-md/core/cssUtils";
 import { LinearProgress } from "@react-md/core/progress/LinearProgress";
 import { Tooltip } from "@react-md/core/tooltip/Tooltip";
 import { useToggle } from "@react-md/core/useToggle";
@@ -14,6 +14,13 @@ import styles from "./ProgressbarTooltipExample.module.scss";
 
 export default function ProgressbarTooltipExample(): ReactElement {
   const { value, toggle, toggled } = useIncrementingValue();
+
+  let backgroundColor: BackgroundColor | undefined;
+  if (value < 30) {
+    backgroundColor = "warning";
+  } else if (value === 100) {
+    backgroundColor = "success";
+  }
 
   return (
     <>
@@ -28,8 +35,7 @@ export default function ProgressbarTooltipExample(): ReactElement {
             disableWrap: true,
             disablePadding: true,
             className: cssUtils({
-              backgroundColor:
-                value < 30 ? "warning" : value === 100 ? "success" : undefined,
+              backgroundColor,
               className: styles.tooltip,
             }),
           })}
@@ -56,7 +62,7 @@ function useIncrementingValue(): {
       return;
     }
 
-    const timeout = window.setTimeout(
+    const timeout = globalThis.setTimeout(
       () => {
         setValue(
           loop({
@@ -70,7 +76,7 @@ function useIncrementingValue(): {
       value === 100 ? 5000 : 300
     );
     return () => {
-      window.clearTimeout(timeout);
+      globalThis.clearTimeout(timeout);
     };
   }, [toggled, value]);
 

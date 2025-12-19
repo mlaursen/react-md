@@ -80,7 +80,8 @@ export function AlgoliaSearch({
           noOptionsChildren={null}
           listboxProps={{
             className: cnb(
-              (!query || (!options.length && !loading)) && DISPLAY_NONE_CLASS
+              (!query || (options.length === 0 && !loading)) &&
+                DISPLAY_NONE_CLASS
             ),
             disablePortal: true,
             disableSwapping: true,

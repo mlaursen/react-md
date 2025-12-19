@@ -15,7 +15,7 @@ import styles from "./ColorPalette.module.scss";
 
 function assertMaterialColor(name: string): asserts name is MaterialColor {
   if (!MATERIAL_COLORS.includes(name as MaterialColor)) {
-    throw new Error();
+    throw new Error("Invalid Material Color");
   }
 }
 
@@ -45,12 +45,12 @@ export function ColorPalette(): ReactElement {
   });
 
   const groups = new Map<MaterialColor, string[]>();
-  sorted.forEach(([varName, value]) => {
+  for (const [varName, value] of sorted) {
     const groupName = getGroupName(varName);
     const group = groups.get(groupName) ?? [];
     group.push(value);
     groups.set(groupName, group);
-  });
+  }
 
   return (
     <Box
@@ -63,7 +63,7 @@ export function ColorPalette(): ReactElement {
         fontWeight: "bold",
       })}
     >
-      {Array.from(groups.entries()).map(([groupName, colors]) => {
+      {[...groups.entries()].map(([groupName, colors]) => {
         const name = titleCase(groupName);
         const fiveHundredColor = colors[5];
         return (

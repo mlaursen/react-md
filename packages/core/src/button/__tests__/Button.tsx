@@ -75,9 +75,9 @@ describe("Button", () => {
     const button = screen.getByRole("button");
     expect(button).toMatchSnapshot();
 
-    buttonTypes.forEach((buttonType) => {
-      themes.forEach((theme) => {
-        themeTypes.forEach((themeType) => {
+    for (const buttonType of buttonTypes) {
+      for (const theme of themes) {
+        for (const themeType of themeTypes) {
           rerender(
             <Button theme={theme} themeType={themeType} buttonType={buttonType}>
               Content
@@ -85,9 +85,9 @@ describe("Button", () => {
           );
 
           expect(button).toMatchSnapshot();
-        });
-      });
-    });
+        }
+      }
+    }
   });
 
   it("should not fire the onClick event handler when the theme is set to disabled", () => {

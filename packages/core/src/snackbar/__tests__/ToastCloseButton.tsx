@@ -131,7 +131,7 @@ describe("ToastCloseButton", () => {
     const error = vi.spyOn(console, "error").mockImplementation(() => {
       // do nothing
     });
-    expect(() => render(<ToastCloseButton />)).toThrow(
+    expect(() => render(<ToastCloseButton />)).toThrowError(
       "The `CurrentToastActionsProvider` has not been initialized"
     );
 

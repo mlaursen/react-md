@@ -21,7 +21,7 @@ export function MarkdownCode(props: MarkdownCodeProps): ReactElement {
   }
 
   if (typeof children !== "string") {
-    throw new Error("Code must be string");
+    throw new TypeError("Code must be string");
   }
 
   if (process.env.NODE_ENV !== "production") {
@@ -34,13 +34,13 @@ export function MarkdownCode(props: MarkdownCodeProps): ReactElement {
       "appBarChildren",
     ]);
     const invalid = new Set<string>();
-    Object.keys(remaining).forEach((key) => {
+    for (const key of Object.keys(remaining)) {
       if (!KNOWN_PROPS.has(key)) {
         invalid.add(key);
       }
-    });
+    }
 
-    if (invalid.size) {
+    if (invalid.size > 0) {
       throw new Error(`Unsupported code props:
 ${[...invalid].map((name) => `- ${name}`).join("\n")}
 

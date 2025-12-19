@@ -28,13 +28,13 @@ export function configureMediaQueries(
   queries: Readonly<Partial<MediaQueryConfig>>
 ): void {
   if (process.env.NODE_ENV !== "production") {
-    Object.entries(queries).forEach(([name, value]) => {
+    for (const [name, value] of Object.entries(queries)) {
       if (!(name in MEDIA_QUERY_CONFIG)) {
         throw new Error(`${name} is an invalid react-md media query.`);
       }
 
       MEDIA_QUERY_CONFIG[name as keyof MediaQueryConfig] = value;
-    });
+    }
   } else {
     Object.assign(MEDIA_QUERY_CONFIG, queries);
   }

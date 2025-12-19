@@ -28,11 +28,11 @@ export const AutocompleteChip = forwardRef<
   let rightAddon = propRightAddon;
   let ariaDescription = propAriaDescription;
   const removeIcon = getIcon("remove", propRemoveIcon);
-  if (typeof rightAddon === "undefined") {
+  if (rightAddon === undefined) {
     rightAddon = removeIcon;
   }
 
-  if (typeof ariaDescription === "undefined" && typeof children === "string") {
+  if (ariaDescription === undefined && typeof children === "string") {
     ariaDescription = `Remove "${children}"`;
   }
 

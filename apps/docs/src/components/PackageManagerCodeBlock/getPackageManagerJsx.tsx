@@ -13,13 +13,13 @@ export function getPackageManagerJsx(
 ): Record<PackageManager, ReactNode> {
   const { lineWrap, managers } = props;
   const nextManagers: Record<PackageManager, ReactNode> = { ...managers };
-  Object.entries(managers).forEach(([manager, code]) => {
+  for (const [manager, code] of Object.entries(managers)) {
     nextManagers[manager] = (
       <MarkdownCode lineWrap={lineWrap} language="sh" disableMarginTop>
         {code}
       </MarkdownCode>
     );
-  });
+  }
 
   return nextManagers;
 }

@@ -68,12 +68,12 @@ export function useAlgoliaSearchOptions(
   hits: readonly Hit<IndexedItem>[]
 ): readonly AlgoliaSearchHitGroup[] {
   return useMemo(() => {
-    if (!hits.length) {
+    if (hits.length === 0) {
       return [];
     }
 
     const groups = new Map<string, AlgoliaSearchHit[]>();
-    hits.forEach((hit, hitIndex) => {
+    for (const [hitIndex, hit] of hits.entries()) {
       const {
         objectID,
         pathname,
@@ -92,7 +92,7 @@ export function useAlgoliaSearchOptions(
         !highlights.name &&
         !highlights.headings?.some((item) => item.title || item.description)
       ) {
-        return;
+        continue;
       }
 
       if (type === "sassdoc") {
@@ -112,7 +112,7 @@ export function useAlgoliaSearchOptions(
           highlightDescription: highlights.description,
         });
         groups.set(groupName, grouped);
-        return;
+        continue;
       }
 
       const { title, docType, docGroup, headings } = hit;
@@ -126,6 +126,7 @@ export function useAlgoliaSearchOptions(
         description,
         pathname,
         docType: docType ?? "Page",
+        // eslint-disable-next-line unicorn/no-array-reduce
         headings: headings.reduce<HeadingWithHighlights[]>(
           (result, heading, i) => {
             const highlight = highlights?.headings?.[i];
@@ -147,7 +148,7 @@ export function useAlgoliaSearchOptions(
       });
 
       groups.set(groupName, grouped);
-    });
+    }
 
     return [...groups.entries()];
   }, [hits]);

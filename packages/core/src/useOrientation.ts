@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
  * @internal
  */
 export const getOrientationType = (): OrientationType => {
-  if (typeof window === "undefined") {
+  if (globalThis.window === undefined) {
     return "landscape-primary";
   }
 

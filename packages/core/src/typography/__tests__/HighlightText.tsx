@@ -102,7 +102,7 @@ describe("HighlightText", () => {
     );
 
     const wrapper = screen.getByTestId("wrapper");
-    expect(() => screen.getByTestId("mark")).not.toThrow();
+    expect(() => screen.getByTestId("mark")).not.toThrowError();
     expect(wrapper).toHaveTextContent(
       "I often experience déjà vu when visiting this place."
     );
@@ -127,7 +127,7 @@ describe("HighlightText", () => {
         Hello world
       </HighlightText>
     );
-    expect(() => screen.getByTestId("mark")).toThrow();
+    expect(() => screen.getByTestId("mark")).toThrowError();
     expect(wrapper).toHaveTextContent("Hello world");
     expect(wrapper).toMatchSnapshot();
   });

@@ -162,15 +162,15 @@ export function useDropzone(options: DropzoneOptions): DropzoneImplementation {
     enable: startDragging,
     disable: stopDragging,
   } = useToggle();
-  const draggingTimeout = useRef<number | undefined>();
+  const draggingTimeout = useRef<NodeJS.Timeout>();
 
   // Browsers sometimes don't trigger a dragleave event for the entire
   // document, so we have to work around that by using the `dragover` event
   // instead. The `dragover` event will continually fire within the window
   // until the user drops the file or moves the file outside of the window.
   const delayedStopDragging = useCallback(() => {
-    window.clearTimeout(draggingTimeout.current);
-    draggingTimeout.current = window.setTimeout(() => {
+    globalThis.clearTimeout(draggingTimeout.current);
+    draggingTimeout.current = globalThis.setTimeout(() => {
       stopDragging();
     }, 100);
   }, [stopDragging]);
@@ -180,12 +180,12 @@ export function useDropzone(options: DropzoneOptions): DropzoneImplementation {
       return;
     }
 
-    window.addEventListener("dragenter", startDragging);
-    window.addEventListener("dragover", delayedStopDragging);
+    globalThis.addEventListener("dragenter", startDragging);
+    globalThis.addEventListener("dragover", delayedStopDragging);
     return () => {
-      window.clearTimeout(draggingTimeout.current);
-      window.removeEventListener("dragenter", startDragging);
-      window.removeEventListener("dragover", delayedStopDragging);
+      globalThis.clearTimeout(draggingTimeout.current);
+      globalThis.removeEventListener("dragenter", startDragging);
+      globalThis.removeEventListener("dragover", delayedStopDragging);
     };
   }, [delayedStopDragging, disableDragging, startDragging]);
 
@@ -204,7 +204,7 @@ export function useDropzone(options: DropzoneOptions): DropzoneImplementation {
         event.preventDefault();
         event.stopPropagation();
 
-        window.clearTimeout(draggingTimeout.current);
+        globalThis.clearTimeout(draggingTimeout.current);
         onDrop(event);
         setOver(false);
         stopDragging();
@@ -213,7 +213,7 @@ export function useDropzone(options: DropzoneOptions): DropzoneImplementation {
         event.preventDefault();
         event.stopPropagation();
 
-        window.clearTimeout(draggingTimeout.current);
+        globalThis.clearTimeout(draggingTimeout.current);
         onDragOver(event);
         setOver(true);
       },

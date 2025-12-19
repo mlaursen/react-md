@@ -14,7 +14,7 @@ import { type ElementSizeOptions, useElementSize } from "../useElementSize.js";
 cleanupResizeObserverAfterEach();
 
 const getValue = (element: HTMLElement): number =>
-  parseFloat(element.textContent || "");
+  Number.parseFloat(element.textContent || "");
 
 function MainTest(
   props: Omit<ElementSizeOptions<HTMLElement>, "ref">

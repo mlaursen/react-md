@@ -108,7 +108,7 @@ describe("NativeSelect", () => {
         <option value="a">First</option>
       </NativeSelect>
     );
-    expect(() => screen.getByTestId("message-container")).toThrow();
+    expect(() => screen.getByTestId("message-container")).toThrowError();
 
     rerender(
       <NativeSelect
@@ -166,8 +166,8 @@ describe("NativeSelect", () => {
     );
 
     const container = screen.getByTestId("container");
-    expect(() => screen.getByTestId("favorite")).not.toThrow();
-    expect(() => screen.getByTestId("close")).not.toThrow();
+    expect(() => screen.getByTestId("favorite")).not.toThrowError();
+    expect(() => screen.getByTestId("close")).not.toThrowError();
     expect(container).toMatchSnapshot();
   });
 

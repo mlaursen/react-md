@@ -49,8 +49,8 @@ function createEventHandler(
 ): (event: WindowEventMap[keyof WindowEventMap]) => void {
   let running = false;
   const runCallbacks = (event: WindowEventMap[keyof WindowEventMap]) => () => {
-    for (let i = 0; i < callbacks.length; i += 1) {
-      callbacks[i](event);
+    for (const callback of callbacks) {
+      callback(event);
     }
 
     running = false;
@@ -67,7 +67,7 @@ function createEventHandler(
     }
 
     running = true;
-    window.requestAnimationFrame(runCallbacks(event));
+    globalThis.requestAnimationFrame(runCallbacks(event));
   };
 }
 
@@ -77,7 +77,7 @@ function createEventHandler(
  */
 function createDelegatedEventHandler(
   eventType: string,
-  eventTarget: DelegatedEventTarget = window,
+  eventTarget: DelegatedEventTarget = globalThis.window,
   throttle = false,
   options?: boolean | AddEventListenerOptions
 ): DelegatedEventHandler {
@@ -91,11 +91,11 @@ function createDelegatedEventHandler(
      * event will also be started.
      */
     add: (callback: EventListener) => {
-      if (!callbacks.length) {
+      if (callbacks.length === 0) {
         eventTarget.addEventListener(eventType, handler, options);
       }
 
-      if (callbacks.indexOf(callback) === -1) {
+      if (!callbacks.includes(callback)) {
         callbacks.push(callback);
       }
     },
@@ -107,10 +107,10 @@ function createDelegatedEventHandler(
      */
     remove: (callback: EventListener) => {
       const i = callbacks.indexOf(callback);
-      if (i >= 0) {
+      if (i !== -1) {
         callbacks.splice(i, 1);
 
-        if (!callbacks.length) {
+        if (callbacks.length === 0) {
           eventTarget.removeEventListener(eventType, handler, options);
         }
       }
@@ -145,7 +145,7 @@ function createDelegatedEventHandler(
  */
 export function delegateEvent(
   eventType: string,
-  eventTarget: DelegatedEventTarget = window,
+  eventTarget: DelegatedEventTarget = globalThis.window,
   throttle: boolean = eventType === "resize" || eventType === "scroll",
   options?: boolean | AddEventListenerOptions
 ): DelegatedEventHandler {

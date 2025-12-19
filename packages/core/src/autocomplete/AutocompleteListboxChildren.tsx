@@ -49,7 +49,7 @@ export function AutocompleteListboxChildren<Option extends AutocompleteOption>(
   return (
     <>
       {children}
-      {!availableOptions.length && noOptionsChildren}
+      {availableOptions.length === 0 && noOptionsChildren}
       {availableOptions.map((option, index) => {
         const label = getOptionLabel(option);
         const optionProps = getOptionProps({

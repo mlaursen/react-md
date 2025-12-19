@@ -10,10 +10,10 @@ export function getTransformedNpmCode(
   code: string
 ): Record<PackageManager, string> {
   const yarnCode = code
-    .replace(/npm/g, "yarn")
-    .replace(/uninstall/g, "remove")
-    .replace(/install/g, "add");
-  const pnpmCode = yarnCode.replace(/yarn/g, "pnpm");
+    .replaceAll("npm", "yarn")
+    .replaceAll("uninstall", "remove")
+    .replaceAll("install", "add");
+  const pnpmCode = yarnCode.replaceAll("yarn", "pnpm");
 
   return {
     npm: code,

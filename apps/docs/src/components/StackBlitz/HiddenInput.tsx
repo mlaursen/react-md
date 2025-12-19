@@ -29,7 +29,7 @@ export function HiddenInput(props: HiddenInputProps): ReactElement {
   let { value } = props;
   if (name.includes("package.json")) {
     const parsed = JSON.parse(value);
-    dependencies.forEach((dependency) => {
+    for (const dependency of dependencies) {
       if (!parsed.dependencies[dependency]) {
         const version = STACKBLITZ_DEPENDENCIES[dependency];
         if (!version) {
@@ -38,10 +38,10 @@ export function HiddenInput(props: HiddenInputProps): ReactElement {
 
         parsed.dependencies[dependency] = version;
       }
-    });
+    }
     value = JSON.stringify(parsed, null, 2);
   } else if (/\/App\.(t|j)sx/.test(name)) {
-    value = demoCode.replace(new RegExp(demoName, "g"), "App");
+    value = demoCode.replaceAll(new RegExp(demoName, "g"), "App");
   } else if (name.includes("index.html")) {
     let className = "";
     if (!disableBox) {
@@ -53,7 +53,7 @@ export function HiddenInput(props: HiddenInputProps): ReactElement {
   }
 
   if (/\.(t|j)sx?]$/.test(name)) {
-    value = value.replace(/@\/components\//g, "./");
+    value = value.replaceAll("@/components/", "./");
   }
 
   return <input type="hidden" name={name} value={value} />;

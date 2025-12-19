@@ -62,8 +62,8 @@ export const ToastContent = forwardRef<HTMLDivElement, ToastContentProps>(
       disableWidth: true,
       onUpdate: useCallback((entry) => {
         const element = entry.target;
-        const style = window.getComputedStyle(element);
-        const lineHeight = parseFloat(style.lineHeight);
+        const style = globalThis.getComputedStyle(element);
+        const lineHeight = Number.parseFloat(style.lineHeight);
         if (Number.isNaN(lineHeight)) {
           return;
         }

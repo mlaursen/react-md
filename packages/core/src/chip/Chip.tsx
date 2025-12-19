@@ -271,8 +271,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
     const isTransitionable =
       !selectedThemed &&
       typeof selected === "boolean" &&
-      typeof (selectedIconAfter ? propRightAddon : propLeftAddon) ===
-        "undefined";
+      (selectedIconAfter ? propRightAddon : propLeftAddon) === undefined;
     const selectedIcon = useMaxWidthTransition({
       element: selectedIconNode,
       transitionIn: !!selected,

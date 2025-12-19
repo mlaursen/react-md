@@ -87,7 +87,9 @@ export function useReadonlySet<T>(
   const { defaultValue, toggleType = "multiple" } = options;
   const [value, setValue] = useState<ReadonlySet<T>>(() => {
     const initial =
-      defaultValue instanceof Function ? defaultValue() : (defaultValue ?? []);
+      typeof defaultValue === "function"
+        ? defaultValue()
+        : (defaultValue ?? []);
 
     return new Set(initial);
   });

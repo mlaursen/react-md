@@ -53,12 +53,12 @@ export default function MenuOpenAndClickAMenuItem(): ReactElement {
   return (
     <TestFrameworkCodeBlock
       code={{
-        jest: DEFAULT_CODE.replace(/{FRAMEWORK}/g, "@jest/globals").replace(
-          /{LOCAL}/g,
-          "jest"
-        ),
-        vitest: DEFAULT_CODE.replace(/{FRAMEWORK}/g, "vitest").replace(
-          /{LOCAL}/g,
+        jest: DEFAULT_CODE.replaceAll(
+          "{FRAMEWORK}",
+          "@jest/globals"
+        ).replaceAll("{LOCAL}", "jest"),
+        vitest: DEFAULT_CODE.replaceAll("{FRAMEWORK}", "vitest").replaceAll(
+          "{LOCAL}",
           "vi"
         ),
       }}

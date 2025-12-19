@@ -215,7 +215,7 @@ export function useExpansionPanels(
   } = useReadonlySet({
     toggleType: multiple ? "multiple" : "single",
     defaultValue: () => {
-      if (typeof defaultExpandedIds === "undefined") {
+      if (defaultExpandedIds === undefined) {
         const initialList: string[] = [];
         if (typeof defaultExpandedIndex === "number" || preventAllCollapsed) {
           initialList.push(createId(defaultExpandedIndex ?? 0));

@@ -42,11 +42,15 @@ const DEFAULT_EXTRACTOR = defaultExtractor("fuzzySearch");
 export function createFuzzyRegExp(query: string): RegExp {
   return new RegExp(
     query
+      // eslint-disable-next-line unicorn/prefer-spread
       .split("")
-      .join("\\w*")
-      .replace(/(\(|\||\)|\\(?!w\*)|\[|\|-|\.|\^|\+|\$|\?|^(?!w)\*)/g, "\\$1")
+      .join(String.raw`\w*`)
+      .replaceAll(
+        /(\(|\||\)|\\(?!w\*)|\[|\|-|\.|\^|\+|\$|\?|^(?!w)\*)/g,
+        String.raw`\$1`
+      )
       // Couldn't get the matching of two '*' working, so replace them here..
-      .replace(/\*\*/g, "*\\*"),
+      .replaceAll("**", String.raw`*\*`),
     "i"
   );
 }

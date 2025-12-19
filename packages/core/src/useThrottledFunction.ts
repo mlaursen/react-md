@@ -88,7 +88,7 @@ export function useThrottledFunction<F extends AnyFunction>(
 ): ThrottledFunction<F> {
   const args = useRef<Parameters<F>>();
   const result = useRef<ReturnType<F>>();
-  const timeout = useRef<number | undefined>();
+  const timeout = useRef<NodeJS.Timeout>();
   const funcRef = useRef(func);
   const lastCalledTime = useRef(0);
 
@@ -98,7 +98,7 @@ export function useThrottledFunction<F extends AnyFunction>(
 
   useEffect(() => {
     return () => {
-      window.clearTimeout(timeout.current);
+      globalThis.clearTimeout(timeout.current);
     };
   }, []);
 
@@ -113,7 +113,7 @@ export function useThrottledFunction<F extends AnyFunction>(
 
         result.current = funcRef.current(...args.current);
       } else if (!timeout.current) {
-        timeout.current = window.setTimeout(() => {
+        timeout.current = globalThis.setTimeout(() => {
           lastCalledTime.current = Date.now();
           timeout.current = undefined;
           // should exist by this time
@@ -125,7 +125,7 @@ export function useThrottledFunction<F extends AnyFunction>(
       return result.current as ReturnType<F>;
     };
     throttled.cancel = () => {
-      window.clearTimeout(timeout.current);
+      globalThis.clearTimeout(timeout.current);
     };
 
     return throttled;

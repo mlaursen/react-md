@@ -95,7 +95,7 @@ export function useResizeListener(options: ResizeListenerOptions): void {
       return;
     }
 
-    const eventHandler = delegateEvent("resize", window, throttle, {
+    const eventHandler = delegateEvent("resize", globalThis.window, throttle, {
       once,
       signal,
       capture,
@@ -103,7 +103,7 @@ export function useResizeListener(options: ResizeListenerOptions): void {
     });
     eventHandler.add(onUpdate);
 
-    window.dispatchEvent(new Event("resize"));
+    globalThis.dispatchEvent(new Event("resize"));
     return () => {
       eventHandler.remove(onUpdate);
     };

@@ -120,7 +120,7 @@ describe("useStorage", () => {
       });
 
       if (typeof value !== "number") {
-        throw new Error();
+        throw new TypeError("Value is not a number");
       }
 
       return (
@@ -228,9 +228,9 @@ describe("useStorage", () => {
 
       if (typeof birth_year === "string") {
         try {
-          birth_year = parseInt(birth_year, 10);
+          birth_year = Number.parseInt(birth_year, 10);
           if (Number.isNaN(birth_year)) {
-            throw new Error();
+            throw new TypeError("birth_year is not a number");
           }
         } catch {
           ({ birth_year } = DEFAULT_VALUE);
@@ -350,7 +350,7 @@ describe("useStorage", () => {
     act(() => {
       // don't really know a good way to test this part
       localStorage.setItem(TEST_KEY, '"storage event value"');
-      window.dispatchEvent(
+      globalThis.dispatchEvent(
         new StorageEvent("storage", {
           key: TEST_KEY,
           oldValue: "",
@@ -378,7 +378,7 @@ describe("useStorage", () => {
     act(() => {
       // don't really know a good way to test this part
       localStorage.setItem(TEST_KEY, '"storage event value"');
-      window.dispatchEvent(
+      globalThis.dispatchEvent(
         new StorageEvent("storage", {
           key: TEST_KEY,
           oldValue: "",
@@ -392,7 +392,7 @@ describe("useStorage", () => {
     act(() => {
       // don't really know a good way to test this part
       localStorage.setItem(TEST_KEY + "INVALID", '"storage event value"');
-      window.dispatchEvent(
+      globalThis.dispatchEvent(
         new StorageEvent("storage", {
           key: TEST_KEY + "INVALID",
           oldValue: "",
@@ -489,7 +489,7 @@ describe("useStorage", () => {
     act(() => {
       // don't really know a good way to test this part
       localStorage.setItem(TEST_KEY, '"storage event value"');
-      window.dispatchEvent(
+      globalThis.dispatchEvent(
         new StorageEvent("storage", {
           key: TEST_KEY,
           oldValue: "",

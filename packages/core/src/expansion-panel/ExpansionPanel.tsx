@@ -241,7 +241,7 @@ export const ExpansionPanel = forwardRef<
   });
 
   let header = propHeader;
-  if (typeof header === "undefined") {
+  if (header === undefined) {
     header = (
       <ExpansionPanelHeader
         style={headerStyle}

@@ -7,7 +7,7 @@ import { type ElementSize } from "../types.js";
 import { type WindowSizeOptions, useWindowSize } from "../useWindowSize.js";
 
 const getValue = (element: HTMLElement): number =>
-  parseFloat(element.textContent || "");
+  Number.parseFloat(element.textContent || "");
 
 interface TestProps extends WindowSizeOptions {
   initialRef?: MutableRefObject<ElementSize | null>;
@@ -119,14 +119,14 @@ describe("useWindowSize", () => {
 
     act(() => {
       window.innerHeight = 1000;
-      window.dispatchEvent(new Event("resize"));
+      globalThis.dispatchEvent(new Event("resize"));
     });
     expect(getValue(height)).toBe(HEIGHT);
     expect(getValue(width)).toBe(WIDTH);
 
     act(() => {
       window.innerWidth = 800;
-      window.dispatchEvent(new Event("resize"));
+      globalThis.dispatchEvent(new Event("resize"));
     });
     expect(getValue(height)).toBe(1000);
     expect(getValue(width)).toBe(800);
@@ -141,14 +141,14 @@ describe("useWindowSize", () => {
 
     act(() => {
       window.innerWidth = 800;
-      window.dispatchEvent(new Event("resize"));
+      globalThis.dispatchEvent(new Event("resize"));
     });
     expect(getValue(height)).toBe(HEIGHT);
     expect(getValue(width)).toBe(WIDTH);
 
     act(() => {
       window.innerHeight = 1000;
-      window.dispatchEvent(new Event("resize"));
+      globalThis.dispatchEvent(new Event("resize"));
     });
     expect(getValue(height)).toBe(1000);
     expect(getValue(width)).toBe(800);

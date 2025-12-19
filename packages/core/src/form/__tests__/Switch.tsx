@@ -124,7 +124,7 @@ describe("Switch", () => {
     const { rerender } = rmdRender(<Switch {...props} />);
 
     const container = screen.getByTestId("container");
-    expect(() => screen.getByText("Help Text")).not.toThrow();
+    expect(() => screen.getByText("Help Text")).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     rerender(
@@ -146,7 +146,7 @@ describe("Switch", () => {
       />
     );
 
-    expect(() => screen.getByRole("progressbar")).not.toThrow();
+    expect(() => screen.getByRole("progressbar")).not.toThrowError();
     const label = screen.getByTestId("label");
     expect(label).toMatchSnapshot();
   });

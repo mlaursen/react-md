@@ -1,5 +1,5 @@
 import { TextEncoder } from "node:util";
 
-if (typeof global.TextEncoder === "undefined") {
-  global.TextEncoder = TextEncoder;
+if (globalThis.TextEncoder === undefined) {
+  globalThis.TextEncoder = TextEncoder;
 }

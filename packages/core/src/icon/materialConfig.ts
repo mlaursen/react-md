@@ -183,7 +183,7 @@ interface ApplyOptions {
 
 const applyVar = (options: ApplyOptions): CSSProperties | undefined => {
   const { name, value, defaultValue, style } = options;
-  if (typeof value !== "undefined" && value !== defaultValue) {
+  if (value !== undefined && value !== defaultValue) {
     const varName = `--rmd-symbol-${name}` as const;
     return {
       ...style,

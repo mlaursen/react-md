@@ -43,7 +43,7 @@ function useDemoState(): DemoStateHookResult {
       return;
     }
 
-    const timeout = window.setTimeout(
+    const timeout = globalThis.setTimeout(
       () => {
         setState((prevState) => ({
           loading: false,
@@ -54,7 +54,7 @@ function useDemoState(): DemoStateHookResult {
     );
 
     return () => {
-      window.clearTimeout(timeout);
+      globalThis.clearTimeout(timeout);
     };
   }, [loading]);
   const onClick = (): void => {

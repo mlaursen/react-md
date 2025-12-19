@@ -11,7 +11,7 @@ export function toSearchQuery(
 ): string {
   let q = s.toLowerCase();
   if (whitespace === "ignore") {
-    q = q.replace(/\s/g, "");
+    q = q.replaceAll(/\s/g, "");
   } else if (whitespace === "trim") {
     q = q.trim();
   }

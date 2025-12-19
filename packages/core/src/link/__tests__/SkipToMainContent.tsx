@@ -40,13 +40,13 @@ describe("SkipToMainContent", () => {
   it("should automatically find the main element for convenience", () => {
     expect(() =>
       render(<SkipToMainContent />, { wrapper: MainIdWrapper })
-    ).not.toThrow();
+    ).not.toThrowError();
   });
 
   it("should throw an error if the mainId cannot be found", () => {
     // hide thrown error in test reports
     vi.spyOn(console, "error").mockImplementation(() => {});
-    expect(() => render(<SkipToMainContent mainId="not-found" />)).toThrow(
+    expect(() => render(<SkipToMainContent mainId="not-found" />)).toThrowError(
       'Unable to find a main element to focus with an id of "not-found". There should be at least one <main> element or an element with role="main" on the page for accessibility.'
     );
   });
@@ -61,7 +61,7 @@ describe("SkipToMainContent", () => {
           <main id="main-id" />
         </>
       )
-    ).toThrow(
+    ).toThrowError(
       'Unable to find a main element to focus with an id of "not-found" but a main element was found with an id of "main-id".'
     );
   });

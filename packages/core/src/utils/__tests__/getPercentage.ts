@@ -32,22 +32,22 @@ describe("getPercentage", () => {
       value: 20,
       validate: true,
     };
-    expect(() => getPercentage(options1)).toThrow(expected);
-    expect(() => getPercentage(options2)).toThrow(expected);
-    expect(() => getPercentage(options3)).toThrow(expected);
-    expect(() => getPercentage(options4)).toThrow(expected);
-    expect(() => getPercentage({ ...options1, validate: false })).not.toThrow(
-      expected
-    );
-    expect(() => getPercentage({ ...options2, validate: false })).not.toThrow(
-      expected
-    );
-    expect(() => getPercentage({ ...options3, validate: false })).not.toThrow(
-      expected
-    );
-    expect(() => getPercentage({ ...options4, validate: false })).not.toThrow(
-      expected
-    );
+    expect(() => getPercentage(options1)).toThrowError(expected);
+    expect(() => getPercentage(options2)).toThrowError(expected);
+    expect(() => getPercentage(options3)).toThrowError(expected);
+    expect(() => getPercentage(options4)).toThrowError(expected);
+    expect(() =>
+      getPercentage({ ...options1, validate: false })
+    ).not.toThrowError(expected);
+    expect(() =>
+      getPercentage({ ...options2, validate: false })
+    ).not.toThrowError(expected);
+    expect(() =>
+      getPercentage({ ...options3, validate: false })
+    ).not.toThrowError(expected);
+    expect(() =>
+      getPercentage({ ...options4, validate: false })
+    ).not.toThrowError(expected);
   });
 
   it("should throw a RangeError if the value is not between the min anx max", () => {
@@ -73,18 +73,18 @@ describe("getPercentage", () => {
       validate: true,
     };
 
-    expect(() => getPercentage(options1)).toThrow(expected);
-    expect(() => getPercentage(options2)).toThrow(expected);
-    expect(() => getPercentage(options3)).toThrow(expected);
-    expect(() => getPercentage({ ...options1, validate: false })).not.toThrow(
-      expected
-    );
-    expect(() => getPercentage({ ...options2, validate: false })).not.toThrow(
-      expected
-    );
-    expect(() => getPercentage({ ...options3, validate: false })).not.toThrow(
-      expected
-    );
+    expect(() => getPercentage(options1)).toThrowError(expected);
+    expect(() => getPercentage(options2)).toThrowError(expected);
+    expect(() => getPercentage(options3)).toThrowError(expected);
+    expect(() =>
+      getPercentage({ ...options1, validate: false })
+    ).not.toThrowError(expected);
+    expect(() =>
+      getPercentage({ ...options2, validate: false })
+    ).not.toThrowError(expected);
+    expect(() =>
+      getPercentage({ ...options3, validate: false })
+    ).not.toThrowError(expected);
   });
 
   it("should return the value as a decimal between 0 and 1 representing the current percentage", () => {

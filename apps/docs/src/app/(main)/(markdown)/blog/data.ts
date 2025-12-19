@@ -25,7 +25,7 @@ export async function getBlogs(cwd: string): Promise<readonly Blog[]> {
       const contents = await readFile(join(cwd, page), "utf8");
       const { data } = matter(contents);
 
-      const pageSlug = page.substring(0, page.lastIndexOf("/"));
+      const pageSlug = page.slice(0, Math.max(0, page.lastIndexOf("/")));
       const {
         title,
         author,
@@ -38,7 +38,7 @@ export async function getBlogs(cwd: string): Promise<readonly Blog[]> {
       assertString(exerpt, "exerpt must be a string");
       assertString(author, "author must be a string");
       assertDate(date, "date");
-      if (typeof pinned !== "undefined") {
+      if (pinned !== undefined) {
         assertBoolean(pinned, "pinned");
       }
 

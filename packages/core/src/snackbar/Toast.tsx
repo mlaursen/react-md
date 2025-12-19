@@ -190,7 +190,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
     }
 
     let closeIcon = propCloseIcon;
-    if (typeof closeButtonProps?.children !== "undefined") {
+    if (closeButtonProps?.children !== undefined) {
       closeIcon = closeButtonProps.children;
     }
 

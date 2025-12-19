@@ -46,8 +46,7 @@ export const rehypeColorPreview: Plugin<[], Root> = () => (tree) => {
     const matches = node.value.match(HEX_CODE_REGEX) || [];
 
     const replacements = [];
-    for (let i = 0; i < parts.length; i++) {
-      const part = parts[i];
+    for (const [i, part] of parts.entries()) {
       const clonedNode = structuredClone(node);
       clonedNode.value = part;
       delete clonedNode.position;

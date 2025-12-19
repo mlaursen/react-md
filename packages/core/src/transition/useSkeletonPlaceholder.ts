@@ -238,10 +238,10 @@ export function useSkeletonPlaceholder(
   } = options;
   const ssr = useSsr();
 
-  const isDefinedWidth = typeof propWidth !== "undefined";
-  const isDefinedDelay = typeof propDelay !== "undefined";
+  const isDefinedWidth = propWidth !== undefined;
+  const isDefinedDelay = propDelay !== undefined;
   const [randomStyles, setRandomStyles] = useState<CSSProperties>(() => {
-    if (typeof window === "undefined" || ssr || disabled) {
+    if (globalThis.window === undefined || ssr || disabled) {
       return {};
     }
 
@@ -289,7 +289,7 @@ export function useSkeletonPlaceholder(
   }
 
   let style: CSSProperties | undefined = propStyle;
-  if (!!width || !!animationDelay || typeof height !== "undefined") {
+  if (!!width || !!animationDelay || height !== undefined) {
     style = {
       ...style,
       height: height ?? style?.height,

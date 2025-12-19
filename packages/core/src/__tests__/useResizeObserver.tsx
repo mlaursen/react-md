@@ -21,7 +21,7 @@ describe("useResizeObserver", () => {
   it("should only create a single shared observer to improve performance", () => {
     const observe = vi.fn();
     const resizeObserverSpy = vi
-      .spyOn(window, "ResizeObserver")
+      .spyOn(globalThis, "ResizeObserver")
       .mockImplementation(() => ({
         observe,
         disconnect: vi.fn(),
@@ -61,7 +61,7 @@ describe("useResizeObserver", () => {
   });
 
   it("should do nothing when disabled, both the height and width are disabled, or there is no element", () => {
-    const resizeObserverSpy = vi.spyOn(window, "ResizeObserver");
+    const resizeObserverSpy = vi.spyOn(globalThis, "ResizeObserver");
     const noRefUpdate = vi.fn();
     const disabledUpdate = vi.fn();
     const disabledSizesUpdate = vi.fn();
@@ -97,7 +97,7 @@ describe("useResizeObserver", () => {
     function Test(): ReactElement {
       const ref = useResizeObserver({ onUpdate });
       useEffect(() => {
-        window.requestAnimationFrame(frameCalled);
+        globalThis.requestAnimationFrame(frameCalled);
       }, []);
       return <div ref={ref} data-testid="div" />;
     }

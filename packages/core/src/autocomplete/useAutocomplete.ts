@@ -136,7 +136,7 @@ export function useAutocomplete<
     propMultiselect ??
     (!!value && typeof value === "object" && "length" in value);
   let updateQueryOnSelect = propUpdateQueryOnSelect;
-  if (typeof propUpdateQueryOnSelect === "undefined") {
+  if (propUpdateQueryOnSelect === undefined) {
     updateQueryOnSelect = multiselect ? "clear" : "selected";
   }
 
@@ -294,13 +294,13 @@ export function useAutocomplete<
       let unselectedIcon = propUnselectedIcon;
       let disableSelectedIcon = propDisableSelectedIcon;
       if (multiselect && checkboxes) {
-        if (typeof selectedIcon === "undefined") {
+        if (selectedIcon === undefined) {
           selectedIcon = getIcon("checkboxChecked");
         }
-        if (typeof unselectedIcon === "undefined") {
+        if (unselectedIcon === undefined) {
           unselectedIcon = getIcon("checkbox");
         }
-      } else if (typeof disableSelectedIcon === "undefined") {
+      } else if (disableSelectedIcon === undefined) {
         disableSelectedIcon = true;
       }
 

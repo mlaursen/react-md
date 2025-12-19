@@ -114,7 +114,7 @@ export const MenuItemFileInput = forwardRef<
 
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        input.onchange = onChange;
+        input.addEventListener("change", onChange);
         input.click();
         input = null;
       }}

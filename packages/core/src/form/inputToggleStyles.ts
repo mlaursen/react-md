@@ -1,6 +1,6 @@
 import { cnb } from "cnbuilder";
 
-import { cssUtils } from "../cssUtils.js";
+import { type TextColor, type ThemeColor, cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
 import { type FormComponentStates } from "./types.js";
 
@@ -60,6 +60,13 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
     uncontrolled,
   } = options;
 
+  let textColor: TextColor | ThemeColor | undefined;
+  if (disabled) {
+    textColor = "text-disabled";
+  } else if (error) {
+    textColor = "error";
+  }
+
   return cnb(
     `rmd-${type}`,
     styles({
@@ -72,9 +79,7 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
       large: size === "large",
       uncontrolled,
     }),
-    cssUtils({
-      textColor: disabled ? "text-disabled" : error ? "error" : undefined,
-    }),
+    cssUtils({ textColor }),
     className
   );
 }

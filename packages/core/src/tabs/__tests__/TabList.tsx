@@ -117,7 +117,7 @@ describe("TabList", () => {
     getIntersectionRatio.mockImplementation((element) =>
       element.nextElementSibling ? 1 : 0
     );
-    vi.spyOn(window, "IntersectionObserver").mockImplementation(
+    vi.spyOn(globalThis, "IntersectionObserver").mockImplementation(
       (callback, options) => new MockedObserver(callback, options)
     );
   });
@@ -210,7 +210,7 @@ describe("TabList", () => {
     it("should support rendering scroll buttons to scroll horizontally by setting the scrollButtons prop to true", async () => {
       let backObserver: Observer;
       let forwardObserver: Observer;
-      vi.spyOn(window, "IntersectionObserver").mockImplementation(
+      vi.spyOn(globalThis, "IntersectionObserver").mockImplementation(
         (callback, options) => {
           if (!backObserver) {
             backObserver = new MockedObserver(callback, options);
@@ -222,7 +222,7 @@ describe("TabList", () => {
             return forwardObserver;
           }
 
-          throw new Error();
+          throw new Error("Invalid IntersectionObserver call");
         }
       );
 
@@ -237,7 +237,7 @@ describe("TabList", () => {
       });
 
       if (!backObserver || !forwardObserver) {
-        throw new Error();
+        throw new Error("Missing backObserver or forwardObserver");
       }
 
       const scrollLeft = vi
@@ -307,7 +307,7 @@ describe("TabList", () => {
     it("should support rendering scroll buttons to scroll vertically by setting the scrollButtons prop to true", async () => {
       let backObserver: Observer;
       let forwardObserver: Observer;
-      vi.spyOn(window, "IntersectionObserver").mockImplementation(
+      vi.spyOn(globalThis, "IntersectionObserver").mockImplementation(
         (callback, options) => {
           if (!backObserver) {
             backObserver = new MockedObserver(callback, options);
@@ -319,7 +319,7 @@ describe("TabList", () => {
             return forwardObserver;
           }
 
-          throw new Error();
+          throw new Error("Invalid IntersectionObserver call");
         }
       );
 
@@ -334,7 +334,7 @@ describe("TabList", () => {
       });
 
       if (!backObserver || !forwardObserver) {
-        throw new Error();
+        throw new Error("Missing backObserver or forwardObserver");
       }
 
       const scrollTop = vi
@@ -446,7 +446,7 @@ describe("TabList", () => {
     it("should support scrolling correctly in RTL mode", async () => {
       let backObserver: Observer;
       let forwardObserver: Observer;
-      vi.spyOn(window, "IntersectionObserver").mockImplementation(
+      vi.spyOn(globalThis, "IntersectionObserver").mockImplementation(
         (callback, options) => {
           if (!backObserver) {
             backObserver = new MockedObserver(callback, options);
@@ -458,7 +458,7 @@ describe("TabList", () => {
             return forwardObserver;
           }
 
-          throw new Error();
+          throw new Error("Invalid IntersectionObserver call");
         }
       );
 
@@ -479,7 +479,7 @@ describe("TabList", () => {
       });
 
       if (!backObserver || !forwardObserver) {
-        throw new Error();
+        throw new Error("Missing backObserver or forwardObserver");
       }
 
       const scrollLeft = vi
@@ -631,7 +631,7 @@ describe("TabList", () => {
       const back = screen.getByRole("button", { name: "back" });
       const forward = screen.getByRole("button", { name: "forward" });
 
-      expect(() => screen.getByRole("tooltip")).toThrow();
+      expect(() => screen.getByRole("tooltip")).toThrowError();
 
       fireEvent.mouseEnter(back);
       await waitFor(() => {
@@ -642,7 +642,7 @@ describe("TabList", () => {
 
       fireEvent.mouseLeave(back);
       await waitFor(() => {
-        expect(() => screen.getByRole("tooltip")).toThrow();
+        expect(() => screen.getByRole("tooltip")).toThrowError();
       });
 
       fireEvent.mouseEnter(forward);
@@ -654,7 +654,7 @@ describe("TabList", () => {
 
       fireEvent.mouseLeave(forward);
       await waitFor(() => {
-        expect(() => screen.getByRole("tooltip")).toThrow();
+        expect(() => screen.getByRole("tooltip")).toThrowError();
       });
     });
 
@@ -663,8 +663,10 @@ describe("TabList", () => {
       rmdRender(<Test scrollButtons="auto" />);
 
       const tablist = screen.getByTestId("tablist");
-      expect(() => screen.getByRole("button", { name: "back" })).toThrow();
-      expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
+      expect(() => screen.getByRole("button", { name: "back" })).toThrowError();
+      expect(() =>
+        screen.getByRole("button", { name: "forward" })
+      ).toThrowError();
 
       vi.spyOn(tablist, "offsetWidth", "get").mockReturnValue(300);
       const scrollWidth = vi
@@ -674,17 +676,21 @@ describe("TabList", () => {
       act(() => {
         observer.resizeElement(tablist);
       });
-      expect(() => screen.getByRole("button", { name: "back" })).toThrow();
-      expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
+      expect(() => screen.getByRole("button", { name: "back" })).toThrowError();
+      expect(() =>
+        screen.getByRole("button", { name: "forward" })
+      ).toThrowError();
 
       scrollWidth.mockReturnValue(400);
       act(() => {
         observer.resizeElement(tablist);
       });
-      expect(() => screen.getByRole("button", { name: "back" })).not.toThrow();
+      expect(() =>
+        screen.getByRole("button", { name: "back" })
+      ).not.toThrowError();
       expect(() =>
         screen.getByRole("button", { name: "forward" })
-      ).not.toThrow();
+      ).not.toThrowError();
     });
 
     it('should allow the scroll buttons to be dynamically added only if there is overflow when not a phone by setting the scrollButtons to "auto-tablet-or-above"', () => {
@@ -693,8 +699,10 @@ describe("TabList", () => {
       rmdRender(<Test scrollButtons="auto-tablet-or-above" />);
 
       const tablist = screen.getByTestId("tablist");
-      expect(() => screen.getByRole("button", { name: "back" })).toThrow();
-      expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
+      expect(() => screen.getByRole("button", { name: "back" })).toThrowError();
+      expect(() =>
+        screen.getByRole("button", { name: "forward" })
+      ).toThrowError();
 
       vi.spyOn(tablist, "offsetWidth", "get").mockReturnValue(300);
       const scrollWidth = vi
@@ -704,15 +712,19 @@ describe("TabList", () => {
       act(() => {
         observer.resizeElement(tablist);
       });
-      expect(() => screen.getByRole("button", { name: "back" })).toThrow();
-      expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
+      expect(() => screen.getByRole("button", { name: "back" })).toThrowError();
+      expect(() =>
+        screen.getByRole("button", { name: "forward" })
+      ).toThrowError();
 
       scrollWidth.mockReturnValue(400);
       act(() => {
         observer.resizeElement(tablist);
       });
-      expect(() => screen.getByRole("button", { name: "back" })).toThrow();
-      expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
+      expect(() => screen.getByRole("button", { name: "back" })).toThrowError();
+      expect(() =>
+        screen.getByRole("button", { name: "forward" })
+      ).toThrowError();
     });
   });
 });

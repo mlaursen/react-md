@@ -94,7 +94,7 @@ describe("TextField", () => {
         messageContainerProps={{ "data-testid": "message-container" }}
       />
     );
-    expect(() => screen.getByTestId("message-container")).toThrow();
+    expect(() => screen.getByTestId("message-container")).toThrowError();
 
     rerender(
       <TextField
@@ -160,8 +160,8 @@ describe("TextField", () => {
     );
 
     const container = screen.getByTestId("container");
-    expect(() => screen.getByTestId("favorite")).not.toThrow();
-    expect(() => screen.getByTestId("close")).not.toThrow();
+    expect(() => screen.getByTestId("favorite")).not.toThrowError();
+    expect(() => screen.getByTestId("close")).not.toThrowError();
     expect(container).toMatchSnapshot();
   });
 

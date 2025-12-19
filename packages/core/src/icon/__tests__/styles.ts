@@ -22,8 +22,8 @@ describe("icon styles", () => {
       "currentcolor",
     ];
 
-    themes.forEach((theme) => {
+    for (const theme of themes) {
       expect(icon({ type: "svg", theme })).toMatchSnapshot();
-    });
+    }
   });
 });

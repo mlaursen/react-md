@@ -99,8 +99,8 @@ describe("FixedDialog", () => {
       <Test overlayProps={{ "data-testid": "overlay" }} />
     );
 
-    expect(() => screen.getByRole("dialog")).toThrow();
-    expect(() => screen.getByTestId("overlay")).toThrow();
+    expect(() => screen.getByRole("dialog")).toThrowError();
+    expect(() => screen.getByTestId("overlay")).toThrowError();
     const button = screen.getByRole("button", { name: "Button" });
     await user.click(button);
 
@@ -184,7 +184,7 @@ describe("FixedDialog", () => {
     });
     act(() => {
       const scrollEvent = new UIEvent("scroll");
-      window.dispatchEvent(scrollEvent);
+      globalThis.dispatchEvent(scrollEvent);
     });
     expect(dialog).not.toBeInTheDocument();
     expect(button).not.toHaveFocus();

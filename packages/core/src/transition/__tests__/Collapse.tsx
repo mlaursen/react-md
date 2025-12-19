@@ -59,26 +59,26 @@ describe("useCollapseTransition", () => {
     const getElement = (): HTMLElement => screen.getByTestId("element");
     const toggle = screen.getByRole("button");
 
-    expect(getElement).toThrow();
+    expect(getElement).toThrowError();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).toThrow();
+    expect(getElement).toThrowError();
     expect(container).toMatchSnapshot();
   });
 
@@ -118,15 +118,15 @@ describe("useCollapseTransition", () => {
     );
     const getElement = (): HTMLElement => screen.getByTestId("element");
 
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     rerender(<Test key="second-test" minPaddingBottom={16} />);
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     rerender(<Test key="third-test" minPaddingTop={8} />);
-    expect(getElement).not.toThrow();
+    expect(getElement).not.toThrowError();
     expect(container).toMatchSnapshot();
 
     rerender(
@@ -138,7 +138,7 @@ describe("useCollapseTransition", () => {
         temporary
       />
     );
-    expect(getElement).toThrow();
+    expect(getElement).toThrowError();
     expect(container).toMatchSnapshot();
   });
 

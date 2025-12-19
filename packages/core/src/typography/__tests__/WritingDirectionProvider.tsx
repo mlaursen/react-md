@@ -108,11 +108,11 @@ describe("WritingDirectionProvider", () => {
 
     render(<Test />);
 
-    if (typeof toggleDir === "undefined") {
-      throw new Error();
+    if (toggleDir === undefined) {
+      throw new Error("toggleDir was not set");
     }
 
-    expect(toggleDir).toThrow(
+    expect(toggleDir).toThrowError(
       "Tried to toggle the current writing direction without initializing the `Dir` component."
     );
   });

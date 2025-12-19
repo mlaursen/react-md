@@ -174,7 +174,7 @@ export function useTreeMovement<T extends TreeItemNode>(
             const expandableIds = [...itemIds].filter(
               (itemId) => expandable[itemId]
             );
-            if (expandableIds.length) {
+            if (expandableIds.length > 0) {
               expandMultipleTreeItems(
                 (prev) => new Set([...prev, ...expandableIds])
               );

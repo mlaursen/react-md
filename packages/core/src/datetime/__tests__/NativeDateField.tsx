@@ -119,15 +119,15 @@ describe("NativeDateField", () => {
   it("should not render the FormMessageContainer if the min, max, step, and required props are not provided", () => {
     const { rerender } = setup();
 
-    expect(() => screen.getByTestId("message-container")).toThrow();
+    expect(() => screen.getByTestId("message-container")).toThrowError();
 
     rerender({ min: "2025-01-01", max: "2026-01-01" });
-    expect(() => screen.getByTestId("message-container")).not.toThrow();
-    expect(() => screen.getByTestId("message")).not.toThrow();
+    expect(() => screen.getByTestId("message-container")).not.toThrowError();
+    expect(() => screen.getByTestId("message")).not.toThrowError();
 
     rerender({ min: "2025-01-01", max: "2026-01-01", disableMessage: true });
-    expect(() => screen.getByTestId("message-container")).toThrow();
-    expect(() => screen.getByTestId("message")).toThrow();
+    expect(() => screen.getByTestId("message-container")).toThrowError();
+    expect(() => screen.getByTestId("message")).toThrowError();
   });
 
   it("should handle simple validation inherited from the useTextField hook", async () => {

@@ -166,15 +166,15 @@ export function useHoverMode(
   const state = useState(defaultVisible);
   let visible: boolean | undefined;
   let setVisible: UseStateSetter<boolean>;
-  if (typeof propSetVisible !== "undefined") {
+  if (propSetVisible !== undefined) {
     setVisible = propSetVisible;
   } else {
     [visible, setVisible] = state;
   }
 
-  const visibilityTimeout = useRef<number | undefined>();
+  const visibilityTimeout = useRef<NodeJS.Timeout>();
   const clearVisibilityTimeout = useCallback(() => {
-    window.clearTimeout(visibilityTimeout.current);
+    globalThis.clearTimeout(visibilityTimeout.current);
   }, []);
 
   // if the element is near the viewport edge, the mouseleave event might not
@@ -187,7 +187,7 @@ export function useHoverMode(
     }
 
     const handler = (): void => {
-      window.clearTimeout(visibilityTimeout.current);
+      globalThis.clearTimeout(visibilityTimeout.current);
 
       // might need to play with this more or make it configurable. if the mouse
       // leaves the window, you're _normally_ not interacting with the app
@@ -203,7 +203,7 @@ export function useHoverMode(
 
   useEffect(() => {
     return () => {
-      window.clearTimeout(visibilityTimeout.current);
+      globalThis.clearTimeout(visibilityTimeout.current);
     };
   }, []);
 
@@ -213,12 +213,12 @@ export function useHoverMode(
     startShowFlow: useCallback(
       (eventOrId) => {
         const hoverTimeout = hoverTime ?? hoverTimeoutRef.current;
-        if (disabled || typeof hoverTimeout === "undefined") {
+        if (disabled || hoverTimeout === undefined) {
           return;
         }
 
         let id: string;
-        if (typeof eventOrId === "string" || typeof eventOrId === "undefined") {
+        if (typeof eventOrId === "string" || eventOrId === undefined) {
           id = eventOrId || "";
         } else {
           id = eventOrId.currentTarget.id;
@@ -226,7 +226,7 @@ export function useHoverMode(
 
         clearDisableTimer();
         clearVisibilityTimeout();
-        visibilityTimeout.current = window.setTimeout(() => {
+        visibilityTimeout.current = globalThis.setTimeout(() => {
           enableHoverMode(id);
           setVisible(true);
         }, hoverTimeout);
@@ -248,7 +248,7 @@ export function useHoverMode(
 
       startDisableTimer();
       clearVisibilityTimeout();
-      visibilityTimeout.current = window.setTimeout(() => {
+      visibilityTimeout.current = globalThis.setTimeout(() => {
         setVisible(false);
       }, leaveTime ?? leaveTimeoutRef.current);
     }, [

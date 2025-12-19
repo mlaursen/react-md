@@ -62,7 +62,7 @@ export default function FileUploadExample(
           onChange={onChange}
           multiple={maxFiles > 1}
         />
-        <Button onClick={reset} disabled={!stats.length}>
+        <Button onClick={reset} disabled={stats.length === 0}>
           Remove all files
         </Button>
       </Box>

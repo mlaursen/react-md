@@ -112,7 +112,7 @@ export function MaterialIconsAndSymbolsProvider({
         case "setWeight":
         case "setGrade":
         case "setOpticalSize": {
-          const key = action.type.substring(3);
+          const key = action.type.slice(3);
           return {
             ...state,
             [`symbol${key}`]: action.payload,

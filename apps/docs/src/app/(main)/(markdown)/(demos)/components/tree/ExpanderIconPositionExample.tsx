@@ -12,20 +12,17 @@ type CustomTreeData = TreeData<Folder & { leftAddon?: ReactNode }>;
 
 export default function ExpanderIconPositionExample(): ReactElement {
   const tree = useTree();
-  const data = useMemo(
-    () =>
-      Object.entries(folders).reduce<CustomTreeData>(
-        (updated, [folderId, folder]) => {
-          updated[folderId] = {
-            ...folder,
-            leftAddon: <FolderIcon />,
-          };
-          return updated;
-        },
-        {}
-      ),
-    []
-  );
+  const data = useMemo(() => {
+    const treeData: CustomTreeData = {};
+    for (const [folderId, folder] of Object.entries(folders)) {
+      treeData[folderId] = {
+        ...folder,
+        leftAddon: <FolderIcon />,
+      };
+    }
+
+    return treeData;
+  }, []);
 
   return <Tree {...tree} data={data} aria-label="Tree" expanderLeft />;
 }

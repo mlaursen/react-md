@@ -37,7 +37,7 @@ export function FullScreenVirtualizedList(): ReactElement {
     iconCategory,
     selectedIconName,
   });
-  const isEmpty = !list.length;
+  const isEmpty = list.length === 0;
 
   // apply to html so that the icons in the HowToUseSheet are also updated
   useHtmlClassName(

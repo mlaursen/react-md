@@ -28,11 +28,11 @@ import { useSsr } from "../SsrProvider.js";
 export function useMediaQuery(query: string, disabled = false): boolean {
   const ssr = useSsr();
   const [matches, setMatches] = useState(() => {
-    if (typeof window === "undefined" || disabled || ssr) {
+    if (globalThis.window === undefined || disabled || ssr) {
       return false;
     }
 
-    return window.matchMedia(query).matches;
+    return globalThis.matchMedia(query).matches;
   });
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export function useMediaQuery(query: string, disabled = false): boolean {
       return;
     }
 
-    const result = window.matchMedia(query);
+    const result = globalThis.matchMedia(query);
     setMatches(result.matches);
 
     const updater = ({ matches }: MediaQueryListEvent): void => {

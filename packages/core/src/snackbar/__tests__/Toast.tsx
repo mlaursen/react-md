@@ -66,7 +66,7 @@ describe("Toast", () => {
     } as const;
     const { rerender } = render(<Toast {...props} />);
 
-    expect(() => screen.getByRole("button")).toThrow();
+    expect(() => screen.getByRole("button")).toThrowError();
 
     rerender(<Toast {...props} action={<span>Action</span>} />);
     const action = screen.getByRole("button", { name: "Action" });
@@ -100,6 +100,6 @@ describe("Toast", () => {
       </Toast>
     );
 
-    expect(() => screen.getByTestId("toast")).toThrow();
+    expect(() => screen.getByTestId("toast")).toThrowError();
   });
 });

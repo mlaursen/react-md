@@ -10,7 +10,7 @@ import { useUserInteractionMode } from "../interaction/UserInteractionModeProvid
  */
 export function useMainTabIndex(tabIndex?: number): number | undefined {
   const keyboard = useUserInteractionMode() === "keyboard";
-  if (keyboard && typeof tabIndex === "undefined") {
+  if (keyboard && tabIndex === undefined) {
     // eslint-disable-next-line no-param-reassign
     tabIndex = -1;
   }

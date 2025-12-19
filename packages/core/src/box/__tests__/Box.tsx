@@ -5,7 +5,7 @@ import { render, screen } from "../../test-utils/index.js";
 import { Box, type BoxProps } from "../Box.js";
 import { type BoxAlignItems, type BoxJustifyContent } from "../styles.js";
 
-const align: BoxAlignItems[] = [
+const BOX_ALIGN_VALUES: BoxAlignItems[] = [
   "start",
   "flex-start",
   "center",
@@ -14,8 +14,8 @@ const align: BoxAlignItems[] = [
   "stretch",
 ];
 
-const justify: BoxJustifyContent[] = [
-  ...align,
+const BOX_JUSTIFY_VALUES: BoxJustifyContent[] = [
+  ...BOX_ALIGN_VALUES,
   "space-between",
   "space-around",
   "space-evenly",
@@ -54,13 +54,13 @@ describe("Box", () => {
     const { rerender } = render(<Box {...BASE_PROPS} />);
 
     const box = screen.getByTestId("box");
-    align.forEach((align) => {
-      justify.forEach((justify) => {
+    for (const align of BOX_ALIGN_VALUES) {
+      for (const justify of BOX_JUSTIFY_VALUES) {
         rerender(<Box {...BASE_PROPS} align={align} justify={justify} />);
 
         expect(box).toMatchSnapshot();
-      });
-    });
+      }
+    }
   });
 
   it("should allow the padding to be disabled", () => {

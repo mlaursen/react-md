@@ -1,6 +1,6 @@
 import { log, logComplete } from "docs-generator/utils/log";
 import { getAliasedFileName } from "docs-generator/utils/writeGeneratedFile";
-import { existsSync } from "fs";
+import { existsSync } from "node:fs";
 import { type GeneratedSassDocWithOrder } from "sassdoc-generator";
 
 import {
@@ -43,9 +43,9 @@ export const touch = async (): Promise<void> => {
     await Promise.all(
       updates.map(async ([fn, fileNames]) => {
         if (await runIfNotExists(fn, fileNames)) {
-          fileNames.forEach((fileName) => {
+          for (const fileName of fileNames) {
             logComplete(`Created an empty "${getAliasedFileName(fileName)}`);
-          });
+          }
         }
       })
     );

@@ -44,7 +44,7 @@ export async function uploadMenuItemFileUpload(
   jest.spyOn(document, "createElement").mockReturnValueOnce(input);
   jest.spyOn(input, "click").mockImplementationOnce(() => {
     fireEvent.change(input, {
-      target: { files: createFileList(window, files) },
+      target: { files: createFileList(globalThis.window, files) },
     });
   });
 

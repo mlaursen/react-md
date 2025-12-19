@@ -477,11 +477,11 @@ export function useDraggable<E extends HTMLElement>(
     const stopKey = isTouch ? "touchend" : "mouseup";
     const passive = isTouch ? { passive: false } : undefined;
 
-    window.addEventListener(updateKey, updatePosition, passive);
-    window.addEventListener(stopKey, stopDragging);
+    globalThis.addEventListener(updateKey, updatePosition, passive);
+    globalThis.addEventListener(stopKey, stopDragging);
     return () => {
-      window.removeEventListener(updateKey, updatePosition);
-      window.removeEventListener(stopKey, stopDragging);
+      globalThis.removeEventListener(updateKey, updatePosition);
+      globalThis.removeEventListener(stopKey, stopDragging);
     };
   }, [
     dragging,

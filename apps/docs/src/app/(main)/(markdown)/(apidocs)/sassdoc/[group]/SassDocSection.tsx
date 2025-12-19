@@ -15,7 +15,7 @@ export function SassDocSection({
   items,
   children,
 }: SassDocSectionProps): ReactElement | null {
-  if (!items.size) {
+  if (items.size === 0) {
     return null;
   }
 

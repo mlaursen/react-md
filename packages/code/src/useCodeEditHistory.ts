@@ -46,13 +46,14 @@ const TAB_SIZE = TAB_TEXT.length;
 // experimental, so just use the user agent. If someone spoofs it, it's their
 // fault.
 const isWindows =
-  typeof window !== "undefined" && /Win/i.test(window.navigator.userAgent);
+  globalThis.window !== undefined &&
+  /Win/i.test(globalThis.navigator.userAgent);
 const isMacLike =
-  typeof window !== "undefined" &&
-  /Mac|iPhone|iPod|iPad/i.test(window.navigator.userAgent);
+  globalThis.window !== undefined &&
+  /Mac|iPhone|iPod|iPad/i.test(globalThis.navigator.userAgent);
 
 const getLinesTo = (value: string, end: number): readonly string[] =>
-  value.substring(0, end).split("\n");
+  value.slice(0, Math.max(0, end)).split("\n");
 
 const isUndoEvent = (event: KeyboardEvent): boolean => {
   const { key, metaKey, ctrlKey } = event;
@@ -95,7 +96,7 @@ const handleTabKey = (options: HandleKeydownOptions): void => {
     const nextValue = lines
       .map((line, i) => {
         if (isInSelection(i) && line.startsWith(TAB_TEXT)) {
-          return line.substring(TAB_SIZE);
+          return line.slice(Math.max(0, TAB_SIZE));
         }
         return line;
       })
@@ -110,7 +111,18 @@ const handleTabKey = (options: HandleKeydownOptions): void => {
         selectionEnd: selectionEnd - (value.length - nextValue.length),
       });
     }
-  } else if (selectionStart !== selectionEnd) {
+  } else if (selectionStart === selectionEnd) {
+    const caretPosition = selectionStart + TAB_SIZE;
+    const nextValue =
+      value.slice(0, Math.max(0, selectionStart)) +
+      TAB_TEXT +
+      value.slice(Math.max(0, selectionEnd));
+    update({
+      value: nextValue,
+      selectionStart: caretPosition,
+      selectionEnd: caretPosition,
+    });
+  } else {
     // indent selected lines
     const nextValue = lines
       .map((line, i) => {
@@ -128,17 +140,6 @@ const handleTabKey = (options: HandleKeydownOptions): void => {
         ? selectionStart + TAB_SIZE
         : selectionStart,
       selectionEnd: selectionEnd + TAB_SIZE * (endLine - startLine + 1),
-    });
-  } else {
-    const caretPosition = selectionStart + TAB_SIZE;
-    const nextValue =
-      value.substring(0, selectionStart) +
-      TAB_TEXT +
-      value.substring(selectionEnd);
-    update({
-      value: nextValue,
-      selectionStart: caretPosition,
-      selectionEnd: caretPosition,
     });
   }
 };
@@ -172,11 +173,11 @@ const handleWrappingCharacters = (options: HandleKeydownOptions): void => {
 
   event.preventDefault();
   const nextValue =
-    value.substring(0, selectionStart) +
+    value.slice(0, Math.max(0, selectionStart)) +
     characters[0] +
-    value.substring(selectionStart, selectionEnd) +
+    value.slice(selectionStart, selectionEnd) +
     characters[1] +
-    value.substring(selectionEnd);
+    value.slice(Math.max(0, selectionEnd));
 
   update({
     value: nextValue,

@@ -8,12 +8,12 @@ export interface SemVer {
 export function semver(version: string): SemVer {
   const [majorMinorPatch, alphaVersion] = version.split("-");
   const [major, minor, patch] = majorMinorPatch.split(".");
-  const alpha = alphaVersion?.substring(alphaVersion.indexOf(".") + 1);
+  const alpha = alphaVersion?.slice(Math.max(0, alphaVersion.indexOf(".") + 1));
 
   return {
-    major: parseInt(major, 10),
-    minor: parseInt(minor, 10),
-    patch: parseInt(patch, 10),
-    alpha: alpha ? parseInt(alpha, 10) : null,
+    major: Number.parseInt(major, 10),
+    minor: Number.parseInt(minor, 10),
+    patch: Number.parseInt(patch, 10),
+    alpha: alpha ? Number.parseInt(alpha, 10) : null,
   };
 }

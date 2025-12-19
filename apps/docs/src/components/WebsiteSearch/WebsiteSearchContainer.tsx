@@ -34,10 +34,10 @@ export function WebsiteSearchContainer({
         event.stopPropagation();
       }
     };
-    window.addEventListener("keydown", handler);
+    globalThis.addEventListener("keydown", handler);
 
     return () => {
-      window.removeEventListener("keydown", handler);
+      globalThis.removeEventListener("keydown", handler);
     };
   }, [show, visible]);
 

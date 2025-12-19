@@ -101,10 +101,10 @@ describe("FormMessage", () => {
       counterProps: { "data-testid": "counter" },
     };
     const { rerender } = render(<FormMessage {...props} />);
-    expect(() => screen.getByTestId("counter")).toThrow();
+    expect(() => screen.getByTestId("counter")).toThrowError();
 
     rerender(<FormMessage {...props} length={12} />);
-    expect(() => screen.getByTestId("counter")).toThrow();
+    expect(() => screen.getByTestId("counter")).toThrowError();
 
     rerender(<FormMessage {...props} length={12} maxLength={20} />);
     const counter = screen.getByTestId("counter");

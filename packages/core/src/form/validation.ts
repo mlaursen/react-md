@@ -181,7 +181,7 @@ export const defaultGetErrorMessage: GetErrorMessage = (options) => {
 
   const keys = typeof validate === "string" ? [validate] : validate;
 
-  return keys.length &&
+  return keys.length > 0 &&
     VALIDITY_STATE_KEYS.some((key) => validity[key] && keys.includes(key))
     ? validationMessage
     : "";

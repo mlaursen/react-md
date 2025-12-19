@@ -86,10 +86,11 @@ export function compileScssModule(options: CompileScssModuleOptions): string {
           if (node.value === LOCAL_SCOPE || node.value === GLOBAL_SCOPE) {
             prevScope = node.value;
             const { parent, nodes } = node;
-            if (parent && nodes.length) {
-              nodes.forEach((childNode) => {
+            if (parent && nodes.length > 0) {
+              for (const childNode of nodes) {
+                // eslint-disable-next-line unicorn/prefer-modern-dom-apis
                 parent.insertBefore(node, childNode);
-              });
+              }
             }
             node.remove();
           }

@@ -64,7 +64,7 @@ describe("Password", () => {
 
     rerender(<Password visibilityIcon={<span data-testid="visibility" />} />);
     expect(toggle).not.toHaveTextContent("remove_red_eye");
-    expect(() => screen.getByTestId("visibility")).not.toThrow();
+    expect(() => screen.getByTestId("visibility")).not.toThrowError();
   });
 
   it("should allow for a custom visibility icon for the visible and invisible states as a function", async () => {
@@ -80,13 +80,13 @@ describe("Password", () => {
       />
     );
 
-    expect(() => screen.getByTestId("visible")).toThrow();
-    expect(() => screen.getByTestId("invisible")).not.toThrow();
+    expect(() => screen.getByTestId("visible")).toThrowError();
+    expect(() => screen.getByTestId("invisible")).not.toThrowError();
 
     await user.click(screen.getByRole("button"));
 
-    expect(() => screen.getByTestId("visible")).not.toThrow();
-    expect(() => screen.getByTestId("invisible")).toThrow();
+    expect(() => screen.getByTestId("visible")).not.toThrowError();
+    expect(() => screen.getByTestId("invisible")).toThrowError();
   });
 
   it("should allow for a custom visibility icon for the visible and invisible states as an object", async () => {
@@ -100,13 +100,13 @@ describe("Password", () => {
       />
     );
 
-    expect(() => screen.getByTestId("visible")).toThrow();
-    expect(() => screen.getByTestId("invisible")).not.toThrow();
+    expect(() => screen.getByTestId("visible")).toThrowError();
+    expect(() => screen.getByTestId("invisible")).not.toThrowError();
 
     await user.click(screen.getByRole("button"));
 
-    expect(() => screen.getByTestId("visible")).not.toThrow();
-    expect(() => screen.getByTestId("invisible")).toThrow();
+    expect(() => screen.getByTestId("visible")).not.toThrowError();
+    expect(() => screen.getByTestId("invisible")).toThrowError();
   });
 
   it("should allow for overriding the visibility button props", async () => {

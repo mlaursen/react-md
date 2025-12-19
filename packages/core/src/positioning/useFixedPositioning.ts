@@ -407,8 +407,8 @@ export function useFixedPositioning<
       updateStyle();
     };
 
-    const resizeHandler = delegateEvent("resize", window, true);
-    const scrollHandler = delegateEvent("scroll", window, true, {
+    const resizeHandler = delegateEvent("resize", globalThis.window, true);
+    const scrollHandler = delegateEvent("scroll", globalThis.window, true, {
       passive: true,
     });
     resizeHandler.add(resizeCallback);

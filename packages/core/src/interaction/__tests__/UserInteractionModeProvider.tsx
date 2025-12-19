@@ -19,7 +19,7 @@ describe("UserInteractionModeProvider", () => {
           </UserInteractionModeProvider>
         </UserInteractionModeProvider>
       )
-    ).toThrow(
+    ).toThrowError(
       "The `UserInteractionModeProvider` cannot be mounted multiple times."
     );
 
@@ -35,13 +35,13 @@ describe("UserInteractionModeProvider", () => {
 
     expect(document.body.className).toContain("mouse-mode");
 
-    fireEvent.keyDown(window);
+    fireEvent.keyDown(globalThis.window);
     expect(document.body.className).toContain("keyboard-mode");
 
-    fireEvent.mouseDown(window);
+    fireEvent.mouseDown(globalThis.window);
     expect(document.body.className).toContain("mouse-mode");
 
-    fireEvent.touchStart(window);
+    fireEvent.touchStart(globalThis.window);
     expect(document.body.className).toContain("touch-mode");
   });
 
@@ -73,25 +73,25 @@ describe("UserInteractionModeProvider", () => {
     );
     expect(document.body.className).toContain("mouse-mode");
 
-    fireEvent.touchStart(window);
-    fireEvent.mouseMove(window);
+    fireEvent.touchStart(globalThis.window);
+    fireEvent.mouseMove(globalThis.window);
     expect(document.body.className).toContain("touch-mode");
 
-    fireEvent.mouseMove(window);
+    fireEvent.mouseMove(globalThis.window);
     expect(document.body.className).toContain("mouse-mode");
 
-    fireEvent.touchStart(window);
+    fireEvent.touchStart(globalThis.window);
     expect(document.body.className).toContain("touch-mode");
 
-    fireEvent.contextMenu(window);
-    fireEvent.mouseMove(window);
+    fireEvent.contextMenu(globalThis.window);
+    fireEvent.mouseMove(globalThis.window);
     expect(document.body.className).toContain("touch-mode");
 
-    fireEvent.touchStart(window);
-    fireEvent.mouseMove(window);
+    fireEvent.touchStart(globalThis.window);
+    fireEvent.mouseMove(globalThis.window);
     expect(document.body.className).toContain("touch-mode");
 
-    fireEvent.mouseMove(window);
+    fireEvent.mouseMove(globalThis.window);
     expect(document.body.className).toContain("mouse-mode");
 
     now.mockRestore();
@@ -113,10 +113,10 @@ describe("UserInteractionModeProvider", () => {
     const mode = screen.getByTestId("mode");
     expect(mode).toHaveTextContent("mouse");
 
-    fireEvent.keyDown(window);
+    fireEvent.keyDown(globalThis.window);
     expect(mode).toHaveTextContent("keyboard");
 
-    fireEvent.touchStart(window);
+    fireEvent.touchStart(globalThis.window);
     expect(mode).toHaveTextContent("touch");
   });
 });

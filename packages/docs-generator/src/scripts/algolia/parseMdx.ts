@@ -13,16 +13,16 @@ import { type HeadingWithDescription, type IndexedPage } from "./types.js";
 
 const SKIP_HEADING_REGEXP = /\r?\n/;
 const SKIP_HEADINGS_REGEXP = /\/migration\//;
-const API_DOCS_SKIPPED_HEADINGS = [
+const API_DOCS_SKIPPED_HEADINGS = new Set([
   "Example Usage",
   "Parameters",
   "Returns",
   "See Also",
-];
+]);
 
 const getFilePathname = (mdxFilePath: string): string => {
   const startIndex = mdxFilePath.lastIndexOf(")");
-  return mdxFilePath.substring(startIndex + 1, mdxFilePath.lastIndexOf("/"));
+  return mdxFilePath.slice(startIndex + 1, mdxFilePath.lastIndexOf("/"));
 };
 
 interface IsHeadingSkippedOptions {
@@ -38,7 +38,7 @@ const isHeadingSkipped = (options: IsHeadingSkippedOptions): boolean => {
     heading === title ||
     SKIP_HEADING_REGEXP.test(heading) ||
     (/\/(hooks|utils)\//.test(mdxFilePath) &&
-      API_DOCS_SKIPPED_HEADINGS.includes(heading)) ||
+      API_DOCS_SKIPPED_HEADINGS.has(heading)) ||
     (/\/sassdoc\//.test(mdxFilePath) && node.depth > 2)
   );
 };
@@ -162,8 +162,8 @@ export async function parseMdx(options: ParseMdxOptions): Promise<IndexedPage> {
       group,
       keywords,
     };
-  } catch (e) {
+  } catch (error) {
     console.error(`Unable to parse: "${mdxFilePath}"`);
-    throw e;
+    throw error;
   }
 }

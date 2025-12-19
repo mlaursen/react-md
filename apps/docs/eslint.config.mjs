@@ -1,23 +1,22 @@
 // @ts-check
 import { FlatCompat } from "@eslint/eslintrc";
-import { configs, defineConfig, gitignore } from "@react-md/eslint-config";
+import { configs, gitignore } from "@react-md/eslint-config";
+import { defineConfig } from "eslint/config";
 
 const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
 });
-
-const strict = process.env.STRICT_TYPING === "true";
-
-const frontend = strict
-  ? configs.frontendTypeChecking(import.meta.dirname, "jest")
-  : configs.frontend("jest");
 
 export default defineConfig(
   gitignore(import.meta.url),
   ...compat.config({
     extends: ["plugin:@next/next/core-web-vitals"],
   }),
-  ...frontend,
+  ...configs.recommendedFrontend({
+    testFramework: "vitest",
+    tsconfigRootDir:
+      process.env.STRICT_TYPING === "true" ? import.meta.dirname : undefined,
+  }),
   {
     // this seems to be needed to set the module/moduleResolution/target to "nodenext" + "esnext"
     languageOptions: {
@@ -37,12 +36,6 @@ export default defineConfig(
       "**/__mocks__/**",
       "src/generated/**",
     ],
-  },
-  {
-    files: ["scripts/**"],
-    rules: {
-      "no-console": "off",
-    },
   },
   {
     files: ["**/(demos)/**"],

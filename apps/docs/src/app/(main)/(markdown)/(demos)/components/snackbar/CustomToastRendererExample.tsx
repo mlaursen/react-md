@@ -46,7 +46,7 @@ const addToast = (toastId: ToastId): void => {
     case "Offline":
       theme = "error";
       // pretend like you have some logic to check online status
-      visibleTime = 10000;
+      visibleTime = 10_000;
       closeButton = false;
       break;
     case "Undo":

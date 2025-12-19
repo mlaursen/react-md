@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import lodash from "lodash";
 import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
@@ -51,25 +50,24 @@ async function run(): Promise<void> {
       // correctly otherwise
       const [, viewBox] =
         optimized
-          .substring(0, contentsStart)
+          .slice(0, Math.max(0, contentsStart))
           .match(/viewBox="((\d+\s?){4})"/) || [];
       if (!viewBox) {
-        console.error(`Unable to find a viewbox for: ${svgPath}`);
-        process.exit(1);
+        throw new Error(`Unable to find a viewbox for: ${svgPath}`);
       }
 
       // remove the `<svg ...>` and `</svg>` from the optimized code to get the
       // contents to render in the `<SVGIcon>`
       const contents = optimized
-        .substring(contentsStart, CLOSING_TAG_LENGTH)
+        .slice(contentsStart, CLOSING_TAG_LENGTH)
         // convert _some_ inline styles for React
-        .replace(
+        .replaceAll(
           /style="mix-blend-mode:([a-z]+)"/g,
           "style={{ mixBlendMode: '$1' }}"
         )
         // converts kebab-cased properties and colon:cased poverties to
         // camelCase for react
-        .replace(
+        .replaceAll(
           /([a-z]+)[-:]([-:a-z]+)=/g,
           (_match, prefix, suffix: string) =>
             `${prefix}${upperFirst(camelCase(suffix))}`
@@ -100,4 +98,5 @@ export const ${componentName} = forwardRef<SVGSVGElement, SVGIconProps>(function
   );
 }
 
+// eslint-disable-next-line unicorn/prefer-top-level-await
 void run();

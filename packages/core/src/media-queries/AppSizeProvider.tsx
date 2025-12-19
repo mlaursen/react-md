@@ -137,7 +137,7 @@ export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
   );
 
   let value = appSize;
-  if (ssr || typeof window === "undefined") {
+  if (ssr || globalThis.window === undefined) {
     value = {
       __root: true,
       ...ssrSize,

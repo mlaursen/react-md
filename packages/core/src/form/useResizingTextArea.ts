@@ -112,21 +112,21 @@ export function useResizingTextArea(
     }
     /* c8 ignore stop */
 
-    const containerStyles = window.getComputedStyle(container);
+    const containerStyles = globalThis.getComputedStyle(container);
     const isBorderBox = containerStyles.boxSizing === "border-box";
     let borderHeight = 0;
     if (isBorderBox) {
       borderHeight =
-        parseFloat(containerStyles.borderTopWidth) +
-        parseFloat(containerStyles.borderBottomWidth);
+        Number.parseFloat(containerStyles.borderTopWidth) +
+        Number.parseFloat(containerStyles.borderBottomWidth);
     }
 
     let nextHeight = mask.scrollHeight + borderHeight;
     if (maxRows > 0) {
       nextHeight -= borderHeight;
-      const maskStyles = window.getComputedStyle(mask);
+      const maskStyles = globalThis.getComputedStyle(mask);
       // in tests, this is `"normal"` by default instead of a number
-      let lineHeight = parseFloat(maskStyles.lineHeight);
+      let lineHeight = Number.parseFloat(maskStyles.lineHeight);
       if (Number.isNaN(lineHeight)) {
         lineHeight = DEFAULT_LINE_HEIGHT;
       }

@@ -97,9 +97,9 @@ describe("fuzzySearch", () => {
   });
 
   it("should lazy-create the regexp", () => {
-    const reg = vi.spyOn(global, "RegExp");
+    const reg = vi.spyOn(globalThis, "RegExp");
 
-    const list = Array.from({ length: 100000 }, (_, i) => `${i} Item`);
+    const list = Array.from({ length: 100_000 }, (_, i) => `${i} Item`);
     fuzzySearch({ list, query: "1" });
     expect(reg).toHaveBeenCalledTimes(1);
   });

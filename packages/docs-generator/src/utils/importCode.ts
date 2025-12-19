@@ -32,9 +32,9 @@ export async function importCode(options: ImportCodeOptions): Promise<void> {
   let fileName: string | undefined;
 
   const errors = new Set<string>();
-  code.attributes.forEach((attr) => {
+  for (const attr of code.attributes) {
     if (attr.type !== "mdxJsxAttribute") {
-      return;
+      continue;
     }
 
     const { name, value } = attr;
@@ -50,13 +50,13 @@ export async function importCode(options: ImportCodeOptions): Promise<void> {
       default:
         errors.add(`\`${name}\` is not a valid import prop`);
     }
-  });
+  }
 
   if (!source) {
     errors.add("`source` is required");
   }
 
-  if (errors.size) {
+  if (errors.size > 0) {
     const message = [...errors].map((error) => `- ${error}`).join("\n");
     throw new Error(
       `Unable to import code due to the following errors:\n${message}`

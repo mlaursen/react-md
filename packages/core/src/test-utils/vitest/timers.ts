@@ -42,7 +42,7 @@ export type RafSpy = MockInstance<typeof requestAnimationFrame>;
  * @since 6.0.0
  */
 export const testImmediateRaf = (): RafSpy =>
-  vi.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {
+  vi.spyOn(globalThis, "requestAnimationFrame").mockImplementation((cb) => {
     cb(0);
     return 0;
   });

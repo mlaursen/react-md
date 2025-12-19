@@ -14,8 +14,8 @@ describe("MenuVisibilityProvider", () => {
           onClick={() => {
             try {
               setVisible(true);
-            } catch (e) {
-              error = e;
+            } catch (error_) {
+              error = error_;
             }
           }}
         >

@@ -86,7 +86,7 @@ export function resolveInputEvent(
   }
 
   let reason: SpinButtonResolvedInputReason = "type";
-  let nextValue: SpinButtonValue = parseInt(prevText + text, 10);
+  let nextValue: SpinButtonValue = Number.parseInt(prevText + text, 10);
   if (typeof minDigits === "number" && typedCount + 1 < minDigits) {
     reason = "placeholder-digit";
   }

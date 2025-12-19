@@ -223,9 +223,9 @@ export const rehypeCodeBlocks: Plugin<
     // to remove the source files in dev mode so that changing a demo can get
     // the new changes
     if (process.env.NODE_ENV !== "production") {
-      project.getSourceFiles().forEach((sourceFile) => {
+      for (const sourceFile of project.getSourceFiles()) {
         project.removeSourceFile(sourceFile);
-      });
+      }
     }
 
     return;

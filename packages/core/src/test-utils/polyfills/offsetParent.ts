@@ -1,5 +1,5 @@
 // this polyfill was added to support the tree keyboard movement behavior
-if (typeof window !== "undefined") {
+if (globalThis.window !== undefined) {
   // Based off of https://github.com/jsdom/jsdom/issues/1261#issuecomment-512217225
   //
   // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetParent
@@ -11,7 +11,7 @@ if (typeof window !== "undefined") {
   // - The element is <body> or <html>.
   Object.defineProperty(HTMLElement.prototype, "offsetParent", {
     get(this: HTMLElement) {
-      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      // eslint-disable-next-line @typescript-eslint/no-this-alias, unicorn/no-this-assignment
       let element: ParentNode | null = this;
       while (
         element &&

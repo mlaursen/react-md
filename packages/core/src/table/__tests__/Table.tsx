@@ -99,7 +99,7 @@ describe("Table", () => {
         this.thresholds =
           typeof threshold === "number" ? [threshold] : threshold;
 
-        // eslint-disable-next-line @typescript-eslint/no-this-alias
+        // eslint-disable-next-line unicorn/no-this-assignment, @typescript-eslint/no-this-alias
         _observer = this;
       }
 
@@ -119,7 +119,7 @@ describe("Table", () => {
     beforeEach(() => {
       _observer = undefined;
 
-      Object.defineProperty(window, "IntersectionObserver", {
+      Object.defineProperty(globalThis, "IntersectionObserver", {
         writable: true,
         configurable: true,
         value: MockIntersectionObserver,
@@ -146,7 +146,7 @@ describe("Table", () => {
         );
 
         if (!_observer) {
-          throw new Error();
+          throw new Error("No observer");
         }
         const observer = _observer;
         expect(container).toMatchSnapshot();
@@ -187,7 +187,7 @@ describe("Table", () => {
         );
 
         if (!_observer) {
-          throw new Error();
+          throw new Error("No observer");
         }
         const observer = _observer;
         expect(container).toMatchSnapshot();
@@ -228,7 +228,7 @@ describe("Table", () => {
         );
 
         if (!_observer) {
-          throw new Error();
+          throw new Error("No observer");
         }
         const observer = _observer;
         expect(container).toMatchSnapshot();
@@ -283,7 +283,7 @@ describe("Table", () => {
         );
 
         if (!_observer) {
-          throw new Error();
+          throw new Error("No observer");
         }
         const observer = _observer;
         expect(container).toMatchSnapshot();

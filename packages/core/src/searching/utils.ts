@@ -48,7 +48,7 @@ export function search<T>(
 ): readonly T[] | T | undefined {
   const { list, type, query, filter, extractor, whitespace = "keep" } = options;
   const fallback = type === "search" ? undefined : list;
-  if (!list.length) {
+  if (list.length === 0) {
     return fallback;
   }
 

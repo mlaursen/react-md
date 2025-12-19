@@ -283,15 +283,14 @@ export function useExpandableLayout(
       query = temporaryUntil;
     }
 
-    const timeout = window.setTimeout(() => {
+    const timeout = globalThis.setTimeout(() => {
       let found = false;
       for (let i = 0; i < document.styleSheets.length; i++) {
         const sheet = document.styleSheets[i];
 
         try {
           const rules = sheet.cssRules;
-          for (let j = 0; j < rules.length; j++) {
-            const rule = rules[j];
+          for (const rule of rules) {
             if (
               rule.cssText.includes(".rmd-layout") &&
               rule.cssText.includes(`@media ${query}`)
@@ -318,7 +317,7 @@ export function useExpandableLayout(
     }, 3000);
 
     return () => {
-      window.clearTimeout(timeout);
+      globalThis.clearTimeout(timeout);
     };
   }, [temporaryUntil]);
 

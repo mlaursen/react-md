@@ -333,13 +333,13 @@ export function Select<Value extends string>(
   const labelId = label ? selectLabelId : undefined;
 
   const [localValue, setLocalValue] = useState(() => {
-    if (typeof defaultValue !== "undefined") {
+    if (defaultValue !== undefined) {
       return defaultValue;
     }
 
-    return typeof value !== "undefined" ? value : EMPTY_STRING;
+    return value !== undefined ? value : EMPTY_STRING;
   });
-  const currentValue = typeof value === "undefined" ? localValue : value;
+  const currentValue = value === undefined ? localValue : value;
   const initialValue = useRef(currentValue);
   const { options, currentOption } = extractOptionsFromChildren(
     children,
@@ -371,7 +371,7 @@ export function Select<Value extends string>(
   const icon = getIcon("dropdown", propIcon);
   const theme = getFormConfig("theme", propTheme);
   let rightAddon = propRightAddon;
-  if (typeof rightAddon === "undefined" && icon) {
+  if (rightAddon === undefined && icon) {
     rightAddon = <IconRotator rotated={visible}>{icon}</IconRotator>;
   }
 
@@ -423,7 +423,7 @@ export function Select<Value extends string>(
           className={cnb(select({ theme }), textField())}
           onChange={(event) => {
             onChange(event as SelectChangeEvent<Value>);
-            if (typeof value !== "undefined") {
+            if (value !== undefined) {
               return;
             }
 

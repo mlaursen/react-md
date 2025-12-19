@@ -1,19 +1,21 @@
 // @ts-check
-import { configs, defineConfig, gitignore } from "@react-md/eslint-config";
+import { configs, gitignore } from "@react-md/eslint-config";
+import { defineConfig } from "eslint/config";
 import { join } from "node:path";
 
-const strict = process.env.STRICT_TYPING === "true";
-
-const frontend = strict
-  ? configs.frontendTypeChecking(import.meta.dirname, "vitest")
-  : configs.frontend("vitest");
-
-export default defineConfig(
+export default defineConfig([
   gitignore(join(import.meta.url, "..", "..")),
-  ...frontend,
+  ...configs.recommendedFrontend({
+    testFramework: "vitest",
+    tsconfigRootDir:
+      process.env.STRICT_TYPING === "true" ? import.meta.dirname : undefined,
+  }),
   {
     rules: {
-      "react/prop-types": "off",
+      "unicorn/prefer-query-selector": "off",
+
+      "unicorn/no-negated-condition": "off",
+
       "@typescript-eslint/no-empty-object-type": [
         "error",
         {
@@ -29,5 +31,5 @@ export default defineConfig(
         },
       ],
     },
-  }
-);
+  },
+]);

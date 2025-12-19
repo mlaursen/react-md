@@ -8,7 +8,7 @@ describe("bem", () => {
   const block3 = bem("container");
 
   it("should throw an error if the user provides an empty string", () => {
-    expect(() => bem("")).toThrow(
+    expect(() => bem("")).toThrowError(
       "bem requires a base block class but none were provided."
     );
   });
@@ -48,7 +48,7 @@ describe("bem", () => {
 
     it("should throw an error if both arguments are considered a modifier", () => {
       // @ts-expect-error
-      expect(() => block1({}, {})).toThrow(
+      expect(() => block1({}, {})).toThrowError(
         "bem does not support having two modifier arguments."
       );
     });

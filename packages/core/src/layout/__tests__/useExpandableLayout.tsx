@@ -119,7 +119,7 @@ describe("useExpandableLayout", () => {
     expect(nav).toHaveClass(OFFSCREEN_CLASS);
     expect(appBar).toMatchSnapshot();
     expect(main).toMatchSnapshot();
-    expect(() => screen.getByRole("dialog")).toThrow();
+    expect(() => screen.getByRole("dialog")).toThrowError();
 
     await user.click(navToggle);
     expect(isElementVisible(nav)).toBe(true);
@@ -202,7 +202,7 @@ describe("useExpandableLayout", () => {
     expect(isElementVisible(expandableNav)).toBe(true);
 
     matchMediaSpy.changeViewport(matchPhone);
-    expect(() => screen.getByRole("dialog")).toThrow();
+    expect(() => screen.getByRole("dialog")).toThrowError();
   });
 
   it("should allow for the navigation to be visible by default", () => {

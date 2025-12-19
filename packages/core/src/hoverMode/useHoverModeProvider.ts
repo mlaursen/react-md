@@ -261,9 +261,9 @@ export function useHoverModeProvider(
   const hoverTimeoutRef = useRef(hoverTimeout);
   const leaveTimeoutRef = useRef(leaveTimeout);
   const animatedOnceRef = useRef(!!defaultActiveId);
-  const disableHoverModeTimeout = useRef<number | undefined>();
+  const disableHoverModeTimeout = useRef<NodeJS.Timeout>();
   const clearDisableTimer = useCallback(() => {
-    window.clearTimeout(disableHoverModeTimeout.current);
+    globalThis.clearTimeout(disableHoverModeTimeout.current);
   }, []);
   const enableHoverMode = useCallback(
     (activeId: string) => {
@@ -292,7 +292,7 @@ export function useHoverModeProvider(
     }
 
     clearDisableTimer();
-    disableHoverModeTimeout.current = window.setTimeout(() => {
+    disableHoverModeTimeout.current = globalThis.setTimeout(() => {
       disableHoverMode();
     }, disableTimeout);
   }, [clearDisableTimer, disableHoverMode, disableTimeout]);
@@ -300,7 +300,7 @@ export function useHoverModeProvider(
   useEffect(() => {
     hoverTimeoutRef.current = hoverTimeout;
     return () => {
-      window.clearTimeout(disableHoverModeTimeout.current);
+      globalThis.clearTimeout(disableHoverModeTimeout.current);
     };
   }, [hoverTimeout]);
 

@@ -129,7 +129,7 @@ export function alphaNumericSort<T>(
     descending = false,
   } = options;
 
-  const sorted = list.slice();
+  const sorted = [...list];
   sorted.sort((a, b) => {
     const aValue = extractor(a);
     const bValue = extractor(b);

@@ -40,12 +40,11 @@ export function useInlineCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>
 ): CSSProperties {
   return useMemo(() => {
-    return variables.reduce<CSSVariablesProperties<Name>>(
-      (style, { name, value }) => {
-        style[name] = value;
-        return style;
-      },
-      {}
-    );
+    const style: CSSVariablesProperties<Name> = {};
+    for (const { name, value } of variables) {
+      style[name] = value;
+    }
+
+    return style;
   }, [variables]);
 }

@@ -17,7 +17,7 @@ describe("TreeItemExpander", () => {
           isLeafNode={false}
         />
       )
-    ).toThrow("Cannot find a parent Tree component");
+    ).toThrowError("Cannot find a parent Tree component");
 
     error.mockRestore();
   });
@@ -63,7 +63,7 @@ describe("TreeItemExpander", () => {
 
     const iconWrapper = container.firstElementChild;
     if (!iconWrapper) {
-      throw new Error();
+      throw new Error("Unable to find the icon wrapper");
     }
     expect(iconWrapper).toBeInstanceOf(HTMLSpanElement);
     expect(container).toMatchSnapshot();

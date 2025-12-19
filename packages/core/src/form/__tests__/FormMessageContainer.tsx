@@ -17,8 +17,8 @@ describe("FormMessageContainer", () => {
       children: <span data-testid="children">Children</span>,
     } as const;
     render(<FormMessageContainer {...props} />);
-    expect(() => screen.getByTestId("container")).toThrow();
-    expect(() => screen.getByTestId("children")).not.toThrow();
+    expect(() => screen.getByTestId("container")).toThrowError();
+    expect(() => screen.getByTestId("children")).not.toThrowError();
     expect(ref.current).toBe(null);
   });
 

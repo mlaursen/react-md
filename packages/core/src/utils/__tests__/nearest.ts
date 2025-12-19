@@ -49,12 +49,12 @@ describe("nearest", () => {
     // it's possible for the value to be larger than the min or max for range
     // sliders now that it supports a "current drag value" vs _real_ value
     const min = 100;
-    const max = 10000;
+    const max = 10_000;
     const range = max - min;
     const steps = range;
     const minValue = 2000;
     const maxValue = 8000;
-    expect(nearest({ value: 10000, min, max: maxValue, steps, range })).toBe(
+    expect(nearest({ value: 10_000, min, max: maxValue, steps, range })).toBe(
       maxValue
     );
     expect(nearest({ value: 0, min: minValue, max, steps, range })).toBe(

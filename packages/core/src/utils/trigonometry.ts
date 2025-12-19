@@ -42,5 +42,5 @@ export function isPointInCircle(options: IsPointInCircleOptions): boolean {
 export function calcHypotenuse(point: Point): number {
   const { x, y } = point;
 
-  return Math.sqrt(x * x + y * y);
+  return Math.hypot(x, y);
 }

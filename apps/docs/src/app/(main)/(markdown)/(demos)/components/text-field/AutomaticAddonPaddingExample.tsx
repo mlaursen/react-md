@@ -110,7 +110,7 @@ function useRotatingAddons(): RotatingAddonsProps {
       return;
     }
 
-    const interval = window.setInterval(() => {
+    const interval = globalThis.setInterval(() => {
       setLeftAddonIndex((prev) => {
         const next = randomInt({ min: 0, max });
         if (next === prev) {
@@ -130,16 +130,13 @@ function useRotatingAddons(): RotatingAddonsProps {
     }, 1500);
 
     return () => {
-      window.clearInterval(interval);
+      globalThis.clearInterval(interval);
     };
   }, [leftAddonIndex, rightAddonIndex, running]);
 
   return {
     toggle() {
-      if (
-        typeof leftAddonIndex === "undefined" &&
-        typeof rightAddonIndex === "undefined"
-      ) {
+      if (leftAddonIndex === undefined && rightAddonIndex === undefined) {
         setLeftAddonIndex(randomInt({ min: 0, max }));
         setRightAddonIndex(randomInt({ min: 0, max }));
       }

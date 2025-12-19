@@ -6,13 +6,14 @@ function modify(base: string, modifier?: BEMModifier): string {
   }
 
   const hasOwn = Object.prototype.hasOwnProperty;
-  return Object.keys(modifier).reduce((s, mod) => {
+  let className = base;
+  for (const mod of Object.keys(modifier)) {
     if (hasOwn.call(modifier, mod) && modifier[mod]) {
-      return `${s} ${base}--${mod}`;
+      className += ` ${base}--${mod}`;
     }
+  }
 
-    return s;
-  }, base);
+  return className;
 }
 
 /**
@@ -105,24 +106,22 @@ export interface BEMResult {
  * @returns a function to call that generates the full class name
  */
 export function bem(base: string): BEMResult {
-  if (process.env.NODE_ENV !== "production") {
-    if (!base) {
-      throw new Error(
-        "bem requires a base block class but none were provided."
-      );
-    }
+  if (process.env.NODE_ENV !== "production" && !base) {
+    throw new Error("bem requires a base block class but none were provided.");
   }
 
   function block(
     elementOrModifier?: BEMModifier | string,
     modifier?: BEMModifier
   ): string {
-    if (process.env.NODE_ENV !== "production") {
-      if (typeof elementOrModifier !== "string" && modifier) {
-        throw new TypeError(
-          "bem does not support having two modifier arguments."
-        );
-      }
+    if (
+      process.env.NODE_ENV !== "production" &&
+      typeof elementOrModifier !== "string" &&
+      modifier
+    ) {
+      throw new TypeError(
+        "bem does not support having two modifier arguments."
+      );
     }
 
     if (!elementOrModifier) {

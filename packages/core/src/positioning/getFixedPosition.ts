@@ -80,12 +80,15 @@ export function getFixedPosition(options: FixedPositionOptions): FixedPosition {
   let { initialY } = options;
   const container = findSizingContainer(options.container);
 
-  if (process.env.NODE_ENV !== "production") {
-    if (preventOverlap && anchor.y !== "above" && anchor.y !== "below") {
-      throw new Error(
-        'Unable to prevent overlap when the vertical anchor is not `"above"` or `"below"`'
-      );
-    }
+  if (
+    process.env.NODE_ENV !== "production" &&
+    preventOverlap &&
+    anchor.y !== "above" &&
+    anchor.y !== "below"
+  ) {
+    throw new Error(
+      'Unable to prevent overlap when the vertical anchor is not `"above"` or `"below"`'
+    );
   }
 
   if (!element) {

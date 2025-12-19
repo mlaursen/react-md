@@ -38,7 +38,7 @@ export function ExampleTreeNavigation(
     const page2Href = `${homeHref}/page-2`;
     const layouts: TreeData = {};
     const navigators: TreeData = {};
-    LAYOUT_TYPES.forEach((layoutType) => {
+    for (const layoutType of LAYOUT_TYPES) {
       const itemId = `layouts/${layoutType}`;
       layouts[itemId] = {
         itemId,
@@ -50,8 +50,8 @@ export function ExampleTreeNavigation(
           layout === layoutType && "rmd-tree-item__content--selected"
         ),
       };
-    });
-    NAVIGATION_TYPES.forEach((type) => {
+    }
+    for (const type of NAVIGATION_TYPES) {
       const itemId = `navigations/${type}`;
       navigators[itemId] = {
         itemId,
@@ -63,7 +63,7 @@ export function ExampleTreeNavigation(
           type === "tree" && "rmd-tree-item__content--selected"
         ),
       };
-    });
+    }
     return {
       pages: {
         itemId: "pages",

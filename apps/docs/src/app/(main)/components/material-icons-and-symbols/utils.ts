@@ -131,12 +131,11 @@ export function getFontStylesheet(
     .join("+");
 
   if (isMaterialIconType(iconType)) {
-    familyName =
-      familyName === "Rounded"
-        ? "Round"
-        : familyName === "Filled"
-          ? ""
-          : familyName;
+    if (familyName === "Rounded") {
+      familyName = "Round";
+    } else if (familyName === "Filled") {
+      familyName = "";
+    }
   } else {
     specs = `:opsz,wght,FILL,GRAD@${opticalSize},${weight},${fill},${grade}`;
   }

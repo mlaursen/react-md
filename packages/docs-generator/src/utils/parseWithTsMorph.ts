@@ -43,9 +43,9 @@ function addImports(options: AddImportsOptions): void {
   const { name, imports, namedImports, importDeclaration } = options;
 
   const values = new Set<string>();
-  namedImports.forEach((namedImport) => {
+  for (const namedImport of namedImports) {
     values.add(namedImport.getName());
-  });
+  }
   const defaultImport = importDeclaration.getDefaultImport();
   if (defaultImport) {
     values.add(defaultImport.getText());
@@ -91,46 +91,44 @@ function handleImports(options: HandleImportsOptions): void {
 
     // TODO: Clean this up...
     const nextSourceFile = project.addSourceFileAtPath(nonAliasedName);
-    nextSourceFile
-      .getImportDeclarations()
-      .forEach((nextSourceImportDeclaration) => {
-        const name = nextSourceImportDeclaration
-          .getModuleSpecifier()
-          .getLiteralText();
-        const nextSourceNamedImports =
-          nextSourceImportDeclaration.getNamedImports();
+    for (const nextSourceImportDeclaration of nextSourceFile.getImportDeclarations()) {
+      const name = nextSourceImportDeclaration
+        .getModuleSpecifier()
+        .getLiteralText();
+      const nextSourceNamedImports =
+        nextSourceImportDeclaration.getNamedImports();
 
-        // if it's react, need to make sure the other file's react imports are
-        // included in the original source code
-        if (name === "react") {
-          const sourceFileReactImport = sourceFile.getImportDeclarationOrThrow(
-            (imp) => imp.getModuleSpecifier().getLiteralText() === "react"
-          );
-          nextSourceNamedImports.forEach((namedImport) => {
-            if (
-              !sourceFileReactImport
-                .getNamedImports()
-                .find((name) => name.getName() === namedImport.getName())
-            ) {
-              sourceFileReactImport.addNamedImport(namedImport.getStructure());
-            }
-          });
-        } else {
-          // otherwise, just move the imports over. I should probably always
-          // merge though?
-          sourceFile.addImportDeclaration({
-            ...nextSourceImportDeclaration.getStructure(),
-          });
-          addImports({
-            name,
-            imports,
-            namedImports: nextSourceNamedImports,
-            importDeclaration: nextSourceImportDeclaration,
-          });
+      // if it's react, need to make sure the other file's react imports are
+      // included in the original source code
+      if (name === "react") {
+        const sourceFileReactImport = sourceFile.getImportDeclarationOrThrow(
+          (imp) => imp.getModuleSpecifier().getLiteralText() === "react"
+        );
+        for (const namedImport of nextSourceNamedImports) {
+          if (
+            !sourceFileReactImport
+              .getNamedImports()
+              .some((name) => name.getName() === namedImport.getName())
+          ) {
+            sourceFileReactImport.addNamedImport(namedImport.getStructure());
+          }
         }
+      } else {
+        // otherwise, just move the imports over. I should probably always
+        // merge though?
+        sourceFile.addImportDeclaration({
+          ...nextSourceImportDeclaration.getStructure(),
+        });
+        addImports({
+          name,
+          imports,
+          namedImports: nextSourceNamedImports,
+          importDeclaration: nextSourceImportDeclaration,
+        });
+      }
 
-        nextSourceImportDeclaration.remove();
-      });
+      nextSourceImportDeclaration.remove();
+    }
 
     sourceFile.addStatements(
       "\n\n" + nextSourceFile.getFullText().replace(/"use client";/, "")
@@ -183,7 +181,7 @@ export async function parseWithTsMorph(
 
   const imports = new Map<string, Set<string>>();
   const scssModulesPath: NonNullMutableRef<string> = { current: "" };
-  sourceFile.getImportDeclarations().forEach((importDeclaration) => {
+  for (const importDeclaration of sourceFile.getImportDeclarations()) {
     handleImports({
       imports,
       project,
@@ -192,7 +190,7 @@ export async function parseWithTsMorph(
       readOnlyImports,
       importDeclaration,
     });
-  });
+  }
 
   const tsCode = await format(sourceFile.getFullText(), {
     parser: "typescript",

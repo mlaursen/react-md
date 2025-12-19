@@ -1,5 +1,5 @@
 if (
-  typeof window !== "undefined" &&
+  globalThis.window !== undefined &&
   typeof HTMLElement.prototype.scrollIntoView !== "function"
 ) {
   // this is required for keyboard movement behavior

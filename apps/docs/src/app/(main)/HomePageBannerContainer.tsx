@@ -48,11 +48,7 @@ export function HomePageBannerContainer(
         return;
       }
 
-      if (entry.isIntersecting) {
-        appBar.classList.remove(ELEVATED_CLASS_NAME);
-      } else {
-        appBar.classList.add(ELEVATED_CLASS_NAME);
-      }
+      appBar.classList.toggle(ELEVATED_CLASS_NAME, !entry.isIntersecting);
     }, []),
     rootMargin: "-48px 0px",
   });

@@ -30,9 +30,9 @@ async function indexMdxPages(baseUrl: string): Promise<readonly IndexedItem[]> {
           baseUrl,
           mdxFilePath,
         });
-      } catch (e) {
+      } catch (error) {
         console.error(`Error parsing: ${mdxFilePath}`);
-        throw e;
+        throw error;
       }
     })
   );
@@ -44,30 +44,32 @@ interface SassDocGroup {
   variables: Map<string, FormattedVariableItem>;
 }
 
+const getGroupName = (itemOrGroup: FormattedSassDocItem | string): string => {
+  const group =
+    typeof itemOrGroup === "string" ? itemOrGroup : itemOrGroup.group;
+  return group.replace(/^core\./, "");
+};
+
+const getSassDocLink = (item: FormattedSassDocItem): string => {
+  let type: string = item.type;
+  const { name, group } = item;
+  if (
+    "originalName" in item &&
+    item.type !== "function" &&
+    item.type !== "mixin"
+  ) {
+    type = "variable";
+  }
+
+  return `/sassdoc/${getGroupName(group)}#${type}s-${name}`;
+};
+
 async function indexSassDocPages(
   baseUrl: string
 ): Promise<readonly IndexedItem[]> {
   const { mixins, functions, variables } = await generate({ src: CORE_SRC });
 
   const grouped = new Map<string, SassDocGroup>();
-  const getGroupName = (itemOrGroup: FormattedSassDocItem | string): string => {
-    const group =
-      typeof itemOrGroup === "string" ? itemOrGroup : itemOrGroup.group;
-    return group.replace(/^core\./, "");
-  };
-  const getSassDocLink = (item: FormattedSassDocItem): string => {
-    let type: string = item.type;
-    const { name, group } = item;
-    if (
-      "originalName" in item &&
-      item.type !== "function" &&
-      item.type !== "mixin"
-    ) {
-      type = "variable";
-    }
-
-    return `/sassdoc/${getGroupName(group)}#${type}s-${name}`;
-  };
   const getByGroupName = (groupName: string): SassDocGroup => {
     return (
       grouped.get(groupName) || {
@@ -77,36 +79,36 @@ async function indexSassDocPages(
       }
     );
   };
-  mixins.forEach((item) => {
+  for (const [, item] of mixins) {
     if (!item || item.private) {
-      return;
+      continue;
     }
     const groupName = getGroupName(item);
     const group = getByGroupName(groupName);
     group.mixins.set(item.name, item);
     grouped.set(groupName, group);
-  });
-  functions.forEach((item) => {
+  }
+  for (const [, item] of functions) {
     if (!item || item.private) {
-      return;
+      continue;
     }
     const groupName = getGroupName(item);
     const group = getByGroupName(groupName);
     group.functions.set(item.name, item);
     grouped.set(groupName, group);
-  });
-  variables.forEach((item) => {
+  }
+  for (const [, item] of variables) {
     if (!item || item.private) {
-      return;
+      continue;
     }
     const groupName = getGroupName(item);
     const group = getByGroupName(groupName);
     group.variables.set(item.name, item);
     grouped.set(groupName, group);
-  });
+  }
 
   const items: IndexedItem[] = [];
-  grouped.forEach((item, group) => {
+  for (const [group, item] of grouped.entries()) {
     const groupTitle = titleCase(group, "-");
     const pathname = `/sassdoc/${getGroupName(group)}`;
     const url = `${baseUrl}${pathname}`;
@@ -123,11 +125,11 @@ async function indexSassDocPages(
       keywords: ["sass", "sassdoc", "function", "variable", "mixin"],
     });
 
-    [
+    for (const sassdocItem of [
       ...item.mixins.values(),
       ...item.functions.values(),
       ...item.variables.values(),
-    ].forEach((sassdocItem) => {
+    ]) {
       const { name, description, type } = sassdocItem;
       const itemPathname = getSassDocLink(sassdocItem);
       const url = `${baseUrl}${itemPathname}`;
@@ -144,8 +146,8 @@ async function indexSassDocPages(
         group: groupTitle,
         description,
       });
-    });
-  });
+    }
+  }
 
   return items;
 }
@@ -155,7 +157,7 @@ async function indexBlogs(baseUrl: string): Promise<readonly IndexedItem[]> {
   const blogRoot = resolve(process.cwd(), "src/app/(main)/(markdown)/blog");
   const blogs = await getBlogs(blogRoot);
   const headings: HeadingWithDescription[] = [];
-  blogs.forEach((blog) => {
+  for (const blog of blogs) {
     const { id, title, exerpt } = blog;
     if (blog.pinned) {
       headings.push({
@@ -165,7 +167,7 @@ async function indexBlogs(baseUrl: string): Promise<readonly IndexedItem[]> {
         description: exerpt,
       });
     }
-  });
+  }
   items.push({
     type: "page",
     title: "Blog",
@@ -207,11 +209,14 @@ async function getEnvVars(): Promise<RequiredEnvVars> {
   if (!baseUrl) {
     missing.push("BASE_URL");
   }
-  if (missing.length) {
-    console.error(`The following environment variables are missing:`);
-    console.error(missing.map((name) => `- ${name}`).join("\n"));
-    console.error("Update the `.env.algolia` with the correct values");
-    process.exit(1);
+  if (missing.length > 0) {
+    throw new Error(
+      `The following environment variables are missing:
+${missing.map((name) => `- ${name}`).join("\n")}
+
+Update the \`.env.algolia\` with the correct values.
+`
+    );
   }
 
   if (
@@ -226,8 +231,7 @@ async function getEnvVars(): Promise<RequiredEnvVars> {
 `,
     }))
   ) {
-    console.error(`Update the \`.env.algolia\` and run again.`);
-    process.exit(1);
+    throw new Error(`Update the \`.env.algolia\` and run again.`);
   }
 
   return {
@@ -245,8 +249,7 @@ async function run({
   indexName,
 }: RequiredEnvVars): Promise<void> {
   const client = searchClient(appId, apiKey);
-  const indexes: IndexedItem[] = [];
-  indexes.push(
+  const indexes: IndexedItem[] = [
     ...(await log(
       indexMdxPages(baseUrl),
       "Indexing MDX pages",
@@ -261,23 +264,23 @@ async function run({
       indexBlogs(baseUrl),
       "Indexing Blog pages",
       "Blog pages indexed"
-    ))
-  );
-  indexes.push({
-    type: "page",
-    title: "Material Icons and Symbols",
-    description:
-      "This page is used to help find icons available in react-md using Material Symbols or Material Icons svg components. Icons can be filtered by type, group, or name.",
-    objectID: `${baseUrl}/components/material-icons-and-symbols`,
-    url: `${baseUrl}/components/material-icons-and-symbols`,
-    pathname: "/components/material-icons-and-symbols",
-    headings: [],
-    keywords: ["icon", "material", "component"],
-    docType: "Explore",
-    docGroup: "Components",
-    group: "Presentation",
-    components: ["FontIcon", "MaterialSymbol", "SVGIcon"],
-  });
+    )),
+    {
+      type: "page",
+      title: "Material Icons and Symbols",
+      description:
+        "This page is used to help find icons available in react-md using Material Symbols or Material Icons svg components. Icons can be filtered by type, group, or name.",
+      objectID: `${baseUrl}/components/material-icons-and-symbols`,
+      url: `${baseUrl}/components/material-icons-and-symbols`,
+      pathname: "/components/material-icons-and-symbols",
+      headings: [],
+      keywords: ["icon", "material", "component"],
+      docType: "Explore",
+      docGroup: "Components",
+      group: "Presentation",
+      components: ["FontIcon", "MaterialSymbol", "SVGIcon"],
+    },
+  ];
 
   console.log(`There are ${indexes.length} items added to the search index.`);
   await client.clearObjects({ indexName });
@@ -290,6 +293,7 @@ async function run({
 config({ path: join(process.cwd(), ".env.algolia"), quiet: true });
 const envVars = await getEnvVars();
 await log(
+  // eslint-disable-next-line unicorn/prefer-top-level-await
   run(envVars),
   "Indexing the documentation site",
   "Documentation site indexed!"

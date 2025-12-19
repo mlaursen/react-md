@@ -3,7 +3,7 @@ export function getFakeCssModuleClassName(
   key: string
 ): string {
   const prefix = `${fileName}_${key}`;
-  const hash = btoa(prefix).substring(0, 5);
+  const hash = btoa(prefix).slice(0, 5);
   return `${prefix}__${hash}`;
 }
 

@@ -314,7 +314,7 @@ export function useCollapseTransition<E extends HTMLElement>(
   const [nodeRef, refCallback] = useEnsuredRef(propNodeRef);
   const [style, setStyle] = useState<CSSProperties | undefined>(() => {
     if (transitionIn) {
-      return undefined;
+      return;
     }
 
     return {

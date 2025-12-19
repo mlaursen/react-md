@@ -9,7 +9,9 @@ const JUMP_KEYS = "Home|End|PageUp|PageDown";
 const ACTION_KEYS = "Enter|Space|Escape|Tab";
 const ACTION = `${ARROW_KEYS}|${JUMP_KEYS}|${ACTION_KEYS}`;
 
-const KEYBOARD_CODE_REGEX = new RegExp(`^(?:((${MODIFIERS})\\+)?(${ACTION}))$`);
+const KEYBOARD_CODE_REGEX = new RegExp(
+  String.raw`^(?:((${MODIFIERS})\+)?(${ACTION}))$`
+);
 
 export interface RehypeKeyboardCodeOptions {
   /** @defaultValue `"inline-code inline-code--ticked"` */
@@ -61,8 +63,10 @@ export const rehypeKeyboardCode: Plugin<
       const [_match, _modifierWithPlus, maybeModifier, key] = matches;
       const replacements: ElementContent[] = [];
       if (maybeModifier) {
-        replacements.push(createKbd(maybeModifier));
-        replacements.push({ type: "text", value: " + " });
+        replacements.push(createKbd(maybeModifier), {
+          type: "text",
+          value: " + ",
+        });
       }
       replacements.push(createKbd(key));
       parent.children.splice(parent.children.indexOf(node), 1, ...replacements);

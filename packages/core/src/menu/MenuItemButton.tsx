@@ -46,7 +46,7 @@ export const MenuItemButton = forwardRef<HTMLLIElement, MenuItemButtonProps>(
       onMouseLeave = noop,
       rightAddon: propRightAddon,
       iconRotatorProps,
-      disableDropdownIcon = typeof propRightAddon !== "undefined",
+      disableDropdownIcon = propRightAddon !== undefined,
       ...remaining
     } = props;
     const { disabled } = props;

@@ -35,12 +35,12 @@ export function getThemeCookie(
 
   try {
     const parsed = JSON.parse(value);
-    Object.entries(parsed).forEach(([key, value]) => {
+    for (const [key, value] of Object.entries(parsed)) {
       assertString(value);
       if (!(key in DEFAULT_LIGHT_THEME) || !isValidColor(value)) {
         throw new Error(`${key} or ${value} is invalid`);
       }
-    });
+    }
 
     return parsed;
   } catch {

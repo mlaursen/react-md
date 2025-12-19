@@ -111,7 +111,9 @@ export function useMaxTabPanelHeight<E extends HTMLElement = HTMLDivElement>(
       const { height } = element.style;
       element.style.height = "";
       const panels = getTabPanelRoleOnly(element);
-      const maxHeight = panels.reduce((maxHeight, panel) => {
+
+      let maxHeight = 0;
+      for (const panel of panels) {
         let { scrollHeight } = panel;
         if (panel.classList.contains(DISPLAY_NONE_CLASS)) {
           panel.classList.toggle(DISPLAY_NONE_CLASS);
@@ -119,8 +121,9 @@ export function useMaxTabPanelHeight<E extends HTMLElement = HTMLDivElement>(
           panel.classList.toggle(DISPLAY_NONE_CLASS);
         }
 
-        return Math.max(maxHeight, scrollHeight);
-      }, 0);
+        maxHeight = Math.max(maxHeight, scrollHeight);
+      }
+
       element.style.height = height;
 
       // don't set the height to 0 since it usually means a calculation issue

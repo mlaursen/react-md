@@ -54,10 +54,10 @@ describe("ResponsiveItemOverlay", () => {
       "absolute-center",
     ];
 
-    positions.forEach((position) => {
+    for (const position of positions) {
       rerender(<ResponsiveItemOverlay {...props} position={position} />);
       expect(container).toMatchSnapshot();
-    });
+    }
   });
 
   describe("style utility function", () => {

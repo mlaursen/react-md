@@ -247,18 +247,22 @@ export function getSplitFileUploads(
   const pending: ProcessingFileUploadStats[] = [];
   const uploading: ProcessingFileUploadStats[] = [];
   const complete: CompletedFileUploadStats[] = [];
-  stats.forEach((stat) => {
-    if (stat.status === "pending") {
-      pending.push(stat);
-    } else if (stat.status === "uploading") {
-      uploading.push(stat);
-    } else if (stat.status === "complete") {
-      complete.push(stat);
-    } else {
-      /* istanbul ignore next */
-      throw new Error("Invalid upload stat");
+  for (const stat of stats) {
+    switch (stat.status) {
+      case "pending":
+        pending.push(stat);
+        break;
+      case "uploading":
+        uploading.push(stat);
+        break;
+      case "complete":
+        complete.push(stat);
+        break;
+      default:
+        /* istanbul ignore next */
+        throw new Error("Invalid upload stat");
     }
-  });
+  }
 
   return { pending, uploading, complete };
 }

@@ -220,13 +220,13 @@ describe("useNumberField", () => {
         disableMaxLength: true,
       });
 
-      expect(() => screen.getByTestId("error-icon")).toThrow();
+      expect(() => screen.getByTestId("error-icon")).toThrowError();
 
       await user.type(field, "5");
-      expect(() => screen.getByTestId("error-icon")).not.toThrow();
+      expect(() => screen.getByTestId("error-icon")).not.toThrowError();
 
       await user.clear(field);
-      expect(() => screen.getByTestId("error-icon")).toThrow();
+      expect(() => screen.getByTestId("error-icon")).toThrowError();
     });
   });
 

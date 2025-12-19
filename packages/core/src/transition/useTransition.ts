@@ -271,12 +271,12 @@ export function useTransition<E extends HTMLElement>(
       return;
     }
 
-    const timer = window.setTimeout(() => {
+    const timer = globalThis.setTimeout(() => {
       dispatch(dispatchStage);
     }, duration);
 
     return () => {
-      window.clearTimeout(timer);
+      globalThis.clearTimeout(timer);
     };
   }, [appearing, ref, ssr, stage, temporary, transitionIn]);
 

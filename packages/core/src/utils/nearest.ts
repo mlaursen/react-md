@@ -36,10 +36,13 @@ export function nearest(options: NearestOptions): number {
   const step = range / steps;
   const decimals = Number.isInteger(step)
     ? range % steps
-    : getNumberOfDigits(parseInt(`${step}`.split(".")[1]));
+    : getNumberOfDigits(Number.parseInt(`${step}`.split(".")[1]));
 
   return Math.min(
     max,
-    Math.max(min, parseFloat((zeroToOne * range + min).toFixed(decimals)))
+    Math.max(
+      min,
+      Number.parseFloat((zeroToOne * range + min).toFixed(decimals))
+    )
   );
 }

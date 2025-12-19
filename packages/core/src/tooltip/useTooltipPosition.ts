@@ -93,7 +93,7 @@ export function useTooltipPosition(
     [defaultPosition, threshold]
   );
 
-  if (typeof determinedPosition !== "undefined") {
+  if (determinedPosition !== undefined) {
     return [determinedPosition, noop];
   }
 

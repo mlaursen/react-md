@@ -14,7 +14,7 @@ describe("TreeGroup", () => {
           <TreeItem depth={1} itemId="item-id" />
         </TreeGroup>
       )
-    ).toThrow("Cannot find a parent Tree component");
+    ).toThrowError("Cannot find a parent Tree component");
 
     error.mockRestore();
   });

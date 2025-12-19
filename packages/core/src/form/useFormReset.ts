@@ -29,7 +29,7 @@ export function useFormReset(options: FormResetOptions): void {
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element || (typeof defaultValue === "undefined" && !onReset)) {
+    if (!element || (defaultValue === undefined && !onReset)) {
       return;
     }
 
@@ -44,7 +44,7 @@ export function useFormReset(options: FormResetOptions): void {
     const handleReset = (): void => {
       if (onReset) {
         onReset();
-      } else if (typeof defaultValue !== "undefined") {
+      } else if (defaultValue !== undefined) {
         triggerManualChangeEvent(element, defaultValue);
       }
     };

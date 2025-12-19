@@ -42,7 +42,7 @@ export type RafSpy = jest.SpiedFunction<typeof requestAnimationFrame>;
  * @since 6.0.0
  */
 export const testImmediateRaf = (): RafSpy =>
-  jest.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {
+  jest.spyOn(globalThis, "requestAnimationFrame").mockImplementation((cb) => {
     cb(0);
     return 0;
   });

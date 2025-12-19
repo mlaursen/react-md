@@ -86,10 +86,10 @@ describe("Navigation", () => {
     const path2 = screen.getByRole("button", { name: "Path 2" });
     const path2Parent = path2.parentElement;
     if (!path2Parent) {
-      throw new Error();
+      throw new Error("Unable to find path2.parentElement");
     }
 
-    expect(() => within(path2Parent).getByText("Route 1")).toThrow();
+    expect(() => within(path2Parent).getByText("Route 1")).toThrowError();
   });
 
   it("should allow route groups to be expanded", async () => {
@@ -98,7 +98,7 @@ describe("Navigation", () => {
     const path2 = screen.getByRole("button", { name: "Path 2" });
     const path2Parent = path2.parentElement;
     if (!path2Parent) {
-      throw new Error();
+      throw new Error("Unable to find path2.parentElement");
     }
 
     await user.click(path2);

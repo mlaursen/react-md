@@ -224,7 +224,7 @@ export function useCarousel(options: CarouselOptions): CarouselImplementation {
       return;
     }
 
-    const timeout = window.setTimeout(() => {
+    const timeout = globalThis.setTimeout(() => {
       const nextActiveIndex = loop({
         min: 0,
         max: total,
@@ -238,7 +238,7 @@ export function useCarousel(options: CarouselOptions): CarouselImplementation {
     }, duration);
 
     return () => {
-      window.clearTimeout(timeout);
+      globalThis.clearTimeout(timeout);
     };
   }, [paused, duration, activeIndex, total]);
 

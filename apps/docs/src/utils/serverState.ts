@@ -113,12 +113,12 @@ export async function getInitialState(): Promise<InitialAppState> {
 
   let customProperties: CSSProperties | undefined;
   if (defaultCustomTheme) {
-    customProperties = Object.entries(defaultCustomTheme).reduce<
-      CSSVariablesProperties<CSSVariableName>
-    >((style, [name, value]) => {
+    const style: CSSVariablesProperties<CSSVariableName> = {};
+    for (const [name, value] of Object.entries(defaultCustomTheme)) {
       style[`--rmd-${kebabCase(name)}`] = value;
-      return style;
-    }, {});
+    }
+
+    customProperties = style;
   }
 
   return {

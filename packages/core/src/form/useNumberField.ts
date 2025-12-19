@@ -411,7 +411,7 @@ export function useNumberField(
       if (!Number.isNaN(value)) {
         setNumber(value);
         input.value = `${value}`;
-      } else if (typeof initial.current === "undefined") {
+      } else if (initial.current === undefined) {
         setNumber(undefined);
       }
     },

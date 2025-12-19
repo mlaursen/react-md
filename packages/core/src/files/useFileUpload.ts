@@ -9,6 +9,7 @@ import {
   useReducer,
 } from "react";
 
+import { createAcceptFromExtensions } from "./createAcceptFromExtensions.js";
 import {
   type CompletedFileUploadStats,
   type FileReaderResult,
@@ -259,28 +260,27 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
             stats,
           };
         }
-        case "queue":
+        case "queue": {
+          const nextStats: Record<string, ProcessingFileUploadStats> = {};
+          for (const file of action.files) {
+            const key = nanoid();
+            nextStats[key] = {
+              key,
+              file,
+              progress: 0,
+              status: "pending",
+            };
+          }
+
           return {
             ...state,
             stats: {
               ...state.stats,
-              ...action.files.reduce<Record<string, ProcessingFileUploadStats>>(
-                (files, file) => {
-                  const key = nanoid();
-                  files[key] = {
-                    key,
-                    file,
-                    progress: 0,
-                    status: "pending",
-                  };
-
-                  return files;
-                },
-                {}
-              ),
+              ...nextStats,
             },
             errors: [...state.errors, ...action.errors],
           };
+        }
         case "start": {
           const { key, reader } = action;
           const fileStats: ProcessingFileUploadStats = {
@@ -389,14 +389,16 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
       try {
         const files = event.dataTransfer.files;
         if (files) {
-          queueFiles(Array.from(files));
+          queueFiles([...files]);
         }
-      } catch (e) {
+      } catch (error) {
         dispatch({
           type: "queue",
           files: [],
           errors: [
-            new FileAccessError(e instanceof Error ? e.message : undefined),
+            new FileAccessError(
+              error instanceof Error ? error.message : undefined
+            ),
           ],
         });
       }
@@ -409,16 +411,18 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
       try {
         const files = event.currentTarget.files;
         if (files) {
-          queueFiles(Array.from(files));
+          queueFiles([...files]);
         } else {
-          throw new Error();
+          throw new Error("There are no files");
         }
-      } catch (e) {
+      } catch (error) {
         dispatch({
           type: "queue",
           files: [],
           errors: [
-            new FileAccessError(e instanceof Error ? e.message : undefined),
+            new FileAccessError(
+              error instanceof Error ? error.message : undefined
+            ),
           ],
         });
       }
@@ -429,18 +433,18 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
   const remove = useCallback(
     (keyOrKeys: string | readonly string[]) => {
       const files = typeof keyOrKeys === "string" ? [keyOrKeys] : keyOrKeys;
-      files.forEach((fileKey) => {
+      for (const fileKey of files) {
         readers[fileKey]?.abort();
-      });
+      }
 
       dispatch({ type: "remove", files });
     },
     [readers]
   );
   const reset = useCallback(() => {
-    Object.values(readers).forEach((reader) => {
+    for (const reader of Object.values(readers)) {
       reader.abort();
-    });
+    }
 
     dispatch({ type: "reset" });
   }, [readers]);
@@ -469,24 +473,24 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
   useEffect(() => {
     const pending: ProcessingFileUploadStats[] = [];
     const uploading: ProcessingFileUploadStats[] = [];
-    Object.values(stats).forEach((file) => {
+    for (const file of Object.values(stats)) {
       if (file.status === "pending") {
         pending.push(file);
       } else if (file.status === "uploading") {
         uploading.push(file);
       }
-    });
+    }
 
     const lastIndex =
       concurrency === -1
         ? pending.length
         : Math.max(0, concurrency - uploading.length);
     const queue = pending.slice(0, lastIndex);
-    if (!queue.length) {
+    if (queue.length === 0) {
       return;
     }
 
-    queue.forEach((stats) => {
+    for (const stats of queue) {
       const { key, file } = stats;
       const reader = new FileReader();
 
@@ -508,7 +512,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
       }
 
       reader[parser](file);
-    });
+    }
   }, [
     concurrency,
     stats,
@@ -518,15 +522,10 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
     complete,
   ]);
 
-  let accept = "";
-  if (extensions.length) {
-    accept = extensions.reduce((s, ext) => `${s ? `${s},` : ""}.${ext}`, "");
-  }
-
   return {
     stats: statsList,
     errors,
-    accept,
+    accept: createAcceptFromExtensions(extensions),
     totalBytes,
     totalFiles,
     onDrop,

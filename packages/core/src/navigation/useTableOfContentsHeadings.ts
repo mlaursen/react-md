@@ -25,7 +25,7 @@ export const DEFAULT_HEADING_SELECTOR =
  * @since 6.0.0
  */
 export const DEFAULT_GET_HEADING_DEPTH = (element: Element): number => {
-  const depth = parseInt(element.tagName.substring(1));
+  const depth = Number.parseInt(element.tagName.slice(1));
   return Number.isNaN(depth) ? 0 : depth;
 };
 

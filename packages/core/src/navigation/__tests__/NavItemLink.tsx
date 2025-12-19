@@ -198,7 +198,7 @@ describe("NavItemLink", () => {
     render(<Test />);
 
     const toggle = screen.getByRole("button", { name: "Group" });
-    expect(() => screen.getByRole("link")).toThrow();
+    expect(() => screen.getByRole("link")).toThrowError();
 
     await user.click(toggle);
     const link = await screen.findByRole("link", { name: "Home" });

@@ -41,7 +41,7 @@ describe("deselectNode", () => {
       },
     };
     const getRangeAt = vi.fn(() => fakeRange);
-    vi.spyOn(window, "getSelection").mockReturnValue({
+    vi.spyOn(globalThis, "getSelection").mockReturnValue({
       ...MOCK_SELECTION,
       rangeCount: 1,
       getRangeAt,
@@ -67,7 +67,7 @@ describe("deselectNode", () => {
       },
     };
     const getRangeAt = vi.fn(() => fakeRange);
-    vi.spyOn(window, "getSelection").mockReturnValue({
+    vi.spyOn(globalThis, "getSelection").mockReturnValue({
       ...MOCK_SELECTION,
       rangeCount: 3,
       getRangeAt,
@@ -102,7 +102,7 @@ describe("deselectNode", () => {
       .fn(() => fakeRange1)
       .mockReturnValueOnce(fakeRange1)
       .mockReturnValue(fakeRange2);
-    vi.spyOn(window, "getSelection").mockReturnValue({
+    vi.spyOn(globalThis, "getSelection").mockReturnValue({
       ...MOCK_SELECTION,
       rangeCount: 3,
       getRangeAt,
@@ -118,10 +118,10 @@ describe("deselectNode", () => {
   });
 
   it("should do nothing without crashing if the selection returns null due to the associated document has no browsing context", () => {
-    vi.spyOn(window, "getSelection").mockReturnValue(null);
+    vi.spyOn(globalThis, "getSelection").mockReturnValue(null);
 
     const node = document.createElement("div");
     node.textContent = "Hello, world!";
-    expect(() => deselectNode(node)).not.toThrow();
+    expect(() => deselectNode(node)).not.toThrowError();
   });
 });

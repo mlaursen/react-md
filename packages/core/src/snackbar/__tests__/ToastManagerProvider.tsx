@@ -109,7 +109,7 @@ describe("ToastManagerProvider", () => {
 
       rmdRender(<Test />);
       const button = screen.getByRole("button", { name: "Button" });
-      expect(() => screen.getByTestId("snackbar")).toThrow();
+      expect(() => screen.getByTestId("snackbar")).toThrowError();
 
       await user.click(button);
       const snackbar = await screen.findByTestId("snackbar");
@@ -161,7 +161,7 @@ describe("ToastManagerProvider", () => {
         addToast({ children: "Toast" });
         clearToasts();
       });
-      expect(() => screen.getByTestId("snackbar")).toThrow();
+      expect(() => screen.getByTestId("snackbar")).toThrowError();
     });
 
     it("should not add a toast to another toast manager", async () => {
@@ -194,7 +194,7 @@ describe("ToastManagerProvider", () => {
       const globalAdd = screen.getByRole("button", { name: "Global" });
 
       await user.click(globalAdd);
-      expect(() => screen.getByTestId("snackbar")).toThrow();
+      expect(() => screen.getByTestId("snackbar")).toThrowError();
 
       await user.click(scopedAdd);
       const snackbar = await screen.findByTestId("snackbar");
@@ -296,7 +296,7 @@ describe("ToastManagerProvider", () => {
 
       act(() => {
         document.dispatchEvent(new Event("visibilitychange"));
-        vi.advanceTimersByTime(10000);
+        vi.advanceTimersByTime(10_000);
       });
       expect(message).toBeInTheDocument();
       expect(message).not.toHaveClass(LEAVE_CLASS_NAME);

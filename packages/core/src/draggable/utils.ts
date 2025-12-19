@@ -232,7 +232,7 @@ export function deserializeDraggableValue(
 ): number {
   const { item, min, max } = options;
 
-  const value = parseFloat(item);
+  const value = Number.parseFloat(item);
   if (Number.isNaN(item)) {
     return min;
   }

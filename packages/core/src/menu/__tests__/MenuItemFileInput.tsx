@@ -58,7 +58,7 @@ describe("MenuItemFileInput", () => {
       </MenuItemFileInput>
     );
     expect(menuItem.querySelector(".rmd-icon")).toBe(null);
-    expect(() => screen.getByTestId("icon")).not.toThrow();
+    expect(() => screen.getByTestId("icon")).not.toThrowError();
     expect(menuItem).toMatchSnapshot();
   });
 
@@ -72,7 +72,7 @@ describe("MenuItemFileInput", () => {
     const input = document.createElement("input");
     vi.spyOn(input, "click").mockImplementation(() => {
       fireEvent.change(input, {
-        target: { files: createFileList(window, file) },
+        target: { files: createFileList(globalThis.window, file) },
       });
     });
 
@@ -90,7 +90,7 @@ describe("MenuItemFileInput", () => {
     const input = document.createElement("input");
     vi.spyOn(input, "click").mockImplementation(() => {
       fireEvent.change(input, {
-        target: { files: createFileList(window, file) },
+        target: { files: createFileList(globalThis.window, file) },
       });
     });
 

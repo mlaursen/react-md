@@ -166,7 +166,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     const icon = getIcon("upload", propIcon);
     let children = propChildren;
     if (
-      typeof propChildren === "undefined" &&
+      propChildren === undefined &&
       !props["aria-label"] &&
       !props["aria-labelledby"]
     ) {

@@ -75,7 +75,7 @@ export function getSelectTestElements(
   });
   const selectedOption = select.firstElementChild;
   if (!(selectedOption instanceof HTMLDivElement)) {
-    throw new Error("Unable to find the `Select` selected option element");
+    throw new TypeError("Unable to find the `Select` selected option element");
   }
 
   return {
@@ -105,7 +105,7 @@ export async function findSelectTestElements(
   );
   const selectedOption = select.firstElementChild;
   if (!(selectedOption instanceof HTMLDivElement)) {
-    throw new Error("Unable to find the `Select` selected option element");
+    throw new TypeError("Unable to find the `Select` selected option element");
   }
 
   return {

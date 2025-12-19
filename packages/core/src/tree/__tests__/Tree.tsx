@@ -412,7 +412,7 @@ describe("Tree", () => {
 
     const icon = folder2.querySelector(".rmd-icon-rotator");
     if (!icon) {
-      throw new Error();
+      throw new Error("Unable to find the icon rotator");
     }
     await user.click(icon);
     expect(folder2).toHaveAttribute("aria-expanded", "true");
@@ -508,16 +508,14 @@ describe("Tree", () => {
     rerender(<Test expanderLeft expanderIcon={<span>v</span>} />);
     expect(tree).toMatchSnapshot("custom expander icon");
 
-    const dataWithAddon = Object.values(FOLDERS).reduce<
-      TreeData<Folder & DefaultTreeItemNode>
-    >((updated, item) => {
-      updated[item.itemId] = {
+    const dataWithAddon: TreeData<Folder & DefaultTreeItemNode> = {};
+    for (const item of Object.values(FOLDERS)) {
+      dataWithAddon[item.itemId] = {
         ...item,
         leftAddon: <FontIcon>folder</FontIcon>,
       };
+    }
 
-      return updated;
-    }, {});
     rerender(<Test expanderLeft data={dataWithAddon} />);
     expect(tree).toMatchSnapshot("including left icon");
   });
@@ -756,9 +754,9 @@ describe("Tree", () => {
     expect(folder3).not.toHaveAttribute("aria-expanded");
     const groups = screen.getAllByRole("group");
     expect(groups).toHaveLength(4);
-    groups.forEach((subtree) => {
+    for (const subtree of groups) {
       expect(isElementVisible(subtree)).toBe(false);
-    });
+    }
 
     await user.tab();
     expect(tree).toHaveFocus();

@@ -1,6 +1,6 @@
 import { type ElementType, type HTMLAttributes, forwardRef } from "react";
 
-import { cssUtils } from "../cssUtils.js";
+import { type SrOnlyBehavior, cssUtils } from "../cssUtils.js";
 import {
   type CustomTypographyComponent,
   type TypographyHTMLElement,
@@ -67,13 +67,20 @@ export const SrOnly = forwardRef<TypographyHTMLElement, SrOnlyProps>(
     // do some type-casting so ref works
     const Component = AsComponent as ElementType;
 
+    let srOnly: SrOnlyBehavior = true;
+    if (focusable) {
+      srOnly = "focusable";
+    } else if (phoneOnly) {
+      srOnly = "phone";
+    }
+
     return (
       <Component
         {...remaining}
         ref={ref}
         tabIndex={tabIndex ?? (focusable ? 0 : undefined)}
         className={cssUtils({
-          srOnly: focusable ? "focusable" : phoneOnly ? "phone" : true,
+          srOnly,
           className,
         })}
       >

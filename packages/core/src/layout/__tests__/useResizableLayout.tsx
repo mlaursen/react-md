@@ -33,7 +33,7 @@ const { enter: ENTER_H_CLASS, enterDone: ENTER_H_DONE_CLASS } =
   DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES;
 
 const getSizeVar = () =>
-  window
+  globalThis
     .getComputedStyle(document.documentElement)
     .getPropertyValue("--rmd-layout-size");
 
@@ -127,7 +127,7 @@ describe("useResizableLayout", () => {
     expect(isElementVisible(windowSplitter)).toBe(false);
     expect(windowSplitter).toMatchSnapshot();
     expect(getSizeVar()).toBe("256px");
-    expect(() => screen.getByRole("dialog")).toThrow();
+    expect(() => screen.getByRole("dialog")).toThrowError();
 
     await user.click(navToggle);
     expect(isElementVisible(nav)).toBe(true);
@@ -153,7 +153,7 @@ describe("useResizableLayout", () => {
     });
 
     // it's 286.0000000002px now
-    expect(parseFloat(getSizeVar())).toBeCloseTo(286);
+    expect(Number.parseFloat(getSizeVar())).toBeCloseTo(286);
     expect(windowSplitter).toMatchSnapshot();
 
     await drag(windowSplitter, {

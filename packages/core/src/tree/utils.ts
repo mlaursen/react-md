@@ -54,15 +54,15 @@ export function getChildTreeItems<T extends TreeItemNode = DefaultTreeItemNode>(
 ): readonly T[] {
   const items: readonly T[] = Array.isArray(data) ? data : Object.values(data);
 
-  return items.reduce<T[]>((list, item) => {
-    if (parentId !== item.parentId) {
-      return list;
+  const treeItems: T[] = [];
+  for (const item of items) {
+    if (parentId === item.parentId) {
+      treeItems.push(
+        item,
+        ...(recursive ? getChildTreeItems(items, item.itemId, recursive) : [])
+      );
     }
+  }
 
-    return [
-      ...list,
-      item,
-      ...(recursive ? getChildTreeItems(items, item.itemId, recursive) : []),
-    ];
-  }, []);
+  return treeItems;
 }

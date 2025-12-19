@@ -92,7 +92,7 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
           return;
         }
 
-        window.cancelAnimationFrame(sheetBlurredFame.current);
+        globalThis.cancelAnimationFrame(sheetBlurredFame.current);
         setSheetMenuFocused(true);
       },
       onKeyDown,
@@ -127,9 +127,11 @@ export const MenuWidget = forwardRef<HTMLDivElement, MenuWidgetProps>(
                 return;
               }
 
-              sheetBlurredFame.current = window.requestAnimationFrame(() => {
-                setSheetMenuFocused(false);
-              });
+              sheetBlurredFame.current = globalThis.requestAnimationFrame(
+                () => {
+                  setSheetMenuFocused(false);
+                }
+              );
             }}
           >
             <List

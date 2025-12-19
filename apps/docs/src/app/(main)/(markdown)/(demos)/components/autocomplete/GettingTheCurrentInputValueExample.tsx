@@ -16,7 +16,7 @@ export default function GettingTheCurrentInputValueExample(): ReactElement {
       onChange={(event) => {
         // do something with the current value
         const { value } = event.currentTarget;
-        console.log("value: ", value);
+        console.log("value:", value);
       }}
     />
   );

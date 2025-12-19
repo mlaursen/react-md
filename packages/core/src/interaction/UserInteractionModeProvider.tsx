@@ -86,6 +86,7 @@ export interface UserInteractionModeProviderProps {
 export function UserInteractionModeProvider(
   props: UserInteractionModeProviderProps
 ): ReactElement {
+  // eslint-disable-next-line react/prop-types
   const { children, now = DATE_NOW } =
     props as UserInteractionModeProviderProps & {
       now?: () => number;
@@ -172,26 +173,26 @@ export function UserInteractionModeProvider(
 
     const className = `rmd-${mode}-mode`;
     document.body.classList.add(className);
-    window.addEventListener("touchstart", handleTouchStart, true);
+    globalThis.addEventListener("touchstart", handleTouchStart, true);
     if (mode === "mouse") {
-      window.addEventListener("keydown", enableKeyboardMode, true);
+      globalThis.addEventListener("keydown", enableKeyboardMode, true);
     } else if (mode === "keyboard") {
-      window.addEventListener("mousedown", enableMouseMode, true);
+      globalThis.addEventListener("mousedown", enableMouseMode, true);
     } else {
-      window.addEventListener("mousemove", handleMouseMove, true);
-      window.addEventListener("contextmenu", handleContextMenu, true);
+      globalThis.addEventListener("mousemove", handleMouseMove, true);
+      globalThis.addEventListener("contextmenu", handleContextMenu, true);
     }
 
     return () => {
       document.body.classList.remove(className);
-      window.removeEventListener("touchstart", handleTouchStart, true);
+      globalThis.removeEventListener("touchstart", handleTouchStart, true);
       if (mode === "mouse") {
-        window.removeEventListener("keydown", enableKeyboardMode, true);
+        globalThis.removeEventListener("keydown", enableKeyboardMode, true);
       } else if (mode === "keyboard") {
-        window.removeEventListener("mousedown", enableMouseMode, true);
+        globalThis.removeEventListener("mousedown", enableMouseMode, true);
       } else {
-        window.removeEventListener("mousemove", handleMouseMove, true);
-        window.removeEventListener("contextmenu", handleContextMenu, true);
+        globalThis.removeEventListener("mousemove", handleMouseMove, true);
+        globalThis.removeEventListener("contextmenu", handleContextMenu, true);
       }
     };
   }, [mode, now]);

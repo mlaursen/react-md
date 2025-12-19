@@ -253,8 +253,8 @@ export function setupResizeObserverMock(
 
   const resizeObserver = new ResizeObserverMock((entries) => {
     if (raf) {
-      window.cancelAnimationFrame(manager.frame);
-      manager.frame = window.requestAnimationFrame(() => {
+      globalThis.cancelAnimationFrame(manager.frame);
+      manager.frame = globalThis.requestAnimationFrame(() => {
         manager.handleResizeEntries(entries);
       });
     } else {

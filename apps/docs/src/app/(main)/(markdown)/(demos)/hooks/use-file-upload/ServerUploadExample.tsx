@@ -20,6 +20,7 @@ import {
   DEFAULT_OVERLAY_TIMEOUT,
 } from "@react-md/core/overlay/styles";
 import { LinearProgress } from "@react-md/core/progress/LinearProgress";
+import { type ProgressTheme } from "@react-md/core/progress/types";
 import { CSSTransition } from "@react-md/core/transition/CSSTransition";
 import { Typography } from "@react-md/core/typography/Typography";
 import { useAsyncFunction } from "@react-md/core/useAsyncFunction";
@@ -32,7 +33,7 @@ import FileUploadIcon from "@react-md/material-icons/FileUploadIcon";
 import WatchIcon from "@react-md/material-icons/WatchIcon";
 import { cnb } from "cnbuilder";
 import { filesize } from "filesize";
-import { type ReactElement, useState } from "react";
+import { type ReactElement, type ReactNode, useState } from "react";
 
 import { FileUploadErrorModal } from "@/components/FileUploadErrorModal/FileUploadErrorModal.jsx";
 
@@ -66,6 +67,13 @@ export default function ServerUploadExample(): ReactElement {
   const roundedSize = Math.min(maxFileSize, Math.round(totalBytes));
   const percentage = (totalBytes / maxFileSize) * 100;
 
+  let progressTheme: ProgressTheme | undefined;
+  if (percentage >= 85) {
+    progressTheme = "error";
+  } else if (percentage >= 70) {
+    progressTheme = "warning";
+  }
+
   return (
     <Card className={styles.card} fullWidth>
       <CardContent>
@@ -79,33 +87,40 @@ export default function ServerUploadExample(): ReactElement {
               (isOver || isDragging) && styles.dragging
             )}
           >
-            {stats.map((stat) => (
-              <ListItem
-                key={stat.key}
-                presentational
-                leftAddon={
-                  stat.status === "pending" ? (
-                    <WatchIcon />
-                  ) : stat.status === "uploading" ? (
-                    <FileUploadIcon />
-                  ) : (
-                    <CheckCircleIcon theme="success" />
-                  )
-                }
-                rightAddon={
-                  <Button
-                    onClick={() => remove(stat.key)}
-                    buttonType="icon"
-                    aria-label="Remove"
-                  >
-                    <CloseIcon />
-                  </Button>
-                }
-                secondaryText={filesize(stat.file.size)}
-              >
-                {stat.file.name}
-              </ListItem>
-            ))}
+            {stats.map((stat) => {
+              let leftAddon: ReactNode;
+              switch (stat.status) {
+                case "pending":
+                  leftAddon = <WatchIcon />;
+                  break;
+                case "uploading":
+                  leftAddon = <FileUploadIcon />;
+                  break;
+                case "complete":
+                  leftAddon = <CheckCircleIcon theme="success" />;
+                  break;
+              }
+
+              return (
+                <ListItem
+                  key={stat.key}
+                  presentational
+                  leftAddon={leftAddon}
+                  rightAddon={
+                    <Button
+                      onClick={() => remove(stat.key)}
+                      buttonType="icon"
+                      aria-label="Remove"
+                    >
+                      <CloseIcon />
+                    </Button>
+                  }
+                  secondaryText={filesize(stat.file.size)}
+                >
+                  {stat.file.name}
+                </ListItem>
+              );
+            })}
             {Array.from(
               { length: Math.max(0, maxFiles - totalFiles) },
               (_, i) => (
@@ -136,13 +151,7 @@ export default function ServerUploadExample(): ReactElement {
             value={roundedSize}
             max={maxFileSize}
             className={cnb(percentage >= 70 && styles.progress)}
-            theme={
-              percentage >= 85
-                ? "error"
-                : percentage >= 70
-                  ? "warning"
-                  : undefined
-            }
+            theme={progressTheme}
           />
           <FormMessage
             id="total-size-allowed-counter"
@@ -167,10 +176,10 @@ export default function ServerUploadExample(): ReactElement {
               type="submit"
               disabled={
                 isUploading ||
-                !!errors.length ||
-                !complete.length ||
-                !!pending.length ||
-                !!uploading.length
+                errors.length > 0 ||
+                complete.length === 0 ||
+                pending.length > 0 ||
+                uploading.length > 0
               }
               theme="primary"
               themeType="contained"
@@ -235,7 +244,7 @@ function useFakeServerUpload(
   totalSize: number
 ): FakeServerUploadImplementation {
   const { handleAsync, pending } = useAsyncFunction();
-  const [progress, setProgress] = useState<number | undefined>(undefined);
+  const [progress, setProgress] = useState<number | undefined>();
 
   return {
     onSubmit: handleAsync(async () => {

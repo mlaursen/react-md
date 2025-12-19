@@ -121,37 +121,37 @@ describe("useDraggable", () => {
     expect(onMouseUp).not.toHaveBeenCalled();
 
     // the mouse move event doesn't bubble for some reason without this next line
-    fireEvent.mouseMove(window, { clientX: 60 });
+    fireEvent.mouseMove(globalThis.window, { clientX: 60 });
     expect(button).toHaveAttribute("aria-valuenow", "60");
     expect(button).toHaveClass("dragging");
     expect(document.documentElement).toHaveClass("rmd-dragging");
     expect(document.documentElement).toHaveClass("rmd-dragging--h");
 
-    fireEvent.mouseMove(window, { clientX: 90 });
+    fireEvent.mouseMove(globalThis.window, { clientX: 90 });
     expect(button).toHaveAttribute("aria-valuenow", "90");
     expect(button).toHaveClass("dragging");
     expect(document.documentElement).toHaveClass("rmd-dragging");
     expect(document.documentElement).toHaveClass("rmd-dragging--h");
 
-    fireEvent.mouseMove(window, { clientX: 99 });
+    fireEvent.mouseMove(globalThis.window, { clientX: 99 });
     expect(button).toHaveAttribute("aria-valuenow", "99");
     expect(button).toHaveClass("dragging");
     expect(document.documentElement).toHaveClass("rmd-dragging");
     expect(document.documentElement).toHaveClass("rmd-dragging--h");
 
-    fireEvent.mouseMove(window, { clientX: 100 });
+    fireEvent.mouseMove(globalThis.window, { clientX: 100 });
     expect(button).toHaveAttribute("aria-valuenow", "100");
     expect(button).toHaveClass("dragging");
     expect(document.documentElement).toHaveClass("rmd-dragging");
     expect(document.documentElement).toHaveClass("rmd-dragging--h");
 
-    fireEvent.mouseMove(window, { clientX: 113 });
+    fireEvent.mouseMove(globalThis.window, { clientX: 113 });
     expect(button).toHaveAttribute("aria-valuenow", "100");
     expect(button).toHaveClass("dragging");
     expect(document.documentElement).toHaveClass("rmd-dragging");
     expect(document.documentElement).toHaveClass("rmd-dragging--h");
 
-    fireEvent.mouseUp(window, { clientX: 113 });
+    fireEvent.mouseUp(globalThis.window, { clientX: 113 });
     expect(button).toHaveAttribute("aria-valuenow", "100");
     expect(button).not.toHaveClass("dragging");
     expect(document.documentElement).not.toHaveClass("rmd-dragging");
@@ -159,10 +159,10 @@ describe("useDraggable", () => {
 
     fireEvent.mouseDown(button);
     fireEvent.mouseMove(button);
-    fireEvent.mouseMove(window, { clientX: 0 });
+    fireEvent.mouseMove(globalThis.window, { clientX: 0 });
     expect(button).toHaveAttribute("aria-valuenow", "0");
 
-    fireEvent.mouseUp(window, { clientX: -1 });
+    fireEvent.mouseUp(globalThis.window, { clientX: -1 });
     expect(button).toHaveAttribute("aria-valuenow", "0");
     expect(onMouseUp).not.toHaveBeenCalled();
 
@@ -182,27 +182,27 @@ describe("useDraggable", () => {
 
     fireEvent.mouseDown(button, { button: 1, clientX: 50 });
     fireEvent.mouseMove(button, { clientX: 60 });
-    fireEvent.mouseUp(window);
+    fireEvent.mouseUp(globalThis.window);
     expect(button).toHaveAttribute("aria-valuenow", "50");
 
     fireEvent.mouseDown(button, { button: 0, altKey: true, clientX: 50 });
     fireEvent.mouseMove(button, { clientX: 60 });
-    fireEvent.mouseUp(window);
+    fireEvent.mouseUp(globalThis.window);
     expect(button).toHaveAttribute("aria-valuenow", "50");
 
     fireEvent.mouseDown(button, { button: 0, metaKey: true, clientX: 50 });
     fireEvent.mouseMove(button, { clientX: 60 });
-    fireEvent.mouseUp(window);
+    fireEvent.mouseUp(globalThis.window);
     expect(button).toHaveAttribute("aria-valuenow", "50");
 
     fireEvent.mouseDown(button, { button: 0, ctrlKey: true, clientX: 50 });
     fireEvent.mouseMove(button, { clientX: 60 });
-    fireEvent.mouseUp(window);
+    fireEvent.mouseUp(globalThis.window);
     expect(button).toHaveAttribute("aria-valuenow", "50");
 
     fireEvent.mouseDown(button, { button: 0, shiftKey: true, clientX: 50 });
     fireEvent.mouseMove(button, { clientX: 60 });
-    fireEvent.mouseUp(window);
+    fireEvent.mouseUp(globalThis.window);
     expect(button).toHaveAttribute("aria-valuenow", "50");
   });
 
@@ -306,8 +306,8 @@ describe("useDraggable", () => {
     expect(button).toHaveAttribute("aria-valuenow", "50");
     fireEvent.mouseDown(button, { button: 0 });
     fireEvent.mouseMove(button);
-    fireEvent.mouseMove(window, { clientX: 100 });
-    fireEvent.mouseUp(window);
+    fireEvent.mouseMove(globalThis.window, { clientX: 100 });
+    fireEvent.mouseUp(globalThis.window);
     expect(button).toHaveAttribute("aria-valuenow", "50");
 
     fireEvent.keyDown(button, { key: "ArrowRight" });
@@ -316,7 +316,7 @@ describe("useDraggable", () => {
     const touch = { changedTouches: [{ clientX: 100 }] };
     fireEvent.touchStart(button, touch);
     fireEvent.touchMove(button, touch);
-    fireEvent.touchEnd(window);
+    fireEvent.touchEnd(globalThis.window);
     expect(button).toHaveAttribute("aria-valuenow", "50");
   });
 
@@ -333,7 +333,7 @@ describe("useDraggable", () => {
     expect(button).toHaveAttribute("aria-valuenow", "50");
     fireEvent.mouseDown(button, { button: 0 });
     fireEvent.mouseMove(button);
-    fireEvent.mouseMove(window, { clientX: window.innerWidth - 60 });
+    fireEvent.mouseMove(globalThis.window, { clientX: window.innerWidth - 60 });
     expect(button).toHaveAttribute("aria-valuenow", "60");
   });
 
@@ -344,10 +344,10 @@ describe("useDraggable", () => {
     expect(button).toHaveAttribute("aria-valuenow", "50");
     fireEvent.mouseDown(button, { button: 0 });
     fireEvent.mouseMove(button);
-    fireEvent.mouseMove(window, { clientX: 60, clientY: 50 });
+    fireEvent.mouseMove(globalThis.window, { clientX: 60, clientY: 50 });
     expect(button).toHaveAttribute("aria-valuenow", "50");
 
-    fireEvent.mouseMove(window, { clientY: 60 });
+    fireEvent.mouseMove(globalThis.window, { clientY: 60 });
     expect(button).toHaveAttribute("aria-valuenow", "60");
   });
 
@@ -357,7 +357,7 @@ describe("useDraggable", () => {
     const button = screen.getByRole("button");
     fireEvent.mouseDown(button, { button: 0 });
     fireEvent.mouseMove(button);
-    fireEvent.mouseMove(window, { clientX: 60 });
+    fireEvent.mouseMove(globalThis.window, { clientX: 60 });
 
     expect(document.documentElement).not.toHaveClass("rmd-dragging");
     expect(document.documentElement).not.toHaveClass("rmd-dragging--h");
@@ -525,11 +525,11 @@ describe("useDraggable", () => {
 
     fireEvent.mouseDown(button, { button: 0 });
     fireEvent.mouseMove(button);
-    fireEvent.mouseMove(window, { clientX: 60 });
+    fireEvent.mouseMove(globalThis.window, { clientX: 60 });
     expect(button).toHaveAttribute("aria-valuenow", "60");
     expect(localStorage.getItem("test")).toBe("50");
 
-    fireEvent.mouseUp(window, { clientX: 60 });
+    fireEvent.mouseUp(globalThis.window, { clientX: 60 });
     expect(button).toHaveAttribute("aria-valuenow", "60");
     expect(localStorage.getItem("test")).toBe("60");
   });

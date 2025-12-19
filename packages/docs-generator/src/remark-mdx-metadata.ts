@@ -29,7 +29,7 @@ function addKeywords(
 
 export function getFilePathname(file: VFile): string {
   const startIndex = file.path.lastIndexOf(")");
-  return file.path.substring(startIndex + 1, file.path.lastIndexOf("/"));
+  return file.path.slice(startIndex + 1, file.path.lastIndexOf("/"));
 }
 
 export interface RemarkMdxMetadataOptions extends define.Options {

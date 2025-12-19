@@ -41,7 +41,7 @@ describe("NullSuspense", () => {
       instance.dispatchEvent(new Event("resolve-promise"));
     });
     await waitFor(() => {
-      expect(() => screen.getByText("Hello, world!")).not.toThrow();
+      expect(() => screen.getByText("Hello, world!")).not.toThrowError();
     });
   });
 });

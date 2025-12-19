@@ -59,10 +59,10 @@ export function useColorSchemeMetaTag(
     const meta = document.createElement("meta");
     meta.name = "color-scheme";
     meta.content = colorScheme;
-    document.head.appendChild(meta);
+    document.head.append(meta);
 
     return () => {
-      document.head.removeChild(meta);
+      meta.remove();
     };
   }, [disabled, colorScheme]);
 }

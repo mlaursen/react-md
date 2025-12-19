@@ -53,13 +53,14 @@ function createToc(headings: TableOfContentsHeadings): TableOfContentsHeadings {
   const parents: TableOfContentsHeadingItem[] = [];
   let previous: TableOfContentsHeadingItem = root;
 
-  headings.forEach((heading) => {
+  for (const heading of headings) {
     if (heading.depth > previous.depth) {
       if (!previous.items) {
         previous.items = [];
       }
       parents.push(previous);
     } else if (heading.depth < previous.depth) {
+      // eslint-disable-next-line unicorn/prefer-at
       while (parents[parents.length - 1].depth >= heading.depth) {
         parents.pop();
       }
@@ -68,7 +69,7 @@ function createToc(headings: TableOfContentsHeadings): TableOfContentsHeadings {
     const i = parents.length - 1;
     parents[i].items = [...(parents[i].items ?? []), heading];
     previous = heading;
-  });
+  }
 
   return root.items || [];
 }

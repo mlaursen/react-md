@@ -159,7 +159,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
     } = props;
 
     let tabIndex = propTabIndex;
-    if (!presentational && typeof tabIndex === "undefined") {
+    if (!presentational && tabIndex === undefined) {
       tabIndex = disabled ? -1 : 0;
     }
 

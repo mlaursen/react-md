@@ -68,19 +68,19 @@ export function buildTree<T extends TreeItemNode>(
     }
   }
 
-  if (!childItems.length) {
+  if (childItems.length === 0) {
     return undefined;
   }
 
   treeItemChildIds.set(parentId, childIds);
-  childItems.forEach((childItem) => {
+  for (const childItem of childItems) {
     childItem.items = buildTree({
       sort,
       nodes,
       parentId: childItem.itemId,
       treeItemChildIds,
     });
-  });
+  }
 
   return sort(childItems);
 }
@@ -125,10 +125,10 @@ export function useTreeItems<T extends TreeItemNode>(
       treeItemChildIds,
     });
 
-    if (process.env.NODE_ENV !== "production" && values.length) {
+    if (process.env.NODE_ENV !== "production" && values.length > 0) {
       /* eslint-disable no-console */
       console.warn("The following tree items are orphaned without a parent:");
-      console.warn(values.slice());
+      console.warn([...values]);
     }
 
     return {

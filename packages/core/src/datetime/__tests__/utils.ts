@@ -4,7 +4,9 @@ import { getTimeStep } from "../utils.js";
 
 describe("getTimeStep", () => {
   it("should return the step if it is not an object", () => {
-    expect(getTimeStep(undefined)).toBe(undefined);
+    let u: undefined;
+
+    expect(getTimeStep(u)).toBe(undefined);
     expect(getTimeStep("any")).toBe("any");
     expect(getTimeStep(30)).toBe(30);
     expect(getTimeStep(0)).toBe(0);
@@ -27,8 +29,8 @@ describe("getTimeStep", () => {
     expect(getTimeStep({ minutes: 10 })).toBe(600);
     expect(getTimeStep({ minutes: -10 })).toBe(600);
 
-    expect(getTimeStep({ hours: 10 })).toBe(36000);
-    expect(getTimeStep({ hours: -10 })).toBe(36000);
+    expect(getTimeStep({ hours: 10 })).toBe(36_000);
+    expect(getTimeStep({ hours: -10 })).toBe(36_000);
 
     expect(getTimeStep({ minutes: 15, hours: 1 })).toBe(4500);
     expect(getTimeStep({ seconds: 30, minutes: 15, hours: 0 })).toBe(930);

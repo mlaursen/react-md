@@ -14,5 +14,6 @@ export function getNumberOfDigits(
     return;
   }
 
+  // eslint-disable-next-line unicorn/prefer-math-trunc
   return (Math.log10((value ^ (value >> 31)) - (value >> 31)) | 0) + 1;
 }

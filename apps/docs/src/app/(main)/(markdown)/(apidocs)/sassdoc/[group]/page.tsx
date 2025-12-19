@@ -34,13 +34,13 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const title = `${groupTitle} - Sass API Docs - react-md`;
   const description = `Provides the Sass documentation for the ${groupTitle} group of items.`;
   const keywords = ["sass", "sassdoc"];
-  if (lookup.variables.size) {
+  if (lookup.variables.size > 0) {
     keywords.push("variables");
   }
-  if (lookup.functions.size) {
+  if (lookup.functions.size > 0) {
     keywords.push("functions");
   }
-  if (lookup.mixins.size) {
+  if (lookup.mixins.size > 0) {
     keywords.push("mixins");
   }
 

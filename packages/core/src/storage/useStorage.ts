@@ -187,6 +187,11 @@ export function useStorage<T>(
 
     setStoredValue((prevValue) => {
       const nextValue =
+        // this has to still use `instanceof` because of the T generic. Using
+        // `T extends ...` restricts the types too much if providing a
+        // `defaultValue`
+        //
+        // eslint-disable-next-line unicorn/no-instanceof-builtins
         valueOrDispatcher instanceof Function
           ? valueOrDispatcher(prevValue)
           : valueOrDispatcher;
@@ -263,9 +268,9 @@ export function useStorage<T>(
       }
     };
 
-    window.addEventListener("storage", callback);
+    globalThis.addEventListener("storage", callback);
     return () => {
-      window.removeEventListener("storage", callback);
+      globalThis.removeEventListener("storage", callback);
     };
   }, [key]);
 

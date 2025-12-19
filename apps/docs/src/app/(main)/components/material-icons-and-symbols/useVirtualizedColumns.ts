@@ -28,7 +28,7 @@ export function useVirtualizedColumns(): VirtualizedColumns {
       width -= 256;
     }
 
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(globalThis.location.search);
     if (params.has(SELECTED_ICON)) {
       width -= 416;
     }

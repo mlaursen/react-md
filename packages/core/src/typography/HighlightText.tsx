@@ -154,10 +154,11 @@ export function HighlightText(
 
             const parts: ReactNode[] = [];
             const text = removeAccents(child).trim();
-            const regex = new RegExp(
-              "(" + cleanQuery.replace(SPECIAL_CHARACTERS_REGEXP, "\\$&") + ")",
-              "gi"
+            const escapedQuery = cleanQuery.replaceAll(
+              SPECIAL_CHARACTERS_REGEXP,
+              String.raw`\$&`
             );
+            const regex = new RegExp(`(${escapedQuery})`, "gi");
 
             let match: RegExpExecArray | null;
             let lastIndex = 0;

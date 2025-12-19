@@ -31,14 +31,14 @@ describe("Typography", () => {
     ];
 
     const { rerender } = render(<Typography data-testid="text" />);
-    tests.forEach(({ type, expected }) => {
+    for (const { type, expected } of tests) {
       rerender(<Typography data-testid="text" type={type} />);
       const text = screen.getByTestId("text");
       expect(text.tagName.toLowerCase()).toBe(expected);
       expect(text).toHaveClass("rmd-typography");
       expect(text).toHaveClass(`rmd-typography--${type}`);
       expect(text).toMatchSnapshot();
-    });
+    }
 
     rerender(
       <table>

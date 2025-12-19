@@ -223,7 +223,7 @@ describe("DropdownMenu", () => {
     const menu = screen.getByRole("menu", { name: "Dropdown" });
 
     act(() => {
-      window.dispatchEvent(new Event("resize"));
+      globalThis.dispatchEvent(new Event("resize"));
     });
     expect(menu).toBeInTheDocument();
 
@@ -235,7 +235,7 @@ describe("DropdownMenu", () => {
     expect(menu).toBeInTheDocument();
 
     act(() => {
-      window.dispatchEvent(new Event("resize"));
+      globalThis.dispatchEvent(new Event("resize"));
     });
     expect(menu).not.toBeInTheDocument();
 
@@ -259,7 +259,7 @@ describe("DropdownMenu", () => {
 
     let menu = screen.getByRole("menu", { name: "Dropdown" });
     act(() => {
-      window.dispatchEvent(new Event("scroll"));
+      globalThis.dispatchEvent(new Event("scroll"));
     });
     expect(menu).toBeInTheDocument();
 
@@ -271,7 +271,7 @@ describe("DropdownMenu", () => {
     expect(menu).toBeInTheDocument();
 
     act(() => {
-      window.dispatchEvent(new Event("scroll"));
+      globalThis.dispatchEvent(new Event("scroll"));
     });
     expect(menu).not.toBeInTheDocument();
 
@@ -306,7 +306,7 @@ describe("DropdownMenu", () => {
     });
 
     act(() => {
-      window.dispatchEvent(new Event("scroll"));
+      globalThis.dispatchEvent(new Event("scroll"));
     });
     expect(menu).not.toBeInTheDocument();
     expect(document.body).toHaveFocus();
@@ -321,7 +321,7 @@ describe("DropdownMenu", () => {
     const noop = (): void => {};
     const listeners = new Map<string, Listener>();
     const matchMedia = vi
-      .spyOn(window, "matchMedia")
+      .spyOn(globalThis, "matchMedia")
       .mockImplementation((query) => ({
         media: query,
         matches:
@@ -335,7 +335,7 @@ describe("DropdownMenu", () => {
           listener: Listener | EventListenerObject
         ) {
           if (typeof listener !== "function") {
-            throw new Error();
+            throw new TypeError("Invalid listener type");
           }
 
           listeners.set(query, listener);
@@ -396,7 +396,7 @@ describe("DropdownMenu", () => {
     await waitFor(() => {
       expect(menu).not.toHaveClass("rmd-scale-transition--enter");
     });
-    expect(() => screen.getByRole("dialog")).toThrow();
+    expect(() => screen.getByRole("dialog")).toThrowError();
 
     await user.keyboard("{Escape}");
     await waitFor(() => {
@@ -404,14 +404,14 @@ describe("DropdownMenu", () => {
     });
 
     act(() => {
-      listeners.forEach((listener, query) => {
+      for (const [query, listener] of listeners.entries()) {
         const event = new Event("change");
         listener({
           ...event,
           media: "",
           matches: query.includes(DEFAULT_PHONE_MAX_WIDTH),
         });
-      });
+      }
     });
 
     button = screen.getByRole("button", { name: "Dropdown" });
@@ -423,7 +423,7 @@ describe("DropdownMenu", () => {
     });
     expect(() =>
       within(sheet).getByRole("menu", { name: "Dropdown" })
-    ).not.toThrow();
+    ).not.toThrowError();
     menu = await screen.findByRole("menu", { name: "Dropdown" });
     expect(sheet).toMatchSnapshot();
     expect(sheet).toHaveFocus();
@@ -630,7 +630,7 @@ describe("DropdownMenu", () => {
 
     await user.keyboard("{Tab}");
     await waitFor(() => {
-      expect(() => screen.getByRole("menu")).toThrow();
+      expect(() => screen.getByRole("menu")).toThrowError();
     });
     expect(screen.getByRole("button", { name: "Dropdown" })).toHaveFocus();
   });

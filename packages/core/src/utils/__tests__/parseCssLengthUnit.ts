@@ -14,9 +14,9 @@ describe("parseCssLengthUnit", () => {
   });
 
   it("should parse the fontSize style for em/rem units", () => {
-    const defaultStyle = window.getComputedStyle(document.documentElement);
+    const defaultStyle = globalThis.getComputedStyle(document.documentElement);
     const getComputedStyle = vi
-      .spyOn(window, "getComputedStyle")
+      .spyOn(globalThis, "getComputedStyle")
       .mockImplementation((element) => {
         if (element === document.documentElement) {
           return {
@@ -47,12 +47,12 @@ describe("parseCssLengthUnit", () => {
   });
 
   it("should throw an error if the value contains calc since I don't support it", () => {
-    expect(() => parseCssLengthUnit({ value: "calc(1.5rem + 3em)" })).toThrow(
-      'Unable to parse a unit with `calc`: "calc(1.5rem + 3em)"'
-    );
+    expect(() =>
+      parseCssLengthUnit({ value: "calc(1.5rem + 3em)" })
+    ).toThrowError('Unable to parse a unit with `calc`: "calc(1.5rem + 3em)"');
     expect(() =>
       parseCssLengthUnit({ value: "calc(1.5rem + var(--rmd-spacing-sm)" })
-    ).toThrow(
+    ).toThrowError(
       'Unable to parse a unit with `calc`: "calc(1.5rem + var(--rmd-spacing-sm)"'
     );
   });

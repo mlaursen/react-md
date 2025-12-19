@@ -24,7 +24,7 @@ describe("SkipToMainContent", () => {
 
     expect(() =>
       render(<SkipToMainContent mainId="not-found" />)
-    ).not.toThrow();
+    ).not.toThrowError();
   });
 
   it("should defer finding the main element to the click event in production", async () => {

@@ -27,7 +27,7 @@ const { Provider } = context;
 export function usePrismThemeContext(): PrismThemeContext {
   const value = useContext(context);
   if (!value) {
-    throw new Error();
+    throw new Error("PrismThemeProvider must be mounted");
   }
 
   return value;
@@ -54,7 +54,7 @@ export function PrismThemeProvider(
     [prismTheme]
   );
   useEffect(() => {
-    const stylesheet = document.getElementById(PRISM_THEMES_ID);
+    const stylesheet = document.querySelector(`#${PRISM_THEMES_ID}`);
     if (!(stylesheet instanceof HTMLLinkElement)) {
       return;
     }
@@ -83,10 +83,10 @@ export function PrismThemeProvider(
     nextStylesheet.id = PRISM_THEMES_ID;
     nextStylesheet.rel = "stylesheet";
     nextStylesheet.href = nextHref;
-    nextStylesheet.onload = () => {
+    nextStylesheet.addEventListener("load", () => {
       loaded = true;
       stylesheet.remove();
-    };
+    });
     stylesheet.id = `${PRISM_THEMES_ID}-fallback`;
     stylesheet.after(nextStylesheet);
 

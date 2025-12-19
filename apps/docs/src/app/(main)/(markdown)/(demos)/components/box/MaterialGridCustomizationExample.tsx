@@ -85,14 +85,14 @@ const applyVarGroup = (
 ): CSSProperties | undefined => {
   let combinedStyle = applyVar(type, "", value, style);
   if (value && typeof value === "object") {
-    BREAKPOINTS.forEach((breakpoint) => {
+    for (const breakpoint of BREAKPOINTS) {
       combinedStyle = applyVar(
         type,
         breakpoint,
         value[breakpoint],
         combinedStyle
       );
-    });
+    }
   }
   return combinedStyle;
 };

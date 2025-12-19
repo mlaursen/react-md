@@ -150,11 +150,11 @@ describe("getElementSizing", () => {
     const setPaddingRight = vi.spyOn(clone.style, "paddingRight", "set");
     const setVisibility = vi.spyOn(clone.style, "visibility", "set");
 
-    container.appendChild(element);
-    const appendChild = vi.spyOn(container, "appendChild");
-    const removeChild = vi.spyOn(container, "removeChild");
+    container.append(element);
+    const appendSpy = vi.spyOn(container, "append");
+
     const getComputedStyle = vi
-      .spyOn(window, "getComputedStyle")
+      .spyOn(globalThis, "getComputedStyle")
       .mockReturnValue({
         ...document.body.style,
         paddingTop: "20px",
@@ -172,9 +172,9 @@ describe("getElementSizing", () => {
     expect(setPaddingLeft).toHaveBeenCalledWith(element.style.paddingLeft);
     expect(setPaddingRight).toHaveBeenCalledWith(element.style.paddingRight);
     expect(setVisibility).toHaveBeenCalledWith("hidden");
-    expect(appendChild).toHaveBeenCalledWith(clone);
+    expect(appendSpy).toHaveBeenCalledWith(clone);
     expect(getComputedStyle).toHaveBeenCalledWith(clone);
-    expect(removeChild).toHaveBeenCalledWith(clone);
+    expect(container).not.toContain(clone);
   });
 
   it("should add the paddingTop and paddingBottom to the maxHeight when `box-sizing: content-box` has been set", () => {
@@ -184,11 +184,11 @@ describe("getElementSizing", () => {
     const container = document.createElement("div");
     const element = document.createElement("div");
     const clone = document.createElement("div");
-    container.appendChild(element);
+    container.append(element);
 
     vi.spyOn(clone, "scrollHeight", "get").mockReturnValue(scrollHeight);
     vi.spyOn(element, "cloneNode").mockReturnValue(clone);
-    vi.spyOn(window, "getComputedStyle").mockReturnValue({
+    vi.spyOn(globalThis, "getComputedStyle").mockReturnValue({
       ...document.body.style,
       paddingTop: "20px",
       paddingBottom: "16px",

@@ -543,13 +543,13 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
 
       // wait an animation frame so the initial click event that caused the menu
       // to become visible does not immediately close the menu
-      const frame = window.requestAnimationFrame(() => {
-        window.addEventListener("click", callback);
+      const frame = globalThis.requestAnimationFrame(() => {
+        globalThis.addEventListener("click", callback);
       });
 
       return () => {
-        window.cancelAnimationFrame(frame);
-        window.removeEventListener("click", callback);
+        globalThis.cancelAnimationFrame(frame);
+        globalThis.removeEventListener("click", callback);
       };
     }, [disableHoverMode, role, visible]);
     useIsomorphicLayoutEffect(() => {

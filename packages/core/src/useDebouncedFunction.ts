@@ -87,7 +87,7 @@ export function useDebouncedFunction<F extends AnyFunction>(
   func: F,
   wait: number
 ): DebouncedFunction<F> {
-  const timeout = useRef<number | undefined>();
+  const timeout = useRef<NodeJS.Timeout>();
   const funcRef = useRef(func);
   useIsomorphicLayoutEffect(() => {
     funcRef.current = func;
@@ -95,19 +95,19 @@ export function useDebouncedFunction<F extends AnyFunction>(
 
   useEffect(() => {
     return () => {
-      window.clearTimeout(timeout.current);
+      globalThis.clearTimeout(timeout.current);
     };
   }, []);
 
   return useMemo(() => {
     const debounced: DebouncedFunction<F> = (...args) => {
-      window.clearTimeout(timeout.current);
-      timeout.current = window.setTimeout(() => {
+      globalThis.clearTimeout(timeout.current);
+      timeout.current = globalThis.setTimeout(() => {
         funcRef.current(...args);
       }, wait);
     };
     debounced.cancel = () => {
-      window.clearTimeout(timeout.current);
+      globalThis.clearTimeout(timeout.current);
     };
 
     return debounced;

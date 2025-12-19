@@ -22,7 +22,7 @@ export function Color(props: ColorProps): ReactElement {
   if (value.length === 4) {
     // ensure that hex colors are always 6 characters instead of their shortened
     // 3 character versions
-    const [a, b, c] = value.substring(1);
+    const [a, b, c] = value.slice(1);
     value = `#${a}${a}${b}${b}${c}${c}`;
   }
 

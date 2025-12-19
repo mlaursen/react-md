@@ -119,27 +119,27 @@ export function usePlaygroundColors(): PlaygroundColorsImplementation {
   }, [setOverrides]);
   const onSubmit = useCallback(() => {
     const overrides: Partial<ConfigurableThemeColors> = {};
-    Object.entries(state).forEach(([key, value]) => {
+    for (const [key, value] of Object.entries(state)) {
       if (!isOverridableColor(key)) {
-        return;
+        continue;
       }
 
       overrides[key] = value;
-    });
+    }
     setOverrides(overrides);
   }, [setOverrides, state]);
 
   const style = useInlineCSSVariables(
     useMemo(() => {
       const variables: CSSVariable[] = [];
-      Object.entries(state).forEach(([key, value]) => {
+      for (const [key, value] of Object.entries(state)) {
         if (!isOverridableColor(key)) {
-          return;
+          continue;
         }
 
         const name = `--rmd-${kebabCase(key)}` as const;
         variables.push({ name, value });
-      });
+      }
       return variables;
     }, [state])
   );

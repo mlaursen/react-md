@@ -48,7 +48,7 @@ export const getVirtualFocusDefaultIndex = (
   options: VirtualFocusableIndexOptions
 ): number => {
   const { focusables, includeDisabled, activeDescendantId } = options;
-  if (!focusables.length || (!activeDescendantId && includeDisabled)) {
+  if (focusables.length === 0 || (!activeDescendantId && includeDisabled)) {
     return 0;
   }
 
@@ -71,7 +71,7 @@ export const getFirstFocusableIndex = (
 ): number => {
   const { focusables, includeDisabled } = options;
 
-  if (!focusables.length) {
+  if (focusables.length === 0) {
     return -1;
   }
 
@@ -99,7 +99,7 @@ export const getLastFocusableIndex = (
 ): number => {
   const { focusables, includeDisabled } = options;
 
-  if (!focusables.length) {
+  if (focusables.length === 0) {
     return -1;
   }
 
@@ -142,7 +142,7 @@ export const getNextFocusableIndex = (
     includeDisabled,
     currentFocusIndex,
   } = options;
-  if (!focusables.length) {
+  if (focusables.length === 0) {
     return currentFocusIndex;
   }
 
@@ -186,14 +186,14 @@ export function getSearchText(
   }
 
   const cloned = element.cloneNode(true) as HTMLElement;
-  cloned
-    .querySelectorAll(
-      // Note: do not include DISPLAY_NONE_CLASS since it is presentational only
-      ".rmd-icon--font,[aria-hidden=true],[hidden],[role=presentation]"
-    )
-    .forEach((element) => {
-      element.parentNode?.removeChild(element);
-    });
+
+  const invisibleElements = cloned.querySelectorAll(
+    // Note: do not include DISPLAY_NONE_CLASS since it is presentational only
+    ".rmd-icon--font,[aria-hidden=true],[hidden],[role=presentation]"
+  );
+  for (const element of invisibleElements) {
+    element.remove();
+  }
 
   // Note: It would be good to use `cloned.innerText` (maybe?) at some point,
   // but it returns `undefined` in jsdom. It also does cause a reflow, so maybe
@@ -232,8 +232,9 @@ export function recalculateFocusIndex(options: RecalculateOptions): number {
     });
   }
 
-  const { activeElement } = document;
-  return focusables.findIndex((element) => element === activeElement);
+  // do type-casting since the types don't matter much here
+  const activeElement = document.activeElement as HTMLElement;
+  return focusables.indexOf(activeElement);
 }
 
 /**

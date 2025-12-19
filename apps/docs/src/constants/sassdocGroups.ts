@@ -29,33 +29,33 @@ function getByGroupName(groupName: string): SassDocGroup {
     }
   );
 }
-Object.values(SASSDOC_MIXINS).forEach((item) => {
+for (const item of Object.values(SASSDOC_MIXINS)) {
   if (!item || item.private) {
-    return;
+    continue;
   }
   const groupName = getGroupName(item);
   const group = getByGroupName(groupName);
   group.mixins.set(item.name, item);
   grouped.set(groupName, group);
-});
-Object.values(SASSDOC_FUNCTIONS).forEach((item) => {
+}
+for (const item of Object.values(SASSDOC_FUNCTIONS)) {
   if (!item || item.private) {
-    return;
+    continue;
   }
   const groupName = getGroupName(item);
   const group = getByGroupName(groupName);
   group.functions.set(item.name, item);
   grouped.set(groupName, group);
-});
-Object.values(SASSDOC_VARIABLES).forEach((item) => {
+}
+for (const item of Object.values(SASSDOC_VARIABLES)) {
   if (!item || item.private) {
-    return;
+    continue;
   }
   const groupName = getGroupName(item);
   const group = getByGroupName(groupName);
   group.variables.set(item.name, item);
   grouped.set(groupName, group);
-});
+}
 
 export const SASSDOC_GROUP_NAMES = [...grouped.keys()];
 export const SASSDOC_GROUP: ReadonlyMap<string, GeneratedSassDoc> = grouped;

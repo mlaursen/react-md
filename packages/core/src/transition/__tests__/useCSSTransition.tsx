@@ -94,38 +94,38 @@ describe("useCSSTransition", () => {
     const node = screen.getByTestId("node");
 
     expect(node).toHaveTextContent('The current stage is: "entering"');
-    expect(() => screen.getByText("Appearing: true")).not.toThrow();
+    expect(() => screen.getByText("Appearing: true")).not.toThrowError();
     expect(node).toHaveClass("appear appear-active", { exact: true });
 
     act(() => {
       vi.runAllTimers();
     });
     expect(node).toHaveTextContent('The current stage is: "entered"');
-    expect(() => screen.getByText("Appearing: true")).not.toThrow();
+    expect(() => screen.getByText("Appearing: true")).not.toThrowError();
     expect(node).toHaveClass("appear-done", { exact: true });
 
     fireEvent.click(toggle);
     expect(node).toHaveTextContent('The current stage is: "exiting"');
-    expect(() => screen.getByText("Appearing: false")).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrowError();
     expect(node).toHaveClass("exit exit-active", { exact: true });
 
     act(() => {
       vi.runAllTimers();
     });
     expect(node).toHaveTextContent('The current stage is: "exited"');
-    expect(() => screen.getByText("Appearing: false")).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrowError();
     expect(node).toHaveClass("exit-done", { exact: true });
 
     fireEvent.click(toggle);
     expect(node).toHaveTextContent('The current stage is: "entering"');
-    expect(() => screen.getByText("Appearing: false")).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrowError();
     expect(node).toHaveClass("enter enter-active", { exact: true });
 
     act(() => {
       vi.runAllTimers();
     });
     expect(node).toHaveTextContent('The current stage is: "entered"');
-    expect(() => screen.getByText("Appearing: false")).not.toThrow();
+    expect(() => screen.getByText("Appearing: false")).not.toThrowError();
     expect(node).toHaveClass("enter-done", { exact: true });
   });
 

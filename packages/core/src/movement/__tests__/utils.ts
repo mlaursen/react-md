@@ -573,7 +573,7 @@ describe("getSearchText", () => {
     presentational.textContent = "A";
     presentational.className = "rmd-avatar";
     const presentationalContainer = document.createElement("div");
-    presentationalContainer.appendChild(presentational);
+    presentationalContainer.append(presentational);
     presentationalContainer.append(
       document.createTextNode("This is the real content")
     );
@@ -588,9 +588,9 @@ describe("recalculateFocusIndex", () => {
   });
 
   afterEach(() => {
-    focusables.forEach((element) => {
+    for (const element of focusables) {
       element.remove();
-    });
+    }
   });
 
   it("should return the index of the document.activeElement if the tabIndexBehavior is not virtual", () => {

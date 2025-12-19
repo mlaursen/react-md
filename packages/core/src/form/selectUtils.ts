@@ -77,10 +77,10 @@ export function extractOptionsFromChildren<Value extends string | number>(
     }
 
     const { value, disabled, children } = child.props;
-    if (typeof value !== "undefined") {
+    if (value !== undefined) {
       if (
         value === currentValue ||
-        (!currentOption && typeof currentValue === "undefined")
+        (!currentOption && currentValue === undefined)
       ) {
         currentOption = child.props;
       }

@@ -54,3 +54,22 @@ exports[`SrOnly > should apply the correct styling, HTML attributes, and allow a
   </h4>
 </div>
 `;
+
+exports[`SrOnly > should support a phoneOnly focusable state when the focusable prop is not true 1`] = `
+<span
+  class="rmd-phone-sr-only"
+  data-testid="sr"
+>
+  Phone only text
+</span>
+`;
+
+exports[`SrOnly > should support a phoneOnly focusable state when the focusable prop is not true 2`] = `
+<span
+  class="rmd-sr-only rmd-sr-only--focusable"
+  data-testid="sr"
+  tabindex="0"
+>
+  Phone only text
+</span>
+`;

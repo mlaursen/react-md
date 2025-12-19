@@ -92,7 +92,7 @@ export function releaseRipple(
     return state;
   }
 
-  const ripples = state.ripples.slice();
+  const ripples = [...state.ripples];
   const ripple = ripples[i];
   ripples[i] = {
     ...ripple,
@@ -115,12 +115,12 @@ export function updateRipplesState(
 ): ElementInteractionState {
   const { type, ripple, state, holding } = options;
 
-  const rippleIndex = state.ripples.findIndex((r) => r === ripple);
+  const rippleIndex = state.ripples.indexOf(ripple);
   if (rippleIndex === -1) {
     return state;
   }
 
-  const ripples = state.ripples.slice();
+  const ripples = [...state.ripples];
   if (type === "exited") {
     ripples.splice(rippleIndex, 1);
   } else {

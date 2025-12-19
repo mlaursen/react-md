@@ -37,6 +37,6 @@ import { createMatchMediaSpy } from "../utils/createMatchMediaSpy.js";
  */
 export function spyOnMatchMedia(
   defaultMatch: MatchMediaMatcher = matchDesktop
-): MockInstance<typeof window.matchMedia> & MatchMediaChangeViewport {
-  return createMatchMediaSpy(vi.spyOn(window, "matchMedia"), defaultMatch);
+): MockInstance<typeof globalThis.matchMedia> & MatchMediaChangeViewport {
+  return createMatchMediaSpy(vi.spyOn(globalThis, "matchMedia"), defaultMatch);
 }

@@ -277,7 +277,7 @@ export function useIntersectionObserver<E extends HTMLElement>(
       targets = [element];
     }
 
-    if (disabled || !targets.length) {
+    if (disabled || targets.length === 0) {
       return;
     }
 
@@ -303,9 +303,9 @@ export function useIntersectionObserver<E extends HTMLElement>(
     // - when cleaning up, check if there are any other existing callbacks
     //   - disconnect and remove the observer if there are none left
     const observer = new IntersectionObserver(onUpdate, options);
-    targets.forEach((target) => {
+    for (const target of targets) {
       observer.observe(target);
-    });
+    }
 
     return () => {
       observer.disconnect();

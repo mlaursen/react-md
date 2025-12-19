@@ -25,9 +25,13 @@ const debounced = debounce(async (path: string): Promise<void> => {
   const now = Date.now();
   try {
     await utimes(page, now, now);
-  } catch (e) {
-    if (!(e instanceof Error) || !("code" in e) || "ENOENT" !== e.code) {
-      throw e;
+  } catch (error) {
+    if (
+      !(error instanceof Error) ||
+      !("code" in error) ||
+      "ENOENT" !== error.code
+    ) {
+      throw error;
     }
 
     const fileHandler = await open(page, "a");

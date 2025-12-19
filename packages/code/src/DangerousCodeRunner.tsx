@@ -46,9 +46,9 @@ export class DangerousCodeRunner extends Component<
         prevCode: code,
         prevScope: scope,
       };
-    } catch (e) {
+    } catch (error) {
       return {
-        error: e instanceof Error ? e : new Error("Unknown error"),
+        error: error instanceof Error ? error : new Error("Unknown error"),
         element: null,
         prevCode: code,
         prevScope: scope,

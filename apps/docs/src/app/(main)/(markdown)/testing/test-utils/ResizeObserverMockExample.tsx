@@ -52,12 +52,12 @@ export default function ResizeObserverMockExample(): ReactElement {
     <TestFrameworkCodeBlock
       lang="tsx"
       code={{
-        jest: BASE_CODE.replace(/{IMPORT}/g, "@jest/globals")
-          .replace(/{LOCAL}/g, "jest")
-          .replace(/{FRAMEWORK}/g, "jest-globals"),
-        vitest: BASE_CODE.replace(/{IMPORT}/g, "vitest")
-          .replace(/{LOCAL}/g, "vi")
-          .replace(/{FRAMEWORK}/g, "vitest"),
+        jest: BASE_CODE.replaceAll("{IMPORT}", "@jest/globals")
+          .replaceAll("{LOCAL}", "jest")
+          .replaceAll("{FRAMEWORK}", "jest-globals"),
+        vitest: BASE_CODE.replaceAll("{IMPORT}", "vitest")
+          .replaceAll("{LOCAL}", "vi")
+          .replaceAll("{FRAMEWORK}", "vitest"),
       }}
       fileName="Resize Observer Testing"
     />

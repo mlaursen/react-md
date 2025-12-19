@@ -15,7 +15,7 @@ const DECREASING = "rgba(190, 40, 40, ratio)";
 
 export default function SimpleExample(): ReactElement {
   const [{ ratio, increasing }, setState] = useState({
-    ratio: 0.0,
+    ratio: 0,
     increasing: true,
   });
 

@@ -37,6 +37,9 @@ import { createMatchMediaSpy } from "../utils/createMatchMediaSpy.js";
  */
 export function spyOnMatchMedia(
   defaultMatch: MatchMediaMatcher = matchDesktop
-): jest.SpiedFunction<typeof window.matchMedia> & MatchMediaChangeViewport {
-  return createMatchMediaSpy(jest.spyOn(window, "matchMedia"), defaultMatch);
+): jest.SpiedFunction<typeof globalThis.matchMedia> & MatchMediaChangeViewport {
+  return createMatchMediaSpy(
+    jest.spyOn(globalThis, "matchMedia"),
+    defaultMatch
+  );
 }

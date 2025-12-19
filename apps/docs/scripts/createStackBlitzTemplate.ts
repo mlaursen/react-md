@@ -14,13 +14,13 @@ import { ensureGeneratedDir } from "./ensureGeneratedDir.js";
 function getAllFiles(dir: string): readonly string[] {
   const files: string[] = [];
   const dirFiles = readdirSync(dir);
-  dirFiles.forEach((file) => {
+  for (const file of dirFiles) {
     if (
       /node_modules|(\.git$)|RootLayout|MainNavigation|README|CHANGELOG|(\.(ico|png))/.test(
         file
       )
     ) {
-      return;
+      continue;
     }
 
     const fullPath = join(dir, file);
@@ -29,7 +29,7 @@ function getAllFiles(dir: string): readonly string[] {
     } else {
       files.push(fullPath);
     }
-  });
+  }
 
   return files;
 }
@@ -90,6 +90,7 @@ export const STACKBLITZ_DEPENDENCIES: Record<string, string> = ${JSON.stringify(
 }
 
 await log(
+  // eslint-disable-next-line unicorn/prefer-top-level-await
   run(),
   "",
   `Created ${getAliasedFileName(GENERATED_STACKBLITZ_FILE)}`

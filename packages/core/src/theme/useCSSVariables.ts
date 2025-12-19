@@ -39,7 +39,7 @@ export function useCSSVariables<Name extends CSSVariableName>(
   rootNode?: RefObject<HTMLElement> | HTMLElement
 ): void {
   useEffect(() => {
-    if (!variables.length) {
+    if (variables.length === 0) {
       return;
     }
 
@@ -62,7 +62,7 @@ export function useCSSVariables<Name extends CSSVariableName>(
     }
 
     // const root = document.documentElement;
-    variables.forEach(({ name, value }) => {
+    for (const { name, value } of variables) {
       if (
         process.env.NODE_ENV !== "production" &&
         root.style.getPropertyValue(name)
@@ -80,11 +80,11 @@ export function useCSSVariables<Name extends CSSVariableName>(
       }
 
       root.style.setProperty(name, `${value}`);
-    });
+    }
     return () => {
-      variables.forEach(({ name }) => {
+      for (const { name } of variables) {
         root.style.removeProperty(name);
-      });
+      }
     };
   }, [variables, rootNode]);
 }

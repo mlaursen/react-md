@@ -79,7 +79,7 @@ describe("Select", () => {
     await user.click(select);
 
     let listbox = screen.getByRole("listbox", { name: "Select" });
-    expect(() => screen.getByRole("option", { checked: true })).toThrow();
+    expect(() => screen.getByRole("option", { checked: true })).toThrowError();
     expect(listbox).toMatchSnapshot();
 
     await user.click(screen.getByRole("option", { name: "Option 1" }));
@@ -91,7 +91,7 @@ describe("Select", () => {
     listbox = screen.getByRole("listbox", { name: "Select" });
     expect(() =>
       screen.getByRole("option", { name: "Option 1", selected: true })
-    ).not.toThrow();
+    ).not.toThrowError();
     expect(listbox).toMatchSnapshot();
 
     await user.click(screen.getByRole("option", { name: "Option 2" }));
@@ -107,7 +107,7 @@ describe("Select", () => {
     await user.click(select);
     expect(() =>
       screen.getByRole("option", { name: "Option 3", checked: true })
-    ).toThrow();
+    ).toThrowError();
   });
 
   it("should allow the value to be controlled", async () => {
@@ -138,7 +138,7 @@ describe("Select", () => {
     expect(value).toHaveTextContent("");
 
     await user.click(select);
-    expect(() => screen.getByRole("option", { checked: true })).toThrow();
+    expect(() => screen.getByRole("option", { checked: true })).toThrowError();
     await user.click(screen.getByRole("option", { name: "Option 4" }));
     expect(selectValue).toHaveValue("d");
     expect(value).toHaveTextContent("d");
@@ -217,16 +217,16 @@ describe("Select", () => {
     await user.click(select);
     await user.click(screen.getByRole("option", { name: "Avatar" }));
 
-    expect(() => within(selected).getByTestId("avatar")).not.toThrow();
+    expect(() => within(selected).getByTestId("avatar")).not.toThrowError();
     expect(selected).toMatchSnapshot();
 
     await user.click(select);
     await user.click(screen.getByRole("option", { name: "Icon" }));
-    expect(() => within(selected).getByTestId("icon")).not.toThrow();
+    expect(() => within(selected).getByTestId("icon")).not.toThrowError();
     expect(selected).toMatchSnapshot();
 
     rerender(<Test disableOptionAddon />);
-    expect(() => within(selected).getByTestId("icon")).toThrow();
+    expect(() => within(selected).getByTestId("icon")).toThrowError();
   });
 
   it("should allow the selected icon to appear after the option instead of before", async () => {
@@ -265,14 +265,14 @@ describe("Select", () => {
     expect(select).toHaveAttribute("aria-disabled", "true");
 
     await user.click(select);
-    expect(() => screen.getByRole("listbox")).toThrow();
+    expect(() => screen.getByRole("listbox")).toThrowError();
 
     act(() => {
       select.focus();
     });
 
     await user.keyboard("[Space]");
-    expect(() => screen.getByRole("listbox")).toThrow();
+    expect(() => screen.getByRole("listbox")).toThrowError();
   });
 
   it("should open the listbox and focus the last element when the arrow up key is pressed unless there is a value", async () => {

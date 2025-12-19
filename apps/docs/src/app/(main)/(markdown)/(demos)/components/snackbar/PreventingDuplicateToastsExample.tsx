@@ -50,17 +50,17 @@ function useMultipleToasts(): [
       return;
     }
 
-    let timeout = window.setTimeout(() => {
+    let timeout = globalThis.setTimeout(() => {
       manager.addToast({
         toastId: TOAST_ID,
         children: "This will replace the content!",
       });
 
-      timeout = window.setTimeout(() => {
+      timeout = globalThis.setTimeout(() => {
         // this will just reset the time
         manager.addToast({ toastId: TOAST_ID });
 
-        timeout = window.setTimeout(() => {
+        timeout = globalThis.setTimeout(() => {
           manager.addToast({
             toastId: TOAST_ID,
             children: "Replacing again, but no restart",
@@ -71,7 +71,7 @@ function useMultipleToasts(): [
     }, 3000);
 
     return () => {
-      window.clearTimeout(timeout);
+      globalThis.clearTimeout(timeout);
     };
   }, [running]);
 
@@ -82,16 +82,16 @@ function ActiveTime(): ReactElement {
   const [time, setTime] = useState(0);
 
   useEffect(() => {
-    let interval: number | undefined;
-    const timeout = window.setTimeout(() => {
-      interval = window.setInterval(() => {
+    let interval: NodeJS.Timeout;
+    const timeout = globalThis.setTimeout(() => {
+      interval = globalThis.setInterval(() => {
         setTime((prevTime) => prevTime + 1);
       }, 1000);
     }, DEFAULT_SCALE_TIMEOUT.enter);
 
     return () => {
-      window.clearTimeout(timeout);
-      window.clearInterval(interval);
+      globalThis.clearTimeout(timeout);
+      globalThis.clearInterval(interval);
     };
   }, []);
 

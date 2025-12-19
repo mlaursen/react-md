@@ -84,7 +84,7 @@ describe("useTextField", () => {
 
   it("should apply all of the constraint props to the TextField", () => {
     const { field, rerender } = setup({
-      pattern: "\\d{5,8}",
+      pattern: String.raw`\d{5,8}`,
       minLength: 5,
       maxLength: 8,
       required: true,
@@ -92,17 +92,17 @@ describe("useTextField", () => {
 
     expect(field).toHaveAttribute("minLength", "5");
     expect(field).toHaveAttribute("maxLength", "8");
-    expect(field).toHaveAttribute("pattern", "\\d{5,8}");
+    expect(field).toHaveAttribute("pattern", String.raw`\d{5,8}`);
     expect(field).toHaveAttribute("required");
 
     rerender({
-      pattern: "\\d{5,8}",
+      pattern: String.raw`\d{5,8}`,
       minLength: 5,
       maxLength: 8,
     });
     expect(field).toHaveAttribute("minLength", "5");
     expect(field).toHaveAttribute("maxLength", "8");
-    expect(field).toHaveAttribute("pattern", "\\d{5,8}");
+    expect(field).toHaveAttribute("pattern", String.raw`\d{5,8}`);
     expect(field).not.toBeRequired();
   });
 
@@ -150,13 +150,13 @@ describe("useTextField", () => {
         disableMaxLength: true,
       });
 
-      expect(() => screen.getByTestId("error-icon")).toThrow();
+      expect(() => screen.getByTestId("error-icon")).toThrowError();
 
       await user.type(field, "invalid");
-      expect(() => screen.getByTestId("error-icon")).not.toThrow();
+      expect(() => screen.getByTestId("error-icon")).not.toThrowError();
 
       await user.clear(field);
-      expect(() => screen.getByTestId("error-icon")).toThrow();
+      expect(() => screen.getByTestId("error-icon")).toThrowError();
     });
 
     it("should allow for a custom isErrored function", async () => {
@@ -233,9 +233,9 @@ describe("useTextField", () => {
         disableMaxLength: true,
       });
 
-      expect(() => screen.getByTestId("right-addon")).not.toThrow();
-      expect(() => screen.getByTestId("wrapper")).toThrow();
-      expect(() => screen.getByTestId("error-icon")).toThrow();
+      expect(() => screen.getByTestId("right-addon")).not.toThrowError();
+      expect(() => screen.getByTestId("wrapper")).toThrowError();
+      expect(() => screen.getByTestId("error-icon")).toThrowError();
       expect(getErrorIcon).toHaveBeenCalledWith({
         error: false,
         errorIcon,
@@ -243,9 +243,9 @@ describe("useTextField", () => {
       });
 
       await user.type(field, "inva");
-      expect(() => screen.getByTestId("right-addon")).toThrow();
-      expect(() => screen.getByTestId("wrapper")).not.toThrow();
-      expect(() => screen.getByTestId("error-icon")).not.toThrow();
+      expect(() => screen.getByTestId("right-addon")).toThrowError();
+      expect(() => screen.getByTestId("wrapper")).not.toThrowError();
+      expect(() => screen.getByTestId("error-icon")).not.toThrowError();
       expect(getErrorIcon).toHaveBeenCalledWith({
         error: true,
         errorIcon,
@@ -269,7 +269,7 @@ describe("useTextField", () => {
     it("should automatically reset to the initial state if the form reset event is fired", async () => {
       const { user, field, reset, container } = setup({
         required: true,
-        pattern: "\\d+",
+        pattern: String.raw`\d+`,
       });
       expect(container).not.toHaveClass("rmd-text-field-container--error");
 
@@ -287,10 +287,10 @@ describe("useTextField", () => {
   describe("counter", () => {
     it("should be able to display an inline counter when the maxLength and counter options are provided", async () => {
       const { user, rerender, field, message, container } = setup();
-      expect(() => screen.getByTestId("counter")).toThrow();
+      expect(() => screen.getByTestId("counter")).toThrowError();
 
       rerender({ maxLength: 20 });
-      expect(() => screen.getByTestId("counter")).toThrow();
+      expect(() => screen.getByTestId("counter")).toThrowError();
       expect(field).toHaveAttribute("maxLength", "20");
 
       rerender({ counter: true, maxLength: 20 });

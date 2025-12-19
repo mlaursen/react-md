@@ -3,7 +3,7 @@
  * @internal
  */
 export function selectNode(node: Node): void {
-  const selection = window.getSelection();
+  const selection = globalThis.getSelection();
   if (!selection) {
     return;
   }

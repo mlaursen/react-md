@@ -30,9 +30,9 @@ export function createJsxNode(
   }
   if (props) {
     const spread: string[] = [];
-    Object.entries(props).forEach(([prop, value]) => {
+    for (const [prop, value] of Object.entries(props)) {
       spread.push(`${prop}={${JSON.stringify(value)}}`);
-    });
+    }
 
     jsxProps += (jsxProps ? " " : "") + spread.join(" ");
   }

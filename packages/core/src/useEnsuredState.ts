@@ -32,19 +32,19 @@ export function useEnsuredState<
   options: EnsuredStateOptions<V, Setter>
 ): readonly [value: V, setValue: Setter] {
   const { name = "value", value, setValue, defaultValue } = options;
-  if (typeof value !== "undefined" && typeof setValue !== "undefined") {
+  if (value !== undefined && setValue !== undefined) {
     return [value, setValue];
   }
 
-  if (typeof value !== "undefined" || typeof setValue !== "undefined") {
-    const pascalName = name.charAt(0).toUpperCase() + name.substring(1);
+  if (value !== undefined || setValue !== undefined) {
+    const pascalName = name.charAt(0).toUpperCase() + name.slice(1);
     throw new Error(
       `Both a \`${name}\` and \`set${pascalName}\` must be defined for controlled components.`
     );
   }
 
-  if (typeof defaultValue === "undefined") {
-    const pascalName = name.charAt(0).toUpperCase() + name.substring(1);
+  if (defaultValue === undefined) {
+    const pascalName = name.charAt(0).toUpperCase() + name.slice(1);
     throw new Error(
       `A \`default${pascalName}\` must be defined for uncontrolled components.`
     );

@@ -70,7 +70,7 @@ export function useSpinButton<E extends HTMLElement = HTMLDivElement>(
   // trigger a noop setValue when `value` and `onValueChange` are provided
   // since `onValueChange is always called with  `setValue
   let propSetValue: Dispatch<SpinButtonValue> | undefined;
-  if (typeof propValue !== "undefined" && options.onValueChange) {
+  if (propValue !== undefined && options.onValueChange) {
     propSetValue = noop;
   }
 

@@ -41,7 +41,7 @@ export function CreateStackBlitzProject(
     disableBox,
     disablePadding,
     forceDarkMode,
-    readOnlyFiles,
+    readOnlyFiles = [],
     readOnlyImports = {},
     dependencies,
   } = props;
@@ -59,7 +59,7 @@ export function CreateStackBlitzProject(
 
   const javascriptTemplateFiles: TemplateFile[] = [...JS_STACKBLITZ_TEMPLATE];
   const typescriptTemplateFiles: TemplateFile[] = [...TS_STACKBLITZ_TEMPLATE];
-  readOnlyFiles?.forEach((codeFile) => {
+  for (const codeFile of readOnlyFiles) {
     const { code, lang } = codeFile;
     const remappedName = readOnlyImports[codeFile.name.replace(/\.t/, ".j")];
     if (!remappedName) {
@@ -83,7 +83,7 @@ export function CreateStackBlitzProject(
         value: code,
       });
     }
-  });
+  }
 
   const sharedInputProps = {
     demoName,

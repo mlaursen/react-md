@@ -69,7 +69,7 @@ export default function SortableColumnsExample(): ReactElement {
  * A custom sort function for the list of desserts.
  */
 const sort = (key: DessertKey, ascending: boolean): readonly Dessert[] => {
-  const sorted = desserts.slice();
+  const sorted = [...desserts];
   sorted.sort((a, b) => {
     const aValue = a[key];
     const bValue = b[key];

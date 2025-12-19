@@ -31,8 +31,7 @@ export default function SimpleExample(): ReactElement {
   );
 }
 
-// eslint-disable-next-line prefer-const
-let columns: BoxOptions["gridColumns"] = undefined;
+let columns: BoxOptions["gridColumns"];
 // columns = "fit";
 // columns = "fill";
 // columns = 2;

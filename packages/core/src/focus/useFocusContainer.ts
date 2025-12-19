@@ -208,7 +208,7 @@ export function useFocusContainer<E extends HTMLElement>(
 
           // For some reason, the `"Enter"` keydown event fires at a different timing
           // than the Space  keydown event.
-          window.requestAnimationFrame(() => {
+          globalThis.requestAnimationFrame(() => {
             prevFocus.current?.focus();
           });
         },

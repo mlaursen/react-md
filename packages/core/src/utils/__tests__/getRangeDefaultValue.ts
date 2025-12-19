@@ -36,10 +36,10 @@ describe("getRangeDefaultValue", () => {
     });
 
     if (typeof initializer1 !== "function") {
-      throw new Error("initializer1 is not a function");
+      throw new TypeError("initializer1 is not a function");
     }
     if (typeof initializer2 !== "function") {
-      throw new Error("initializer2 is not a function");
+      throw new TypeError("initializer2 is not a function");
     }
 
     expect(initializer1()).toBe(50);

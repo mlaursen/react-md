@@ -117,26 +117,26 @@ describe("caseInsensitiveSearch", () => {
     expect(() =>
       // @ts-expect-error
       caseInsensitiveSearch({ query: "q", list: [0, 1, 2] })
-    ).toThrow(
+    ).toThrowError(
       "`caseInsensitiveSearch` requires the `extractor` prop for lists that do not contain strings or known object types."
     );
 
     expect(() =>
       // @ts-expect-error
       caseInsensitiveSearch({ query: "q", list: [null, undefined] })
-    ).toThrow(
+    ).toThrowError(
       "`caseInsensitiveSearch` requires the `extractor` prop for lists that do not contain strings or known object types."
     );
 
     expect(() =>
       caseInsensitiveSearch({ query: "q", list: [{ name: "Qwerty" }] })
-    ).not.toThrow();
+    ).not.toThrowError();
     expect(() =>
       caseInsensitiveSearch({
         query: "q",
         list: [{ name: "Qwerty" }, { label: "Another" }, "Hello!"],
       })
-    ).not.toThrow();
+    ).not.toThrowError();
   });
 
   it("should find the first match when the type is set to search", () => {

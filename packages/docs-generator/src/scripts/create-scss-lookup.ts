@@ -36,10 +36,10 @@ export async function createScssLookup(): Promise<void> {
 
   try {
     await log(run(scssLookupPath), "", `Generated ${dest}`);
-  } catch (e) {
+  } catch (error) {
     console.error();
     logFailure(`Error generating ${dest}`);
     console.error();
-    throw e;
+    throw error;
   }
 }

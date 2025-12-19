@@ -9,8 +9,8 @@ import { useEffect, useLayoutEffect } from "react";
  * @see {@link https://github.com/reduxjs/react-redux/blob/4c907c0870c6b9a136dd69be294c17d1dc63c8f5/src/utils/useIsomorphicLayoutEffect.js}
  */
 export const useIsomorphicLayoutEffect =
-  typeof window !== "undefined" &&
-  typeof window.document !== "undefined" &&
-  typeof window.document.createElement !== "undefined"
+  globalThis.window !== undefined &&
+  globalThis.document !== undefined &&
+  globalThis.document.createElement !== undefined
     ? useLayoutEffect
     : useEffect;

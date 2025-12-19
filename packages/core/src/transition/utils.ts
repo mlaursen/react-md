@@ -71,24 +71,24 @@ export function getElementSizing(element: HTMLElement | null): CollapseSizing {
     cloned.style.visibility = "hidden";
 
     const container = element.parentElement || document.body;
-    container.appendChild(cloned);
+    container.append(cloned);
     maxHeight = cloned.scrollHeight;
-    const style = window.getComputedStyle(cloned);
+    const style = globalThis.getComputedStyle(cloned);
     const isContentBox = style.boxSizing === "content-box";
     if (style.paddingTop) {
-      paddingTop = parseFloat(style.paddingTop);
+      paddingTop = Number.parseFloat(style.paddingTop);
       if (isContentBox) {
         maxHeight += paddingTop;
       }
     }
 
     if (style.paddingBottom) {
-      paddingBottom = parseFloat(style.paddingBottom);
+      paddingBottom = Number.parseFloat(style.paddingBottom);
       if (isContentBox) {
         maxHeight += paddingBottom;
       }
     }
-    container.removeChild(cloned);
+    cloned.remove();
   }
 
   return { maxHeight, paddingTop, paddingBottom };

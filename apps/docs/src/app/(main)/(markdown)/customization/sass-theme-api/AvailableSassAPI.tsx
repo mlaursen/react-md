@@ -49,7 +49,7 @@ export function AvailableSassAPI(): ReactElement {
           );
         }
         const items = [vars, useVar, setVar, getVar];
-        if (!items.length) {
+        if (items.length === 0) {
           return null;
         }
 

@@ -54,22 +54,20 @@ function getStackBlitzDemoName(demoOutPath: string, demoName: string): string {
 
 const toPropString = (
   props: Record<string, number | boolean | string | undefined>
-): string =>
-  Object.entries(props).reduce<string>((s, [name, value]) => {
+): string => {
+  let jsxProps = "";
+  for (const [name, value] of Object.entries(props)) {
     if (typeof value === "boolean" && value) {
-      return `${s} ${name}`;
+      jsxProps += ` ${name}`;
+    } else if (typeof value === "string") {
+      jsxProps += ` ${name}="${value}"`;
+    } else if (typeof value === "number") {
+      jsxProps += ` ${name}={${value}}`;
     }
+  }
 
-    if (typeof value === "string") {
-      return `${s} ${name}="${value}"`;
-    }
-
-    if (typeof value === "number") {
-      return `${s} ${name}={${value}}`;
-    }
-
-    return s;
-  }, "");
+  return jsxProps;
+};
 
 interface GetServerComponentSourceOptions {
   source: string;
@@ -102,7 +100,7 @@ async function getServerComponentSource({
 }: GetServerComponentSourceOptions): Promise<string> {
   const stringifiedProps = toPropString({
     // allow hot reloading in dev mode with the `watch-demos` script
-    key: process.env.NODE_ENV !== "production" ? Date.now() : undefined,
+    key: process.env.NODE_ENV === "production" ? undefined : Date.now(),
     demoName,
     ...demoProps,
   });
@@ -114,7 +112,7 @@ async function getServerComponentSource({
 
   let readOnlyFilesProps = "";
   let readOnlyImportsProps = "";
-  if (readOnlyFiles.length) {
+  if (readOnlyFiles.length > 0) {
     sourceFile.addImportDeclaration({
       namedImports: [{ name: "ReadonlyCodeFile", isTypeOnly: true }],
       moduleSpecifier: "@react-md/code/types",
@@ -150,9 +148,9 @@ async function getServerComponentSource({
       declarationKind: VariableDeclarationKind.Const,
     });
 
-    readOnlyFilesProps = `
+    readOnlyFilesProps = String.raw`
       readOnlyFiles={readOnlyFiles.map((file) => <ReadOnlyFile key={file.name} file={file} />)}
-      readOnlyFileNames={readOnlyFiles.map((file) => file.name.replace(/\\.j/, '.ts'))}
+      readOnlyFileNames={readOnlyFiles.map((file) => file.name.replace(/\.j/, '.ts'))}
 `;
     readOnlyImportsProps = `
       readOnlyFiles={readOnlyFiles}
@@ -264,7 +262,7 @@ export async function generateDemoFile(
   );
   const dependencies = new Set<string>();
   const importScope: Record<string, string> = {};
-  [...imports.entries()].forEach(([name, values]) => {
+  for (const [name, values] of imports.entries()) {
     const sortedValues = alphaNumericSort([...values]);
     const key = sortedValues.join("_");
     importScope[name] = key;
@@ -282,7 +280,7 @@ export async function generateDemoFile(
       namespaceImport: key,
       moduleSpecifier: name,
     });
-  });
+  }
 
   const scope = Object.entries(importScope)
     .map(([name, value]) => `"${name}": ${value}`)

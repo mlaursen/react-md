@@ -12,7 +12,7 @@ import { LayoutAppBar, type LayoutAppBarProps } from "../LayoutAppBar.js";
 import { Main } from "../Main.js";
 
 const getVar = () =>
-  window
+  globalThis
     .getComputedStyle(document.documentElement)
     .getPropertyValue("--rmd-layout-header-height");
 
@@ -83,7 +83,7 @@ describe("LayoutAppBar", () => {
     const observer = setupResizeObserverMock();
     // pretend it was set in CSS
     const getComputedStyle = vi
-      .spyOn(window, "getComputedStyle")
+      .spyOn(globalThis, "getComputedStyle")
       .mockReturnValue({
         getPropertyValue: () => "3.5rem",
       } as unknown as CSSStyleDeclaration);
@@ -103,7 +103,7 @@ describe("LayoutAppBar", () => {
 
   it("should throw an if there is no main element since it renders the SkipToMainContent component", () => {
     const error = vi.spyOn(console, "error").mockImplementation(() => {});
-    expect(() => rmdRender(<LayoutAppBar />)).toThrow();
+    expect(() => rmdRender(<LayoutAppBar />)).toThrowError();
     error.mockRestore();
   });
 

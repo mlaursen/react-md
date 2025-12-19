@@ -29,9 +29,9 @@ export function hexToRGB(hex: string): RGB {
   );
 
   const result = hex.match(VERBOSE_REGEX) || [];
-  const r = parseInt(result[1] || "", 16) || 0;
-  const g = parseInt(result[2] || "", 16) || 0;
-  const b = parseInt(result[3] || "", 16) || 0;
+  const r = Number.parseInt(result[1] || "", 16) || 0;
+  const g = Number.parseInt(result[2] || "", 16) || 0;
+  const b = Number.parseInt(result[3] || "", 16) || 0;
 
   return [r, g, b];
 }
@@ -39,12 +39,12 @@ export function hexToRGB(hex: string): RGB {
 export function getRGB(color: string): RGB {
   // chrome 102.0.50005.63 apparently has whitespace when calling `window.getComputedStyle(element)`
   // remove whitespace to make it easy for supporting rgb or hex
-  color = color.replace(/\s/g, "");
+  color = color.replaceAll(/\s/g, "");
   const rgbMatches = color.match(RGB_REGEX);
   if (rgbMatches) {
-    const r = parseInt(rgbMatches[1] || "", 16) || 0;
-    const g = parseInt(rgbMatches[2] || "", 16) || 0;
-    const b = parseInt(rgbMatches[3] || "", 16) || 0;
+    const r = Number.parseInt(rgbMatches[1] || "", 16) || 0;
+    const g = Number.parseInt(rgbMatches[2] || "", 16) || 0;
+    const b = Number.parseInt(rgbMatches[3] || "", 16) || 0;
 
     return [r, g, b];
   }
@@ -66,7 +66,7 @@ const BLUE_MULTIPLIER = 0.0722;
 function get8BitColor(color: number): number {
   color /= 255;
 
-  if (color <= 0.03928) {
+  if (color <= 0.039_28) {
     return color / 12.92;
   }
 

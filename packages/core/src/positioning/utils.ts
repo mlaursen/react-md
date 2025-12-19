@@ -294,7 +294,7 @@ export function findSizingContainer(
     }
   }
 
-  const data = el.getAttribute("data-sizing-selector");
+  const data = el.dataset.sizingSelector;
   if (data) {
     const content = el.querySelector(data) as HTMLElement;
     if (content) {
@@ -344,10 +344,10 @@ export function getElementRect(element: HTMLElement): DOMRect {
   cloned.style.transform = "none";
 
   const parent = element.parentElement || document.body;
-  parent.appendChild(cloned);
+  parent.append(cloned);
 
   const rect = cloned.getBoundingClientRect();
-  parent.removeChild(cloned);
+  cloned.remove();
 
   return rect;
 }

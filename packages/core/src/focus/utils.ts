@@ -34,6 +34,7 @@ export const PROGRAMMATICALLY_FOCUSABLE = queries.join(",");
  * `tabindex="-1"` applied instead of only elements that had a manual tab index
  * applied.
  */
+// eslint-disable-next-line unicorn/no-array-reduce
 export const TAB_FOCUSABLE = queries.reduce((fullQuery, query) => {
   const prefix = `${fullQuery}${fullQuery ? "," : ""}`;
   const notProgrammaticQuery = `${query}:not([tabindex="-1"])`;
@@ -135,12 +136,16 @@ export function focusElementWithin(options: FocusElementWithinOptions): void {
   }
 
   let element: HTMLElement | null = null;
-  if (type === "first") {
-    [element] = elements;
-  } else if (type === "last") {
-    element = elements[elements.length - 1];
-  } else if (type === "query") {
-    element = document.querySelector<HTMLElement>(query);
+  switch (type) {
+    case "first":
+      [element] = elements;
+      break;
+    case "last":
+      element = elements.at(-1) ?? null;
+      break;
+    case "query":
+      element = document.querySelector<HTMLElement>(query);
+      break;
   }
 
   if (!element && isFocusable(container)) {

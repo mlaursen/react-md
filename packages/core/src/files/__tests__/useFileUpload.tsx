@@ -9,6 +9,7 @@ import {
   userEvent,
 } from "../../test-utils/index.js";
 import { FileInput } from "../FileInput.js";
+import { createAcceptFromExtensions } from "../createAcceptFromExtensions.js";
 import { type FileUploadOptions, useFileUpload } from "../useFileUpload.js";
 
 function createFile(name: string, bytes: number): File {
@@ -29,6 +30,7 @@ class MockFileReader implements FileReader {
   result: string | ArrayBuffer | null = null;
 
   constructor() {
+    // eslint-disable-next-line unicorn/prefer-class-fields
     this.readyState = 0;
     this.EMPTY = 0;
     this.LOADING = 1;
@@ -73,9 +75,9 @@ class MockFileReader implements FileReader {
         lengthComputable: true,
       });
 
-      this._progressEvents.forEach((callback) => {
+      for (const callback of this._progressEvents) {
         callback(event);
-      });
+      }
     });
   }
 
@@ -83,9 +85,9 @@ class MockFileReader implements FileReader {
     act(() => {
       const event = new Event("load");
       this.result = result;
-      this._loadEvents.forEach((callback) => {
+      for (const callback of this._loadEvents) {
         callback(event);
-      });
+      }
     });
   }
 }
@@ -96,12 +98,12 @@ const readAsDataURL = vi.fn();
 const readAsArrayBuffer = vi.fn();
 let mockFileReader = new MockFileReader();
 
-let fileReader = vi.spyOn(window, "FileReader");
+let fileReader = vi.spyOn(globalThis, "FileReader");
 
 beforeEach(() => {
   vi.clearAllMocks();
   mockFileReader = new MockFileReader();
-  fileReader = vi.spyOn(window, "FileReader");
+  fileReader = vi.spyOn(globalThis, "FileReader");
 
   fileReader.mockImplementation(() => mockFileReader);
   mockFileReader.abort = abort;
@@ -111,12 +113,18 @@ beforeEach(() => {
 });
 
 function SingleFileTest(props: FileUploadOptions<HTMLElement>) {
-  const { onChange, stats, reset, errors, clearErrors } = useFileUpload(props);
+  const { accept, onChange, stats, reset, errors, clearErrors } =
+    useFileUpload(props);
   const [stat] = stats;
 
   return (
     <>
-      <FileInput id="file-input" onChange={onChange} icon={null}>
+      <FileInput
+        id="file-input"
+        onChange={onChange}
+        icon={null}
+        accept={accept}
+      >
         Upload
       </FileInput>
       <div data-testid="status">{stat?.status}</div>
@@ -156,7 +164,7 @@ describe("useFileUpload", () => {
     expect(fileName).toHaveTextContent("");
     expect(progress).toHaveTextContent("");
     expect(result).toHaveTextContent("");
-    expect(() => screen.getAllByRole("listitem")).toThrow();
+    expect(() => screen.getAllByRole("listitem")).toThrowError();
 
     await userEvent.upload(input, file);
 
@@ -165,14 +173,14 @@ describe("useFileUpload", () => {
     expect(fileName).toHaveTextContent("README.txt");
     expect(progress).toHaveTextContent("0");
     expect(result).toHaveTextContent("");
-    expect(() => screen.getAllByRole("listitem")).toThrow();
+    expect(() => screen.getAllByRole("listitem")).toThrowError();
 
     mockFileReader.triggerProgressEvent(100, 1000);
     expect(status).toHaveTextContent("uploading");
     expect(fileName).toHaveTextContent("README.txt");
     expect(progress).toHaveTextContent("10");
     expect(result).toHaveTextContent("");
-    expect(() => screen.getAllByRole("listitem")).toThrow();
+    expect(() => screen.getAllByRole("listitem")).toThrowError();
 
     const content = "pretend-bytes";
     mockFileReader.triggerLoadEvent(content);
@@ -180,14 +188,14 @@ describe("useFileUpload", () => {
     expect(fileName).toHaveTextContent("README.txt");
     expect(progress).toHaveTextContent("100");
     expect(result).toHaveTextContent(content);
-    expect(() => screen.getAllByRole("listitem")).toThrow();
+    expect(() => screen.getAllByRole("listitem")).toThrowError();
 
     fireEvent.click(screen.getByRole("button", { name: "Reset" }));
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
     expect(progress).toHaveTextContent("");
     expect(result).toHaveTextContent("");
-    expect(() => screen.getAllByRole("listitem")).toThrow();
+    expect(() => screen.getAllByRole("listitem")).toThrowError();
   });
 
   it("should not cause infinite rerenders if the reset function is added to a useEffect's dependency array", () => {
@@ -232,14 +240,14 @@ describe("useFileUpload", () => {
     await userEvent.upload(input, file1);
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).not.toThrow();
+    ).not.toThrowError();
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
 
     fireEvent.click(reset);
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).toThrow();
+    ).toThrowError();
 
     const file2 = createFile("file2.txt", 2000);
     expect(file2.size).toBe(2000);
@@ -247,20 +255,20 @@ describe("useFileUpload", () => {
 
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).not.toThrow();
+    ).not.toThrowError();
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
 
     fireEvent.click(reset);
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).toThrow();
+    ).toThrowError();
 
     const file3 = createFile("file3.txt", 800);
     expect(file3.size).toBe(800);
     await userEvent.upload(input, file3);
 
-    expect(() => screen.getByRole("listitem")).toThrow();
+    expect(() => screen.getByRole("listitem")).toThrowError();
     expect(status).toHaveTextContent("uploading");
     expect(fileName).toHaveTextContent(file3.name);
 
@@ -275,13 +283,42 @@ describe("useFileUpload", () => {
     expect(fileName).toHaveTextContent(file3.name);
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).not.toThrow();
+    ).not.toThrowError();
 
     fireEvent.click(clearErrors);
     expect(status).toHaveTextContent("complete");
     expect(fileName).toHaveTextContent(file3.name);
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).toThrow();
+    ).toThrowError();
+  });
+
+  it("should generate the correct accept list based on extensions", () => {
+    const extensions = [
+      "svg",
+      "jpeg",
+      "jpg",
+      "png",
+      "apng",
+      "mkv",
+      "mp4",
+      "mpeg",
+      "mpg",
+      "webm",
+      "mov",
+    ];
+    render(
+      <SingleFileTest
+        maxFileSize={1024}
+        minFileSize={612}
+        extensions={extensions}
+      />
+    );
+
+    const input = screen.getByLabelText("Upload");
+    expect(input).toHaveAttribute(
+      "accept",
+      createAcceptFromExtensions(extensions)
+    );
   });
 });

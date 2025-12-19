@@ -44,7 +44,7 @@ export async function uploadMenuItemFileUpload(
   vitest.spyOn(document, "createElement").mockReturnValueOnce(input);
   vitest.spyOn(input, "click").mockImplementationOnce(() => {
     fireEvent.change(input, {
-      target: { files: createFileList(window, files) },
+      target: { files: createFileList(globalThis.window, files) },
     });
   });
 

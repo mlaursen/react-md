@@ -176,12 +176,12 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
       }
 
       setAnimate(true);
-      const timeout = window.setTimeout(() => {
+      const timeout = globalThis.setTimeout(() => {
         setAnimate(false);
       }, transitionDuration);
 
       return () => {
-        window.clearTimeout(timeout);
+        globalThis.clearTimeout(timeout);
       };
     }, [activeIndex, disableTransition, transitionDuration]);
 

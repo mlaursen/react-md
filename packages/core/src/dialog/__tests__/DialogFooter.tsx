@@ -51,7 +51,7 @@ describe("DialogFooter", () => {
       "stacked-end",
     ];
 
-    alignments.forEach((align) => {
+    for (const align of alignments) {
       rerender(
         <DialogFooter data-testid="footer" align={align}>
           <Button>Button 1</Button>
@@ -60,7 +60,7 @@ describe("DialogFooter", () => {
       );
 
       expect(footer).toMatchSnapshot();
-    });
+    }
   });
 });
 

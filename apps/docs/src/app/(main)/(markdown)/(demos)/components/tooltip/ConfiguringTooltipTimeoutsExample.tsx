@@ -9,7 +9,7 @@ export default function ConfiguringTooltipTimeoutsExample(): ReactElement {
     <TooltipHoverModeProvider
       hoverTimeout={500}
       leaveTimeout={300}
-      disableTimeout={10000}
+      disableTimeout={10_000}
     >
       {Array.from({ length: 5 }, (_, i) => (
         <TooltippedButton

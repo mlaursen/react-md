@@ -136,16 +136,16 @@ describe("useNavigationExpansion", () => {
     let nav = screen.getByTestId("nav");
     expect(() =>
       screen.getByRole("link", { name: "Path 1 Route 1" })
-    ).toThrow();
+    ).toThrowError();
     expect(() =>
       screen.getByRole("link", { name: "Path 1 Route 2" })
-    ).toThrow();
+    ).toThrowError();
     expect(() =>
       screen.getByRole("link", { name: "Path 2 Route 1" })
-    ).toThrow();
+    ).toThrowError();
     expect(() =>
       screen.getByRole("link", { name: "Path 2 Route 2" })
-    ).toThrow();
+    ).toThrowError();
     expect(nav).toMatchSnapshot();
 
     unmount();
@@ -153,16 +153,16 @@ describe("useNavigationExpansion", () => {
     nav = screen.getByTestId("nav");
     expect(() =>
       screen.getByRole("link", { name: "Path 1 Route 1" })
-    ).toThrow();
+    ).toThrowError();
     expect(() =>
       screen.getByRole("link", { name: "Path 1 Route 2" })
-    ).toThrow();
+    ).toThrowError();
     expect(() =>
       screen.getByRole("link", { name: "Path 2 Route 1" })
-    ).not.toThrow();
+    ).not.toThrowError();
     expect(() =>
       screen.getByRole("link", { name: "Path 2 Route 2" })
-    ).not.toThrow();
+    ).not.toThrowError();
     expect(nav).toMatchSnapshot();
   });
 
@@ -170,19 +170,19 @@ describe("useNavigationExpansion", () => {
     const { unmount } = render(<Test defaultExpandedItems={["/path-1"]} />);
     expect(() =>
       screen.getByRole("link", { name: "Path 1 Route 1" })
-    ).not.toThrow();
+    ).not.toThrowError();
     expect(() =>
       screen.getByRole("link", { name: "Path 2 Route 1" })
-    ).toThrow();
+    ).toThrowError();
     unmount();
 
     render(<Test defaultExpandedItems={() => new Set(["/path-2"])} />);
     expect(() =>
       screen.getByRole("link", { name: "Path 1 Route 1" })
-    ).toThrow();
+    ).toThrowError();
     expect(() =>
       screen.getByRole("link", { name: "Path 2 Route 1" })
-    ).not.toThrow();
+    ).not.toThrowError();
   });
 
   it("should automatically expand the items if the pathname changes to support users navigating outside of the navigation tree", async () => {

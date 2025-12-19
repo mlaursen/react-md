@@ -119,15 +119,15 @@ describe("NativeTimeField", () => {
   it("should not render the FormMessageContainer if the min, max, step, and required props are not provided", () => {
     const { rerender } = setup();
 
-    expect(() => screen.getByTestId("message-container")).toThrow();
+    expect(() => screen.getByTestId("message-container")).toThrowError();
 
     rerender({ min: "08:00", max: "12:00" });
-    expect(() => screen.getByTestId("message-container")).not.toThrow();
-    expect(() => screen.getByTestId("message")).not.toThrow();
+    expect(() => screen.getByTestId("message-container")).not.toThrowError();
+    expect(() => screen.getByTestId("message")).not.toThrowError();
 
     rerender({ min: "08:00", max: "12:00", disableMessage: true });
-    expect(() => screen.getByTestId("message-container")).toThrow();
-    expect(() => screen.getByTestId("message")).toThrow();
+    expect(() => screen.getByTestId("message-container")).toThrowError();
+    expect(() => screen.getByTestId("message")).toThrowError();
   });
 
   it("should handle simple validation inherited from the useTextField hook", async () => {

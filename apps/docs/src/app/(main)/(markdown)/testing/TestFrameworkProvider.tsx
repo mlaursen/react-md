@@ -23,7 +23,7 @@ const { Provider } = context;
 export function useTestFramework(): TestFrameworkContext {
   const value = useContext(context);
   if (!value) {
-    throw new Error();
+    throw new Error("TestFrameworkProvider must be mounted");
   }
 
   return value;

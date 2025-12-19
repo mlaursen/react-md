@@ -310,9 +310,7 @@ export const AsyncButton = forwardRef<HTMLButtonElement, AsyncButtonProps>(
         onClick={handleAsync((event) => Promise.resolve(onClick(event)))}
       >
         {beforeAddon}
-        {loading && typeof loadingChildren !== "undefined"
-          ? loadingChildren
-          : children}
+        {loading && loadingChildren !== undefined ? loadingChildren : children}
         {afterAddon}
         {overlayElement}
       </Button>

@@ -18,6 +18,8 @@ describe("getNumberOfDigits", () => {
   });
 
   it("should return undefined if the value is undefined", () => {
-    expect(getNumberOfDigits(undefined)).toBe(undefined);
+    let u: undefined;
+
+    expect(getNumberOfDigits(u)).toBe(undefined);
   });
 });

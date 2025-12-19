@@ -483,7 +483,7 @@ export function useTooltip<
       const tooltip = tooltipRef.current;
       if (!disableAutoSpacing && tooltip) {
         tooltipSpacing =
-          window
+          globalThis
             .getComputedStyle(tooltip)
             .getPropertyValue(TOOLTIP_SPACING_VAR) || spacing;
       }
@@ -537,13 +537,13 @@ export function useTooltip<
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    globalThis.addEventListener("keydown", handleKeyDown);
     window.addEventListener("scroll", hideTooltip, true);
-    window.addEventListener("touchend", hideTooltip, true);
+    globalThis.addEventListener("touchend", hideTooltip, true);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      globalThis.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("scroll", hideTooltip, true);
-      window.removeEventListener("touchend", hideTooltip, true);
+      globalThis.removeEventListener("touchend", hideTooltip, true);
     };
   }, [hideTooltip, visible]);
 
@@ -554,7 +554,7 @@ export function useTooltip<
     onDisabledCleanup: hideTooltip,
     onChange(active) {
       if (active) {
-        refocusFrame.current = window.requestAnimationFrame(() => {
+        refocusFrame.current = globalThis.requestAnimationFrame(() => {
           pageInactive.current = false;
         });
         return;
@@ -685,7 +685,7 @@ export function useTooltip<
         }
 
         event.preventDefault();
-        const selection = window.getSelection();
+        const selection = globalThis.getSelection();
         const node = selection?.anchorNode?.parentElement;
         if (node && event.currentTarget.contains(node)) {
           selection.empty();

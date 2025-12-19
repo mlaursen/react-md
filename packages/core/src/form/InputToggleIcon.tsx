@@ -90,11 +90,11 @@ export const InputToggleIcon = forwardRef<
   const uncontrolled = typeof checked !== "boolean";
   if (!uncontrolled || !FORM_CONFIG.uncontrolledToggles) {
     active = !!checked && !error;
-    icon = checked
-      ? indeterminate
-        ? indeterminateIcon
-        : checkedIcon
-      : uncheckedIcon;
+    if (checked) {
+      icon = indeterminate ? indeterminateIcon : checkedIcon;
+    } else {
+      icon = uncheckedIcon;
+    }
   } else {
     icon = (
       <>

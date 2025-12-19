@@ -65,11 +65,11 @@ describe("Snackbar", () => {
     const snackbar = screen.getByTestId("snackbar");
     expect(snackbar).toMatchSnapshot();
 
-    positions.forEach((position) => {
+    for (const position of positions) {
       rerender(<Snackbar position={position} />);
 
       expect(snackbar).toMatchSnapshot();
-    });
+    }
   });
 
   it("should allow the portal behavior to be disabled", () => {

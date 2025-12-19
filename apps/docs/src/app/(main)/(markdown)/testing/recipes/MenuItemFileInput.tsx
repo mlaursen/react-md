@@ -52,13 +52,13 @@ export default function MenuItemFileInput(): ReactElement {
   return (
     <TestFrameworkCodeBlock
       code={{
-        jest: DEFAULT_CODE.replace(/{FRAMEWORK}/g, "@jest/globals").replace(
-          /{LOCAL}/g,
-          "jest"
-        ),
+        jest: DEFAULT_CODE.replaceAll(
+          "{FRAMEWORK}",
+          "@jest/globals"
+        ).replaceAll("{LOCAL}", "jest"),
         vitest: DEFAULT_CODE.replace("jest-globals", "vitest")
-          .replace(/{FRAMEWORK}/g, "vitest")
-          .replace(/{LOCAL}/g, "vi"),
+          .replaceAll("{FRAMEWORK}", "vitest")
+          .replaceAll("{LOCAL}", "vi"),
       }}
       lang="tsx"
     />

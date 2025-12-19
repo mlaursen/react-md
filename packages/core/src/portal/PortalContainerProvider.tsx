@@ -29,7 +29,7 @@ export const PORTAL_CONTAINER_ID = "rmd-portal-container";
 let portalContainer: PortalContainerNode = null;
 
 const getPortalContainer = (): PortalContainerNode =>
-  typeof window === "undefined" ? null : document.body;
+  globalThis.window === undefined ? null : document.body;
 
 const context = createContext<PortalContainerNode>(getPortalContainer());
 context.displayName = "PortalContainer";
@@ -77,7 +77,7 @@ export function PortalContainerProvider(
       return;
     }
 
-    if (typeof container !== "undefined") {
+    if (container !== undefined) {
       setValue(container);
       return;
     }
@@ -87,13 +87,15 @@ export function PortalContainerProvider(
       portalContainer.id = PORTAL_CONTAINER_ID;
     }
     if (!document.body.contains(portalContainer)) {
-      document.body.appendChild(portalContainer);
+      document.body.append(portalContainer);
     }
 
     setValue(portalContainer);
 
     return () => {
       if (portalContainer && document.body.contains(portalContainer)) {
+        // can't use `portalContainer.remove()` since `DocumentFragment` does not have `.remove()`
+        // eslint-disable-next-line unicorn/prefer-dom-node-remove
         document.body.removeChild(portalContainer);
       }
     };

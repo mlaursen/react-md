@@ -72,7 +72,10 @@ const setupRangeSliderDragTest = (vertical = false) => {
   // so to mock how it works in the browser, set the `x` location to the `(value * 4)`
   // when vertical, a bigger y value means a lower value, so y is `height - (value * 4)`
   vi.spyOn(minSlider, "getBoundingClientRect").mockImplementation(() => {
-    const value = parseInt(minSlider.getAttribute("aria-valuenow") || "", 10);
+    const value = Number.parseInt(
+      minSlider.getAttribute("aria-valuenow") || "",
+      10
+    );
     const position = value * 4;
     return {
       ...rect,
@@ -81,7 +84,10 @@ const setupRangeSliderDragTest = (vertical = false) => {
     };
   });
   vi.spyOn(maxSlider, "getBoundingClientRect").mockImplementation(() => {
-    const value = parseInt(maxSlider.getAttribute("aria-valuenow") || "", 10);
+    const value = Number.parseInt(
+      maxSlider.getAttribute("aria-valuenow") || "",
+      10
+    );
     const position = value * 4;
     return {
       ...rect,
@@ -130,31 +136,31 @@ describe("Slider", () => {
       };
       const { rerender } = rmdRender(<SingleThumbTest {...props} />);
       const container = screen.getByTestId("container");
-      expect(() => screen.getByTestId("before")).not.toThrow();
-      expect(() => screen.getByText("After!")).not.toThrow();
+      expect(() => screen.getByTestId("before")).not.toThrowError();
+      expect(() => screen.getByText("After!")).not.toThrowError();
       expect(container).toMatchSnapshot();
 
       rerender(<SingleThumbTest {...props} beforeAddon={null} />);
-      expect(() => screen.getByTestId("before")).toThrow();
-      expect(() => screen.getByText("After!")).not.toThrow();
+      expect(() => screen.getByTestId("before")).toThrowError();
+      expect(() => screen.getByText("After!")).not.toThrowError();
       expect(container).toMatchSnapshot();
 
       rerender(<SingleThumbTest {...props} afterAddon={null} />);
-      expect(() => screen.getByTestId("before")).not.toThrow();
+      expect(() => screen.getByTestId("before")).not.toThrowError();
       expect(container).toMatchSnapshot();
 
       rerender(<SingleThumbTest {...props} vertical />);
-      expect(() => screen.getByTestId("before")).not.toThrow();
-      expect(() => screen.getByText("After!")).not.toThrow();
+      expect(() => screen.getByTestId("before")).not.toThrowError();
+      expect(() => screen.getByText("After!")).not.toThrowError();
       expect(container).toMatchSnapshot();
 
       rerender(<SingleThumbTest {...props} vertical beforeAddon={null} />);
-      expect(() => screen.getByTestId("before")).toThrow();
-      expect(() => screen.getByText("After!")).not.toThrow();
+      expect(() => screen.getByTestId("before")).toThrowError();
+      expect(() => screen.getByText("After!")).not.toThrowError();
       expect(container).toMatchSnapshot();
 
       rerender(<SingleThumbTest {...props} vertical afterAddon={null} />);
-      expect(() => screen.getByTestId("before")).not.toThrow();
+      expect(() => screen.getByTestId("before")).not.toThrowError();
       expect(container).toMatchSnapshot();
     });
 
@@ -785,7 +791,7 @@ describe("Slider", () => {
           min: { name: "Minimum" },
           max: { name: "Maximum" },
         })
-      ).not.toThrow();
+      ).not.toThrowError();
 
       rerender(
         <>
@@ -1063,7 +1069,7 @@ describe("Slider", () => {
     it("should support rendering a tooltip while focused or dragging by enabling the discrete prop", async () => {
       const user = userEvent.setup();
       rmdRender(<SingleThumbTest discrete />);
-      expect(() => screen.getByRole("tooltip")).toThrow();
+      expect(() => screen.getByRole("tooltip")).toThrowError();
       const { slider } = getSliderTestElements({ name: "Slider" });
       await user.tab();
       expect(slider).toHaveFocus();
@@ -1083,7 +1089,7 @@ describe("Slider", () => {
     it("should support rendering the tooltip while hovered", async () => {
       const user = userEvent.setup();
       rmdRender(<SingleThumbTest discrete tooltipVisibility="hover" />);
-      expect(() => screen.getByRole("tooltip")).toThrow();
+      expect(() => screen.getByRole("tooltip")).toThrowError();
       const { slider } = getSliderTestElements({ name: "Slider" });
       await user.hover(slider);
 
@@ -1118,7 +1124,7 @@ describe("Slider", () => {
       const user = userEvent.setup();
       rmdRender(<RangeSliderTest discrete />);
       const { minSlider, maxSlider } = getRangeSliderTestElements();
-      expect(() => screen.getByRole("tooltip")).toThrow();
+      expect(() => screen.getByRole("tooltip")).toThrowError();
       await user.tab();
       expect(minSlider).toHaveFocus();
 
@@ -1143,7 +1149,7 @@ describe("Slider", () => {
       const user = userEvent.setup();
       rmdRender(<RangeSliderTest discrete tooltipVisibility="hover" />);
       const { minSlider, maxSlider } = getRangeSliderTestElements();
-      expect(() => screen.getByRole("tooltip")).toThrow();
+      expect(() => screen.getByRole("tooltip")).toThrowError();
       await user.hover(minSlider);
 
       let minTooltip = screen.getByRole("tooltip");
@@ -1229,10 +1235,10 @@ describe("Slider", () => {
       const { sliderContainer } = getSliderTestElements({ name: "Slider" });
       const marks = screen.getAllByTestId(/^mark-/);
       expect(marks).toHaveLength(4);
-      expect(() => screen.getByText("First")).not.toThrow();
-      expect(() => screen.getByText("Second")).not.toThrow();
-      expect(() => screen.getByText("Third")).not.toThrow();
-      expect(() => screen.getByText("Fourth")).not.toThrow();
+      expect(() => screen.getByText("First")).not.toThrowError();
+      expect(() => screen.getByText("Second")).not.toThrowError();
+      expect(() => screen.getByText("Third")).not.toThrowError();
+      expect(() => screen.getByText("Fourth")).not.toThrowError();
       expect(sliderContainer).toMatchSnapshot();
     });
   });

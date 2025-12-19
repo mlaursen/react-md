@@ -1051,27 +1051,24 @@ describe("getElementRect", () => {
   it("should try to add the cloned node to the parent element or fallback to the document.body if there isn't a parent element and then remove the cloned child from the DOM", () => {
     const parent = document.createElement("div");
     let { element, cloned } = createTestElement();
-    parent.appendChild(element);
+    parent.append(element);
 
-    const parentAppendChild = vi.spyOn(parent, "appendChild");
-    const parentRemoveChild = vi.spyOn(parent, "removeChild");
-    const bodyAppendChild = vi.spyOn(document.body, "appendChild");
-    const bodyRemoveChild = vi.spyOn(document.body, "removeChild");
+    const bodyAppend = vi.spyOn(document.body, "append");
+    const parentAppend = vi.spyOn(parent, "append");
 
     getElementRect(parent.firstChild as HTMLElement);
-    expect(bodyAppendChild).not.toHaveBeenCalled();
-    expect(bodyRemoveChild).not.toHaveBeenCalled();
-    expect(parentAppendChild).toHaveBeenCalledWith(cloned);
-    expect(parentRemoveChild).toHaveBeenCalledWith(cloned);
+    expect(bodyAppend).not.toHaveBeenCalled();
+    expect(parentAppend).toHaveBeenCalledWith(cloned);
+    expect(parent).not.toContain(cloned);
 
-    parentAppendChild.mockClear();
-    parentRemoveChild.mockClear();
+    bodyAppend.mockClear();
+    parentAppend.mockClear();
+
     ({ element, cloned } = createTestElement());
     getElementRect(element);
-    expect(bodyAppendChild).toHaveBeenCalledWith(cloned);
-    expect(bodyRemoveChild).toHaveBeenCalledWith(cloned);
-    expect(parentAppendChild).not.toHaveBeenCalled();
-    expect(parentRemoveChild).not.toHaveBeenCalled();
+    expect(bodyAppend).toHaveBeenCalledWith(cloned);
+    expect(document.body).not.toContain(cloned);
+    expect(parentAppend).not.toHaveBeenCalled();
   });
 });
 
@@ -1088,7 +1085,7 @@ describe("findSizingContainer", () => {
 
     const treeItemContent = document.createElement("span");
     treeItemContent.className = "rmd-tree-item__content";
-    treeItem.appendChild(treeItemContent);
+    treeItem.append(treeItemContent);
 
     const result1 = findSizingContainer(treeItem);
     expect(treeItemQS).toHaveBeenCalledWith(query);
@@ -1100,7 +1097,7 @@ describe("findSizingContainer", () => {
 
     const listItemContent = document.createElement("span");
     listItemContent.className = "rmd-item-text";
-    listItem.appendChild(listItemContent);
+    listItem.append(listItemContent);
 
     const result2 = findSizingContainer(listItem);
     expect(listItemQS).toHaveBeenCalledWith(query);
@@ -1114,13 +1111,13 @@ describe("findSizingContainer", () => {
     fileInput.type = "file";
     fileInput.id = "file-input";
     const container = document.createElement("div");
-    container.appendChild(label);
-    container.appendChild(label);
+    container.append(label);
+    container.append(label);
 
-    document.body.appendChild(container);
+    document.body.append(container);
 
     expect(findSizingContainer(fileInput)).toEqual(label);
-    document.body.removeChild(container);
+    container.remove();
   });
 
   it("should return the treeitem or listitem if the query has no matches", () => {
@@ -1135,24 +1132,21 @@ describe("findSizingContainer", () => {
 
   it("should check if the element has a `data-sizing-selector` value and use it as a query selector on the element if it does", () => {
     const element = document.createElement("span");
-    element.setAttribute("data-sizing-selector", ".query");
+    element.dataset.sizingSelector = ".query";
 
     const child = document.createElement("span");
     child.className = "query";
-    element.appendChild(child);
-
-    const getAttribute = vi.spyOn(element, "getAttribute");
+    element.append(child);
 
     const container = findSizingContainer(element);
-    expect(getAttribute).toHaveBeenCalledWith("data-sizing-selector");
     expect(container).toBe(child);
   });
 
   it("should throw an error if no child element can be found using the `data-sizing-selector`", () => {
     const element = document.createElement("span");
-    element.setAttribute("data-sizing-selector", ".query");
+    element.dataset.sizingSelector = ".query";
 
-    expect(() => findSizingContainer(element)).toThrow(
+    expect(() => findSizingContainer(element)).toThrowError(
       "Unable to find a child element using the `data-sizing-selector`"
     );
   });

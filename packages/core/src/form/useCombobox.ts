@@ -491,6 +491,7 @@ export function useCombobox<
       // to really make sure the item is in view. An alternative would be to
       // implement a custom scrollIntoView behavior again like the previous
       // versions of react-md, but this is less lines of code
+      // eslint-disable-next-line unicorn/consistent-function-scoping
       const attemptScroll = (): void => {
         const activeOption = document.getElementById(activeDescendantId);
         if (activeOption) {

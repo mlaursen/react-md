@@ -93,7 +93,7 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
   });
   const { toggled: isCssVisible, toggle: toggleCssVisible } = useToggle();
   const isScssFile = !!scssCodeFile;
-  const isMultiFile = isScssFile || !!readOnlyFileNames.length;
+  const isMultiFile = isScssFile || readOnlyFileNames.length > 0;
   const startIndex = isScssFile ? 2 : 0;
   const isTypescriptFileActive =
     activeTab === 0 ||
@@ -200,7 +200,7 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
                 />
               </Slide>
             )}
-            {!!readOnlyFiles.length &&
+            {readOnlyFiles.length > 0 &&
               readOnlyFiles.map((file, i) => (
                 <Slide
                   key={i}

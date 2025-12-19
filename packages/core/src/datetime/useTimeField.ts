@@ -201,7 +201,7 @@ export function useTimeField(
   const { min, max, step, ...fieldOptions } = options;
   if (
     process.env.NODE_ENV !== "production" &&
-    typeof step !== "undefined" &&
+    step !== undefined &&
     (!min || !max)
   ) {
     throw new Error(

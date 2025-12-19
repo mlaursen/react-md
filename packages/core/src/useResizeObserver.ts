@@ -47,7 +47,7 @@ interface SubscribeOptions {
  * `src/tests-utils/ResizeObserver.ts`
  */
 export class ResizeObserverManager {
-  frame: number;
+  frame: number = 0;
   subscriptions: Map<Element, Set<TargetSubscription>>;
 
   /**
@@ -62,7 +62,6 @@ export class ResizeObserverManager {
   sharedObserver: ResizeObserver | undefined;
 
   constructor() {
-    this.frame = 0;
     this.subscriptions = new Map();
   }
 
@@ -74,8 +73,8 @@ export class ResizeObserverManager {
       this.sharedObserver ||
       new ResizeObserver((entries) => {
         // this prevents the `ResizeObserver loop limit exceeded`
-        window.cancelAnimationFrame(this.frame);
-        this.frame = window.requestAnimationFrame(() => {
+        globalThis.cancelAnimationFrame(this.frame);
+        this.frame = globalThis.requestAnimationFrame(() => {
           this.handleResizeEntries(entries);
         });
       });

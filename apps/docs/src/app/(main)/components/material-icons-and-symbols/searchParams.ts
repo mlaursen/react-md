@@ -180,16 +180,16 @@ export function getInitialState(
   if (iconType === "symbol") {
     symbolStylesheet = searchSymbolStylesheet !== null;
     if (isValidSymbolGrade(searchSymbolGrade)) {
-      symbolGrade = parseInt(searchSymbolGrade, 10);
+      symbolGrade = Number.parseInt(searchSymbolGrade, 10);
     }
     if (isValidSymbolFill(searchSymbolFill)) {
-      symbolFill = parseInt(searchSymbolFill, 10);
+      symbolFill = Number.parseInt(searchSymbolFill, 10);
     }
     if (isValidSymbolWeight(searchSymbolWeight)) {
-      symbolWeight = parseInt(searchSymbolWeight, 10);
+      symbolWeight = Number.parseInt(searchSymbolWeight, 10);
     }
     if (isValidSymbolOpticalSize(searchSymbolOpticalSize)) {
-      symbolOpticalSize = parseInt(searchSymbolOpticalSize, 10);
+      symbolOpticalSize = Number.parseInt(searchSymbolOpticalSize, 10);
     }
   }
 

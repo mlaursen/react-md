@@ -490,7 +490,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         const focusedIndex = focusables.findIndex(
           (element) => element === target || element.contains(target)
         );
-        if (focusedIndex === -1 || !focusables.length) {
+        if (focusedIndex === -1 || focusables.length === 0) {
           return;
         }
 
@@ -530,7 +530,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
           event.currentTarget,
           programmatic
         );
-        if (!focusables.length) {
+        if (focusables.length === 0) {
           return;
         }
 

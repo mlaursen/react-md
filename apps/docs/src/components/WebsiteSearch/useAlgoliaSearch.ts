@@ -100,7 +100,7 @@ export function useAlgoliaSearch(
   );
 
   const hitOptions = useAlgoliaSearchOptions(hits);
-  const isNoResults = !!(query && !hitOptions.length && !loading);
+  const isNoResults = !!(query && hitOptions.length === 0 && !loading);
 
   return {
     options: hitOptions,

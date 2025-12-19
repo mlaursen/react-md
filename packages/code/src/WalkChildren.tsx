@@ -34,15 +34,15 @@ export const WalkChildren = memo(function WalkChildren(
         let match: RegExpExecArray | null;
         while ((match = regex.exec(child)) !== null) {
           const [color] = match;
-          const prefix = child.substring(start, match.index);
+          const prefix = child.slice(start, match.index);
           start = match.index + color.length;
 
           replacements.push(prefix, <Replacement match={match} />);
         }
 
-        if (replacements.length) {
+        if (replacements.length > 0) {
           if (start) {
-            replacements.push(child.substring(start));
+            replacements.push(child.slice(Math.max(0, start)));
           }
 
           return replacements;

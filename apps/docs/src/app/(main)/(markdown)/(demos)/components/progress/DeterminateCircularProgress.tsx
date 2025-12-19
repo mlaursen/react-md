@@ -17,7 +17,7 @@ export default function DeterminateCircularProgress(): ReactElement {
 function useProgress(): number {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
-    const interval = window.setInterval(() => {
+    const interval = globalThis.setInterval(() => {
       setProgress(
         (prev) =>
           loop({
@@ -30,7 +30,7 @@ function useProgress(): number {
     }, 1000);
 
     return () => {
-      window.clearInterval(interval);
+      globalThis.clearInterval(interval);
     };
   }, []);
 

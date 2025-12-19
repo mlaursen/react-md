@@ -35,7 +35,7 @@ describe("ToastContent", () => {
       </ToastContent>
     );
 
-    expect(() => screen.getByTestId("content")).toThrow();
+    expect(() => screen.getByTestId("content")).toThrowError();
     expect(container).toMatchSnapshot();
   });
 
@@ -46,7 +46,7 @@ describe("ToastContent", () => {
     } as const;
 
     const getComputedStyle = vi
-      .spyOn(window, "getComputedStyle")
+      .spyOn(globalThis, "getComputedStyle")
       .mockReturnValue(
         // @ts-expect-error
         {

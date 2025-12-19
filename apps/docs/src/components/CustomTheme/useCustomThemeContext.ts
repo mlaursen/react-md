@@ -11,7 +11,7 @@ export const { Provider: CustomThemeContextProvider } = context;
 export function useCustomThemeContext(): Readonly<CustomThemeContext> {
   const value = useContext(context);
   if (!value) {
-    throw new Error();
+    throw new Error("CustomThemeContextProvider must be mounted");
   }
 
   return value;

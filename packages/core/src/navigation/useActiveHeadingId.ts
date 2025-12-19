@@ -16,7 +16,7 @@ import { type HeadingReferenceWithChildren } from "./types.js";
  * @since 6.0.0
  */
 export const DEFAULT_ACTIVE_HEADING_THRESHOLD: IntersectionObserverThreshold = [
-  0.0, 1.0,
+  0, 1,
 ];
 
 /**
@@ -33,7 +33,7 @@ export const DEFAULT_ACTIVE_HEADING_THRESHOLD: IntersectionObserverThreshold = [
  * @since 6.0.0
  */
 export const DEFAULT_ACTIVE_HEADING_GET_ROOT_MARGIN = (): string => {
-  const headerHeightVar = window
+  const headerHeightVar = globalThis
     .getComputedStyle(document.documentElement)
     .getPropertyValue("--rmd-layout-header-height");
   const headerHeight = parseCssLengthUnit({
@@ -51,7 +51,7 @@ function getHeadingElements(
   items: readonly HeadingReferenceWithChildren[]
 ): readonly HTMLElement[] {
   const headings: HTMLElement[] = [];
-  items.forEach((item) => {
+  for (const item of items) {
     const heading = document.getElementById(item.id);
     if (heading) {
       headings.push(heading);
@@ -60,7 +60,7 @@ function getHeadingElements(
     if (item.items) {
       headings.push(...getHeadingElements(item.items));
     }
-  });
+  }
 
   return headings;
 }
@@ -134,9 +134,9 @@ export function useActiveHeadingId(options: ActiveHeadingIdOptions): string {
     getTargets: useCallback(() => {
       const headingElements = getHeadingElements(headings);
       const lookup = new Map<string, boolean>();
-      headingElements.forEach((heading) => {
+      for (const heading of headingElements) {
         lookup.set(heading.id, false);
-      });
+      }
       elements.current = lookup;
 
       return headingElements;
@@ -148,9 +148,9 @@ export function useActiveHeadingId(options: ActiveHeadingIdOptions): string {
           return;
         }
 
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           lookup.set(entry.target.id, entry.isIntersecting);
-        });
+        }
 
         // get the first visible/intersecting item and set it
         let foundId = [...lookup.entries()].find(

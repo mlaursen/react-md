@@ -1,10 +1,14 @@
-import { configs, defineConfig, gitignore } from "@react-md/eslint-config";
+import { configs, gitignore } from "@react-md/eslint-config";
+import { defineConfig } from "eslint/config";
 import { join } from "node:path";
 
-export default defineConfig(
+export default defineConfig([
   gitignore(join(import.meta.url, "..", "..")),
-  ...configs.typescript,
+  ...configs.typescript({
+    tsconfigRootDir:
+      process.env.STRICT_TYPING === "true" ? import.meta.dirname : undefined,
+  }),
   {
     ignores: ["**/__testfixtures__", "dist/**"],
-  }
-);
+  },
+]);

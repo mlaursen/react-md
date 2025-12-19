@@ -20,7 +20,7 @@ export function getRangeDefaultValue(
   options: RangeDefaultValueOptions
 ): UseStateInitializer<number> {
   const { defaultValue } = options;
-  if (typeof defaultValue !== "undefined") {
+  if (defaultValue !== undefined) {
     return defaultValue;
   }
 

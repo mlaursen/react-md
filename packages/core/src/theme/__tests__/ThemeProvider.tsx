@@ -21,17 +21,17 @@ describe("ThemeProvider", () => {
     // hide React uncaught error message
     error.mockImplementation(() => {});
 
-    expect(() => render(<Test />)).toThrow(
+    expect(() => render(<Test />)).toThrowError(
       "The `ThemeProvider` has not been initialized."
     );
   });
 
   it("should attempt to derive the theme from the documentElement if the theme prop is not provided", () => {
-    const defaultComputedStyle = window.getComputedStyle(
+    const defaultComputedStyle = globalThis.getComputedStyle(
       document.documentElement
     );
     const getComputedStyle = vi
-      .spyOn(window, "getComputedStyle")
+      .spyOn(globalThis, "getComputedStyle")
       .mockReturnValue({
         ...defaultComputedStyle,
         getPropertyValue(property) {
@@ -63,7 +63,7 @@ describe("ThemeProvider", () => {
   });
 
   it("should use the provided theme if it was provided", () => {
-    const getComputedStyle = vi.spyOn(window, "getComputedStyle");
+    const getComputedStyle = vi.spyOn(globalThis, "getComputedStyle");
     let theme: ConfigurableThemeColors | undefined;
     function Test(): null {
       theme = useTheme();

@@ -289,13 +289,13 @@ export const ICON_CONFIG: ConfiguredIcons = {
  */
 export function configureIcons(overrides: ConfiguredIcons): void {
   if (process.env.NODE_ENV !== "production") {
-    Object.entries(overrides).forEach(([name, value]) => {
+    for (const [name, value] of Object.entries(overrides)) {
       if (!(name in ICON_CONFIG)) {
         throw new Error(`${name} is an invalid react-md icon name.`);
       }
 
       ICON_CONFIG[name as keyof ConfiguredIcons] = value;
-    });
+    }
   } else {
     Object.assign(ICON_CONFIG, overrides);
   }
@@ -312,7 +312,7 @@ export function getIcon(
   name: ConfigurableIconName,
   override?: ReactNode
 ): ReactNode {
-  if (typeof override !== "undefined") {
+  if (override !== undefined) {
     return override;
   }
 

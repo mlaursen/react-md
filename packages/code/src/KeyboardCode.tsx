@@ -12,7 +12,9 @@ const JUMP_KEYS = "Home|End|PageUp|PageDown";
 const ACTION_KEYS = "Enter|Space|Escape|Tab|Backspace|Delete";
 const ACTION = `${ARROW_KEYS}|${JUMP_KEYS}|${ACTION_KEYS}`;
 
-const KEYBOARD_CODE_REGEX = new RegExp(`^(?:((${MODIFIERS})\\+)?(${ACTION}))$`);
+const KEYBOARD_CODE_REGEX = new RegExp(
+  String.raw`^(?:((${MODIFIERS})\+)?(${ACTION}))$`
+);
 
 export interface KeyboardCodeProps {
   children?: ReactNode;

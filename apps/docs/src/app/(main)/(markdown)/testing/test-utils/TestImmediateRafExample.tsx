@@ -29,8 +29,8 @@ export default function TestImmediateRafExample(): ReactElement {
       fileName="Request Animation Frame"
       code={{
         jest: BASE_CODE,
-        vitest: BASE_CODE.replace(/jest-globals/g, "vitest").replace(
-          /jest/g,
+        vitest: BASE_CODE.replaceAll("jest-globals", "vitest").replaceAll(
+          "jest",
           "vi"
         ),
       }}

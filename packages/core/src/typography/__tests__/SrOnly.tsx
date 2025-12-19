@@ -1,7 +1,7 @@
 import { createRef } from "react";
 import { describe, expect, it } from "vitest";
 
-import { render } from "../../test-utils/index.js";
+import { render, screen } from "../../test-utils/index.js";
 import { SrOnly } from "../SrOnly.js";
 
 describe("SrOnly", () => {
@@ -39,5 +39,23 @@ describe("SrOnly", () => {
     );
     expect(ref.current).toBeInstanceOf(HTMLHeadingElement);
     expect(container).toMatchSnapshot();
+  });
+
+  it("should support a phoneOnly focusable state when the focusable prop is not true", () => {
+    const { rerender } = render(
+      <SrOnly data-testid="sr" phoneOnly>
+        Phone only text
+      </SrOnly>
+    );
+
+    const sr = screen.getByTestId("sr");
+    expect(sr).toMatchSnapshot();
+
+    rerender(
+      <SrOnly data-testid="sr" phoneOnly focusable>
+        Phone only text
+      </SrOnly>
+    );
+    expect(sr).toMatchSnapshot();
   });
 });

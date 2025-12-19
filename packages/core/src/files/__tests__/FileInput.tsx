@@ -55,13 +55,13 @@ describe("FileInput", () => {
     const { rerender } = rmdRender(<FileInput {...PROPS} />);
     const label = screen.getByTestId("label");
 
-    themes.forEach((theme) => {
-      themeTypes.forEach((themeType) => {
+    for (const theme of themes) {
+      for (const themeType of themeTypes) {
         rerender(<FileInput theme={theme} themeType={themeType} />);
 
         expect(label).toMatchSnapshot();
-      });
-    });
+      }
+    }
   });
 
   it("should render as an icon button unless children are provided which will then render the icon and the text", () => {

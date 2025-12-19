@@ -47,20 +47,21 @@ export function parseCssLengthUnit(options: ParseCssLengthUnitOptions): number {
     throw new Error(`Unable to parse a unit with \`calc\`: "${value}"`);
   }
 
-  const parsed = parseFloat(value);
+  const parsed = Number.parseFloat(value);
   if (/px$/i.test(value)) {
     return parsed;
   }
 
-  if (typeof window === "undefined") {
+  if (globalThis.window === undefined) {
     return parsed * fallbackFontSize;
   }
 
   const styleContainer =
     !container || /rem$/i.test(value) ? document.documentElement : container;
 
-  const fontSize = parseFloat(
-    window.getComputedStyle(styleContainer).fontSize || `${fallbackFontSize}px`
+  const fontSize = Number.parseFloat(
+    globalThis.getComputedStyle(styleContainer).fontSize ||
+      `${fallbackFontSize}px`
   );
 
   return parsed * fontSize;

@@ -225,7 +225,7 @@ export function TreeItem(props: TreeItemProps): ReactElement {
   const leftAddonType =
     (propLeftAddonType ?? (expanderLeft && leftAddon)) ? "media" : undefined;
   const isMediaLeftAddon =
-    typeof propLeftAddonType === "undefined" && leftAddonType === "media";
+    propLeftAddonType === undefined && leftAddonType === "media";
   const disableLeftAddonCenteredMedia =
     propDisableLeftAddonCenteredMedia ?? isMediaLeftAddon;
 

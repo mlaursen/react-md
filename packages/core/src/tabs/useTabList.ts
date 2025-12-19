@@ -183,9 +183,9 @@ export function useTabList(
         return;
       }
 
-      const clickedTab = event.target.closest("[role='tab']");
+      const clickedTab = event.target.closest<HTMLElement>("[role='tab']");
       const tabs = getTabRoleOnly(event.currentTarget);
-      const i = tabs.findIndex((tab) => tab === clickedTab);
+      const i = clickedTab ? tabs.indexOf(clickedTab) : -1;
       if (i !== -1) {
         setActiveIndex(i);
       }

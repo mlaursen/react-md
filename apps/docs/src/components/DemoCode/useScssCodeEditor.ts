@@ -44,7 +44,7 @@ export function useScssCodeEditor(
 
     // debounce the SCSS updates since it is too easy to cause layout shifts
     // while creating new css
-    const timeout = window.setTimeout(async () => {
+    const timeout = globalThis.setTimeout(async () => {
       try {
         const [compile, SCSS_LOOKUP] = await Promise.all([
           import("docs-generator/utils/compileScssModule").then(
@@ -71,12 +71,13 @@ export function useScssCodeEditor(
             compiling: false,
           });
         }
-      } catch (e) {
+      } catch (error_) {
         if (canceled) {
           return;
         }
 
-        const error = e instanceof Error ? e : new Error("Unknown error.");
+        const error =
+          error_ instanceof Error ? error_ : new Error("Unknown error.");
         setState((prev) => ({
           ...prev,
           error,
@@ -86,7 +87,7 @@ export function useScssCodeEditor(
     }, UPDATE_DELAY);
     return () => {
       canceled = true;
-      window.clearTimeout(timeout);
+      globalThis.clearTimeout(timeout);
     };
   }, [code, defaultCode, defaultCompiledCode, demoName]);
 

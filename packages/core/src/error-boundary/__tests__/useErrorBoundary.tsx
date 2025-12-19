@@ -16,7 +16,7 @@ describe("useErrorBoundary", () => {
       return null;
     }
 
-    expect(() => render(<Test />)).toThrow(
+    expect(() => render(<Test />)).toThrowError(
       "ErrorBoundary has not been mounted"
     );
   });

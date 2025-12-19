@@ -64,7 +64,7 @@ export default function GithubLabelPickerExample(): ReactElement {
         Labels <SettingsIcon />
       </Button>
       <Box disablePadding>
-        {!labels.length && <Typography margin="none">None yet</Typography>}
+        {labels.length === 0 && <Typography margin="none">None yet</Typography>}
         {labels.map(({ name, color }) => (
           <Chip
             key={name}
@@ -106,7 +106,7 @@ export default function GithubLabelPickerExample(): ReactElement {
           theme="outline"
           autoFocus
           placeholder="Filter labels"
-          options={[...githubLabels].sort((a, b) => {
+          options={githubLabels.toSorted((a, b) => {
             // sort the selected labels first
             let aIndex = labels.indexOf(a);
             if (aIndex === -1) {

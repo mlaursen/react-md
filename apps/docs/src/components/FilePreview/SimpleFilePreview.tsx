@@ -34,9 +34,9 @@ export function SimpleFilePreview(props: SimpleFilePreviewProps): ReactElement {
         >
           <ErrorIcon theme="error" />
           <Typography>
-            {!error
-              ? "I did not set up a preview for this file type."
-              : "Your Browser is unable to preview this file."}
+            {error
+              ? "Your Browser is unable to preview this file."
+              : "I did not set up a preview for this file type."}
           </Typography>
         </ResponsiveItemOverlay>
       )}

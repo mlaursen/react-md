@@ -23,8 +23,8 @@ export function FrameworkCodeSwap(props: FrameworkCodeSwapProps): ReactElement {
     <TestFrameworkCodeBlock
       {...remaining}
       code={{
-        jest: code.replace(/{FRAMEWORK}/g, jest),
-        vitest: code.replace(/{FRAMEWORK}/g, vitest),
+        jest: code.replaceAll("{FRAMEWORK}", jest),
+        vitest: code.replaceAll("{FRAMEWORK}", vitest),
       }}
     />
   );

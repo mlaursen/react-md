@@ -40,15 +40,15 @@ function useActiveTab(): ValidTab {
   const [activeTab, setActiveTab] = useState<ValidTab>(tabs[0]);
   useEffect(() => {
     const updateHash = (): void => {
-      const hash = decodeURIComponent(window.location.hash.substring(1));
+      const hash = decodeURIComponent(globalThis.location.hash.slice(1));
       const nextActiveTab = isValidTab(hash) ? hash : tabs[0];
       setActiveTab(nextActiveTab);
     };
     updateHash();
 
-    window.addEventListener("hashchange", updateHash);
+    globalThis.addEventListener("hashchange", updateHash);
     return () => {
-      window.removeEventListener("hashchange", updateHash);
+      globalThis.removeEventListener("hashchange", updateHash);
     };
   }, []);
 

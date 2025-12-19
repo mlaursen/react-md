@@ -44,10 +44,10 @@ function useDisabled(): boolean {
   const { toggled, toggle } = useToggle();
   useEffect(() => {
     const duration = randomInt({ min: 5, max: 8 }) * 1000;
-    const timeout = window.setTimeout(toggle, duration);
+    const timeout = globalThis.setTimeout(toggle, duration);
 
     return () => {
-      window.clearTimeout(timeout);
+      globalThis.clearTimeout(timeout);
     };
   }, [toggle, toggled]);
 

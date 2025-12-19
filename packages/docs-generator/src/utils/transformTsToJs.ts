@@ -26,7 +26,7 @@ export async function transformTsToJs(
   }
 
   const formatted = await format(
-    transformedCode.replace(/(>|,)\r?\n+/g, "$1\n"),
+    transformedCode.replaceAll(/(>|,)\r?\n+/g, "$1\n"),
     {
       parser: "typescript",
       filepath,

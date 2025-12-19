@@ -46,7 +46,7 @@ export function getDefaultValue<Option extends AutocompleteOption>(
     getOptionLabel,
   } = options;
 
-  if (typeof defaultValue !== "undefined") {
+  if (defaultValue !== undefined) {
     return defaultValue;
   }
 
@@ -66,7 +66,7 @@ export function getDefaultValue<Option extends AutocompleteOption>(
     if (query) {
       q = query;
     } else if (defaultQuery) {
-      q = defaultQuery instanceof Function ? defaultQuery() : defaultQuery;
+      q = typeof defaultQuery === "function" ? defaultQuery() : defaultQuery;
     }
 
     if (!q) {
@@ -178,7 +178,7 @@ export function enforceSelectedValue<Option extends AutocompleteOption>(
     return;
   }
 
-  window.requestAnimationFrame(() => {
+  globalThis.requestAnimationFrame(() => {
     if (
       container.contains(document.activeElement) ||
       popupRef.current?.contains(document.activeElement)

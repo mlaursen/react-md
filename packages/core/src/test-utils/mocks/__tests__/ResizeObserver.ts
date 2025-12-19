@@ -28,7 +28,7 @@ describe("ResizeObserverMock", () => {
 
     expect(() => {
       resizeObserver.resizeElement(document.createElement("div"));
-    }).toThrow(
+    }).toThrowError(
       "The `ResizeObserverMock` is not watching the target element and cannot be resized"
     );
 
@@ -64,7 +64,7 @@ describe("ResizeObserverMock", () => {
       resizeObserver.resizeElement(element, (target) =>
         createResizeObserverEntry(target, { width: 50, height: 100 })
       );
-    }).toThrow(
+    }).toThrowError(
       "The `ResizeObserverMock` is not watching the target element and cannot be resized"
     );
   });
@@ -142,7 +142,7 @@ describe("ResizeObserverMock", () => {
   });
 
   it("should support animation frames to mimic real behavior", async () => {
-    const raf = vi.spyOn(window, "requestAnimationFrame");
+    const raf = vi.spyOn(globalThis, "requestAnimationFrame");
     const manager = new ResizeObserverManager();
     setupResizeObserverMock({ raf: true, manager });
     expect(raf).not.toHaveBeenCalled();

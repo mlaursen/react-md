@@ -30,7 +30,7 @@ const VIM_SOLARIZED_DARK_SCSS = resolve(
 
 const files = globSync("node_modules/prism@(js|-themes)/themes/*.css", {
   ignore: "**/*.min.css",
-}).sort();
+}).toSorted();
 
 const defaultThemes = ["default"];
 const additionalThemes: string[] = [];
@@ -99,7 +99,7 @@ async function writeCss(themeName: string, contents: string): Promise<void> {
   const contentHashName = createHash("sha256")
     .update(contents, "utf8")
     .digest("hex")
-    .substring(0, 16);
+    .slice(0, 16);
   cssNameLookup.set(themeName, contentHashName);
 
   await writeFile(
@@ -316,9 +316,8 @@ export type PrismTheme = typeof PRISM_THEMES[number];
 
 await writeFile(themesPath, themesContent);
 
-if (unknownTheme.size) {
-  console.error(
+if (unknownTheme.size > 0) {
+  throw new Error(
     `Unknown themes: ${[...unknownTheme].map((name) => `- ${name}`).join("\n")}`
   );
-  process.exit(1);
 }

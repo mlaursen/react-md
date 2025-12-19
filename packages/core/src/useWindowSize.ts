@@ -87,7 +87,7 @@ export function useWindowSize(options: WindowSizeOptions = {}): ElementSize {
 
   const ssr = useSsr();
   const [size, setSize] = useState(() => {
-    if (typeof window === "undefined" || ssr) {
+    if (globalThis.window === undefined || ssr) {
       return {
         height: ssrHeight,
         width: ssrWidth,
