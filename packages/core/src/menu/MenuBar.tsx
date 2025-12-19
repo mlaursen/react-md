@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { type ReactElement, type Ref } from "react";
 
 import { List, type ListProps } from "../list/List.js";
 import {
@@ -10,6 +10,8 @@ import {
 import { MenuBarProvider, useMenuBarProvider } from "./useMenuBarProvider.js";
 
 export interface MenuBarProps extends Omit<ListProps, "role"> {
+  ref?: Ref<HTMLUListElement>;
+
   /**
    * @defaultValue `true`
    */
@@ -71,53 +73,52 @@ export interface MenuBarProps extends Omit<ListProps, "role"> {
  * @since 5.0.0
  * @since 6.0.0 Combined with the previous `MenuBarWidget`
  */
-export const MenuBar = forwardRef<HTMLUListElement, MenuBarProps>(
-  function MenuBar(props, ref) {
-    const {
-      onClick,
-      onFocus,
-      onKeyDown,
-      horizontal = true,
-      hoverTimeout,
-      children,
-      ...remaining
-    } = props;
-    const menuBarContext = useMenuBarProvider({
-      root: true,
-      menubar: true,
-      hoverTimeout,
-    });
-    const { activeId, enableHoverMode } = menuBarContext;
-    const { movementProps, movementContext } = useKeyboardMovementProvider({
-      ref,
-      onClick,
-      onFocus,
-      onKeyDown,
-      loopable: true,
-      searchable: true,
-      horizontal,
-      includeDisabled: true,
-      tabIndexBehavior: "roving",
-      onFocusChange(event) {
-        if (activeId) {
-          enableHoverMode(event.element.id);
-        }
-      },
-    });
+export function MenuBar(props: MenuBarProps): ReactElement {
+  const {
+    ref,
+    onClick,
+    onFocus,
+    onKeyDown,
+    horizontal = true,
+    hoverTimeout,
+    children,
+    ...remaining
+  } = props;
+  const menuBarContext = useMenuBarProvider({
+    root: true,
+    menubar: true,
+    hoverTimeout,
+  });
+  const { activeId, enableHoverMode } = menuBarContext;
+  const { movementProps, movementContext } = useKeyboardMovementProvider({
+    ref,
+    onClick,
+    onFocus,
+    onKeyDown,
+    loopable: true,
+    searchable: true,
+    horizontal,
+    includeDisabled: true,
+    tabIndexBehavior: "roving",
+    onFocusChange(event) {
+      if (activeId) {
+        enableHoverMode(event.element.id);
+      }
+    },
+  });
 
-    return (
-      <KeyboardMovementProvider value={movementContext}>
-        <MenuBarProvider value={menuBarContext}>
-          <List
-            {...remaining}
-            {...movementProps}
-            role="menubar"
-            horizontal={horizontal}
-          >
-            {children}
-          </List>
-        </MenuBarProvider>
-      </KeyboardMovementProvider>
-    );
-  }
-);
+  return (
+    <KeyboardMovementProvider value={movementContext}>
+      <MenuBarProvider value={menuBarContext}>
+        <List
+          {...remaining}
+          {...movementProps}
+          role="menubar"
+          horizontal={horizontal}
+        >
+          {children}
+        </List>
+      </MenuBarProvider>
+    </KeyboardMovementProvider>
+  );
+}

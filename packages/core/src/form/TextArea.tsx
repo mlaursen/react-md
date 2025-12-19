@@ -3,8 +3,9 @@
 import {
   type CSSProperties,
   type HTMLAttributes,
+  type ReactElement,
+  type Ref,
   type TextareaHTMLAttributes,
-  forwardRef,
 } from "react";
 
 import { type PropsWithRef } from "../types.js";
@@ -36,6 +37,8 @@ declare module "react" {
  */
 export interface TextAreaProps
   extends FormFieldOptions, TextareaHTMLAttributes<HTMLTextAreaElement> {
+  ref?: Ref<HTMLTextAreaElement>;
+
   /** @defaultValue `"text-area-" + useId()` */
   id?: string;
 
@@ -123,178 +126,177 @@ export interface TextAreaProps
  *
  * @see {@link https://react-md.dev/components/text-field#simple-textarea | TextArea Demos}
  */
-export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  function TextArea(props, ref) {
-    const {
-      id: propId,
-      style,
-      className,
-      label,
-      labelProps,
-      labelStyle,
-      labelClassName,
-      areaStyle,
-      areaClassName,
-      resizeContainerProps,
-      resize = "auto",
-      dense,
-      error,
-      active,
-      inline: propInline,
-      leftAddon,
-      rightAddon,
-      disableLeftAddonStyles,
-      disableRightAddonStyles,
-      theme: propTheme,
-      underlineDirection: propUnderlineDirection,
-      messageProps,
-      messageContainerProps,
-      containerProps,
-      rows = 2,
-      maxRows = -1,
-      onChange: propOnChange,
-      disableTransition: propDisableTransition,
-      ...remaining
-    } = props;
-    const { disabled = false, readOnly = false, value, defaultValue } = props;
-    const id = useEnsuredId(propId, "text-area");
-    const theme = getFormConfig("theme", propTheme);
-    const underlineDirection = getFormConfig(
-      "underlineDirection",
-      propUnderlineDirection
-    );
-    const [areaRef, areaRefCallback] = useEnsuredRef(ref);
+export function TextArea(props: TextAreaProps): ReactElement {
+  const {
+    ref,
+    id: propId,
+    style,
+    className,
+    label,
+    labelProps,
+    labelStyle,
+    labelClassName,
+    areaStyle,
+    areaClassName,
+    resizeContainerProps,
+    resize = "auto",
+    dense,
+    error,
+    active,
+    inline: propInline,
+    leftAddon,
+    rightAddon,
+    disableLeftAddonStyles,
+    disableRightAddonStyles,
+    theme: propTheme,
+    underlineDirection: propUnderlineDirection,
+    messageProps,
+    messageContainerProps,
+    containerProps,
+    rows = 2,
+    maxRows = -1,
+    onChange: propOnChange,
+    disableTransition: propDisableTransition,
+    ...remaining
+  } = props;
+  const { disabled = false, readOnly = false, value, defaultValue } = props;
+  const id = useEnsuredId(propId, "text-area");
+  const theme = getFormConfig("theme", propTheme);
+  const underlineDirection = getFormConfig(
+    "underlineDirection",
+    propUnderlineDirection
+  );
+  const [areaRef, areaRefCallback] = useEnsuredRef(ref);
 
-    const {
-      maskRef,
-      containerRef,
-      height,
-      onChange,
-      scrollable,
-      disableTransition,
-    } = useResizingTextArea({
-      maxRows,
-      resize,
-      onChange: propOnChange,
-      containerRef: containerProps?.ref,
-      disableTransition: propDisableTransition,
-    });
+  const {
+    maskRef,
+    containerRef,
+    height,
+    onChange,
+    scrollable,
+    disableTransition,
+  } = useResizingTextArea({
+    maxRows,
+    resize,
+    onChange: propOnChange,
+    containerRef: containerProps?.ref,
+    disableTransition: propDisableTransition,
+  });
 
-    let { placeholder = "" } = props;
-    if (label && !placeholder) {
-      // See the placeholder type definition comments for information
-      placeholder = " ";
-    }
+  let { placeholder = "" } = props;
+  if (label && !placeholder) {
+    // See the placeholder type definition comments for information
+    placeholder = " ";
+  }
 
-    // have to force it inline or else you won't be able to resize
-    // it horizontally.
-    const inline = resize === "horizontal" || resize === "both" || propInline;
+  // have to force it inline or else you won't be able to resize
+  // it horizontally.
+  const inline = resize === "horizontal" || resize === "both" || propInline;
 
-    const area = (
-      <textarea
-        {...remaining}
-        id={id}
-        ref={areaRefCallback}
+  const area = (
+    <textarea
+      {...remaining}
+      id={id}
+      ref={areaRefCallback}
+      rows={rows}
+      disabled={disabled}
+      onChange={onChange}
+      placeholder={placeholder}
+      style={areaStyle}
+      className={textArea({
+        resize,
+        scrollable,
+        className: areaClassName,
+        placeholderHidden: !!label && !active,
+      })}
+    />
+  );
+
+  const labelNode = label && (
+    <Label
+      {...labelProps}
+      htmlFor={id}
+      style={labelProps?.style ?? labelStyle}
+      className={labelProps?.className ?? labelClassName}
+      floating
+      dense={dense}
+      error={error}
+      active={active}
+      disabled={disabled}
+    >
+      {label}
+    </Label>
+  );
+
+  let children = (
+    <>
+      {area}
+      {labelNode}
+    </>
+  );
+
+  if (resize === "auto") {
+    children = (
+      <ResizingTextAreaWrapper
+        {...resizeContainerProps}
+        maskId={`${id}-mask`}
+        maskRef={maskRef}
         rows={rows}
-        disabled={disabled}
-        onChange={onChange}
-        placeholder={placeholder}
-        style={areaStyle}
-        className={textArea({
-          resize,
-          scrollable,
-          className: areaClassName,
-          placeholderHidden: !!label && !active,
-        })}
-      />
-    );
-
-    const labelNode = label && (
-      <Label
-        {...labelProps}
-        htmlFor={id}
-        style={labelProps?.style ?? labelStyle}
-        className={labelProps?.className ?? labelClassName}
-        floating
-        dense={dense}
-        error={error}
-        active={active}
-        disabled={disabled}
+        areaStyle={areaStyle}
+        areaClassName={areaClassName}
+        defaultValue={value ?? defaultValue}
+        disableTransition={disableTransition}
       >
-        {label}
-      </Label>
-    );
-
-    let children = (
-      <>
-        {area}
-        {labelNode}
-      </>
-    );
-
-    if (resize === "auto") {
-      children = (
-        <ResizingTextAreaWrapper
-          {...resizeContainerProps}
-          maskId={`${id}-mask`}
-          maskRef={maskRef}
-          rows={rows}
-          areaStyle={areaStyle}
-          areaClassName={areaClassName}
-          defaultValue={value ?? defaultValue}
-          disableTransition={disableTransition}
-        >
-          {children}
-        </ResizingTextAreaWrapper>
-      );
-    }
-
-    return (
-      <FormMessageContainer
-        inline={inline}
-        {...messageContainerProps}
-        messageProps={messageProps}
-      >
-        <TextFieldContainer
-          {...containerProps}
-          ref={containerRef}
-          style={{
-            ...style,
-            "--rmd-text-area-height": height,
-          }}
-          className={textAreaContainer({
-            animate: !disableTransition && resize === "auto",
-            disabled,
-            height: !!height,
-            underlineLabelled:
-              !!label && (theme === "underline" || theme === "filled"),
-            className,
-          })}
-          theme={theme}
-          label={!!label}
-          error={error}
-          dense={dense}
-          inline={inline}
-          active={active}
-          readOnly={readOnly}
-          disabled={disabled}
-          leftAddon={leftAddon}
-          rightAddon={rightAddon}
-          underlineDirection={underlineDirection}
-          disableLeftAddonStyles={disableLeftAddonStyles}
-          disableRightAddonStyles={disableRightAddonStyles}
-          onClick={(event) => {
-            // The textarea container adds padding-top when there is a label so
-            // that the label does not cover the text so this makes it so you
-            // can still click anywhere in the "box" to focus the textarea.
-            if (!disabled && event.target === event.currentTarget) {
-              areaRef.current?.focus();
-            }
-          }}
-        >
-          {children}
-        </TextFieldContainer>
-      </FormMessageContainer>
+        {children}
+      </ResizingTextAreaWrapper>
     );
   }
-);
+
+  return (
+    <FormMessageContainer
+      inline={inline}
+      {...messageContainerProps}
+      messageProps={messageProps}
+    >
+      <TextFieldContainer
+        {...containerProps}
+        ref={containerRef}
+        style={{
+          ...style,
+          "--rmd-text-area-height": height,
+        }}
+        className={textAreaContainer({
+          animate: !disableTransition && resize === "auto",
+          disabled,
+          height: !!height,
+          underlineLabelled:
+            !!label && (theme === "underline" || theme === "filled"),
+          className,
+        })}
+        theme={theme}
+        label={!!label}
+        error={error}
+        dense={dense}
+        inline={inline}
+        active={active}
+        readOnly={readOnly}
+        disabled={disabled}
+        leftAddon={leftAddon}
+        rightAddon={rightAddon}
+        underlineDirection={underlineDirection}
+        disableLeftAddonStyles={disableLeftAddonStyles}
+        disableRightAddonStyles={disableRightAddonStyles}
+        onClick={(event) => {
+          // The textarea container adds padding-top when there is a label so
+          // that the label does not cover the text so this makes it so you
+          // can still click anywhere in the "box" to focus the textarea.
+          if (!disabled && event.target === event.currentTarget) {
+            areaRef.current?.focus();
+          }
+        }}
+      >
+        {children}
+      </TextFieldContainer>
+    </FormMessageContainer>
+  );
+}

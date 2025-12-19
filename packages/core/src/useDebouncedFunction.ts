@@ -87,7 +87,7 @@ export function useDebouncedFunction<F extends AnyFunction>(
   func: F,
   wait: number
 ): DebouncedFunction<F> {
-  const timeout = useRef<NodeJS.Timeout>();
+  const timeout = useRef<NodeJS.Timeout>(undefined);
   const funcRef = useRef(func);
   useIsomorphicLayoutEffect(() => {
     funcRef.current = func;

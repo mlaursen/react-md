@@ -1,8 +1,9 @@
 import {
   type ButtonHTMLAttributes,
   type MouseEventHandler,
+  type ReactElement,
   type ReactNode,
-  forwardRef,
+  type Ref,
 } from "react";
 
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
@@ -18,6 +19,8 @@ import { expansionPanelButton, expansionPanelHeading } from "./styles.js";
  * props.
  */
 export interface ExpansionPanelHeaderProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  ref?: Ref<HTMLHeadingElement>;
+
   id: string;
 
   /**
@@ -127,11 +130,11 @@ export interface ExpansionPanelHeaderProps extends ButtonHTMLAttributes<HTMLButt
  * @since 6.0.0 Updated to be wrapped by the {@link Typography}
  * component and rendered as an `<h6>`.
  */
-export const ExpansionPanelHeader = forwardRef<
-  HTMLHeadingElement,
-  ExpansionPanelHeaderProps
->(function ExpansionPanelHeader(props, ref) {
+export function ExpansionPanelHeader(
+  props: ExpansionPanelHeaderProps
+): ReactElement {
   const {
+    ref,
     id,
     headingType = "subtitle-1",
     headingProps,
@@ -177,4 +180,4 @@ export const ExpansionPanelHeader = forwardRef<
       {afterChildren}
     </Typography>
   );
-});
+}

@@ -6,9 +6,9 @@ import { Typography } from "@react-md/core/typography/Typography";
 import { RenderRecursively } from "@react-md/core/utils/RenderRecursively";
 import { type ReactElement, type ReactNode, useId } from "react";
 
-import { RenderTableOfContentsItem } from "./RenderTableOfContentsItem.jsx";
+import { RenderTableOfContentsItem } from "./RenderTableOfContentsItem.js";
 import styles from "./TableOfContents.module.scss";
-import { TableOfContentsGroup } from "./TableOfContentsGroup.jsx";
+import { TableOfContentsGroup } from "./TableOfContentsGroup.js";
 
 export interface TableOfContentsProps {
   toc: Readonly<TableOfContentsHeadings>;

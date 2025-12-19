@@ -4,7 +4,7 @@ exports[`MenuItemSwitch > should allow for a custom unchecked and checked icon 1
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-switch-menu-item rmd-menu-item-input-toggle rmd-menu-item-input-toggle--switch"
-  id="menu-item-:r1:"
+  id="menu-item-_r_1_"
   role="menuitemcheckbox"
   tabindex="-1"
 >
@@ -27,7 +27,7 @@ exports[`MenuItemSwitch > should allow for a custom unchecked and checked icon 2
 <li
   aria-checked="true"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-switch-menu-item rmd-menu-item-input-toggle rmd-menu-item-input-toggle--switch"
-  id="menu-item-:r1:"
+  id="menu-item-_r_1_"
   role="menuitemcheckbox"
   tabindex="-1"
 >
@@ -50,7 +50,7 @@ exports[`MenuItemSwitch > should apply the correct styling, HTMLAttributes, and 
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-switch-menu-item rmd-menu-item-input-toggle rmd-menu-item-input-toggle--switch"
-  id="menu-item-:r0:"
+  id="menu-item-_r_0_"
   role="menuitemcheckbox"
   tabindex="-1"
 >
@@ -73,7 +73,7 @@ exports[`MenuItemSwitch > should apply the correct styling, HTMLAttributes, and 
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-switch-menu-item rmd-menu-item-input-toggle rmd-menu-item-input-toggle--switch custom-class-name"
-  id="menu-item-:r0:"
+  id="menu-item-_r_0_"
   role="menuitemcheckbox"
   style="color: white;"
   tabindex="-1"

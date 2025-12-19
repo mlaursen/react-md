@@ -23,13 +23,13 @@ import EditOffIcon from "@react-md/material-icons/EditOffIcon";
 import RefreshOutlinedIcon from "@react-md/material-icons/RefreshOutlinedIcon";
 import { type ReactElement, type ReactNode, useMemo, useRef } from "react";
 
-import { GithubLink } from "../GithubLink.jsx";
-import { ConfigureTypescriptEnabled } from "../MainLayout/ConfigureTypescriptEnabled.jsx";
+import { GithubLink } from "../GithubLink.js";
+import { ConfigureTypescriptEnabled } from "../MainLayout/ConfigureTypescriptEnabled.js";
 import styles from "./DemoCodeEditor.module.scss";
-import { DemoCodePreview } from "./DemoCodePreview.jsx";
-import { type PreviewContainerOptions } from "./PreviewContainer.jsx";
-import { ScssCodeEditor } from "./ScssCodeEditor.jsx";
-import { TypescriptCodeEditor } from "./TypescriptCodeEditor.jsx";
+import { DemoCodePreview } from "./DemoCodePreview.js";
+import { type PreviewContainerOptions } from "./PreviewContainer.js";
+import { ScssCodeEditor } from "./ScssCodeEditor.js";
+import { TypescriptCodeEditor } from "./TypescriptCodeEditor.js";
 
 export interface DemoCodeEditorProps extends PreviewContainerOptions {
   scope: RunnableCodeScope;

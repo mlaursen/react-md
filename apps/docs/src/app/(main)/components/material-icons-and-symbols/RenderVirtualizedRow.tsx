@@ -4,9 +4,9 @@ import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
 import { type ListChildComponentProps } from "react-window";
 
-import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.jsx";
+import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.js";
 import styles from "./RenderVirtualizedRow.module.scss";
-import { VirtualizedMatch } from "./VirtualizedMatch.jsx";
+import { VirtualizedMatch } from "./VirtualizedMatch.js";
 import { type CategoryOrIconNames } from "./useVirtualizedWindow.js";
 import { getCategoryName } from "./utils.js";
 

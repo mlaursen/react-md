@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { type ReactElement, type Ref } from "react";
 
 import { Box, type BoxProps } from "../box/Box.js";
 import { type BoxAlignItems } from "../box/styles.js";
@@ -8,6 +8,8 @@ import { dialogHeader } from "./styles.js";
  * @since 6.0.0 Extends the `BoxProps`.
  */
 export interface DialogHeaderProps extends BoxProps {
+  ref?: Ref<HTMLDivElement>;
+
   /** @defaultValue `"center"` */
   align?: BoxAlignItems;
 
@@ -23,26 +25,25 @@ export interface DialogHeaderProps extends BoxProps {
  * @see {@link https://react-md.dev/components/dialog | Dialog Demos}
  * @since 6.0.0 Extends the `Box` component.
  */
-export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
-  function DialogHeader(props, ref) {
-    const {
-      align = "center",
-      disableWrap = true,
-      children,
-      className,
-      ...remaining
-    } = props;
+export function DialogHeader(props: DialogHeaderProps): ReactElement {
+  const {
+    ref,
+    align = "center",
+    disableWrap = true,
+    children,
+    className,
+    ...remaining
+  } = props;
 
-    return (
-      <Box
-        {...remaining}
-        align={align}
-        disableWrap={disableWrap}
-        ref={ref}
-        className={dialogHeader({ className })}
-      >
-        {children}
-      </Box>
-    );
-  }
-);
+  return (
+    <Box
+      {...remaining}
+      align={align}
+      disableWrap={disableWrap}
+      ref={ref}
+      className={dialogHeader({ className })}
+    >
+      {children}
+    </Box>
+  );
+}

@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 
-import { FrameworkCodeSwap } from "../FrameworkCodeSwap.jsx";
+import { FrameworkCodeSwap } from "../FrameworkCodeSwap.js";
 
 const DEFAULT_CODE = `
 import { describe, expect, it } from "{FRAMEWORK}";

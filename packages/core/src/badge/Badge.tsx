@@ -1,4 +1,9 @@
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { type BadgeTheme, badge } from "./styles.js";
 
@@ -15,6 +20,8 @@ declare module "react" {
 }
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
+  ref?: Ref<HTMLSpanElement>;
+
   /** @defaultValue `"greyscale"` */
   theme?: BadgeTheme;
 
@@ -62,13 +69,12 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
  * @since 6.0.0 Removed the `disableNullOnZero` feature since it's
  * easier just to use condition rendering yourself.
  */
-export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
-  function Badge(props, ref) {
-    const { children, className, theme, ...remaining } = props;
-    return (
-      <span {...remaining} ref={ref} className={badge({ theme, className })}>
-        {children}
-      </span>
-    );
-  }
-);
+export function Badge(props: BadgeProps): ReactElement {
+  const { ref, children, className, theme, ...remaining } = props;
+
+  return (
+    <span {...remaining} ref={ref} className={badge({ theme, className })}>
+      {children}
+    </span>
+  );
+}

@@ -16,7 +16,7 @@ import { filesize } from "filesize";
 import { type HTMLAttributes, type ReactElement, useId } from "react";
 
 import styles from "./FilePreviewCard.module.scss";
-import { SimpleFilePreview } from "./SimpleFilePreview.jsx";
+import { SimpleFilePreview } from "./SimpleFilePreview.js";
 
 export interface FilePreviewCardProps
   extends HTMLAttributes<HTMLDivElement>, Omit<FileUploadStats, "key"> {

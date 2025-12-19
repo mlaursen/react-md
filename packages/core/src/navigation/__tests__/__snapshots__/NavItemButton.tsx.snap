@@ -4,7 +4,7 @@ exports[`NavItemButton > should allow an addon to be rendered before or after th
 <button
   aria-expanded="false"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
-  id=":r6:"
+  id="_r_6_"
   type="button"
 >
   <span>
@@ -31,7 +31,7 @@ exports[`NavItemButton > should apply the correct styling, HTML attributes, and 
 <button
   aria-expanded="false"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
-  id=":r0:"
+  id="_r_0_"
   type="button"
 >
   <span
@@ -52,7 +52,7 @@ exports[`NavItemButton > should apply the correct styling, HTML attributes, and 
 <button
   aria-expanded="false"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content custom-class-name"
-  id=":r0:"
+  id="_r_0_"
   style="color: white;"
   type="button"
 >
@@ -73,7 +73,7 @@ exports[`NavItemButton > should apply the correct styling, HTML attributes, and 
 exports[`NavItemButton > should support an overflow only tooltip by default 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--right rmd-tooltip--visible"
-  id=":r4:-tooltip"
+  id="_r_4_-tooltip"
   role="tooltip"
   style="position: fixed; left: 24px; top: 16px;"
 >

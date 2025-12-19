@@ -1,4 +1,9 @@
-import { type ElementType, type HTMLAttributes, forwardRef } from "react";
+import {
+  type ElementType,
+  type HTMLAttributes,
+  type ReactElement,
+  type Ref,
+} from "react";
 
 import { type SrOnlyBehavior, cssUtils } from "../cssUtils.js";
 import {
@@ -7,6 +12,8 @@ import {
 } from "./Typography.js";
 
 export interface SrOnlyProps extends HTMLAttributes<TypographyHTMLElement> {
+  ref?: Ref<TypographyHTMLElement>;
+
   /** @defaultValue `"span"` */
   as?: CustomTypographyComponent;
 
@@ -52,40 +59,39 @@ export interface SrOnlyProps extends HTMLAttributes<TypographyHTMLElement> {
  *
  * @see {@link https://react-md.dev/components/sr-only | SrOnly Demos}
  */
-export const SrOnly = forwardRef<TypographyHTMLElement, SrOnlyProps>(
-  function SrOnly(props, ref) {
-    const {
-      as: AsComponent = "span",
-      className,
-      phoneOnly,
-      focusable,
-      children,
-      tabIndex,
-      ...remaining
-    } = props;
+export function SrOnly(props: SrOnlyProps): ReactElement {
+  const {
+    ref,
+    as: AsComponent = "span",
+    className,
+    phoneOnly,
+    focusable,
+    children,
+    tabIndex,
+    ...remaining
+  } = props;
 
-    // do some type-casting so ref works
-    const Component = AsComponent as ElementType;
+  // do some type-casting so ref works
+  const Component = AsComponent as ElementType;
 
-    let srOnly: SrOnlyBehavior = true;
-    if (focusable) {
-      srOnly = "focusable";
-    } else if (phoneOnly) {
-      srOnly = "phone";
-    }
-
-    return (
-      <Component
-        {...remaining}
-        ref={ref}
-        tabIndex={tabIndex ?? (focusable ? 0 : undefined)}
-        className={cssUtils({
-          srOnly,
-          className,
-        })}
-      >
-        {children}
-      </Component>
-    );
+  let srOnly: SrOnlyBehavior = true;
+  if (focusable) {
+    srOnly = "focusable";
+  } else if (phoneOnly) {
+    srOnly = "phone";
   }
-);
+
+  return (
+    <Component
+      {...remaining}
+      ref={ref}
+      tabIndex={tabIndex ?? (focusable ? 0 : undefined)}
+      className={cssUtils({
+        srOnly,
+        className,
+      })}
+    >
+      {children}
+    </Component>
+  );
+}

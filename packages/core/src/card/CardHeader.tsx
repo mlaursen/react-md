@@ -1,4 +1,9 @@
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { type PropsWithRef } from "../types.js";
 import { cardHeader, cardHeaderContent } from "./styles.js";
@@ -11,6 +16,8 @@ import { cardHeader, cardHeaderContent } from "./styles.js";
  * `contentProps`.
  */
 export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
+  ref?: Ref<HTMLDivElement>;
+
   /**
    * Any content to display after the children in the header. This could be an
    * expander icon button, visual media like an image or video, etc.
@@ -41,36 +48,35 @@ export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
  * relies on the CSS `gap` for spacing.
  * @since 6.0.0 Renders as a `<div>` instead of a `<header>`
  */
-export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
-  function CardHeader(props, ref) {
-    const {
-      className,
-      children,
-      beforeAddon,
-      afterAddon,
-      contentProps,
-      ...remaining
-    } = props;
+export function CardHeader(props: CardHeaderProps): ReactElement {
+  const {
+    ref,
+    className,
+    children,
+    beforeAddon,
+    afterAddon,
+    contentProps,
+    ...remaining
+  } = props;
 
-    return (
+  return (
+    <div
+      {...remaining}
+      ref={ref}
+      className={cardHeader({
+        className,
+        addonBefore: !!beforeAddon,
+        addonAfter: !!afterAddon,
+      })}
+    >
+      {beforeAddon}
       <div
-        {...remaining}
-        ref={ref}
-        className={cardHeader({
-          className,
-          addonBefore: !!beforeAddon,
-          addonAfter: !!afterAddon,
-        })}
+        {...contentProps}
+        className={cardHeaderContent({ className: contentProps?.className })}
       >
-        {beforeAddon}
-        <div
-          {...contentProps}
-          className={cardHeaderContent({ className: contentProps?.className })}
-        >
-          {children}
-        </div>
-        {afterAddon}
+        {children}
       </div>
-    );
-  }
-);
+      {afterAddon}
+    </div>
+  );
+}

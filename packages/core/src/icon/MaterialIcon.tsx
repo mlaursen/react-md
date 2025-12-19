@@ -1,4 +1,9 @@
-import { type AriaAttributes, type HTMLAttributes, forwardRef } from "react";
+import {
+  type AriaAttributes,
+  type HTMLAttributes,
+  type ReactElement,
+  type Ref,
+} from "react";
 
 import { type MaterialIconFamily, type MaterialIconName } from "./material.js";
 import { MATERIAL_CONFIG } from "./materialConfig.js";
@@ -9,6 +14,8 @@ export interface MaterialIconProps
   extends
     HTMLAttributes<HTMLSpanElement>,
     Partial<MaterialIconClassNameOptions> {
+  ref?: Ref<HTMLSpanElement>;
+
   /**
    * The icon name to use
    */
@@ -39,33 +46,32 @@ export interface MaterialIconProps
  * @see {@link https://react-md.dev/components/material-icons|Available Material Icons}
  * @since 6.0.0
  */
-export const MaterialIcon = forwardRef<HTMLSpanElement, MaterialIconProps>(
-  function MaterialIcon(props, ref) {
-    const {
-      "aria-hidden": ariaHidden = true,
-      name,
-      family = MATERIAL_CONFIG.iconFamily,
-      theme,
-      dense,
-      className,
-      ...remaining
-    } = props;
+export function MaterialIcon(props: MaterialIconProps): ReactElement {
+  const {
+    ref,
+    "aria-hidden": ariaHidden = true,
+    name,
+    family = MATERIAL_CONFIG.iconFamily,
+    theme,
+    dense,
+    className,
+    ...remaining
+  } = props;
 
-    return (
-      <span
-        {...remaining}
-        aria-hidden={ariaHidden}
-        ref={ref}
-        className={icon({
-          type: "material",
-          family,
-          theme,
-          dense,
-          className,
-        })}
-      >
-        {name}
-      </span>
-    );
-  }
-);
+  return (
+    <span
+      {...remaining}
+      aria-hidden={ariaHidden}
+      ref={ref}
+      className={icon({
+        type: "material",
+        family,
+        theme,
+        dense,
+        className,
+      })}
+    >
+      {name}
+    </span>
+  );
+}

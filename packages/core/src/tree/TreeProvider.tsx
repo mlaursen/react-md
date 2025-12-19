@@ -3,13 +3,13 @@
 import {
   type ReactElement,
   type ReactNode,
+  type RefObject,
   createContext,
   useContext,
   useMemo,
 } from "react";
 
 import { type CustomLinkComponent } from "../link/Link.js";
-import { type NonNullRef } from "../types.js";
 import {
   type DefaultTreeItemNode,
   type TreeData,
@@ -93,7 +93,7 @@ export interface TreeContext<T extends TreeItemNode = DefaultTreeItemNode>
   /** @internal */
   expansionMode: TreeExpansionMode;
   /** @internal */
-  metadataLookup: NonNullRef<TreeItemMetadataLookup>;
+  metadataLookup: RefObject<TreeItemMetadataLookup>;
 }
 
 // Allow the hook to correct typecast this instead

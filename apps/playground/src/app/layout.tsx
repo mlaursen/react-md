@@ -3,10 +3,10 @@ import { Roboto_Flex } from "next/font/google";
 import { cookies } from "next/headers.js";
 import { type ReactElement, type ReactNode } from "react";
 
-import { RootProviders } from "@/components/RootProviders.jsx";
+import { RootProviders } from "@/components/RootProviders.js";
 import { COLOR_SCHEME_KEY } from "@/constants.js";
 
-import { CookieColorSchemeProvider } from "./CookieColorSchemeProvider.jsx";
+import { CookieColorSchemeProvider } from "./CookieColorSchemeProvider.js";
 import "./app.scss";
 
 const roboto = Roboto_Flex({

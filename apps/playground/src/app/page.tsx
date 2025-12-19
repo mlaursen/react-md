@@ -11,7 +11,7 @@ import { Typography } from "@react-md/core/typography/Typography";
 import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
 import { type ReactElement } from "react";
 
-import { Playground } from "./Playground.jsx";
+import { Playground } from "./Playground.js";
 
 const COLOR_SCHEMES = ["light", "dark", "system"] satisfies ColorScheme[];
 

@@ -4,20 +4,19 @@ import {
   type TypographyProps,
 } from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
-import { type ReactNode, forwardRef } from "react";
+import { type ReactElement, type ReactNode, type Ref } from "react";
 
 import { DefaultFocusCodeEditorChildren } from "./DefaultFocusCodeEditorChildren.js";
 
 export interface FocusCodeEditorProps extends TypographyProps {
+  ref?: Ref<HTMLSpanElement>;
   /** @defaultValue `<DefaultFocusCodeEditorChildren />` */
   children?: ReactNode;
 }
 
-export const FocusCodeEditor = forwardRef<
-  HTMLSpanElement,
-  FocusCodeEditorProps
->(function FocusCodeEditor(props, ref) {
+export function FocusCodeEditor(props: FocusCodeEditorProps): ReactElement {
   const {
+    ref,
     className,
     children = <DefaultFocusCodeEditorChildren />,
     ...remaining
@@ -39,4 +38,4 @@ export const FocusCodeEditor = forwardRef<
       {children}
     </Typography>
   );
-});
+}

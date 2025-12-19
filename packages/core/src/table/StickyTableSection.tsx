@@ -1,6 +1,6 @@
 "use client";
 
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { TableConfigProvider } from "./TableConfigurationProvider.js";
 import { tableFooter } from "./tableFooterStyles.js";
@@ -18,6 +18,8 @@ export interface StickyTableSectionProps
     HTMLAttributes<HTMLTableSectionElement>,
     TableStickySectionConfiguration,
     TableSectionConfiguration {
+  ref?: Ref<HTMLTableSectionElement>;
+
   type: "header" | "footer";
 
   /**
@@ -40,11 +42,11 @@ export interface StickyTableSectionProps
  * @see {@link https://react-md.dev/components/table#sticky-tables | Sticky Table Demos}
  * @since 6.0.0
  */
-export const StickyTableSection = forwardRef<
-  HTMLTableSectionElement,
-  StickyTableSectionProps
->(function StickyTableSection(props, ref) {
+export function StickyTableSection(
+  props: StickyTableSectionProps
+): ReactElement {
   const {
+    ref,
     type,
     className,
     hoverable,
@@ -93,4 +95,4 @@ export const StickyTableSection = forwardRef<
       {isHeader && tbody}
     </TableConfigProvider>
   );
-});
+}

@@ -104,7 +104,7 @@ export interface FocusContainerOptions<E extends HTMLElement>
 
 /** @since 6.0.0 */
 export interface FocusContainerImplementation<E extends HTMLElement> {
-  nodeRef: RefObject<E>;
+  nodeRef: RefObject<E | null>;
   eventHandlers: Required<FocusContainerEventHandlers<E>>;
   transitionOptions: Required<FocusContainerTransitionOptions<E>>;
 }

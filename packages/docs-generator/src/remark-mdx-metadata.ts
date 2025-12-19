@@ -2,7 +2,6 @@
 import { valueToEstree } from "estree-util-value-to-estree";
 import { type Root } from "mdast";
 import { type Metadata } from "next";
-import { type Plugin } from "unified";
 import { define } from "unist-util-mdx-define";
 import { type VFile } from "vfile";
 import { parse } from "yaml";
@@ -37,16 +36,14 @@ export interface RemarkMdxMetadataOptions extends define.Options {
   baseUrl?: string;
 }
 
-export const remarkMdxMetadata: Plugin<[RemarkMdxMetadataOptions?], Root> = (
-  options = {}
-) => {
+export function remarkMdxMetadata(options: RemarkMdxMetadataOptions = {}) {
   const {
     name = "metadata",
     baseUrl = "https://react-md.dev",
     ...defineOptions
   } = options;
 
-  return (ast, file) => {
+  return function mdxMetadata(ast: Root, file: VFile) {
     const node = ast.children.find((child) => child.type === "yaml");
     if (!node) {
       throw new Error(
@@ -112,4 +109,4 @@ export const remarkMdxMetadata: Plugin<[RemarkMdxMetadataOptions?], Root> = (
       defineOptions
     );
   };
-};
+}

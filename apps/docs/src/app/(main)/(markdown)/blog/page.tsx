@@ -12,9 +12,9 @@ import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { type ReactElement } from "react";
 
-import { LinkableHeading } from "@/components/LinkableHeading.jsx";
-import { Markdown } from "@/components/Markdown.jsx";
-import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
+import { LinkableHeading } from "@/components/LinkableHeading.js";
+import { Markdown } from "@/components/Markdown.js";
+import { TableOfContents } from "@/components/TableOfContents/TableOfContents.js";
 
 import { getBlogs } from "./data.js";
 

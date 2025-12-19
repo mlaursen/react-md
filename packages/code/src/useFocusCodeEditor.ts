@@ -13,13 +13,13 @@ const noop = (): void => {
 };
 
 export interface FocusCodeEditorOptions {
-  editorRef: RefObject<HTMLTextAreaElement>;
+  editorRef: RefObject<HTMLTextAreaElement | null>;
   focusEditorRef?: Ref<HTMLSpanElement>;
   onEditorKeyDown?: KeyboardEventHandler<HTMLTextAreaElement>;
 }
 
 export interface FocusCodeEditorImplementation {
-  focusEditorRef: RefObject<HTMLSpanElement>;
+  focusEditorRef: RefObject<HTMLSpanElement | null>;
   focusEditorProps: {
     ref: RefCallback<HTMLSpanElement>;
     onKeyDown: KeyboardEventHandler<HTMLSpanElement>;

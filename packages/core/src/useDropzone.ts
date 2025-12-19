@@ -162,7 +162,7 @@ export function useDropzone(options: DropzoneOptions): DropzoneImplementation {
     enable: startDragging,
     disable: stopDragging,
   } = useToggle();
-  const draggingTimeout = useRef<NodeJS.Timeout>();
+  const draggingTimeout = useRef<NodeJS.Timeout>(undefined);
 
   // Browsers sometimes don't trigger a dragleave event for the entire
   // document, so we have to work around that by using the `dragover` event

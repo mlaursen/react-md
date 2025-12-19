@@ -1,8 +1,9 @@
 import {
   type AriaAttributes,
   type HTMLAttributes,
+  type ReactElement,
   type ReactNode,
-  forwardRef,
+  type Ref,
 } from "react";
 
 import { type FontIconClassNameOptions, icon } from "./styles.js";
@@ -13,6 +14,8 @@ import { type FontIconClassNameOptions, icon } from "./styles.js";
  */
 export interface FontIconProps
   extends HTMLAttributes<HTMLSpanElement>, FontIconClassNameOptions {
+  ref?: Ref<HTMLElement>;
+
   /** @defaultValue `true` */
   "aria-hidden"?: AriaAttributes["aria-hidden"];
 
@@ -36,33 +39,32 @@ export interface FontIconProps
  * @since 6.0.0 Switched from `<i>` to `<span>` element and removed
  * the `forceSize`/`forceFontSize` props.
  */
-export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
-  function FontIcon(props, ref) {
-    const {
-      "aria-hidden": ariaHidden = true,
-      iconClassName = "material-icons",
-      dense = false,
-      theme,
-      className,
-      children,
-      ...remaining
-    } = props;
+export function FontIcon(props: FontIconProps): ReactElement {
+  const {
+    ref,
+    "aria-hidden": ariaHidden = true,
+    iconClassName = "material-icons",
+    dense = false,
+    theme,
+    className,
+    children,
+    ...remaining
+  } = props;
 
-    return (
-      <span
-        {...remaining}
-        aria-hidden={ariaHidden}
-        ref={ref}
-        className={icon({
-          type: "font",
-          dense,
-          theme,
-          className,
-          iconClassName,
-        })}
-      >
-        {children}
-      </span>
-    );
-  }
-);
+  return (
+    <span
+      {...remaining}
+      aria-hidden={ariaHidden}
+      ref={ref}
+      className={icon({
+        type: "font",
+        dense,
+        theme,
+        className,
+        iconClassName,
+      })}
+    >
+      {children}
+    </span>
+  );
+}

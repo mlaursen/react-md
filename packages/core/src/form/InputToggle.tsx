@@ -6,8 +6,9 @@ import {
   type HTMLAttributes,
   type InputHTMLAttributes,
   type LabelHTMLAttributes,
+  type ReactElement,
   type ReactNode,
-  forwardRef,
+  type Ref,
 } from "react";
 
 import { type ComponentWithRippleProps } from "../interaction/types.js";
@@ -156,6 +157,8 @@ export interface BaseInputToggleProps
     ConfigurableInputToggleIconProps,
     InputToggleLabelProps,
     ComponentWithRippleProps {
+  ref?: Ref<HTMLInputElement>;
+
   /**
    * @see https://stackoverflow.com/questions/5985839/bug-with-firefox-disabled-attribute-of-input-not-resetting-when-refreshing
    * @defaultValue `type === "checkbox" ? "off" : undefined`
@@ -231,117 +234,112 @@ export type InputToggleProps = CheckboxInputToggleProps | RadioInputToggleProps;
  * @since 6.0.0 Now supports the `FormMessage` behavior and requires
  * different icons for each checked state.
  */
-export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
-  function InputToggle(props, ref) {
-    const {
-      id: propId,
-      type,
-      label,
-      labelProps,
-      style,
-      className,
-      autoComplete = type === "checkbox" ? "off" : undefined,
-      disableLabelGap = false,
-      stacked = false,
-      iconAfter = false,
-      size = "normal",
-      error = false,
-      active = false,
-      indeterminate = false,
-      messageProps,
-      messageContainerProps,
-      icon,
-      checkedIcon,
-      indeterminateIcon,
-      iconProps,
-      iconStyle,
-      iconClassName,
-      onBlur,
-      onClick,
-      onKeyDown,
-      onKeyUp,
-      onMouseDown,
-      onMouseLeave,
-      onDragStart,
-      onMouseUp,
-      onTouchEnd,
-      onTouchMove,
-      onTouchStart,
-      disableRipple,
-      ...remaining
-    } = props as CheckboxInputToggleProps;
-    const { disabled = false, checked } = props;
+export function InputToggle(props: InputToggleProps): ReactElement {
+  const {
+    id: propId,
+    ref,
+    type,
+    label,
+    labelProps,
+    style,
+    className,
+    autoComplete = type === "checkbox" ? "off" : undefined,
+    disableLabelGap = false,
+    stacked = false,
+    iconAfter = false,
+    size = "normal",
+    error = false,
+    active = false,
+    indeterminate = false,
+    messageProps,
+    messageContainerProps,
+    icon,
+    checkedIcon,
+    indeterminateIcon,
+    iconProps,
+    iconStyle,
+    iconClassName,
+    onBlur,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseLeave,
+    onDragStart,
+    onMouseUp,
+    onTouchEnd,
+    onTouchMove,
+    onTouchStart,
+    disableRipple,
+    ...remaining
+  } = props as CheckboxInputToggleProps;
+  const { disabled = false, checked } = props;
 
-    const id = useEnsuredId(propId, type);
-    const { pressedClassName, ripples, handlers } = useElementInteraction({
-      mode: disableRipple ? "none" : undefined,
-      disabled,
-      onBlur,
-      onClick,
-      onKeyDown,
-      onKeyUp,
-      onMouseDown,
-      onMouseLeave,
-      onDragStart,
-      onMouseUp,
-      onTouchEnd,
-      onTouchMove,
-      onTouchStart,
-    });
+  const id = useEnsuredId(propId, type);
+  const { pressedClassName, ripples, handlers } = useElementInteraction({
+    mode: disableRipple ? "none" : undefined,
+    disabled,
+    onBlur,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseLeave,
+    onDragStart,
+    onMouseUp,
+    onTouchEnd,
+    onTouchMove,
+    onTouchStart,
+  });
 
-    // set on the `remaining` object to bypass the eslint rule about
-    // aria-checked not being valid for textbox role
-    remaining["aria-checked"] =
-      (remaining["aria-checked"] ?? indeterminate) ? "mixed" : undefined;
+  // set on the `remaining` object to bypass the eslint rule about
+  // aria-checked not being valid for textbox role
+  remaining["aria-checked"] =
+    (remaining["aria-checked"] ?? indeterminate) ? "mixed" : undefined;
 
-    return (
-      <FormMessageContainer
-        {...messageContainerProps}
-        messageProps={messageProps}
+  return (
+    <FormMessageContainer
+      {...messageContainerProps}
+      messageProps={messageProps}
+    >
+      <Label
+        {...labelProps}
+        gap={!disableLabelGap}
+        style={style}
+        stacked={stacked}
+        reversed={!iconAfter}
+        active={active}
+        error={error}
+        disabled={disabled}
+        className={className}
       >
-        <Label
-          {...labelProps}
-          gap={!disableLabelGap}
-          style={style}
-          stacked={stacked}
-          reversed={!iconAfter}
-          active={active}
+        {label}
+        <InputToggleIcon
+          style={iconStyle}
+          {...iconProps}
+          className={cnb(pressedClassName, iconClassName, iconProps?.className)}
           error={error}
+          checked={checked}
           disabled={disabled}
-          className={className}
+          size={size}
+          type={type}
+          icon={icon}
+          checkedIcon={checkedIcon}
+          indeterminate={indeterminate}
+          indeterminateIcon={indeterminateIcon}
         >
-          {label}
-          <InputToggleIcon
-            style={iconStyle}
-            {...iconProps}
-            className={cnb(
-              pressedClassName,
-              iconClassName,
-              iconProps?.className
-            )}
-            error={error}
-            checked={checked}
-            disabled={disabled}
-            size={size}
+          <input
+            {...remaining}
+            {...handlers}
+            autoComplete={autoComplete}
+            id={id}
+            ref={ref}
             type={type}
-            icon={icon}
-            checkedIcon={checkedIcon}
-            indeterminate={indeterminate}
-            indeterminateIcon={indeterminateIcon}
-          >
-            <input
-              {...remaining}
-              {...handlers}
-              autoComplete={autoComplete}
-              id={id}
-              ref={ref}
-              type={type}
-              className="rmd-hidden-input"
-            />
-            {ripples}
-          </InputToggleIcon>
-        </Label>
-      </FormMessageContainer>
-    );
-  }
-);
+            className="rmd-hidden-input"
+          />
+          {ripples}
+        </InputToggleIcon>
+      </Label>
+    </FormMessageContainer>
+  );
+}

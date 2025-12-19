@@ -11,7 +11,7 @@ import { type CSSProperties } from "react";
 import "server-only";
 
 import fallbackThemeStyles from "@/components/LoadThemeStyles/SystemTheme.module.scss";
-import { type CodeLanguage } from "@/components/MainLayout/ConfigureTypescriptEnabled.jsx";
+import { type CodeLanguage } from "@/components/MainLayout/ConfigureTypescriptEnabled.js";
 import {
   CODE_LANGUAGE_KEY,
   CODE_THEME_KEY,
@@ -19,7 +19,7 @@ import {
   PACKAGE_MANAGER_KEY,
 } from "@/constants/cookies.js";
 import { PRISM_THEMES, type PrismTheme } from "@/constants/prismThemes.js";
-import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.jsx";
+import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.js";
 import { getCookie, getThemeCookie } from "@/utils/serverCookies.js";
 
 import { kebabCase, pascalCase } from "./strings.js";
@@ -32,8 +32,8 @@ export interface AppCookies {
   defaultCustomTheme: Partial<ConfigurableThemeColors> | undefined;
 }
 
-export function getAppCookies(): AppCookies {
-  const instance = cookies();
+export async function getAppCookies(): Promise<AppCookies> {
+  const instance = await cookies();
   const defaultColorScheme = getCookie({
     name: COLOR_SCHEME_KEY,
     isValid: isColorScheme,
@@ -100,7 +100,7 @@ export async function getInitialState(): Promise<InitialAppState> {
     defaultPackageManager,
     defaultColorScheme,
     defaultCustomTheme,
-  } = getAppCookies();
+  } = await getAppCookies();
 
   let themeStyles: CSSModulesImport = {};
   if (defaultColorScheme !== "system" || DISABLE_DEFAULT_SYSTEM_THEME) {

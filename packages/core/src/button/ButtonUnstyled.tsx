@@ -1,4 +1,4 @@
-import { type ButtonHTMLAttributes, forwardRef } from "react";
+import { type ButtonHTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { buttonUnstyled } from "./styles.js";
 
@@ -9,10 +9,12 @@ import { buttonUnstyled } from "./styles.js";
  *
  * @since 6.0.0 Renamed from `UnstyledButtonProps`
  */
-export type ButtonUnstyledProps = Omit<
+export interface ButtonUnstyledProps extends Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   "type"
->;
+> {
+  ref?: Ref<HTMLButtonElement>;
+}
 
 /**
  * A simple wrapper for a `<button type="button">` that applies the unstyled
@@ -24,11 +26,9 @@ export type ButtonUnstyledProps = Omit<
  * @see {@link buttonUnstyled}
  * @since 6.0.0 Renamed from `UnstyledButton`
  */
-export const ButtonUnstyled = forwardRef<
-  HTMLButtonElement,
-  ButtonUnstyledProps
->(function ButtonUnstyled(props, ref) {
-  const { children, className, ...remaining } = props;
+export function ButtonUnstyled(props: ButtonUnstyledProps): ReactElement {
+  const { ref, children, className, ...remaining } = props;
+
   return (
     <button
       {...remaining}
@@ -39,4 +39,4 @@ export const ButtonUnstyled = forwardRef<
       {children}
     </button>
   );
-});
+}

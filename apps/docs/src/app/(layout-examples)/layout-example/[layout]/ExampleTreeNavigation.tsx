@@ -11,11 +11,11 @@ import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, useMemo } from "react";
 
-import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
+import { LinkUnstyled } from "@/components/LinkUnstyled.js";
 import { pascalCase } from "@/utils/strings.js";
 
-import { LayoutIcon } from "./LayoutIcon.jsx";
-import { NavigationTypeIcon } from "./NavigationTypeIcon.jsx";
+import { LayoutIcon } from "./LayoutIcon.js";
+import { NavigationTypeIcon } from "./NavigationTypeIcon.js";
 import { LAYOUT_TYPES, type LayoutType } from "./layouts.js";
 import { NAVIGATION_TYPES } from "./navTypes.js";
 

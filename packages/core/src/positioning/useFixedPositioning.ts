@@ -111,7 +111,7 @@ export interface FixedPositioningOptions<
    * A ref pointing to an element that another element should be fixed to. This
    * **must** be provided for the positioning to work.
    */
-  fixedTo: RefObject<FixedToElement>;
+  fixedTo: RefObject<FixedToElement | null>;
 
   /**
    * An optional function that can be used to override positioning options if

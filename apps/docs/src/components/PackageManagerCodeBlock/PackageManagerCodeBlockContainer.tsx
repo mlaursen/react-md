@@ -8,8 +8,8 @@ import {
 import { useTabs } from "@react-md/core/tabs/useTabs";
 import { type ReactElement, type ReactNode } from "react";
 
-import { PackageManagerTabPanels } from "./PackageManagerTabPanels.jsx";
-import { PackageManagerTabs } from "./PackageManagerTabs.jsx";
+import { PackageManagerTabPanels } from "./PackageManagerTabPanels.js";
+import { PackageManagerTabs } from "./PackageManagerTabs.js";
 
 export interface PackageManagerCodeBlockContainerProps {
   managers: Record<PackageManager, ReactNode>;

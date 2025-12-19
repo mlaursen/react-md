@@ -13,7 +13,7 @@ import { Sheet } from "@react-md/core/sheet/Sheet";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, Suspense } from "react";
 
-import { ExampleNavigation } from "./ExampleNavigation.jsx";
+import { ExampleNavigation } from "./ExampleNavigation.js";
 import { type ExampleLayoutProps } from "./layouts.js";
 
 export interface ExpandableLayoutExampleProps

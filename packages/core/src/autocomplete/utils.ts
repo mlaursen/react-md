@@ -4,7 +4,7 @@ import {
   type EditableHTMLElement,
   triggerManualChangeEvent,
 } from "../form/utils.js";
-import { type NonNullMutableRef, type UseStateInitializer } from "../types.js";
+import { type UseStateInitializer } from "../types.js";
 import { noopAutocompleteFilter } from "./defaults.js";
 import {
   type AutocompleteFilterOptions,
@@ -130,10 +130,10 @@ export interface EnforceSelectedValueOptions<
   value: Option | readonly Option[] | null;
   visible: boolean;
   container: HTMLElement | null;
-  popupRef: RefObject<HTMLElement>;
-  comboboxRef: RefObject<EditableHTMLElement>;
+  popupRef: RefObject<HTMLElement | null>;
+  comboboxRef: RefObject<EditableHTMLElement | null>;
   availableOptions: readonly Option[];
-  prevAvailableOptions: NonNullMutableRef<readonly Option[] | null>;
+  prevAvailableOptions: RefObject<readonly Option[] | null>;
 }
 
 /**

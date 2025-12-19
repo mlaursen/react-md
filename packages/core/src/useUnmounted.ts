@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
-import type { NonNullRef } from "./types.js";
+import { type RefObject, useEffect, useRef } from "react";
 
 /**
  * @example Simple Example
@@ -32,7 +30,7 @@ import type { NonNullRef } from "./types.js";
  * ```
  * @since 6.0.0
  */
-export function useUnmounted(): NonNullRef<boolean> {
+export function useUnmounted(): RefObject<boolean> {
   const unmounted = useRef(false);
   useEffect(() => {
     unmounted.current = false;

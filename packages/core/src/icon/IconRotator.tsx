@@ -3,9 +3,10 @@ import {
   type CSSProperties,
   Children,
   type HTMLAttributes,
+  type ReactElement,
   type ReactNode,
+  type Ref,
   cloneElement,
-  forwardRef,
   isValidElement,
 } from "react";
 
@@ -33,6 +34,8 @@ export interface IconRotatorBaseProps
 }
 
 export interface IconRotatorProps extends IconRotatorBaseProps {
+  ref?: Ref<HTMLSpanElement>;
+
   /**
    * The icon that should be rotated. If this is a valid React Element, the
    * class names will be cloned into that icon, otherwise the icon will be
@@ -47,33 +50,32 @@ export interface IconRotatorProps extends IconRotatorBaseProps {
  *
  * @see {@link https://react-md.dev/components/icon-rotator | IconRotator Demos}
  */
-export const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
-  function IconRotator(props, ref) {
-    const {
-      className: propClassName,
-      rotated,
-      children,
-      forceIconWrap = false,
-      disableTransition = false,
-      ...remaining
-    } = props;
+export function IconRotator(props: IconRotatorProps): ReactElement {
+  const {
+    ref,
+    className: propClassName,
+    rotated,
+    children,
+    forceIconWrap = false,
+    disableTransition = false,
+    ...remaining
+  } = props;
 
-    const className = iconRotator({
-      rotated,
-      className: propClassName,
-      disableTransition,
+  const className = iconRotator({
+    rotated,
+    className: propClassName,
+    disableTransition,
+  });
+  if (!forceIconWrap && isValidElement<{ className?: string }>(children)) {
+    const child = Children.only(children);
+    return cloneElement(child, {
+      className: cnb(className, child.props.className),
     });
-    if (!forceIconWrap && isValidElement<{ className?: string }>(children)) {
-      const child = Children.only(children);
-      return cloneElement(child, {
-        className: cnb(className, child.props.className),
-      });
-    }
-
-    return (
-      <span {...remaining} ref={ref} className={className}>
-        {children}
-      </span>
-    );
   }
-);
+
+  return (
+    <span {...remaining} ref={ref} className={className}>
+      {children}
+    </span>
+  );
+}

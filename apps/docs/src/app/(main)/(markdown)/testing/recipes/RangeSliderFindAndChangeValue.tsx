@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 
-import { FrameworkCodeSwap } from "../FrameworkCodeSwap.jsx";
+import { FrameworkCodeSwap } from "../FrameworkCodeSwap.js";
 
 const DEFAULT_CODE = `
 import { describe, expect, it } from "{FRAMEWORK}";
@@ -10,7 +10,7 @@ import {
   rmdRender,
 } from "@react-md/core/test-utils";
 
-import RangeSlider from "@/components/slider/RangeSlider.jsx";
+import RangeSlider from "@/components/slider/RangeSlider.js";
 
 describe("RangeSlider", () => {
   it("should be able to change the value", async () => {

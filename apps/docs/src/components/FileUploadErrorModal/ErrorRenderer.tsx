@@ -7,7 +7,7 @@ import { Typography } from "@react-md/core/typography/Typography";
 import { filesize } from "filesize";
 import { Fragment, type ReactElement } from "react";
 
-import { ErrorHeader } from "./ErrorHeader.jsx";
+import { ErrorHeader } from "./ErrorHeader.js";
 
 export interface ErrorRendererProps {
   error: FileValidationError<never>;

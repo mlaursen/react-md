@@ -1,7 +1,12 @@
 "use client";
 
 import { cnb } from "cnbuilder";
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import {
   type BaseSheetClassNameOptions,
@@ -27,6 +32,8 @@ export interface LayoutNavProps
     BaseSheetClassNameOptions,
     TransitionCallbacks,
     TransitionActions {
+  ref?: Ref<HTMLDivElement>;
+
   children: ReactNode;
 
   /**
@@ -136,65 +143,64 @@ export interface LayoutNavProps
  * @see {@link https://react-md.dev/getting-started/layout | Layout Demos}
  * @since 6.0.0
  */
-export const LayoutNav = forwardRef<HTMLDivElement, LayoutNavProps>(
-  function LayoutNav(props, ref) {
-    const {
-      as: Component = "nav",
-      "aria-labelledby": ariaLabelledBy,
-      "aria-label": ariaLabel = Component === "nav" && !ariaLabelledBy
-        ? "Navigation"
-        : undefined,
-      expanded,
-      children,
-      className,
-      timeout = DEFAULT_SHEET_TIMEOUT,
-      classNames = DEFAULT_SHEET_CLASSNAMES,
-      appear,
-      enter,
-      exit,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExited,
-      onExiting,
-      appBarOffset,
-      ...remaining
-    } = props;
-    const { elementProps } = useCSSTransition({
-      nodeRef: ref,
-      timeout,
-      className: cnb(
-        layoutNav({ appBarOffset }),
-        sheet({
-          className,
-          raised: false,
-          horizontalSize: "none",
-        })
-      ),
-      classNames,
-      enter,
-      exit,
-      appear,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExited,
-      onExiting,
-      exitedHidden: true,
-      transitionIn: expanded,
-    });
+export function LayoutNav(props: LayoutNavProps): ReactElement {
+  const {
+    ref,
+    as: Component = "nav",
+    "aria-labelledby": ariaLabelledBy,
+    "aria-label": ariaLabel = Component === "nav" && !ariaLabelledBy
+      ? "Navigation"
+      : undefined,
+    expanded,
+    children,
+    className,
+    timeout = DEFAULT_SHEET_TIMEOUT,
+    classNames = DEFAULT_SHEET_CLASSNAMES,
+    appear,
+    enter,
+    exit,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExited,
+    onExiting,
+    appBarOffset,
+    ...remaining
+  } = props;
+  const { elementProps } = useCSSTransition({
+    nodeRef: ref,
+    timeout,
+    className: cnb(
+      layoutNav({ appBarOffset }),
+      sheet({
+        className,
+        raised: false,
+        horizontalSize: "none",
+      })
+    ),
+    classNames,
+    enter,
+    exit,
+    appear,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExited,
+    onExiting,
+    exitedHidden: true,
+    transitionIn: expanded,
+  });
 
-    return (
-      <Component
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        {...remaining}
-        {...elementProps}
-      >
-        {children}
-      </Component>
-    );
-  }
-);
+  return (
+    <Component
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      {...remaining}
+      {...elementProps}
+    >
+      {children}
+    </Component>
+  );
+}

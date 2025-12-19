@@ -1,4 +1,4 @@
-import { type MutableRefObject, type ReactElement, createRef } from "react";
+import { type ReactElement, type RefObject, createRef } from "react";
 import { beforeAll, beforeEach, describe, expect, it } from "vitest";
 
 import { SsrProvider } from "../SsrProvider.js";
@@ -10,7 +10,7 @@ const getValue = (element: HTMLElement): number =>
   Number.parseFloat(element.textContent || "");
 
 interface TestProps extends WindowSizeOptions {
-  initialRef?: MutableRefObject<ElementSize | null>;
+  initialRef?: RefObject<ElementSize | null>;
 }
 
 function Test(props: TestProps): ReactElement {

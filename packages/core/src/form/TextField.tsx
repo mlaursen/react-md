@@ -2,7 +2,8 @@ import {
   type CSSProperties,
   type HTMLAttributes,
   type InputHTMLAttributes,
-  forwardRef,
+  type ReactElement,
+  type Ref,
 } from "react";
 
 import { type PropsWithRef } from "../types.js";
@@ -55,6 +56,8 @@ export interface TextFieldProps
     TextFieldInputAttributes,
     UserAgentAutocompleteProps,
     FormFieldOptions {
+  ref?: Ref<HTMLInputElement>;
+
   /**
    * @defaultValue `"text-field-" + useId()`
    */
@@ -122,112 +125,111 @@ export interface TextFieldProps
  *
  * @see {@link https://react-md.dev/components/textfield | TextField Demos}
  */
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  function TextField(props, ref) {
-    const {
-      id: propId,
-      style,
-      className,
-      type = "text",
-      label,
-      labelProps,
-      labelStyle,
-      labelClassName,
-      autoCompleteValue,
-      autoComplete = autoCompleteValue,
-      name = autoCompleteValue,
-      dense,
-      error,
-      active,
-      inline,
-      leftAddon,
-      leftAddonProps,
-      rightAddon,
-      rightAddonProps,
-      disableLeftAddonStyles,
-      disableRightAddonStyles,
-      inputStyle,
-      inputClassName,
-      theme,
-      underlineDirection,
-      messageProps,
-      messageContainerProps,
-      containerProps,
-      ...remaining
-    } = props;
-    const { disabled, readOnly } = props;
-    const id = useEnsuredId(propId, "text-field");
+export function TextField(props: TextFieldProps): ReactElement {
+  const {
+    ref,
+    id: propId,
+    style,
+    className,
+    type = "text",
+    label,
+    labelProps,
+    labelStyle,
+    labelClassName,
+    autoCompleteValue,
+    autoComplete = autoCompleteValue,
+    name = autoCompleteValue,
+    dense,
+    error,
+    active,
+    inline,
+    leftAddon,
+    leftAddonProps,
+    rightAddon,
+    rightAddonProps,
+    disableLeftAddonStyles,
+    disableRightAddonStyles,
+    inputStyle,
+    inputClassName,
+    theme,
+    underlineDirection,
+    messageProps,
+    messageContainerProps,
+    containerProps,
+    ...remaining
+  } = props;
+  const { disabled, readOnly } = props;
+  const id = useEnsuredId(propId, "text-field");
 
-    let { placeholder = "" } = props;
-    if (label && !placeholder) {
-      // See the placeholder type definition comments for information
-      placeholder = " ";
-    }
-
-    return (
-      <FormMessageContainer
-        inline={inline}
-        {...messageContainerProps}
-        messageProps={
-          messageProps && {
-            error,
-            theme,
-            ...messageProps,
-          }
-        }
-      >
-        <TextFieldContainer
-          {...containerProps}
-          style={style}
-          className={className}
-          theme={theme}
-          label={!!label}
-          error={error}
-          dense={dense}
-          inline={inline}
-          active={active}
-          readOnly={readOnly}
-          disabled={disabled}
-          leftAddon={leftAddon}
-          leftAddonProps={leftAddonProps}
-          rightAddon={rightAddon}
-          rightAddonProps={rightAddonProps}
-          underlineDirection={underlineDirection}
-          disableLeftAddonStyles={disableLeftAddonStyles}
-          disableRightAddonStyles={disableRightAddonStyles}
-        >
-          <input
-            {...remaining}
-            id={id}
-            ref={ref}
-            type={type}
-            name={name}
-            disabled={disabled}
-            placeholder={placeholder}
-            autoComplete={autoComplete}
-            style={inputStyle}
-            className={textField({
-              className: inputClassName,
-              placeholderHidden: !!label && !active,
-            })}
-          />
-          {label && (
-            <Label
-              floating
-              dense={dense}
-              error={error}
-              active={active}
-              disabled={disabled}
-              {...labelProps}
-              htmlFor={id}
-              style={labelProps?.style ?? labelStyle}
-              className={labelProps?.className ?? labelClassName}
-            >
-              {label}
-            </Label>
-          )}
-        </TextFieldContainer>
-      </FormMessageContainer>
-    );
+  let { placeholder = "" } = props;
+  if (label && !placeholder) {
+    // See the placeholder type definition comments for information
+    placeholder = " ";
   }
-);
+
+  return (
+    <FormMessageContainer
+      inline={inline}
+      {...messageContainerProps}
+      messageProps={
+        messageProps && {
+          error,
+          theme,
+          ...messageProps,
+        }
+      }
+    >
+      <TextFieldContainer
+        {...containerProps}
+        style={style}
+        className={className}
+        theme={theme}
+        label={!!label}
+        error={error}
+        dense={dense}
+        inline={inline}
+        active={active}
+        readOnly={readOnly}
+        disabled={disabled}
+        leftAddon={leftAddon}
+        leftAddonProps={leftAddonProps}
+        rightAddon={rightAddon}
+        rightAddonProps={rightAddonProps}
+        underlineDirection={underlineDirection}
+        disableLeftAddonStyles={disableLeftAddonStyles}
+        disableRightAddonStyles={disableRightAddonStyles}
+      >
+        <input
+          {...remaining}
+          id={id}
+          ref={ref}
+          type={type}
+          name={name}
+          disabled={disabled}
+          placeholder={placeholder}
+          autoComplete={autoComplete}
+          style={inputStyle}
+          className={textField({
+            className: inputClassName,
+            placeholderHidden: !!label && !active,
+          })}
+        />
+        {label && (
+          <Label
+            floating
+            dense={dense}
+            error={error}
+            active={active}
+            disabled={disabled}
+            {...labelProps}
+            htmlFor={id}
+            style={labelProps?.style ?? labelStyle}
+            className={labelProps?.className ?? labelClassName}
+          >
+            {label}
+          </Label>
+        )}
+      </TextFieldContainer>
+    </FormMessageContainer>
+  );
+}

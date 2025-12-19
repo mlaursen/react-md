@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, forwardRef, useRef } from "react";
+import { type ReactElement, type ReactNode, type Ref, useRef } from "react";
 
 import { useDevEffect } from "../utils/useDevEffect.js";
 import { Link, type LinkProps } from "./Link.js";
@@ -23,6 +23,8 @@ const getMainElement = (mainId: string): HTMLElement | null =>
  */
 export interface SkipToMainContentProps
   extends Omit<LinkProps, "href">, SkipToMainContentClassNameOptions {
+  ref?: Ref<HTMLAnchorElement>;
+
   /**
    * @since 6.0.0 Changed default value from `"skip-to-main-content"`
    * @defaultValue `"skip-to-main"`
@@ -77,11 +79,9 @@ export interface SkipToMainContentProps
  * with the provided `mainId` in development mode. The previous behavior would
  * only log an error after being clicked.
  */
-export const SkipToMainContent = forwardRef<
-  HTMLAnchorElement,
-  SkipToMainContentProps
->(function SkipToMainContent(props, ref) {
+export function SkipToMainContent(props: SkipToMainContentProps): ReactElement {
   const {
+    ref,
     id = "skip-to-main",
     className,
     children = "Skip to main content",
@@ -144,4 +144,4 @@ export const SkipToMainContent = forwardRef<
       {children}
     </Link>
   );
-});
+}

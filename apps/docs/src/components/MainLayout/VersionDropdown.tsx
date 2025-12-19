@@ -9,7 +9,7 @@ import { DISPLAY_NONE_PHONE } from "@/constants/classnames.js";
 import { RMD_VERSION } from "@/constants/env.js";
 import { IS_MAJOR_PREVIEW, MAJOR_VERSION } from "@/constants/version.js";
 
-import { VersionMenuItem } from "./VersionMenuItem.jsx";
+import { VersionMenuItem } from "./VersionMenuItem.js";
 
 export interface VersionDropdownProps {
   isHiddenOnPhone?: boolean;

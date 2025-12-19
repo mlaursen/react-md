@@ -71,3 +71,27 @@ exports[`ListItemLink > should support the to prop for routing libraries like re
   </ul>
 </div>
 `;
+
+exports[`ListItemLink > should support the to prop for routing libraries like react-router-dom 2`] = `
+<div>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      role="none"
+    >
+      <a
+        class="rmd-list-item rmd-list-item--link rmd-list-item--normal rmd-interaction-surface"
+        href="/link"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Hello
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
+`;

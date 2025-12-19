@@ -1,6 +1,10 @@
 "use client";
 
-import { type LiHTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type LiHTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 import { type ButtonProps } from "../button/Button.js";
 import {
@@ -52,11 +56,11 @@ export interface CollapsibleNavGroupProps
  * @see {@link https://react-md.dev/components/navigation | Navigation Demos}
  * @since 6.0.0
  */
-export const CollapsibleNavGroup = forwardRef<
-  HTMLUListElement,
-  CollapsibleNavGroupProps
->(function CollapsibleNavGroup(props, ref) {
+export function CollapsibleNavGroup(
+  props: CollapsibleNavGroupProps
+): ReactElement {
   const {
+    ref,
     liProps,
     buttonProps,
     buttonChildren,
@@ -101,4 +105,4 @@ export const CollapsibleNavGroup = forwardRef<
       )}
     </NavItem>
   );
-});
+}

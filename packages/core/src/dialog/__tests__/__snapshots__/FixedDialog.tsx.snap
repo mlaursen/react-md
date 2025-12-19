@@ -2,9 +2,9 @@
 
 exports[`FixedDialog > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
-  aria-labelledby=":r0:"
+  aria-labelledby="_r_0_"
   class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline"
-  id="dialog-:r1:"
+  id="dialog-_r_1_"
   role="dialog"
   style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
   tabindex="-1"
@@ -14,7 +14,7 @@ exports[`FixedDialog > should apply the correct styling, HTMLAttributes, and all
   >
     <h2
       class="rmd-typography rmd-typography--headline-4 rmd-no-margin rmd-dialog__title"
-      id=":r0:"
+      id="_r_0_"
     >
       Hello, world!
     </h2>
@@ -45,9 +45,9 @@ exports[`FixedDialog > should apply the correct styling, HTMLAttributes, and all
 
 exports[`FixedDialog > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
-  aria-labelledby=":r0:"
+  aria-labelledby="_r_0_"
   class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline custom-class-name"
-  id="dialog-:r1:"
+  id="dialog-_r_1_"
   role="dialog"
   style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px; color: orange;"
   tabindex="-1"
@@ -57,7 +57,7 @@ exports[`FixedDialog > should apply the correct styling, HTMLAttributes, and all
   >
     <h2
       class="rmd-typography rmd-typography--headline-4 rmd-no-margin rmd-dialog__title"
-      id=":r0:"
+      id="_r_0_"
     >
       Hello, world!
     </h2>

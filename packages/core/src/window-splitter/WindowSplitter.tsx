@@ -1,4 +1,4 @@
-import { type ButtonHTMLAttributes, forwardRef } from "react";
+import { type ButtonHTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { type LabelRequiredForA11y } from "../types.js";
 import {
@@ -18,6 +18,8 @@ export interface BaseWindowSplitterProps
   extends
     Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type" | "children">,
     BaseWindowSplitterClassNameOptions {
+  ref?: Ref<HTMLButtonElement>;
+
   /**
    * This will be provided by the {@link useWindowSplitter} hook.
    */
@@ -83,11 +85,9 @@ export type WindowSplitterProps = LabelRequiredForA11y<BaseWindowSplitterProps>;
  * @see {@link https://react-md.dev/components/window-splitter | WindowSplitter Demos}
  * @since 6.0.0
  */
-export const WindowSplitter = forwardRef<
-  HTMLButtonElement,
-  WindowSplitterProps
->(function WindowSplitter(props, ref) {
+export function WindowSplitter(props: WindowSplitterProps): ReactElement {
   const {
+    ref,
     role = "separator",
     className,
     dragging,
@@ -114,4 +114,4 @@ export const WindowSplitter = forwardRef<
       })}
     />
   );
-});
+}

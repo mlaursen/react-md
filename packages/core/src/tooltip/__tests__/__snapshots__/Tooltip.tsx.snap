@@ -3,7 +3,7 @@
 exports[`Tooltip > should display the tooltip after focusing for 1s by default only in keyboard mode 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--below rmd-tooltip--visible"
-  id=":r2:-tooltip"
+  id="_r_2_-tooltip"
   role="tooltip"
   style="position: fixed; left: 16px; top: 24px;"
 >
@@ -14,7 +14,7 @@ exports[`Tooltip > should display the tooltip after focusing for 1s by default o
 exports[`Tooltip > should support controlling the visibility manually with the setVisible and hideTooltip returned functions 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--below rmd-tooltip--enter rmd-tooltip--visible"
-  id=":r6:-tooltip"
+  id="_r_6_-tooltip"
   role="tooltip"
   style="position: fixed; left: 16px; top: 24px;"
 >
@@ -25,7 +25,7 @@ exports[`Tooltip > should support controlling the visibility manually with the s
 exports[`Tooltip > should support controlling the visibility manually with the setVisible and hideTooltip returned functions 2`] = `
 <span
   class="rmd-tooltip rmd-tooltip--below rmd-tooltip--visible"
-  id=":r6:-tooltip"
+  id="_r_6_-tooltip"
   role="tooltip"
   style="position: fixed; left: 16px; top: 24px;"
 >

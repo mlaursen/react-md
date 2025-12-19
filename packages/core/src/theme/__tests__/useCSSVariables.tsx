@@ -60,7 +60,7 @@ describe("useCSSVariables", () => {
   });
 
   it("should allow for a custom root node using refs", () => {
-    function Child(props: { rootRef: RefObject<HTMLElement> }): null {
+    function Child(props: { rootRef: RefObject<HTMLElement | null> }): null {
       const { rootRef } = props;
 
       const variables = useMemo<ReadonlyCSSVariableList<CSSVariableName>>(

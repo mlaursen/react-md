@@ -1,9 +1,4 @@
-import {
-  type MutableRefObject,
-  type ReactElement,
-  useEffect,
-  useState,
-} from "react";
+import { type ReactElement, type RefObject, useEffect, useState } from "react";
 import {
   afterEach,
   beforeAll,
@@ -31,7 +26,7 @@ import {
 } from "../types.js";
 import { useTransition } from "../useTransition.js";
 
-const createStageRef = (): MutableRefObject<TransitionStage[]> => ({
+const createStageRef = (): RefObject<TransitionStage[]> => ({
   current: [],
 });
 
@@ -40,7 +35,7 @@ interface TestProps extends Omit<
   "transitionIn" | "timeout"
 > {
   timeout?: TransitionTimeout;
-  stageRef?: MutableRefObject<TransitionStage[]>;
+  stageRef?: RefObject<TransitionStage[]>;
   defaultTransitionIn?: boolean;
 }
 

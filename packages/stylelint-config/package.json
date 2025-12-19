@@ -14,11 +14,11 @@
   "dependencies": {
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-recommended-scss": "^16.0.2",
-    "stylelint-order": "^7.0.0",
-    "stylelint-scss": "^6.13.0"
+    "stylelint-order": "^7.0.1",
+    "stylelint-scss": "^6.14.0"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.1",
     "@types/node": "^24.10.4",
     "prettier": "^3.7.4",
     "typescript": "^5.9.3"

@@ -6,7 +6,7 @@ import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode } from "react";
 
-import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
+import { LinkUnstyled } from "@/components/LinkUnstyled.js";
 
 import styles from "./SimpleNavItem.module.scss";
 

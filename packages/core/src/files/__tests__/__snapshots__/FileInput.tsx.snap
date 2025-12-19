@@ -18,9 +18,8 @@ exports[`FileInput > should apply the correct styling, HTMLAttributes, and allow
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r0:"
+    id="file-input-_r_0_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -43,10 +42,9 @@ exports[`FileInput > should apply the correct styling, HTMLAttributes, and allow
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r0:"
+    id="file-input-_r_0_"
     style="color: white;"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -69,9 +67,8 @@ exports[`FileInput > should render as an icon button unless children are provide
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r2:"
+    id="file-input-_r_2_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -93,9 +90,8 @@ exports[`FileInput > should render as an icon button unless children are provide
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r2:"
+    id="file-input-_r_2_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -113,9 +109,8 @@ exports[`FileInput > should render as an icon button unless children are provide
   Upload
   <input
     class="rmd-hidden-input"
-    id="file-input-:r2:"
+    id="file-input-_r_2_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -133,9 +128,8 @@ exports[`FileInput > should render as an icon button unless children are provide
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r2:"
+    id="file-input-_r_2_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -147,9 +141,8 @@ exports[`FileInput > should render as an icon button unless children are provide
   Upload
   <input
     class="rmd-hidden-input"
-    id="file-input-:r2:"
+    id="file-input-_r_2_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -171,9 +164,8 @@ exports[`FileInput > should support all the  button themes 1`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -195,9 +187,8 @@ exports[`FileInput > should support all the  button themes 2`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -219,9 +210,8 @@ exports[`FileInput > should support all the  button themes 3`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -243,9 +233,8 @@ exports[`FileInput > should support all the  button themes 4`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -267,9 +256,8 @@ exports[`FileInput > should support all the  button themes 5`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -291,9 +279,8 @@ exports[`FileInput > should support all the  button themes 6`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -315,9 +302,8 @@ exports[`FileInput > should support all the  button themes 7`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -339,9 +325,8 @@ exports[`FileInput > should support all the  button themes 8`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -363,9 +348,8 @@ exports[`FileInput > should support all the  button themes 9`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -387,9 +371,8 @@ exports[`FileInput > should support all the  button themes 10`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -411,9 +394,8 @@ exports[`FileInput > should support all the  button themes 11`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -435,9 +417,8 @@ exports[`FileInput > should support all the  button themes 12`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -459,9 +440,8 @@ exports[`FileInput > should support all the  button themes 13`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -483,9 +463,8 @@ exports[`FileInput > should support all the  button themes 14`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -507,9 +486,8 @@ exports[`FileInput > should support all the  button themes 15`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -531,9 +509,8 @@ exports[`FileInput > should support all the  button themes 16`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -555,9 +532,8 @@ exports[`FileInput > should support all the  button themes 17`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -579,9 +555,8 @@ exports[`FileInput > should support all the  button themes 18`] = `
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r1:"
+    id="file-input-_r_1_"
     type="file"
-    value=""
   />
 </label>
 `;
@@ -604,9 +579,8 @@ exports[`FileInput > should update the default SrOnly text to be phoneOnly when 
   </span>
   <input
     class="rmd-hidden-input"
-    id="file-input-:r3:"
+    id="file-input-_r_3_"
     type="file"
-    value=""
   />
 </label>
 `;

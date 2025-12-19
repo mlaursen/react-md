@@ -1,8 +1,10 @@
+import { type Root } from "mdast";
 import remarkFrontmatter, {
   type Options as RemarkFrontmatterOptions,
 } from "remark-frontmatter";
 import remarkGfm, { type Options as RemarkGFMOptions } from "remark-gfm";
-import { type PluggableList } from "unified";
+import { type Processor } from "unified";
+import { type VFile } from "vfile";
 
 import {
   type RemarkMdxMetadataOptions,
@@ -15,15 +17,17 @@ export interface CreateRemarkPluginsOptions {
   mdxFrontmatterOptions?: RemarkMdxMetadataOptions;
 }
 
-export function createRemarkPlugins(
+export default function createRemarkPlugins(
+  this: Processor,
   options: CreateRemarkPluginsOptions = {}
-): PluggableList {
+) {
   const { gfmOptions, frontmatterOptions, mdxFrontmatterOptions } = options;
-  return [
-    [remarkFrontmatter, frontmatterOptions],
-    [remarkMdxMetadata, mdxFrontmatterOptions],
-    [remarkGfm, gfmOptions],
-  ];
-}
 
-export const remarkPlugins = createRemarkPlugins();
+  remarkFrontmatter.call(this, frontmatterOptions);
+  remarkGfm.call(this, gfmOptions);
+  const mdxMetadata = remarkMdxMetadata(mdxFrontmatterOptions);
+
+  return function remarkPlugins(tree: Root, file: VFile) {
+    mdxMetadata(tree, file);
+  };
+}

@@ -3,8 +3,8 @@
 import { useErrorBoundary } from "@react-md/core/error-boundary/useErrorBoundary";
 import { type ReactElement } from "react";
 
-import { Blockquote } from "./Blockquote.jsx";
-import { MarkdownCode } from "./MarkdownCode.jsx";
+import { Blockquote } from "./Blockquote.js";
+import { MarkdownCode } from "./MarkdownCode.js";
 
 export interface MarkdownFallbackProps {
   source: string;

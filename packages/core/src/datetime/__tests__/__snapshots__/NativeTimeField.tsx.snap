@@ -3,7 +3,7 @@
 exports[`NativeTimeField > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <input
   class="rmd-text-field rmd-text-field--placeholder-hidden"
-  id="text-field-:r0:"
+  id="text-field-_r_0_"
   name="field"
   placeholder=" "
   type="time"
@@ -14,7 +14,7 @@ exports[`NativeTimeField > should apply the correct styling, HTML attributes, an
 exports[`NativeTimeField > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <input
   class="rmd-text-field rmd-text-field--placeholder-hidden"
-  id="text-field-:r0:"
+  id="text-field-_r_0_"
   name="field"
   placeholder=" "
   type="time"
@@ -29,7 +29,7 @@ exports[`NativeTimeField > should support an error state 1`] = `
 >
   <input
     class="rmd-text-field rmd-text-field--placeholder-hidden"
-    id="text-field-:r6:"
+    id="text-field-_r_6_"
     name="field"
     placeholder=" "
     type="time"
@@ -37,7 +37,7 @@ exports[`NativeTimeField > should support an error state 1`] = `
   />
   <label
     class="rmd-label rmd-label--floating"
-    for="text-field-:r6:"
+    for="text-field-_r_6_"
   >
     Time
   </label>
@@ -52,7 +52,7 @@ exports[`NativeTimeField > should support the disabled state 1`] = `
   <input
     class="rmd-text-field rmd-text-field--placeholder-hidden"
     disabled=""
-    id="text-field-:r4:"
+    id="text-field-_r_4_"
     name="field"
     placeholder=" "
     type="time"
@@ -60,7 +60,7 @@ exports[`NativeTimeField > should support the disabled state 1`] = `
   />
   <label
     class="rmd-label rmd-label--disabled rmd-label--floating rmd-text-disabled-color"
-    for="text-field-:r4:"
+    for="text-field-_r_4_"
   >
     Time
   </label>
@@ -74,7 +74,7 @@ exports[`NativeTimeField > should support the readOnly state 1`] = `
 >
   <input
     class="rmd-text-field rmd-text-field--placeholder-hidden"
-    id="text-field-:r2:"
+    id="text-field-_r_2_"
     name="field"
     placeholder=" "
     readonly=""
@@ -83,7 +83,7 @@ exports[`NativeTimeField > should support the readOnly state 1`] = `
   />
   <label
     class="rmd-label rmd-label--floating"
-    for="text-field-:r2:"
+    for="text-field-_r_2_"
   >
     Time
   </label>

@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 import { type BaseDialogProps, Dialog } from "../dialog/Dialog.js";
 import { type LabelRequiredForA11y } from "../types.js";
@@ -66,46 +66,45 @@ export type SheetProps = LabelRequiredForA11y<BaseSheetProps>;
  *
  * @see {@link https://react-md.dev/components/sheet | Sheet Demos}
  */
-export const Sheet = forwardRef<HTMLDivElement, SheetProps>(
-  function Sheet(props, ref) {
-    const {
-      role = "dialog",
-      className,
-      position = "left",
-      horizontalSize = "media",
-      verticalSize = "recommended",
-      timeout = DEFAULT_SHEET_TIMEOUT,
-      classNames = DEFAULT_SHEET_CLASSNAMES,
-      visible,
-      temporary = true,
-      exitedHidden = true,
-      raised,
-      children,
-      ...remaining
-    } = props;
-    const { disableOverlay } = props;
+export function Sheet(props: SheetProps): ReactElement {
+  const {
+    ref,
+    role = "dialog",
+    className,
+    position = "left",
+    horizontalSize = "media",
+    verticalSize = "recommended",
+    timeout = DEFAULT_SHEET_TIMEOUT,
+    classNames = DEFAULT_SHEET_CLASSNAMES,
+    visible,
+    temporary = true,
+    exitedHidden = true,
+    raised,
+    children,
+    ...remaining
+  } = props;
+  const { disableOverlay } = props;
 
-    return (
-      <Dialog
-        {...remaining}
-        ref={ref}
-        role={role}
-        type="custom"
-        timeout={timeout}
-        classNames={classNames}
-        visible={visible}
-        temporary={temporary}
-        exitedHidden={exitedHidden}
-        className={sheet({
-          raised: raised ?? !disableOverlay,
-          position,
-          horizontalSize,
-          verticalSize,
-          className,
-        })}
-      >
-        {children}
-      </Dialog>
-    );
-  }
-);
+  return (
+    <Dialog
+      {...remaining}
+      ref={ref}
+      role={role}
+      type="custom"
+      timeout={timeout}
+      classNames={classNames}
+      visible={visible}
+      temporary={temporary}
+      exitedHidden={exitedHidden}
+      className={sheet({
+        raised: raised ?? !disableOverlay,
+        position,
+        horizontalSize,
+        verticalSize,
+        className,
+      })}
+    >
+      {children}
+    </Dialog>
+  );
+}

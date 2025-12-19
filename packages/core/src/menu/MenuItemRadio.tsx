@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type ICON_CONFIG } from "../icon/config.js";
@@ -110,8 +110,8 @@ import {
  * @see {@link https://react-md.dev/components/menu#menuitemradio-example | DropdownMenu Demos}
  * @since 2.8.0
  */
-export const MenuItemRadio = forwardRef<HTMLLIElement, MenuItemRadioProps>(
-  function MenuItemRadio(props, ref) {
-    return <MenuItemInputToggle {...props} ref={ref} type="radio" />;
-  }
-);
+export function MenuItemRadio(props: MenuItemRadioProps): ReactElement {
+  const { ref, ...remaining } = props;
+
+  return <MenuItemInputToggle {...remaining} ref={ref} type="radio" />;
+}

@@ -1,7 +1,7 @@
 import {
   type AnchorHTMLAttributes,
   type ReactElement,
-  forwardRef,
+  type Ref,
   useMemo,
   useState,
 } from "react";
@@ -85,20 +85,23 @@ function Test(props: TestProps): ReactElement {
   const [pathname, setPathname] = useState(defaultPathname);
   const FakeLink = useMemo(
     () =>
-      forwardRef<
-        HTMLAnchorElement,
-        AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
-      >(function FakeLink(props, ref) {
+      function FakeLink(
+        props: AnchorHTMLAttributes<HTMLAnchorElement> & {
+          href: string;
+          ref?: Ref<HTMLAnchorElement>;
+        }
+      ) {
+        const { ref, ...remaining } = props;
         return (
           <a
             ref={ref}
-            {...props}
+            {...remaining}
             onClick={() => {
               setPathname(props.href);
             }}
           />
         );
-      }),
+      },
     []
   );
 

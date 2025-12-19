@@ -1,6 +1,6 @@
 "use client";
 
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { type DividerProps } from "../divider/Divider.js";
 import { divider } from "../divider/styles.js";
@@ -10,7 +10,9 @@ import { useMenuConfiguration } from "./MenuConfigurationProvider.js";
 export interface MenuItemSeparatorProps
   extends
     HTMLAttributes<HTMLLIElement>,
-    Pick<DividerProps, "inset" | "vertical"> {}
+    Pick<DividerProps, "inset" | "vertical"> {
+  ref?: Ref<HTMLLIElement>;
+}
 
 /**
  * **Client Component**
@@ -22,11 +24,9 @@ export interface MenuItemSeparatorProps
  * @see {@link https://react-md.dev/components/menu | Menu Demos}
  * @since 5.0.0 Renders as an `<li>` instead of a `<div>` or `<hr />`.
  */
-export const MenuItemSeparator = forwardRef<
-  HTMLLIElement,
-  MenuItemSeparatorProps
->(function MenuItemSeparator(props, ref) {
+export function MenuItemSeparator(props: MenuItemSeparatorProps): ReactElement {
   const {
+    ref,
     className,
     inset,
     vertical: propVertical,
@@ -48,4 +48,4 @@ export const MenuItemSeparator = forwardRef<
       {children}
     </li>
   );
-});
+}

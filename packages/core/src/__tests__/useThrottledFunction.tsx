@@ -1,9 +1,4 @@
-import {
-  type MutableRefObject,
-  type ReactElement,
-  useEffect,
-  useState,
-} from "react";
+import { type ReactElement, type RefObject, useEffect, useState } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 import { Button } from "../button/Button.js";
@@ -49,7 +44,7 @@ const fakeFetch = vi.fn((search: string) =>
 );
 
 interface AsyncTestProps {
-  unmounted: MutableRefObject<boolean>;
+  unmounted: RefObject<boolean>;
   onUnmounted: () => void;
 }
 

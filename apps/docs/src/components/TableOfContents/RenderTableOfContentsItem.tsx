@@ -3,7 +3,7 @@ import { type RenderRecursiveItemsProps } from "@react-md/core/utils/RenderRecur
 import { type ReactElement, useEffect, useRef } from "react";
 
 import styles from "./RenderTableOfContentsItem.module.scss";
-import { TableOfContentsGroup } from "./TableOfContentsGroup.jsx";
+import { TableOfContentsGroup } from "./TableOfContentsGroup.js";
 
 export function RenderTableOfContentsItem(
   props: RenderRecursiveItemsProps<TableOfContentsHeadingItem, string>

@@ -6,7 +6,7 @@ import { useNavigationExpansion } from "@react-md/core/navigation/useNavigationE
 import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
 
-import { LinkUnstyled } from "@/components/LinkUnstyled.jsx";
+import { LinkUnstyled } from "@/components/LinkUnstyled.js";
 
 const items: readonly NavigationItem[] = [
   {

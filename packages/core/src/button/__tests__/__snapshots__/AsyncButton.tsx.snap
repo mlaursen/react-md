@@ -3,7 +3,7 @@
 exports[`AsyncButton > should allow for custom children to be displayed only while loading 1`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
-  id="async-button-:re:"
+  id="async-button-_r_e_"
   type="button"
 >
   <span
@@ -28,7 +28,7 @@ exports[`AsyncButton > should allow for custom children to be displayed only whi
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async rmd-button--async-overlay"
-  id="async-button-:re:"
+  id="async-button-_r_e_"
   type="button"
 >
   <span
@@ -50,11 +50,11 @@ exports[`AsyncButton > should allow for custom children to be displayed only whi
     class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
   >
     <span
-      aria-labelledby="async-button-:re:"
+      aria-labelledby="async-button-_r_e_"
       aria-valuemax="100"
       aria-valuemin="0"
       class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-      id="circular-progress-:rf:"
+      id="circular-progress-_r_f_"
       role="progressbar"
     >
       <svg
@@ -76,7 +76,7 @@ exports[`AsyncButton > should allow for custom children to be displayed only whi
 exports[`AsyncButton > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
-  id="async-button-:r0:"
+  id="async-button-_r_0_"
   type="button"
 >
   <span>
@@ -88,7 +88,7 @@ exports[`AsyncButton > should apply the correct styling, HTMLAttributes, and all
 exports[`AsyncButton > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async custom-class-name"
-  id="async-button-:r0:"
+  id="async-button-_r_0_"
   style="color: white;"
   type="button"
 >
@@ -101,7 +101,7 @@ exports[`AsyncButton > should apply the correct styling, HTMLAttributes, and all
 exports[`AsyncButton > should be able to render a circular progress bar before or after and replacing the optional addon 1`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
-  id="async-button-:rb:"
+  id="async-button-_r_b_"
   type="button"
 >
   <span
@@ -126,15 +126,15 @@ exports[`AsyncButton > should be able to render a circular progress bar before o
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
-  id="async-button-:rb:"
+  id="async-button-_r_b_"
   type="button"
 >
   <span
-    aria-labelledby="async-button-:rb:"
+    aria-labelledby="async-button-_r_b_"
     aria-valuemax="100"
     aria-valuemin="0"
     class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-    id="circular-progress-:rc:"
+    id="circular-progress-_r_c_"
     role="progressbar"
   >
     <svg
@@ -164,7 +164,7 @@ exports[`AsyncButton > should be able to render a circular progress bar before o
 exports[`AsyncButton > should be able to render a circular progress bar before or after and replacing the optional addon 3`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
-  id="async-button-:rb:"
+  id="async-button-_r_b_"
   type="button"
 >
   <span
@@ -189,7 +189,7 @@ exports[`AsyncButton > should be able to render a circular progress bar before o
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
-  id="async-button-:rb:"
+  id="async-button-_r_b_"
   type="button"
 >
   <span
@@ -202,11 +202,11 @@ exports[`AsyncButton > should be able to render a circular progress bar before o
     Button
   </span>
   <span
-    aria-labelledby="async-button-:rb:"
+    aria-labelledby="async-button-_r_b_"
     aria-valuemax="100"
     aria-valuemin="0"
     class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-    id="circular-progress-:rd:"
+    id="circular-progress-_r_d_"
     role="progressbar"
   >
     <svg
@@ -227,7 +227,7 @@ exports[`AsyncButton > should be able to render a circular progress bar before o
 exports[`AsyncButton > should default to using the same theme while loading but can use the disabled theme by enabling the loadingDisabledTheme prop 1`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
-  id="async-button-:rj:"
+  id="async-button-_r_j_"
   type="button"
 >
   <span>
@@ -240,7 +240,7 @@ exports[`AsyncButton > should default to using the same theme while loading but 
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--text rmd-button--disabled rmd-text-disabled-color rmd-interaction-surface rmd-button--async rmd-button--async-overlay"
-  id="async-button-:rj:"
+  id="async-button-_r_j_"
   type="button"
 >
   <span>
@@ -250,11 +250,11 @@ exports[`AsyncButton > should default to using the same theme while loading but 
     class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
   >
     <span
-      aria-labelledby="async-button-:rj:"
+      aria-labelledby="async-button-_r_j_"
       aria-valuemax="100"
       aria-valuemin="0"
       class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-      id="circular-progress-:rk:"
+      id="circular-progress-_r_k_"
       role="progressbar"
     >
       <svg
@@ -276,7 +276,7 @@ exports[`AsyncButton > should default to using the same theme while loading but 
 exports[`AsyncButton > should render a progressbar until the onClick's promise has been resolved if it returns a promise 1`] = `
 <button
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
-  id="async-button-:r1:"
+  id="async-button-_r_1_"
   type="button"
 >
   <span>
@@ -289,7 +289,7 @@ exports[`AsyncButton > should render a progressbar until the onClick's promise h
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async rmd-button--async-overlay"
-  id="async-button-:r1:"
+  id="async-button-_r_1_"
   type="button"
 >
   <span>
@@ -299,11 +299,11 @@ exports[`AsyncButton > should render a progressbar until the onClick's promise h
     class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
   >
     <span
-      aria-labelledby="async-button-:r1:"
+      aria-labelledby="async-button-_r_1_"
       aria-valuemax="100"
       aria-valuemin="0"
       class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-      id="circular-progress-:r2:"
+      id="circular-progress-_r_2_"
       role="progressbar"
     >
       <svg
@@ -326,7 +326,7 @@ exports[`AsyncButton > should should be able to render a linear progress bar abo
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
-  id="async-button-:r9:"
+  id="async-button-_r_9_"
   type="button"
 >
   <span>
@@ -336,11 +336,11 @@ exports[`AsyncButton > should should be able to render a linear progress bar abo
     class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-start rmd-box--justify-center"
   >
     <span
-      aria-labelledby="async-button-:r9:"
+      aria-labelledby="async-button-_r_9_"
       aria-valuemax="100"
       aria-valuemin="0"
       class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
-      id="linear-progress-:ra:"
+      id="linear-progress-_r_a_"
       role="progressbar"
     >
       <span
@@ -355,7 +355,7 @@ exports[`AsyncButton > should should be able to render a linear progress bar abo
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--text rmd-interaction-surface rmd-button--async"
-  id="async-button-:r9:"
+  id="async-button-_r_9_"
   type="button"
 >
   <span>
@@ -365,11 +365,11 @@ exports[`AsyncButton > should should be able to render a linear progress bar abo
     class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-end rmd-box--justify-center"
   >
     <span
-      aria-labelledby="async-button-:r9:"
+      aria-labelledby="async-button-_r_9_"
       aria-valuemax="100"
       aria-valuemin="0"
       class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
-      id="linear-progress-:ra:"
+      id="linear-progress-_r_a_"
       role="progressbar"
     >
       <span
@@ -384,7 +384,7 @@ exports[`AsyncButton > should use the current-color as the progress bar's color 
 <button
   aria-disabled="true"
   class="rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-secondary-container rmd-interaction-surface rmd-button--async rmd-button--async-overlay"
-  id="async-button-:rg:"
+  id="async-button-_r_g_"
   type="button"
 >
   <span>
@@ -394,11 +394,11 @@ exports[`AsyncButton > should use the current-color as the progress bar's color 
     class="rmd-overlay rmd-overlay--active rmd-overlay--visible rmd-overlay--absolute rmd-box rmd-box--gap rmd-box--wrap rmd-box--align-center rmd-box--justify-center"
   >
     <span
-      aria-labelledby="async-button-:rg:"
+      aria-labelledby="async-button-_r_g_"
       aria-valuemax="100"
       aria-valuemin="0"
       class="rmd-circular-progress rmd-circular-progress--centered"
-      id="circular-progress-:ri:"
+      id="circular-progress-_r_i_"
       role="progressbar"
     >
       <svg

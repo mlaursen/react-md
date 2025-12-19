@@ -1,12 +1,12 @@
 import { type ReactElement } from "react";
 
-import { FrameworkCodeSwap } from "../FrameworkCodeSwap.jsx";
+import { FrameworkCodeSwap } from "../FrameworkCodeSwap.js";
 
 const DEFAULT_CODE = `
 import { describe, expect, it } from "{FRAMEWORK}";
 import { rmdRender, screen, userEvent } from "@react-md/core/test-utils";
 
-import SingleSelectTree from "@/components/tree/SingleSelectTree.jsx";
+import SingleSelectTree from "@/components/tree/SingleSelectTree.js";
 
 describe("SingleSelectTree", () => {
   it("should be able to verify the selected tree items", async () => {

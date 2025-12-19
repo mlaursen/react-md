@@ -1,10 +1,10 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { type RefObject, useCallback, useState } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type AsyncButton } from "./button/AsyncButton.js";
-import { type NonNullRef, type UseStateSetter } from "./types.js";
+import { type UseStateSetter } from "./types.js";
 import { useUnmounted } from "./useUnmounted.js";
 
 /**
@@ -55,7 +55,7 @@ export interface AsyncFunctionHookImplementation {
    * );
    * ```
    */
-  unmounted: NonNullRef<boolean>;
+  unmounted: RefObject<boolean>;
   setPending: UseStateSetter<boolean>;
   handleAsync: HandleAsyncFunction;
 }

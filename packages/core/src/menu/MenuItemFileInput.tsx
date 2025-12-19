@@ -3,7 +3,7 @@
 import {
   type ChangeEventHandler,
   type InputHTMLAttributes,
-  forwardRef,
+  type ReactElement,
 } from "react";
 
 import { getIcon } from "../icon/config.js";
@@ -63,11 +63,9 @@ export interface MenuItemFileInputProps
  * menu item. This allows the menu to be closed immediately when this menu item
  * is clicked.
  */
-export const MenuItemFileInput = forwardRef<
-  HTMLLIElement,
-  MenuItemFileInputProps
->(function MenuItemFileInput(props, ref) {
+export function MenuItemFileInput(props: MenuItemFileInputProps): ReactElement {
   const {
+    ref,
     id: propId,
     onClick = noop,
     onChange,
@@ -122,4 +120,4 @@ export const MenuItemFileInput = forwardRef<
       {children}
     </MenuItem>
   );
-});
+}

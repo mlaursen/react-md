@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 
-import TestFrameworkCodeBlock from "../TestFrameworkCodeBlock.jsx";
+import TestFrameworkCodeBlock from "../TestFrameworkCodeBlock.js";
 
 const BASE_CODE = `
 import { afterEach, describe, expect, it, {LOCAL} } from "{IMPORT}";
@@ -10,7 +10,7 @@ import {
   setupResizeObserverMock,
 } from "@react-md/core/test-utils";
 import { cleanupResizeObserverAfterEach } from "@react-md/core/test-utils/{FRAMEWORK}"
-import { ExampleComponent } from "../ExampleComponent.jsx";
+import { ExampleComponent } from "../ExampleComponent.js";
 
 cleanupResizeObserverAfterEach();
 

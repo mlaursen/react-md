@@ -10,7 +10,7 @@ import InterestsIcon from "@react-md/material-icons/InterestsIcon";
 import LaunchIcon from "@react-md/material-icons/LaunchIcon";
 import { type ReactElement, type ReactNode } from "react";
 
-import { LinkUnstyled } from "../LinkUnstyled.jsx";
+import { LinkUnstyled } from "../LinkUnstyled.js";
 
 interface LinkConfig {
   href: string;

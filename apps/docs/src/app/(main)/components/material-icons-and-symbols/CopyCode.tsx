@@ -1,7 +1,7 @@
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 
-import { MarkdownCode } from "@/components/MarkdownCode.jsx";
+import { MarkdownCode } from "@/components/MarkdownCode.js";
 
 import styles from "./CopyCode.module.scss";
 

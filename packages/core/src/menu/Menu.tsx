@@ -4,7 +4,8 @@ import { cnb } from "cnbuilder";
 import {
   type CSSProperties,
   type HTMLAttributes,
-  forwardRef,
+  type ReactElement,
+  type Ref,
   useEffect,
   useRef,
 } from "react";
@@ -224,6 +225,7 @@ export interface MenuProps
     MenuTransitionProps,
     MenuListConvenienceProps,
     MenuSheetConvenienceProps {
+  ref?: Ref<HTMLDivElement>;
   visible: boolean;
   onRequestClose: () => void;
 
@@ -276,340 +278,339 @@ export interface MenuProps
  * component. In addition, the `renderAsSheet` behavior has been moved into this
  * implementation so that the `MenuRenderer` is no longer required and context
  * menus can appear as a `Sheet`.
+ * @since 7.0.0 No longer uses `forwardRef`
  */
-export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
-  function Menu(props, propRef) {
-    const {
-      id: propId,
-      style: propStyle,
-      role = "menu",
-      children,
-      horizontal: _horizontal,
-      sheetHeader: _sheetHeader,
-      sheetFooter: _sheetFooter,
-      renderAsSheet: _renderAsSheet,
-      sheetPosition: _sheetPosition,
-      sheetVerticalSize: _sheetVerticalSize,
-      sheetProps,
-      sheetStyle,
-      sheetClassName,
-      menuStyle,
-      menuClassName,
-      disableElevation = false,
-      temporary = true,
-      tabIndex = -1,
-      fixedTo,
-      className,
-      classNames,
-      timeout,
-      appear,
-      enter,
-      exit,
-      onEnter,
-      onEntering = noop,
-      onEntered = noop,
-      onExit,
-      onExiting,
-      onExited = noop,
-      onKeyDown = noop,
-      listProps,
-      listStyle,
-      listClassName,
-      visible,
-      onRequestClose,
-      floating,
-      anchor,
-      closeOnResize = false,
-      closeOnScroll = false,
-      preventScroll = false,
-      vwMargin,
-      vhMargin,
-      xMargin,
-      yMargin,
-      width,
-      transformOrigin = true,
-      preventOverlap,
-      disableSwapping,
-      disableVHBounds,
-      initialX,
-      initialY,
-      disableFixedPositioning,
-      getFixedPositionOptions,
-      disablePortal: propDisablePortal,
-      disableTransition,
-      ...remaining
-    } = props;
-    const { "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy } =
-      props;
+export function Menu(props: LabelRequiredForA11y<MenuProps>): ReactElement {
+  const {
+    id: propId,
+    ref: propRef,
+    style: propStyle,
+    role = "menu",
+    children,
+    horizontal: _horizontal,
+    sheetHeader: _sheetHeader,
+    sheetFooter: _sheetFooter,
+    renderAsSheet: _renderAsSheet,
+    sheetPosition: _sheetPosition,
+    sheetVerticalSize: _sheetVerticalSize,
+    sheetProps,
+    sheetStyle,
+    sheetClassName,
+    menuStyle,
+    menuClassName,
+    disableElevation = false,
+    temporary = true,
+    tabIndex = -1,
+    fixedTo,
+    className,
+    classNames,
+    timeout,
+    appear,
+    enter,
+    exit,
+    onEnter,
+    onEntering = noop,
+    onEntered = noop,
+    onExit,
+    onExiting,
+    onExited = noop,
+    onKeyDown = noop,
+    listProps,
+    listStyle,
+    listClassName,
+    visible,
+    onRequestClose,
+    floating,
+    anchor,
+    closeOnResize = false,
+    closeOnScroll = false,
+    preventScroll = false,
+    vwMargin,
+    vhMargin,
+    xMargin,
+    yMargin,
+    width,
+    transformOrigin = true,
+    preventOverlap,
+    disableSwapping,
+    disableVHBounds,
+    initialX,
+    initialY,
+    disableFixedPositioning,
+    getFixedPositionOptions,
+    disablePortal: propDisablePortal,
+    disableTransition,
+    ...remaining
+  } = props;
+  const { "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy } = props;
 
-    const id = useEnsuredId(propId, "menu");
-    const {
-      root,
-      menubar,
-      menuitem,
-      activeId,
-      animatedOnceRef,
-      hoverTimeoutRef,
-      disableHoverMode,
-    } = useMenuBarContext();
-    const {
-      horizontal,
-      sheetHeader,
-      sheetFooter,
-      renderAsSheet,
-      sheetPosition,
-      sheetVerticalSize,
-    } = useMenuConfiguration(props);
-    const { isPhone } = useAppSize();
-    const isSheet =
-      renderAsSheet === true || (renderAsSheet === "phone" && isPhone);
+  const id = useEnsuredId(propId, "menu");
+  const {
+    root,
+    menubar,
+    menuitem,
+    activeId,
+    animatedOnceRef,
+    hoverTimeoutRef,
+    disableHoverMode,
+  } = useMenuBarContext();
+  const {
+    horizontal,
+    sheetHeader,
+    sheetFooter,
+    renderAsSheet,
+    sheetPosition,
+    sheetVerticalSize,
+  } = useMenuConfiguration(props);
+  const { isPhone } = useAppSize();
+  const isSheet =
+    renderAsSheet === true || (renderAsSheet === "phone" && isPhone);
 
-    const entered = useRef(false);
-    const cancelUnmountFocus = useRef(false);
-    const hideWithoutRefocus = (): void => {
-      cancelUnmountFocus.current = true;
-      onRequestClose();
-    };
-    const mode = useUserInteractionMode();
-    const mouse = mode === "mouse";
+  const entered = useRef(false);
+  const cancelUnmountFocus = useRef(false);
+  const hideWithoutRefocus = (): void => {
+    cancelUnmountFocus.current = true;
+    onRequestClose();
+  };
+  const mode = useUserInteractionMode();
+  const mouse = mode === "mouse";
 
-    const { eventHandlers, transitionOptions } = useFocusContainer({
-      nodeRef: propRef,
-      activate: visible,
-      onKeyDown(event) {
-        onKeyDown(event);
+  const { eventHandlers, transitionOptions } = useFocusContainer({
+    nodeRef: propRef,
+    activate: visible,
+    onKeyDown(event) {
+      onKeyDown(event);
 
-        // when a menu is within a sheet, it should not trigger the custom
-        // keyboard behavior
-        if (isSheet) {
-          return;
-        }
+      // when a menu is within a sheet, it should not trigger the custom
+      // keyboard behavior
+      if (isSheet) {
+        return;
+      }
 
-        switch (event.key) {
-          case "Escape":
-            // prevent parent components that have an "Escape" keypress event
-            // from being triggered as well
+      switch (event.key) {
+        case "Escape":
+          // prevent parent components that have an "Escape" keypress event
+          // from being triggered as well
+          event.stopPropagation();
+          disableHoverMode();
+          onRequestClose();
+          break;
+        case "Tab":
+          // since menus are portalled, tab index is kinda broke so just close
+          // the menu instead of doing default tab behavior
+          event.preventDefault();
+
+          if (!menuitem) {
+            // pressing the tab key should still cascade close all menus
             event.stopPropagation();
-            disableHoverMode();
-            onRequestClose();
-            break;
-          case "Tab":
-            // since menus are portalled, tab index is kinda broke so just close
-            // the menu instead of doing default tab behavior
+          }
+          disableHoverMode();
+          onRequestClose();
+          break;
+        case "ArrowUp":
+          if (!root && menuitem && horizontal) {
+            event.stopPropagation();
             event.preventDefault();
-
-            if (!menuitem) {
-              // pressing the tab key should still cascade close all menus
-              event.stopPropagation();
-            }
-            disableHoverMode();
             onRequestClose();
-            break;
-          case "ArrowUp":
-            if (!root && menuitem && horizontal) {
-              event.stopPropagation();
-              event.preventDefault();
-              onRequestClose();
-            }
-            break;
-          case "ArrowLeft":
-            if (!root && menuitem && !horizontal) {
-              event.stopPropagation();
-              event.preventDefault();
-              onRequestClose();
-            }
-            break;
-        }
-      },
-      onEnter,
-      onEntering(appearing) {
-        onEntering(appearing);
-        entered.current = true;
-      },
-      onEntered(appearing) {
-        onEntered(appearing);
-        entered.current = true;
-        cancelUnmountFocus.current = false;
-        animatedOnceRef.current = true;
-      },
-      onExit,
-      onExiting,
-      onExited() {
-        onExited();
-        entered.current = false;
-      },
-      disableTransition,
-      isFocusTypeDisabled(type) {
-        if (role === "listbox") {
-          return !isSheet;
-        }
+          }
+          break;
+        case "ArrowLeft":
+          if (!root && menuitem && !horizontal) {
+            event.stopPropagation();
+            event.preventDefault();
+            onRequestClose();
+          }
+          break;
+      }
+    },
+    onEnter,
+    onEntering(appearing) {
+      onEntering(appearing);
+      entered.current = true;
+    },
+    onEntered(appearing) {
+      onEntered(appearing);
+      entered.current = true;
+      cancelUnmountFocus.current = false;
+      animatedOnceRef.current = true;
+    },
+    onExit,
+    onExiting,
+    onExited() {
+      onExited();
+      entered.current = false;
+    },
+    disableTransition,
+    isFocusTypeDisabled(type) {
+      if (role === "listbox") {
+        return !isSheet;
+      }
 
-        if (type === "keyboard") {
-          return isSheet;
-        }
+      if (type === "keyboard") {
+        return isSheet;
+      }
 
-        const isHoverDisabled = mouse && hoverTimeoutRef.current === 0;
-        if (type === "mount") {
-          return isHoverDisabled;
-        }
+      const isHoverDisabled = mouse && hoverTimeoutRef.current === 0;
+      if (type === "mount") {
+        return isHoverDisabled;
+      }
 
-        return (
-          isHoverDisabled ||
-          cancelUnmountFocus.current ||
-          (root && !!activeId && id !== activeId)
-        );
-      },
-    });
+      return (
+        isHoverDisabled ||
+        cancelUnmountFocus.current ||
+        (root && !!activeId && id !== activeId)
+      );
+    },
+  });
 
-    const { ref, style, callbacks, updateStyle } = useFixedPositioning({
-      ...transitionOptions,
-      disabled: disableFixedPositioning,
-      style: isSheet ? propStyle : menuStyle,
-      fixedTo,
-      anchor: getDefaultAnchor({
-        anchor,
-        menubar,
-        floating,
-        menuitem: !root && menuitem,
-        horizontal,
-      }),
-      vwMargin,
-      vhMargin,
-      xMargin,
-      yMargin,
-      width,
-      transformOrigin,
-      preventOverlap,
-      disableSwapping,
-      disableVHBounds,
-      initialX,
-      initialY,
-      getFixedPositionOptions,
-      onResize: closeOnResize ? hideWithoutRefocus : undefined,
-      onScroll(_event, data) {
-        if (!data.visible || closeOnScroll) {
-          hideWithoutRefocus();
-        }
-      },
-    });
-    const { rendered, disablePortal, elementProps } = useScaleTransition({
-      className: cnb(!isSheet && menuClassName, className),
-      transitionIn: visible,
-      vertical: !horizontal,
-      temporary,
-      timeout: isSheet || disableTransition ? 0 : timeout,
-      classNames,
-      appear,
-      enter,
-      exit,
-      exitedHidden: true,
-      // merge the transition callbacks
-      ...transitionOptions,
-      ...callbacks,
-      // but prefer the latest defined ref
-      nodeRef: ref,
-    });
-    useScrollLock(visible && preventScroll);
+  const { ref, style, callbacks, updateStyle } = useFixedPositioning({
+    ...transitionOptions,
+    disabled: disableFixedPositioning,
+    style: isSheet ? propStyle : menuStyle,
+    fixedTo,
+    anchor: getDefaultAnchor({
+      anchor,
+      menubar,
+      floating,
+      menuitem: !root && menuitem,
+      horizontal,
+    }),
+    vwMargin,
+    vhMargin,
+    xMargin,
+    yMargin,
+    width,
+    transformOrigin,
+    preventOverlap,
+    disableSwapping,
+    disableVHBounds,
+    initialX,
+    initialY,
+    getFixedPositionOptions,
+    onResize: closeOnResize ? hideWithoutRefocus : undefined,
+    onScroll(_event, data) {
+      if (!data.visible || closeOnScroll) {
+        hideWithoutRefocus();
+      }
+    },
+  });
+  const { rendered, disablePortal, elementProps } = useScaleTransition({
+    className: cnb(!isSheet && menuClassName, className),
+    transitionIn: visible,
+    vertical: !horizontal,
+    temporary,
+    timeout: isSheet || disableTransition ? 0 : timeout,
+    classNames,
+    appear,
+    enter,
+    exit,
+    exitedHidden: true,
+    // merge the transition callbacks
+    ...transitionOptions,
+    ...callbacks,
+    // but prefer the latest defined ref
+    nodeRef: ref,
+  });
+  useScrollLock(visible && preventScroll);
 
-    // need to make sure that the useEffect does not refire for hiding on click
-    // events because of the `window.requestAnimationFrame`. It'll make it so
-    // that menu items that update state are unable to close when clicked
-    const hide = useRef(onRequestClose);
-    useEffect(() => {
-      hide.current = onRequestClose;
-    });
-    useEffect(() => {
-      if (!visible) {
+  // need to make sure that the useEffect does not refire for hiding on click
+  // events because of the `window.requestAnimationFrame`. It'll make it so
+  // that menu items that update state are unable to close when clicked
+  const hide = useRef(onRequestClose);
+  useEffect(() => {
+    hide.current = onRequestClose;
+  });
+  useEffect(() => {
+    if (!visible) {
+      return;
+    }
+
+    const callback = (event: globalThis.MouseEvent): void => {
+      // this is required for when the transition is disabled
+      if (!entered.current) {
         return;
       }
 
-      const callback = (event: globalThis.MouseEvent): void => {
-        // this is required for when the transition is disabled
-        if (!entered.current) {
-          return;
-        }
+      // if the user clicks outside of the menu to close it, the toggle button
+      // should not be focused. instead the nearest focusable element from the
+      // click event should be focused when Tab or Shift + tab is pressed
+      cancelUnmountFocus.current =
+        !(event.target instanceof HTMLElement) ||
+        !event.target.closest(`[role="${role}"]`);
 
-        // if the user clicks outside of the menu to close it, the toggle button
-        // should not be focused. instead the nearest focusable element from the
-        // click event should be focused when Tab or Shift + tab is pressed
-        cancelUnmountFocus.current =
-          !(event.target instanceof HTMLElement) ||
-          !event.target.closest(`[role="${role}"]`);
+      // this won't be called if `event.stopPropagation()` is called
+      hide.current();
+      disableHoverMode();
+    };
 
-        // this won't be called if `event.stopPropagation()` is called
-        hide.current();
-        disableHoverMode();
-      };
+    // wait an animation frame so the initial click event that caused the menu
+    // to become visible does not immediately close the menu
+    const frame = globalThis.requestAnimationFrame(() => {
+      globalThis.addEventListener("click", callback);
+    });
 
-      // wait an animation frame so the initial click event that caused the menu
-      // to become visible does not immediately close the menu
-      const frame = globalThis.requestAnimationFrame(() => {
-        globalThis.addEventListener("click", callback);
-      });
+    return () => {
+      globalThis.cancelAnimationFrame(frame);
+      globalThis.removeEventListener("click", callback);
+    };
+  }, [disableHoverMode, role, visible]);
+  useIsomorphicLayoutEffect(() => {
+    if (!visible) {
+      return;
+    }
 
-      return () => {
-        globalThis.cancelAnimationFrame(frame);
-        globalThis.removeEventListener("click", callback);
-      };
-    }, [disableHoverMode, role, visible]);
-    useIsomorphicLayoutEffect(() => {
-      if (!visible) {
-        return;
-      }
+    updateStyle();
+  }, [updateStyle, children, visible]);
 
-      updateStyle();
-    }, [updateStyle, children, visible]);
-
-    return (
-      <MenuConfigurationProvider
-        horizontal={horizontal}
-        renderAsSheet={renderAsSheet}
-        sheetFooter={sheetFooter}
-        sheetHeader={sheetHeader}
-        sheetPosition={sheetPosition}
-        sheetVerticalSize={sheetVerticalSize}
+  return (
+    <MenuConfigurationProvider
+      horizontal={horizontal}
+      renderAsSheet={renderAsSheet}
+      sheetFooter={sheetFooter}
+      sheetHeader={sheetHeader}
+      sheetPosition={sheetPosition}
+      sheetVerticalSize={sheetVerticalSize}
+    >
+      <MenuSheet
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy as string}
+        header={sheetHeader}
+        footer={sheetFooter}
+        position={sheetPosition}
+        verticalSize={sheetVerticalSize}
+        visible={visible}
+        enabled={isSheet}
+        onRequestClose={onRequestClose}
+        style={sheetStyle}
+        className={sheetClassName}
+        disablePortal={propDisablePortal}
+        temporary={temporary}
+        disableTransition={disableTransition}
+        {...sheetProps}
       >
-        <MenuSheet
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledBy as string}
-          header={sheetHeader}
-          footer={sheetFooter}
-          position={sheetPosition}
-          verticalSize={sheetVerticalSize}
-          visible={visible}
-          enabled={isSheet}
-          onRequestClose={onRequestClose}
-          style={sheetStyle}
-          className={sheetClassName}
-          disablePortal={propDisablePortal}
-          temporary={temporary}
-          disableTransition={disableTransition}
-          {...sheetProps}
-        >
-          <Portal disabled={isSheet || (propDisablePortal ?? disablePortal)}>
-            {(rendered || isSheet) && (
-              <MenuWidget
-                {...remaining}
-                {...elementProps}
-                {...eventHandlers}
-                id={id}
-                role={role}
-                style={isSheet ? propStyle : style}
-                isSheet={isSheet}
-                tabIndex={tabIndex}
-                horizontal={horizontal}
-                listProps={listProps}
-                listStyle={listStyle}
-                listClassName={listClassName}
-                disableElevation={disableElevation}
-                cancelUnmountFocus={cancelUnmountFocus}
-              >
-                {children}
-              </MenuWidget>
-            )}
-          </Portal>
-        </MenuSheet>
-      </MenuConfigurationProvider>
-    );
-  }
-);
+        <Portal disabled={isSheet || (propDisablePortal ?? disablePortal)}>
+          {(rendered || isSheet) && (
+            <MenuWidget
+              {...remaining}
+              {...elementProps}
+              {...eventHandlers}
+              id={id}
+              role={role}
+              style={isSheet ? propStyle : style}
+              isSheet={isSheet}
+              tabIndex={tabIndex}
+              horizontal={horizontal}
+              listProps={listProps}
+              listStyle={listStyle}
+              listClassName={listClassName}
+              disableElevation={disableElevation}
+              cancelUnmountFocus={cancelUnmountFocus}
+            >
+              {children}
+            </MenuWidget>
+          )}
+        </Portal>
+      </MenuSheet>
+    </MenuConfigurationProvider>
+  );
+}

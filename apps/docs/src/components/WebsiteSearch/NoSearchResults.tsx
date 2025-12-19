@@ -3,7 +3,7 @@ import { Box } from "@react-md/core/box/Box";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
 
-import { RandomEmoji } from "../RandomEmoji.jsx";
+import { RandomEmoji } from "../RandomEmoji.js";
 
 export interface NoSearchResultsProps {
   query: string;

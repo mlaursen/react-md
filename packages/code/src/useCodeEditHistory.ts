@@ -195,7 +195,7 @@ export interface CodeEditHistoryOptions {
 
 export interface CodeEditHistoryImplementation {
   code: string;
-  editorRef: RefObject<HTMLTextAreaElement>;
+  editorRef: RefObject<HTMLTextAreaElement | null>;
   editorProps: {
     ref: RefCallback<HTMLTextAreaElement>;
     onChange: ChangeEventHandler<HTMLTextAreaElement>;
@@ -213,7 +213,7 @@ export function useCodeEditHistory(
 
   const [code, setCode] = useState(defaultCode);
   const [editorRef, editorRefCallback] = useEnsuredRef(ref);
-  const editHistoryRef = useRef<CodeEditHistory>();
+  const editHistoryRef = useRef<CodeEditHistory>(null);
   if (!editHistoryRef.current) {
     editHistoryRef.current = {
       stack: [

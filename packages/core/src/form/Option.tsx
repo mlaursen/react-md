@@ -1,7 +1,7 @@
 "use client";
 
 import { cnb } from "cnbuilder";
-import { Fragment, type ReactNode, forwardRef } from "react";
+import { Fragment, type ReactElement, type ReactNode, type Ref } from "react";
 
 import {
   TextIconSpacing,
@@ -68,6 +68,8 @@ export interface OptionSelectedIconProps {
  * `selectedIconAfter`, and `iconSpacingProps` props.
  */
 export interface OptionProps extends MenuItemProps, OptionSelectedIconProps {
+  ref?: Ref<HTMLLIElement>;
+
   /**
    * @defaultValue `"option"`
    */
@@ -137,131 +139,130 @@ export interface OptionProps extends MenuItemProps, OptionSelectedIconProps {
  * @since 6.0.0 Added the `value`, `selectedIcon`, `unselectedIcon`,
  * `selectedIconAfter`, `iconSpacingProps`, and `selectedClassName` props.
  */
-export const Option = forwardRef<HTMLLIElement, OptionProps>(
-  function Option(props, ref) {
-    const {
-      id: propId,
-      role = "option",
-      value,
-      children: propChildren,
-      onClick = noop,
-      className,
-      selectedClassName,
-      selectedIcon: propSelectedIcon,
-      unselectedIcon: propUnselectedIcon,
-      selectedIconAfter: propSelectedIconAfter,
-      disableSelectedIcon: propDisableSelectedIcon,
-      textIconSpacingProps,
-      leftAddon: propLeftAddon,
-      leftAddonType,
-      leftAddonClassName,
-      rightAddon: propRightAddon,
-      rightAddonType,
-      rightAddonClassName,
-      secondaryText,
-      height: propHeight,
-      disableTextChildren: propDisableTextChildren,
-      ...remaining
-    } = props;
+export function Option(props: OptionProps): ReactElement {
+  const {
+    ref,
+    id: propId,
+    role = "option",
+    value,
+    children: propChildren,
+    onClick = noop,
+    className,
+    selectedClassName,
+    selectedIcon: propSelectedIcon,
+    unselectedIcon: propUnselectedIcon,
+    selectedIconAfter: propSelectedIconAfter,
+    disableSelectedIcon: propDisableSelectedIcon,
+    textIconSpacingProps,
+    leftAddon: propLeftAddon,
+    leftAddonType,
+    leftAddonClassName,
+    rightAddon: propRightAddon,
+    rightAddonType,
+    rightAddonClassName,
+    secondaryText,
+    height: propHeight,
+    disableTextChildren: propDisableTextChildren,
+    ...remaining
+  } = props;
 
-    const id = useEnsuredId(propId, "option");
-    const {
-      selectOption,
-      isOptionSelected,
-      disableSelectedIcon: contextDisableSelectedIcon,
-      selectedIcon: contextSelectedIcon,
-      unselectedIcon: contextUnselectedIcon,
-      selectedIconAfter: contextSelectedIconAfter,
-    } = useListboxContext();
-    const selectedIconAfter = propSelectedIconAfter ?? contextSelectedIconAfter;
-    const disableSelectedIcon =
-      propDisableSelectedIcon ?? contextDisableSelectedIcon;
-    const selected = isOptionSelected(value);
-    const selectedIcon = getIcon(
-      "selected",
-      disableSelectedIcon ? null : (propSelectedIcon ?? contextSelectedIcon)
-    );
-    const unselectedIcon = disableSelectedIcon
-      ? null
-      : (propUnselectedIcon ??
-        contextUnselectedIcon ??
-        DEFAULT_OPTION_UNSELECTED_ICON);
-    const icon = selected ? selectedIcon : unselectedIcon;
+  const id = useEnsuredId(propId, "option");
+  const {
+    selectOption,
+    isOptionSelected,
+    disableSelectedIcon: contextDisableSelectedIcon,
+    selectedIcon: contextSelectedIcon,
+    unselectedIcon: contextUnselectedIcon,
+    selectedIconAfter: contextSelectedIconAfter,
+  } = useListboxContext();
+  const selectedIconAfter = propSelectedIconAfter ?? contextSelectedIconAfter;
+  const disableSelectedIcon =
+    propDisableSelectedIcon ?? contextDisableSelectedIcon;
+  const selected = isOptionSelected(value);
+  const selectedIcon = getIcon(
+    "selected",
+    disableSelectedIcon ? null : (propSelectedIcon ?? contextSelectedIcon)
+  );
+  const unselectedIcon = disableSelectedIcon
+    ? null
+    : (propUnselectedIcon ??
+      contextUnselectedIcon ??
+      DEFAULT_OPTION_UNSELECTED_ICON);
+  const icon = selected ? selectedIcon : unselectedIcon;
 
-    let leftAddon = propLeftAddon;
-    let rightAddon = propRightAddon;
-    let children = propChildren;
-    let disableTextChildren = propDisableTextChildren;
-    if (!selectedIconAfter && icon) {
-      leftAddon = icon;
-      if (propLeftAddon) {
-        disableTextChildren = true;
-        const Wrapper = propDisableTextChildren ? Fragment : ListItemText;
+  let leftAddon = propLeftAddon;
+  let rightAddon = propRightAddon;
+  let children = propChildren;
+  let disableTextChildren = propDisableTextChildren;
+  if (!selectedIconAfter && icon) {
+    leftAddon = icon;
+    if (propLeftAddon) {
+      disableTextChildren = true;
+      const Wrapper = propDisableTextChildren ? Fragment : ListItemText;
 
-        children = (
-          <TextIconSpacing {...textIconSpacingProps} icon={propLeftAddon}>
-            <Wrapper>{children}</Wrapper>
-          </TextIconSpacing>
-        );
-      }
-    } else if (icon) {
-      rightAddon = icon;
-      if (propRightAddon) {
-        disableTextChildren = true;
-        const Wrapper = propDisableTextChildren ? Fragment : ListItemText;
-
-        children = (
-          <TextIconSpacing {...textIconSpacingProps} icon={propRightAddon}>
-            <Wrapper>{children}</Wrapper>
-          </TextIconSpacing>
-        );
-      }
+      children = (
+        <TextIconSpacing {...textIconSpacingProps} icon={propLeftAddon}>
+          <Wrapper>{children}</Wrapper>
+        </TextIconSpacing>
+      );
     }
+  } else if (icon) {
+    rightAddon = icon;
+    if (propRightAddon) {
+      disableTextChildren = true;
+      const Wrapper = propDisableTextChildren ? Fragment : ListItemText;
 
-    const height = getListItemHeight({
-      height: propHeight,
-      leftAddon: leftAddon === icon ? null : leftAddon,
-      leftAddonType,
-      rightAddon: rightAddon === icon ? null : rightAddon,
-      rightAddonType,
-      secondaryText,
-    });
-
-    return (
-      <MenuItem
-        {...remaining}
-        aria-selected={selected || undefined}
-        id={id}
-        ref={ref}
-        role={role}
-        onClick={(event) => {
-          onClick(event);
-          selectOption(value);
-        }}
-        className={option({
-          icon: !!icon,
-          selected,
-          selectedClassName,
-          className,
-        })}
-        secondaryText={secondaryText}
-        height={height}
-        leftAddon={leftAddon}
-        leftAddonType={leftAddonType}
-        leftAddonClassName={cnb(
-          leftAddon === icon && "rmd-option__icon",
-          leftAddonClassName
-        )}
-        rightAddon={rightAddon}
-        rightAddonType={rightAddonType}
-        rightAddonClassName={cnb(
-          rightAddon === icon && "rmd-option__icon",
-          rightAddonClassName
-        )}
-        disableTextChildren={disableTextChildren}
-      >
-        {children}
-      </MenuItem>
-    );
+      children = (
+        <TextIconSpacing {...textIconSpacingProps} icon={propRightAddon}>
+          <Wrapper>{children}</Wrapper>
+        </TextIconSpacing>
+      );
+    }
   }
-);
+
+  const height = getListItemHeight({
+    height: propHeight,
+    leftAddon: leftAddon === icon ? null : leftAddon,
+    leftAddonType,
+    rightAddon: rightAddon === icon ? null : rightAddon,
+    rightAddonType,
+    secondaryText,
+  });
+
+  return (
+    <MenuItem
+      {...remaining}
+      aria-selected={selected || undefined}
+      id={id}
+      ref={ref}
+      role={role}
+      onClick={(event) => {
+        onClick(event);
+        selectOption(value);
+      }}
+      className={option({
+        icon: !!icon,
+        selected,
+        selectedClassName,
+        className,
+      })}
+      secondaryText={secondaryText}
+      height={height}
+      leftAddon={leftAddon}
+      leftAddonType={leftAddonType}
+      leftAddonClassName={cnb(
+        leftAddon === icon && "rmd-option__icon",
+        leftAddonClassName
+      )}
+      rightAddon={rightAddon}
+      rightAddonType={rightAddonType}
+      rightAddonClassName={cnb(
+        rightAddon === icon && "rmd-option__icon",
+        rightAddonClassName
+      )}
+      disableTextChildren={disableTextChildren}
+    >
+      {children}
+    </MenuItem>
+  );
+}

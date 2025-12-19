@@ -17,8 +17,8 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { type TextFieldProps } from "./TextField.js";
 import {
+  type ConfigurableFormMessageProps,
   type FormMessageInputLengthCounterProps,
-  type FormMessageProps,
 } from "./types.js";
 import { useFormReset } from "./useFormReset.js";
 import {
@@ -53,7 +53,7 @@ export interface ErrorChangeHandlerOptions<
    * A ref containing the `TextField` or `TextArea` if you need access to that
    * DOM node for error reporting.
    */
-  ref: RefObject<E>;
+  ref: RefObject<E | null>;
 
   /**
    * The current name for the `TextField` or `TextArea`.
@@ -126,7 +126,7 @@ export interface TextFieldHookState {
  */
 export interface ProvidedFormMessageProps
   extends
-    Pick<FormMessageProps, "id" | "theme" | "children">,
+    Pick<ConfigurableFormMessageProps, "id" | "theme" | "children">,
     Required<Pick<TextFieldProps, "error">>,
     Partial<Pick<FormMessageInputLengthCounterProps, "length" | "maxLength">> {}
 
@@ -348,7 +348,7 @@ export interface TextFieldHookOptions<
 export interface TextFieldImplementation<
   E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 > extends TextFieldHookState {
-  fieldRef: RefObject<E>;
+  fieldRef: RefObject<E | null>;
   reset: () => void;
   setState: UseStateSetter<Readonly<TextFieldHookState>>;
   fieldProps: ProvidedTextFieldProps<E>;

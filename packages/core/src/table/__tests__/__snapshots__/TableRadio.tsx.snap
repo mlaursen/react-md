@@ -13,9 +13,8 @@ exports[`TableRadio > should apply the correct styling, HTML attributes, and all
       <input
         aria-label="Select Row"
         class="rmd-hidden-input"
-        id="radio-:r0:"
+        id="radio-_r_0_"
         type="radio"
-        value=""
       />
       <span
         aria-hidden="true"
@@ -48,9 +47,8 @@ exports[`TableRadio > should apply the correct styling, HTML attributes, and all
       <input
         aria-label="Select Row"
         class="rmd-hidden-input"
-        id="radio-:r0:"
+        id="radio-_r_0_"
         type="radio"
-        value=""
       />
       <span
         aria-hidden="true"
@@ -82,9 +80,8 @@ exports[`TableRadio > should handle the aria-label/aria-labelledby props correct
       <input
         aria-label="Custom Label"
         class="rmd-hidden-input"
-        id="radio-:r3:"
+        id="radio-_r_3_"
         type="radio"
-        value=""
       />
       <span
         aria-hidden="true"
@@ -116,9 +113,8 @@ exports[`TableRadio > should handle the aria-label/aria-labelledby props correct
       <input
         aria-labelledby="another-id"
         class="rmd-hidden-input"
-        id="radio-:r3:"
+        id="radio-_r_3_"
         type="radio"
-        value=""
       />
       <span
         aria-hidden="true"

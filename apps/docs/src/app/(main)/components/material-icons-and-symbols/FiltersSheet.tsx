@@ -13,8 +13,8 @@ import { cnb } from "cnbuilder";
 import { type ReactElement, useEffect, useId, useState } from "react";
 
 import styles from "./FiltersSheet.module.scss";
-import { FiltersSheetContent } from "./FiltersSheetContent.jsx";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { FiltersSheetContent } from "./FiltersSheetContent.js";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 
 export interface FiltersSheetProps {
   className: string;

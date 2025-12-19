@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import { forwardRef } from "react";
+import { type ReactElement, type Ref } from "react";
 
 import { type Margin } from "../cssUtils.js";
 import {
@@ -14,6 +14,8 @@ import { type TypographyType } from "../typography/typographyStyles.js";
  * `HTMLAttributes<HTMLHeadingElement>`.
  */
 export interface DialogTitleProps extends TypographyProps {
+  ref?: Ref<HTMLHeadingElement>;
+
   /** @defaultValue `"h2"` */
   as?: CustomTypographyComponent;
 
@@ -31,29 +33,28 @@ export interface DialogTitleProps extends TypographyProps {
  *
  * @see {@link https://react-md.dev/components/dialog | Dialog Demos}
  */
-export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
-  function DialogTitle(props, ref) {
-    const {
-      as = "h2",
-      type = "headline-4",
-      margin = "none",
-      children,
-      className,
-      ...remaining
-    } = props;
+export function DialogTitle(props: DialogTitleProps): ReactElement {
+  const {
+    ref,
+    as = "h2",
+    type = "headline-4",
+    margin = "none",
+    children,
+    className,
+    ...remaining
+  } = props;
 
-    return (
-      <Typography
-        {...remaining}
-        ref={ref}
-        as={as}
-        type={type}
-        margin={margin}
-        // Note: This class applies no styles at this time
-        className={cnb("rmd-dialog__title", className)}
-      >
-        {children}
-      </Typography>
-    );
-  }
-);
+  return (
+    <Typography
+      {...remaining}
+      ref={ref}
+      as={as}
+      type={type}
+      margin={margin}
+      // Note: This class applies no styles at this time
+      className={cnb("rmd-dialog__title", className)}
+    >
+      {children}
+    </Typography>
+  );
+}

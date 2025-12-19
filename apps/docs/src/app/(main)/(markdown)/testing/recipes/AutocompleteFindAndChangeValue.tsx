@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 
-import { FrameworkCodeSwap } from "../FrameworkCodeSwap.jsx";
+import { FrameworkCodeSwap } from "../FrameworkCodeSwap.js";
 
 const DEFAULT_CODE = `
 import { describe, expect, it } from "{FRAMEWORK}";
@@ -11,7 +11,7 @@ import {
   userEvent,
 } from "@react-md/core/test-utils";
 
-import SimpleExample from "@/components/autocomplete/SimpleExample.jsx";
+import SimpleExample from "@/components/autocomplete/SimpleExample.js";
 
 describe("SimpleExample", () => {
   it("should be able to change the value", async () => {

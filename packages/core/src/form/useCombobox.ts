@@ -30,11 +30,7 @@ import {
 } from "../positioning/types.js";
 import { getTransitionCallbacks } from "../transition/getTransitionCallbacks.js";
 import { type TransitionCallbacks } from "../transition/types.js";
-import {
-  type NonNullMutableRef,
-  type UseStateInitializer,
-  type UseStateSetter,
-} from "../types.js";
+import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useEnsuredState } from "../useEnsuredState.js";
@@ -74,7 +70,7 @@ export interface ComboboxKeyboardMovementData<
    * @since 6.3.0 Renamed from `focusLast` to `focusLastRef` to support the new
    * actions.
    */
-  focusLastRef: NonNullMutableRef<boolean>;
+  focusLastRef: RefObject<boolean>;
 }
 
 /**
@@ -271,7 +267,7 @@ export interface ProvidedComboboxMenuProps<
   width: PositionWidth;
   /** @defaultValue `BELOW_CENTER_ANCHOR` */
   anchor: PositionAnchor;
-  fixedTo: RefObject<HTMLElement>;
+  fixedTo: RefObject<HTMLElement | null>;
   sheetProps: MenuSheetConfigurableProps &
     Required<ComboboxTransitionCallbacks>;
 }
@@ -295,10 +291,10 @@ export interface ComboboxImplementation<
   hide: () => void;
   visible: boolean;
   setVisible: UseStateSetter<boolean>;
-  focusLast: NonNullMutableRef<boolean>;
-  popupRef: RefObject<PopupEl>;
+  focusLast: RefObject<boolean>;
+  popupRef: RefObject<PopupEl | null>;
   popupProps: ComboboxWidgetPopupProps<PopupEl>;
-  comboboxRef: RefObject<ComboboxEl>;
+  comboboxRef: RefObject<ComboboxEl | null>;
   comboboxProps: ComboboxWidgetProps<ComboboxEl>;
   /**
    * Since the combobox usually uses the `Menu` as a popup element, this is a

@@ -18,13 +18,13 @@ exports[`TextField > should allow for addons before and after the input 1`] = `
   </span>
   <input
     class="rmd-text-field rmd-text-field--placeholder-hidden"
-    id="text-field-:ra:"
+    id="text-field-_r_a_"
     placeholder=" "
     type="text"
   />
   <label
     class="rmd-label rmd-label--floating"
-    for="text-field-:ra:"
+    for="text-field-_r_a_"
   >
     Field
   </label>
@@ -49,7 +49,7 @@ exports[`TextField > should allow the active state to be controlled programmatic
 >
   <input
     class="rmd-text-field"
-    id="text-field-:r4:"
+    id="text-field-_r_4_"
     placeholder=""
     type="text"
   />
@@ -63,7 +63,7 @@ exports[`TextField > should allow the active state to be controlled programmatic
 >
   <input
     class="rmd-text-field"
-    id="text-field-:r4:"
+    id="text-field-_r_4_"
     placeholder=""
     type="text"
   />
@@ -77,13 +77,13 @@ exports[`TextField > should allow the active state to be controlled programmatic
 >
   <input
     class="rmd-text-field rmd-text-field--placeholder-hidden"
-    id="text-field-:r4:"
+    id="text-field-_r_4_"
     placeholder=" "
     type="text"
   />
   <label
     class="rmd-label rmd-label--floating"
-    for="text-field-:r4:"
+    for="text-field-_r_4_"
   >
     Label
   </label>
@@ -97,13 +97,13 @@ exports[`TextField > should allow the active state to be controlled programmatic
 >
   <input
     class="rmd-text-field"
-    id="text-field-:r4:"
+    id="text-field-_r_4_"
     placeholder=" "
     type="text"
   />
   <label
     class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active"
-    for="text-field-:r4:"
+    for="text-field-_r_4_"
   >
     Label
   </label>
@@ -114,7 +114,7 @@ exports[`TextField > should allow the label to by styled by labelProps or the la
 <label
   class="rmd-label rmd-label--floating label-props-class-name"
   data-testid="label"
-  for="text-field-:rb:"
+  for="text-field-_r_b_"
   style="background: orange;"
 >
   Label
@@ -125,7 +125,7 @@ exports[`TextField > should allow the label to by styled by labelProps or the la
 <label
   class="rmd-label rmd-label--floating label-class-name"
   data-testid="label"
-  for="text-field-:rb:"
+  for="text-field-_r_b_"
   style="color: rgb(255, 0, 0);"
 >
   Label
@@ -135,7 +135,7 @@ exports[`TextField > should allow the label to by styled by labelProps or the la
 exports[`TextField > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <input
   class="rmd-text-field rmd-text-field--placeholder-hidden"
-  id="text-field-:r0:"
+  id="text-field-_r_0_"
   placeholder=" "
   type="text"
 />
@@ -144,7 +144,7 @@ exports[`TextField > should apply the correct styling, HTML attributes, and allo
 exports[`TextField > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <input
   class="rmd-text-field rmd-text-field--placeholder-hidden"
-  id="text-field-:r0:"
+  id="text-field-_r_0_"
   placeholder=" "
   type="text"
 />
@@ -160,13 +160,13 @@ exports[`TextField > should automatically merge the error and theme props when m
   >
     <input
       class="rmd-text-field rmd-text-field--placeholder-hidden"
-      id="text-field-:r7:"
+      id="text-field-_r_7_"
       placeholder=" "
       type="text"
     />
     <label
       class="rmd-label rmd-label--error rmd-label--floating rmd-error-color"
-      for="text-field-:r7:"
+      for="text-field-_r_7_"
     >
       Field
     </label>
@@ -174,11 +174,11 @@ exports[`TextField > should automatically merge the error and theme props when m
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--filled rmd-error-color"
-    id="form-message-:r8:"
+    id="form-message-_r_8_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r8:-message"
+      id="form-message-_r_8_-message"
     >
       Help Text
     </p>
@@ -196,13 +196,13 @@ exports[`TextField > should render the FormMessageContainer when the messageProp
   >
     <input
       class="rmd-text-field rmd-text-field--placeholder-hidden"
-      id="text-field-:r5:"
+      id="text-field-_r_5_"
       placeholder=" "
       type="text"
     />
     <label
       class="rmd-label rmd-label--floating"
-      for="text-field-:r5:"
+      for="text-field-_r_5_"
     >
       Field
     </label>
@@ -210,11 +210,11 @@ exports[`TextField > should render the FormMessageContainer when the messageProp
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
-    id="form-message-:r6:"
+    id="form-message-_r_6_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r6:-message"
+      id="form-message-_r_6_-message"
     >
       Help text
     </p>
@@ -232,13 +232,13 @@ exports[`TextField > should render the FormMessageContainer when the messageProp
   >
     <input
       class="rmd-text-field rmd-text-field--placeholder-hidden"
-      id="text-field-:r5:"
+      id="text-field-_r_5_"
       placeholder=" "
       type="text"
     />
     <label
       class="rmd-label rmd-label--floating"
-      for="text-field-:r5:"
+      for="text-field-_r_5_"
     >
       Field
     </label>
@@ -246,11 +246,11 @@ exports[`TextField > should render the FormMessageContainer when the messageProp
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
-    id="form-message-:r6:"
+    id="form-message-_r_6_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r6:-message"
+      id="form-message-_r_6_-message"
     >
       Help text
     </p>
@@ -265,13 +265,13 @@ exports[`TextField > should support an error state 1`] = `
 >
   <input
     class="rmd-text-field rmd-text-field--placeholder-hidden"
-    id="text-field-:r3:"
+    id="text-field-_r_3_"
     placeholder=" "
     type="text"
   />
   <label
     class="rmd-label rmd-label--error rmd-label--floating rmd-error-color"
-    for="text-field-:r3:"
+    for="text-field-_r_3_"
   >
     Label
   </label>
@@ -286,13 +286,13 @@ exports[`TextField > should support the disabled state 1`] = `
   <input
     class="rmd-text-field rmd-text-field--placeholder-hidden"
     disabled=""
-    id="text-field-:r2:"
+    id="text-field-_r_2_"
     placeholder=" "
     type="text"
   />
   <label
     class="rmd-label rmd-label--disabled rmd-label--floating rmd-text-disabled-color"
-    for="text-field-:r2:"
+    for="text-field-_r_2_"
   >
     Label
   </label>
@@ -306,7 +306,7 @@ exports[`TextField > should support the readOnly state 1`] = `
 >
   <input
     class="rmd-text-field"
-    id="text-field-:r1:"
+    id="text-field-_r_1_"
     placeholder=""
     readonly=""
     type="text"

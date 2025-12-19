@@ -61,13 +61,13 @@ export interface TabListHookReturnValue {
   };
   movementContext: KeyboardMovementContext;
   backwardProps: {
-    ref: RefObject<HTMLDivElement>;
+    ref: RefObject<HTMLDivElement | null>;
     type: "back";
     vertical: boolean;
     disableTransition?: boolean;
   };
   forwardProps: {
-    ref: RefObject<HTMLDivElement>;
+    ref: RefObject<HTMLDivElement | null>;
     type: "forward";
     vertical: boolean;
     disableTransition?: boolean;

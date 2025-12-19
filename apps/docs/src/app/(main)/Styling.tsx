@@ -3,7 +3,7 @@ import { highlightCode } from "@react-md/code/prismjs/highlight";
 import { Link } from "@react-md/core/link/Link";
 import { type ReactElement } from "react";
 
-import { HomePageSection } from "./HomePageSection.jsx";
+import { HomePageSection } from "./HomePageSection.js";
 
 const code = `@use "@react-md/core/colors";
 @use "@react-md/core" with (

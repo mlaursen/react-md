@@ -1,6 +1,11 @@
 "use client";
 
-import { type HTMLAttributes, forwardRef, useMemo } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type Ref,
+  useMemo,
+} from "react";
 
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import {
@@ -9,7 +14,9 @@ import {
 } from "./TableContainerProvider.js";
 import { tableContainer } from "./tableContainerStyles.js";
 
-export type TableContainerProps = HTMLAttributes<HTMLDivElement>;
+export interface TableContainerProps extends HTMLAttributes<HTMLDivElement> {
+  ref?: Ref<HTMLDivElement>;
+}
 
 /**
  * **Client Component**
@@ -21,29 +28,27 @@ export type TableContainerProps = HTMLAttributes<HTMLDivElement>;
  *
  * @see {@link https://react-md.dev/components/table | Table Demos}
  */
-export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
-  function TableContainer(props, ref) {
-    const { className, children, ...remaining } = props;
-    const [nodeRef, refCallback] = useEnsuredRef(ref);
+export function TableContainer(props: TableContainerProps): ReactElement {
+  const { ref, className, children, ...remaining } = props;
+  const [nodeRef, refCallback] = useEnsuredRef(ref);
 
-    const value = useMemo<TableContainerContext>(
-      () => ({
-        exists: true,
-        containerRef: nodeRef,
-      }),
-      [nodeRef]
-    );
+  const value = useMemo<TableContainerContext>(
+    () => ({
+      exists: true,
+      containerRef: nodeRef,
+    }),
+    [nodeRef]
+  );
 
-    return (
-      <TableContainerProvider value={value}>
-        <div
-          {...remaining}
-          ref={refCallback}
-          className={tableContainer({ className })}
-        >
-          {children}
-        </div>
-      </TableContainerProvider>
-    );
-  }
-);
+  return (
+    <TableContainerProvider value={value}>
+      <div
+        {...remaining}
+        ref={refCallback}
+        className={tableContainer({ className })}
+      >
+        {children}
+      </div>
+    </TableContainerProvider>
+  );
+}

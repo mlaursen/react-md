@@ -17,20 +17,20 @@ import {
   isValidElement,
 } from "react";
 
-import { Blockquote } from "@/components/Blockquote.jsx";
-import { CompiledScssCodeBlock } from "@/components/CompiledScssCodeBlock/CompiledScssCodeBlock.jsx";
-import { LinkableHeading } from "@/components/LinkableHeading.jsx";
+import { Blockquote } from "@/components/Blockquote.js";
+import { CompiledScssCodeBlock } from "@/components/CompiledScssCodeBlock/CompiledScssCodeBlock.js";
+import { LinkableHeading } from "@/components/LinkableHeading.js";
 import {
   MarkdownCode,
   type MarkdownCodeProps,
-} from "@/components/MarkdownCode.jsx";
-import { MarkdownLink } from "@/components/MarkdownLink.jsx";
-import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/PackageManagerCodeBlock.jsx";
-import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
-import { TypescriptCodeBlock } from "@/components/TypescriptCodeBlock.jsx";
+} from "@/components/MarkdownCode.js";
+import { MarkdownLink } from "@/components/MarkdownLink.js";
+import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/PackageManagerCodeBlock.js";
+import { TableOfContents } from "@/components/TableOfContents/TableOfContents.js";
+import { TypescriptCodeBlock } from "@/components/TypescriptCodeBlock.js";
 
 import styles from "./CustomMdxComponents.module.scss";
-import { MarkdownImage } from "./MarkdownImage.jsx";
+import { MarkdownImage } from "./MarkdownImage.js";
 
 interface HeadingProps {
   id: string;

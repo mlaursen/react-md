@@ -7,15 +7,15 @@ import { cnb } from "cnbuilder";
 import dynamic from "next/dynamic.js";
 import { type ReactElement } from "react";
 
-import { DesktopOnly } from "./DesktopOnly.jsx";
+import { DesktopOnly } from "./DesktopOnly.js";
 import styles from "./HowToUseSheet.module.scss";
-import { HowToUseSheetContent } from "./HowToUseSheetContent.jsx";
-import { HowToUseSheetHeader } from "./HowToUseSheetHeader.jsx";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { HowToUseSheetContent } from "./HowToUseSheetContent.js";
+import { HowToUseSheetHeader } from "./HowToUseSheetHeader.js";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 
 const ResizeHowToUseSheet = dynamic(
   () =>
-    import("./ResizeHowToUseSheet.jsx").then((mod) => mod.ResizeHowToUseSheet),
+    import("./ResizeHowToUseSheet.js").then((mod) => mod.ResizeHowToUseSheet),
   {
     ssr: false,
   }

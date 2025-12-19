@@ -601,6 +601,8 @@ export interface AutocompleteCircularProgressProps extends CircularProgressProps
  * @since 6.0.0
  */
 export interface AutocompleteChipProps extends ChipProps {
+  ref?: Ref<HTMLButtonElement>;
+
   /**
    * @defaultValue `typeof children === "string" ? \`Remove "${children}"\` : undefined`
    */

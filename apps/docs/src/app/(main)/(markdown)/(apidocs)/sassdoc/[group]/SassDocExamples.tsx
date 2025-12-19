@@ -1,11 +1,11 @@
 import { Fragment, type ReactElement } from "react";
 import { type CompiledExample } from "sassdoc-generator/types";
 
-import { LinkableHeading } from "@/components/LinkableHeading.jsx";
-import { MarkdownCode } from "@/components/MarkdownCode.jsx";
+import { LinkableHeading } from "@/components/LinkableHeading.js";
+import { MarkdownCode } from "@/components/MarkdownCode.js";
 import { slug } from "@/utils/slug.js";
 
-import { SassDocExampleEditor } from "./SassDocExampleEditor.jsx";
+import { SassDocExampleEditor } from "./SassDocExampleEditor.js";
 
 export interface SassDocExamplesProps {
   itemId: string;

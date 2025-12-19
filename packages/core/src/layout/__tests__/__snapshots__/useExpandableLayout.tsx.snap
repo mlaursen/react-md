@@ -27,7 +27,7 @@ exports[`useExpandableLayout > should allow you to create an expandable layout q
 exports[`useExpandableLayout > should allow you to create an expandable layout quickly 2`] = `
 <main
   class="rmd-layout-main rmd-layout-main--offset-v rmd-layout-h"
-  id="main-:r3:"
+  id="main-_r_3_"
 >
   Hello, world!
   <div
@@ -54,7 +54,7 @@ exports[`useExpandableLayout > should allow you to create an expandable layout q
         <input
           checked=""
           class="rmd-hidden-input"
-          id="radio-:r0:"
+          id="radio-_r_0_"
           name="pathname"
           type="radio"
           value="/"
@@ -76,7 +76,7 @@ exports[`useExpandableLayout > should allow you to create an expandable layout q
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r1:"
+          id="radio-_r_1_"
           name="pathname"
           type="radio"
           value="/1"
@@ -98,7 +98,7 @@ exports[`useExpandableLayout > should allow you to create an expandable layout q
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r2:"
+          id="radio-_r_2_"
           name="pathname"
           type="radio"
           value="/2"

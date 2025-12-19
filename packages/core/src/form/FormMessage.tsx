@@ -1,13 +1,21 @@
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 import { useEnsuredId } from "../useEnsuredId.js";
 import { FormMessageCounter } from "./FormMessageCounter.js";
 import { getFormConfig } from "./formConfig.js";
 import { formMessage, formMessageText } from "./formMessageStyles.js";
 import {
+  type ConfigurableFormMessageProps,
   type FormMessageInputLengthCounterProps,
-  type FormMessageProps,
 } from "./types.js";
+
+/**
+ * @since 7.0.0 This was defined inline
+ */
+export interface FormMessageProps
+  extends
+    ConfigurableFormMessageProps,
+    Partial<FormMessageInputLengthCounterProps> {}
 
 /**
  * The `FormMessage` component is used to create additional helper messages or
@@ -20,11 +28,9 @@ import {
  *
  * @see {@link https://react-md.dev/components/form-message | FormMessage Demos}
  */
-export const FormMessage = forwardRef<
-  HTMLDivElement,
-  FormMessageProps & Partial<FormMessageInputLengthCounterProps>
->(function FormMessage(props, ref) {
+export function FormMessage(props: FormMessageProps): ReactElement {
   const {
+    ref,
     id: propId,
     role,
     className,
@@ -81,4 +87,4 @@ export const FormMessage = forwardRef<
       )}
     </div>
   );
-});
+}

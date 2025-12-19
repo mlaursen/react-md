@@ -3,7 +3,7 @@ import { Typography } from "@react-md/core/typography/Typography";
 import { typography } from "@react-md/core/typography/typographyStyles";
 import { type ReactElement, type ReactNode } from "react";
 
-import NotFoundSVG from "./NotFoundSVG.jsx";
+import NotFoundSVG from "./NotFoundSVG.js";
 
 export interface PageNotFoundProps {
   children?: ReactNode;

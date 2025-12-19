@@ -13,13 +13,13 @@ import { WritingDirectionProvider } from "@react-md/core/typography/WritingDirec
 import { type ReactElement, type ReactNode } from "react";
 
 import { CODE_LANGUAGE_KEY, PACKAGE_MANAGER_KEY } from "@/constants/cookies.js";
-import { rmdConfig } from "@/constants/rmdConfig.jsx";
+import { rmdConfig } from "@/constants/rmdConfig.js";
 import { setCookie } from "@/utils/clientCookies.js";
 import { type AppCookies } from "@/utils/serverState.js";
 
-import { CookieColorSchemeProvider } from "./CookieColorSchemeProvider.jsx";
-import { CustomThemeProvider } from "./CustomTheme/CustomThemeProvider.jsx";
-import { PrismThemeProvider } from "./PrismThemeProvider.jsx";
+import { CookieColorSchemeProvider } from "./CookieColorSchemeProvider.js";
+import { CustomThemeProvider } from "./CustomTheme/CustomThemeProvider.js";
+import { PrismThemeProvider } from "./PrismThemeProvider.js";
 
 const handlePackageManagerChange = (value: PackageManager): void => {
   setCookie(PACKAGE_MANAGER_KEY, value);

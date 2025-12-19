@@ -8,11 +8,11 @@ import {
 import { useTabs } from "@react-md/core/tabs/useTabs";
 import { type ReactElement, type ReactNode } from "react";
 
-import { PackageManagerTabPanels } from "@/components/PackageManagerCodeBlock/PackageManagerTabPanels.jsx";
-import { PackageManagerTabs } from "@/components/PackageManagerCodeBlock/PackageManagerTabs.jsx";
+import { PackageManagerTabPanels } from "@/components/PackageManagerCodeBlock/PackageManagerTabPanels.js";
+import { PackageManagerTabs } from "@/components/PackageManagerCodeBlock/PackageManagerTabs.js";
 
-import { useTestFramework } from "./TestFrameworkProvider.jsx";
-import { TestFrameworksToggle } from "./TestFrameworksToggle.jsx";
+import { useTestFramework } from "./TestFrameworkProvider.js";
+import { TestFrameworksToggle } from "./TestFrameworksToggle.js";
 import { type TestFramework } from "./constants.js";
 
 export interface TestFrameworkNpmCodeProps {

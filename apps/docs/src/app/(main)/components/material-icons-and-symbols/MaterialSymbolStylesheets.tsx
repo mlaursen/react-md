@@ -1,9 +1,9 @@
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
 
-import { CopyCode } from "./CopyCode.jsx";
-import { MaterialFontStylesWarning } from "./MaterialFontStylesWarning.jsx";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { CopyCode } from "./CopyCode.js";
+import { MaterialFontStylesWarning } from "./MaterialFontStylesWarning.js";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import { getFontStylesheet } from "./utils.js";
 
 export function MaterialSymbolStylesheets(): ReactElement {

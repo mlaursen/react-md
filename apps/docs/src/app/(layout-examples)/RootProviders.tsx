@@ -4,7 +4,7 @@ import { CoreProviders } from "@react-md/core/CoreProviders";
 import { TooltipHoverModeProvider } from "@react-md/core/tooltip/TooltipHoverModeProvider";
 import { type ReactElement, type ReactNode } from "react";
 
-import { rmdConfig } from "@/constants/rmdConfig.jsx";
+import { rmdConfig } from "@/constants/rmdConfig.js";
 
 export interface RootProvidersProps {
   children: ReactNode;

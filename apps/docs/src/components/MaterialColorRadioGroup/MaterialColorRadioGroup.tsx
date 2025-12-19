@@ -8,7 +8,7 @@ import {
 } from "@/constants/theme.js";
 import { getMaterialColorValue } from "@/utils/theme.js";
 
-import { MaterialColorRadio } from "./MaterialColorRadio.jsx";
+import { MaterialColorRadio } from "./MaterialColorRadio.js";
 import styles from "./MaterialColorRadioGroup.module.scss";
 
 export interface MaterialColorRadioGroupProps {

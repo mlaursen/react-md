@@ -1,6 +1,6 @@
 "use client";
 
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { TableConfigProvider } from "./TableConfigurationProvider.js";
 import { tableFooter } from "./tableFooterStyles.js";
@@ -9,6 +9,8 @@ import { useTableSectionConfig } from "./useTableSectionConfig.js";
 
 export interface TableFooterProps
   extends HTMLAttributes<HTMLTableSectionElement>, TableSectionConfiguration {
+  ref?: Ref<HTMLTableSectionElement>;
+
   /**
    * NOTE: It is recommended to use the `StickyTableSection` component instead
    * of enabling this prop since it supports dynamically adding styles while the
@@ -31,11 +33,8 @@ export interface TableFooterProps
  *
  * @see {@link https://react-md.dev/components/table | Table Demos}
  */
-export const TableFooter = forwardRef<
-  HTMLTableSectionElement,
-  TableFooterProps
->(function TableFooter(props, propRef) {
-  const { className, hoverable, lineWrap, children, ...remaining } = props;
+export function TableFooter(props: TableFooterProps): ReactElement {
+  const { ref, className, hoverable, lineWrap, children, ...remaining } = props;
 
   const config = useTableSectionConfig({
     type: "footer",
@@ -45,13 +44,9 @@ export const TableFooter = forwardRef<
 
   return (
     <TableConfigProvider value={config}>
-      <tfoot
-        {...remaining}
-        ref={propRef}
-        className={tableFooter({ className })}
-      >
+      <tfoot {...remaining} ref={ref} className={tableFooter({ className })}>
         {children}
       </tfoot>
     </TableConfigProvider>
   );
-});
+}

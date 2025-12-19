@@ -1,7 +1,9 @@
 import {
   type AnchorHTMLAttributes,
+  type ComponentType,
   type ForwardRefExoticComponent,
-  forwardRef,
+  type ReactElement,
+  type Ref,
 } from "react";
 
 import { type LinkClassNameOptions, link } from "./styles.js";
@@ -12,6 +14,8 @@ import { type LinkClassNameOptions, link } from "./styles.js";
 export type CustomLinkComponent =
   | ForwardRefExoticComponent<{ href: string }>
   | ForwardRefExoticComponent<{ to: string }>
+  | ComponentType<{ ref?: Ref<HTMLAnchorElement>; href: string }>
+  | ComponentType<{ ref?: Ref<HTMLAnchorElement>; to: string }>
   | "a";
 
 /**
@@ -24,6 +28,8 @@ export type CustomLinkComponent =
  */
 export interface LinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>, LinkClassNameOptions {
+  ref?: Ref<HTMLAnchorElement>;
+
   /**
    * All links **must** have a valid href.
    */
@@ -64,15 +70,14 @@ export interface LinkProps
  * behavior is `className="rmd-link"`.
  * @since 6.0.0 The `href` prop is required.
  * @since 6.0.0 Renamed `flexCentered` to `flex`.
+ * @since 7.0.0 No longer uses `forwardRef`
  */
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
-  function Link(props, ref) {
-    const { className, flex, children, ...remaining } = props;
+export function Link(props: LinkProps): ReactElement {
+  const { ref, className, flex, children, ...remaining } = props;
 
-    return (
-      <a {...remaining} ref={ref} className={link({ flex, className })}>
-        {children}
-      </a>
-    );
-  }
-);
+  return (
+    <a {...remaining} ref={ref} className={link({ flex, className })}>
+      {children}
+    </a>
+  );
+}

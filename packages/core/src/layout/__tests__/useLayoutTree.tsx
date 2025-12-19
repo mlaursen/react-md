@@ -2,8 +2,8 @@ import {
   type AnchorHTMLAttributes,
   type ReactElement,
   type ReactNode,
+  type Ref,
   createContext,
-  forwardRef,
   useContext,
   useState,
 } from "react";
@@ -90,10 +90,14 @@ function Wrapper({
   return <Provider value={{ pathname, setPathname }}>{children}</Provider>;
 }
 
-const FakeRoutingLibraryLink = forwardRef<
-  HTMLAnchorElement,
-  { to: string } & AnchorHTMLAttributes<HTMLAnchorElement>
->(function FakeRoutingLibraryLink({ to, ...props }, ref) {
+function FakeRoutingLibraryLink({
+  to,
+  ref,
+  ...props
+}: {
+  to: string;
+  ref?: Ref<HTMLAnchorElement>;
+} & AnchorHTMLAttributes<HTMLAnchorElement>) {
   const { setPathname } = useRouter();
   return (
     <a
@@ -107,7 +111,7 @@ const FakeRoutingLibraryLink = forwardRef<
       }}
     />
   );
-});
+}
 
 function Test() {
   const { pathname } = useRouter();

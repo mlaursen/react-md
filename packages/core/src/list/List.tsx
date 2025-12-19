@@ -1,4 +1,4 @@
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { type ListClassNameOptions, list } from "./listStyles.js";
 
@@ -9,6 +9,8 @@ export type ListElement = HTMLUListElement | HTMLOListElement;
  */
 export interface ListProps
   extends HTMLAttributes<ListElement>, ListClassNameOptions {
+  ref?: Ref<ListElement>;
+
   /**
    * @defaultValue `"none"`
    */
@@ -66,31 +68,31 @@ export interface ListProps
  *
  * @see {@link https://react-md.dev/components/list | List Demos}
  */
-export const List = forwardRef<ListElement, ListProps>(
-  function List(props, ref) {
-    const {
-      className,
-      children,
-      role = "none",
-      dense = false,
-      ordered = false,
-      horizontal = false,
-      ...remaining
-    } = props;
-    const Component = (ordered ? "ol" : "ul") as "ul";
-    return (
-      <Component
-        {...remaining}
-        ref={ref}
-        role={role}
-        className={list({
-          dense,
-          horizontal,
-          className,
-        })}
-      >
-        {children}
-      </Component>
-    );
-  }
-);
+export function List(props: ListProps): ReactElement {
+  const {
+    ref,
+    className,
+    children,
+    role = "none",
+    dense = false,
+    ordered = false,
+    horizontal = false,
+    ...remaining
+  } = props;
+
+  const Component = (ordered ? "ol" : "ul") as "ul";
+  return (
+    <Component
+      {...remaining}
+      ref={ref}
+      role={role}
+      className={list({
+        dense,
+        horizontal,
+        className,
+      })}
+    >
+      {children}
+    </Component>
+  );
+}

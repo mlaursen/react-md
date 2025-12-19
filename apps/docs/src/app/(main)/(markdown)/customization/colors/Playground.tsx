@@ -6,12 +6,12 @@ import { Form } from "@react-md/core/form/Form";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
 
-import { MarkdownCode } from "@/components/MarkdownCode.jsx";
-import { MarkdownLink } from "@/components/MarkdownLink.jsx";
+import { MarkdownCode } from "@/components/MarkdownCode.js";
+import { MarkdownLink } from "@/components/MarkdownLink.js";
 
 import styles from "./Playground.module.scss";
-import { PrimaryOrSecondaryPicker } from "./PrimaryOrSecondaryPicker.jsx";
-import { SimplePreview } from "./SimplePreview.jsx";
+import { PrimaryOrSecondaryPicker } from "./PrimaryOrSecondaryPicker.js";
+import { SimplePreview } from "./SimplePreview.js";
 import { usePlaygroundColors } from "./usePlaygroundColors.js";
 
 export interface PlaygroundProps {

@@ -11,11 +11,11 @@ exports[`FormMessageContainer > should apply the correct styling, HTML attribute
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
-    id="form-message-:r0:"
+    id="form-message-_r_0_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r0:-message"
+      id="form-message-_r_0_-message"
     >
       Message!
     </p>
@@ -35,11 +35,11 @@ exports[`FormMessageContainer > should apply the correct styling, HTML attribute
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
-    id="form-message-:r0:"
+    id="form-message-_r_0_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r0:-message"
+      id="form-message-_r_0_-message"
     >
       Message!
     </p>
@@ -59,11 +59,11 @@ exports[`FormMessageContainer > should apply the correct styling, HTML attribute
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
-    id="form-message-:r0:"
+    id="form-message-_r_0_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r0:-message"
+      id="form-message-_r_0_-message"
     >
       Message!
     </p>

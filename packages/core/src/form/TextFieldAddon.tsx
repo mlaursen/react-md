@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 import { textFieldAddon } from "./textFieldAddonStyles.js";
 import { type TextFieldAddonProps } from "./types.js";
@@ -7,37 +7,38 @@ import { type TextFieldAddonProps } from "./types.js";
  * This component is used to add an icon before or after the text field with
  * correct styling.
  */
-export const TextFieldAddon = forwardRef<HTMLSpanElement, TextFieldAddonProps>(
-  function TextFieldAddon(props, ref) {
-    const {
-      after,
-      disabled,
-      pointerEvents,
-      children,
-      className,
-      ...remaining
-    } = props;
+export function TextFieldAddon(
+  props: TextFieldAddonProps
+): ReactElement | null {
+  const {
+    ref,
+    after,
+    disabled,
+    pointerEvents,
+    children,
+    className,
+    ...remaining
+  } = props;
 
-    if (!children) {
-      return null;
-    }
-
-    if (disabled) {
-      return <>{children}</>;
-    }
-
-    return (
-      <span
-        {...remaining}
-        ref={ref}
-        className={textFieldAddon({
-          after,
-          presentational: !pointerEvents,
-          className,
-        })}
-      >
-        {children}
-      </span>
-    );
+  if (!children) {
+    return null;
   }
-);
+
+  if (disabled) {
+    return <>{children}</>;
+  }
+
+  return (
+    <span
+      {...remaining}
+      ref={ref}
+      className={textFieldAddon({
+        after,
+        presentational: !pointerEvents,
+        className,
+      })}
+    >
+      {children}
+    </span>
+  );
+}

@@ -3,15 +3,15 @@ import { TooltippedButton } from "@react-md/core/button/TooltippedButton";
 import { type ReactElement } from "react";
 import "server-only";
 
-import { type DemoCodeEditorProps } from "@/components/DemoCode/DemoCodeEditor.jsx";
+import { type DemoCodeEditorProps } from "@/components/DemoCode/DemoCodeEditor.js";
 import {
   JS_STACKBLITZ_TEMPLATE,
   TS_STACKBLITZ_TEMPLATE,
 } from "@/generated/stackblitz.js";
 
-import { HiddenInput } from "./HiddenInput.jsx";
-import { StackBlitzForm } from "./StackBlitzForm.jsx";
-import { StackBlitzIcon } from "./StackBlitzIcon.jsx";
+import { HiddenInput } from "./HiddenInput.js";
+import { StackBlitzForm } from "./StackBlitzForm.js";
+import { StackBlitzIcon } from "./StackBlitzIcon.js";
 
 export interface CreateStackBlitzProjectProps extends Pick<
   DemoCodeEditorProps,

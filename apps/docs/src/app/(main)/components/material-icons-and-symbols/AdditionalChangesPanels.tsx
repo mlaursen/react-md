@@ -7,9 +7,9 @@ import { Typography } from "@react-md/core/typography/Typography";
 import type { ReactElement } from "react";
 
 import styles from "./AdditionalChangesPanels.module.scss";
-import { CopyCode } from "./CopyCode.jsx";
-import { MaterialConfigChanges } from "./MaterialConfigChanges.jsx";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { CopyCode } from "./CopyCode.js";
+import { MaterialConfigChanges } from "./MaterialConfigChanges.js";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import { type MaterialIconsAndSymbolsContext } from "./types.js";
 
 function getSymbolProps(context: MaterialIconsAndSymbolsContext): string {

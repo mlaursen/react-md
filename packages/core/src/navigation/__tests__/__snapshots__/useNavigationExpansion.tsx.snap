@@ -14,7 +14,7 @@ exports[`useNavigationExpansion > should default the expanded ids to be each par
       aria-current="page"
       class="rmd-nav-item__content rmd-nav-item__link rmd-nav-item__link--active rmd-button rmd-button--text rmd-interaction-surface rmd-none rmd-bold"
       href="/"
-      id=":r0:"
+      id="_r_0_"
       type="route"
     >
       <span
@@ -50,7 +50,7 @@ exports[`useNavigationExpansion > should default the expanded ids to be each par
     <button
       aria-expanded="false"
       class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
-      id=":r2:"
+      id="_r_2_"
       type="button"
     >
       <span
@@ -72,7 +72,7 @@ exports[`useNavigationExpansion > should default the expanded ids to be each par
     <button
       aria-expanded="false"
       class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
-      id=":r4:"
+      id="_r_4_"
       type="button"
     >
       <span
@@ -104,7 +104,7 @@ exports[`useNavigationExpansion > should default the expanded ids to be each par
     <a
       class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
       href="/"
-      id=":r6:"
+      id="_r_6_"
       type="route"
     >
       <span
@@ -140,7 +140,7 @@ exports[`useNavigationExpansion > should default the expanded ids to be each par
     <button
       aria-expanded="false"
       class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
-      id=":r8:"
+      id="_r_8_"
       type="button"
     >
       <span
@@ -162,7 +162,7 @@ exports[`useNavigationExpansion > should default the expanded ids to be each par
     <button
       aria-expanded="true"
       class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
-      id=":ra:"
+      id="_r_a_"
       type="button"
     >
       <span
@@ -198,7 +198,7 @@ exports[`useNavigationExpansion > should default the expanded ids to be each par
         <a
           class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
           href="/path-2/route-1"
-          id=":rc:"
+          id="_r_c_"
           type="route"
         >
           <span
@@ -219,7 +219,7 @@ exports[`useNavigationExpansion > should default the expanded ids to be each par
           aria-current="page"
           class="rmd-nav-item__content rmd-nav-item__link rmd-nav-item__link--active rmd-button rmd-button--text rmd-interaction-surface rmd-none rmd-bold"
           href="/path-2/route-2"
-          id=":re:"
+          id="_r_e_"
           type="route"
         >
           <span

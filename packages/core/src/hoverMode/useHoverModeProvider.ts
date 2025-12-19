@@ -1,8 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-
-import { type NonNullMutableRef, type NonNullRef } from "../types.js";
+import {
+  type RefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 const noop = (): void => {
   // do nothing
@@ -29,7 +34,7 @@ export interface SimpleHoverModeContext {
    * }
    * ```
    */
-  hoverTimeoutRef: NonNullRef<number | undefined>;
+  hoverTimeoutRef: RefObject<number | undefined>;
 
   /**
    * @example Main Usage
@@ -47,7 +52,7 @@ export interface SimpleHoverModeContext {
    * }
    * ```
    */
-  leaveTimeoutRef: NonNullRef<number>;
+  leaveTimeoutRef: RefObject<number>;
 
   /**
    * When this is called, the {@link hoverTimeoutRef} will be set to `0` and the
@@ -91,7 +96,7 @@ export interface HoverModeContext extends SimpleHoverModeContext {
    * hovered within the `HoverModeProvider`. This will be an empty string
    * when the hover mode is not active.
    */
-  activeIdRef: NonNullMutableRef<string>;
+  activeIdRef: RefObject<string>;
 
   /**
    * This ref can be used to disable transitions for a group of components using
@@ -103,7 +108,7 @@ export interface HoverModeContext extends SimpleHoverModeContext {
    *   disabled. This would normally be after a timeout for the `onExited`
    *   callback
    */
-  animatedOnceRef: NonNullMutableRef<boolean>;
+  animatedOnceRef: RefObject<boolean>;
 }
 
 /**
@@ -261,7 +266,7 @@ export function useHoverModeProvider(
   const hoverTimeoutRef = useRef(hoverTimeout);
   const leaveTimeoutRef = useRef(leaveTimeout);
   const animatedOnceRef = useRef(!!defaultActiveId);
-  const disableHoverModeTimeout = useRef<NodeJS.Timeout>();
+  const disableHoverModeTimeout = useRef<NodeJS.Timeout>(undefined);
   const clearDisableTimer = useCallback(() => {
     globalThis.clearTimeout(disableHoverModeTimeout.current);
   }, []);

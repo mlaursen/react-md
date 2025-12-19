@@ -1,5 +1,10 @@
 import { cnb } from "cnbuilder";
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { DISPLAY_NONE_CLASS } from "../utils/isElementVisible.js";
 import { type ProvidedTabPanelProps } from "./useTabs.js";
@@ -11,6 +16,7 @@ export interface SimpleTabPanelProps
   extends
     Omit<HTMLAttributes<HTMLDivElement>, keyof ProvidedTabPanelProps>,
     ProvidedTabPanelProps {
+  ref?: Ref<HTMLDivElement>;
   children: ReactNode;
 }
 
@@ -24,15 +30,14 @@ export interface SimpleTabPanelProps
  * @see {@link https://react-md.dev/components/tabs#disable-tab-panel-transition|Disable Tab Panel Transition Demo}
  * @since 6.0.0
  */
-export const SimpleTabPanel = forwardRef<HTMLDivElement, SimpleTabPanelProps>(
-  function SimpleTabPanel(props, ref) {
-    const { active, className, ...remaining } = props;
-    return (
-      <div
-        ref={ref}
-        {...remaining}
-        className={cnb(!active && DISPLAY_NONE_CLASS, className)}
-      />
-    );
-  }
-);
+export function SimpleTabPanel(props: SimpleTabPanelProps): ReactElement {
+  const { ref, active, className, ...remaining } = props;
+
+  return (
+    <div
+      ref={ref}
+      {...remaining}
+      className={cnb(!active && DISPLAY_NONE_CLASS, className)}
+    />
+  );
+}

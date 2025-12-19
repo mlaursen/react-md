@@ -1,12 +1,14 @@
 "use client";
 
-import { type FormHTMLAttributes, forwardRef } from "react";
+import { type FormHTMLAttributes, type ReactElement, type Ref } from "react";
 
 const noop = (): void => {
   // do nothing
 };
 
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
+  ref?: Ref<HTMLFormElement>;
+
   /**
    * Boolean if the form should no longer prevent default submit behavior. If
    * you enable this prop you should honestly just use a `<form>` element
@@ -26,29 +28,28 @@ export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
  *
  * @see {@link https://react-md.dev/components/form | Form Demos}
  */
-export const Form = forwardRef<HTMLFormElement, FormProps>(
-  function Form(props, ref) {
-    const {
-      children,
-      onSubmit = noop,
-      disablePreventDefault = false,
-      ...remaining
-    } = props;
+export function Form(props: FormProps): ReactElement {
+  const {
+    ref,
+    children,
+    onSubmit = noop,
+    disablePreventDefault = false,
+    ...remaining
+  } = props;
 
-    return (
-      <form
-        {...remaining}
-        onSubmit={(event) => {
-          if (!disablePreventDefault) {
-            event.preventDefault();
-          }
+  return (
+    <form
+      {...remaining}
+      onSubmit={(event) => {
+        if (!disablePreventDefault) {
+          event.preventDefault();
+        }
 
-          onSubmit(event);
-        }}
-        ref={ref}
-      >
-        {children}
-      </form>
-    );
-  }
-);
+        onSubmit(event);
+      }}
+      ref={ref}
+    >
+      {children}
+    </form>
+  );
+}

@@ -14,7 +14,7 @@ import styles from "./Blockquote.module.scss";
 import {
   type BlockquoteTheme,
   BlockquoteThemeIcon,
-} from "./BlockquoteThemeIcon.jsx";
+} from "./BlockquoteThemeIcon.js";
 
 const THEME_REGEX = /!(Warn|Info|Success|Error)!/;
 

@@ -2,7 +2,7 @@ import { DEFAULT_COLLATOR } from "@react-md/core/utils/alphaNumericSort";
 import { Fragment, type ReactElement } from "react";
 import { type FormattedSassDocItem } from "sassdoc-generator/types";
 
-import { MarkdownLink } from "@/components/MarkdownLink.jsx";
+import { MarkdownLink } from "@/components/MarkdownLink.js";
 import { SASSDOC_GROUP } from "@/constants/sassdocGroups.js";
 import { isFormattedVariableItem } from "@/utils/sassdoc.js";
 import { titleCase } from "@/utils/strings.js";

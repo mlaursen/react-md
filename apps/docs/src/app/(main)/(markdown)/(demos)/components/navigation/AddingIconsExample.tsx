@@ -7,7 +7,7 @@ import HomeIcon from "@react-md/material-icons/HomeIcon";
 import StarIcon from "@react-md/material-icons/StarIcon";
 import { type ReactElement } from "react";
 
-import { FakeLink } from "@/components/FakeLink.jsx";
+import { FakeLink } from "@/components/FakeLink.js";
 
 const items: readonly NavigationItem[] = [
   {

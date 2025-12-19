@@ -5,7 +5,7 @@ import {
 import { cssUtils } from "@react-md/core/cssUtils";
 import { type ReactElement } from "react";
 
-import { LinkUnstyled, type LinkUnstyledProps } from "./LinkUnstyled.jsx";
+import { LinkUnstyled, type LinkUnstyledProps } from "./LinkUnstyled.js";
 
 export interface ButtonStyledLinkProps
   extends LinkUnstyledProps, ButtonClassNameThemeOptions {}

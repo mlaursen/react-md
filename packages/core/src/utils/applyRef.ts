@@ -1,4 +1,4 @@
-import type { MutableRefObject, Ref } from "react";
+import { type Ref } from "react";
 
 /**
  * A small utility function that allows me to apply a passed in ref along with
@@ -37,6 +37,6 @@ export function applyRef<E>(instance: E | null, ref: Ref<E> | undefined): void {
   if (typeof ref === "function") {
     ref(instance);
   } else if (typeof ref === "object") {
-    (ref as MutableRefObject<E | null>).current = instance;
+    ref.current = instance;
   }
 }

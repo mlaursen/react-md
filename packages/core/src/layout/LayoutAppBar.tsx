@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { type ReactElement, type Ref } from "react";
 
 import {
   AppBar,
@@ -20,6 +20,8 @@ import { useLayoutAppBarHeight } from "./useLayoutAppBarHeight.js";
  * @since 6.0.0 Only supports `AppBar` + `SkipToMainContent` props
  */
 export interface LayoutAppBarProps extends AppBarProps {
+  ref?: Ref<HTMLDivElement>;
+
   /** @defaultValue `"header"` */
   as?: CustomAppBarComponent;
 
@@ -66,31 +68,24 @@ export interface LayoutAppBarProps extends AppBarProps {
  * `LayoutAppBarTitle` since they no longer exist. The only purpose of this
  * component is to dynamically set the `--rmd-layout-header-height` variable.
  */
-export const LayoutAppBar = forwardRef<HTMLDivElement, LayoutAppBarProps>(
-  function LayoutAppBar(props, ref) {
-    const {
-      as = "header",
-      id: propId,
-      position = "fixed",
-      skipProps,
-      children,
-      ...remaining
-    } = props;
-    const id = useEnsuredId(propId, "layout-header");
-    const { appBarRef, variables } = useLayoutAppBarHeight(ref);
-    useCSSVariables(variables);
+export function LayoutAppBar(props: LayoutAppBarProps): ReactElement {
+  const {
+    ref,
+    as = "header",
+    id: propId,
+    position = "fixed",
+    skipProps,
+    children,
+    ...remaining
+  } = props;
+  const id = useEnsuredId(propId, "layout-header");
+  const { appBarRef, variables } = useLayoutAppBarHeight(ref);
+  useCSSVariables(variables);
 
-    return (
-      <AppBar
-        {...remaining}
-        id={id}
-        as={as}
-        ref={appBarRef}
-        position={position}
-      >
-        <SkipToMainContent {...skipProps} />
-        {children}
-      </AppBar>
-    );
-  }
-);
+  return (
+    <AppBar {...remaining} id={id} as={as} ref={appBarRef} position={position}>
+      <SkipToMainContent {...skipProps} />
+      {children}
+    </AppBar>
+  );
+}

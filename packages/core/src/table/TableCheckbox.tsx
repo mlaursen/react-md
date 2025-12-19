@@ -1,6 +1,6 @@
 "use client";
 
-import { type TdHTMLAttributes, forwardRef } from "react";
+import { type ReactElement, type Ref, type TdHTMLAttributes } from "react";
 
 import { Checkbox } from "../form/Checkbox.js";
 import { type CheckboxProps } from "../form/InputToggle.js";
@@ -49,6 +49,8 @@ export type TableCheckboxSupportedCheckboxProps = Pick<
  */
 export interface TableCheckboxProps
   extends TableCheckboxTdHTMLAttributes, TableCheckboxSupportedCheckboxProps {
+  ref?: Ref<HTMLTableCellElement>;
+
   /**
    * @defaultValue `!props["aria-labelledby"] ? "Select Row" : undefined`
    */
@@ -147,11 +149,9 @@ export interface TableCheckboxProps
  * @since 6.0.0 The default `aria-label` was changed from
  * `"Toggle Row Selection"` to `"Select Row"`.
  */
-export const TableCheckbox = forwardRef<
-  HTMLTableCellElement,
-  TableCheckboxProps
->(function TableCheckbox(props, ref) {
+export function TableCheckbox(props: TableCheckboxProps): ReactElement {
   const {
+    ref,
     "aria-labelledby": ariaLabelledBy,
     "aria-label": ariaLabel = !ariaLabelledBy ? "Select Row" : undefined,
     "aria-controls": ariaControls,
@@ -203,4 +203,4 @@ export const TableCheckbox = forwardRef<
       />
     </TableCell>
   );
-});
+}

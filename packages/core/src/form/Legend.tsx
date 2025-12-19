@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { type ReactElement, type Ref } from "react";
 
 import { Typography, type TypographyProps } from "../typography/Typography.js";
 import { type LegendClassNameOptions, legend } from "./legendStyles.js";
@@ -7,7 +7,9 @@ import { type LegendClassNameOptions, legend } from "./legendStyles.js";
  * @since 6.0.0
  * @since 6.4.0 Extends the `LegendClassNameOptions`
  */
-export interface LegendProps extends TypographyProps, LegendClassNameOptions {}
+export interface LegendProps extends TypographyProps, LegendClassNameOptions {
+  ref?: Ref<HTMLLegendElement>;
+}
 
 /**
  * This should be used within a `Fieldset` to apply a label.
@@ -39,45 +41,44 @@ export interface LegendProps extends TypographyProps, LegendClassNameOptions {}
  * @see {@link https://react-md.dev/components/fieldset | Fieldset Demos}
  * @since 6.0.0
  */
-export const Legend = forwardRef<HTMLLegendElement, LegendProps>(
-  function Legend(props, ref) {
-    const {
-      srOnly,
-      floating,
-      theme,
-      gap,
-      dense,
-      active,
-      error,
-      disabled,
-      stacked,
-      reversed,
-      className,
-      children,
-      ...remaining
-    } = props;
+export function Legend(props: LegendProps): ReactElement {
+  const {
+    ref,
+    srOnly,
+    floating,
+    theme,
+    gap,
+    dense,
+    active,
+    error,
+    disabled,
+    stacked,
+    reversed,
+    className,
+    children,
+    ...remaining
+  } = props;
 
-    return (
-      <Typography
-        {...remaining}
-        as="legend"
-        ref={ref}
-        className={legend({
-          srOnly,
-          floating,
-          theme,
-          gap,
-          dense,
-          active,
-          error,
-          disabled,
-          stacked,
-          reversed,
-          className,
-        })}
-      >
-        {children}
-      </Typography>
-    );
-  }
-);
+  return (
+    <Typography
+      {...remaining}
+      as="legend"
+      ref={ref}
+      className={legend({
+        srOnly,
+        floating,
+        theme,
+        gap,
+        dense,
+        active,
+        error,
+        disabled,
+        stacked,
+        reversed,
+        className,
+      })}
+    >
+      {children}
+    </Typography>
+  );
+}

@@ -56,14 +56,14 @@ export async function createIconComponent(
   const contents = await format(
     `${GENERATED_FILE_BANNER}
 
-import { forwardRef } from "react";
 import { SVGIcon, type SVGIconProps } from "@react-md/core/icon/SVGIcon"
+import { type ReactElement } from "react";
 
-export default forwardRef<SVGSVGElement, SVGIconProps>(
-  function ${componentName}(props, ref) {
-    return <SVGIcon {...props} ref={ref}>${children}</SVGIcon>;
-  }
-);
+export default function ${componentName}(props: SVGIconProps): ReactElement {
+  const { ref, ...remaining } = props;
+
+  return <SVGIcon {...remaining} ref={ref}>${children}</SVGIcon>;
+}
 `
   );
 

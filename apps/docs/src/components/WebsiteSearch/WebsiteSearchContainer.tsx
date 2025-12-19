@@ -6,7 +6,7 @@ import { useAppSize } from "@react-md/core/media-queries/AppSizeProvider";
 import { useToggle } from "@react-md/core/useToggle";
 import { type ReactElement, type ReactNode, useEffect } from "react";
 
-import { AlgoliaSearch } from "./AlgoliaSearch.jsx";
+import { AlgoliaSearch } from "./AlgoliaSearch.js";
 import styles from "./WebsiteSearchContainer.module.scss";
 
 export interface WebsiteSearchContainerProps {

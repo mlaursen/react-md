@@ -1,6 +1,11 @@
 "use client";
 
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import { useExpansionList } from "./useExpansionList.js";
@@ -9,6 +14,8 @@ import { useExpansionList } from "./useExpansionList.js";
  * @since 6.0.0 No longer requires the `onKeyDown` prop.
  */
 export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
+  ref?: Ref<HTMLDivElement>;
+
   children: ReactNode;
 }
 
@@ -24,23 +31,21 @@ export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
  * @since 6.0.0 Uses the new keyboard movement API and does not
  * require the `onKeyDown` prop to be provided.
  */
-export const ExpansionList = forwardRef<HTMLDivElement, ExpansionListProps>(
-  function ExpansionList(props, ref) {
-    const { onClick, onFocus, onKeyDown, children, ...remaining } = props;
+export function ExpansionList(props: ExpansionListProps): ReactElement {
+  const { ref, onClick, onFocus, onKeyDown, children, ...remaining } = props;
 
-    const { movementContext, movementProps } = useExpansionList({
-      ref,
-      onClick,
-      onFocus,
-      onKeyDown,
-    });
+  const { movementContext, movementProps } = useExpansionList({
+    ref,
+    onClick,
+    onFocus,
+    onKeyDown,
+  });
 
-    return (
-      <KeyboardMovementProvider value={movementContext}>
-        <div {...remaining} {...movementProps}>
-          {children}
-        </div>
-      </KeyboardMovementProvider>
-    );
-  }
-);
+  return (
+    <KeyboardMovementProvider value={movementContext}>
+      <div {...remaining} {...movementProps}>
+        {children}
+      </div>
+    </KeyboardMovementProvider>
+  );
+}

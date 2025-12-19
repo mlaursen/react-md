@@ -1,8 +1,8 @@
 import { Link } from "@react-md/core/link/Link";
 import { type ReactElement } from "react";
 
-import { HomePageSection } from "./HomePageSection.jsx";
-import { Showcase } from "./Showcase.jsx";
+import { HomePageSection } from "./HomePageSection.js";
+import { Showcase } from "./Showcase.js";
 
 export function ComponentsAndHooks(): ReactElement {
   return (

@@ -6,10 +6,8 @@
   position: relative;
   width: 100%;
 
-  :global {
-    .rmd-fab {
-      position: absolute;
-      z-index: 1;
-    }
+  :global(.rmd-fab) {
+    position: absolute;
+    z-index: 1;
   }
 }

@@ -2,7 +2,8 @@
 
 import {
   type HTMLAttributes,
-  forwardRef,
+  type ReactElement,
+  type Ref,
   useEffect,
   useRef,
   useState,
@@ -30,6 +31,7 @@ export interface TabListProps
   extends
     HTMLAttributes<HTMLDivElement>,
     Omit<TabListClassNameOptions, "animate" | "indicator"> {
+  ref?: Ref<HTMLDivElement>;
   activeIndex: number;
   setActiveIndex: (nextActiveIndex: number) => void;
 
@@ -119,107 +121,106 @@ export interface TabListProps
  * @see {@link useTabs} for example usage.
  * @since 6.0.0
  */
-export const TabList = forwardRef<HTMLDivElement, TabListProps>(
-  function TabList(props, ref) {
-    const {
-      style,
-      onClick,
-      onFocus,
-      onKeyDown,
-      className,
-      children,
-      activeIndex,
-      setActiveIndex,
-      activationMode = "manual",
-      align = "left",
-      padded = false,
-      inline = false,
-      vertical = false,
-      scrollbar = false,
-      scrollButtons = false,
-      fullWidthTabs,
-      disableTransition = false,
-      transitionDuration = 150,
-      getScrollToOptions,
-      forwardScrollButtonProps,
-      backwardScrollButtonProps,
-      ...remaining
-    } = props;
+export function TabList(props: TabListProps): ReactElement {
+  const {
+    ref,
+    style,
+    onClick,
+    onFocus,
+    onKeyDown,
+    className,
+    children,
+    activeIndex,
+    setActiveIndex,
+    activationMode = "manual",
+    align = "left",
+    padded = false,
+    inline = false,
+    vertical = false,
+    scrollbar = false,
+    scrollButtons = false,
+    fullWidthTabs,
+    disableTransition = false,
+    transitionDuration = 150,
+    getScrollToOptions,
+    forwardScrollButtonProps,
+    backwardScrollButtonProps,
+    ...remaining
+  } = props;
 
-    const {
-      elementProps,
-      movementContext,
-      backwardProps,
-      forwardProps,
-      showScrollButtons,
-    } = useTabList({
-      ref,
-      style,
-      onClick,
-      onFocus,
-      onKeyDown,
-      vertical,
-      activeIndex,
-      setActiveIndex,
-      activationMode,
-      scrollButtons,
-      disableTransition,
-    });
+  const {
+    elementProps,
+    movementContext,
+    backwardProps,
+    forwardProps,
+    showScrollButtons,
+  } = useTabList({
+    ref,
+    style,
+    onClick,
+    onFocus,
+    onKeyDown,
+    vertical,
+    activeIndex,
+    setActiveIndex,
+    activationMode,
+    scrollButtons,
+    disableTransition,
+  });
 
-    const prevActiveIndex = useRef(activeIndex);
-    const [animate, setAnimate] = useState(false);
-    useEffect(() => {
-      const isSameIndex = activeIndex === prevActiveIndex.current;
-      prevActiveIndex.current = activeIndex;
-      if (disableTransition || isSameIndex) {
-        return;
-      }
+  const prevActiveIndex = useRef(activeIndex);
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+    const isSameIndex = activeIndex === prevActiveIndex.current;
+    prevActiveIndex.current = activeIndex;
+    if (disableTransition || isSameIndex) {
+      return;
+    }
 
-      setAnimate(true);
-      const timeout = globalThis.setTimeout(() => {
-        setAnimate(false);
-      }, transitionDuration);
+    setAnimate(true);
+    const timeout = globalThis.setTimeout(() => {
+      setAnimate(false);
+    }, transitionDuration);
 
-      return () => {
-        globalThis.clearTimeout(timeout);
-      };
-    }, [activeIndex, disableTransition, transitionDuration]);
+    return () => {
+      globalThis.clearTimeout(timeout);
+    };
+  }, [activeIndex, disableTransition, transitionDuration]);
 
-    return (
-      <KeyboardMovementProvider value={movementContext}>
-        <div
-          {...remaining}
-          {...elementProps}
-          role="tablist"
-          className={tabList({
-            align,
-            padded,
-            inline,
-            animate: !disableTransition && animate,
-            vertical,
-            scrollbar,
-            indicator: !disableTransition,
-            fullWidthTabs,
-            className,
-          })}
-        >
-          {showScrollButtons && (
-            <TabListScrollButton
-              getScrollToOptions={getScrollToOptions}
-              {...backwardScrollButtonProps}
-              {...backwardProps}
-            />
-          )}
-          {children}
-          {showScrollButtons && (
-            <TabListScrollButton
-              getScrollToOptions={getScrollToOptions}
-              {...forwardScrollButtonProps}
-              {...forwardProps}
-            />
-          )}
-        </div>
-      </KeyboardMovementProvider>
-    );
-  }
-);
+  return (
+    <KeyboardMovementProvider value={movementContext}>
+      <div
+        {...remaining}
+        {...elementProps}
+        role="tablist"
+        className={tabList({
+          align,
+          padded,
+          inline,
+          animate: !disableTransition && animate,
+          vertical,
+          scrollbar,
+          indicator: !disableTransition,
+          fullWidthTabs,
+          className,
+        })}
+      >
+        {showScrollButtons && (
+          <TabListScrollButton
+            getScrollToOptions={getScrollToOptions}
+            {...backwardScrollButtonProps}
+            {...backwardProps}
+          />
+        )}
+        {children}
+        {showScrollButtons && (
+          <TabListScrollButton
+            getScrollToOptions={getScrollToOptions}
+            {...forwardScrollButtonProps}
+            {...forwardProps}
+          />
+        )}
+      </div>
+    </KeyboardMovementProvider>
+  );
+}

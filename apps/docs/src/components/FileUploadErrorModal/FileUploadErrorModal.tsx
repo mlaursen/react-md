@@ -9,7 +9,7 @@ import { DialogTitle } from "@react-md/core/dialog/DialogTitle";
 import { type FileValidationError } from "@react-md/core/files/validation";
 import { type ReactElement, useEffect, useState } from "react";
 
-import { ErrorRenderer } from "./ErrorRenderer.jsx";
+import { ErrorRenderer } from "./ErrorRenderer.js";
 
 export interface FileUploadErrorModalProps {
   errors: readonly FileValidationError<never>[];

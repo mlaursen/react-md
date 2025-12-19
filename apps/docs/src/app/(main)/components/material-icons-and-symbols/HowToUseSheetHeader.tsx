@@ -11,8 +11,8 @@ import ShareOutlinedIcon from "@react-md/material-icons/ShareOutlinedIcon";
 import { type ReactElement } from "react";
 
 import styles from "./HowToUseSheetHeader.module.scss";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
-import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.jsx";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
+import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.js";
 
 export function HowToUseSheetHeader(): ReactElement {
   const { selectedIconName, deselectIcon } = useMaterialIconsAndSymbols();

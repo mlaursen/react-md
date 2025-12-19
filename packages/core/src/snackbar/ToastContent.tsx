@@ -1,6 +1,12 @@
 "use client";
 
-import { type HTMLAttributes, forwardRef, useCallback, useState } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type Ref,
+  useCallback,
+  useState,
+} from "react";
 
 import { useResizeObserver } from "../useResizeObserver.js";
 import { toastContent } from "./toastContentStyles.js";
@@ -9,6 +15,8 @@ import { toastContent } from "./toastContentStyles.js";
  * @since 6.0.0
  */
 export interface ToastContentProps extends HTMLAttributes<HTMLDivElement> {
+  ref?: Ref<HTMLDivElement>;
+
   /** @defaultValue `false` */
   action?: boolean;
 
@@ -42,55 +50,54 @@ export interface ToastContentProps extends HTMLAttributes<HTMLDivElement> {
  * @see {@link https://react-md.dev/components/snackbar | Snackbar Demos}
  * @since 6.0.0
  */
-export const ToastContent = forwardRef<HTMLDivElement, ToastContentProps>(
-  function ToastContent(props, ref) {
-    const {
-      className,
-      children,
-      action,
-      stacked,
-      multiline: propMultiline,
-      closeButton,
-      disableWrapper,
-      ...remaining
-    } = props;
+export function ToastContent(props: ToastContentProps): ReactElement {
+  const {
+    ref,
+    className,
+    children,
+    action,
+    stacked,
+    multiline: propMultiline,
+    closeButton,
+    disableWrapper,
+    ...remaining
+  } = props;
 
-    const [isMultiline, setMultiline] = useState(false);
-    const nodeRef = useResizeObserver({
-      ref,
-      disabled: disableWrapper || typeof propMultiline === "boolean",
-      disableWidth: true,
-      onUpdate: useCallback((entry) => {
-        const element = entry.target;
-        const style = globalThis.getComputedStyle(element);
-        const lineHeight = Number.parseFloat(style.lineHeight);
-        if (Number.isNaN(lineHeight)) {
-          return;
-        }
+  const [isMultiline, setMultiline] = useState(false);
+  const nodeRef = useResizeObserver({
+    ref,
+    disabled: disableWrapper || typeof propMultiline === "boolean",
+    disableWidth: true,
+    onUpdate: useCallback((entry) => {
+      const element = entry.target;
+      const style = globalThis.getComputedStyle(element);
+      const lineHeight = Number.parseFloat(style.lineHeight);
+      if (Number.isNaN(lineHeight)) {
+        return;
+      }
 
-        setMultiline(element.scrollHeight > lineHeight);
-      }, []),
-    });
-    const multiline = propMultiline ?? isMultiline;
+      setMultiline(element.scrollHeight > lineHeight);
+    }, []),
+  });
+  const multiline = propMultiline ?? isMultiline;
 
-    if (disableWrapper) {
-      return <>{children}</>;
-    }
-
-    return (
-      <div
-        {...remaining}
-        ref={nodeRef}
-        className={toastContent({
-          action,
-          stacked,
-          multiline,
-          closeButton,
-          className,
-        })}
-      >
-        {children}
-      </div>
-    );
+  if (disableWrapper) {
+    return <>{children}</>;
   }
-);
+
+  return (
+    <div
+      {...remaining}
+      ref={nodeRef}
+      className={toastContent({
+        action,
+        stacked,
+        multiline,
+        closeButton,
+        className,
+      })}
+    >
+      {children}
+    </div>
+  );
+}

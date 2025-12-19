@@ -8,8 +8,8 @@ import { TableRow } from "@react-md/core/table/TableRow";
 import { type ReactElement } from "react";
 import { type ParameterizedItemParameter } from "sassdoc-generator/types";
 
-import { LinkableHeading } from "@/components/LinkableHeading.jsx";
-import { Markdown } from "@/components/Markdown.jsx";
+import { LinkableHeading } from "@/components/LinkableHeading.js";
+import { Markdown } from "@/components/Markdown.js";
 import { M_DASH } from "@/constants/unicode.js";
 
 import styles from "./SassDocParameters.module.scss";

@@ -1,7 +1,7 @@
 import { type PackageManager } from "@react-md/code/PackageManagerProvider";
 import { type ReactNode } from "react";
 
-import { MarkdownCode } from "../MarkdownCode.jsx";
+import { MarkdownCode } from "../MarkdownCode.js";
 
 export interface PackageManagerCodeBlockProps {
   lineWrap?: boolean;

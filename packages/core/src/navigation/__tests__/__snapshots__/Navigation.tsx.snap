@@ -7,7 +7,7 @@ exports[`Navigation > should allow route groups to be expanded 1`] = `
   <button
     aria-expanded="true"
     class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
-    id=":ra:"
+    id="_r_a_"
     type="button"
   >
     <span
@@ -43,7 +43,7 @@ exports[`Navigation > should allow route groups to be expanded 1`] = `
       <a
         class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
         href="/path-2/route-1"
-        id=":rc:"
+        id="_r_c_"
         type="route"
       >
         <span
@@ -63,7 +63,7 @@ exports[`Navigation > should allow route groups to be expanded 1`] = `
       <a
         class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
         href="/path-2/route-2"
-        id=":re:"
+        id="_r_e_"
         type="route"
       >
         <span
@@ -91,7 +91,7 @@ exports[`Navigation > should be able to render dividers, subheaders, groups, lin
       aria-current="page"
       class="rmd-nav-item__content rmd-nav-item__link rmd-nav-item__link--active rmd-button rmd-button--text rmd-interaction-surface rmd-none rmd-bold"
       href="/"
-      id=":r0:"
+      id="_r_0_"
       type="route"
     >
       <span
@@ -127,7 +127,7 @@ exports[`Navigation > should be able to render dividers, subheaders, groups, lin
     <button
       aria-expanded="false"
       class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
-      id=":r2:"
+      id="_r_2_"
       type="button"
     >
       <span
@@ -149,7 +149,7 @@ exports[`Navigation > should be able to render dividers, subheaders, groups, lin
     <button
       aria-expanded="false"
       class="rmd-button rmd-button--text rmd-interaction-surface rmd-nav-item__content"
-      id=":r4:"
+      id="_r_4_"
       type="button"
     >
       <span

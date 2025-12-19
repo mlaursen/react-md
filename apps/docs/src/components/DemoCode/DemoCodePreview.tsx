@@ -8,7 +8,7 @@ import { type ReactElement } from "react";
 import {
   PreviewContainer,
   type PreviewContainerOptions,
-} from "./PreviewContainer.jsx";
+} from "./PreviewContainer.js";
 
 export interface DemoCodePreviewProps
   extends DangerousCodePreviewProps, PreviewContainerOptions {}

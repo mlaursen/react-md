@@ -1,6 +1,6 @@
 "use client";
 
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { useTableConfig } from "./TableConfigurationProvider.js";
 import { tableRow } from "./tableRowStyles.js";
@@ -8,6 +8,8 @@ import { type TableRowConfiguration } from "./types.js";
 
 export interface TableRowProps
   extends HTMLAttributes<HTMLTableRowElement>, TableRowConfiguration {
+  ref?: Ref<HTMLTableRowElement>;
+
   /**
    * Boolean if the current row has been selected and should apply the selected
    * background-color.
@@ -33,37 +35,36 @@ export interface TableRowProps
  *
  * @see {@link https://react-md.dev/components/table | Table Demos}
  */
-export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
-  function TableRow(props, ref) {
-    const {
-      className,
-      disableHover: propDisableHover,
-      disableBorders: propDisableBorders,
-      children,
-      selected = false,
-      clickable = false,
-      ...remaining
-    } = props;
+export function TableRow(props: TableRowProps): ReactElement {
+  const {
+    ref,
+    className,
+    disableHover: propDisableHover,
+    disableBorders: propDisableBorders,
+    children,
+    selected = false,
+    clickable = false,
+    ...remaining
+  } = props;
 
-    const { disableHover, disableBorders } = useTableConfig({
-      disableHover: propDisableHover,
-      disableBorders: propDisableBorders,
-    });
+  const { disableHover, disableBorders } = useTableConfig({
+    disableHover: propDisableHover,
+    disableBorders: propDisableBorders,
+  });
 
-    return (
-      <tr
-        {...remaining}
-        ref={ref}
-        className={tableRow({
-          selected,
-          clickable,
-          disableHover,
-          disableBorders,
-          className,
-        })}
-      >
-        {children}
-      </tr>
-    );
-  }
-);
+  return (
+    <tr
+      {...remaining}
+      ref={ref}
+      className={tableRow({
+        selected,
+        clickable,
+        disableHover,
+        disableBorders,
+        className,
+      })}
+    >
+      {children}
+    </tr>
+  );
+}

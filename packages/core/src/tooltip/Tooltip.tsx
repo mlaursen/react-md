@@ -1,6 +1,6 @@
 "use client";
 
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { Portal } from "../portal/Portal.js";
 import {
@@ -38,6 +38,7 @@ export interface TooltipProps
     CSSTransitionComponentProps,
     SSRTransitionOptions,
     TransitionActions {
+  ref?: Ref<HTMLSpanElement>;
   visible: boolean;
 
   /**
@@ -89,67 +90,66 @@ export interface TooltipProps
  *
  * @see {@link https://react-md.dev/components/tooltip | Tooltip Demos}
  */
-export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
-  function Tooltip(props, nodeRef) {
-    const {
-      id: propId,
+export function Tooltip(props: TooltipProps): ReactElement {
+  const {
+    id: propId,
+    ref: nodeRef,
+    dense,
+    visible,
+    children,
+    appear,
+    enter,
+    exit,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    timeout = DEFAULT_TOOLTIP_TIMEOUT,
+    classNames = DEFAULT_TOOLTIP_CLASSNAMES,
+    className,
+    position = DEFAULT_TOOLTIP_POSITION,
+    temporary = true,
+    exitedHidden = !temporary,
+    textOverflow,
+    disablePortal: propDisablePortal,
+    ...remaining
+  } = props;
+  const id = useEnsuredId(propId, "tooltip");
+
+  const { rendered, elementProps, disablePortal } = useCSSTransition({
+    nodeRef,
+    appear,
+    enter,
+    exit,
+    transitionIn: visible,
+    timeout,
+    classNames,
+    className: tooltip({
       dense,
-      visible,
-      children,
-      appear,
-      enter,
-      exit,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      timeout = DEFAULT_TOOLTIP_TIMEOUT,
-      classNames = DEFAULT_TOOLTIP_CLASSNAMES,
+      position,
       className,
-      position = DEFAULT_TOOLTIP_POSITION,
-      temporary = true,
-      exitedHidden = !temporary,
       textOverflow,
-      disablePortal: propDisablePortal,
-      ...remaining
-    } = props;
-    const id = useEnsuredId(propId, "tooltip");
+    }),
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    temporary,
+    exitedHidden,
+    disablePortal: propDisablePortal,
+  });
 
-    const { rendered, elementProps, disablePortal } = useCSSTransition({
-      nodeRef,
-      appear,
-      enter,
-      exit,
-      transitionIn: visible,
-      timeout,
-      classNames,
-      className: tooltip({
-        dense,
-        position,
-        className,
-        textOverflow,
-      }),
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      temporary,
-      exitedHidden,
-      disablePortal: propDisablePortal,
-    });
-
-    return (
-      <Portal disabled={disablePortal}>
-        {rendered && (
-          <span {...remaining} {...elementProps} id={id} role="tooltip">
-            {children}
-          </span>
-        )}
-      </Portal>
-    );
-  }
-);
+  return (
+    <Portal disabled={disablePortal}>
+      {rendered && (
+        <span {...remaining} {...elementProps} id={id} role="tooltip">
+          {children}
+        </span>
+      )}
+    </Portal>
+  );
+}

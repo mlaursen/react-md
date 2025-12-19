@@ -10,8 +10,8 @@ import {
 } from "@/generated/sassdoc.js";
 import { getSassDocLink, isFormattedVariableItem } from "@/utils/sassdoc.js";
 
-import { GithubLink } from "./GithubLink.jsx";
-import { LinkUnstyled, type LinkUnstyledProps } from "./LinkUnstyled.jsx";
+import { GithubLink } from "./GithubLink.js";
+import { LinkUnstyled, type LinkUnstyledProps } from "./LinkUnstyled.js";
 
 export type MarkdownLinkProps = LinkUnstyledProps;
 

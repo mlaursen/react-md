@@ -3,9 +3,9 @@
 import { useSearchParams } from "next/navigation.js";
 import { type ComponentType, type ReactElement } from "react";
 
-import { ExampleCoreNavigation } from "./ExampleCoreNavigation.jsx";
-import { ExampleListNavigation } from "./ExampleListNavigation.jsx";
-import { ExampleTreeNavigation } from "./ExampleTreeNavigation.jsx";
+import { ExampleCoreNavigation } from "./ExampleCoreNavigation.js";
+import { ExampleListNavigation } from "./ExampleListNavigation.js";
+import { ExampleTreeNavigation } from "./ExampleTreeNavigation.js";
 import { type LayoutType } from "./layouts.js";
 import { type NavigationType } from "./navTypes.js";
 

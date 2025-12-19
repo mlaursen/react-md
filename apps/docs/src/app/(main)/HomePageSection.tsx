@@ -2,7 +2,7 @@ import { TextContainer } from "@react-md/core/typography/TextContainer";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement, type ReactNode } from "react";
 
-import { LinkableHeading } from "@/components/LinkableHeading.jsx";
+import { LinkableHeading } from "@/components/LinkableHeading.js";
 import { slug } from "@/utils/slug.js";
 
 import styles from "./HomePageSection.module.scss";

@@ -11,20 +11,20 @@ exports[`TextArea > resizing behavior > should update the height as the user typ
   >
     <textarea
       class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
-      id="text-area-:rf:"
+      id="text-area-_r_f_"
       placeholder=" "
       rows="2"
     />
     <label
       class="rmd-label rmd-label--floating"
-      for="text-area-:rf:"
+      for="text-area-_r_f_"
     >
       Label
     </label>
     <textarea
       aria-hidden="true"
       class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-      id="text-area-:rf:-mask"
+      id="text-area-_r_f_-mask"
       readonly=""
       rows="2"
       tabindex="-1"
@@ -44,20 +44,20 @@ exports[`TextArea > resizing behavior > should update the height as the user typ
   >
     <textarea
       class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
-      id="text-area-:rf:"
+      id="text-area-_r_f_"
       placeholder=" "
       rows="2"
     />
     <label
       class="rmd-label rmd-label--floating"
-      for="text-area-:rf:"
+      for="text-area-_r_f_"
     >
       Label
     </label>
     <textarea
       aria-hidden="true"
       class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-      id="text-area-:rf:-mask"
+      id="text-area-_r_f_-mask"
       readonly=""
       rows="2"
       tabindex="-1"
@@ -87,20 +87,20 @@ exports[`TextArea > should allow for addons before and after the input 1`] = `
   >
     <textarea
       class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
-      id="text-area-:ra:"
+      id="text-area-_r_a_"
       placeholder=" "
       rows="2"
     />
     <label
       class="rmd-label rmd-label--floating"
-      for="text-area-:ra:"
+      for="text-area-_r_a_"
     >
       Area
     </label>
     <textarea
       aria-hidden="true"
       class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-      id="text-area-:ra:-mask"
+      id="text-area-_r_a_-mask"
       readonly=""
       rows="2"
       tabindex="-1"
@@ -130,14 +130,14 @@ exports[`TextArea > should allow the active state to be controlled programmatica
   >
     <textarea
       class="rmd-text-field rmd-textarea rmd-textarea--rn"
-      id="text-area-:r4:"
+      id="text-area-_r_4_"
       placeholder=""
       rows="2"
     />
     <textarea
       aria-hidden="true"
       class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-      id="text-area-:r4:-mask"
+      id="text-area-_r_4_-mask"
       readonly=""
       rows="2"
       tabindex="-1"
@@ -156,14 +156,14 @@ exports[`TextArea > should allow the active state to be controlled programmatica
   >
     <textarea
       class="rmd-text-field rmd-textarea rmd-textarea--rn"
-      id="text-area-:r4:"
+      id="text-area-_r_4_"
       placeholder=""
       rows="2"
     />
     <textarea
       aria-hidden="true"
       class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-      id="text-area-:r4:-mask"
+      id="text-area-_r_4_-mask"
       readonly=""
       rows="2"
       tabindex="-1"
@@ -182,20 +182,20 @@ exports[`TextArea > should allow the active state to be controlled programmatica
   >
     <textarea
       class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
-      id="text-area-:r4:"
+      id="text-area-_r_4_"
       placeholder=" "
       rows="2"
     />
     <label
       class="rmd-label rmd-label--floating"
-      for="text-area-:r4:"
+      for="text-area-_r_4_"
     >
       Label
     </label>
     <textarea
       aria-hidden="true"
       class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-      id="text-area-:r4:-mask"
+      id="text-area-_r_4_-mask"
       readonly=""
       rows="2"
       tabindex="-1"
@@ -214,20 +214,20 @@ exports[`TextArea > should allow the active state to be controlled programmatica
   >
     <textarea
       class="rmd-text-field rmd-textarea rmd-textarea--rn"
-      id="text-area-:r4:"
+      id="text-area-_r_4_"
       placeholder=" "
       rows="2"
     />
     <label
       class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active"
-      for="text-area-:r4:"
+      for="text-area-_r_4_"
     >
       Label
     </label>
     <textarea
       aria-hidden="true"
       class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-      id="text-area-:r4:-mask"
+      id="text-area-_r_4_-mask"
       readonly=""
       rows="2"
       tabindex="-1"
@@ -240,7 +240,7 @@ exports[`TextArea > should allow the label to by styled by labelProps or the lab
 <label
   class="rmd-label rmd-label--floating label-props-class-name"
   data-testid="label"
-  for="text-area-:rb:"
+  for="text-area-_r_b_"
   style="background: orange;"
 >
   Label
@@ -251,7 +251,7 @@ exports[`TextArea > should allow the label to by styled by labelProps or the lab
 <label
   class="rmd-label rmd-label--floating label-class-name"
   data-testid="label"
-  for="text-area-:rb:"
+  for="text-area-_r_b_"
   style="color: red;"
 >
   Label
@@ -261,7 +261,7 @@ exports[`TextArea > should allow the label to by styled by labelProps or the lab
 exports[`TextArea > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <textarea
   class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
-  id="text-area-:r0:"
+  id="text-area-_r_0_"
   placeholder=" "
   rows="2"
 />
@@ -270,7 +270,7 @@ exports[`TextArea > should apply the correct styling, HTML attributes, and allow
 exports[`TextArea > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <textarea
   class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
-  id="text-area-:r0:"
+  id="text-area-_r_0_"
   placeholder=" "
   rows="2"
 />
@@ -289,20 +289,20 @@ exports[`TextArea > should automatically merge the error and theme props when me
     >
       <textarea
         class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
-        id="text-area-:r7:"
+        id="text-area-_r_7_"
         placeholder=" "
         rows="2"
       />
       <label
         class="rmd-label rmd-label--error rmd-label--floating rmd-error-color"
-        for="text-area-:r7:"
+        for="text-area-_r_7_"
       >
         Area
       </label>
       <textarea
         aria-hidden="true"
         class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-        id="text-area-:r7:-mask"
+        id="text-area-_r_7_-mask"
         readonly=""
         rows="2"
         tabindex="-1"
@@ -312,11 +312,11 @@ exports[`TextArea > should automatically merge the error and theme props when me
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
-    id="form-message-:r8:"
+    id="form-message-_r_8_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r8:-message"
+      id="form-message-_r_8_-message"
     >
       Help Text
     </p>
@@ -337,20 +337,20 @@ exports[`TextArea > should render the FormMessageContainer when the messageProps
     >
       <textarea
         class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
-        id="text-area-:r5:"
+        id="text-area-_r_5_"
         placeholder=" "
         rows="2"
       />
       <label
         class="rmd-label rmd-label--floating"
-        for="text-area-:r5:"
+        for="text-area-_r_5_"
       >
         Area
       </label>
       <textarea
         aria-hidden="true"
         class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-        id="text-area-:r5:-mask"
+        id="text-area-_r_5_-mask"
         readonly=""
         rows="2"
         tabindex="-1"
@@ -360,11 +360,11 @@ exports[`TextArea > should render the FormMessageContainer when the messageProps
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
-    id="form-message-:r6:"
+    id="form-message-_r_6_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r6:-message"
+      id="form-message-_r_6_-message"
     >
       Help text
     </p>
@@ -385,20 +385,20 @@ exports[`TextArea > should render the FormMessageContainer when the messageProps
     >
       <textarea
         class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
-        id="text-area-:r5:"
+        id="text-area-_r_5_"
         placeholder=" "
         rows="2"
       />
       <label
         class="rmd-label rmd-label--floating"
-        for="text-area-:r5:"
+        for="text-area-_r_5_"
       >
         Field
       </label>
       <textarea
         aria-hidden="true"
         class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-        id="text-area-:r5:-mask"
+        id="text-area-_r_5_-mask"
         readonly=""
         rows="2"
         tabindex="-1"
@@ -408,11 +408,11 @@ exports[`TextArea > should render the FormMessageContainer when the messageProps
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
-    id="form-message-:r6:"
+    id="form-message-_r_6_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r6:-message"
+      id="form-message-_r_6_-message"
     >
       Help text
     </p>
@@ -430,20 +430,20 @@ exports[`TextArea > should support an error state 1`] = `
   >
     <textarea
       class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
-      id="text-area-:r3:"
+      id="text-area-_r_3_"
       placeholder=" "
       rows="2"
     />
     <label
       class="rmd-label rmd-label--error rmd-label--floating rmd-error-color"
-      for="text-area-:r3:"
+      for="text-area-_r_3_"
     >
       Label
     </label>
     <textarea
       aria-hidden="true"
       class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-      id="text-area-:r3:-mask"
+      id="text-area-_r_3_-mask"
       readonly=""
       rows="2"
       tabindex="-1"
@@ -463,20 +463,20 @@ exports[`TextArea > should support the disabled state 1`] = `
     <textarea
       class="rmd-text-field rmd-text-field--placeholder-hidden rmd-textarea rmd-textarea--rn"
       disabled=""
-      id="text-area-:r2:"
+      id="text-area-_r_2_"
       placeholder=" "
       rows="2"
     />
     <label
       class="rmd-label rmd-label--disabled rmd-label--floating rmd-text-disabled-color"
-      for="text-area-:r2:"
+      for="text-area-_r_2_"
     >
       Label
     </label>
     <textarea
       aria-hidden="true"
       class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-      id="text-area-:r2:-mask"
+      id="text-area-_r_2_-mask"
       readonly=""
       rows="2"
       tabindex="-1"
@@ -495,7 +495,7 @@ exports[`TextArea > should support the readOnly state 1`] = `
   >
     <textarea
       class="rmd-text-field rmd-textarea rmd-textarea--rn"
-      id="text-area-:r1:"
+      id="text-area-_r_1_"
       placeholder=""
       readonly=""
       rows="2"
@@ -503,7 +503,7 @@ exports[`TextArea > should support the readOnly state 1`] = `
     <textarea
       aria-hidden="true"
       class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-      id="text-area-:r1:-mask"
+      id="text-area-_r_1_-mask"
       readonly=""
       rows="2"
       tabindex="-1"
@@ -519,7 +519,7 @@ exports[`TextArea > should support the the native browser resize behavior 1`] = 
 >
   <textarea
     class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--scrollable"
-    id="text-area-:rc:"
+    id="text-area-_r_c_"
     placeholder=""
     rows="2"
   />
@@ -533,7 +533,7 @@ exports[`TextArea > should support the the native browser resize behavior 2`] = 
 >
   <textarea
     class="rmd-text-field rmd-textarea rmd-textarea--rv"
-    id="text-area-:rc:"
+    id="text-area-_r_c_"
     placeholder=""
     rows="2"
   />
@@ -547,7 +547,7 @@ exports[`TextArea > should support the the native browser resize behavior 3`] = 
 >
   <textarea
     class="rmd-text-field rmd-textarea rmd-textarea--rh"
-    id="text-area-:rc:"
+    id="text-area-_r_c_"
     placeholder=""
     rows="2"
   />
@@ -561,7 +561,7 @@ exports[`TextArea > should support the the native browser resize behavior 4`] = 
 >
   <textarea
     class="rmd-text-field rmd-textarea"
-    id="text-area-:rc:"
+    id="text-area-_r_c_"
     placeholder=""
     rows="2"
   />
@@ -579,14 +579,14 @@ exports[`TextArea > should support the the native browser resize behavior 5`] = 
   >
     <textarea
       class="rmd-text-field rmd-textarea rmd-textarea--rn"
-      id="text-area-:rc:"
+      id="text-area-_r_c_"
       placeholder=""
       rows="2"
     />
     <textarea
       aria-hidden="true"
       class="rmd-text-field rmd-textarea rmd-textarea--rn rmd-textarea--mask"
-      id="text-area-:rc:-mask"
+      id="text-area-_r_c_-mask"
       readonly=""
       rows="2"
       tabindex="-1"

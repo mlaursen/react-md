@@ -3,12 +3,13 @@
 import {
   type ReactElement,
   type ReactNode,
+  type RefObject,
   createContext,
   useContext,
   useMemo,
 } from "react";
 
-import { type NonNullMutableRef, type UseStateObject } from "../types.js";
+import { type UseStateObject } from "../types.js";
 
 /**
  * @since 5.0.0
@@ -18,7 +19,7 @@ export interface MenuVisibilityContext extends UseStateObject<
   "visible",
   boolean
 > {
-  defaultFocusIndex: NonNullMutableRef<number>;
+  defaultFocusIndex: RefObject<number>;
 }
 
 /**

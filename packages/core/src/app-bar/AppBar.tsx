@@ -1,8 +1,8 @@
 import {
   type ElementType,
   type HTMLAttributes,
+  type ReactElement,
   type Ref,
-  forwardRef,
 } from "react";
 
 import { type AppBarClassNameOptions, appBar } from "./styles.js";
@@ -28,6 +28,7 @@ export type CustomAppBarComponent = ElementType<
  */
 export interface AppBarProps
   extends HTMLAttributes<HTMLDivElement>, AppBarClassNameOptions {
+  ref?: Ref<HTMLDivElement>;
   /** @defaultValue `fixed ? "header" : "div"` */
   as?: CustomAppBarComponent;
 }
@@ -56,57 +57,56 @@ export interface AppBarProps
  * @since 6.0.0 The `AppBar` was updated to use `gap` for spacing
  * instead of requiring the `AppBarNav` and `AppBarAction` components.
  */
-export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(
-  function AppBar(props, ref) {
-    const {
-      className,
-      theme,
-      stacked,
-      height,
-      align,
-      grid,
-      gridName,
-      justify,
-      reversed,
-      gridColumns,
-      disableWrap,
-      disablePadding,
-      position,
-      pagePosition,
-      surfaceColor,
-      scrollbarOffset,
-      disableElevation,
-      as: Component = position ? "header" : "div",
-      children,
-      ...remaining
-    } = props;
+export function AppBar(props: AppBarProps): ReactElement {
+  const {
+    ref,
+    className,
+    theme,
+    stacked,
+    height,
+    align,
+    grid,
+    gridName,
+    justify,
+    reversed,
+    gridColumns,
+    disableWrap,
+    disablePadding,
+    position,
+    pagePosition,
+    surfaceColor,
+    scrollbarOffset,
+    disableElevation,
+    as: Component = position ? "header" : "div",
+    children,
+    ...remaining
+  } = props;
 
-    return (
-      <Component
-        {...remaining}
-        className={appBar({
-          className,
-          theme,
-          position,
-          pagePosition,
-          disableElevation,
-          scrollbarOffset,
-          height,
-          grid,
-          gridName,
-          gridColumns,
-          align,
-          stacked,
-          justify,
-          reversed,
-          surfaceColor,
-          disableWrap,
-          disablePadding,
-        })}
-        ref={ref}
-      >
-        {children}
-      </Component>
-    );
-  }
-);
+  return (
+    <Component
+      {...remaining}
+      className={appBar({
+        className,
+        theme,
+        position,
+        pagePosition,
+        disableElevation,
+        scrollbarOffset,
+        height,
+        grid,
+        gridName,
+        gridColumns,
+        align,
+        stacked,
+        justify,
+        reversed,
+        surfaceColor,
+        disableWrap,
+        disablePadding,
+      })}
+      ref={ref}
+    >
+      {children}
+    </Component>
+  );
+}

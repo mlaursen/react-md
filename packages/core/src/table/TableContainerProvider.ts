@@ -8,7 +8,7 @@ import { type RefObject, createContext, useContext } from "react";
  */
 export interface TableContainerContext {
   exists: boolean;
-  containerRef: RefObject<HTMLDivElement>;
+  containerRef: RefObject<HTMLDivElement | null>;
 }
 
 const context = createContext<Readonly<TableContainerContext>>({

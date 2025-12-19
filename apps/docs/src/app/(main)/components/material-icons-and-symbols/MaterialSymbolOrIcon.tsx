@@ -3,7 +3,7 @@ import { MaterialSymbol } from "@react-md/core/icon/MaterialSymbol";
 import { type MaterialSymbolFamily } from "@react-md/core/icon/material";
 import { type ReactElement } from "react";
 
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import { type MaterialIconAndSymbolName } from "./metadata.js";
 import { isMaterialSymbol } from "./utils.js";
 

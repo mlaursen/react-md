@@ -2,9 +2,9 @@ import { cnb } from "cnbuilder";
 import {
   type CSSProperties,
   type HTMLAttributes,
+  type ReactElement,
   type Ref,
   type TextareaHTMLAttributes,
-  forwardRef,
 } from "react";
 
 import { textArea } from "./textAreaStyles.js";
@@ -14,6 +14,7 @@ import { textArea } from "./textAreaStyles.js";
  * @internal
  */
 export interface ResizingTextAreaWrapperProps extends HTMLAttributes<HTMLDivElement> {
+  ref?: Ref<HTMLDivElement>;
   maskId: string;
   maskRef: Ref<HTMLTextAreaElement>;
   defaultValue?: TextareaHTMLAttributes<HTMLTextAreaElement>["defaultValue"];
@@ -27,11 +28,11 @@ export interface ResizingTextAreaWrapperProps extends HTMLAttributes<HTMLDivElem
  * @since 6.0.0
  * @internal
  */
-export const ResizingTextAreaWrapper = forwardRef<
-  HTMLDivElement,
-  ResizingTextAreaWrapperProps
->(function ResizingTextAreaWrapper(props, ref) {
+export const ResizingTextAreaWrapper = function ResizingTextAreaWrapper(
+  props: ResizingTextAreaWrapperProps
+): ReactElement {
   const {
+    ref,
     className,
     rows,
     maskId,
@@ -72,4 +73,4 @@ export const ResizingTextAreaWrapper = forwardRef<
       />
     </div>
   );
-});
+};

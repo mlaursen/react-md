@@ -1,9 +1,8 @@
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { type RefObject, useState } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../../test-utils/index.js";
-import { type NonNullMutableRef } from "../../types.js";
 import * as fuzzy from "../fuzzy.js";
 import { toSearchQuery } from "../toSearchQuery.js";
 import { useFuzzyMatch } from "../useFuzzyMatch.js";
@@ -155,7 +154,7 @@ describe("useFuzzyMatch", () => {
     const items = Array.from({ length: 1e4 }, () => nanoid());
     interface TestProps {
       query: string;
-      filtered: NonNullMutableRef<string[]>;
+      filtered: RefObject<string[]>;
     }
 
     function Test1({ query, filtered }: TestProps) {
@@ -185,8 +184,8 @@ describe("useFuzzyMatch", () => {
     }
 
     const query = "aed";
-    const filtered1: NonNullMutableRef<string[]> = { current: [] };
-    const filtered2: NonNullMutableRef<string[]> = { current: [] };
+    const filtered1: RefObject<string[]> = { current: [] };
+    const filtered2: RefObject<string[]> = { current: [] };
     const start1 = performance.now();
     render(<Test1 query={query} filtered={filtered1} />);
     const end1 = performance.now();

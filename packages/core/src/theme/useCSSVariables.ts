@@ -36,7 +36,7 @@ import { type CSSVariableName, type ReadonlyCSSVariableList } from "./types.js";
  */
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,
-  rootNode?: RefObject<HTMLElement> | HTMLElement
+  rootNode?: RefObject<HTMLElement | null> | HTMLElement
 ): void {
   useEffect(() => {
     if (variables.length === 0) {

@@ -3,10 +3,10 @@ import { cnb } from "cnbuilder";
 import { Roboto_Flex, Source_Code_Pro } from "next/font/google";
 import { type ReactElement, type ReactNode } from "react";
 
-import { GtagAnalytics } from "@/components/GtagAnalytics.jsx";
-import { LoadThemeStyles } from "@/components/LoadThemeStyles/LoadThemeStyles.jsx";
-import { MainLayout } from "@/components/MainLayout/MainLayout.jsx";
-import { RootProviders } from "@/components/RootProviders.jsx";
+import { GtagAnalytics } from "@/components/GtagAnalytics.js";
+import { LoadThemeStyles } from "@/components/LoadThemeStyles/LoadThemeStyles.js";
+import { MainLayout } from "@/components/MainLayout/MainLayout.js";
+import { RootProviders } from "@/components/RootProviders.js";
 import { PRISM_THEMES_ID, getPrismThemeHref } from "@/utils/prismThemes.js";
 import { getInitialState } from "@/utils/serverState.js";
 
@@ -67,6 +67,7 @@ export default async function RootLayout(
         </head>
       }
       afterBodyChildren={<GtagAnalytics />}
+      data-scroll-behavior="smooth"
     >
       <RootProviders {...providerProps}>
         <LoadThemeStyles />

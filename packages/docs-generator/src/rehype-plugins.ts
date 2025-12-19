@@ -1,5 +1,7 @@
+import { type Root } from "hast";
 import rehypeSlug, { type Options as RehypeSlugOptions } from "rehype-slug";
-import { type PluggableList } from "unified";
+import { type TransformCallback } from "unified";
+import { type VFile } from "vfile";
 
 import {
   type RehypeCodeBlocksOptions,
@@ -19,18 +21,29 @@ export interface CreateRehypePluginsOptions {
   keyboardCodeOptions?: RehypeKeyboardCodeOptions;
 }
 
-export function createRehypePlugins(
+export default function createRehypePlugins(
   options: CreateRehypePluginsOptions = {}
-): PluggableList {
+) {
   const { tocOptions, slugOptions, codeBlockOptions, keyboardCodeOptions } =
     options;
-  return [
-    [rehypeSlug, slugOptions],
-    [rehypeToc, tocOptions],
-    [rehypeKeyboardCode, keyboardCodeOptions],
-    rehypeColorPreview,
-    [rehypeCodeBlocks, codeBlockOptions],
-  ];
-}
 
-export const rehypePlugins = createRehypePlugins();
+  const slug = rehypeSlug(slugOptions);
+  const toc = rehypeToc(tocOptions);
+  const keyboardCode = rehypeKeyboardCode(keyboardCodeOptions);
+  const colorPreview = rehypeColorPreview();
+  const codeBlocks = rehypeCodeBlocks(codeBlockOptions);
+
+  return async function docsRehypePlugins(
+    tree: Root,
+    file: VFile,
+    callback: TransformCallback
+  ): Promise<void> {
+    slug(tree);
+    toc(tree, file);
+    keyboardCode(tree);
+    colorPreview(tree);
+
+    await codeBlocks(tree, file);
+    callback(undefined, tree, file);
+  };
+}

@@ -3,7 +3,8 @@
 import {
   type AnchorHTMLAttributes,
   type HTMLAttributes,
-  forwardRef,
+  type ReactElement,
+  type Ref,
 } from "react";
 
 import { type ComponentWithRippleProps } from "../interaction/types.js";
@@ -22,6 +23,8 @@ export interface ListItemLinkProps
     ListItemClassNameOptions,
     ListItemChildrenProps,
     ComponentWithRippleProps {
+  ref?: Ref<HTMLAnchorElement>;
+
   /** @defaultValue `"a"` */
   as?: CustomLinkComponent;
 
@@ -84,132 +87,131 @@ export interface ListItemLinkProps
  *
  * @see {@link https://react-md.dev/components/list | List Demos}
  */
-export const ListItemLink = forwardRef<HTMLAnchorElement, ListItemLinkProps>(
-  function ListItemLink(props, ref) {
-    const {
-      as: Link = "a",
-      to,
-      href,
-      className,
-      liProps,
-      textProps,
-      textClassName,
-      secondaryTextClassName,
-      primaryText,
-      secondaryText,
-      secondaryTextProps,
-      disableTextChildren = false,
-      height: propHeight,
-      leftAddon,
-      leftAddonType = "icon",
-      leftAddonPosition = "middle",
-      leftAddonClassName,
-      leftAddonForceWrap,
-      rightAddon,
-      rightAddonType = "icon",
-      rightAddonPosition = "middle",
-      rightAddonClassName,
-      rightAddonForceWrap,
-      disableLeftAddonCenteredMedia = false,
-      disableRightAddonCenteredMedia = false,
-      multiline = false,
-      disabled = false,
-      disabledOpacity = false,
-      onBlur,
-      onClick,
-      onKeyDown,
-      onKeyUp,
-      onMouseDown,
-      onMouseUp,
-      onMouseLeave,
-      onDragStart,
-      onTouchStart,
-      onTouchEnd,
-      onTouchMove,
-      role,
-      tabIndex = disabled || role === "menuitem" ? -1 : undefined,
-      children: propChildren,
-      disableRipple,
-      ...remaining
-    } = props;
+export function ListItemLink(props: ListItemLinkProps): ReactElement {
+  const {
+    ref,
+    as: Link = "a",
+    to,
+    href,
+    className,
+    liProps,
+    textProps,
+    textClassName,
+    secondaryTextClassName,
+    primaryText,
+    secondaryText,
+    secondaryTextProps,
+    disableTextChildren = false,
+    height: propHeight,
+    leftAddon,
+    leftAddonType = "icon",
+    leftAddonPosition = "middle",
+    leftAddonClassName,
+    leftAddonForceWrap,
+    rightAddon,
+    rightAddonType = "icon",
+    rightAddonPosition = "middle",
+    rightAddonClassName,
+    rightAddonForceWrap,
+    disableLeftAddonCenteredMedia = false,
+    disableRightAddonCenteredMedia = false,
+    multiline = false,
+    disabled = false,
+    disabledOpacity = false,
+    onBlur,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onDragStart,
+    onTouchStart,
+    onTouchEnd,
+    onTouchMove,
+    role,
+    tabIndex = disabled || role === "menuitem" ? -1 : undefined,
+    children: propChildren,
+    disableRipple,
+    ...remaining
+  } = props;
 
-    const { pressedClassName, ripples, handlers } = useElementInteraction({
-      mode: disableRipple ? "none" : undefined,
-      onBlur,
-      onClick,
-      onKeyDown,
-      onKeyUp,
-      onMouseDown,
-      onMouseUp,
-      onMouseLeave,
-      onDragStart,
-      onTouchStart,
-      onTouchEnd,
-      onTouchMove,
-      disabled,
-    });
-    const children = useHigherContrastChildren(
-      propChildren,
-      !disableTextChildren
-    );
+  const { pressedClassName, ripples, handlers } = useElementInteraction({
+    mode: disableRipple ? "none" : undefined,
+    onBlur,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onDragStart,
+    onTouchStart,
+    onTouchEnd,
+    onTouchMove,
+    disabled,
+  });
+  const children = useHigherContrastChildren(
+    propChildren,
+    !disableTextChildren
+  );
 
-    const height = getListItemHeight({
-      height: propHeight,
-      leftAddon,
-      leftAddonType,
-      rightAddon,
-      rightAddonType,
-      secondaryText,
-    });
+  const height = getListItemHeight({
+    height: propHeight,
+    leftAddon,
+    leftAddonType,
+    rightAddon,
+    rightAddonType,
+    secondaryText,
+  });
 
-    return (
-      <li {...liProps} role="none">
-        <Link
-          ref={ref}
-          {...remaining}
-          {...handlers}
-          role={role}
-          className={listItem({
-            className,
-            link: true,
-            height,
-            disabled,
-            disabledOpacity,
-            multiline,
-            pressedClassName,
-          })}
-          // TODO: Figure out a better type for the CustomLinkComponent to fix this
-          to={to as string}
-          href={href as string}
-          tabIndex={tabIndex}
+  return (
+    <li {...liProps} role="none">
+      <Link
+        ref={ref}
+        {...remaining}
+        {...handlers}
+        role={role}
+        className={listItem({
+          className,
+          link: true,
+          height,
+          disabled,
+          disabledOpacity,
+          multiline,
+          pressedClassName,
+        })}
+        // TODO: Figure out a better type for the CustomLinkComponent to fix this
+        to={to as string}
+        href={href as string}
+        tabIndex={tabIndex}
+      >
+        <ListItemChildren
+          multiline={multiline}
+          textClassName={textClassName}
+          secondaryTextClassName={secondaryTextClassName}
+          disableTextChildren={disableTextChildren}
+          primaryText={primaryText}
+          textProps={textProps}
+          secondaryText={secondaryText}
+          secondaryTextProps={secondaryTextProps}
+          leftAddon={leftAddon}
+          leftAddonType={leftAddonType}
+          leftAddonPosition={leftAddonPosition}
+          leftAddonClassName={leftAddonClassName}
+          leftAddonForceWrap={leftAddonForceWrap}
+          rightAddon={rightAddon}
+          rightAddonType={rightAddonType}
+          rightAddonPosition={rightAddonPosition}
+          rightAddonClassName={rightAddonClassName}
+          rightAddonForceWrap={rightAddonForceWrap}
+          disableLeftAddonCenteredMedia={disableLeftAddonCenteredMedia}
+          disableRightAddonCenteredMedia={disableRightAddonCenteredMedia}
         >
-          <ListItemChildren
-            multiline={multiline}
-            textClassName={textClassName}
-            secondaryTextClassName={secondaryTextClassName}
-            disableTextChildren={disableTextChildren}
-            primaryText={primaryText}
-            textProps={textProps}
-            secondaryText={secondaryText}
-            secondaryTextProps={secondaryTextProps}
-            leftAddon={leftAddon}
-            leftAddonType={leftAddonType}
-            leftAddonPosition={leftAddonPosition}
-            leftAddonClassName={leftAddonClassName}
-            leftAddonForceWrap={leftAddonForceWrap}
-            rightAddon={rightAddon}
-            rightAddonType={rightAddonType}
-            rightAddonPosition={rightAddonPosition}
-            rightAddonClassName={rightAddonClassName}
-            rightAddonForceWrap={rightAddonForceWrap}
-            disableLeftAddonCenteredMedia={disableLeftAddonCenteredMedia}
-            disableRightAddonCenteredMedia={disableRightAddonCenteredMedia}
-          >
-            {children}
-          </ListItemChildren>
-          {ripples}
-        </Link>
-      </li>
-    );
-  }
-);
+          {children}
+        </ListItemChildren>
+        {ripples}
+      </Link>
+    </li>
+  );
+}

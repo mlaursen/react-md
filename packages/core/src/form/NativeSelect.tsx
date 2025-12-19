@@ -1,9 +1,10 @@
 import {
   type CSSProperties,
   type HTMLAttributes,
+  type ReactElement,
   type ReactNode,
+  type Ref,
   type SelectHTMLAttributes,
-  forwardRef,
 } from "react";
 
 import { getIcon } from "../icon/config.js";
@@ -27,6 +28,8 @@ export interface NativeSelectProps
     Omit<SelectHTMLAttributes<HTMLSelectElement>, "autoComplete">,
     UserAgentAutocompleteProps,
     FormFieldOptions {
+  ref?: Ref<HTMLSelectElement>;
+
   /**
    * A custom dropdown icon to use instead of the browser's default select
    * dropdown icon.
@@ -111,124 +114,123 @@ export interface NativeSelectProps
  *
  * @see {@link https://react-md.dev/components/native-select | NativeSelect Demos}
  */
-export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
-  function NativeSelect(props, ref) {
-    const {
-      id: propId,
-      style,
-      className,
-      icon: propIcon,
-      label,
-      labelProps,
-      labelStyle,
-      labelClassName,
-      selectStyle,
-      selectClassName,
-      autoCompleteValue,
-      autoComplete = autoCompleteValue,
-      name = autoCompleteValue,
-      dense,
-      error,
-      active,
-      inline,
-      leftAddon,
-      rightAddon: propRightAddon,
-      leftAddonProps,
-      rightAddonProps,
-      disableLeftAddonStyles,
-      disableRightAddonStyles,
-      theme: propTheme,
-      underlineDirection: propUnderlineDirection,
-      messageProps,
-      messageContainerProps,
-      containerProps,
-      children,
-      ...remaining
-    } = props;
-    const { disabled, readOnly, multiple } = props;
-    const id = useEnsuredId(propId, "select");
-    const theme = getFormConfig("theme", propTheme);
-    const underlineDirection = getFormConfig(
-      "underlineDirection",
-      propUnderlineDirection
-    );
-    const icon = getIcon("dropdown", propIcon);
-    const underlined = theme === "underline" || theme === "filled";
+export function NativeSelect(props: NativeSelectProps): ReactElement {
+  const {
+    ref,
+    id: propId,
+    style,
+    className,
+    icon: propIcon,
+    label,
+    labelProps,
+    labelStyle,
+    labelClassName,
+    selectStyle,
+    selectClassName,
+    autoCompleteValue,
+    autoComplete = autoCompleteValue,
+    name = autoCompleteValue,
+    dense,
+    error,
+    active,
+    inline,
+    leftAddon,
+    rightAddon: propRightAddon,
+    leftAddonProps,
+    rightAddonProps,
+    disableLeftAddonStyles,
+    disableRightAddonStyles,
+    theme: propTheme,
+    underlineDirection: propUnderlineDirection,
+    messageProps,
+    messageContainerProps,
+    containerProps,
+    children,
+    ...remaining
+  } = props;
+  const { disabled, readOnly, multiple } = props;
+  const id = useEnsuredId(propId, "select");
+  const theme = getFormConfig("theme", propTheme);
+  const underlineDirection = getFormConfig(
+    "underlineDirection",
+    propUnderlineDirection
+  );
+  const icon = getIcon("dropdown", propIcon);
+  const underlined = theme === "underline" || theme === "filled";
 
-    let rightAddon = propRightAddon;
-    if (propRightAddon === undefined && !multiple) {
-      rightAddon = icon;
-    }
-
-    return (
-      <FormMessageContainer
-        inline={inline}
-        {...messageContainerProps}
-        messageProps={
-          messageProps && {
-            error,
-            theme,
-            ...messageProps,
-          }
-        }
-      >
-        <TextFieldContainer
-          {...containerProps}
-          style={style}
-          className={nativeSelectContainer({
-            label: !!label,
-            multiple,
-            underlined,
-            className,
-          })}
-          theme={theme}
-          label={!!label}
-          error={error}
-          dense={dense}
-          inline={inline}
-          active={active}
-          readOnly={readOnly}
-          disabled={disabled}
-          leftAddon={leftAddon}
-          leftAddonProps={leftAddonProps}
-          rightAddon={rightAddon}
-          rightAddonProps={rightAddonProps}
-          underlineDirection={underlineDirection}
-          disableLeftAddonStyles={disableLeftAddonStyles}
-          disableRightAddonStyles={disableRightAddonStyles}
-        >
-          <select
-            {...remaining}
-            id={id}
-            ref={ref}
-            autoComplete={autoComplete}
-            name={name}
-            disabled={disabled}
-            style={selectStyle}
-            className={nativeSelect({
-              icon: !!icon,
-              className: selectClassName,
-            })}
-          >
-            {children}
-          </select>
-          {label && (
-            <Label
-              {...labelProps}
-              htmlFor={id}
-              style={labelProps?.style ?? labelStyle}
-              className={labelProps?.className ?? labelClassName}
-              floating
-              dense={dense}
-              error={error}
-              active={active}
-              disabled={disabled}
-            >
-              {label}
-            </Label>
-          )}
-        </TextFieldContainer>
-      </FormMessageContainer>
-    );
+  let rightAddon = propRightAddon;
+  if (propRightAddon === undefined && !multiple) {
+    rightAddon = icon;
   }
-);
+
+  return (
+    <FormMessageContainer
+      inline={inline}
+      {...messageContainerProps}
+      messageProps={
+        messageProps && {
+          error,
+          theme,
+          ...messageProps,
+        }
+      }
+    >
+      <TextFieldContainer
+        {...containerProps}
+        style={style}
+        className={nativeSelectContainer({
+          label: !!label,
+          multiple,
+          underlined,
+          className,
+        })}
+        theme={theme}
+        label={!!label}
+        error={error}
+        dense={dense}
+        inline={inline}
+        active={active}
+        readOnly={readOnly}
+        disabled={disabled}
+        leftAddon={leftAddon}
+        leftAddonProps={leftAddonProps}
+        rightAddon={rightAddon}
+        rightAddonProps={rightAddonProps}
+        underlineDirection={underlineDirection}
+        disableLeftAddonStyles={disableLeftAddonStyles}
+        disableRightAddonStyles={disableRightAddonStyles}
+      >
+        <select
+          {...remaining}
+          id={id}
+          ref={ref}
+          autoComplete={autoComplete}
+          name={name}
+          disabled={disabled}
+          style={selectStyle}
+          className={nativeSelect({
+            icon: !!icon,
+            className: selectClassName,
+          })}
+        >
+          {children}
+        </select>
+        {label && (
+          <Label
+            {...labelProps}
+            htmlFor={id}
+            style={labelProps?.style ?? labelStyle}
+            className={labelProps?.className ?? labelClassName}
+            floating
+            dense={dense}
+            error={error}
+            active={active}
+            disabled={disabled}
+          >
+            {label}
+          </Label>
+        )}
+      </TextFieldContainer>
+    </FormMessageContainer>
+  );
+}

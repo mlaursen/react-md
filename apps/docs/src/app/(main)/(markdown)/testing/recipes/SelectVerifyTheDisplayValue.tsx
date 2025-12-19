@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 
-import { FrameworkCodeSwap } from "../FrameworkCodeSwap.jsx";
+import { FrameworkCodeSwap } from "../FrameworkCodeSwap.js";
 
 const DEFAULT_CODE = `
 import { describe, expect, it } from "{FRAMEWORK}";
@@ -11,7 +11,7 @@ import {
   userEvent,
 } from "@react-md/core/test-utils";
 
-import SimpleSelect from "@/components/select/SimpleSelect.jsx";
+import SimpleSelect from "@/components/select/SimpleSelect.js";
 
 describe("SimpleSelect", () => {
   it("should be able to verify the display value", async () => {

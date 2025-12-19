@@ -2,9 +2,9 @@
 
 exports[`Select > should allow for the OptGroup to be used 1`] = `
 <div
-  aria-labelledby="select-label-:r1q:"
+  aria-labelledby="select-label-_r_1q_"
   class="rmd-menu rmd-menu--elevated"
-  id="combobox-popup-:r1r:"
+  id="combobox-popup-_r_1r_"
   role="listbox"
   style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
   tabindex="-1"
@@ -14,13 +14,13 @@ exports[`Select > should allow for the OptGroup to be used 1`] = `
     role="none"
   >
     <ul
-      aria-labelledby="optgroup-:r1u:"
+      aria-labelledby="optgroup-_r_1u_"
       class="rmd-list rmd-menu-item-group"
       role="group"
     >
       <li
         class="rmd-list-subheader"
-        id="optgroup-:r1u:"
+        id="optgroup-_r_1u_"
         role="presentation"
       >
         <span
@@ -31,7 +31,7 @@ exports[`Select > should allow for the OptGroup to be used 1`] = `
       </li>
       <li
         class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon"
-        id="option-:r1v:"
+        id="option-_r_1v_"
         role="option"
         tabindex="-1"
       >
@@ -46,7 +46,7 @@ exports[`Select > should allow for the OptGroup to be used 1`] = `
       </li>
       <li
         class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-        id="option-:r21:"
+        id="option-_r_21_"
         role="option"
         tabindex="-1"
       >
@@ -61,7 +61,7 @@ exports[`Select > should allow for the OptGroup to be used 1`] = `
       </li>
       <li
         class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-        id="option-:r23:"
+        id="option-_r_23_"
         role="option"
         tabindex="-1"
       >
@@ -76,13 +76,13 @@ exports[`Select > should allow for the OptGroup to be used 1`] = `
       </li>
     </ul>
     <ul
-      aria-labelledby="optgroup-:r25:"
+      aria-labelledby="optgroup-_r_25_"
       class="rmd-list rmd-menu-item-group"
       role="group"
     >
       <li
         class="rmd-list-subheader"
-        id="optgroup-:r25:"
+        id="optgroup-_r_25_"
         role="presentation"
       >
         <span
@@ -93,7 +93,7 @@ exports[`Select > should allow for the OptGroup to be used 1`] = `
       </li>
       <li
         class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-        id="option-:r26:"
+        id="option-_r_26_"
         role="option"
         tabindex="-1"
       >
@@ -108,13 +108,13 @@ exports[`Select > should allow for the OptGroup to be used 1`] = `
       </li>
     </ul>
     <ul
-      aria-labelledby="optgroup-:r28:"
+      aria-labelledby="optgroup-_r_28_"
       class="rmd-list rmd-menu-item-group"
       role="group"
     >
       <li
         class="rmd-list-subheader"
-        id="optgroup-:r28:"
+        id="optgroup-_r_28_"
         role="presentation"
       >
         <span
@@ -127,7 +127,7 @@ exports[`Select > should allow for the OptGroup to be used 1`] = `
       </li>
       <li
         class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-        id="option-:r29:"
+        id="option-_r_29_"
         role="option"
         tabindex="-1"
       >
@@ -142,7 +142,7 @@ exports[`Select > should allow for the OptGroup to be used 1`] = `
       </li>
       <li
         class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-        id="option-:r2b:"
+        id="option-_r_2b_"
         role="option"
         tabindex="-1"
       >
@@ -164,7 +164,7 @@ exports[`Select > should allow the selected icon to appear after the option inst
 <li
   aria-selected="true"
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon rmd-option--selected"
-  id="option-:r31:"
+  id="option-_r_31_"
   role="option"
   tabindex="-1"
 >
@@ -186,7 +186,7 @@ exports[`Select > should allow the selected icon to appear after the option inst
 <li
   aria-selected="true"
   class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon rmd-option--selected"
-  id="option-:r31:"
+  id="option-_r_31_"
   role="option"
   tabindex="-1"
 >
@@ -207,12 +207,12 @@ exports[`Select > should allow the selected icon to appear after the option inst
 exports[`Select > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <div
   aria-activedescendant=""
-  aria-controls="combobox-popup-:r3:"
+  aria-controls="combobox-popup-_r_3_"
   aria-expanded="false"
   aria-haspopup="listbox"
-  aria-labelledby="select-label-:r2:"
+  aria-labelledby="select-label-_r_2_"
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-select-container"
-  id="select-:r0:"
+  id="select-_r_0_"
   role="combobox"
   tabindex="0"
 >
@@ -222,15 +222,14 @@ exports[`Select > should apply the correct styling, HTMLAttributes, and allow a 
   <input
     aria-hidden="true"
     class="rmd-select rmd-select--outline rmd-text-field"
-    id="select-value-:r1:"
+    id="select-value-_r_1_"
     placeholder=" "
     tabindex="-1"
     type="text"
-    value=""
   />
   <span
     class="rmd-label rmd-label--floating"
-    id="select-label-:r2:"
+    id="select-label-_r_2_"
   >
     Select
   </span>
@@ -250,12 +249,12 @@ exports[`Select > should apply the correct styling, HTMLAttributes, and allow a 
 exports[`Select > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <div
   aria-activedescendant=""
-  aria-controls="combobox-popup-:r3:"
+  aria-controls="combobox-popup-_r_3_"
   aria-expanded="false"
   aria-haspopup="listbox"
-  aria-labelledby="select-label-:r2:"
+  aria-labelledby="select-label-_r_2_"
   class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-right rmd-select-container custom-class-name"
-  id="select-:r0:"
+  id="select-_r_0_"
   role="combobox"
   style="color: white;"
   tabindex="0"
@@ -266,15 +265,14 @@ exports[`Select > should apply the correct styling, HTMLAttributes, and allow a 
   <input
     aria-hidden="true"
     class="rmd-select rmd-select--outline rmd-text-field"
-    id="select-value-:r1:"
+    id="select-value-_r_1_"
     placeholder=" "
     tabindex="-1"
     type="text"
-    value=""
   />
   <span
     class="rmd-label rmd-label--floating"
-    id="select-label-:r2:"
+    id="select-label-_r_2_"
   >
     Select
   </span>
@@ -293,9 +291,9 @@ exports[`Select > should apply the correct styling, HTMLAttributes, and allow a 
 
 exports[`Select > should automatically pull options from the children and update when selected 1`] = `
 <div
-  aria-labelledby="select-label-:r8:"
+  aria-labelledby="select-label-_r_8_"
   class="rmd-menu rmd-menu--elevated"
-  id="combobox-popup-:r9:"
+  id="combobox-popup-_r_9_"
   role="listbox"
   style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
   tabindex="-1"
@@ -306,7 +304,7 @@ exports[`Select > should automatically pull options from the children and update
   >
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon"
-      id="option-:rc:"
+      id="option-_r_c_"
       role="option"
       tabindex="-1"
     >
@@ -321,7 +319,7 @@ exports[`Select > should automatically pull options from the children and update
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:re:"
+      id="option-_r_e_"
       role="option"
       tabindex="-1"
     >
@@ -336,7 +334,7 @@ exports[`Select > should automatically pull options from the children and update
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rg:"
+      id="option-_r_g_"
       role="option"
       tabindex="-1"
     >
@@ -351,7 +349,7 @@ exports[`Select > should automatically pull options from the children and update
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:ri:"
+      id="option-_r_i_"
       role="option"
       tabindex="-1"
     >
@@ -370,9 +368,9 @@ exports[`Select > should automatically pull options from the children and update
 
 exports[`Select > should automatically pull options from the children and update when selected 2`] = `
 <div
-  aria-labelledby="select-label-:r8:"
+  aria-labelledby="select-label-_r_8_"
   class="rmd-menu rmd-menu--elevated"
-  id="combobox-popup-:r9:"
+  id="combobox-popup-_r_9_"
   role="listbox"
   style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
   tabindex="-1"
@@ -384,7 +382,7 @@ exports[`Select > should automatically pull options from the children and update
     <li
       aria-selected="true"
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-menu-item--focused rmd-option rmd-option--icon rmd-option--selected"
-      id="option-:rk:"
+      id="option-_r_k_"
       role="option"
       tabindex="-1"
     >
@@ -402,7 +400,7 @@ exports[`Select > should automatically pull options from the children and update
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rm:"
+      id="option-_r_m_"
       role="option"
       tabindex="-1"
     >
@@ -417,7 +415,7 @@ exports[`Select > should automatically pull options from the children and update
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:ro:"
+      id="option-_r_o_"
       role="option"
       tabindex="-1"
     >
@@ -432,7 +430,7 @@ exports[`Select > should automatically pull options from the children and update
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item rmd-option rmd-option--icon"
-      id="option-:rq:"
+      id="option-_r_q_"
       role="option"
       tabindex="-1"
     >

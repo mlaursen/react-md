@@ -7,7 +7,7 @@ exports[`LinearProgress > should allow the transition to be disabled for determi
   aria-valuemin="0"
   aria-valuenow="30"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate rmd-primary-color"
-  id="linear-progress-:r5:"
+  id="linear-progress-_r_5_"
   role="progressbar"
 >
   <span
@@ -23,7 +23,7 @@ exports[`LinearProgress > should allow the transition to be disabled for determi
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
-  id="linear-progress-:r5:"
+  id="linear-progress-_r_5_"
   role="progressbar"
 >
   <span
@@ -39,7 +39,7 @@ exports[`LinearProgress > should apply the correct styling, HTMLAttributes, and 
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
-  id="linear-progress-:r0:"
+  id="linear-progress-_r_0_"
   role="progressbar"
 >
   <span
@@ -54,7 +54,7 @@ exports[`LinearProgress > should apply the correct styling, HTMLAttributes, and 
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color custom-class-name"
-  id="linear-progress-:r0:"
+  id="linear-progress-_r_0_"
   role="progressbar"
   style="color: white;"
 >
@@ -70,7 +70,7 @@ exports[`LinearProgress > should apply the correct styling, HTMLAttributes, and 
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
-  id="linear-progress-:r0:"
+  id="linear-progress-_r_0_"
   role="progressbar"
   style=""
 >
@@ -87,7 +87,7 @@ exports[`LinearProgress > should be able to render as any of the theme colors 1`
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
-  id="linear-progress-:r6:"
+  id="linear-progress-_r_6_"
   role="progressbar"
 >
   <span
@@ -102,7 +102,7 @@ exports[`LinearProgress > should be able to render as any of the theme colors 2`
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-secondary-color"
-  id="linear-progress-:r6:"
+  id="linear-progress-_r_6_"
   role="progressbar"
 >
   <span
@@ -117,7 +117,7 @@ exports[`LinearProgress > should be able to render as any of the theme colors 3`
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-warning-color"
-  id="linear-progress-:r6:"
+  id="linear-progress-_r_6_"
   role="progressbar"
 >
   <span
@@ -132,7 +132,7 @@ exports[`LinearProgress > should be able to render as any of the theme colors 4`
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-success-color"
-  id="linear-progress-:r6:"
+  id="linear-progress-_r_6_"
   role="progressbar"
 >
   <span
@@ -147,7 +147,7 @@ exports[`LinearProgress > should be able to render as any of the theme colors 5`
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-error-color"
-  id="linear-progress-:r6:"
+  id="linear-progress-_r_6_"
   role="progressbar"
 >
   <span
@@ -162,7 +162,7 @@ exports[`LinearProgress > should be able to render as any of the theme colors 6`
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate"
-  id="linear-progress-:r6:"
+  id="linear-progress-_r_6_"
   role="progressbar"
 >
   <span
@@ -177,7 +177,7 @@ exports[`LinearProgress > should be able to render vertically 1`] = `
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate rmd-primary-color"
-  id="linear-progress-:r2:"
+  id="linear-progress-_r_2_"
   role="progressbar"
   style="height: 240px;"
 >
@@ -193,7 +193,7 @@ exports[`LinearProgress > should be able to render vertically 2`] = `
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate rmd-primary-color"
-  id="linear-progress-:r2:"
+  id="linear-progress-_r_2_"
   role="progressbar"
   style=""
 >
@@ -209,7 +209,7 @@ exports[`LinearProgress > should be able to render vertically 3`] = `
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate rmd-primary-color"
-  id="linear-progress-:r2:"
+  id="linear-progress-_r_2_"
   role="progressbar"
   style="height: 500px;"
 >
@@ -225,7 +225,7 @@ exports[`LinearProgress > should be able to reverse the animation by enabling th
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--indeterminate rmd-primary-color"
-  id="linear-progress-:r3:"
+  id="linear-progress-_r_3_"
   role="progressbar"
 >
   <span
@@ -240,7 +240,7 @@ exports[`LinearProgress > should be able to reverse the animation by enabling th
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate rmd-primary-color"
-  id="linear-progress-:r3:"
+  id="linear-progress-_r_3_"
   role="progressbar"
   style="height: 240px;"
 >
@@ -257,7 +257,7 @@ exports[`LinearProgress > should be able to reverse the animation by enabling th
   aria-valuemin="0"
   aria-valuenow="50"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate rmd-primary-color"
-  id="linear-progress-:r3:"
+  id="linear-progress-_r_3_"
   role="progressbar"
   style=""
 >
@@ -275,7 +275,7 @@ exports[`LinearProgress > should be able to reverse the animation by enabling th
   aria-valuemin="0"
   aria-valuenow="50"
   class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--determinate rmd-primary-color"
-  id="linear-progress-:r3:"
+  id="linear-progress-_r_3_"
   role="progressbar"
   style="height: 240px;"
 >
@@ -293,7 +293,7 @@ exports[`LinearProgress > should render as a determinate progress bar when the v
   aria-valuemin="0"
   aria-valuenow="30"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate rmd-primary-color"
-  id="linear-progress-:r4:"
+  id="linear-progress-_r_4_"
   role="progressbar"
 >
   <span
@@ -310,7 +310,7 @@ exports[`LinearProgress > should render as a determinate progress bar when the v
   aria-valuemin="0"
   aria-valuenow="50"
   class="rmd-linear-progress rmd-linear-progress--horizontal rmd-linear-progress--determinate rmd-primary-color"
-  id="linear-progress-:r4:"
+  id="linear-progress-_r_4_"
   role="progressbar"
 >
   <span

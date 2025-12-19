@@ -10,7 +10,7 @@ import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 
 import styles from "./FilterSymbolCustomization.module.scss";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import {
   indexToMaterialGrade,
   indexToMaterialOpticalSize,

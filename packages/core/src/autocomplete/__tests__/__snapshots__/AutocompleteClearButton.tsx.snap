@@ -4,7 +4,7 @@ exports[`AutocompleteClearButton > should apply different classes based on the v
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button"
-  id="autocomplete-clear-:r1:"
+  id="autocomplete-clear-_r_1_"
   tabindex="-1"
   type="button"
 >
@@ -21,7 +21,7 @@ exports[`AutocompleteClearButton > should apply different classes based on the v
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button"
-  id="autocomplete-clear-:r1:"
+  id="autocomplete-clear-_r_1_"
   tabindex="-1"
   type="button"
 >
@@ -38,7 +38,7 @@ exports[`AutocompleteClearButton > should apply different classes based on the v
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover"
-  id="autocomplete-clear-:r1:"
+  id="autocomplete-clear-_r_1_"
   tabindex="-1"
   type="button"
 >
@@ -55,7 +55,7 @@ exports[`AutocompleteClearButton > should apply different classes based on the v
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button rmd-autocomplete__clear-button--hover rmd-autocomplete__clear-button--query"
-  id="autocomplete-clear-:r1:"
+  id="autocomplete-clear-_r_1_"
   tabindex="-1"
   type="button"
 >
@@ -72,7 +72,7 @@ exports[`AutocompleteClearButton > should apply the correct styling and HTML att
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button"
-  id="autocomplete-clear-:r0:"
+  id="autocomplete-clear-_r_0_"
   tabindex="-1"
   type="button"
 >
@@ -89,7 +89,7 @@ exports[`AutocompleteClearButton > should apply the correct styling and HTML att
 <button
   aria-label="Clear"
   class="rmd-button rmd-button--icon rmd-interaction-surface rmd-autocomplete__clear-button custom-class-name"
-  id="autocomplete-clear-:r0:"
+  id="autocomplete-clear-_r_0_"
   style="color: white;"
   tabindex="-1"
   type="button"

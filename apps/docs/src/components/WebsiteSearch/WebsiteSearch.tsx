@@ -1,9 +1,9 @@
 import { type ReactElement } from "react";
 
-import { AlgoliaFooter } from "./AlgoliaFooter.jsx";
-import { NotYetSearched } from "./NotYetSearched.jsx";
-import { SearchButtonContents } from "./SearchButtonContents.jsx";
-import { WebsiteSearchContainer } from "./WebsiteSearchContainer.jsx";
+import { AlgoliaFooter } from "./AlgoliaFooter.js";
+import { NotYetSearched } from "./NotYetSearched.js";
+import { SearchButtonContents } from "./SearchButtonContents.js";
+import { WebsiteSearchContainer } from "./WebsiteSearchContainer.js";
 
 export function WebsiteSearch(): ReactElement {
   return (

@@ -3,7 +3,7 @@
 exports[`Main > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <main
   class="rmd-layout-main"
-  id="main-:r0:"
+  id="main-_r_0_"
 >
   Hello, world!
 </main>
@@ -12,7 +12,7 @@ exports[`Main > should apply the correct styling, HTMLAttributes, and allow a re
 exports[`Main > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <main
   class="rmd-layout-main custom-class-name"
-  id="main-:r0:"
+  id="main-_r_0_"
   style="color: white;"
 >
   Hello, world!
@@ -22,7 +22,7 @@ exports[`Main > should apply the correct styling, HTMLAttributes, and allow a re
 exports[`Main > should apply the correct styling, HTMLAttributes, and allow a ref 3`] = `
 <main
   class="rmd-layout-main rmd-layout-main--offset-v rmd-layout-h--active"
-  id="main-:r0:"
+  id="main-_r_0_"
   style=""
 >
   Hello, world!

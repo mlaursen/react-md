@@ -2,7 +2,7 @@ import {
   type BaseCodeFile,
   type TypescriptCodeFile,
 } from "@react-md/code/types";
-import { type NonNullMutableRef } from "@react-md/core/types";
+import { basename } from "node:path";
 import { format } from "prettier";
 import {
   type ImportDeclaration,
@@ -57,7 +57,7 @@ interface HandleImportsOptions {
   project: Project;
   imports: Map<string, Set<string>>;
   sourceFile: SourceFile;
-  scssModulesPath: NonNullMutableRef<string>;
+  scssModulesPath: { current: string };
   readOnlyImports: ReadonlySet<string>;
   importDeclaration: ImportDeclaration;
 }
@@ -87,7 +87,11 @@ function handleImports(options: HandleImportsOptions): void {
   ) {
     const nonAliasedName = name
       .replace(/^@/, "src")
-      .replace(/\.js(x)?$/, ".ts$1");
+      .replace(/\.js$/, (match, offset, fullString) => {
+        const fileName = basename(fullString, ".js");
+
+        return /^[A-Z]/.test(fileName) ? ".tsx" : ".ts";
+      });
 
     // TODO: Clean this up...
     const nextSourceFile = project.addSourceFileAtPath(nonAliasedName);
@@ -180,7 +184,7 @@ export async function parseWithTsMorph(
   const sourceFile = project.getSourceFileOrThrow(demoSourcePath);
 
   const imports = new Map<string, Set<string>>();
-  const scssModulesPath: NonNullMutableRef<string> = { current: "" };
+  const scssModulesPath = { current: "" };
   for (const importDeclaration of sourceFile.getImportDeclarations()) {
     handleImports({
       imports,

@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 
-import TestFrameworkCodeBlock from "../TestFrameworkCodeBlock.jsx";
+import TestFrameworkCodeBlock from "../TestFrameworkCodeBlock.js";
 
 const DEFAULT_CODE = `
 import { describe, expect, it, {LOCAL} } from "{FRAMEWORK}";

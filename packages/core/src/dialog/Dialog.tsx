@@ -1,6 +1,11 @@
 "use client";
 
-import { type HTMLAttributes, forwardRef, useState } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type Ref,
+  useState,
+} from "react";
 
 import { useSsr } from "../SsrProvider.js";
 import {
@@ -47,6 +52,8 @@ export interface BaseDialogProps
     CSSTransitionComponentProps,
     TransitionActions,
     FocusContainerComponentProps {
+  ref?: Ref<HTMLDivElement>;
+
   /**
    * @defaultValue `"dialog-" + useId()`
    */
@@ -236,157 +243,156 @@ export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
  * within once it becomes visible. You must manually add `autoFocus` to a
  * element instead.
  */
-export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
-  function Dialog(props, ref) {
-    const {
-      id: propId,
-      modal = false,
-      role = modal ? "alertdialog" : "dialog",
-      type = "centered",
+export function Dialog(props: DialogProps): ReactElement {
+  const {
+    ref,
+    id: propId,
+    modal = false,
+    role = modal ? "alertdialog" : "dialog",
+    type = "centered",
+    width,
+    tabIndex = -1,
+    visible,
+    onRequestClose,
+    containerProps,
+    temporary = true,
+    className,
+    timeout = DEFAULT_DIALOG_TIMEOUT,
+    classNames = DEFAULT_DIALOG_CLASSNAMES,
+    disableTransition = false,
+    appear = false,
+    enter = true,
+    exit = true,
+    onEnter = noop,
+    onEntering = noop,
+    onEntered = noop,
+    onExit = noop,
+    onExiting = noop,
+    onExited = noop,
+    exitedHidden = true,
+    disableOverlay = false,
+    overlayProps,
+    overlayHidden,
+    onKeyDown = noop,
+    isFocusTypeDisabled = noopBool,
+    disablePortal: propDisablePortal,
+    disableScrollLock = false,
+    disableEscapeClose = modal,
+    disableFocusOutline = type === "full-page",
+    children,
+    ...remaining
+  } = props;
+  const id = useEnsuredId(propId, "dialog");
+
+  const ssr = useSsr();
+  const setChildVisible = useNestedDialogContext();
+
+  // this makes it so that as more non-full page dialogs become visible, the
+  // overlay does not become darker as more and more overlays are stacked upon
+  // each other. only the top-most overlay will have and active background
+  // color.
+  const [isChildVisible, setIsChildVisible] = useState(false);
+  const { eventHandlers, transitionOptions } = useFocusContainer({
+    nodeRef: ref,
+    activate: visible,
+    onEnter(appearing) {
+      onEnter(appearing);
+      setChildVisible(type !== "full-page");
+    },
+    onEntered(appear) {
+      onEntered(appear);
+      // this needs to be called onEnter and onEntered just in case the
+      // transition is disabled
+      setChildVisible(type !== "full-page");
+    },
+    onEntering,
+    onExit() {
+      onExit();
+      setChildVisible(false);
+    },
+    onExiting,
+    onExited() {
+      onExited();
+      // this needs to be called onExit and onExited just in case the
+      // transition is disabled
+      setChildVisible(false);
+    },
+    disableTransition,
+    onKeyDown(event) {
+      onKeyDown(event);
+      if (
+        event.isPropagationStopped() ||
+        modal ||
+        disableEscapeClose ||
+        event.key !== "Escape"
+      ) {
+        return;
+      }
+
+      // prevent parent dialogs from closing as well
+      event.stopPropagation();
+      onRequestClose();
+    },
+    isFocusTypeDisabled,
+  });
+  const { elementProps, stage, rendered, disablePortal } = useCSSTransition({
+    transitionIn: visible,
+    timeout,
+    classNames,
+    className: dialog({
+      type,
       width,
-      tabIndex = -1,
-      visible,
-      onRequestClose,
-      containerProps,
-      temporary = true,
+      fixed: type === "custom",
+      outline: !disableFocusOutline,
+      disableBoxShadow: isChildVisible,
       className,
-      timeout = DEFAULT_DIALOG_TIMEOUT,
-      classNames = DEFAULT_DIALOG_CLASSNAMES,
-      disableTransition = false,
-      appear = false,
-      enter = true,
-      exit = true,
-      onEnter = noop,
-      onEntering = noop,
-      onEntered = noop,
-      onExit = noop,
-      onExiting = noop,
-      onExited = noop,
-      exitedHidden = true,
-      disableOverlay = false,
-      overlayProps,
-      overlayHidden,
-      onKeyDown = noop,
-      isFocusTypeDisabled = noopBool,
-      disablePortal: propDisablePortal,
-      disableScrollLock = false,
-      disableEscapeClose = modal,
-      disableFocusOutline = type === "full-page",
-      children,
-      ...remaining
-    } = props;
-    const id = useEnsuredId(propId, "dialog");
+    }),
+    appear: appear && !disableTransition && !ssr,
+    enter: enter && !disableTransition,
+    exit: exit && !disableTransition,
+    temporary,
+    exitedHidden,
+    disablePortal: propDisablePortal,
+    ...transitionOptions,
+  });
+  useScrollLock(!disableScrollLock && visible);
 
-    const ssr = useSsr();
-    const setChildVisible = useNestedDialogContext();
-
-    // this makes it so that as more non-full page dialogs become visible, the
-    // overlay does not become darker as more and more overlays are stacked upon
-    // each other. only the top-most overlay will have and active background
-    // color.
-    const [isChildVisible, setIsChildVisible] = useState(false);
-    const { eventHandlers, transitionOptions } = useFocusContainer({
-      nodeRef: ref,
-      activate: visible,
-      onEnter(appearing) {
-        onEnter(appearing);
-        setChildVisible(type !== "full-page");
-      },
-      onEntered(appear) {
-        onEntered(appear);
-        // this needs to be called onEnter and onEntered just in case the
-        // transition is disabled
-        setChildVisible(type !== "full-page");
-      },
-      onEntering,
-      onExit() {
-        onExit();
-        setChildVisible(false);
-      },
-      onExiting,
-      onExited() {
-        onExited();
-        // this needs to be called onExit and onExited just in case the
-        // transition is disabled
-        setChildVisible(false);
-      },
-      disableTransition,
-      onKeyDown(event) {
-        onKeyDown(event);
-        if (
-          event.isPropagationStopped() ||
-          modal ||
-          disableEscapeClose ||
-          event.key !== "Escape"
-        ) {
-          return;
-        }
-
-        // prevent parent dialogs from closing as well
-        event.stopPropagation();
-        onRequestClose();
-      },
-      isFocusTypeDisabled,
-    });
-    const { elementProps, stage, rendered, disablePortal } = useCSSTransition({
-      transitionIn: visible,
-      timeout,
-      classNames,
-      className: dialog({
-        type,
-        width,
-        fixed: type === "custom",
-        outline: !disableFocusOutline,
-        disableBoxShadow: isChildVisible,
-        className,
-      }),
-      appear: appear && !disableTransition && !ssr,
-      enter: enter && !disableTransition,
-      exit: exit && !disableTransition,
-      temporary,
-      exitedHidden,
-      disablePortal: propDisablePortal,
-      ...transitionOptions,
-    });
-    useScrollLock(!disableScrollLock && visible);
-
-    return (
-      <NestedDialogProvider value={setIsChildVisible}>
-        {!disableOverlay && (
-          <Overlay
-            visible={visible}
-            disableTransition={disableTransition}
-            temporary={temporary}
-            disablePortal={disablePortal}
-            {...overlayProps}
-            onClick={modal ? noop : onRequestClose}
-            clickable={!modal}
-            noOpacity={overlayHidden || isChildVisible}
-          />
-        )}
-        <Portal disabled={disablePortal}>
-          {rendered && (
-            <DialogContainer
-              enabled={type !== "custom"}
-              {...containerProps}
-              centered={type === "centered"}
-              displayNone={!temporary && exitedHidden && stage === "exited"}
+  return (
+    <NestedDialogProvider value={setIsChildVisible}>
+      {!disableOverlay && (
+        <Overlay
+          visible={visible}
+          disableTransition={disableTransition}
+          temporary={temporary}
+          disablePortal={disablePortal}
+          {...overlayProps}
+          onClick={modal ? noop : onRequestClose}
+          clickable={!modal}
+          noOpacity={overlayHidden || isChildVisible}
+        />
+      )}
+      <Portal disabled={disablePortal}>
+        {rendered && (
+          <DialogContainer
+            enabled={type !== "custom"}
+            {...containerProps}
+            centered={type === "centered"}
+            displayNone={!temporary && exitedHidden && stage === "exited"}
+          >
+            <div
+              aria-modal={modal || undefined}
+              {...remaining}
+              {...elementProps}
+              {...eventHandlers}
+              id={id}
+              role={role}
+              tabIndex={tabIndex}
             >
-              <div
-                aria-modal={modal || undefined}
-                {...remaining}
-                {...elementProps}
-                {...eventHandlers}
-                id={id}
-                role={role}
-                tabIndex={tabIndex}
-              >
-                {children}
-              </div>
-            </DialogContainer>
-          )}
-        </Portal>
-      </NestedDialogProvider>
-    );
-  }
-);
+              {children}
+            </div>
+          </DialogContainer>
+        )}
+      </Portal>
+    </NestedDialogProvider>
+  );
+}

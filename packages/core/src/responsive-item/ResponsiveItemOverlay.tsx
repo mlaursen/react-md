@@ -1,4 +1,4 @@
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import {
   type ResponsiveItemOverlayClassNameOptions,
@@ -14,7 +14,9 @@ import {
 export interface ResponsiveItemOverlayProps
   extends
     HTMLAttributes<HTMLSpanElement>,
-    ResponsiveItemOverlayClassNameOptions {}
+    ResponsiveItemOverlayClassNameOptions {
+  ref?: Ref<HTMLSpanElement>;
+}
 
 /**
  * @example Simple Example
@@ -43,11 +45,10 @@ export interface ResponsiveItemOverlayProps
  * @since 6.0.0 Renamed from `MediaOverlay` to `ResponsiveItemOverlay`
  * and renders as a `<span>` instead of a `<div>`.
  */
-export const ResponsiveItemOverlay = forwardRef<
-  HTMLSpanElement,
-  ResponsiveItemOverlayProps
->(function ResponsiveItemOverlay(props, ref) {
-  const { className, children, position = "bottom", ...remaining } = props;
+export function ResponsiveItemOverlay(
+  props: ResponsiveItemOverlayProps
+): ReactElement {
+  const { ref, className, children, position = "bottom", ...remaining } = props;
 
   return (
     <span
@@ -58,4 +59,4 @@ export const ResponsiveItemOverlay = forwardRef<
       {children}
     </span>
   );
-});
+}

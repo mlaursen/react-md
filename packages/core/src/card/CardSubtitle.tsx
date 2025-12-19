@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { type ReactElement, type Ref } from "react";
 
 import {
   Typography,
@@ -12,6 +12,8 @@ import { cardSubtitle } from "./styles.js";
  * `noWrap`/`disableSecondaryColor` props.
  */
 export interface CardSubtitleProps extends TypographyProps {
+  ref?: Ref<TypographyHTMLElement>;
+
   /** @defaultValue `"h6"` */
   as?: TypographyProps["as"];
 
@@ -34,11 +36,11 @@ export interface CardSubtitleProps extends TypographyProps {
  * @since 6.0.0 Extends the {@link Typography} component and removed the
  * `noWrap`/`disableSecondaryColor` props.
  */
-export const CardSubtitle = forwardRef<
-  TypographyHTMLElement,
-  CardSubtitleProps
->(function CardSubtitle(props, ref) {
+export const CardSubtitle = function CardSubtitle(
+  props: CardSubtitleProps
+): ReactElement {
   const {
+    ref,
     children,
     as = "h6",
     type = "subtitle-2",
@@ -61,4 +63,4 @@ export const CardSubtitle = forwardRef<
       {children}
     </Typography>
   );
-});
+};

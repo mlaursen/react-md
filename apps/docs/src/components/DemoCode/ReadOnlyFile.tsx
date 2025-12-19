@@ -1,8 +1,8 @@
 import { type ReadonlyCodeFile } from "@react-md/code/types";
 import { type ReactElement } from "react";
 
-import { MarkdownCode } from "../MarkdownCode.jsx";
-import { TypescriptCodeBlock } from "../TypescriptCodeBlock.jsx";
+import { MarkdownCode } from "../MarkdownCode.js";
+import { TypescriptCodeBlock } from "../TypescriptCodeBlock.js";
 
 export interface ReadOnlyFileProps {
   file: ReadonlyCodeFile;

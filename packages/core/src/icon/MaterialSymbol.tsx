@@ -1,4 +1,9 @@
-import { type AriaAttributes, type HTMLAttributes, forwardRef } from "react";
+import {
+  type AriaAttributes,
+  type HTMLAttributes,
+  type ReactElement,
+  type Ref,
+} from "react";
 
 import { type MaterialSymbolName } from "./material.js";
 import {
@@ -28,6 +33,8 @@ export interface MaterialSymbolProps
     HTMLAttributes<HTMLSpanElement>,
     MaterialSymbolCustomization,
     Partial<MaterialSymbolClassNameOptions> {
+  ref?: Ref<HTMLSpanElement>;
+
   /** @defaultValue `true` */
   "aria-hidden"?: AriaAttributes["aria-hidden"];
   name: MaterialSymbolName;
@@ -68,47 +75,46 @@ export interface MaterialSymbolProps
  * @see {@link https://react-md.dev/components/material-icons|Available Material Icons}
  * @since 6.0.0
  */
-export const MaterialSymbol = forwardRef<HTMLSpanElement, MaterialSymbolProps>(
-  function MaterialSymbol(props, ref) {
-    const {
-      "aria-hidden": ariaHidden = true,
-      className,
-      name: symbol,
-      style: propStyle,
-      family: propFamily,
-      fill,
-      weight,
-      grade,
-      opticalSize,
-      theme,
-      dense,
-      ...remaining
-    } = props;
-    const { style, family } = getFontVariationSettings({
-      style: propStyle,
-      fill,
-      weight,
-      grade,
-      opticalSize,
-      family: propFamily,
-    });
+export function MaterialSymbol(props: MaterialSymbolProps): ReactElement {
+  const {
+    ref,
+    "aria-hidden": ariaHidden = true,
+    className,
+    name: symbol,
+    style: propStyle,
+    family: propFamily,
+    fill,
+    weight,
+    grade,
+    opticalSize,
+    theme,
+    dense,
+    ...remaining
+  } = props;
+  const { style, family } = getFontVariationSettings({
+    style: propStyle,
+    fill,
+    weight,
+    grade,
+    opticalSize,
+    family: propFamily,
+  });
 
-    return (
-      <span
-        {...remaining}
-        aria-hidden={ariaHidden}
-        ref={ref}
-        style={style}
-        className={icon({
-          type: "symbol",
-          family,
-          theme,
-          dense,
-          className,
-        })}
-      >
-        {symbol}
-      </span>
-    );
-  }
-);
+  return (
+    <span
+      {...remaining}
+      aria-hidden={ariaHidden}
+      ref={ref}
+      style={style}
+      className={icon({
+        type: "symbol",
+        family,
+        theme,
+        dense,
+        className,
+      })}
+    >
+      {symbol}
+    </span>
+  );
+}

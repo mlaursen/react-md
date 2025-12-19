@@ -1,8 +1,9 @@
 import {
   type HTMLAttributes,
   type ImgHTMLAttributes,
+  type ReactElement,
   type ReactNode,
-  forwardRef,
+  type Ref,
 } from "react";
 
 import { type PropsWithRef } from "../types.js";
@@ -18,6 +19,8 @@ export interface AvatarProps
   extends
     Omit<HTMLAttributes<HTMLSpanElement>, "color">,
     AvatarClassNameOptions {
+  ref?: Ref<HTMLSpanElement>;
+
   /**
    * Since avatars are normally presentational data, they are hidden from screen
    * readers by default.
@@ -89,50 +92,49 @@ export interface AvatarProps
  * @see {@link https://react-md.dev/components/avatar | Avatar Demos}
  * @since 6.0.0 `aria-hidden` is set to `true` by default.
  */
-export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
-  function Avatar(props, ref) {
-    const {
-      "aria-hidden": ariaHidden = true,
-      className,
-      children,
-      src,
-      alt = "",
-      size = "avatar",
-      color,
-      theme,
-      imgProps,
-      referrerPolicy,
-      ...remaining
-    } = props;
+export function Avatar(props: AvatarProps): ReactElement {
+  const {
+    ref,
+    "aria-hidden": ariaHidden = true,
+    className,
+    children,
+    src,
+    alt = "",
+    size = "avatar",
+    color,
+    theme,
+    imgProps,
+    referrerPolicy,
+    ...remaining
+  } = props;
 
-    let img: ReactNode;
-    if (src || imgProps) {
-      img = (
-        <img
-          src={src}
-          alt={alt}
-          referrerPolicy={referrerPolicy}
-          {...imgProps}
-          className={avatarImage({ className: imgProps?.className })}
-        />
-      );
-    }
-
-    return (
-      <span
-        {...remaining}
-        aria-hidden={ariaHidden}
-        ref={ref}
-        className={avatar({
-          size,
-          color,
-          theme,
-          className,
-        })}
-      >
-        {img}
-        {children}
-      </span>
+  let img: ReactNode;
+  if (src || imgProps) {
+    img = (
+      <img
+        src={src}
+        alt={alt}
+        referrerPolicy={referrerPolicy}
+        {...imgProps}
+        className={avatarImage({ className: imgProps?.className })}
+      />
     );
   }
-);
+
+  return (
+    <span
+      {...remaining}
+      aria-hidden={ariaHidden}
+      ref={ref}
+      className={avatar({
+        size,
+        color,
+        theme,
+        className,
+      })}
+    >
+      {img}
+      {children}
+    </span>
+  );
+}

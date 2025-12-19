@@ -1,5 +1,5 @@
 /** @vitest-environment node */
-import { type MutableRefObject } from "react";
+import { type RefObject } from "react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
@@ -8,7 +8,7 @@ import { useWindowSize } from "../useWindowSize.js";
 
 describe("useWindowSize", () => {
   it("should default to 0 in ssr", () => {
-    const sizeRef: MutableRefObject<ElementSize | null> = {
+    const sizeRef: RefObject<ElementSize | null> = {
       current: null,
     };
     function Test(): null {
@@ -31,7 +31,7 @@ describe("useWindowSize", () => {
   it("should allow for custom ssr default values", () => {
     const ssrHeight = 1080;
     const ssrWidth = 1920;
-    const sizeRef: MutableRefObject<ElementSize | null> = {
+    const sizeRef: RefObject<ElementSize | null> = {
       current: null,
     };
     function Test(): null {

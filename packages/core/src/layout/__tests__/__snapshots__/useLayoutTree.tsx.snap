@@ -5,7 +5,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
   aria-activedescendant=""
   aria-label="Navigation"
   class="rmd-list rmd-tree"
-  id="tree-:rg:"
+  id="tree-_r_g_"
   role="tree"
   tabindex="0"
 >
@@ -17,7 +17,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
       aria-selected="true"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
       href="/"
-      id="tree-item-:rh:"
+      id="tree-item-_r_h_"
       role="treeitem"
       tabindex="-1"
     >
@@ -44,7 +44,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/route-1"
-      id="tree-item-:ri:"
+      id="tree-item-_r_i_"
       role="treeitem"
       tabindex="-1"
     >
@@ -71,7 +71,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/route-2"
-      id="tree-item-:rj:"
+      id="tree-item-_r_j_"
       role="treeitem"
       tabindex="-1"
     >
@@ -99,7 +99,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/route-3"
-      id="tree-item-:rk:"
+      id="tree-item-_r_k_"
       role="treeitem"
       tabindex="-1"
     >
@@ -125,7 +125,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
     </a>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-      id="tree-item-:rk:-group"
+      id="tree-item-_r_k_-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
     >
@@ -138,7 +138,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
           aria-selected="false"
           class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
           href="/route-3/1"
-          id="tree-item-:rl:"
+          id="tree-item-_r_l_"
           role="treeitem"
           tabindex="-1"
         >
@@ -158,7 +158,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
         </a>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:rl:-group"
+          id="tree-item-_r_l_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -171,7 +171,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
               aria-selected="false"
               class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
               href="/route-3/1/1"
-              id="tree-item-:rm:"
+              id="tree-item-_r_m_"
               role="treeitem"
               tabindex="-1"
             >
@@ -191,7 +191,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
             </a>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:rm:-group"
+              id="tree-item-_r_m_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -203,7 +203,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
                   href="/route-3/1/1/1"
-                  id="tree-item-:rn:"
+                  id="tree-item-_r_n_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -230,7 +230,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
   aria-activedescendant=""
   aria-label="Navigation"
   class="rmd-list rmd-tree"
-  id="tree-:rg:"
+  id="tree-_r_g_"
   role="tree"
   tabindex="0"
 >
@@ -242,7 +242,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/"
-      id="tree-item-:rh:"
+      id="tree-item-_r_h_"
       role="treeitem"
       tabindex="-1"
     >
@@ -269,7 +269,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/route-1"
-      id="tree-item-:ri:"
+      id="tree-item-_r_i_"
       role="treeitem"
       tabindex="-1"
     >
@@ -296,7 +296,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/route-2"
-      id="tree-item-:rj:"
+      id="tree-item-_r_j_"
       role="treeitem"
       tabindex="-1"
     >
@@ -324,7 +324,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/route-3"
-      id="tree-item-:rk:"
+      id="tree-item-_r_k_"
       role="treeitem"
       tabindex="-1"
     >
@@ -350,7 +350,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
     </a>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
-      id="tree-item-:rk:-group"
+      id="tree-item-_r_k_-group"
       role="group"
       style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
@@ -363,7 +363,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
           aria-selected="false"
           class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
           href="/route-3/1"
-          id="tree-item-:rl:"
+          id="tree-item-_r_l_"
           role="treeitem"
           tabindex="-1"
         >
@@ -383,7 +383,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
         </a>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
-          id="tree-item-:rl:-group"
+          id="tree-item-_r_l_-group"
           role="group"
           style="max-height: 0; --rmd-tree-depth: 2; transition-duration: 250ms;"
         >
@@ -396,7 +396,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
               aria-selected="true"
               class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
               href="/route-3/1/1"
-              id="tree-item-:rm:"
+              id="tree-item-_r_m_"
               role="treeitem"
               tabindex="-1"
             >
@@ -416,7 +416,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
             </a>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
-              id="tree-item-:rm:-group"
+              id="tree-item-_r_m_-group"
               role="group"
               style="max-height: 0; --rmd-tree-depth: 3; transition-duration: 250ms;"
             >
@@ -428,7 +428,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
                   href="/route-3/1/1/1"
-                  id="tree-item-:rn:"
+                  id="tree-item-_r_n_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -455,7 +455,7 @@ exports[`useLayoutTree > should default to expanding all parent items from the s
   aria-activedescendant=""
   aria-label="Navigation"
   class="rmd-list rmd-tree"
-  id="tree-:r8:"
+  id="tree-_r_8_"
   role="tree"
   tabindex="0"
 >
@@ -467,7 +467,7 @@ exports[`useLayoutTree > should default to expanding all parent items from the s
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/"
-      id="tree-item-:r9:"
+      id="tree-item-_r_9_"
       role="treeitem"
       tabindex="-1"
     >
@@ -494,7 +494,7 @@ exports[`useLayoutTree > should default to expanding all parent items from the s
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/route-1"
-      id="tree-item-:ra:"
+      id="tree-item-_r_a_"
       role="treeitem"
       tabindex="-1"
     >
@@ -521,7 +521,7 @@ exports[`useLayoutTree > should default to expanding all parent items from the s
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/route-2"
-      id="tree-item-:rb:"
+      id="tree-item-_r_b_"
       role="treeitem"
       tabindex="-1"
     >
@@ -549,7 +549,7 @@ exports[`useLayoutTree > should default to expanding all parent items from the s
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/route-3"
-      id="tree-item-:rc:"
+      id="tree-item-_r_c_"
       role="treeitem"
       tabindex="-1"
     >
@@ -575,7 +575,7 @@ exports[`useLayoutTree > should default to expanding all parent items from the s
     </a>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse"
-      id="tree-item-:rc:-group"
+      id="tree-item-_r_c_-group"
       role="group"
       style="--rmd-tree-depth: 1;"
     >
@@ -588,7 +588,7 @@ exports[`useLayoutTree > should default to expanding all parent items from the s
           aria-selected="false"
           class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
           href="/route-3/1"
-          id="tree-item-:rd:"
+          id="tree-item-_r_d_"
           role="treeitem"
           tabindex="-1"
         >
@@ -608,7 +608,7 @@ exports[`useLayoutTree > should default to expanding all parent items from the s
         </a>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse"
-          id="tree-item-:rd:-group"
+          id="tree-item-_r_d_-group"
           role="group"
           style="--rmd-tree-depth: 2;"
         >
@@ -621,7 +621,7 @@ exports[`useLayoutTree > should default to expanding all parent items from the s
               aria-selected="false"
               class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
               href="/route-3/1/1"
-              id="tree-item-:re:"
+              id="tree-item-_r_e_"
               role="treeitem"
               tabindex="-1"
             >
@@ -641,7 +641,7 @@ exports[`useLayoutTree > should default to expanding all parent items from the s
             </a>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse"
-              id="tree-item-:re:-group"
+              id="tree-item-_r_e_-group"
               role="group"
               style="--rmd-tree-depth: 3;"
             >
@@ -653,7 +653,7 @@ exports[`useLayoutTree > should default to expanding all parent items from the s
                   aria-selected="true"
                   class="rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
                   href="/route-3/1/1/1"
-                  id="tree-item-:rf:"
+                  id="tree-item-_r_f_"
                   role="treeitem"
                   tabindex="-1"
                 >

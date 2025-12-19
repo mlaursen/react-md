@@ -46,7 +46,7 @@ export interface VirtualizedWindowProps extends Pick<
   Required<VariableSizeListProps<VirtualizedData>>,
   "height" | "outerRef" | "itemSize" | "itemCount" | "style" | "itemData"
 > {
-  ref: RefObject<VariableSizeList>;
+  ref: RefObject<VariableSizeList | null>;
 }
 
 interface Options extends IconsByCategoryOptions {

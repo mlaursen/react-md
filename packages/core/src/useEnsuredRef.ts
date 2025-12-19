@@ -1,6 +1,6 @@
 "use client";
 
-import type { MutableRefObject, Ref, RefCallback } from "react";
+import type { Ref, RefCallback, RefObject } from "react";
 import { useCallback, useRef } from "react";
 
 import { applyRef } from "./utils/applyRef.js";
@@ -10,14 +10,14 @@ import { applyRef } from "./utils/applyRef.js";
  * @internal
  */
 export type EnsuredRefs<E extends HTMLElement> = readonly [
-  MutableRefObject<E | null>,
+  RefObject<E | null>,
   RefCallback<E | null>,
 ];
 
 /**
  * This is mostly an internal hook that allows for an optional ref (normally
  * from props or hook options) to be merged with a hook's required `ref`. This
- * will return a MutableRefObject used for DOM manipulation in a custom hook
+ * will return a RefObject used for DOM manipulation in a custom hook
  * followed by a ref callback function that should be passed to the DOM node
  * that will ensure that both the optional `propRef` and hook ref are updated.
  *

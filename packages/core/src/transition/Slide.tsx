@@ -1,6 +1,11 @@
 "use client";
 
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import {
   type CSSTransitionComponentProps,
@@ -26,6 +31,8 @@ export interface SlideProps
     HTMLAttributes<HTMLDivElement>,
     CSSTransitionComponentProps,
     TransitionActions {
+  ref?: Ref<HTMLDivElement>;
+
   /**
    * Set this to `true` to animate this slide into view within a
    * `SlideContainer`. When this switches from `true` to `false`, it will
@@ -48,53 +55,52 @@ export interface SlideProps
  * @see {@link SlideContainer} for example usage.
  * @since 6.0.0
  */
-export const Slide = forwardRef<HTMLDivElement, SlideProps>(
-  function Slide(props, nodeRef) {
-    const {
-      active,
-      appear,
-      enter,
-      exit,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      className,
-      children,
-      timeout = DEFAULT_SLIDE_TRANSITION_TIMEOUT,
-      temporary = false,
-      exitedHidden = true,
-      ...remaining
-    } = props;
+export function Slide(props: SlideProps): ReactElement | null {
+  const {
+    ref: nodeRef,
+    active,
+    appear,
+    enter,
+    exit,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    className,
+    children,
+    timeout = DEFAULT_SLIDE_TRANSITION_TIMEOUT,
+    temporary = false,
+    exitedHidden = true,
+    ...remaining
+  } = props;
 
-    const { rendered, elementProps } = useSlideTransition({
-      nodeRef,
-      appear,
-      enter,
-      exit,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      className,
-      timeout,
-      temporary,
-      transitionIn: active,
-      exitedHidden,
-    });
+  const { rendered, elementProps } = useSlideTransition({
+    nodeRef,
+    appear,
+    enter,
+    exit,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    className,
+    timeout,
+    temporary,
+    transitionIn: active,
+    exitedHidden,
+  });
 
-    if (!rendered) {
-      return null;
-    }
-
-    return (
-      <div {...remaining} {...elementProps}>
-        {children}
-      </div>
-    );
+  if (!rendered) {
+    return null;
   }
-);
+
+  return (
+    <div {...remaining} {...elementProps}>
+      {children}
+    </div>
+  );
+}

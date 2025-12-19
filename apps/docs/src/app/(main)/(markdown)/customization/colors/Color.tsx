@@ -4,7 +4,7 @@ import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 
 import styles from "./Color.module.scss";
-import { ColorHeadingWrapper } from "./ColorHeadingWrapper.jsx";
+import { ColorHeadingWrapper } from "./ColorHeadingWrapper.js";
 
 const ACCENTS = [100, 200, 400, 700];
 

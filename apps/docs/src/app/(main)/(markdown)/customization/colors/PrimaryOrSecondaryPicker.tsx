@@ -1,9 +1,9 @@
 import { Box } from "@react-md/core/box/Box";
 import { type ReactElement, useState } from "react";
 
-import { ColorPickerTextField } from "@/components/ColorPickerTextField.jsx";
-import { MaterialColorRadioGroup } from "@/components/MaterialColorRadioGroup/MaterialColorRadioGroup.jsx";
-import { MaterialColorShadeSlider } from "@/components/MaterialColorShadeSlider.jsx";
+import { ColorPickerTextField } from "@/components/ColorPickerTextField.js";
+import { MaterialColorRadioGroup } from "@/components/MaterialColorRadioGroup/MaterialColorRadioGroup.js";
+import { MaterialColorShadeSlider } from "@/components/MaterialColorShadeSlider.js";
 import {
   MATERIAL_COLOR_SHADES,
   type MaterialColorShade,

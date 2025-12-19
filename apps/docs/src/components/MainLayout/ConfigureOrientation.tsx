@@ -6,7 +6,7 @@ import FormatTextdirectionLToROutlinedIcon from "@react-md/material-icons/Format
 import FormatTextdirectionRToLOutlinedIcon from "@react-md/material-icons/FormatTextdirectionRToLOutlinedIcon";
 import { type ReactElement, type ReactNode } from "react";
 
-import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
+import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.js";
 
 const directions: readonly Dir[] = ["ltr", "rtl"];
 const ICONS: Record<Dir, ReactNode> = {

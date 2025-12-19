@@ -3,8 +3,8 @@ import { type MDXComponents } from "mdx/types.js";
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import { type ReactElement } from "react";
 
-import { CUSTOM_MDX_COMPONENTS } from "./CustomMdxComponents.jsx";
-import { MarkdownFallback } from "./MarkdownFallback.jsx";
+import { CUSTOM_MDX_COMPONENTS } from "./CustomMdxComponents.js";
+import { MarkdownFallback } from "./MarkdownFallback.js";
 
 export type MarkdownProps = MDXRemoteProps & { source: string };
 

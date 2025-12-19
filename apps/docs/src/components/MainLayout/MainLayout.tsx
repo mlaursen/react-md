@@ -14,14 +14,14 @@ import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode, useEffect } from "react";
 
-import { WebsiteSearch } from "@/components/WebsiteSearch/WebsiteSearch.jsx";
+import { WebsiteSearch } from "@/components/WebsiteSearch/WebsiteSearch.js";
 
-import { GithubLink } from "../GithubLink.jsx";
+import { GithubLink } from "../GithubLink.js";
 import styles from "./MainLayout.module.scss";
-import { MainNavigation } from "./MainNavigation.jsx";
-import { MainTitle } from "./MainTitle.jsx";
-import { VersionDropdown } from "./VersionDropdown.jsx";
-import { WebsiteConfiguration } from "./WebsiteConfiguration.jsx";
+import { MainNavigation } from "./MainNavigation.js";
+import { MainTitle } from "./MainTitle.js";
+import { VersionDropdown } from "./VersionDropdown.js";
+import { WebsiteConfiguration } from "./WebsiteConfiguration.js";
 
 const isThemeBuilderRoute = (pathname: string): boolean =>
   pathname === "/customization/theme-builder";

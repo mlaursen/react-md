@@ -1,7 +1,7 @@
 "use client";
 
 import { cnb } from "cnbuilder";
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 import { Button, type ButtonProps } from "../button/Button.js";
 import { type ButtonType } from "../button/styles.js";
@@ -48,11 +48,9 @@ export interface ToastCloseButtonProps extends ButtonProps {
  * @see {@link https://react-md.dev/components/snackbar | Snackbar Demos}
  * @since 6.0.0
  */
-export const ToastCloseButton = forwardRef<
-  HTMLButtonElement,
-  ToastCloseButtonProps
->(function ToastCloseButton(props, ref) {
+export function ToastCloseButton(props: ToastCloseButtonProps): ReactElement {
   const {
+    ref,
     buttonType = "icon-square",
     "aria-labelledby": ariaLabelledBy,
     "aria-label": ariaLabel = buttonType !== "text" && !ariaLabelledBy
@@ -88,4 +86,4 @@ export const ToastCloseButton = forwardRef<
       {children}
     </Button>
   );
-});
+}

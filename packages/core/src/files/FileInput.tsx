@@ -3,8 +3,9 @@
 import {
   type InputHTMLAttributes,
   type LabelHTMLAttributes,
+  type ReactElement,
   type ReactNode,
-  forwardRef,
+  type Ref,
 } from "react";
 
 import { type ButtonClassNameThemeOptions } from "../button/styles.js";
@@ -31,6 +32,8 @@ export interface FileInputProps
     ButtonClassNameThemeOptions,
     FileInputHTMLAttributes,
     ComponentWithRippleProps {
+  ref?: Ref<HTMLInputElement>;
+
   /**
    * This is the label text for icon-only file inputs.
    *
@@ -128,84 +131,81 @@ export interface FileInputProps
  * `responsive`. Also removed the `disableIconSpacing` prop since it is no
  * longer required.
  */
-export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
-  function FileInput(props, ref) {
-    const {
-      id: propId,
-      className,
-      children: propChildren,
-      icon: propIcon,
-      iconAfter = false,
-      srOnlyLabel = "Upload",
-      disableRepeatableFiles = false,
-      labelProps,
-      theme = "primary",
-      themeType = "contained",
-      buttonType = propChildren ? "text" : "icon",
-      disabled = false,
-      iconSize,
-      responsive,
-      multiple = false,
-      disableRipple,
-      ...remaining
-    } = props;
-    const id = useEnsuredId(propId, "file-input");
-    const { pressed, pressedClassName, ripples, handlers } =
-      useElementInteraction({
-        ...labelProps,
-        mode: disableRipple ? "none" : undefined,
-        onClick(event) {
-          labelProps?.onClick?.(event);
+export function FileInput(props: FileInputProps): ReactElement {
+  const {
+    ref,
+    id: propId,
+    className,
+    children: propChildren,
+    icon: propIcon,
+    iconAfter = false,
+    srOnlyLabel = "Upload",
+    disableRepeatableFiles = false,
+    labelProps,
+    theme = "primary",
+    themeType = "contained",
+    buttonType = propChildren ? "text" : "icon",
+    disabled = false,
+    iconSize,
+    responsive,
+    multiple = false,
+    disableRipple,
+    ...remaining
+  } = props;
+  const id = useEnsuredId(propId, "file-input");
+  const { pressed, pressedClassName, ripples, handlers } =
+    useElementInteraction({
+      ...labelProps,
+      mode: disableRipple ? "none" : undefined,
+      onClick(event) {
+        labelProps?.onClick?.(event);
 
-          // stop propagation so 2 ripples are not created
-          event.stopPropagation();
-        },
-        disabled,
-      });
+        // stop propagation so 2 ripples are not created
+        event.stopPropagation();
+      },
+      disabled,
+    });
 
-    const icon = getIcon("upload", propIcon);
-    let children = propChildren;
-    if (
-      propChildren === undefined &&
-      !props["aria-label"] &&
-      !props["aria-labelledby"]
-    ) {
-      children = <SrOnly phoneOnly={responsive}>{srOnlyLabel}</SrOnly>;
-    }
-
-    return (
-      <label
-        {...labelProps}
-        {...handlers}
-        className={fileInput({
-          theme,
-          themeType,
-          buttonType,
-          disabled,
-          iconSize,
-          pressed,
-          responsive,
-          pressedClassName,
-          className: className || labelProps?.className,
-        })}
-      >
-        {!iconAfter && icon}
-        {children}
-        {iconAfter && icon}
-        <input
-          {...remaining}
-          id={id}
-          ref={ref}
-          value={
-            disableRepeatableFiles || !props.onChange ? remaining.value : ""
-          }
-          type="file"
-          className="rmd-hidden-input"
-          disabled={disabled}
-          multiple={multiple}
-        />
-        {ripples}
-      </label>
-    );
+  const icon = getIcon("upload", propIcon);
+  let children = propChildren;
+  if (
+    propChildren === undefined &&
+    !props["aria-label"] &&
+    !props["aria-labelledby"]
+  ) {
+    children = <SrOnly phoneOnly={responsive}>{srOnlyLabel}</SrOnly>;
   }
-);
+
+  return (
+    <label
+      {...labelProps}
+      {...handlers}
+      className={fileInput({
+        theme,
+        themeType,
+        buttonType,
+        disabled,
+        iconSize,
+        pressed,
+        responsive,
+        pressedClassName,
+        className: className || labelProps?.className,
+      })}
+    >
+      {!iconAfter && icon}
+      {children}
+      {iconAfter && icon}
+      <input
+        {...remaining}
+        id={id}
+        ref={ref}
+        value={disableRepeatableFiles || !props.onChange ? remaining.value : ""}
+        type="file"
+        className="rmd-hidden-input"
+        disabled={disabled}
+        multiple={multiple}
+      />
+      {ripples}
+    </label>
+  );
+}

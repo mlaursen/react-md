@@ -4,7 +4,7 @@ exports[`MenuItemCheckbox > should allow for a custom unchecked and checked icon
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle"
-  id="menu-item-:r1:"
+  id="menu-item-_r_1_"
   role="menuitemcheckbox"
   tabindex="-1"
 >
@@ -23,7 +23,7 @@ exports[`MenuItemCheckbox > should allow for a custom unchecked and checked icon
 <li
   aria-checked="true"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle"
-  id="menu-item-:r1:"
+  id="menu-item-_r_1_"
   role="menuitemcheckbox"
   tabindex="-1"
 >
@@ -46,7 +46,7 @@ exports[`MenuItemCheckbox > should apply the correct styling, HTMLAttributes, an
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle"
-  id="menu-item-:r0:"
+  id="menu-item-_r_0_"
   role="menuitemcheckbox"
   tabindex="-1"
 >
@@ -72,7 +72,7 @@ exports[`MenuItemCheckbox > should apply the correct styling, HTMLAttributes, an
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle custom-class-name"
-  id="menu-item-:r0:"
+  id="menu-item-_r_0_"
   role="menuitemcheckbox"
   style="color: white;"
   tabindex="-1"

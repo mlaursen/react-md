@@ -5,7 +5,7 @@ import {
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
-  forwardRef,
+  type Ref,
   isValidElement,
 } from "react";
 
@@ -31,6 +31,8 @@ export interface ConfigurableToastProps
     HTMLAttributes<HTMLDivElement>,
     BaseToastClasNameOptions,
     TransitionCallbacks {
+  ref?: Ref<HTMLDivElement>;
+
   /**
    * Note: this default value will only be generated in the `Toast` component.
    *
@@ -136,116 +138,115 @@ export interface ToastProps extends ConfigurableToastProps {
  * @see {@link https://react-md.dev/components/snackbar | Snackbar Demos}
  * @since 6.0.0
  */
-export const Toast = forwardRef<HTMLDivElement, ToastProps>(
-  function Toast(props, ref) {
-    const {
-      id: propId,
-      className,
-      timeout,
-      classNames,
-      theme = "surface",
-      action: propAction,
-      actionButton: propActionButton,
-      paused,
-      visible,
-      closeIcon: propCloseIcon,
-      closeButtonProps,
-      closeButton = !!closeButtonProps,
-      contentProps,
-      disableToastContent,
-      stacked,
-      multiline,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      children,
-      ...remaining
-    } = props;
-    const id = useEnsuredId(propId, "toast");
+export function Toast(props: ToastProps): ReactElement | null {
+  const {
+    ref,
+    id: propId,
+    className,
+    timeout,
+    classNames,
+    theme = "surface",
+    action: propAction,
+    actionButton: propActionButton,
+    paused,
+    visible,
+    closeIcon: propCloseIcon,
+    closeButtonProps,
+    closeButton = !!closeButtonProps,
+    contentProps,
+    disableToastContent,
+    stacked,
+    multiline,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    children,
+    ...remaining
+  } = props;
+  const id = useEnsuredId(propId, "toast");
 
-    let actionButton = propActionButton;
-    if (propAction) {
-      let overrides: ButtonProps = {};
-      let buttonChildren: ReactNode;
-      // have to use `any` to correctly filter out all react elements
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (isValidElement<any>(propAction) || typeof propAction !== "object") {
-        buttonChildren = propAction;
-      } else {
-        ({ children: buttonChildren, ...overrides } = propAction);
-      }
-
-      actionButton = (
-        <ToastActionButton
-          theme={theme === "surface" ? "secondary" : "clear"}
-          reordered={stacked && closeButton}
-          {...overrides}
-        >
-          {buttonChildren}
-        </ToastActionButton>
-      );
+  let actionButton = propActionButton;
+  if (propAction) {
+    let overrides: ButtonProps = {};
+    let buttonChildren: ReactNode;
+    // have to use `any` to correctly filter out all react elements
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (isValidElement<any>(propAction) || typeof propAction !== "object") {
+      buttonChildren = propAction;
+    } else {
+      ({ children: buttonChildren, ...overrides } = propAction);
     }
 
-    let closeIcon = propCloseIcon;
-    if (closeButtonProps?.children !== undefined) {
-      closeIcon = closeButtonProps.children;
-    }
-
-    const action = !!actionButton;
-    const reordered = stacked && action && closeButton;
-    const { elementProps, rendered } = useScaleTransition({
-      appear: true,
-      nodeRef: ref,
-      className: toast({
-        className,
-        theme,
-        action,
-        paused,
-        stacked,
-        reordered,
-        closeButton,
-      }),
-      timeout,
-      classNames,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      temporary: true,
-      transitionIn: visible,
-      exitedHidden: true,
-    });
-
-    // this might get rid of the weird popping-back-in for a split second
-    // that sometimes happens on mobile firefox
-    if (!rendered) {
-      return null;
-    }
-
-    return (
-      <div {...remaining} {...elementProps} id={id}>
-        <ToastContent
-          action={action}
-          stacked={stacked}
-          multiline={multiline}
-          closeButton={closeButton}
-          disableWrapper={disableToastContent}
-          {...contentProps}
-        >
-          {children}
-        </ToastContent>
-        {actionButton}
-        {closeButton && (
-          <ToastCloseButton reordered={reordered} {...closeButtonProps}>
-            {closeIcon}
-          </ToastCloseButton>
-        )}
-      </div>
+    actionButton = (
+      <ToastActionButton
+        theme={theme === "surface" ? "secondary" : "clear"}
+        reordered={stacked && closeButton}
+        {...overrides}
+      >
+        {buttonChildren}
+      </ToastActionButton>
     );
   }
-);
+
+  let closeIcon = propCloseIcon;
+  if (closeButtonProps?.children !== undefined) {
+    closeIcon = closeButtonProps.children;
+  }
+
+  const action = !!actionButton;
+  const reordered = stacked && action && closeButton;
+  const { elementProps, rendered } = useScaleTransition({
+    appear: true,
+    nodeRef: ref,
+    className: toast({
+      className,
+      theme,
+      action,
+      paused,
+      stacked,
+      reordered,
+      closeButton,
+    }),
+    timeout,
+    classNames,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    temporary: true,
+    transitionIn: visible,
+    exitedHidden: true,
+  });
+
+  // this might get rid of the weird popping-back-in for a split second
+  // that sometimes happens on mobile firefox
+  if (!rendered) {
+    return null;
+  }
+
+  return (
+    <div {...remaining} {...elementProps} id={id}>
+      <ToastContent
+        action={action}
+        stacked={stacked}
+        multiline={multiline}
+        closeButton={closeButton}
+        disableWrapper={disableToastContent}
+        {...contentProps}
+      >
+        {children}
+      </ToastContent>
+      {actionButton}
+      {closeButton && (
+        <ToastCloseButton reordered={reordered} {...closeButtonProps}>
+          {closeIcon}
+        </ToastCloseButton>
+      )}
+    </div>
+  );
+}

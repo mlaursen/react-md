@@ -1,11 +1,13 @@
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { type BoxOptions, boxStyles } from "./styles.js";
 
 /**
  * @since 6.0.0
  */
-export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
+export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {
+  ref?: Ref<HTMLDivElement>;
+}
 
 /**
  * The `Box` component is a wrapper around the CSS box model and should solve
@@ -106,52 +108,51 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement>, BoxOptions {}
  * @see {@link https://react-md.dev/components/box | Box Demos}
  * @since 6.0.0
  */
-export const Box = forwardRef<HTMLDivElement, BoxProps>(
-  function Box(props, ref) {
-    const {
-      style,
-      className,
-      children,
-      align,
-      justify,
-      stacked,
-      reversed,
-      grid,
-      gridName,
-      gridItemSize,
-      gridColumns,
-      gridAutoRows,
-      fullWidth,
-      disableGap,
-      disableWrap,
-      disablePadding,
-      ...remaining
-    } = props;
+export const Box = function Box(props: BoxProps): ReactElement {
+  const {
+    ref,
+    style,
+    className,
+    children,
+    align,
+    justify,
+    stacked,
+    reversed,
+    grid,
+    gridName,
+    gridItemSize,
+    gridColumns,
+    gridAutoRows,
+    fullWidth,
+    disableGap,
+    disableWrap,
+    disablePadding,
+    ...remaining
+  } = props;
 
-    return (
-      <div
-        {...remaining}
-        ref={ref}
-        {...boxStyles({
-          style,
-          className,
-          align,
-          justify,
-          stacked,
-          reversed,
-          grid,
-          gridName,
-          gridItemSize,
-          gridColumns,
-          gridAutoRows,
-          fullWidth,
-          disableGap,
-          disableWrap,
-          disablePadding,
-        })}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+  return (
+    <div
+      {...remaining}
+      ref={ref}
+      {...boxStyles({
+        style,
+        className,
+        align,
+        justify,
+        stacked,
+        reversed,
+        grid,
+        gridName,
+        gridItemSize,
+        gridColumns,
+        gridAutoRows,
+        fullWidth,
+        disableGap,
+        disableWrap,
+        disablePadding,
+      })}
+    >
+      {children}
+    </div>
+  );
+};

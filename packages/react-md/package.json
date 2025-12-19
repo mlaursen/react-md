@@ -62,27 +62,28 @@
   },
   "devDependencies": {
     "@swc/cli": "^0.7.9",
-    "@swc/core": "^1.15.7",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
+    "@swc/core": "^1.15.8",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.1",
     "@types/node": "^24.10.4",
     "chokidar": "^5.0.0",
     "glob": "^13.0.0",
     "npm-run-all2": "^8.0.2",
     "prettier": "^3.7.4",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "@jest/globals": ">= 29 <=31",
     "@jest/types": ">= 29 <=31",
-    "@testing-library/dom": "^9.3.4",
-    "@testing-library/jest-dom": "^6.3.0",
-    "@testing-library/react": "^14.1.2",
-    "@testing-library/user-event": "^14.5.2",
+    "@testing-library/dom": ">= 9",
+    "@testing-library/jest-dom": ">= 6",
+    "@testing-library/react": ">= 14",
+    "@testing-library/user-event": ">= 14",
     "react": ">= 18",
-    "react-dom": ">= 18"
+    "react-dom": ">= 18",
+    "vitest": ">= 3"
   },
   "peerDependenciesMeta": {
     "@jest/globals": {
@@ -107,6 +108,9 @@
       "optional": true
     },
     "react-dom": {
+      "optional": true
+    },
+    "vitest": {
       "optional": true
     }
   },

@@ -1,4 +1,4 @@
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { Box } from "../box/Box.js";
 import { type BoxAlignItems, type BoxOptions } from "../box/styles.js";
@@ -13,6 +13,8 @@ export interface CardProps
     HTMLAttributes<HTMLDivElement>,
     CardClassNameOptions,
     Pick<BoxOptions, "align" | "justify" | "fullWidth" | "disableWrap"> {
+  ref?: Ref<HTMLDivElement>;
+
   /** @defaultValue `"stretch"` */
   align?: BoxAlignItems;
 
@@ -59,38 +61,37 @@ export interface CardProps
  * @since 6.0.0 Uses the `Box` component and displays as `flex` instead of
  * `block`/`inline-block`.
  */
-export const Card = forwardRef<HTMLDivElement, CardProps>(
-  function Card(props, ref) {
-    const {
-      children,
-      className,
-      align = "stretch",
-      justify = "stretch",
-      bordered,
-      raisable,
-      interactable,
-      ...remaining
-    } = props;
+export function Card(props: CardProps): ReactElement {
+  const {
+    ref,
+    children,
+    className,
+    align = "stretch",
+    justify = "stretch",
+    bordered,
+    raisable,
+    interactable,
+    ...remaining
+  } = props;
 
-    return (
-      <Box
-        align={align}
-        justify={justify}
-        disableWrap
-        {...remaining}
-        stacked
-        disableGap
-        disablePadding
-        ref={ref}
-        className={card({
-          className,
-          bordered,
-          raisable,
-          interactable,
-        })}
-      >
-        {children}
-      </Box>
-    );
-  }
-);
+  return (
+    <Box
+      align={align}
+      justify={justify}
+      disableWrap
+      {...remaining}
+      stacked
+      disableGap
+      disablePadding
+      ref={ref}
+      className={card({
+        className,
+        bordered,
+        raisable,
+        interactable,
+      })}
+    >
+      {children}
+    </Box>
+  );
+}

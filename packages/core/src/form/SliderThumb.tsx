@@ -3,8 +3,9 @@
 import {
   type ChangeEventHandler,
   type HTMLAttributes,
+  type ReactElement,
   type ReactNode,
-  forwardRef,
+  type Ref,
   useEffect,
   useState,
 } from "react";
@@ -100,6 +101,7 @@ export interface SliderThumbProps
     ConfigurableSliderThumbProps,
     Required<SliderValueOptions>,
     Required<SliderThumbPresentation> {
+  ref?: Ref<HTMLSpanElement>;
   id: string;
   value: number;
   index: 1 | 2;
@@ -123,11 +125,11 @@ export interface SliderThumbProps
  * @since 2.5.0
  * @since 6.0.0 Internal only component.
  */
-export const SliderThumb = forwardRef<
-  HTMLSpanElement,
-  LabelRequiredForA11y<SliderThumbProps>
->(function SliderThumb(props, ref) {
+export function SliderThumb(
+  props: LabelRequiredForA11y<SliderThumbProps>
+): ReactElement {
   const {
+    ref,
     id,
     min,
     max,
@@ -293,4 +295,4 @@ export const SliderThumb = forwardRef<
       )}
     </>
   );
-});
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, forwardRef } from "react";
+import { type ReactElement, type ReactNode, type Ref } from "react";
 
 import { type ListElement, type ListProps } from "../list/List.js";
 import {
@@ -13,6 +13,8 @@ import { useEnsuredId } from "../useEnsuredId.js";
 
 /** @since 6.0.0 */
 export interface OptGroupProps extends Omit<ListProps, "role"> {
+  ref?: Ref<ListElement>;
+
   /**
    * This is really the `children` to display in a `ListSubheader` that
    * describes the optgroup. It was named `label` to match the native
@@ -70,18 +72,16 @@ export interface OptGroupProps extends Omit<ListProps, "role"> {
  * @see {@link https://react-md.dev/components/select | Select Demos}
  * @since 6.0.0
  */
-export const OptGroup = forwardRef<ListElement, OptGroupProps>(
-  function OptGroup(props, ref) {
-    const { children, label, labelProps, ...remaining } = props;
-    const labelId = useEnsuredId(labelProps?.id, "optgroup");
+export function OptGroup(props: OptGroupProps): ReactElement {
+  const { ref, children, label, labelProps, ...remaining } = props;
+  const labelId = useEnsuredId(labelProps?.id, "optgroup");
 
-    return (
-      <MenuItemGroup aria-labelledby={labelId} {...remaining} ref={ref}>
-        <ListSubheader {...labelProps} id={labelId}>
-          {label}
-        </ListSubheader>
-        {children}
-      </MenuItemGroup>
-    );
-  }
-);
+  return (
+    <MenuItemGroup aria-labelledby={labelId} {...remaining} ref={ref}>
+      <ListSubheader {...labelProps} id={labelId}>
+        {label}
+      </ListSubheader>
+      {children}
+    </MenuItemGroup>
+  );
+}

@@ -6,7 +6,7 @@ import {
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 
-import { LinkUnstyled } from "./LinkUnstyled.jsx";
+import { LinkUnstyled } from "./LinkUnstyled.js";
 import styles from "./LinkableHeading.module.scss";
 
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;

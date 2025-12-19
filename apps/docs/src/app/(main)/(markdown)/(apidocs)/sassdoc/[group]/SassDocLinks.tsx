@@ -4,10 +4,10 @@ import {
   type ItemReferenceLink,
 } from "sassdoc-generator/types";
 
-import { LinkableHeading } from "@/components/LinkableHeading.jsx";
+import { LinkableHeading } from "@/components/LinkableHeading.js";
 import { slug } from "@/utils/slug.js";
 
-import { SassDocReferenceLinkList } from "./SassDocReferenceLinkList.jsx";
+import { SassDocReferenceLinkList } from "./SassDocReferenceLinkList.js";
 
 export interface SassDocLinksProps {
   see?: readonly ItemReferenceLink[];

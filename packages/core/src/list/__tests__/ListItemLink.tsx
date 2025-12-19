@@ -1,4 +1,9 @@
-import { type HTMLAttributes, type ReactElement, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type Ref,
+  forwardRef,
+} from "react";
 import { describe, expect, it } from "vitest";
 
 import { Link } from "../../link/Link.js";
@@ -49,6 +54,17 @@ describe("ListItemLink", () => {
       );
     }
 
+    function NonForwardedLinkWithRef(
+      props: Props & { ref?: Ref<HTMLAnchorElement> }
+    ): ReactElement {
+      const { to, ref, children, ...remaining } = props;
+      return (
+        <a href={to} ref={ref} {...remaining}>
+          {children}
+        </a>
+      );
+    }
+
     const Link = forwardRef<HTMLAnchorElement, Props>(
       function Link(props, ref) {
         const { to, children, ...remaining } = props;
@@ -62,12 +78,7 @@ describe("ListItemLink", () => {
 
     const { container, rerender } = render(
       <List>
-        <ListItemLink
-          // custom links **must** allow for a ref to be passed
-          // @ts-expect-error
-          as={NonForwardedLink}
-          href="/link"
-        >
+        <ListItemLink as={NonForwardedLink} href="/link">
           Hello
         </ListItemLink>
       </List>
@@ -80,7 +91,21 @@ describe("ListItemLink", () => {
         </ListItemLink>
       </List>
     );
-    const link = screen.getByRole("link", { name: "Hello" });
+
+    let link = screen.getByRole("link", { name: "Hello" });
+    expect(link).toBeInstanceOf(HTMLAnchorElement);
+    expect(link.parentElement).toBeInstanceOf(HTMLLIElement);
+
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <List>
+        <ListItemLink as={NonForwardedLinkWithRef} href="/link">
+          Hello
+        </ListItemLink>
+      </List>
+    );
+    link = screen.getByRole("link", { name: "Hello" });
     expect(link).toBeInstanceOf(HTMLAnchorElement);
     expect(link.parentElement).toBeInstanceOf(HTMLLIElement);
 

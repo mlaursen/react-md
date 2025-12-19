@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type ICON_CONFIG } from "../icon/config.js";
@@ -41,9 +41,8 @@ import {
  * @see {@link https://react-md.dev/components/menu#menuitemcheckbox-example | DropdownMenu Demos}
  * @since 2.8.0
  */
-export const MenuItemCheckbox = forwardRef<
-  HTMLLIElement,
-  MenuItemCheckboxProps
->(function MenuItemCheckbox(props, ref) {
-  return <MenuItemInputToggle {...props} ref={ref} type="checkbox" />;
-});
+export function MenuItemCheckbox(props: MenuItemCheckboxProps): ReactElement {
+  const { ref, ...remaining } = props;
+
+  return <MenuItemInputToggle {...remaining} ref={ref} type="checkbox" />;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { type ButtonHTMLAttributes, forwardRef } from "react";
+import { type ButtonHTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
@@ -18,6 +18,8 @@ export interface ButtonProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     ButtonClassNameThemeOptions,
     ComponentWithRippleProps {
+  ref?: Ref<HTMLButtonElement>;
+
   /** @defaultValue `"button"` */
   type?: "button" | "reset" | "submit";
 
@@ -119,20 +121,39 @@ export interface ButtonProps
  *
  * @see {@link https://react-md.dev/components/button | Button Demos}
  */
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(props, ref) {
-    const {
-      type = "button",
-      disabled = false,
-      floating = null,
-      floatingProps,
-      theme = floating ? "secondary" : "clear",
-      themeType = floating ? "contained" : "flat",
-      iconSize,
-      buttonType = floating || iconSize ? "icon" : "text",
-      className,
-      responsive,
-      children: propChildren,
+export function Button(props: ButtonProps): ReactElement {
+  const {
+    ref,
+    type = "button",
+    disabled = false,
+    floating = null,
+    floatingProps,
+    theme = floating ? "secondary" : "clear",
+    themeType = floating ? "contained" : "flat",
+    iconSize,
+    buttonType = floating || iconSize ? "icon" : "text",
+    className,
+    responsive,
+    children: propChildren,
+    onBlur,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    onMouseDown,
+    onMouseUp,
+    onMouseLeave,
+    onDragStart,
+    onTouchStart,
+    onTouchEnd,
+    onTouchMove,
+    disableRipple,
+    ...remaining
+  } = props;
+  const isThemeDisabled = theme === "disabled";
+  const ariaDisabled = props["aria-disabled"];
+  const { pressed, pressedClassName, ripples, handlers } =
+    useElementInteraction({
+      mode: disableRipple ? "press" : undefined,
       onBlur,
       onClick,
       onKeyDown,
@@ -144,63 +165,43 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onTouchStart,
       onTouchEnd,
       onTouchMove,
-      disableRipple,
-      ...remaining
-    } = props;
-    const isThemeDisabled = theme === "disabled";
-    const ariaDisabled = props["aria-disabled"];
-    const { pressed, pressedClassName, ripples, handlers } =
-      useElementInteraction({
-        mode: disableRipple ? "press" : undefined,
-        onBlur,
-        onClick,
-        onKeyDown,
-        onKeyUp,
-        onMouseDown,
-        onMouseUp,
-        onMouseLeave,
-        onDragStart,
-        onTouchStart,
-        onTouchEnd,
-        onTouchMove,
-        disabled:
-          disabled ||
-          isThemeDisabled ||
-          (ariaDisabled && ariaDisabled !== "false"),
-      });
+      disabled:
+        disabled ||
+        isThemeDisabled ||
+        (ariaDisabled && ariaDisabled !== "false"),
+    });
 
-    const children = useHigherContrastChildren(propChildren);
+  const children = useHigherContrastChildren(propChildren);
 
-    return (
-      <FloatingActionButton position={floating} {...floatingProps}>
-        <button
-          {...remaining}
-          // when the theme is set to `"disabled"`, the event handlers should be
-          // removed so that it behaves like a disabled button. you do not want to
-          // actually set the `disabled` attribute since it will lose keyboard
-          // focus. this is mostly for supporting circular progress bars within
-          // buttons
-          {...(isThemeDisabled ? {} : handlers)}
-          aria-disabled={isThemeDisabled || remaining["aria-disabled"]}
-          disabled={disabled}
-          ref={ref}
-          type={type}
-          className={button({
-            theme,
-            themeType,
-            buttonType,
-            disabled,
-            responsive,
-            iconSize,
-            pressed,
-            pressedClassName,
-            className,
-          })}
-        >
-          {children}
-          {ripples}
-        </button>
-      </FloatingActionButton>
-    );
-  }
-);
+  return (
+    <FloatingActionButton position={floating} {...floatingProps}>
+      <button
+        {...remaining}
+        // when the theme is set to `"disabled"`, the event handlers should be
+        // removed so that it behaves like a disabled button. you do not want to
+        // actually set the `disabled` attribute since it will lose keyboard
+        // focus. this is mostly for supporting circular progress bars within
+        // buttons
+        {...(isThemeDisabled ? {} : handlers)}
+        aria-disabled={isThemeDisabled || remaining["aria-disabled"]}
+        disabled={disabled}
+        ref={ref}
+        type={type}
+        className={button({
+          theme,
+          themeType,
+          buttonType,
+          disabled,
+          responsive,
+          iconSize,
+          pressed,
+          pressedClassName,
+          className,
+        })}
+      >
+        {children}
+        {ripples}
+      </button>
+    </FloatingActionButton>
+  );
+}

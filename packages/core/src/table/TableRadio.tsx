@@ -1,6 +1,6 @@
 "use client";
 
-import { type TdHTMLAttributes, forwardRef } from "react";
+import { type ReactElement, type Ref, type TdHTMLAttributes } from "react";
 
 import { type RadioProps } from "../form/InputToggle.js";
 import { Radio } from "../form/Radio.js";
@@ -44,6 +44,8 @@ export type TableRadioSupportedRadioProps = Pick<
  */
 export interface TableRadioProps
   extends TableRadioTdHTMLAttributes, TableRadioSupportedRadioProps {
+  ref?: Ref<HTMLTableCellElement>;
+
   /**
    * @defaultValue `!props["aria-labelledby"] ? "Select Row" : undefined`
    */
@@ -136,61 +138,60 @@ export interface TableRadioProps
  * @see {@link https://react-md.dev/components/table | Table Demos}
  * @since 6.0.0
  */
-export const TableRadio = forwardRef<HTMLTableCellElement, TableRadioProps>(
-  function TableRadio(props, ref) {
-    const {
-      "aria-labelledby": ariaLabelledBy,
-      "aria-label": ariaLabel = !ariaLabelledBy ? "Select Row" : undefined,
-      "aria-controls": ariaControls,
-      name,
-      icon,
-      iconProps,
-      iconStyle,
-      iconClassName,
-      checkedIcon,
-      value,
-      checked,
-      onChange,
-      defaultChecked,
-      radioProps,
-      onClick = noop,
-      error,
-      required,
-      onInvalid,
-      ...remaining
-    } = props;
+export function TableRadio(props: TableRadioProps): ReactElement {
+  const {
+    ref,
+    "aria-labelledby": ariaLabelledBy,
+    "aria-label": ariaLabel = !ariaLabelledBy ? "Select Row" : undefined,
+    "aria-controls": ariaControls,
+    name,
+    icon,
+    iconProps,
+    iconStyle,
+    iconClassName,
+    checkedIcon,
+    value,
+    checked,
+    onChange,
+    defaultChecked,
+    radioProps,
+    onClick = noop,
+    error,
+    required,
+    onInvalid,
+    ...remaining
+  } = props;
 
-    return (
-      <TableCell
-        {...remaining}
-        ref={ref}
-        header={false}
-        inputToggle
-        onClick={(event) => {
-          event.stopPropagation();
-          onClick(event);
-        }}
-      >
-        <Radio
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledBy}
-          aria-controls={ariaControls}
-          name={name}
-          icon={icon}
-          iconProps={iconProps}
-          iconStyle={iconStyle}
-          iconClassName={iconClassName}
-          checkedIcon={checkedIcon}
-          value={value}
-          checked={checked}
-          defaultChecked={defaultChecked}
-          error={error}
-          required={required}
-          onChange={onChange}
-          onInvalid={onInvalid}
-          {...radioProps}
-        />
-      </TableCell>
-    );
-  }
-);
+  return (
+    <TableCell
+      {...remaining}
+      ref={ref}
+      header={false}
+      inputToggle
+      onClick={(event) => {
+        event.stopPropagation();
+        onClick(event);
+      }}
+    >
+      <Radio
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+        aria-controls={ariaControls}
+        name={name}
+        icon={icon}
+        iconProps={iconProps}
+        iconStyle={iconStyle}
+        iconClassName={iconClassName}
+        checkedIcon={checkedIcon}
+        value={value}
+        checked={checked}
+        defaultChecked={defaultChecked}
+        error={error}
+        required={required}
+        onChange={onChange}
+        onInvalid={onInvalid}
+        {...radioProps}
+      />
+    </TableCell>
+  );
+}

@@ -6,7 +6,7 @@ exports[`CircularProgress > should allow the animation to be simplified when the
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r6:"
+  id="circular-progress-_r_6_"
   role="progressbar"
 >
   <svg
@@ -30,7 +30,7 @@ exports[`CircularProgress > should allow the animation to be simplified when the
   aria-valuemin="0"
   aria-valuenow="100"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r6:"
+  id="circular-progress-_r_6_"
   role="progressbar"
 >
   <svg
@@ -55,7 +55,7 @@ exports[`CircularProgress > should allow the transition to be disabled for deter
   aria-valuemin="0"
   aria-valuenow="30"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r5:"
+  id="circular-progress-_r_5_"
   role="progressbar"
 >
   <svg
@@ -79,7 +79,7 @@ exports[`CircularProgress > should allow the transition to be disabled for deter
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r5:"
+  id="circular-progress-_r_5_"
   role="progressbar"
 >
   <svg
@@ -103,7 +103,7 @@ exports[`CircularProgress > should apply the correct styling, HTMLAttributes, an
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r0:"
+  id="circular-progress-_r_0_"
   role="progressbar"
 >
   <svg
@@ -126,7 +126,7 @@ exports[`CircularProgress > should apply the correct styling, HTMLAttributes, an
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color custom-class-name"
-  id="circular-progress-:r0:"
+  id="circular-progress-_r_0_"
   role="progressbar"
   style="color: white;"
 >
@@ -150,7 +150,7 @@ exports[`CircularProgress > should apply the correct styling, HTMLAttributes, an
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r0:"
+  id="circular-progress-_r_0_"
   role="progressbar"
   style=""
 >
@@ -175,7 +175,7 @@ exports[`CircularProgress > should apply the correct styling, HTMLAttributes, an
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r0:"
+  id="circular-progress-_r_0_"
   role="progressbar"
   style=""
 >
@@ -201,7 +201,7 @@ exports[`CircularProgress > should be able to render as a dense size 1`] = `
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--dense rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r3:"
+  id="circular-progress-_r_3_"
   role="progressbar"
 >
   <svg
@@ -224,7 +224,7 @@ exports[`CircularProgress > should be able to render as a dense size 2`] = `
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--dense rmd-primary-color"
-  id="circular-progress-:r3:"
+  id="circular-progress-_r_3_"
   role="progressbar"
 >
   <svg
@@ -247,7 +247,7 @@ exports[`CircularProgress > should be able to render as any of the theme colors 
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r7:"
+  id="circular-progress-_r_7_"
   role="progressbar"
 >
   <svg
@@ -270,7 +270,7 @@ exports[`CircularProgress > should be able to render as any of the theme colors 
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-secondary-color"
-  id="circular-progress-:r7:"
+  id="circular-progress-_r_7_"
   role="progressbar"
 >
   <svg
@@ -293,7 +293,7 @@ exports[`CircularProgress > should be able to render as any of the theme colors 
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-warning-color"
-  id="circular-progress-:r7:"
+  id="circular-progress-_r_7_"
   role="progressbar"
 >
   <svg
@@ -316,7 +316,7 @@ exports[`CircularProgress > should be able to render as any of the theme colors 
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-success-color"
-  id="circular-progress-:r7:"
+  id="circular-progress-_r_7_"
   role="progressbar"
 >
   <svg
@@ -339,7 +339,7 @@ exports[`CircularProgress > should be able to render as any of the theme colors 
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-error-color"
-  id="circular-progress-:r7:"
+  id="circular-progress-_r_7_"
   role="progressbar"
 >
   <svg
@@ -362,7 +362,7 @@ exports[`CircularProgress > should be able to render as any of the theme colors 
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered"
-  id="circular-progress-:r7:"
+  id="circular-progress-_r_7_"
   role="progressbar"
 >
   <svg
@@ -385,7 +385,7 @@ exports[`CircularProgress > should default to being centered but can be removed 
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r2:"
+  id="circular-progress-_r_2_"
   role="progressbar"
 >
   <svg
@@ -408,7 +408,7 @@ exports[`CircularProgress > should default to being centered but can be removed 
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-primary-color"
-  id="circular-progress-:r2:"
+  id="circular-progress-_r_2_"
   role="progressbar"
 >
   <svg
@@ -432,7 +432,7 @@ exports[`CircularProgress > should render as a determinate progress bar when the
   aria-valuemin="0"
   aria-valuenow="30"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r4:"
+  id="circular-progress-_r_4_"
   role="progressbar"
 >
   <svg
@@ -457,7 +457,7 @@ exports[`CircularProgress > should render as a determinate progress bar when the
   aria-valuemin="0"
   aria-valuenow="50"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r4:"
+  id="circular-progress-_r_4_"
   role="progressbar"
 >
   <svg
@@ -481,7 +481,7 @@ exports[`CircularProgress > should support customizing the svg through the radio
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-primary-color"
-  id="circular-progress-:r8:"
+  id="circular-progress-_r_8_"
   role="progressbar"
 >
   <svg

@@ -13,7 +13,7 @@ exports[`useCheckboxGroup > should not behave as an indeterminate checkbox group
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:r0:"
+          id="checkbox-_r_0_"
           name="example"
           type="checkbox"
           value="a"
@@ -36,7 +36,7 @@ exports[`useCheckboxGroup > should not behave as an indeterminate checkbox group
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:r1:"
+          id="checkbox-_r_1_"
           name="example"
           type="checkbox"
           value="b"
@@ -59,7 +59,7 @@ exports[`useCheckboxGroup > should not behave as an indeterminate checkbox group
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:r2:"
+          id="checkbox-_r_2_"
           name="example"
           type="checkbox"
           value="c"
@@ -89,7 +89,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 1`] =
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:r9:"
+          id="checkbox-_r_9_"
           name="example"
           type="checkbox"
         />
@@ -111,7 +111,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 1`] =
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:ra:"
+          id="checkbox-_r_a_"
           name="example"
           type="checkbox"
           value="a"
@@ -134,7 +134,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 1`] =
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:rb:"
+          id="checkbox-_r_b_"
           name="example"
           type="checkbox"
           value="b"
@@ -157,7 +157,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 1`] =
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:rc:"
+          id="checkbox-_r_c_"
           name="example"
           type="checkbox"
           value="c"
@@ -187,7 +187,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 2`] =
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:r9:"
+          id="checkbox-_r_9_"
           name="example"
           type="checkbox"
         />
@@ -209,7 +209,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 2`] =
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:ra:"
+          id="checkbox-_r_a_"
           name="example"
           type="checkbox"
           value="a"
@@ -232,7 +232,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 2`] =
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:rb:"
+          id="checkbox-_r_b_"
           name="example"
           type="checkbox"
           value="b"
@@ -255,7 +255,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 2`] =
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:rc:"
+          id="checkbox-_r_c_"
           name="example"
           type="checkbox"
           value="c"
@@ -286,7 +286,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 3`] =
           aria-checked="mixed"
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:r9:"
+          id="checkbox-_r_9_"
           name="example"
           type="checkbox"
         />
@@ -308,7 +308,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 3`] =
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:ra:"
+          id="checkbox-_r_a_"
           name="example"
           type="checkbox"
           value="a"
@@ -331,7 +331,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 3`] =
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:rb:"
+          id="checkbox-_r_b_"
           name="example"
           type="checkbox"
           value="b"
@@ -354,7 +354,7 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 3`] =
         <input
           autocomplete="off"
           class="rmd-hidden-input"
-          id="checkbox-:rc:"
+          id="checkbox-_r_c_"
           name="example"
           type="checkbox"
           value="c"
@@ -373,9 +373,9 @@ exports[`useCheckboxGroup > should support an indeterminate checkbox group 3`] =
 
 exports[`useCheckboxGroup > should support rendering a group of MenuItemCheckbox by enabling the \`menu\` option 1`] = `
 <div
-  aria-labelledby="menubutton-:rd:"
+  aria-labelledby="menubutton-_r_d_"
   class="rmd-menu rmd-menu--elevated"
-  id="menu-:rf:"
+  id="menu-_r_f_"
   role="menu"
   style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
   tabindex="-1"
@@ -387,7 +387,7 @@ exports[`useCheckboxGroup > should support rendering a group of MenuItemCheckbox
     <li
       aria-checked="false"
       class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle"
-      id="menu-item-:rg:"
+      id="menu-item-_r_g_"
       role="menuitemcheckbox"
       tabindex="-1"
     >
@@ -410,7 +410,7 @@ exports[`useCheckboxGroup > should support rendering a group of MenuItemCheckbox
     <li
       aria-checked="false"
       class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle"
-      id="menu-item-:rh:"
+      id="menu-item-_r_h_"
       role="menuitemcheckbox"
       tabindex="-1"
     >
@@ -433,7 +433,7 @@ exports[`useCheckboxGroup > should support rendering a group of MenuItemCheckbox
     <li
       aria-checked="false"
       class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle"
-      id="menu-item-:ri:"
+      id="menu-item-_r_i_"
       role="menuitemcheckbox"
       tabindex="-1"
     >
@@ -456,7 +456,7 @@ exports[`useCheckboxGroup > should support rendering a group of MenuItemCheckbox
     <li
       aria-checked="false"
       class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-checkbox-menu-item rmd-menu-item-input-toggle"
-      id="menu-item-:rj:"
+      id="menu-item-_r_j_"
       role="menuitemcheckbox"
       tabindex="-1"
     >

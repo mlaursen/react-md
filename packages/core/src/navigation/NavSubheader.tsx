@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 import {
   ListSubheader,
@@ -18,19 +18,17 @@ export type NavSubheaderProps = ListSubheaderProps;
  * @see {@link https://react-md.dev/components/navigation | Navigation Demos}
  * @since 6.0.0
  */
-export const NavSubheader = forwardRef<HTMLLIElement, NavSubheaderProps>(
-  function NavSubheader(props, ref) {
-    const { textProps, ...remaining } = props;
+export function NavSubheader(props: NavSubheaderProps): ReactElement {
+  const { ref, textProps, ...remaining } = props;
 
-    return (
-      <ListSubheader
-        {...remaining}
-        ref={ref}
-        textProps={{
-          ...textProps,
-          className: navItem({ className: textProps?.className }),
-        }}
-      />
-    );
-  }
-);
+  return (
+    <ListSubheader
+      {...remaining}
+      ref={ref}
+      textProps={{
+        ...textProps,
+        className: navItem({ className: textProps?.className }),
+      }}
+    />
+  );
+}

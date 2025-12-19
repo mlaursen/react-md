@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, forwardRef } from "react";
+import { type ReactElement, type ReactNode, type Ref } from "react";
 
 import { Tooltip, type TooltipProps } from "../tooltip/Tooltip.js";
 import {
@@ -16,6 +16,8 @@ import { type ButtonType } from "./styles.js";
  * @since 6.0.0
  */
 export interface TooltippedButtonProps extends ButtonProps {
+  ref?: Ref<HTMLButtonElement>;
+
   /** @defaultValue `"icon"` */
   buttonType?: ButtonType;
 
@@ -73,11 +75,9 @@ export interface TooltippedButtonProps extends ButtonProps {
  * @see {@link https://react-md.dev/components/button | Button Demos}
  * @since 6.0.0
  */
-export const TooltippedButton = forwardRef<
-  HTMLButtonElement,
-  TooltippedButtonProps
->(function TooltippedButton(props, ref) {
+export function TooltippedButton(props: TooltippedButtonProps): ReactElement {
   const {
+    ref,
     tooltip,
     tooltipProps,
     tooltipOptions,
@@ -116,4 +116,4 @@ export const TooltippedButton = forwardRef<
       </Tooltip>
     </>
   );
-});
+}

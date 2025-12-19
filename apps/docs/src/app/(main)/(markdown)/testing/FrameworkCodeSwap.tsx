@@ -2,7 +2,7 @@ import { type ReactElement } from "react";
 
 import TestFrameworkCodeBlock, {
   type TestFrameworkCodeBlockProps,
-} from "./TestFrameworkCodeBlock.jsx";
+} from "./TestFrameworkCodeBlock.js";
 
 export interface FrameworkCodeSwapProps extends Omit<
   TestFrameworkCodeBlockProps,

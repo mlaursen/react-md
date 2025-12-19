@@ -15,7 +15,7 @@ import {
  */
 export interface FormResetOptions {
   form?: string;
-  elementRef: RefObject<ChangeableHTMLElement>;
+  elementRef: RefObject<ChangeableHTMLElement | null>;
   onReset?: () => void;
   defaultValue?: string;
 }

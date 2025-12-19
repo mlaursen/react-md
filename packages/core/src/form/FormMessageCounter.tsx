@@ -2,13 +2,15 @@ import {
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
-  forwardRef,
+  type Ref,
 } from "react";
 
 import { formMessageCounter } from "./formMessageStyles.js";
 
 /** @since 2.9.0 */
 export interface FormMessageCounterProps extends HTMLAttributes<HTMLSpanElement> {
+  ref?: Ref<HTMLSpanElement>;
+
   /**
    * The children to display in the counter. This is normally a string like:
    *
@@ -50,11 +52,10 @@ export interface FormMessageCounterProps extends HTMLAttributes<HTMLSpanElement>
  * @since 2.9.0
  * @since 6.3.0 Supports refs.
  */
-export const FormMessageCounter = forwardRef<
-  HTMLSpanElement,
-  FormMessageCounterProps
->(function FormMessageCounter(props, ref): ReactElement {
-  const { children, className, ...remaining } = props;
+export function FormMessageCounter(
+  props: FormMessageCounterProps
+): ReactElement {
+  const { ref, children, className, ...remaining } = props;
 
   return (
     <span
@@ -65,4 +66,4 @@ export const FormMessageCounter = forwardRef<
       {children}
     </span>
   );
-});
+}

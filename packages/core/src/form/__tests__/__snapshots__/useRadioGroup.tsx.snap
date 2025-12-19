@@ -12,7 +12,7 @@ exports[`useRadioGroup > should not check any radio elements by default 1`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r0:"
+          id="radio-_r_0_"
           name="example"
           type="radio"
           value="a"
@@ -34,7 +34,7 @@ exports[`useRadioGroup > should not check any radio elements by default 1`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r1:"
+          id="radio-_r_1_"
           name="example"
           type="radio"
           value="b"
@@ -56,7 +56,7 @@ exports[`useRadioGroup > should not check any radio elements by default 1`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r2:"
+          id="radio-_r_2_"
           name="example"
           type="radio"
           value="c"
@@ -78,7 +78,7 @@ exports[`useRadioGroup > should not check any radio elements by default 1`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r3:"
+          id="radio-_r_3_"
           name="example"
           type="radio"
           value="d"
@@ -107,7 +107,7 @@ exports[`useRadioGroup > should not check any radio elements by default 2`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r0:"
+          id="radio-_r_0_"
           name="example"
           type="radio"
           value="a"
@@ -129,7 +129,7 @@ exports[`useRadioGroup > should not check any radio elements by default 2`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r1:"
+          id="radio-_r_1_"
           name="example"
           type="radio"
           value="b"
@@ -151,7 +151,7 @@ exports[`useRadioGroup > should not check any radio elements by default 2`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r2:"
+          id="radio-_r_2_"
           name="example"
           type="radio"
           value="c"
@@ -173,7 +173,7 @@ exports[`useRadioGroup > should not check any radio elements by default 2`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r3:"
+          id="radio-_r_3_"
           name="example"
           type="radio"
           value="d"
@@ -202,7 +202,7 @@ exports[`useRadioGroup > should not check any radio elements by default 3`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r0:"
+          id="radio-_r_0_"
           name="example"
           type="radio"
           value="a"
@@ -224,7 +224,7 @@ exports[`useRadioGroup > should not check any radio elements by default 3`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r1:"
+          id="radio-_r_1_"
           name="example"
           type="radio"
           value="b"
@@ -246,7 +246,7 @@ exports[`useRadioGroup > should not check any radio elements by default 3`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r2:"
+          id="radio-_r_2_"
           name="example"
           type="radio"
           value="c"
@@ -268,7 +268,7 @@ exports[`useRadioGroup > should not check any radio elements by default 3`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r3:"
+          id="radio-_r_3_"
           name="example"
           type="radio"
           value="d"
@@ -297,7 +297,7 @@ exports[`useRadioGroup > should not check any radio elements by default 4`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r0:"
+          id="radio-_r_0_"
           name="example"
           type="radio"
           value="a"
@@ -319,7 +319,7 @@ exports[`useRadioGroup > should not check any radio elements by default 4`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r1:"
+          id="radio-_r_1_"
           name="example"
           type="radio"
           value="b"
@@ -341,7 +341,7 @@ exports[`useRadioGroup > should not check any radio elements by default 4`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r2:"
+          id="radio-_r_2_"
           name="example"
           type="radio"
           value="c"
@@ -363,7 +363,7 @@ exports[`useRadioGroup > should not check any radio elements by default 4`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r3:"
+          id="radio-_r_3_"
           name="example"
           type="radio"
           value="d"
@@ -392,7 +392,7 @@ exports[`useRadioGroup > should support creating a required radio group 1`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r4:"
+          id="radio-_r_4_"
           name="example"
           required=""
           type="radio"
@@ -415,7 +415,7 @@ exports[`useRadioGroup > should support creating a required radio group 1`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r5:"
+          id="radio-_r_5_"
           name="example"
           required=""
           type="radio"
@@ -438,7 +438,7 @@ exports[`useRadioGroup > should support creating a required radio group 1`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r6:"
+          id="radio-_r_6_"
           name="example"
           required=""
           type="radio"
@@ -461,7 +461,7 @@ exports[`useRadioGroup > should support creating a required radio group 1`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r7:"
+          id="radio-_r_7_"
           name="example"
           required=""
           type="radio"
@@ -499,7 +499,7 @@ exports[`useRadioGroup > should support creating a required radio group 2`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r4:"
+          id="radio-_r_4_"
           name="example"
           required=""
           type="radio"
@@ -522,7 +522,7 @@ exports[`useRadioGroup > should support creating a required radio group 2`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r5:"
+          id="radio-_r_5_"
           name="example"
           required=""
           type="radio"
@@ -545,7 +545,7 @@ exports[`useRadioGroup > should support creating a required radio group 2`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r6:"
+          id="radio-_r_6_"
           name="example"
           required=""
           type="radio"
@@ -568,7 +568,7 @@ exports[`useRadioGroup > should support creating a required radio group 2`] = `
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r7:"
+          id="radio-_r_7_"
           name="example"
           required=""
           type="radio"
@@ -596,9 +596,9 @@ exports[`useRadioGroup > should support creating a required radio group 2`] = `
 
 exports[`useRadioGroup > should support rendering within a menu 1`] = `
 <div
-  aria-labelledby="menubutton-:rg:"
+  aria-labelledby="menubutton-_r_g_"
   class="rmd-menu rmd-menu--elevated"
-  id="menu-:ri:"
+  id="menu-_r_i_"
   role="menu"
   style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
   tabindex="-1"
@@ -610,7 +610,7 @@ exports[`useRadioGroup > should support rendering within a menu 1`] = `
     <li
       aria-checked="false"
       class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle"
-      id="menu-item-:rj:"
+      id="menu-item-_r_j_"
       role="menuitemradio"
       tabindex="-1"
     >
@@ -633,7 +633,7 @@ exports[`useRadioGroup > should support rendering within a menu 1`] = `
     <li
       aria-checked="false"
       class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle"
-      id="menu-item-:rk:"
+      id="menu-item-_r_k_"
       role="menuitemradio"
       tabindex="-1"
     >
@@ -656,7 +656,7 @@ exports[`useRadioGroup > should support rendering within a menu 1`] = `
     <li
       aria-checked="true"
       class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle"
-      id="menu-item-:rl:"
+      id="menu-item-_r_l_"
       role="menuitemradio"
       tabindex="-1"
     >
@@ -679,7 +679,7 @@ exports[`useRadioGroup > should support rendering within a menu 1`] = `
     <li
       aria-checked="false"
       class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle"
-      id="menu-item-:rm:"
+      id="menu-item-_r_m_"
       role="menuitemradio"
       tabindex="-1"
     >

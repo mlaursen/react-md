@@ -35,7 +35,7 @@ import { cnb } from "cnbuilder";
 import { filesize } from "filesize";
 import { type ReactElement, type ReactNode, useState } from "react";
 
-import { FileUploadErrorModal } from "@/components/FileUploadErrorModal/FileUploadErrorModal.jsx";
+import { FileUploadErrorModal } from "@/components/FileUploadErrorModal/FileUploadErrorModal.js";
 
 import styles from "./ServerUploadExample.module.scss";
 

@@ -5,7 +5,7 @@ import { Overlay } from "@react-md/core/overlay/Overlay";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement, useId } from "react";
 
-import { usePrismThemeContext } from "@/components/PrismThemeProvider.jsx";
+import { usePrismThemeContext } from "@/components/PrismThemeProvider.js";
 import { PRISM_THEMES } from "@/constants/prismThemes.js";
 
 export function ConfigureCodeTheme(): ReactElement {

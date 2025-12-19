@@ -1,9 +1,9 @@
 "use client";
 
 import { cnb } from "cnbuilder";
-import { type ReactNode, forwardRef } from "react";
+import { type ReactElement, type ReactNode } from "react";
 
-import { List, type ListElement, type ListProps } from "../list/List.js";
+import { List, type ListProps } from "../list/List.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { useMenuConfiguration } from "./MenuConfigurationProvider.js";
 
@@ -79,19 +79,19 @@ export type MenuItemGroupProps = LabelRequiredForA11y<
  * @see {@link https://react-md.dev/components/menu | Menu Demos}
  * @since 5.0.0
  */
-export const MenuItemGroup = forwardRef<ListElement, MenuItemGroupProps>(
-  function MenuItemGroup({ children, className, ...props }, ref) {
-    const { horizontal } = useMenuConfiguration(props);
-    return (
-      <List
-        {...props}
-        ref={ref}
-        role="group"
-        className={cnb("rmd-menu-item-group", className)}
-        horizontal={horizontal}
-      >
-        {children}
-      </List>
-    );
-  }
-);
+export function MenuItemGroup(props: MenuItemGroupProps): ReactElement {
+  const { ref, children, className, ...remaining } = props;
+  const { horizontal } = useMenuConfiguration(props);
+
+  return (
+    <List
+      {...remaining}
+      ref={ref}
+      role="group"
+      className={cnb("rmd-menu-item-group", className)}
+      horizontal={horizontal}
+    >
+      {children}
+    </List>
+  );
+}

@@ -9,8 +9,8 @@ import { useEnsuredId } from "@react-md/core/useEnsuredId";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 
-import { LinkUnstyled } from "../LinkUnstyled.jsx";
-import { HeadingStructureIcon } from "./HeadingStructureIcon.jsx";
+import { LinkUnstyled } from "../LinkUnstyled.js";
+import { HeadingStructureIcon } from "./HeadingStructureIcon.js";
 
 export interface LinkOptionProps extends ListItemLinkProps {
   href: string;

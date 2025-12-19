@@ -20,7 +20,11 @@ export async function getReadOnlyFiles(
     [...readOnlyImports].map(async (importPath) => {
       const fullImportPath = importPath
         .replace(/^@\//, aliasDir + "/")
-        .replace(/\.js(x)?$/, ".ts$1");
+        .replace(/\.js$/, (match, offset, fullString) => {
+          const fileName = basename(fullString, ".js");
+
+          return /^[A-Z]/.test(fileName) ? ".tsx" : ".ts";
+        });
       const name = basename(fullImportPath);
       const code = await readFile(fullImportPath, "utf8");
       if (name.endsWith(".scss")) {

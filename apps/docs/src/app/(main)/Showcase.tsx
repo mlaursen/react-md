@@ -13,7 +13,7 @@ import { Typography } from "@react-md/core/typography/Typography";
 import CodeIcon from "@react-md/material-icons/CodeIcon";
 import { type ReactElement } from "react";
 
-import { ReactMDLogo } from "@/components/ReactMDLogo.jsx";
+import { ReactMDLogo } from "@/components/ReactMDLogo.js";
 
 import styles from "./Showcase.module.scss";
 

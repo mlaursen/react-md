@@ -1,12 +1,12 @@
 import { type ReactElement } from "react";
 
-import { FrameworkCodeSwap } from "../FrameworkCodeSwap.jsx";
+import { FrameworkCodeSwap } from "../FrameworkCodeSwap.js";
 
 const DEFAULT_CODE = `
 import { describe, expect, it } from "{FRAMEWORK}";
 import { isElementVisible } from "@react-md/core/utils/isElementVisible";
 
-import SimpleExample from "@/components/tabs/SimpleExample.jsx"
+import SimpleExample from "@/components/tabs/SimpleExample.js"
 
 describe("SimpleExample", () => {
   it("should be able to change the active tab panel when clicking on a tab", async () => {

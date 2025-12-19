@@ -4,12 +4,12 @@ import { type ComponentType, type ReactElement, type ReactNode } from "react";
 
 import { pascalCase } from "@/utils/strings.js";
 
-import { ExpandableLayoutExample } from "./ExpandableLayoutExample.jsx";
-import { FullHeightExpandableLayoutExample } from "./FullHeightExpandableLayoutExample.jsx";
-import { FullHeightLayoutExample } from "./FullHeightLayoutExample.jsx";
-import { FullHeightResizableLayoutExample } from "./FullHeightResizableLayoutExample.jsx";
-import { ResizableLayoutExample } from "./ResizableLayoutExample.jsx";
-import { TemporaryLayoutExample } from "./TemporaryLayoutExample.jsx";
+import { ExpandableLayoutExample } from "./ExpandableLayoutExample.js";
+import { FullHeightExpandableLayoutExample } from "./FullHeightExpandableLayoutExample.js";
+import { FullHeightLayoutExample } from "./FullHeightLayoutExample.js";
+import { FullHeightResizableLayoutExample } from "./FullHeightResizableLayoutExample.js";
+import { ResizableLayoutExample } from "./ResizableLayoutExample.js";
+import { TemporaryLayoutExample } from "./TemporaryLayoutExample.js";
 import {
   type ExampleLayoutProps,
   LAYOUT_TYPES,
@@ -26,16 +26,26 @@ const LAYOUTS = {
 } satisfies Record<LayoutType, ComponentType<ExampleLayoutProps>>;
 
 export interface RouteParams {
-  params: { layout: LayoutType };
+  params: Promise<{ layout: string }>;
+}
+
+function isLayoutType(layout: string): layout is LayoutType {
+  return Object.keys(LAYOUTS).includes(layout);
 }
 
 export interface RootLayoutProps extends RouteParams {
   children: ReactNode;
 }
 
-export default function RootLayout(props: RootLayoutProps): ReactElement {
+export default async function RootLayout(
+  props: RootLayoutProps
+): Promise<ReactElement> {
   const { children, params } = props;
-  const { layout } = params;
+  const { layout } = await params;
+  if (!isLayoutType(layout)) {
+    notFound();
+  }
+
   const Layout = LAYOUTS[layout];
   if (!Layout) {
     notFound();
@@ -51,7 +61,7 @@ export async function generateStaticParams(): Promise<{ layout: string }[]> {
 export async function generateMetadata({
   params,
 }: RouteParams): Promise<Metadata> {
-  const { layout } = params;
+  const { layout } = await params;
 
   return {
     title: `react-md: ${pascalCase(layout, " ")} Layout Example`,

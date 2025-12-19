@@ -19,7 +19,7 @@ import {
 } from "./parseDemoFile.js";
 
 const CLIENT_TEMPLATE = `"use client";
-import { DemoCodeEditor, type DemoCodeEditorProps } from "@/components/DemoCode/DemoCodeEditor.jsx";
+import { DemoCodeEditor, type DemoCodeEditorProps } from "@/components/DemoCode/DemoCodeEditor.js";
 import { type RunnableCodeScope } from "@react-md/code/types";
 import { type ReactElement } from "react";
 
@@ -27,7 +27,7 @@ type Props = Omit<DemoCodeEditorProps, 'scope'>;
 `;
 
 const SERVER_TEMPLATE = `
-import { CreateStackBlitzProject } from "@/components/StackBlitz/CreateStackBlitzProject.jsx";
+import { CreateStackBlitzProject } from "@/components/StackBlitz/CreateStackBlitzProject.js";
 import {
   type ScssCodeFile,
   type TypescriptCodeFile,
@@ -119,7 +119,7 @@ async function getServerComponentSource({
     });
     sourceFile.addImportDeclaration({
       namedImports: [{ name: "ReadOnlyFile" }],
-      moduleSpecifier: "@/components/DemoCode/ReadOnlyFile.jsx",
+      moduleSpecifier: "@/components/DemoCode/ReadOnlyFile.js",
     });
 
     sourceFile.addVariableStatement({
@@ -298,7 +298,10 @@ export async function generateDemoFile(
 
   const clientDemoName = `${demoName}Client`;
   const clientDemoOutPath = demoOutPath.replace(/(\..+)$/, "Client$1");
-  const clientImportName = basename(clientDemoOutPath).replace(/\.t/, ".j");
+  const clientImportName = basename(clientDemoOutPath).replace(
+    /\.ts(x)?/,
+    ".js"
+  );
   clientSourceFile.addFunction({
     name: clientDemoName,
     parameters: [{ name: "props", type: "Props" }],

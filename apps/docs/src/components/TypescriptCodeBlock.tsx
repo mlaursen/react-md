@@ -1,10 +1,10 @@
 import { type ReactElement } from "react";
 
-import { MarkdownCode } from "./MarkdownCode.jsx";
+import { MarkdownCode } from "./MarkdownCode.js";
 import {
   TypescriptCodeBlockContainer,
   type TypescriptCodeBlockContainerProps,
-} from "./TypescriptCodeBlockContainer.jsx";
+} from "./TypescriptCodeBlockContainer.js";
 
 export interface TypescriptCodeBlockProps extends TypescriptCodeBlockContainerProps {
   isTsx: boolean;

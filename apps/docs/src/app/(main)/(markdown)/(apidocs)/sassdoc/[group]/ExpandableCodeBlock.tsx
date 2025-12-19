@@ -5,7 +5,7 @@ import { useCollapseTransition } from "@react-md/core/transition/useCollapseTran
 import { useToggle } from "@react-md/core/useToggle";
 import { type ReactElement, useRef, useState } from "react";
 
-import { MarkdownCode } from "@/components/MarkdownCode.jsx";
+import { MarkdownCode } from "@/components/MarkdownCode.js";
 
 export interface ExpandableCodeBlockProps {
   code: string;

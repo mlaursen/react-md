@@ -1,4 +1,4 @@
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import {
   type ResponsiveItemClassNameOptions,
@@ -15,7 +15,9 @@ import {
  * {@link ResponsiveItemProps.responsive} prop.
  */
 export interface ResponsiveItemProps
-  extends HTMLAttributes<HTMLSpanElement>, ResponsiveItemClassNameOptions {}
+  extends HTMLAttributes<HTMLSpanElement>, ResponsiveItemClassNameOptions {
+  ref?: Ref<HTMLSpanElement>;
+}
 
 /**
  * @example Image Example
@@ -68,30 +70,29 @@ export interface ResponsiveItemProps
  * @since 6.0.0 Renamed from `MediaContainer` to
  * `ResponsiveItem` and renders a `<span>` instead of a `<div>`.
  */
-export const ResponsiveItem = forwardRef<HTMLSpanElement, ResponsiveItemProps>(
-  function ResponsiveItem(props, ref) {
-    const {
-      className,
-      fullWidth = false,
-      aspectRatio,
-      responsive = "auto",
-      children,
-      ...remaining
-    } = props;
+export function ResponsiveItem(props: ResponsiveItemProps): ReactElement {
+  const {
+    ref,
+    className,
+    fullWidth = false,
+    aspectRatio,
+    responsive = "auto",
+    children,
+    ...remaining
+  } = props;
 
-    return (
-      <span
-        {...remaining}
-        ref={ref}
-        className={responsiveItem({
-          className,
-          fullWidth,
-          aspectRatio,
-          responsive,
-        })}
-      >
-        {children}
-      </span>
-    );
-  }
-);
+  return (
+    <span
+      {...remaining}
+      ref={ref}
+      className={responsiveItem({
+        className,
+        fullWidth,
+        aspectRatio,
+        responsive,
+      })}
+    >
+      {children}
+    </span>
+  );
+}

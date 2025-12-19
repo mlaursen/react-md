@@ -1,4 +1,4 @@
-import { type MutableRefObject, type ReactElement, createRef } from "react";
+import { type ReactElement, type RefObject, createRef } from "react";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -41,7 +41,7 @@ const renderMain = (options: ElementSizeOptions<HTMLElement> = {}) => {
 
 describe("useElementSize", () => {
   it("should default to a height and width of 0", () => {
-    const elementSize: MutableRefObject<ElementSize | null> = {
+    const elementSize: RefObject<ElementSize | null> = {
       current: null,
     };
 
@@ -152,7 +152,7 @@ describe("useElementSize", () => {
   });
 
   it("should allow for a defaultValue", () => {
-    const elementSize: MutableRefObject<ElementSize | null> = {
+    const elementSize: RefObject<ElementSize | null> = {
       current: null,
     };
 

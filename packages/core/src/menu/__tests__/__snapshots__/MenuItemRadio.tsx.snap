@@ -4,7 +4,7 @@ exports[`MenuItemRadio > should allow for a custom unchecked and checked icon 1`
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle"
-  id="menu-item-:r1:"
+  id="menu-item-_r_1_"
   role="menuitemradio"
   tabindex="-1"
 >
@@ -23,7 +23,7 @@ exports[`MenuItemRadio > should allow for a custom unchecked and checked icon 2`
 <li
   aria-checked="true"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle"
-  id="menu-item-:r1:"
+  id="menu-item-_r_1_"
   role="menuitemradio"
   tabindex="-1"
 >
@@ -46,7 +46,7 @@ exports[`MenuItemRadio > should apply the correct styling, HTMLAttributes, and a
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle"
-  id="menu-item-:r0:"
+  id="menu-item-_r_0_"
   role="menuitemradio"
   tabindex="-1"
 >
@@ -72,7 +72,7 @@ exports[`MenuItemRadio > should apply the correct styling, HTMLAttributes, and a
 <li
   aria-checked="false"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-radio-menu-item rmd-menu-item-input-toggle custom-class-name"
-  id="menu-item-:r0:"
+  id="menu-item-_r_0_"
   role="menuitemradio"
   style="color: white;"
   tabindex="-1"

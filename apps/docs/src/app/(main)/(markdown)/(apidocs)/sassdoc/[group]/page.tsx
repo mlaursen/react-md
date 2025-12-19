@@ -3,10 +3,10 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation.js";
 import { type ReactElement } from "react";
 
-import { LinkableHeading } from "@/components/LinkableHeading.jsx";
-import { Markdown } from "@/components/Markdown.jsx";
-import { PageNotFound } from "@/components/PageNotFound/PageNotFound.jsx";
-import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
+import { LinkableHeading } from "@/components/LinkableHeading.js";
+import { Markdown } from "@/components/Markdown.js";
+import { PageNotFound } from "@/components/PageNotFound/PageNotFound.js";
+import { TableOfContents } from "@/components/TableOfContents/TableOfContents.js";
 import {
   SASSDOC_GROUP,
   SASSDOC_GROUP_NAMES,
@@ -15,16 +15,16 @@ import { createTOC } from "@/utils/sassdoc.js";
 import { slug } from "@/utils/slug.js";
 import { titleCase } from "@/utils/strings.js";
 
-import { DevRegenDialog } from "./DevRegenDialog.jsx";
-import { SassDocSection } from "./SassDocSection.jsx";
+import { DevRegenDialog } from "./DevRegenDialog.js";
+import { SassDocSection } from "./SassDocSection.js";
 
 export interface PageProps {
-  params: { group: string };
-  searchParams: Record<string, unknown>;
+  params: Promise<{ group: string }>;
+  searchParams: Promise<Record<string, unknown>>;
 }
 
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
-  const { group } = props.params;
+  const { group } = await props.params;
   const lookup = SASSDOC_GROUP.get(group);
   if (!lookup) {
     return {};
@@ -66,9 +66,7 @@ export async function generateStaticParams(): Promise<{ group: string }[]> {
 }
 
 export default async function Page(props: PageProps): Promise<ReactElement> {
-  const {
-    params: { group },
-  } = props;
+  const { group } = await props.params;
   const lookup = SASSDOC_GROUP.get(group);
   if (!lookup) {
     if (process.env.NODE_ENV !== "production") {

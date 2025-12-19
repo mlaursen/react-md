@@ -1,7 +1,7 @@
 "use client";
 
 import { cnb } from "cnbuilder";
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement } from "react";
 
 import { TextField, type TextFieldProps } from "../form/TextField.js";
 import { type PropsWithRef } from "../types.js";
@@ -30,11 +30,9 @@ export interface MenuItemTextFieldProps extends TextFieldProps {
  * @see {@link https://react-md.dev/components/menu#menuitemtextfield-example | DropdownMenu Demos}
  * @since 5.0.0
  */
-export const MenuItemTextField = forwardRef<
-  HTMLInputElement,
-  MenuItemTextFieldProps
->(function MenuItemTextField(props, ref) {
-  const { liProps, onKeyDown, ...remaining } = props;
+export function MenuItemTextField(props: MenuItemTextFieldProps): ReactElement {
+  const { ref, liProps, onKeyDown, ...remaining } = props;
+
   return (
     <li
       role="none"
@@ -65,4 +63,4 @@ export const MenuItemTextField = forwardRef<
       />
     </li>
   );
-});
+}

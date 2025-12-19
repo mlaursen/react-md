@@ -13,8 +13,8 @@ import { FormMessageCounter } from "@react-md/core/form/FormMessageCounter";
 import { LinearProgress } from "@react-md/core/progress/LinearProgress";
 import { type ReactElement } from "react";
 
-import { FilePreviewCard } from "@/components/FilePreview/FilePreviewCard.jsx";
-import { FileUploadErrorModal } from "@/components/FileUploadErrorModal/FileUploadErrorModal.jsx";
+import { FilePreviewCard } from "@/components/FilePreview/FilePreviewCard.js";
+import { FileUploadErrorModal } from "@/components/FileUploadErrorModal/FileUploadErrorModal.js";
 
 import styles from "./FileUploadExample.module.scss";
 

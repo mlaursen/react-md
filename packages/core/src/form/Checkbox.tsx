@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 import { type CheckboxProps, InputToggle } from "./InputToggle.js";
 
@@ -20,8 +20,8 @@ import { type CheckboxProps, InputToggle } from "./InputToggle.js";
  *
  * @see {@link https://react-md.dev/components/checkbox | Checkbox Demos}
  */
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  function Checkbox(props, ref) {
-    return <InputToggle {...props} ref={ref} type="checkbox" />;
-  }
-);
+export function Checkbox(props: CheckboxProps): ReactElement {
+  const { ref, ...remaining } = props;
+
+  return <InputToggle {...remaining} ref={ref} type="checkbox" />;
+}

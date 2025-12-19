@@ -1,6 +1,6 @@
 "use client";
 
-import { type RefObject, forwardRef, useRef } from "react";
+import { type ReactElement, type Ref, type RefObject, useRef } from "react";
 
 import { TOP_INNER_RIGHT_ANCHOR } from "../positioning/constants.js";
 import {
@@ -13,8 +13,10 @@ import { type LabelRequiredForA11y } from "../types.js";
 import { type BaseDialogProps, Dialog } from "./Dialog.js";
 
 export interface BaseFixedDialogProps extends Omit<BaseDialogProps, "type"> {
+  ref?: Ref<HTMLDivElement>;
+
   anchor?: PositionAnchor;
-  fixedTo: RefObject<HTMLElement>;
+  fixedTo: RefObject<HTMLElement | null>;
   options?: CalculateFixedPositionOptions;
   getFixedPositionOptions?: () => CalculateFixedPositionOptions;
 
@@ -88,72 +90,71 @@ const noop = (): void => {
  *
  * @see {@link https://react-md.dev/components/dialog#fixed-dialog | FixedDialog Demos}
  */
-export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
-  function FixedDialog(props, nodeRef) {
-    const {
-      fixedTo,
-      style: propStyle,
-      classNames = DEFAULT_SCALE_CLASSNAMES,
-      children,
-      anchor = TOP_INNER_RIGHT_ANCHOR,
-      options,
-      getFixedPositionOptions,
-      onEnter = noop,
-      onEntering,
-      onEntered = noop,
-      onExited,
-      onRequestClose,
-      overlayHidden = true,
-      disableScrollLock = true,
-      isFocusTypeDisabled = noop,
-      ...remaining
-    } = props;
+export function FixedDialog(props: FixedDialogProps): ReactElement {
+  const {
+    ref: nodeRef,
+    fixedTo,
+    style: propStyle,
+    classNames = DEFAULT_SCALE_CLASSNAMES,
+    children,
+    anchor = TOP_INNER_RIGHT_ANCHOR,
+    options,
+    getFixedPositionOptions,
+    onEnter = noop,
+    onEntering,
+    onEntered = noop,
+    onExited,
+    onRequestClose,
+    overlayHidden = true,
+    disableScrollLock = true,
+    isFocusTypeDisabled = noop,
+    ...remaining
+  } = props;
 
-    const disableExitFocus = useRef(false);
-    const { ref, style, callbacks } = useFixedPositioning({
-      nodeRef,
-      style: propStyle,
-      transformOrigin: true,
-      onEnter(appearing) {
-        onEnter(appearing);
-        disableExitFocus.current = false;
-      },
-      onEntering,
-      onEntered(appearing) {
-        onEntered(appearing);
-        disableExitFocus.current = false;
-      },
-      onExited,
-      anchor,
-      fixedTo,
-      onScroll(_event, data) {
-        if (!data.visible) {
-          disableExitFocus.current = true;
-          onRequestClose();
-        }
-      },
-      ...options,
-      getFixedPositionOptions,
-    });
+  const disableExitFocus = useRef(false);
+  const { ref, style, callbacks } = useFixedPositioning({
+    nodeRef,
+    style: propStyle,
+    transformOrigin: true,
+    onEnter(appearing) {
+      onEnter(appearing);
+      disableExitFocus.current = false;
+    },
+    onEntering,
+    onEntered(appearing) {
+      onEntered(appearing);
+      disableExitFocus.current = false;
+    },
+    onExited,
+    anchor,
+    fixedTo,
+    onScroll(_event, data) {
+      if (!data.visible) {
+        disableExitFocus.current = true;
+        onRequestClose();
+      }
+    },
+    ...options,
+    getFixedPositionOptions,
+  });
 
-    return (
-      <Dialog
-        {...remaining}
-        {...callbacks}
-        ref={ref}
-        type="custom"
-        style={style}
-        classNames={classNames}
-        onRequestClose={onRequestClose}
-        overlayHidden={overlayHidden}
-        disableScrollLock={disableScrollLock}
-        isFocusTypeDisabled={(type) =>
-          isFocusTypeDisabled(type) ||
-          (type === "unmount" && disableExitFocus.current)
-        }
-      >
-        {children}
-      </Dialog>
-    );
-  }
-);
+  return (
+    <Dialog
+      {...remaining}
+      {...callbacks}
+      ref={ref}
+      type="custom"
+      style={style}
+      classNames={classNames}
+      onRequestClose={onRequestClose}
+      overlayHidden={overlayHidden}
+      disableScrollLock={disableScrollLock}
+      isFocusTypeDisabled={(type) =>
+        isFocusTypeDisabled(type) ||
+        (type === "unmount" && disableExitFocus.current)
+      }
+    >
+      {children}
+    </Dialog>
+  );
+}

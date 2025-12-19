@@ -11,22 +11,22 @@ import {
   type SupportedItemDataType,
 } from "sassdoc-generator/types";
 
-import { GithubLink } from "@/components/GithubLink.jsx";
-import { LinkableHeading } from "@/components/LinkableHeading.jsx";
-import { Markdown } from "@/components/Markdown.jsx";
-import { MarkdownCode } from "@/components/MarkdownCode.jsx";
-import { MarkdownLink } from "@/components/MarkdownLink.jsx";
+import { GithubLink } from "@/components/GithubLink.js";
+import { LinkableHeading } from "@/components/LinkableHeading.js";
+import { Markdown } from "@/components/Markdown.js";
+import { MarkdownCode } from "@/components/MarkdownCode.js";
+import { MarkdownLink } from "@/components/MarkdownLink.js";
 import { GITHUB_URL } from "@/constants/env.js";
 import { slug } from "@/utils/slug.js";
 
-import { ExpandableCodeBlock } from "./ExpandableCodeBlock.jsx";
-import { SassDocExamples } from "./SassDocExamples.jsx";
+import { ExpandableCodeBlock } from "./ExpandableCodeBlock.js";
+import { SassDocExamples } from "./SassDocExamples.js";
 import styles from "./SassDocItem.module.scss";
-import { SassDocLinks } from "./SassDocLinks.jsx";
-import { SassDocParameters } from "./SassDocParameters.jsx";
-import { SassDocReturns } from "./SassDocReturns.jsx";
-import { SassDocThrows } from "./SassDocThrows.jsx";
-import { VariableCodeBlock } from "./VariableCodeBlock.jsx";
+import { SassDocLinks } from "./SassDocLinks.js";
+import { SassDocParameters } from "./SassDocParameters.js";
+import { SassDocReturns } from "./SassDocReturns.js";
+import { SassDocThrows } from "./SassDocThrows.js";
+import { VariableCodeBlock } from "./VariableCodeBlock.js";
 
 const RGB_REGEX = /^rgb\(((\b([01]?\d\d?|2[0-4]\d|25[0-5])\b),?){3}\)$/;
 const VERBOSE_REGEX = /^#([a-f\d]{3})([a-f\d]{3})?$/i;

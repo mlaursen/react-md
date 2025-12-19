@@ -1,8 +1,8 @@
 import {
   type AnchorHTMLAttributes,
   type ReactElement,
+  type Ref,
   createRef,
-  forwardRef,
 } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -542,13 +542,15 @@ describe("Tree", () => {
 
   it("should render the tree item as a link if the to or href exists on the item", () => {
     // set `to` to required just so it passes type checking
-    const TestLinkComponent = forwardRef<
-      HTMLAnchorElement,
-      AnchorHTMLAttributes<HTMLAnchorElement> & { to: string }
-    >(function TestLinkComponent(props, ref) {
-      const { to, href, ...remaining } = props;
+    function TestLinkComponent(
+      props: AnchorHTMLAttributes<HTMLAnchorElement> & {
+        to: string;
+        ref?: Ref<HTMLAnchorElement>;
+      }
+    ): ReactElement {
+      const { to, href, ref, ...remaining } = props;
       return <a href={to || href} {...remaining} ref={ref} />;
-    });
+    }
 
     const data = {
       "item-1-id": {

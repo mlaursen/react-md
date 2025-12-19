@@ -5,17 +5,17 @@ import type {
   KeyboardEventHandler,
   MouseEventHandler,
   Ref,
+  RefObject,
 } from "react";
 import { useRef } from "react";
 
 import type { KeyboardMovementProviderImplementation } from "../movement/types.js";
 import { useKeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import { getNextFocusableIndex } from "../movement/utils.js";
-import type { NonNullMutableRef } from "../types.js";
-import type { TreeItemMetadataLookup } from "./TreeProvider.js";
-import type { TreeData, TreeItemNode } from "./types.js";
-import type { TreeExpansion } from "./useTreeExpansion.js";
-import type { TreeItemChildIds } from "./useTreeItems.js";
+import { type TreeItemMetadataLookup } from "./TreeProvider.js";
+import { type TreeData, type TreeItemNode } from "./types.js";
+import { type TreeExpansion } from "./useTreeExpansion.js";
+import { type TreeItemChildIds } from "./useTreeItems.js";
 
 /**
  * This helps catch the edge case where the collapse transition has occurred for
@@ -78,7 +78,7 @@ interface TreeMovement extends KeyboardMovementProviderImplementation<HTMLUListE
    * This will be mutated by the `TreeItem` component and used to handle
    * keyboard movement.
    */
-  metadataLookup: NonNullMutableRef<TreeItemMetadataLookup>;
+  metadataLookup: RefObject<TreeItemMetadataLookup>;
 }
 
 /**

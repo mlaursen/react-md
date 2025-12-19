@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 import { label } from "./labelStyles.js";
 import { type LabelProps } from "./types.js";
@@ -15,44 +15,43 @@ import { type LabelProps } from "./types.js";
  * @since 6.0.0 Updated to be usable externally and combines the
  * floating label styles instead of having separate components.
  */
-export const Label = forwardRef<HTMLLabelElement, LabelProps>(
-  function Label(props, ref) {
-    const {
-      gap,
-      error,
-      dense,
-      active,
-      stacked,
-      reversed,
-      disabled,
-      floating,
-      inactive,
-      floatingActive = active,
-      className,
-      children,
-      ...remaining
-    } = props;
+export function Label(props: LabelProps): ReactElement {
+  const {
+    ref,
+    gap,
+    error,
+    dense,
+    active,
+    stacked,
+    reversed,
+    disabled,
+    floating,
+    inactive,
+    floatingActive = active,
+    className,
+    children,
+    ...remaining
+  } = props;
 
-    return (
-      <label
-        ref={ref}
-        {...remaining}
-        className={label({
-          gap,
-          error,
-          dense,
-          active,
-          stacked,
-          reversed,
-          disabled,
-          floating,
-          floatingActive,
-          inactive,
-          className,
-        })}
-      >
-        {children}
-      </label>
-    );
-  }
-);
+  return (
+    <label
+      ref={ref}
+      {...remaining}
+      className={label({
+        gap,
+        error,
+        dense,
+        active,
+        stacked,
+        reversed,
+        disabled,
+        floating,
+        floatingActive,
+        inactive,
+        className,
+      })}
+    >
+      {children}
+    </label>
+  );
+}

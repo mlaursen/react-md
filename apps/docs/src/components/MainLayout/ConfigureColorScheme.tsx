@@ -5,7 +5,7 @@ import DevicesOutlinedIcon from "@react-md/material-icons/DevicesOutlinedIcon";
 import LightModeOutlinedIcon from "@react-md/material-icons/LightModeOutlinedIcon";
 import { type ReactElement, type ReactNode } from "react";
 
-import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
+import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.js";
 
 const modes: readonly ColorScheme[] = ["light", "dark", "system"];
 

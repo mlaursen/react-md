@@ -6,8 +6,8 @@ import {
 import { type Root } from "hast";
 import { headingRank } from "hast-util-heading-rank";
 import { toString } from "mdast-util-to-string";
-import { type Plugin } from "unified";
 import { visit } from "unist-util-visit";
+import { type VFile } from "vfile";
 
 import { createJsxNode } from "./utils/createJsxNode.js";
 
@@ -95,11 +95,10 @@ export interface RehypeTocOptions {
  * The `vfile` will also include the `toc` as `file.data.toc`, but I don't
  * really know how to access that with nextjs/mdx.
  */
-export const rehypeToc: Plugin<[options?: RehypeTocOptions], Root> = (
-  options = {}
-) => {
+export function rehypeToc(options: RehypeTocOptions = {}) {
   const { as = "TableOfContents", propName = "toc", threshold = 0 } = options;
-  return (root, file) => {
+
+  return function toc(root: Root, file: VFile): void {
     const headings = getHeadings(root);
     const toc = createToc(headings);
     if (toc.length < threshold) {
@@ -117,7 +116,7 @@ export const rehypeToc: Plugin<[options?: RehypeTocOptions], Root> = (
 
     file.data.toc = toc;
   };
-};
+}
 
 declare module "vfile" {
   interface DataMap {

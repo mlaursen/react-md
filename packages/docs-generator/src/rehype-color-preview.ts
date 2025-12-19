@@ -1,5 +1,4 @@
 import { type Element, type Node, type Root } from "hast";
-import { type Plugin } from "unified";
 import { is } from "unist-util-is";
 import { type Test, visit } from "unist-util-visit";
 
@@ -31,35 +30,37 @@ const createColorNode = (color: string): Element => ({
   },
 });
 
-export const rehypeColorPreview: Plugin<[], Root> = () => (tree) => {
-  visit(tree, isColorNode, (node, index, parent) => {
-    if (
-      !isTextNode(node) ||
-      !parent ||
-      is(parent, { tagName: "code" }) ||
-      typeof index !== "number"
-    ) {
-      return;
-    }
-
-    const parts = node.value.split(HEX_CODE_REGEX);
-    const matches = node.value.match(HEX_CODE_REGEX) || [];
-
-    const replacements = [];
-    for (const [i, part] of parts.entries()) {
-      const clonedNode = structuredClone(node);
-      clonedNode.value = part;
-      delete clonedNode.position;
-
-      if (clonedNode.value !== "") {
-        replacements.push(clonedNode);
+export function rehypeColorPreview() {
+  return function colorPreview(tree: Root): void {
+    visit(tree, isColorNode, (node, index, parent) => {
+      if (
+        !isTextNode(node) ||
+        !parent ||
+        is(parent, { tagName: "code" }) ||
+        typeof index !== "number"
+      ) {
+        return;
       }
 
-      if (i < matches.length) {
-        replacements.push(createColorNode(matches[i]));
-      }
-    }
+      const parts = node.value.split(HEX_CODE_REGEX);
+      const matches = node.value.match(HEX_CODE_REGEX) || [];
 
-    parent.children.splice(index, 1, ...replacements);
-  });
-};
+      const replacements = [];
+      for (const [i, part] of parts.entries()) {
+        const clonedNode = structuredClone(node);
+        clonedNode.value = part;
+        delete clonedNode.position;
+
+        if (clonedNode.value !== "") {
+          replacements.push(clonedNode);
+        }
+
+        if (i < matches.length) {
+          replacements.push(createColorNode(matches[i]));
+        }
+      }
+
+      parent.children.splice(index, 1, ...replacements);
+    });
+  };
+}

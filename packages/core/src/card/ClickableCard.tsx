@@ -1,7 +1,7 @@
 "use client";
 
 import { cnb } from "cnbuilder";
-import { type MouseEventHandler, forwardRef } from "react";
+import { type MouseEventHandler, type ReactElement, type Ref } from "react";
 
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
@@ -17,6 +17,8 @@ const noop = (): void => {
  */
 export interface ClickableCardProps
   extends CardProps, ComponentWithRippleProps {
+  ref?: Ref<HTMLDivElement>;
+
   onClick: MouseEventHandler<HTMLDivElement>;
 
   /**
@@ -55,60 +57,61 @@ export interface ClickableCardProps
  * @see {@link https://react-md.dev/components/card#clickable-card | ClickableCard Demos}
  * @since 6.0.0
  */
-export const ClickableCard = forwardRef<HTMLDivElement, ClickableCardProps>(
-  function ClickableCard(props, ref) {
-    const {
-      role = "button",
-      disabled,
-      tabIndex = disabled ? undefined : 0,
-      onClick,
-      onKeyDown = noop,
-      className,
-      children: propChildren,
-      disableRipple,
-      ...remaining
-    } = props;
-    const { handlers, ripples } = useElementInteraction({
-      ...remaining,
-      mode: disableRipple ? "none" : undefined,
-    });
-    const children = useHigherContrastChildren(propChildren);
+export const ClickableCard = function ClickableCard(
+  props: ClickableCardProps
+): ReactElement {
+  const {
+    ref,
+    role = "button",
+    disabled,
+    tabIndex = disabled ? undefined : 0,
+    onClick,
+    onKeyDown = noop,
+    className,
+    children: propChildren,
+    disableRipple,
+    ...remaining
+  } = props;
+  const { handlers, ripples } = useElementInteraction({
+    ...remaining,
+    mode: disableRipple ? "none" : undefined,
+  });
+  const children = useHigherContrastChildren(propChildren);
 
-    return (
-      <Card
-        {...remaining}
-        {...handlers}
-        aria-disabled={disabled || undefined}
-        ref={ref}
-        role={role}
-        tabIndex={tabIndex}
-        className={cnb("rmd-card--clickable", className)}
-        onClick={(event) => {
-          if (disabled) {
-            return;
+  return (
+    <Card
+      {...remaining}
+      {...handlers}
+      aria-disabled={disabled || undefined}
+      ref={ref}
+      role={role}
+      tabIndex={tabIndex}
+      className={cnb("rmd-card--clickable", className)}
+      onClick={(event) => {
+        if (disabled) {
+          return;
+        }
+
+        onClick(event);
+      }}
+      onKeyDown={(event) => {
+        onKeyDown(event);
+        if (disabled) {
+          return;
+        }
+
+        const isSpace = event.key === " ";
+        if (isSpace || event.key === "Enter") {
+          if (isSpace) {
+            event.preventDefault();
           }
 
-          onClick(event);
-        }}
-        onKeyDown={(event) => {
-          onKeyDown(event);
-          if (disabled) {
-            return;
-          }
-
-          const isSpace = event.key === " ";
-          if (isSpace || event.key === "Enter") {
-            if (isSpace) {
-              event.preventDefault();
-            }
-
-            event.currentTarget.click();
-          }
-        }}
-      >
-        {children}
-        {ripples}
-      </Card>
-    );
-  }
-);
+          event.currentTarget.click();
+        }
+      }}
+    >
+      {children}
+      {ripples}
+    </Card>
+  );
+};

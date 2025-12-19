@@ -1,6 +1,11 @@
 "use client";
 
-import { type ButtonHTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type ButtonHTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { getIcon } from "../icon/config.js";
 import { type ComponentWithRippleProps } from "../interaction/types.js";
@@ -28,6 +33,8 @@ export interface SegmentedButtonProps
     BaseMaxWidthTransitionOptions,
     BaseSegmentedButtonClassNameOptions,
     ComponentWithRippleProps {
+  ref?: Ref<HTMLButtonElement>;
+
   /** @defaultValue `getIcon("selected")` */
   selectedIcon?: ReactNode;
 
@@ -102,11 +109,9 @@ export interface SegmentedButtonProps
  * @see {@link https://react-md.dev/components/segmented-button | SegmentedButton Demos}
  * @since 6.0.0
  */
-export const SegmentedButton = forwardRef<
-  HTMLButtonElement,
-  SegmentedButtonProps
->(function SegmentedButton(props, ref) {
+export function SegmentedButton(props: SegmentedButtonProps): ReactElement {
   const {
+    ref,
     className,
     type = "button",
     leftAddon,
@@ -179,4 +184,4 @@ export const SegmentedButton = forwardRef<
       {ripples}
     </button>
   );
-});
+}

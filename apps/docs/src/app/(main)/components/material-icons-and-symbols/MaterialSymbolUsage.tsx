@@ -1,8 +1,8 @@
 import { type ReactElement } from "react";
 
-import { AdditionalChanges } from "./AdditionalChanges.jsx";
-import { IconImportAndUsage } from "./IconImportAndUsage.jsx";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { AdditionalChanges } from "./AdditionalChanges.js";
+import { IconImportAndUsage } from "./IconImportAndUsage.js";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 
 export function MaterialSymbolUsage(): ReactElement {
   const { isFontFamilyChanged, isSymbolCustomizationChanged } =

@@ -8,7 +8,7 @@ exports[`WindowSplitter > should apply the correct styling, HTMLAttributes, and 
   aria-valuemin="0"
   aria-valuenow="50"
   class="rmd-window-splitter rmd-window-splitter--h rmd-window-splitter--no-inactive-bg"
-  id="splitter-:r0:"
+  id="splitter-_r_0_"
   role="separator"
   type="button"
 />
@@ -22,7 +22,7 @@ exports[`WindowSplitter > should apply the correct styling, HTMLAttributes, and 
   aria-valuemin="0"
   aria-valuenow="50"
   class="rmd-window-splitter rmd-window-splitter--h rmd-window-splitter--no-inactive-bg custom-class-name"
-  id="splitter-:r0:"
+  id="splitter-_r_0_"
   role="separator"
   style="color: white;"
   type="button"
@@ -38,7 +38,7 @@ exports[`WindowSplitter > should be able to render vertically 1`] = `
   aria-valuemin="0"
   aria-valuenow="50"
   class="rmd-window-splitter rmd-window-splitter--v rmd-window-splitter--no-inactive-bg"
-  id="splitter-:r1:"
+  id="splitter-_r_1_"
   role="separator"
   type="button"
 />
@@ -52,7 +52,7 @@ exports[`WindowSplitter > should be able to show an inactive bg while horizontal
   aria-valuemin="0"
   aria-valuenow="50"
   class="rmd-window-splitter rmd-window-splitter--h rmd-window-splitter--no-inactive-bg"
-  id="splitter-:r2:"
+  id="splitter-_r_2_"
   role="separator"
   type="button"
 />
@@ -66,7 +66,7 @@ exports[`WindowSplitter > should be able to show an inactive bg while horizontal
   aria-valuemin="0"
   aria-valuenow="50"
   class="rmd-window-splitter rmd-window-splitter--h"
-  id="splitter-:r2:"
+  id="splitter-_r_2_"
   role="separator"
   type="button"
 />
@@ -81,7 +81,7 @@ exports[`WindowSplitter > should be able to show an inactive bg while horizontal
   aria-valuemin="0"
   aria-valuenow="50"
   class="rmd-window-splitter rmd-window-splitter--v rmd-window-splitter--no-inactive-bg"
-  id="splitter-:r2:"
+  id="splitter-_r_2_"
   role="separator"
   type="button"
 />
@@ -96,7 +96,7 @@ exports[`WindowSplitter > should be able to show an inactive bg while horizontal
   aria-valuemin="0"
   aria-valuenow="50"
   class="rmd-window-splitter rmd-window-splitter--v"
-  id="splitter-:r2:"
+  id="splitter-_r_2_"
   role="separator"
   type="button"
 />

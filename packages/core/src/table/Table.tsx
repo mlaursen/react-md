@@ -1,6 +1,11 @@
 "use client";
 
-import { type TableHTMLAttributes, forwardRef, useMemo } from "react";
+import {
+  type ReactElement,
+  type Ref,
+  type TableHTMLAttributes,
+  useMemo,
+} from "react";
 
 import { TableConfigProvider } from "./TableConfigurationProvider.js";
 import { table } from "./tableStyles.js";
@@ -27,7 +32,9 @@ declare module "react" {
 }
 
 export interface TableProps
-  extends TableHTMLAttributes<HTMLTableElement>, TableConfiguration {}
+  extends TableHTMLAttributes<HTMLTableElement>, TableConfiguration {
+  ref?: Ref<HTMLTableElement>;
+}
 
 /**
  * **Client Component**
@@ -78,44 +85,43 @@ export interface TableProps
  *
  * @see {@link https://react-md.dev/components/table | Table Demos}
  */
-export const Table = forwardRef<HTMLTableElement, TableProps>(
-  function Table(props, ref) {
-    const {
-      className,
-      children,
-      dense = false,
-      hAlign = "left",
-      vAlign = "middle",
-      lineWrap = false,
-      fullWidth = false,
-      disableHover = false,
-      disableBorders = false,
-      ...remaining
-    } = props;
+export function Table(props: TableProps): ReactElement {
+  const {
+    ref,
+    className,
+    children,
+    dense = false,
+    hAlign = "left",
+    vAlign = "middle",
+    lineWrap = false,
+    fullWidth = false,
+    disableHover = false,
+    disableBorders = false,
+    ...remaining
+  } = props;
 
-    const configuration = useMemo<TableConfigContext>(
-      () => ({
-        dense,
-        header: false,
-        hAlign,
-        vAlign,
-        lineWrap,
-        disableHover,
-        disableBorders,
-      }),
-      [dense, hAlign, vAlign, lineWrap, disableHover, disableBorders]
-    );
+  const configuration = useMemo<TableConfigContext>(
+    () => ({
+      dense,
+      header: false,
+      hAlign,
+      vAlign,
+      lineWrap,
+      disableHover,
+      disableBorders,
+    }),
+    [dense, hAlign, vAlign, lineWrap, disableHover, disableBorders]
+  );
 
-    return (
-      <TableConfigProvider value={configuration}>
-        <table
-          {...remaining}
-          ref={ref}
-          className={table({ dense, fullWidth, className })}
-        >
-          {children}
-        </table>
-      </TableConfigProvider>
-    );
-  }
-);
+  return (
+    <TableConfigProvider value={configuration}>
+      <table
+        {...remaining}
+        ref={ref}
+        className={table({ dense, fullWidth, className })}
+      >
+        {children}
+      </table>
+    </TableConfigProvider>
+  );
+}

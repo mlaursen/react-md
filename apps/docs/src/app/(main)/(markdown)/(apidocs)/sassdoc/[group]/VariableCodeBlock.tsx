@@ -4,7 +4,7 @@ import { Switch } from "@react-md/core/form/Switch";
 import { useToggle } from "@react-md/core/useToggle";
 import { type ReactElement } from "react";
 
-import { MarkdownCode } from "@/components/MarkdownCode.jsx";
+import { MarkdownCode } from "@/components/MarkdownCode.js";
 
 export interface VariableCodeBlockProps {
   code: string;

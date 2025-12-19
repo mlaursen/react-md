@@ -1,5 +1,10 @@
 import { cnb } from "cnbuilder";
-import { type ButtonHTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type ButtonHTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
 import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
@@ -20,6 +25,8 @@ export type TableCellContentsIconRotatorProps = Omit<
  * @internal
  */
 export interface TableCellContentProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  ref?: Ref<HTMLButtonElement>;
+
   /**
    * The current sort order for this cell. Setting this to `null` will prevent
    * the button from being rendered.
@@ -61,11 +68,9 @@ const styles = bem("rmd-table-cell");
  *
  * @internal
  */
-export const TableCellContent = forwardRef<
-  HTMLButtonElement,
-  TableCellContentProps
->(function TableCellContent(props, ref) {
+export function TableCellContent(props: TableCellContentProps): ReactElement {
   const {
+    ref,
     icon: propIcon,
     style,
     className,
@@ -109,4 +114,4 @@ export const TableCellContent = forwardRef<
       {iconAfter && icon}
     </ButtonUnstyled>
   );
-});
+}

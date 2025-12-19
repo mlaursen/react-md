@@ -10,7 +10,7 @@ import { type ReactElement } from "react";
 import { MATERIAL_COLORS, type MaterialColor } from "@/constants/theme.js";
 import { titleCase } from "@/utils/strings.js";
 
-import { Color } from "./Color.jsx";
+import { Color } from "./Color.js";
 import styles from "./ColorPalette.module.scss";
 
 function assertMaterialColor(name: string): asserts name is MaterialColor {

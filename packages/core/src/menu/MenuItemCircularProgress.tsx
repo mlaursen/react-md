@@ -1,5 +1,10 @@
 import { cnb } from "cnbuilder";
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { ListItemChildren } from "../list/ListItemChildren.js";
 import { listItem } from "../list/listItemStyles.js";
@@ -16,6 +21,8 @@ import {
  * @since 6.0.0
  */
 export interface MenuItemCircularProgressProps extends CircularProgressProps {
+  ref?: Ref<HTMLLIElement>;
+
   /** @defaultValue `"Loading"` */
   "aria-label"?: string;
 
@@ -69,11 +76,11 @@ export interface MenuItemCircularProgressProps extends CircularProgressProps {
  *
  * @since 6.0.0
  */
-export const MenuItemCircularProgress = forwardRef<
-  HTMLLIElement,
-  MenuItemCircularProgressProps
->(function MenuItemCircularProgress(props, ref) {
+export function MenuItemCircularProgress(
+  props: MenuItemCircularProgressProps
+): ReactElement {
   const {
+    ref,
     "aria-label": propAriaLabel,
     "aria-labelledby": ariaLabelledBy,
     role = "none",
@@ -111,4 +118,4 @@ export const MenuItemCircularProgress = forwardRef<
       </ListItemChildren>
     </li>
   );
-});
+}

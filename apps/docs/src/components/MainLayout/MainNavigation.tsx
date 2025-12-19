@@ -3,7 +3,7 @@ import { useNavigationExpansion } from "@react-md/core/navigation/useNavigationE
 import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
 
-import { LinkUnstyled } from "../LinkUnstyled.jsx";
+import { LinkUnstyled } from "../LinkUnstyled.js";
 import { navItems } from "./navItems.js";
 
 export interface MainNavigationProps {

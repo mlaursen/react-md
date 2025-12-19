@@ -1,1 +1,1 @@
-export { PlaceholderMarkdownPage as default } from "@/components/PlaceholderMarkdownPage.jsx";
+export { PlaceholderMarkdownPage as default } from "@/components/PlaceholderMarkdownPage.js";

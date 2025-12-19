@@ -8,11 +8,13 @@ import { CUSTOM_THEME_KEY } from "@/constants/cookies.js";
 
 import { isValidColor } from "./theme.js";
 
+type CookiesInstance = Awaited<ReturnType<typeof cookies>>;
+
 interface GetCookieOptions<V extends string> {
   name: string;
   isValid: (value: string) => value is V;
   defaultValue: V;
-  instance: ReturnType<typeof cookies>;
+  instance: CookiesInstance;
 }
 
 export function getCookie<V extends string>(options: GetCookieOptions<V>): V {
@@ -26,7 +28,7 @@ export function getCookie<V extends string>(options: GetCookieOptions<V>): V {
 }
 
 export function getThemeCookie(
-  instance: ReturnType<typeof cookies>
+  instance: CookiesInstance
 ): Partial<ConfigurableThemeColors> | undefined {
   const value = instance.get(CUSTOM_THEME_KEY)?.value ?? "";
   if (!value) {

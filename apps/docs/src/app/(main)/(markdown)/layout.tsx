@@ -1,1 +1,1 @@
-export { default } from "@/components/MarkdownPage.jsx";
+export { default } from "@/components/MarkdownPage.js";

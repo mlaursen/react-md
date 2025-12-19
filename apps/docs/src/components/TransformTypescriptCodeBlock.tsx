@@ -2,8 +2,8 @@ import { type HighlightedCodeBlockWithAppBarAdditionalProps } from "@react-md/co
 import { transformTsToJs } from "docs-generator/utils/transformTsToJs";
 import { type ReactElement } from "react";
 
-import { MarkdownCode } from "./MarkdownCode.jsx";
-import { TypescriptCodeBlock } from "./TypescriptCodeBlock.jsx";
+import { MarkdownCode } from "./MarkdownCode.js";
+import { TypescriptCodeBlock } from "./TypescriptCodeBlock.js";
 
 export interface TransformTypescriptCodeBlockProps extends HighlightedCodeBlockWithAppBarAdditionalProps {
   isTsx: boolean;

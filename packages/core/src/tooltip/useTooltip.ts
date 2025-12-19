@@ -5,7 +5,6 @@ import {
   type CSSProperties,
   type FocusEvent,
   type MouseEvent,
-  type MutableRefObject,
   type Ref,
   type RefObject,
   type TouchEvent,
@@ -291,7 +290,7 @@ export interface TooltipImplementation<
   visible: boolean;
   setVisible: UseStateSetter<boolean>;
   animatedOnce: boolean;
-  initiatedBy: MutableRefObject<UserInteractionMode | null>;
+  initiatedBy: RefObject<UserInteractionMode | null>;
   elementProps: ProvidedTooltippedElementProps<TooltippedElement>;
   tooltipProps: ProvidedTooltipProps<TooltipElement>;
 
@@ -304,7 +303,7 @@ export interface TooltipImplementation<
   /**
    * @since 6.0.0
    */
-  overflowRef: RefObject<HTMLElement>;
+  overflowRef: RefObject<HTMLElement | null>;
 }
 
 /**

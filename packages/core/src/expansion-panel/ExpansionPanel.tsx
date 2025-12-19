@@ -1,6 +1,11 @@
 "use client";
 
-import { type CSSProperties, type ReactNode, forwardRef } from "react";
+import {
+  type CSSProperties,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { Card, type CardProps } from "../card/Card.js";
 import { CardContent, type CardContentProps } from "../card/CardContent.js";
@@ -21,6 +26,8 @@ import { expansionPanel } from "./styles.js";
  * @since 6.0.0 Removed the `marginTop` prop since it is no longer needed.
  */
 export interface ExpansionPanelProps extends CardProps {
+  ref?: Ref<HTMLHeadingElement>;
+
   /**
    * Set this to `true` if the {@link children} should be visible. This should
    * generally be provided by the `useExpansionPanels` hook.
@@ -204,12 +211,10 @@ export interface ExpansionPanelProps extends CardProps {
  * @since 6.0.0 The content will be persistent and invisible using `display: none`
  * instead of unmounting and also animate the `margin-top` style.
  */
-export const ExpansionPanel = forwardRef<
-  HTMLHeadingElement,
-  ExpansionPanelProps
->(function ExpansionPanel(props, ref) {
+export function ExpansionPanel(props: ExpansionPanelProps): ReactElement {
   const {
     id: propId,
+    ref,
     className,
     contentProps,
     contentStyle,
@@ -287,4 +292,4 @@ export const ExpansionPanel = forwardRef<
       )}
     </Card>
   );
-});
+}

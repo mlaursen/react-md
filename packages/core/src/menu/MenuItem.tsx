@@ -1,7 +1,7 @@
 "use client";
 
 import { cnb } from "cnbuilder";
-import { forwardRef } from "react";
+import { type ReactElement, type Ref } from "react";
 
 import { ListItem, type ListItemProps } from "../list/ListItem.js";
 import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider.js";
@@ -11,6 +11,8 @@ import { useEnsuredId } from "../useEnsuredId.js";
  * @since 5.0.0
  */
 export interface MenuItemProps extends Omit<ListItemProps, "role"> {
+  ref?: Ref<HTMLLIElement>;
+
   /**
    * @defaultValue `"menuitem"`
    */
@@ -32,41 +34,39 @@ export interface MenuItemProps extends Omit<ListItemProps, "role"> {
  * @see {@link https://react-md.dev/components/menu | Menu Demos}
  * @since 5.0.0
  */
-export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(
-  function MenuItem(props, ref) {
-    const {
-      id: propId,
-      role = "menuitem",
-      tabIndex: propTabIndex,
-      children,
-      className,
-      ...remaining
-    } = props;
+export function MenuItem(props: MenuItemProps): ReactElement {
+  const {
+    ref,
+    id: propId,
+    role = "menuitem",
+    tabIndex: propTabIndex,
+    children,
+    className,
+    ...remaining
+  } = props;
 
-    const id = useEnsuredId(propId, "menuitem");
-    const { tabIndexBehavior, activeDescendantId } =
-      useKeyboardMovementContext();
-    const focused = id === activeDescendantId;
-    let tabIndex = propTabIndex ?? -1;
-    if (tabIndexBehavior === "roving" && focused) {
-      tabIndex = 0;
-    }
-
-    return (
-      <ListItem
-        {...remaining}
-        id={id}
-        ref={ref}
-        role={role}
-        tabIndex={tabIndex}
-        className={cnb(
-          "rmd-menu-item",
-          tabIndexBehavior === "virtual" && focused && "rmd-menu-item--focused",
-          className
-        )}
-      >
-        {children}
-      </ListItem>
-    );
+  const id = useEnsuredId(propId, "menuitem");
+  const { tabIndexBehavior, activeDescendantId } = useKeyboardMovementContext();
+  const focused = id === activeDescendantId;
+  let tabIndex = propTabIndex ?? -1;
+  if (tabIndexBehavior === "roving" && focused) {
+    tabIndex = 0;
   }
-);
+
+  return (
+    <ListItem
+      {...remaining}
+      id={id}
+      ref={ref}
+      role={role}
+      tabIndex={tabIndex}
+      className={cnb(
+        "rmd-menu-item",
+        tabIndexBehavior === "virtual" && focused && "rmd-menu-item--focused",
+        className
+      )}
+    >
+      {children}
+    </ListItem>
+  );
+}

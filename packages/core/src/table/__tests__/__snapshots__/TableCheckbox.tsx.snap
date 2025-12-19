@@ -14,9 +14,8 @@ exports[`TableCheckbox > should apply the correct styling, HTML attributes, and 
         aria-label="Select Row"
         autocomplete="off"
         class="rmd-hidden-input"
-        id="checkbox-:r0:"
+        id="checkbox-_r_0_"
         type="checkbox"
-        value=""
       />
       <span
         aria-hidden="true"
@@ -50,9 +49,8 @@ exports[`TableCheckbox > should apply the correct styling, HTML attributes, and 
         aria-label="Select Row"
         autocomplete="off"
         class="rmd-hidden-input"
-        id="checkbox-:r0:"
+        id="checkbox-_r_0_"
         type="checkbox"
-        value=""
       />
       <span
         aria-hidden="true"
@@ -85,9 +83,8 @@ exports[`TableCheckbox > should handle the aria-label/aria-labelledby props corr
         aria-label="Custom Label"
         autocomplete="off"
         class="rmd-hidden-input"
-        id="checkbox-:r2:"
+        id="checkbox-_r_2_"
         type="checkbox"
-        value=""
       />
       <span
         aria-hidden="true"
@@ -120,9 +117,8 @@ exports[`TableCheckbox > should handle the aria-label/aria-labelledby props corr
         aria-labelledby="another-id"
         autocomplete="off"
         class="rmd-hidden-input"
-        id="checkbox-:r2:"
+        id="checkbox-_r_2_"
         type="checkbox"
-        value=""
       />
       <span
         aria-hidden="true"

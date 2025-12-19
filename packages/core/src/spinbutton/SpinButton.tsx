@@ -1,13 +1,12 @@
 "use client";
 
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { type LabelRequiredForA11y } from "../types.js";
 import { defaultGetSpinButtonTextContent } from "./defaults.js";
 import {
   type SpinButtonOptions,
   type SpinButtonUncontrolledValueOptions,
-  type SpinButtonValueOptions,
 } from "./types.js";
 import { useSpinButton } from "./useSpinButton.js";
 
@@ -17,7 +16,9 @@ import { useSpinButton } from "./useSpinButton.js";
 export interface SpinButtonProps
   extends
     Omit<HTMLAttributes<HTMLDivElement>, keyof SpinButtonOptions>,
-    Omit<SpinButtonOptions<HTMLDivElement>, "ref" | "children"> {}
+    Omit<SpinButtonOptions<HTMLDivElement>, "ref" | "children"> {
+  ref?: Ref<HTMLDivElement>;
+}
 
 /**
  * The `SpinButton` component can be used as a simple wrapper around the
@@ -26,11 +27,11 @@ export interface SpinButtonProps
  *
  * @since 6.4.0
  */
-export const SpinButton = forwardRef<
-  HTMLDivElement,
-  LabelRequiredForA11y<SpinButtonProps> & SpinButtonValueOptions
->(function SpinButton(props, ref) {
+export function SpinButton(
+  props: LabelRequiredForA11y<SpinButtonProps>
+): ReactElement {
   const {
+    ref,
     id,
     min,
     max,
@@ -95,4 +96,4 @@ export const SpinButton = forwardRef<
       })}
     </div>
   );
-});
+}

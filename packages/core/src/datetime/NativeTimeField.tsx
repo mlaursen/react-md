@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { type ReactElement, type Ref } from "react";
 
 import { TextField, type TextFieldProps } from "../form/TextField.js";
 import { type TimeFieldOptions, useTimeField } from "./useTimeField.js";
@@ -11,7 +11,9 @@ import { type TimeFieldOptions, useTimeField } from "./useTimeField.js";
 export interface NativeTimeFieldProps
   extends
     Omit<TextFieldProps, keyof TimeFieldOptions | "value">,
-    Omit<TimeFieldOptions, "ref"> {}
+    Omit<TimeFieldOptions, "ref"> {
+  ref?: Ref<HTMLInputElement>;
+}
 
 /**
  * The `NativeTimeField` is a simple wrapper around the `TextField` using the
@@ -31,11 +33,9 @@ export interface NativeTimeFieldProps
  * @see {@link https://react-md.dev/components/text-field | TextField Demos}
  * @since 6.3.0
  */
-export const NativeTimeField = forwardRef<
-  HTMLInputElement,
-  NativeTimeFieldProps
->(function NativeTimeField(props, ref) {
+export function NativeTimeField(props: NativeTimeFieldProps): ReactElement {
   const {
+    ref,
     id,
     min,
     max,
@@ -92,4 +92,4 @@ export const NativeTimeField = forwardRef<
   return (
     <TextField {...remaining} {...fieldProps} messageProps={messageProps} />
   );
-});
+}

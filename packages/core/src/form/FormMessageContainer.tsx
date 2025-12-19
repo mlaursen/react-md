@@ -1,4 +1,4 @@
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { type PropsWithRef } from "../types.js";
 import { FormMessage } from "./FormMessage.js";
@@ -6,19 +6,21 @@ import {
   type FormMessageContainerClassNameOptions,
   formMessageContainer,
 } from "./formMessageContainerStyles.js";
-import { type FormMessageProps } from "./types.js";
+import { type ConfigurableFormMessageProps } from "./types.js";
 
 /**
  * @since 2.5.0
  */
 export interface FormMessageContainerProps
   extends HTMLAttributes<HTMLDivElement>, FormMessageContainerClassNameOptions {
+  ref?: Ref<HTMLDivElement>;
+
   /**
    * If the extension doesn't actually want to render the `FormMessage`
    * component, these props are optional. It kind of eliminates the whole
    * purpose of this component though.
    */
-  messageProps?: PropsWithRef<FormMessageProps>;
+  messageProps?: PropsWithRef<ConfigurableFormMessageProps>;
 }
 
 /**
@@ -28,11 +30,12 @@ export interface FormMessageContainerProps
  * @see {@link https://react-md.dev/components/form-message | FormMessage Demos}
  * @since 2.5.0
  */
-export const FormMessageContainer = forwardRef<
-  HTMLDivElement,
-  FormMessageContainerProps
->(function FormMessageContainer(props, ref) {
-  const { className, children, inline, messageProps, ...remaining } = props;
+export function FormMessageContainer(
+  props: FormMessageContainerProps
+): ReactElement {
+  const { ref, className, children, inline, messageProps, ...remaining } =
+    props;
+
   if (!messageProps) {
     return <>{children}</>;
   }
@@ -47,4 +50,4 @@ export const FormMessageContainer = forwardRef<
       <FormMessage {...messageProps} />
     </div>
   );
-});
+}

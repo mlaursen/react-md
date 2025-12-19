@@ -5,11 +5,11 @@ exports[`FormMessage > should allow for simple props to be provided to the parag
   aria-live="polite"
   class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
   data-testid="container"
-  id="form-message-:r2:"
+  id="form-message-_r_2_"
 >
   <p
     class="rmd-form-message__message message-class-name"
-    id="form-message-:r2:-message"
+    id="form-message-_r_2_-message"
     style="color: blue;"
   >
     <span>
@@ -24,7 +24,7 @@ exports[`FormMessage > should apply the correct styling, HTML attributes, and al
   aria-live="polite"
   class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
   data-testid="container"
-  id="form-message-:r0:"
+  id="form-message-_r_0_"
 />
 `;
 
@@ -33,7 +33,7 @@ exports[`FormMessage > should apply the correct styling, HTML attributes, and al
   aria-live="polite"
   class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color custom-class-name"
   data-testid="container"
-  id="form-message-:r0:"
+  id="form-message-_r_0_"
   style="color: white;"
 />
 `;
@@ -43,7 +43,7 @@ exports[`FormMessage > should apply the correct styling, HTML attributes, and al
   aria-live="polite"
   class="rmd-form-message rmd-form-message--outline rmd-error-color custom-class-name"
   data-testid="container"
-  id="form-message-:r0:"
+  id="form-message-_r_0_"
   style="color: white;"
 />
 `;
@@ -53,7 +53,7 @@ exports[`FormMessage > should apply the correct styling, HTML attributes, and al
   aria-live="polite"
   class="rmd-form-message rmd-form-message--filled rmd-error-color custom-class-name"
   data-testid="container"
-  id="form-message-:r0:"
+  id="form-message-_r_0_"
   style="color: white;"
 />
 `;
@@ -62,7 +62,7 @@ exports[`FormMessage > should be able to render an inline counter if length and 
 <span
   class="rmd-form-message__counter"
   data-testid="counter"
-  id="form-message-:r4:-counter"
+  id="form-message-_r_4_-counter"
 >
   12 / 20
 </span>
@@ -73,11 +73,11 @@ exports[`FormMessage > should wrap the children in a p tag unless disableMessage
   aria-live="polite"
   class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
   data-testid="container"
-  id="form-message-:r1:"
+  id="form-message-_r_1_"
 >
   <p
     class="rmd-form-message__message"
-    id="form-message-:r1:-message"
+    id="form-message-_r_1_-message"
   >
     Hello, world!
   </p>
@@ -89,7 +89,7 @@ exports[`FormMessage > should wrap the children in a p tag unless disableMessage
   aria-live="polite"
   class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
   data-testid="container"
-  id="form-message-:r1:"
+  id="form-message-_r_1_"
 >
   Hello, world!
 </div>

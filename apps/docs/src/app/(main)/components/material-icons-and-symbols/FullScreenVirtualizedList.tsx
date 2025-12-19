@@ -10,9 +10,9 @@ import { type ReactElement } from "react";
 import { VariableSizeList } from "react-window";
 
 import styles from "./FullScreenVirtualizedList.module.scss";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
-import { NoMatches } from "./NoMatches.jsx";
-import { RenderVirtualizedRow } from "./RenderVirtualizedRow.jsx";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
+import { NoMatches } from "./NoMatches.js";
+import { RenderVirtualizedRow } from "./RenderVirtualizedRow.js";
 import { useVirtualizedColumns } from "./useVirtualizedColumns.js";
 import { useVirtualizedWindow } from "./useVirtualizedWindow.js";
 

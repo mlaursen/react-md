@@ -5,7 +5,7 @@ import { type Metadata } from "next";
 import Link from "next/link.js";
 import { type ReactElement } from "react";
 
-import SimpleExample from "../SimpleExample.jsx";
+import SimpleExample from "../SimpleExample.js";
 
 export const metadata: Metadata = {
   title: `Use Intersection Observer Example - react-md`,

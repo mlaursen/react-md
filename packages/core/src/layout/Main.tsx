@@ -3,9 +3,9 @@
 import {
   type ElementType,
   type HTMLAttributes,
+  type ReactElement,
   type ReactNode,
   type Ref,
-  forwardRef,
 } from "react";
 
 import { useEnsuredId } from "../useEnsuredId.js";
@@ -17,7 +17,7 @@ import { useMainTabIndex } from "./useMainTabIndex.js";
  */
 export type CustomMainElement = ElementType<
   HTMLAttributes<HTMLElement> & {
-    ref: Ref<HTMLElement>;
+    ref?: Ref<HTMLElement>;
     className?: string;
     tabIndex?: number;
   }
@@ -28,6 +28,8 @@ export type CustomMainElement = ElementType<
  */
 export interface MainProps
   extends HTMLAttributes<HTMLElement>, MainClassNameOptions {
+  ref?: Ref<HTMLElement>;
+
   /**
    * @defaultValue `"main"`
    */
@@ -65,31 +67,30 @@ export interface MainProps
  * @since 6.0.0 Renamed from `LayoutMain` removed a lot of
  * functionality to keep this component simple.
  */
-export const Main = forwardRef<HTMLElement, MainProps>(
-  function Main(props, ref) {
-    const {
-      as: Component = "main",
-      id: propId,
-      className,
-      children,
-      tabIndex: propTabIndex,
-      navOffset,
-      appBarOffset,
-      ...remaining
-    } = props;
-    const id = useEnsuredId(propId, "main");
-    const tabIndex = useMainTabIndex(propTabIndex);
+export function Main(props: MainProps): ReactElement {
+  const {
+    as: Component = "main",
+    id: propId,
+    ref,
+    className,
+    children,
+    tabIndex: propTabIndex,
+    navOffset,
+    appBarOffset,
+    ...remaining
+  } = props;
+  const id = useEnsuredId(propId, "main");
+  const tabIndex = useMainTabIndex(propTabIndex);
 
-    return (
-      <Component
-        {...remaining}
-        id={id}
-        ref={ref}
-        className={main({ navOffset, appBarOffset, className })}
-        tabIndex={tabIndex}
-      >
-        {children}
-      </Component>
-    );
-  }
-);
+  return (
+    <Component
+      {...remaining}
+      id={id}
+      ref={ref}
+      className={main({ navOffset, appBarOffset, className })}
+      tabIndex={tabIndex}
+    >
+      {children}
+    </Component>
+  );
+}

@@ -1,8 +1,8 @@
 import { type ReactElement } from "react";
 import { type ItemThrows } from "sassdoc-generator/types";
 
-import { LinkableHeading } from "@/components/LinkableHeading.jsx";
-import { Markdown } from "@/components/Markdown.jsx";
+import { LinkableHeading } from "@/components/LinkableHeading.js";
+import { Markdown } from "@/components/Markdown.js";
 
 export interface SassDocThrowsProps {
   itemId: string;

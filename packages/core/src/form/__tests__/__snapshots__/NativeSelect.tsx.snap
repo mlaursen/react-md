@@ -18,7 +18,7 @@ exports[`NativeSelect > should allow for addons before and after the input 1`] =
   </span>
   <select
     class="rmd-native-select rmd-native-select--icon"
-    id="select-:r9:"
+    id="select-_r_9_"
   >
     <option
       value="a"
@@ -28,7 +28,7 @@ exports[`NativeSelect > should allow for addons before and after the input 1`] =
   </select>
   <label
     class="rmd-label rmd-label--floating"
-    for="select-:r9:"
+    for="select-_r_9_"
   >
     Field
   </label>
@@ -49,7 +49,7 @@ exports[`NativeSelect > should allow for addons before and after the input 1`] =
 exports[`NativeSelect > should allow for multiselect behavior 1`] = `
 <select
   class="rmd-native-select rmd-native-select--icon"
-  id="select-:rc:"
+  id="select-_r_c_"
   multiple=""
   name="choice"
   required=""
@@ -77,7 +77,7 @@ exports[`NativeSelect > should allow for multiselect behavior 1`] = `
 exports[`NativeSelect > should allow for multiselect behavior 2`] = `
 <select
   class="rmd-native-select rmd-native-select--icon"
-  id="select-:rc:"
+  id="select-_r_c_"
   multiple=""
   name="choice"
   required=""
@@ -109,7 +109,7 @@ exports[`NativeSelect > should allow the active state to be controlled programma
 >
   <select
     class="rmd-native-select rmd-native-select--icon"
-    id="select-:r4:"
+    id="select-_r_4_"
   >
     <option
       value="a"
@@ -137,7 +137,7 @@ exports[`NativeSelect > should allow the active state to be controlled programma
 >
   <select
     class="rmd-native-select rmd-native-select--icon"
-    id="select-:r4:"
+    id="select-_r_4_"
   >
     <option
       value="a"
@@ -165,7 +165,7 @@ exports[`NativeSelect > should allow the active state to be controlled programma
 >
   <select
     class="rmd-native-select rmd-native-select--icon"
-    id="select-:r4:"
+    id="select-_r_4_"
   >
     <option
       value="a"
@@ -175,7 +175,7 @@ exports[`NativeSelect > should allow the active state to be controlled programma
   </select>
   <label
     class="rmd-label rmd-label--floating"
-    for="select-:r4:"
+    for="select-_r_4_"
   >
     Label
   </label>
@@ -199,7 +199,7 @@ exports[`NativeSelect > should allow the active state to be controlled programma
 >
   <select
     class="rmd-native-select rmd-native-select--icon"
-    id="select-:r4:"
+    id="select-_r_4_"
   >
     <option
       value="a"
@@ -209,7 +209,7 @@ exports[`NativeSelect > should allow the active state to be controlled programma
   </select>
   <label
     class="rmd-label rmd-label--active rmd-label--floating rmd-label--floating-active"
-    for="select-:r4:"
+    for="select-_r_4_"
   >
     Label
   </label>
@@ -230,7 +230,7 @@ exports[`NativeSelect > should allow the label to by styled by labelProps or the
 <label
   class="rmd-label rmd-label--floating label-props-class-name"
   data-testid="label"
-  for="select-:ra:"
+  for="select-_r_a_"
   style="background: orange;"
 >
   Label
@@ -241,7 +241,7 @@ exports[`NativeSelect > should allow the label to by styled by labelProps or the
 <label
   class="rmd-label rmd-label--floating label-class-name"
   data-testid="label"
-  for="select-:ra:"
+  for="select-_r_a_"
   style="color: red;"
 >
   Label
@@ -251,7 +251,7 @@ exports[`NativeSelect > should allow the label to by styled by labelProps or the
 exports[`NativeSelect > should apply the correct styles, HTMLAttributes, and allow a ref 1`] = `
 <select
   class="rmd-native-select rmd-native-select--icon"
-  id="select-:r0:"
+  id="select-_r_0_"
 >
   <option
     value="a"
@@ -264,7 +264,7 @@ exports[`NativeSelect > should apply the correct styles, HTMLAttributes, and all
 exports[`NativeSelect > should apply the correct styles, HTMLAttributes, and allow a ref 2`] = `
 <select
   class="rmd-native-select rmd-native-select--icon"
-  id="select-:r0:"
+  id="select-_r_0_"
 >
   <option
     value="a"
@@ -284,7 +284,7 @@ exports[`NativeSelect > should automatically merge the error and theme props whe
   >
     <select
       class="rmd-native-select rmd-native-select--icon"
-      id="select-:r7:"
+      id="select-_r_7_"
     >
       <option
         value="a"
@@ -294,7 +294,7 @@ exports[`NativeSelect > should automatically merge the error and theme props whe
     </select>
     <label
       class="rmd-label rmd-label--error rmd-label--floating rmd-error-color"
-      for="select-:r7:"
+      for="select-_r_7_"
     >
       Field
     </label>
@@ -312,11 +312,11 @@ exports[`NativeSelect > should automatically merge the error and theme props whe
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--filled rmd-error-color"
-    id="form-message-:r8:"
+    id="form-message-_r_8_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r8:-message"
+      id="form-message-_r_8_-message"
     >
       Help Text
     </p>
@@ -334,7 +334,7 @@ exports[`NativeSelect > should render the FormMessageContainer when the messageP
   >
     <select
       class="rmd-native-select rmd-native-select--icon"
-      id="select-:r5:"
+      id="select-_r_5_"
     >
       <option
         value="a"
@@ -344,7 +344,7 @@ exports[`NativeSelect > should render the FormMessageContainer when the messageP
     </select>
     <label
       class="rmd-label rmd-label--floating"
-      for="select-:r5:"
+      for="select-_r_5_"
     >
       Field
     </label>
@@ -362,11 +362,11 @@ exports[`NativeSelect > should render the FormMessageContainer when the messageP
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
-    id="form-message-:r6:"
+    id="form-message-_r_6_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r6:-message"
+      id="form-message-_r_6_-message"
     >
       Help text
     </p>
@@ -384,7 +384,7 @@ exports[`NativeSelect > should render the FormMessageContainer when the messageP
   >
     <select
       class="rmd-native-select rmd-native-select--icon"
-      id="select-:r5:"
+      id="select-_r_5_"
     >
       <option
         value="a"
@@ -394,7 +394,7 @@ exports[`NativeSelect > should render the FormMessageContainer when the messageP
     </select>
     <label
       class="rmd-label rmd-label--floating"
-      for="select-:r5:"
+      for="select-_r_5_"
     >
       Field
     </label>
@@ -412,11 +412,11 @@ exports[`NativeSelect > should render the FormMessageContainer when the messageP
   <div
     aria-live="polite"
     class="rmd-form-message rmd-form-message--outline rmd-text-secondary-color"
-    id="form-message-:r6:"
+    id="form-message-_r_6_"
   >
     <p
       class="rmd-form-message__message"
-      id="form-message-:r6:-message"
+      id="form-message-_r_6_-message"
     >
       Help text
     </p>
@@ -431,7 +431,7 @@ exports[`NativeSelect > should support an error state 1`] = `
 >
   <select
     class="rmd-native-select rmd-native-select--icon"
-    id="select-:r3:"
+    id="select-_r_3_"
   >
     <option
       value="a"
@@ -441,7 +441,7 @@ exports[`NativeSelect > should support an error state 1`] = `
   </select>
   <label
     class="rmd-label rmd-label--error rmd-label--floating rmd-error-color"
-    for="select-:r3:"
+    for="select-_r_3_"
   >
     Label
   </label>
@@ -466,7 +466,7 @@ exports[`NativeSelect > should support the disabled state 1`] = `
   <select
     class="rmd-native-select rmd-native-select--icon"
     disabled=""
-    id="select-:r2:"
+    id="select-_r_2_"
   >
     <option
       value="a"
@@ -476,7 +476,7 @@ exports[`NativeSelect > should support the disabled state 1`] = `
   </select>
   <label
     class="rmd-label rmd-label--disabled rmd-label--floating rmd-text-disabled-color"
-    for="select-:r2:"
+    for="select-_r_2_"
   >
     Label
   </label>
@@ -500,7 +500,7 @@ exports[`NativeSelect > should support the readOnly state 1`] = `
 >
   <select
     class="rmd-native-select rmd-native-select--icon"
-    id="select-:r1:"
+    id="select-_r_1_"
     readonly=""
   >
     <option

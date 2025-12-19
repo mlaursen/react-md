@@ -10,10 +10,10 @@ exports[`TabList > should apply the correct styling, HTML attributes, and allow 
   tabindex="0"
 >
   <button
-    aria-controls="tab-:r0:-panel-1"
+    aria-controls="tab-_r_0_-panel-1"
     aria-selected="true"
     class="rmd-tab rmd-tab--active rmd-interaction-surface"
-    id="tab-:r0:-1"
+    id="tab-_r_0_-1"
     role="tab"
     tabindex="-1"
     type="button"
@@ -23,10 +23,10 @@ exports[`TabList > should apply the correct styling, HTML attributes, and allow 
     </span>
   </button>
   <button
-    aria-controls="tab-:r0:-panel-2"
+    aria-controls="tab-_r_0_-panel-2"
     aria-selected="false"
     class="rmd-tab rmd-interaction-surface"
-    id="tab-:r0:-2"
+    id="tab-_r_0_-2"
     role="tab"
     tabindex="-1"
     type="button"
@@ -36,10 +36,10 @@ exports[`TabList > should apply the correct styling, HTML attributes, and allow 
     </span>
   </button>
   <button
-    aria-controls="tab-:r0:-panel-3"
+    aria-controls="tab-_r_0_-panel-3"
     aria-selected="false"
     class="rmd-tab rmd-interaction-surface"
-    id="tab-:r0:-3"
+    id="tab-_r_0_-3"
     role="tab"
     tabindex="-1"
     type="button"
@@ -61,10 +61,10 @@ exports[`TabList > should apply the correct styling, HTML attributes, and allow 
   tabindex="0"
 >
   <button
-    aria-controls="tab-:r0:-panel-1"
+    aria-controls="tab-_r_0_-panel-1"
     aria-selected="true"
     class="rmd-tab rmd-tab--active rmd-interaction-surface"
-    id="tab-:r0:-1"
+    id="tab-_r_0_-1"
     role="tab"
     tabindex="-1"
     type="button"
@@ -74,10 +74,10 @@ exports[`TabList > should apply the correct styling, HTML attributes, and allow 
     </span>
   </button>
   <button
-    aria-controls="tab-:r0:-panel-2"
+    aria-controls="tab-_r_0_-panel-2"
     aria-selected="false"
     class="rmd-tab rmd-interaction-surface"
-    id="tab-:r0:-2"
+    id="tab-_r_0_-2"
     role="tab"
     tabindex="-1"
     type="button"
@@ -87,10 +87,10 @@ exports[`TabList > should apply the correct styling, HTML attributes, and allow 
     </span>
   </button>
   <button
-    aria-controls="tab-:r0:-panel-3"
+    aria-controls="tab-_r_0_-panel-3"
     aria-selected="false"
     class="rmd-tab rmd-interaction-surface"
-    id="tab-:r0:-3"
+    id="tab-_r_0_-3"
     role="tab"
     tabindex="-1"
     type="button"
@@ -112,10 +112,10 @@ exports[`TabList > should update the tab indicator styles based on the active in
   tabindex="0"
 >
   <button
-    aria-controls="tab-:r4:-panel-1"
+    aria-controls="tab-_r_4_-panel-1"
     aria-selected="true"
     class="rmd-tab rmd-tab--active rmd-interaction-surface"
-    id="tab-:r4:-1"
+    id="tab-_r_4_-1"
     role="tab"
     tabindex="-1"
     type="button"
@@ -125,10 +125,10 @@ exports[`TabList > should update the tab indicator styles based on the active in
     </span>
   </button>
   <button
-    aria-controls="tab-:r4:-panel-2"
+    aria-controls="tab-_r_4_-panel-2"
     aria-selected="false"
     class="rmd-tab rmd-interaction-surface"
-    id="tab-:r4:-2"
+    id="tab-_r_4_-2"
     role="tab"
     tabindex="-1"
     type="button"
@@ -138,10 +138,10 @@ exports[`TabList > should update the tab indicator styles based on the active in
     </span>
   </button>
   <button
-    aria-controls="tab-:r4:-panel-3"
+    aria-controls="tab-_r_4_-panel-3"
     aria-selected="false"
     class="rmd-tab rmd-interaction-surface"
-    id="tab-:r4:-3"
+    id="tab-_r_4_-3"
     role="tab"
     tabindex="-1"
     type="button"

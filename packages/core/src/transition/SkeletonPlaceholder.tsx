@@ -4,7 +4,7 @@ import {
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
-  forwardRef,
+  type Ref,
 } from "react";
 
 import {
@@ -15,6 +15,8 @@ import {
 /** @since 6.0.0 */
 export interface SkeletonPlaceholderProps
   extends HTMLAttributes<HTMLDivElement>, SkeletonPlaceholderOptions {
+  ref?: Ref<HTMLDivElement>;
+
   /**
    * @defaultValue `!!children`
    * @see {@link SkeletonPlaceholderOptions.disabled}
@@ -129,11 +131,11 @@ export interface SkeletonPlaceholderProps
  * @see {@link https://react-md.dev/components/skeleton-placeholder | SkeletonPlaceholder Demos}
  * @since 6.0.0
  */
-export const SkeletonPlaceholder = forwardRef<
-  HTMLDivElement,
-  SkeletonPlaceholderProps
->(function SkeletonPlaceholder(props, ref): ReactElement {
+export function SkeletonPlaceholder(
+  props: SkeletonPlaceholderProps
+): ReactElement {
   const {
+    ref,
     style,
     className,
     height,
@@ -165,4 +167,4 @@ export const SkeletonPlaceholder = forwardRef<
       {children}
     </div>
   );
-});
+}

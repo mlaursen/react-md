@@ -2,9 +2,9 @@ import { Button } from "@react-md/core/button/Button";
 import { Typography } from "@react-md/core/typography/Typography";
 import type { ReactElement } from "react";
 
-import { RandomEmoji } from "@/components/RandomEmoji.jsx";
+import { RandomEmoji } from "@/components/RandomEmoji.js";
 
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 
 export function NoMatches(): ReactElement {
   const { search, resetFilters } = useMaterialIconsAndSymbols();

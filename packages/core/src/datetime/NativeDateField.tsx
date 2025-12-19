@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { type ReactElement, type Ref } from "react";
 
 import { TextField, type TextFieldProps } from "../form/TextField.js";
 import { type DateFieldOptions, useDateField } from "./useDateField.js";
@@ -9,7 +9,9 @@ import { type DateFieldOptions, useDateField } from "./useDateField.js";
 export interface NativeDateFieldProps
   extends
     Omit<TextFieldProps, keyof DateFieldOptions | "value">,
-    Omit<DateFieldOptions, "ref"> {}
+    Omit<DateFieldOptions, "ref"> {
+  ref?: Ref<HTMLInputElement>;
+}
 
 /**
  * The `NativeDateField` is a simple wrapper around the `TextField` using the
@@ -29,11 +31,9 @@ export interface NativeDateFieldProps
  * @see {@link https://react-md.dev/components/text-field | TextField Demos}
  * @since 6.3.0
  */
-export const NativeDateField = forwardRef<
-  HTMLInputElement,
-  NativeDateFieldProps
->(function NativeDateField(props, ref) {
+export function NativeDateField(props: NativeDateFieldProps): ReactElement {
   const {
+    ref,
     id,
     min,
     max,
@@ -90,4 +90,4 @@ export const NativeDateField = forwardRef<
   return (
     <TextField {...remaining} {...fieldProps} messageProps={messageProps} />
   );
-});
+}

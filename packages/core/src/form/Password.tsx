@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, forwardRef } from "react";
+import { type ReactElement, type ReactNode } from "react";
 
 import { Button, type ButtonProps } from "../button/Button.js";
 import { getIcon } from "../icon/config.js";
@@ -145,73 +145,72 @@ export interface PasswordProps extends Omit<
  *
  * @see {@link https://react-md.dev/components/password | Password Demos}
  */
-export const Password = forwardRef<HTMLInputElement, PasswordProps>(
-  function Password(props, ref) {
-    const {
-      id: propId,
-      name = "password",
-      className,
-      inputClassName,
-      visibilityIcon: propVisibilityIcon,
-      visibilityLabel = "Show password",
-      visibilityProps,
-      ...remaining
-    } = props;
-    const { toggled: isPasswordVisible, toggle } = useToggle(false);
+export function Password(props: PasswordProps): ReactElement {
+  const {
+    ref,
+    id: propId,
+    name = "password",
+    className,
+    inputClassName,
+    visibilityIcon: propVisibilityIcon,
+    visibilityLabel = "Show password",
+    visibilityProps,
+    ...remaining
+  } = props;
+  const { toggled: isPasswordVisible, toggle } = useToggle(false);
 
-    let currentVisibilityIcon: ReactNode;
-    if (
-      propVisibilityIcon &&
-      typeof propVisibilityIcon === "object" &&
-      "visible" in propVisibilityIcon
-    ) {
-      currentVisibilityIcon = isPasswordVisible
-        ? propVisibilityIcon.visible
-        : propVisibilityIcon.invisible;
-    } else if (typeof propVisibilityIcon === "function") {
-      currentVisibilityIcon = propVisibilityIcon(isPasswordVisible);
-    } else {
-      currentVisibilityIcon = propVisibilityIcon;
-    }
-
-    const id = useEnsuredId(propId, "password");
-    const visibilityIcon = getIcon("password", currentVisibilityIcon);
-
-    return (
-      <TextField
-        {...remaining}
-        ref={ref}
-        name={name}
-        type={isPasswordVisible ? "text" : "password"}
-        className={password({ className })}
-        inputClassName={passwordInput({ className: inputClassName })}
-        rightAddon={
-          <Button
-            id={`${id}-toggle`}
-            buttonType="icon"
-            aria-label={visibilityLabel}
-            aria-pressed={isPasswordVisible}
-            // allow all props except the onClick, className, and aria-pressed to
-            // be overridden. onClick can only stop default behavior with
-            // `event.stopPropagation()`
-            {...visibilityProps}
-            className={passwordInputToggle({
-              className: visibilityProps?.className,
-            })}
-            onClick={(event) => {
-              visibilityProps?.onClick?.(event);
-              if (event.isPropagationStopped()) {
-                return;
-              }
-
-              toggle();
-            }}
-          >
-            {visibilityProps?.children ?? visibilityIcon}
-          </Button>
-        }
-        disableRightAddonStyles
-      />
-    );
+  let currentVisibilityIcon: ReactNode;
+  if (
+    propVisibilityIcon &&
+    typeof propVisibilityIcon === "object" &&
+    "visible" in propVisibilityIcon
+  ) {
+    currentVisibilityIcon = isPasswordVisible
+      ? propVisibilityIcon.visible
+      : propVisibilityIcon.invisible;
+  } else if (typeof propVisibilityIcon === "function") {
+    currentVisibilityIcon = propVisibilityIcon(isPasswordVisible);
+  } else {
+    currentVisibilityIcon = propVisibilityIcon;
   }
-);
+
+  const id = useEnsuredId(propId, "password");
+  const visibilityIcon = getIcon("password", currentVisibilityIcon);
+
+  return (
+    <TextField
+      {...remaining}
+      ref={ref}
+      name={name}
+      type={isPasswordVisible ? "text" : "password"}
+      className={password({ className })}
+      inputClassName={passwordInput({ className: inputClassName })}
+      rightAddon={
+        <Button
+          id={`${id}-toggle`}
+          buttonType="icon"
+          aria-label={visibilityLabel}
+          aria-pressed={isPasswordVisible}
+          // allow all props except the onClick, className, and aria-pressed to
+          // be overridden. onClick can only stop default behavior with
+          // `event.stopPropagation()`
+          {...visibilityProps}
+          className={passwordInputToggle({
+            className: visibilityProps?.className,
+          })}
+          onClick={(event) => {
+            visibilityProps?.onClick?.(event);
+            if (event.isPropagationStopped()) {
+              return;
+            }
+
+            toggle();
+          }}
+        >
+          {visibilityProps?.children ?? visibilityIcon}
+        </Button>
+      }
+      disableRightAddonStyles
+    />
+  );
+}

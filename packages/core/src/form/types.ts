@@ -4,6 +4,7 @@ import {
   type InputHTMLAttributes,
   type LabelHTMLAttributes,
   type ReactNode,
+  type Ref,
 } from "react";
 
 import { type PropsWithRef } from "../types.js";
@@ -276,10 +277,15 @@ export interface FormMessageClassNameOptions {
   theme?: FormTheme;
 }
 
-export interface FormMessageProps
+/**
+ * @since 7.0.0 Renamed from `FormMessageProps` to `ConfigurableFormMessageProps`
+ */
+export interface ConfigurableFormMessageProps
   extends
     Omit<HTMLAttributes<HTMLDivElement>, "minLength" | "maxLength">,
     FormMessageClassNameOptions {
+  ref?: Ref<HTMLDivElement>;
+
   /**
    * If this component is acting as a form-level error message handler, the role
    * should be updated to be `"alert"` for additional accessibility.
@@ -382,12 +388,12 @@ export interface FormMessageInputLengthCounterProps {
 }
 
 export interface FormMessageWithCounterProps
-  extends FormMessageProps, FormMessageInputLengthCounterProps {}
+  extends ConfigurableFormMessageProps, FormMessageInputLengthCounterProps {}
 
 /**
  * @since 6.0.0
  */
-export interface FormMessageWithoutCounterProps extends FormMessageProps {
+export interface FormMessageWithoutCounterProps extends ConfigurableFormMessageProps {
   length?: never;
   maxLength?: never;
   counterStyle?: never;
@@ -401,7 +407,7 @@ export interface FormMessageContainerExtension {
    * purpose of this component though.
    */
   messageProps?: PropsWithRef<
-    FormMessageProps & Partial<FormMessageInputLengthCounterProps>
+    ConfigurableFormMessageProps & Partial<FormMessageInputLengthCounterProps>
   >;
 
   /**
@@ -499,7 +505,9 @@ export interface LabelClassNameOptions {
 }
 
 export interface LabelProps
-  extends LabelHTMLAttributes<HTMLLabelElement>, LabelClassNameOptions {}
+  extends LabelHTMLAttributes<HTMLLabelElement>, LabelClassNameOptions {
+  ref?: Ref<HTMLLabelElement>;
+}
 
 /**
  * @since 6.0.0
@@ -518,6 +526,8 @@ export interface ConfigurableTextFieldAddonProps extends HTMLAttributes<HTMLSpan
  * @since 6.0.0 Split props into `ConfigurableTextFieldAddonProps`
  */
 export interface TextFieldAddonProps extends ConfigurableTextFieldAddonProps {
+  ref?: Ref<HTMLSpanElement>;
+
   /**
    * @defaultValue `false`
    */

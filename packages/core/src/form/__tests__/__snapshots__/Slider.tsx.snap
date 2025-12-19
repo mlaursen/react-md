@@ -14,7 +14,7 @@ exports[`Slider > discrete sliders > should allow for marks to have custom label
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1"
-      id="slider-:r1d:"
+      id="slider-_r_1d_"
       role="slider"
       tabindex="0"
     />
@@ -22,7 +22,7 @@ exports[`Slider > discrete sliders > should allow for marks to have custom label
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r1d:-value"
+      id="slider-_r_1d_-value"
       max="100"
       min="0"
       step="10"
@@ -92,7 +92,7 @@ exports[`Slider > discrete sliders > should support manually defining the marks 
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1"
-      id="slider-:r1c:"
+      id="slider-_r_1c_"
       role="slider"
       tabindex="0"
     />
@@ -100,7 +100,7 @@ exports[`Slider > discrete sliders > should support manually defining the marks 
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r1c:-value"
+      id="slider-_r_1c_-value"
       max="100"
       min="0"
       step="10"
@@ -135,7 +135,7 @@ exports[`Slider > discrete sliders > should support manually defining the marks 
 exports[`Slider > discrete sliders > should support rendering a tooltip while focused or dragging by enabling the discrete prop 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:rv:"
+  id="tooltip-_r_v_"
   role="tooltip"
 >
   50
@@ -145,7 +145,7 @@ exports[`Slider > discrete sliders > should support rendering a tooltip while fo
 exports[`Slider > discrete sliders > should support rendering a tooltip while focused or dragging by enabling the discrete prop 2`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:rv:"
+  id="tooltip-_r_v_"
   role="tooltip"
 >
   60
@@ -155,7 +155,7 @@ exports[`Slider > discrete sliders > should support rendering a tooltip while fo
 exports[`Slider > discrete sliders > should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:r15:"
+  id="tooltip-_r_15_"
   role="tooltip"
 >
   0
@@ -165,7 +165,7 @@ exports[`Slider > discrete sliders > should support rendering a tooltip while fo
 exports[`Slider > discrete sliders > should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 2`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h1"
-  id="tooltip-:r15:"
+  id="tooltip-_r_15_"
   role="tooltip"
 >
   10
@@ -175,7 +175,7 @@ exports[`Slider > discrete sliders > should support rendering a tooltip while fo
 exports[`Slider > discrete sliders > should support rendering a tooltip while focused or dragging by enabling the discrete prop for range sliders 3`] = `
 <span
   class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--above rmd-nowrap rmd-slider-tooltip rmd-slider-tooltip--h rmd-slider-thumb--animate rmd-slider-thumb--h2"
-  id="tooltip-:r16:"
+  id="tooltip-_r_16_"
   role="tooltip"
 >
   100
@@ -196,7 +196,7 @@ exports[`Slider > discrete sliders > should support rendering marks at each step
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1"
-      id="slider-:r1a:"
+      id="slider-_r_1a_"
       role="slider"
       tabindex="0"
     />
@@ -204,7 +204,7 @@ exports[`Slider > discrete sliders > should support rendering marks at each step
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r1a:-value"
+      id="slider-_r_1a_-value"
       max="100"
       min="0"
       step="10"
@@ -285,7 +285,7 @@ exports[`Slider > range slider > should apply the correct styling, HTML attribut
       aria-valuemin="0"
       aria-valuenow="0"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
-      id="slider-:rc:"
+      id="slider-_r_c_"
       role="slider"
       tabindex="0"
     />
@@ -293,7 +293,7 @@ exports[`Slider > range slider > should apply the correct styling, HTML attribut
       aria-hidden="true"
       aria-label="Min"
       class="rmd-slider-thumb__input"
-      id="slider-:rc:-value"
+      id="slider-_r_c_-value"
       max="99"
       min="0"
       step="1"
@@ -307,7 +307,7 @@ exports[`Slider > range slider > should apply the correct styling, HTML attribut
       aria-valuemin="1"
       aria-valuenow="100"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h2 rmd-slider-thumb--animate"
-      id="slider-:rc:-2"
+      id="slider-_r_c_-2"
       role="slider"
       tabindex="0"
     />
@@ -315,7 +315,7 @@ exports[`Slider > range slider > should apply the correct styling, HTML attribut
       aria-hidden="true"
       aria-label="Max"
       class="rmd-slider-thumb__input"
-      id="slider-:rc:-2-value"
+      id="slider-_r_c_-2-value"
       max="100"
       min="1"
       step="1"
@@ -342,7 +342,7 @@ exports[`Slider > range slider > should apply the correct styling, HTML attribut
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
-      id="slider-:rd:"
+      id="slider-_r_d_"
       role="slider"
       tabindex="0"
     />
@@ -350,7 +350,7 @@ exports[`Slider > range slider > should apply the correct styling, HTML attribut
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:rd:-value"
+      id="slider-_r_d_-value"
       max="100"
       min="0"
       step="1"
@@ -381,7 +381,7 @@ exports[`Slider > range slider > should support a disabled state 1`] = `
       aria-valuemin="0"
       aria-valuenow="0"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate rmd-slider-thumb--disabled rmd-slider-thumb--disabled-h"
-      id="slider-:re:"
+      id="slider-_r_e_"
       role="slider"
       tabindex="-1"
     />
@@ -390,7 +390,7 @@ exports[`Slider > range slider > should support a disabled state 1`] = `
       aria-label="Min"
       class="rmd-slider-thumb__input"
       disabled=""
-      id="slider-:re:-value"
+      id="slider-_r_e_-value"
       max="99"
       min="0"
       step="1"
@@ -408,7 +408,7 @@ exports[`Slider > range slider > should support a disabled state 1`] = `
       aria-valuemin="1"
       aria-valuenow="100"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h2 rmd-slider-thumb--animate rmd-slider-thumb--disabled rmd-slider-thumb--disabled-h"
-      id="slider-:re:-2"
+      id="slider-_r_e_-2"
       role="slider"
       tabindex="-1"
     />
@@ -417,7 +417,7 @@ exports[`Slider > range slider > should support a disabled state 1`] = `
       aria-label="Max"
       class="rmd-slider-thumb__input"
       disabled=""
-      id="slider-:re:-2-value"
+      id="slider-_r_e_-2-value"
       max="100"
       min="1"
       step="1"
@@ -443,7 +443,7 @@ exports[`Slider > single thumb slider > should apply the correct styling, HTML a
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
-      id="slider-:r0:"
+      id="slider-_r_0_"
       role="slider"
       tabindex="0"
     />
@@ -451,7 +451,7 @@ exports[`Slider > single thumb slider > should apply the correct styling, HTML a
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r0:-value"
+      id="slider-_r_0_-value"
       max="100"
       min="0"
       step="1"
@@ -478,7 +478,7 @@ exports[`Slider > single thumb slider > should apply the correct styling, HTML a
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
-      id="slider-:r0:"
+      id="slider-_r_0_"
       role="slider"
       tabindex="0"
     />
@@ -486,7 +486,7 @@ exports[`Slider > single thumb slider > should apply the correct styling, HTML a
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r0:-value"
+      id="slider-_r_0_-value"
       max="100"
       min="0"
       step="1"
@@ -516,7 +516,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
-      id="slider-:r2:"
+      id="slider-_r_2_"
       role="slider"
       tabindex="0"
     />
@@ -524,7 +524,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r2:-value"
+      id="slider-_r_2_-value"
       max="100"
       min="0"
       step="1"
@@ -552,7 +552,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
-      id="slider-:r2:"
+      id="slider-_r_2_"
       role="slider"
       tabindex="0"
     />
@@ -560,7 +560,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r2:-value"
+      id="slider-_r_2_-value"
       max="100"
       min="0"
       step="1"
@@ -591,7 +591,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
-      id="slider-:r2:"
+      id="slider-_r_2_"
       role="slider"
       tabindex="0"
     />
@@ -599,7 +599,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r2:-value"
+      id="slider-_r_2_-value"
       max="100"
       min="0"
       step="1"
@@ -630,7 +630,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--v rmd-slider-thumb--v1 rmd-slider-thumb--animate"
-      id="slider-:r2:"
+      id="slider-_r_2_"
       role="slider"
       tabindex="0"
     />
@@ -638,7 +638,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r2:-value"
+      id="slider-_r_2_-value"
       max="100"
       min="0"
       step="1"
@@ -667,7 +667,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--v rmd-slider-thumb--v1 rmd-slider-thumb--animate"
-      id="slider-:r2:"
+      id="slider-_r_2_"
       role="slider"
       tabindex="0"
     />
@@ -675,7 +675,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r2:-value"
+      id="slider-_r_2_-value"
       max="100"
       min="0"
       step="1"
@@ -707,7 +707,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--v rmd-slider-thumb--v1 rmd-slider-thumb--animate"
-      id="slider-:r2:"
+      id="slider-_r_2_"
       role="slider"
       tabindex="0"
     />
@@ -715,7 +715,7 @@ exports[`Slider > single thumb slider > should be able to render addons before a
       aria-hidden="true"
       aria-label="Slider"
       class="rmd-slider-thumb__input"
-      id="slider-:r2:-value"
+      id="slider-_r_2_-value"
       max="100"
       min="0"
       step="1"
@@ -746,7 +746,7 @@ exports[`Slider > single thumb slider > should support a disabled state 1`] = `
       aria-valuemin="0"
       aria-valuenow="50"
       class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate rmd-slider-thumb--disabled rmd-slider-thumb--disabled-h"
-      id="slider-:r1:"
+      id="slider-_r_1_"
       role="slider"
       tabindex="-1"
     />
@@ -755,7 +755,7 @@ exports[`Slider > single thumb slider > should support a disabled state 1`] = `
       aria-label="Slider"
       class="rmd-slider-thumb__input"
       disabled=""
-      id="slider-:r1:-value"
+      id="slider-_r_1_-value"
       max="100"
       min="0"
       step="1"

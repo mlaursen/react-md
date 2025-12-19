@@ -2,9 +2,9 @@ import { RootHtml } from "@react-md/core/RootHtml";
 import { Roboto_Flex } from "next/font/google";
 import { type ReactElement, type ReactNode } from "react";
 
-import { GtagAnalytics } from "@/components/GtagAnalytics.jsx";
+import { GtagAnalytics } from "@/components/GtagAnalytics.js";
 
-import { RootProviders } from "./RootProviders.jsx";
+import { RootProviders } from "./RootProviders.js";
 import "./layout.scss";
 
 const roboto = Roboto_Flex({
@@ -21,7 +21,11 @@ export default function RootLayout(props: RootLayoutProps): ReactElement {
   const { children } = props;
 
   return (
-    <RootHtml className={roboto.variable} afterBodyChildren={<GtagAnalytics />}>
+    <RootHtml
+      className={roboto.variable}
+      afterBodyChildren={<GtagAnalytics />}
+      data-scroll-behavior="smooth"
+    >
       <RootProviders>{children}</RootProviders>
     </RootHtml>
   );

@@ -17,8 +17,8 @@ import {
 } from "react";
 
 import styles from "./AlgoliaSearch.module.scss";
-import { LinkOption } from "./LinkOption.jsx";
-import { NoSearchResults } from "./NoSearchResults.jsx";
+import { LinkOption } from "./LinkOption.js";
+import { NoSearchResults } from "./NoSearchResults.js";
 import { useAlgoliaSearch } from "./useAlgoliaSearch.js";
 
 const EMPTY_LIST: readonly string[] = [];

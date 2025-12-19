@@ -1,7 +1,12 @@
 "use client";
 
 import { cnb } from "cnbuilder";
-import { type MouseEvent, type ReactNode, forwardRef } from "react";
+import {
+  type MouseEvent,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { type BoxAlignItems } from "../box/styles.js";
 import { overlay } from "../overlay/styles.js";
@@ -37,6 +42,8 @@ export type AsyncButtonLoadingType =
  * @since 6.0.0
  */
 export interface AsyncButtonProps extends ButtonProps {
+  ref?: Ref<HTMLButtonElement>;
+
   /**
    * @see {@link progressAriaLabelledBy}
    * @defaultValue `"async-button" + useId()`
@@ -192,128 +199,127 @@ export interface AsyncButtonProps extends ButtonProps {
  * @see {@link https://react-md.dev/components/button#async-button | AsyncButton Demos}
  * @since 6.0.0
  */
-export const AsyncButton = forwardRef<HTMLButtonElement, AsyncButtonProps>(
-  function AsyncButton(props, ref) {
-    const {
-      id: propId,
-      onClick = noop,
-      children,
-      floating = null,
-      theme = floating ? "secondary" : "clear",
-      themeType = floating ? "contained" : "flat",
-      buttonType = floating ? "icon" : "text",
-      className,
-      disabled,
-      loading: propLoading = false,
-      loadingType = "circular-overlay",
-      loadingChildren,
-      loadingDisabledTheme = false,
-      afterAddon: propAfterAddon,
-      beforeAddon: propBeforeAddon,
-      linearProgressProps,
-      circularProgressProps,
-      progressAriaLabel,
-      progressAriaLabelledBy: propProgressAriaLabelledBy,
-      ...remaining
-    } = props;
-    const id = useEnsuredId(propId, "async-button");
-    const { handleAsync, pending } = useAsyncFunction({ disabled });
-    const loading = pending || propLoading;
+export function AsyncButton(props: AsyncButtonProps): ReactElement {
+  const {
+    id: propId,
+    ref,
+    onClick = noop,
+    children,
+    floating = null,
+    theme = floating ? "secondary" : "clear",
+    themeType = floating ? "contained" : "flat",
+    buttonType = floating ? "icon" : "text",
+    className,
+    disabled,
+    loading: propLoading = false,
+    loadingType = "circular-overlay",
+    loadingChildren,
+    loadingDisabledTheme = false,
+    afterAddon: propAfterAddon,
+    beforeAddon: propBeforeAddon,
+    linearProgressProps,
+    circularProgressProps,
+    progressAriaLabel,
+    progressAriaLabelledBy: propProgressAriaLabelledBy,
+    ...remaining
+  } = props;
+  const id = useEnsuredId(propId, "async-button");
+  const { handleAsync, pending } = useAsyncFunction({ disabled });
+  const loading = pending || propLoading;
 
-    let progressTheme: ProgressTheme = "current-color";
-    if (theme === "clear" || theme === "disabled") {
-      progressTheme = "primary";
-    }
-
-    let progressAriaLabelledBy = propProgressAriaLabelledBy;
-    if (
-      !progressAriaLabel &&
-      !linearProgressProps?.["aria-label"] &&
-      !linearProgressProps?.["aria-labelledby"] &&
-      !circularProgressProps?.["aria-label"] &&
-      !circularProgressProps?.["aria-labelledby"]
-    ) {
-      progressAriaLabelledBy = id;
-    }
-
-    const progress = loadingType.includes("linear") ? (
-      <LinearProgress
-        aria-label={progressAriaLabel}
-        aria-labelledby={progressAriaLabelledBy as string}
-        {...linearProgressProps}
-        theme={progressTheme}
-      />
-    ) : (
-      <CircularProgress
-        aria-label={progressAriaLabel}
-        aria-labelledby={progressAriaLabelledBy as string}
-        {...circularProgressProps}
-        theme={progressTheme}
-      />
-    );
-
-    let afterAddon = propAfterAddon;
-    let beforeAddon = propBeforeAddon;
-    let overlayElement: ReactNode;
-    let isOverlayCover = false;
-    switch (loadingType) {
-      case "circular-before":
-        beforeAddon = loading ? progress : propBeforeAddon;
-        break;
-      case "circular-after":
-        afterAddon = loading ? progress : propAfterAddon;
-        break;
-      case "circular-overlay":
-      case "linear-above":
-      case "linear-below": {
-        let alignItems: BoxAlignItems = "center";
-        if (loadingType === "linear-above") {
-          alignItems = "start";
-        } else if (loadingType === "linear-below") {
-          alignItems = "end";
-        } else {
-          isOverlayCover = true;
-        }
-
-        overlayElement = loading && (
-          <span
-            className={overlay({
-              active: true,
-              visible: true,
-              absolute: true,
-              align: alignItems,
-            })}
-          >
-            {progress}
-          </span>
-        );
-        break;
-      }
-    }
-
-    return (
-      <Button
-        {...remaining}
-        aria-disabled={loading || undefined}
-        id={id}
-        ref={ref}
-        disabled={disabled}
-        floating={floating}
-        className={cnb(
-          "rmd-button--async",
-          loading && isOverlayCover && "rmd-button--async-overlay",
-          className
-        )}
-        theme={loading && loadingDisabledTheme ? "disabled" : theme}
-        themeType={themeType}
-        buttonType={buttonType}
-        onClick={handleAsync((event) => Promise.resolve(onClick(event)))}
-      >
-        {beforeAddon}
-        {loading && loadingChildren !== undefined ? loadingChildren : children}
-        {afterAddon}
-        {overlayElement}
-      </Button>
-    );
+  let progressTheme: ProgressTheme = "current-color";
+  if (theme === "clear" || theme === "disabled") {
+    progressTheme = "primary";
   }
-);
+
+  let progressAriaLabelledBy = propProgressAriaLabelledBy;
+  if (
+    !progressAriaLabel &&
+    !linearProgressProps?.["aria-label"] &&
+    !linearProgressProps?.["aria-labelledby"] &&
+    !circularProgressProps?.["aria-label"] &&
+    !circularProgressProps?.["aria-labelledby"]
+  ) {
+    progressAriaLabelledBy = id;
+  }
+
+  const progress = loadingType.includes("linear") ? (
+    <LinearProgress
+      aria-label={progressAriaLabel}
+      aria-labelledby={progressAriaLabelledBy as string}
+      {...linearProgressProps}
+      theme={progressTheme}
+    />
+  ) : (
+    <CircularProgress
+      aria-label={progressAriaLabel}
+      aria-labelledby={progressAriaLabelledBy as string}
+      {...circularProgressProps}
+      theme={progressTheme}
+    />
+  );
+
+  let afterAddon = propAfterAddon;
+  let beforeAddon = propBeforeAddon;
+  let overlayElement: ReactNode;
+  let isOverlayCover = false;
+  switch (loadingType) {
+    case "circular-before":
+      beforeAddon = loading ? progress : propBeforeAddon;
+      break;
+    case "circular-after":
+      afterAddon = loading ? progress : propAfterAddon;
+      break;
+    case "circular-overlay":
+    case "linear-above":
+    case "linear-below": {
+      let alignItems: BoxAlignItems = "center";
+      if (loadingType === "linear-above") {
+        alignItems = "start";
+      } else if (loadingType === "linear-below") {
+        alignItems = "end";
+      } else {
+        isOverlayCover = true;
+      }
+
+      overlayElement = loading && (
+        <span
+          className={overlay({
+            active: true,
+            visible: true,
+            absolute: true,
+            align: alignItems,
+          })}
+        >
+          {progress}
+        </span>
+      );
+      break;
+    }
+  }
+
+  return (
+    <Button
+      {...remaining}
+      aria-disabled={loading || undefined}
+      id={id}
+      ref={ref}
+      disabled={disabled}
+      floating={floating}
+      className={cnb(
+        "rmd-button--async",
+        loading && isOverlayCover && "rmd-button--async-overlay",
+        className
+      )}
+      theme={loading && loadingDisabledTheme ? "disabled" : theme}
+      themeType={themeType}
+      buttonType={buttonType}
+      onClick={handleAsync((event) => Promise.resolve(onClick(event)))}
+    >
+      {beforeAddon}
+      {loading && loadingChildren !== undefined ? loadingChildren : children}
+      {afterAddon}
+      {overlayElement}
+    </Button>
+  );
+}

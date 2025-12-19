@@ -1,7 +1,12 @@
 "use client";
 
 import { cnb } from "cnbuilder";
-import { type HTMLAttributes, forwardRef, useMemo } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type Ref,
+  useMemo,
+} from "react";
 
 import {
   TableConfigProvider,
@@ -10,9 +15,9 @@ import {
 import { type TableConfig, type TableConfigContext } from "./types.js";
 
 export interface TableBodyProps
-  extends
-    HTMLAttributes<HTMLTableSectionElement>,
-    Omit<TableConfig, "header"> {}
+  extends HTMLAttributes<HTMLTableSectionElement>, Omit<TableConfig, "header"> {
+  ref?: Ref<HTMLTableSectionElement>;
+}
 
 /**
  * **Client Component**
@@ -22,48 +27,47 @@ export interface TableBodyProps
  *
  * @see {@link https://react-md.dev/components/table | Table Demos}
  */
-export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
-  function TableBody(props, ref) {
-    const {
-      className,
-      children,
+export function TableBody(props: TableBodyProps): ReactElement {
+  const {
+    ref,
+    className,
+    children,
+    hAlign: propHAlign,
+    vAlign: propVAlign,
+    lineWrap: propLineWrap,
+    disableHover: propDisableHover,
+    disableBorders: propDisableBorders,
+    ...remaining
+  } = props;
+
+  // update the table configuration with the custom overrides for the `<thead>`
+  const { dense, hAlign, vAlign, lineWrap, disableHover, disableBorders } =
+    useTableConfig({
       hAlign: propHAlign,
       vAlign: propVAlign,
       lineWrap: propLineWrap,
       disableHover: propDisableHover,
       disableBorders: propDisableBorders,
-      ...remaining
-    } = props;
+    });
 
-    // update the table configuration with the custom overrides for the `<thead>`
-    const { dense, hAlign, vAlign, lineWrap, disableHover, disableBorders } =
-      useTableConfig({
-        hAlign: propHAlign,
-        vAlign: propVAlign,
-        lineWrap: propLineWrap,
-        disableHover: propDisableHover,
-        disableBorders: propDisableBorders,
-      });
+  const configuration = useMemo<TableConfigContext>(
+    () => ({
+      header: false,
+      dense,
+      hAlign,
+      vAlign,
+      lineWrap,
+      disableBorders,
+      disableHover,
+    }),
+    [dense, hAlign, vAlign, lineWrap, disableBorders, disableHover]
+  );
 
-    const configuration = useMemo<TableConfigContext>(
-      () => ({
-        header: false,
-        dense,
-        hAlign,
-        vAlign,
-        lineWrap,
-        disableBorders,
-        disableHover,
-      }),
-      [dense, hAlign, vAlign, lineWrap, disableBorders, disableHover]
-    );
-
-    return (
-      <TableConfigProvider value={configuration}>
-        <tbody {...remaining} ref={ref} className={cnb("rmd-tbody", className)}>
-          {children}
-        </tbody>
-      </TableConfigProvider>
-    );
-  }
-);
+  return (
+    <TableConfigProvider value={configuration}>
+      <tbody {...remaining} ref={ref} className={cnb("rmd-tbody", className)}>
+        {children}
+      </tbody>
+    </TableConfigProvider>
+  );
+}

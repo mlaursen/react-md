@@ -1,8 +1,7 @@
-import { type ReactElement, createRef } from "react";
+import { type ReactElement, type RefObject, createRef } from "react";
 import { describe, expect, it } from "vitest";
 
 import { render, rmdRender, screen } from "../../test-utils/index.js";
-import { type NonNullMutableRef } from "../../types.js";
 import { SkeletonPlaceholder } from "../SkeletonPlaceholder.js";
 import {
   type SkeletonPlaceholderStylingProps,
@@ -45,11 +44,10 @@ describe("SkeletonPlaceholder", () => {
   });
 
   it("should generate random styles on the client only when ssr is enabled", () => {
-    const renderCount: NonNullMutableRef<number> = { current: 0 };
-    const generatedProps: NonNullMutableRef<SkeletonPlaceholderStylingProps[]> =
-      {
-        current: [],
-      };
+    const renderCount: RefObject<number> = { current: 0 };
+    const generatedProps: RefObject<SkeletonPlaceholderStylingProps[]> = {
+      current: [],
+    };
 
     function Test(): ReactElement {
       renderCount.current++;

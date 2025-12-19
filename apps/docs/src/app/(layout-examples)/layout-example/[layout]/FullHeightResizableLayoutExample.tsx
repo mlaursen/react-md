@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 
-import { ResizableLayoutExample } from "./ResizableLayoutExample.jsx";
+import { ResizableLayoutExample } from "./ResizableLayoutExample.js";
 import { type ExampleLayoutProps } from "./layouts.js";
 
 export function FullHeightResizableLayoutExample(

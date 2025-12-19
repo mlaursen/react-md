@@ -4,7 +4,7 @@ import { type NavigationItem } from "@react-md/core/navigation/types";
 import { useNavigationExpansion } from "@react-md/core/navigation/useNavigationExpansion";
 import { type ReactElement } from "react";
 
-import { FakeLink } from "@/components/FakeLink.jsx";
+import { FakeLink } from "@/components/FakeLink.js";
 
 const items: readonly NavigationItem[] = [
   {

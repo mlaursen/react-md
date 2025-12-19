@@ -17,11 +17,11 @@ import MoreVertOutlinedIcon from "@react-md/material-icons/MoreVertOutlinedIcon"
 import Link from "next/link.js";
 import { type ReactElement } from "react";
 
-import { ConfigureCodeTheme } from "./ConfigureCodeTheme.jsx";
-import { ConfigureColorScheme } from "./ConfigureColorScheme.jsx";
-import { ConfigureOrientation } from "./ConfigureOrientation.jsx";
-import { ConfigurePackageManager } from "./ConfigurePackageManager.jsx";
-import { ConfigureTypescriptEnabled } from "./ConfigureTypescriptEnabled.jsx";
+import { ConfigureCodeTheme } from "./ConfigureCodeTheme.js";
+import { ConfigureColorScheme } from "./ConfigureColorScheme.js";
+import { ConfigureOrientation } from "./ConfigureOrientation.js";
+import { ConfigurePackageManager } from "./ConfigurePackageManager.js";
+import { ConfigureTypescriptEnabled } from "./ConfigureTypescriptEnabled.js";
 import styles from "./WebsiteConfiguration.module.scss";
 
 export function WebsiteConfiguration(): ReactElement {

@@ -6,7 +6,7 @@ exports[`CircularProgressSuspense > should pass props to the CircularProgress co
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--dense rmd-circular-progress--centered rmd-primary-color custom-class-name"
-  id="circular-progress-:r2:"
+  id="circular-progress-_r_2_"
   role="progressbar"
 >
   <svg

@@ -2,8 +2,8 @@ import { type Root } from "hast";
 import { toString } from "mdast-util-to-string";
 import { dirname, join } from "node:path";
 import { Project } from "ts-morph";
-import { type Plugin } from "unified";
 import { visitParents } from "unist-util-visit-parents";
+import { type VFile } from "vfile";
 
 import { compileScssCode } from "./utils/compileScssCode.js";
 import { createDemo } from "./utils/createDemo.js";
@@ -76,10 +76,7 @@ export interface RehypeCodeBlocksOptions {
  *     - use postcss to traverse the output to make a simple SCSS module with
  *       local and global scoping based on the demo name
  */
-export const rehypeCodeBlocks: Plugin<
-  [options?: RehypeCodeBlocksOptions],
-  Root
-> = (options = {}) => {
+export function rehypeCodeBlocks(options: RehypeCodeBlocksOptions = {}) {
   const {
     tsComponentName = "TypescriptCodeBlock",
     npmComponentName = "PackageManagerCodeBlock",
@@ -92,7 +89,7 @@ export const rehypeCodeBlocks: Plugin<
     skipAddingFilesFromTsConfig: true,
   });
 
-  return async (root, file) => {
+  return async function codeBlocks(root: Root, file: VFile): Promise<void> {
     const promises: Promise<void>[] = [];
     visitParents(root, "element", (node, ancestors) => {
       if (node.tagName !== "code") {
@@ -230,7 +227,7 @@ export const rehypeCodeBlocks: Plugin<
 
     return;
   };
-};
+}
 
 /**
  * @internal

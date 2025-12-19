@@ -1,4 +1,9 @@
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import {
   type SegmentedButtonContainerClassNameOptions,
@@ -12,6 +17,8 @@ export interface SegmentedButtonContainerProps
   extends
     HTMLAttributes<HTMLDivElement>,
     SegmentedButtonContainerClassNameOptions {
+  ref?: Ref<HTMLDivElement>;
+
   children: ReactNode;
 }
 
@@ -25,7 +32,7 @@ export interface SegmentedButtonContainerProps
  * import { segmentedButtonContainer } from "@react-md/core/segmented-button/SegmentedButtonContainer";
  * import type { ReactElement } from "react";
  *
- * import { CustomWrapperComponent } from "./CustomWrapperComponent.jsx";
+ * import { CustomWrapperComponent } from "./CustomWrapperComponent.js";
  *
  * function Example(): ReactElement {
  *   return (
@@ -41,11 +48,10 @@ export interface SegmentedButtonContainerProps
  * @see {@link https://react-md.dev/components/segmented-button | SegmentedButton Demos}
  * @since 6.0.0
  */
-export const SegmentedButtonContainer = forwardRef<
-  HTMLDivElement,
-  SegmentedButtonContainerProps
->(function SegmentedButtonContainer(props, ref) {
-  const { className, disableFullWidth, children, ...remaining } = props;
+export function SegmentedButtonContainer(
+  props: SegmentedButtonContainerProps
+): ReactElement {
+  const { ref, className, disableFullWidth, children, ...remaining } = props;
 
   return (
     <div
@@ -59,4 +65,4 @@ export const SegmentedButtonContainer = forwardRef<
       {children}
     </div>
   );
-});
+}

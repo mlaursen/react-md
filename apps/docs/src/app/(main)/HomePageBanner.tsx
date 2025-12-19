@@ -3,12 +3,12 @@ import { TextContainer } from "@react-md/core/typography/TextContainer";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
 
-import { ButtonStyledLink } from "@/components/ButtonStyledLink.jsx";
-import { ReactMDLogo } from "@/components/ReactMDLogo.jsx";
+import { ButtonStyledLink } from "@/components/ButtonStyledLink.js";
+import { ReactMDLogo } from "@/components/ReactMDLogo.js";
 import { DEFAULT_TITLE } from "@/constants/metadata.js";
 
 import styles from "./HomePageBanner.module.scss";
-import { HomePageBannerContainer } from "./HomePageBannerContainer.jsx";
+import { HomePageBannerContainer } from "./HomePageBannerContainer.js";
 
 export function HomePageBanner(): ReactElement {
   return (

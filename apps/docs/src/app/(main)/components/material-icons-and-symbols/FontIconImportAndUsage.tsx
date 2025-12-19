@@ -1,12 +1,12 @@
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
 
-import { AdditionalChanges } from "./AdditionalChanges.jsx";
-import { CopyCode } from "./CopyCode.jsx";
-import { IconImportAndUsage } from "./IconImportAndUsage.jsx";
-import { MaterialFontStylesWarning } from "./MaterialFontStylesWarning.jsx";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
-import { TwoToneIconWarning } from "./TwoToneIconWarning.jsx";
+import { AdditionalChanges } from "./AdditionalChanges.js";
+import { CopyCode } from "./CopyCode.js";
+import { IconImportAndUsage } from "./IconImportAndUsage.js";
+import { MaterialFontStylesWarning } from "./MaterialFontStylesWarning.js";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
+import { TwoToneIconWarning } from "./TwoToneIconWarning.js";
 import { getFontStylesheet } from "./utils.js";
 
 export function FontIconImportAndUsage(): ReactElement {

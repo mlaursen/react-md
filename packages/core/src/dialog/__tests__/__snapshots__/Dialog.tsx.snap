@@ -4,7 +4,7 @@ exports[`Dialog > should apply the correct styling, HTMLAttributes, and allow a 
 <div
   aria-label="Dialog"
   class="rmd-dialog rmd-dialog--outline rmd-dialog--centered"
-  id="dialog-:r0:"
+  id="dialog-_r_0_"
   role="dialog"
   tabindex="-1"
 />
@@ -14,7 +14,7 @@ exports[`Dialog > should apply the correct styling, HTMLAttributes, and allow a 
 <div
   aria-label="Dialog"
   class="rmd-dialog rmd-dialog--outline rmd-dialog--centered custom-class-name"
-  id="dialog-:r0:"
+  id="dialog-_r_0_"
   role="dialog"
   style="color: white;"
   tabindex="-1"
@@ -29,7 +29,7 @@ exports[`Dialog > should be able to render as a full-page dialog by setting the 
   <div
     aria-label="Dialog"
     class="rmd-dialog rmd-dialog--outline rmd-dialog--centered"
-    id="dialog-:ra:"
+    id="dialog-_r_a_"
     role="dialog"
     tabindex="-1"
   >
@@ -49,7 +49,7 @@ exports[`Dialog > should be able to render as a full-page dialog by setting the 
 <div
   aria-label="Dialog"
   class="rmd-dialog rmd-dialog--full-page"
-  id="dialog-:ra:"
+  id="dialog-_r_a_"
   role="dialog"
   tabindex="-1"
 >

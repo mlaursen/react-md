@@ -1,6 +1,6 @@
 "use client";
 
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { TextFieldAddon } from "./TextFieldAddon.js";
 import { getFormConfig } from "./formConfig.js";
@@ -9,6 +9,8 @@ import { type TextFieldContainerOptions } from "./types.js";
 
 export interface TextFieldContainerProps
   extends HTMLAttributes<HTMLDivElement>, TextFieldContainerOptions {
+  ref?: Ref<HTMLDivElement>;
+
   /**
    * Set this to `true` if there is a floating label with the `TextField` or
    * `TextArea`.
@@ -27,11 +29,11 @@ export interface TextFieldContainerProps
  *
  * @internal
  */
-export const TextFieldContainer = forwardRef<
-  HTMLDivElement,
-  TextFieldContainerProps
->(function TextFieldContainer(props, ref) {
+export function TextFieldContainer(
+  props: TextFieldContainerProps
+): ReactElement {
   const {
+    ref,
     children,
     className,
     dense,
@@ -89,4 +91,4 @@ export const TextFieldContainer = forwardRef<
       </TextFieldAddon>
     </div>
   );
-});
+}

@@ -9,7 +9,7 @@ import { cnb } from "cnbuilder";
 import { Fragment, type ReactElement } from "react";
 
 import styles from "@/components/TableOfContents/RenderTableOfContentsItem.module.scss";
-import { TableOfContents } from "@/components/TableOfContents/TableOfContents.jsx";
+import { TableOfContents } from "@/components/TableOfContents/TableOfContents.js";
 
 export function PlaceholderMarkdownPage(): ReactElement {
   const headings = randomInt({ min: 2, max: 5 });

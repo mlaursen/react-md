@@ -6,11 +6,11 @@ import { Typography } from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
 import { type ReactElement, useId } from "react";
 
-import { FilterCategoryPanel } from "./FilterCategoryPanel.jsx";
-import { FilterStylePanel } from "./FilterStylePanel.jsx";
-import { FilterSymbolCustomization } from "./FilterSymbolCustomization.jsx";
+import { FilterCategoryPanel } from "./FilterCategoryPanel.js";
+import { FilterStylePanel } from "./FilterStylePanel.js";
+import { FilterSymbolCustomization } from "./FilterSymbolCustomization.js";
 import styles from "./FiltersSheetContent.module.scss";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 
 export function FiltersSheetContent(): ReactElement {
   const { iconType } = useMaterialIconsAndSymbols();

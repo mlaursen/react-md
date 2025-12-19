@@ -2,7 +2,7 @@ import {
   type ElementType,
   type HTMLAttributes,
   type ReactElement,
-  forwardRef,
+  type Ref,
 } from "react";
 
 import {
@@ -73,6 +73,8 @@ function getComponent(
  */
 export interface TypographyProps
   extends HTMLAttributes<TypographyHTMLElement>, TypographyClassNameOptions {
+  ref?: Ref<TypographyHTMLElement>;
+
   /**
    * The component to render as when the children are not a render function. If
    * this prop is omitted, the component will be determined by the `type` prop
@@ -139,44 +141,43 @@ export interface TypographyProps
  * @since 6.0.0 Removed the children render function behavior . Use the
  * `typography` class name utility instead.
  */
-export const Typography = forwardRef<TypographyHTMLElement, TypographyProps>(
-  function Typography(props, ref): ReactElement {
-    const {
-      as,
-      type = "body-1",
-      className,
-      margin,
-      fontStyle,
-      fontWeight,
-      textAlign,
-      textColor,
-      textDecoration,
-      textTransform,
-      textOverflow,
-      children,
-      ...remaining
-    } = props;
+export function Typography(props: TypographyProps): ReactElement {
+  const {
+    ref,
+    as,
+    type = "body-1",
+    className,
+    margin,
+    fontStyle,
+    fontWeight,
+    textAlign,
+    textColor,
+    textDecoration,
+    textTransform,
+    textOverflow,
+    children,
+    ...remaining
+  } = props;
 
-    const Component = getComponent(as, type);
-    return (
-      <Component
-        {...remaining}
-        ref={ref}
-        className={typography({
-          type,
-          margin,
-          fontStyle,
-          fontWeight,
-          textAlign,
-          textColor,
-          textDecoration,
-          textTransform,
-          textOverflow,
-          className,
-        })}
-      >
-        {children}
-      </Component>
-    );
-  }
-);
+  const Component = getComponent(as, type);
+  return (
+    <Component
+      {...remaining}
+      ref={ref}
+      className={typography({
+        type,
+        margin,
+        fontStyle,
+        fontWeight,
+        textAlign,
+        textColor,
+        textDecoration,
+        textTransform,
+        textOverflow,
+        className,
+      })}
+    >
+      {children}
+    </Component>
+  );
+}

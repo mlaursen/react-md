@@ -1,6 +1,6 @@
 import { type ReactElement } from "react";
 
-import { ColorPreview } from "./ColorPreview.jsx";
+import { ColorPreview } from "./ColorPreview.js";
 import { type WalkChildrenRendererProps } from "./WalkChildren.js";
 
 export type ColorPreviewRendererProps = WalkChildrenRendererProps;

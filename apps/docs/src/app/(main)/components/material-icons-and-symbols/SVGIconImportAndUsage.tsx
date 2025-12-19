@@ -4,14 +4,14 @@ import Link from "next/link.js";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement } from "react";
 
-import { Blockquote } from "@/components/Blockquote.jsx";
-import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/PackageManagerCodeBlock.jsx";
+import { Blockquote } from "@/components/Blockquote.js";
+import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/PackageManagerCodeBlock.js";
 
-import { AdditionalChanges } from "./AdditionalChanges.jsx";
+import { AdditionalChanges } from "./AdditionalChanges.js";
 import { CopyCode } from "./CopyCode.js";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import styles from "./SVGIconImportAndUsage.module.scss";
-import { TwoToneIconWarning } from "./TwoToneIconWarning.jsx";
+import { TwoToneIconWarning } from "./TwoToneIconWarning.js";
 import { getIconUrl } from "./searchParams.js";
 import { getMaterialIconComponentName } from "./utils.js";
 

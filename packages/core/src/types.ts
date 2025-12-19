@@ -1,6 +1,7 @@
 import {
   type Dispatch,
   type HTMLAttributes,
+  type JSX,
   type ReactElement,
   type Ref,
   type SetStateAction,
@@ -80,22 +81,6 @@ export type LabelRequiredForA11y<Props extends LabelA11y> = RequireAtLeastOne<
   Props,
   keyof LabelA11y
 >;
-
-/**
- * @since 5.0.0
- * @internal
- */
-export interface NonNullRef<T> {
-  readonly current: T;
-}
-
-/**
- * @since 6.0.0
- * @internal
- */
-export interface NonNullMutableRef<T> {
-  current: T;
-}
 
 /** @since 6.0.0 */
 export type HtmlTagName = keyof JSX.IntrinsicElements;

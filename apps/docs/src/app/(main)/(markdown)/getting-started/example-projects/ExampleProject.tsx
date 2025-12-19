@@ -7,7 +7,7 @@ import { typography } from "@react-md/core/typography/typographyStyles";
 import Image from "next/image.js";
 import { type ReactElement } from "react";
 
-import { ExampleLink } from "./ExampleLink.jsx";
+import { ExampleLink } from "./ExampleLink.js";
 import nextjs from "./nextjs.svg";
 import reactrouter from "./reactrouter.svg";
 import vitejs from "./vitejs.svg";

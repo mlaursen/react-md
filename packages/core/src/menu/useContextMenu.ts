@@ -1,17 +1,20 @@
 "use client";
 
-import type { MouseEvent, RefObject } from "react";
+import { type MouseEvent, type RefObject } from "react";
 import { useCallback, useRef, useState } from "react";
 
 import { BELOW_INNER_LEFT_ANCHOR } from "../positioning/constants.js";
-import type { InitialCoords, PositionAnchor } from "../positioning/types.js";
-import type { UseStateObject } from "../types.js";
+import {
+  type InitialCoords,
+  type PositionAnchor,
+} from "../positioning/types.js";
+import { type UseStateObject } from "../types.js";
 
 /** @since 6.0.0 */
 export interface ContextMenuProps extends InitialCoords {
   "aria-label": string;
   anchor: PositionAnchor;
-  fixedTo: RefObject<HTMLElement>;
+  fixedTo: RefObject<HTMLElement | null>;
   visible: boolean;
   preventScroll: boolean;
   onRequestClose: () => void;

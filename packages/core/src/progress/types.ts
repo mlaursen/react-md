@@ -1,3 +1,5 @@
+import { type Ref } from "react";
+
 import { type ThemeColor } from "../cssUtils.js";
 
 /**
@@ -11,6 +13,8 @@ export type ProgressTheme = ThemeColor | "current-color";
  * @since 6.0.0 Added the `theme` prop.
  */
 export interface ProgressProps {
+  ref?: Ref<HTMLSpanElement>;
+
   /**
    * The id for the progress component. This is required for accessibility since
    * the progress will 99% of the time be describing the progress of something

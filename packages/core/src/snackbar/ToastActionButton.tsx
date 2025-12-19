@@ -1,7 +1,7 @@
 "use client";
 
 import { cnb } from "cnbuilder";
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 import { Button, type ButtonProps } from "../button/Button.js";
 import { type ButtonTheme } from "../button/styles.js";
@@ -39,11 +39,11 @@ export interface ToastActionButtonProps extends ButtonProps {
  * @see {@link https://react-md.dev/components/snackbar | Snackbar Demos}
  * @since 6.0.0
  */
-export const ToastActionButton = forwardRef<
-  HTMLButtonElement,
-  ToastActionButtonProps
->(function ToastActionButton(props, ref) {
+export const ToastActionButton = function ToastActionButton(
+  props: ToastActionButtonProps
+): ReactElement {
   const {
+    ref,
     className,
     children,
     theme = "secondary",
@@ -71,4 +71,4 @@ export const ToastActionButton = forwardRef<
       {children}
     </Button>
   );
-});
+};

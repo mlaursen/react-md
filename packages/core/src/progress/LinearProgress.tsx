@@ -1,7 +1,7 @@
 import {
   type CSSProperties,
   type HTMLAttributes,
-  forwardRef,
+  type ReactElement,
   useMemo,
 } from "react";
 
@@ -91,11 +91,11 @@ export interface LinearProgressProps
  * @since 6.0.0 Supports rendering as any of the theme colors and
  * requires a label for accessibility.
  */
-export const LinearProgress = forwardRef<
-  HTMLSpanElement,
-  LabelRequiredForA11y<LinearProgressProps>
->(function LinearProgress(props, ref) {
+export function LinearProgress(
+  props: LabelRequiredForA11y<LinearProgressProps>
+): ReactElement {
   const {
+    ref,
     id: propId,
     style: propStyle,
     className,
@@ -172,4 +172,4 @@ export const LinearProgress = forwardRef<
       />
     </span>
   );
-});
+}

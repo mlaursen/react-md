@@ -2,7 +2,8 @@
 
 import {
   type HTMLAttributes,
-  forwardRef,
+  type ReactElement,
+  type Ref,
   useCallback,
   useRef,
   useState,
@@ -44,6 +45,8 @@ export interface BaseTabListScrollButtonProps
  * @since 6.0.0
  */
 export interface TabListScrollButtonProps extends BaseTabListScrollButtonProps {
+  ref?: Ref<HTMLDivElement>;
+
   type: "back" | "forward";
   /** @defaultValue `false` */
   vertical?: boolean;
@@ -55,11 +58,11 @@ export interface TabListScrollButtonProps extends BaseTabListScrollButtonProps {
  * @internal
  * @since 6.0.0
  */
-export const TabListScrollButton = forwardRef<
-  HTMLDivElement,
-  TabListScrollButtonProps
->(function TabListScrollButton(props, ref) {
+export function TabListScrollButton(
+  props: TabListScrollButtonProps
+): ReactElement {
   const {
+    ref,
     "aria-label": ariaLabel,
     className,
     buttonProps,
@@ -141,4 +144,4 @@ export const TabListScrollButton = forwardRef<
       {forward && <span ref={nodeRef} />}
     </>
   );
-});
+}

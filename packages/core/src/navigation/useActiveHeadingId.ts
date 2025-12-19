@@ -125,7 +125,7 @@ export function useActiveHeadingId(options: ActiveHeadingIdOptions): string {
     defaultActiveId = headings[0]?.id ?? "",
     scrollBottomThreshold = 0.8,
   } = options;
-  const elements = useRef<Map<string, boolean>>();
+  const elements = useRef<Map<string, boolean>>(null);
   const isFirstRender = useRef(true);
   const [activeHeadingId, setActiveHeadingId] = useState(defaultActiveId);
   useIntersectionObserver({

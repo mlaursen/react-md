@@ -1,4 +1,9 @@
-import { type LiHTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type LiHTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { type NavItemClassNameOptions, navItem } from "./navItemStyles.js";
 
@@ -9,6 +14,7 @@ import { type NavItemClassNameOptions, navItem } from "./navItemStyles.js";
  */
 export interface NavItemProps
   extends LiHTMLAttributes<HTMLLIElement>, NavItemClassNameOptions {
+  ref?: Ref<HTMLLIElement>;
   children: ReactNode;
 }
 
@@ -20,13 +26,12 @@ export interface NavItemProps
  * @see {@link https://react-md.dev/components/navigation | Navigation Demos}
  * @since 6.0.0
  */
-export const NavItem = forwardRef<HTMLLIElement, NavItemProps>(
-  function NavItem(props, ref) {
-    const { className, children, ...remaining } = props;
-    return (
-      <li {...remaining} ref={ref} className={navItem({ className })}>
-        {children}
-      </li>
-    );
-  }
-);
+export function NavItem(props: NavItemProps): ReactElement {
+  const { ref, className, children, ...remaining } = props;
+
+  return (
+    <li {...remaining} ref={ref} className={navItem({ className })}>
+      {children}
+    </li>
+  );
+}

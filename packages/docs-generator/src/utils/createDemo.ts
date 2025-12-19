@@ -130,7 +130,7 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
           // eslint-disable-next-line no-console
           console.error(error);
           throw new Error(
-            `readOnlyImports must be in the format of \`readOnlyImports={["@/componenents/Example.jsx"]}\``
+            `readOnlyImports must be in the format of \`readOnlyImports={["@/componenents/Example.js"]}\``
           );
         }
         break;

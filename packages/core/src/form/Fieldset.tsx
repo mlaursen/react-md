@@ -1,4 +1,8 @@
-import { type FieldsetHTMLAttributes, forwardRef } from "react";
+import {
+  type FieldsetHTMLAttributes,
+  type ReactElement,
+  type Ref,
+} from "react";
 
 import { type FieldsetClassNameOptions, fieldset } from "./fieldsetStyles.js";
 
@@ -10,7 +14,9 @@ import { type FieldsetClassNameOptions, fieldset } from "./fieldsetStyles.js";
 export interface FieldsetProps
   extends
     FieldsetHTMLAttributes<HTMLFieldSetElement>,
-    FieldsetClassNameOptions {}
+    FieldsetClassNameOptions {
+  ref?: Ref<HTMLFieldSetElement>;
+}
 
 /**
  * @example Simple Example
@@ -52,30 +58,29 @@ export interface FieldsetProps
  *
  * @see {@link https://react-md.dev/components/fieldset | Fieldset Demos}
  */
-export const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
-  function Fieldset(props, ref) {
-    const {
-      className,
-      fullWidth,
-      browserStyles,
-      floatingLegend,
-      children,
-      ...remaining
-    } = props;
+export function Fieldset(props: FieldsetProps): ReactElement {
+  const {
+    ref,
+    className,
+    fullWidth,
+    browserStyles,
+    floatingLegend,
+    children,
+    ...remaining
+  } = props;
 
-    return (
-      <fieldset
-        {...remaining}
-        ref={ref}
-        className={fieldset({
-          className,
-          fullWidth,
-          browserStyles,
-          floatingLegend,
-        })}
-      >
-        {children}
-      </fieldset>
-    );
-  }
-);
+  return (
+    <fieldset
+      {...remaining}
+      ref={ref}
+      className={fieldset({
+        className,
+        fullWidth,
+        browserStyles,
+        floatingLegend,
+      })}
+    >
+      {children}
+    </fieldset>
+  );
+}

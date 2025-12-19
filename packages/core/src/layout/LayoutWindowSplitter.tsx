@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useMemo } from "react";
+import { type ReactElement, type Ref, useMemo } from "react";
 
 import { type DefinedCSSVariableName } from "../theme/types.js";
 import { useCSSVariables } from "../theme/useCSSVariables.js";
@@ -19,12 +19,14 @@ import {
  */
 export interface LayoutWindowSplitterProps
   extends
-    WindowSplitterWidgetProps<HTMLButtonElement>,
+    Omit<WindowSplitterWidgetProps<HTMLButtonElement>, "ref">,
     Omit<
       BaseWindowSplitterProps,
       keyof WindowSplitterWidgetProps<HTMLButtonElement>
     >,
     LayoutWindowSplitterClassNameOptions {
+  ref?: Ref<HTMLButtonElement>;
+
   /** @defaultValue `"Resize Navigation"` */
   "aria-label"?: string;
 
@@ -93,11 +95,11 @@ export interface LayoutWindowSplitterProps
  * @see {@link https://react-md.dev/getting-started/layout | Layout Demos}
  * @since 6.0.0
  */
-export const LayoutWindowSplitter = forwardRef<
-  HTMLButtonElement,
-  LayoutWindowSplitterProps
->(function LayoutWindowSplitter(props, ref) {
+export function LayoutWindowSplitter(
+  props: LayoutWindowSplitterProps
+): ReactElement {
   const {
+    ref,
     "aria-labelledby": ariaLabelledBy,
     "aria-label": ariaLabel = ariaLabelledBy ? undefined : "Resize Navigation",
     appBarOffset,
@@ -127,4 +129,4 @@ export const LayoutWindowSplitter = forwardRef<
       })}
     />
   );
-});
+}

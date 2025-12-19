@@ -48,7 +48,7 @@ export type RequiredThumbProps = Pick<
   | "dragging"
   | keyof DraggableMouseEventHandlers<HTMLElement>
   | keyof DraggableTouchEventHandlers<HTMLElement>
-> & { ref: RefObject<HTMLSpanElement> };
+> & { ref: RefObject<HTMLSpanElement | null> };
 
 /**
  * @since 6.0.0

@@ -1,11 +1,11 @@
 import { CodeBlockFileName } from "@react-md/code/CodeBlockFileName";
 import { type ReactElement } from "react";
 
-import { MarkdownCode } from "../MarkdownCode.jsx";
+import { MarkdownCode } from "../MarkdownCode.js";
 import {
   CompiledScssCodeBlockContainer,
   type CompiledScssCodeBlockContainerProps,
-} from "./CompiledScssCodeBlockContainer.jsx";
+} from "./CompiledScssCodeBlockContainer.js";
 
 export interface CompiledScssCodeBlockProps extends Omit<
   CompiledScssCodeBlockContainerProps,

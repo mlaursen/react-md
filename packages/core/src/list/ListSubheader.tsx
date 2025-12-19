@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { type PropsWithRef } from "../types.js";
 import { bem } from "../utils/bem.js";
@@ -36,6 +36,8 @@ export function listSubheader(
  */
 export interface ListSubheaderProps
   extends HTMLAttributes<HTMLLIElement>, ListSubheaderClassNameOptions {
+  ref?: Ref<HTMLLIElement>;
+
   /**
    * @defaultValue `"presentation"`
    */
@@ -53,29 +55,28 @@ export interface ListSubheaderProps
  *
  * @see {@link https://react-md.dev/components/list | List Demos}
  */
-export const ListSubheader = forwardRef<HTMLLIElement, ListSubheaderProps>(
-  function ListSubheader(props, ref) {
-    const {
-      role = "presentation",
-      inset = false,
-      className,
-      children,
-      textProps,
-      ...remaining
-    } = props;
+export function ListSubheader(props: ListSubheaderProps): ReactElement {
+  const {
+    ref,
+    role = "presentation",
+    inset = false,
+    className,
+    children,
+    textProps,
+    ...remaining
+  } = props;
 
-    return (
-      <li
-        {...remaining}
-        ref={ref}
-        role={role}
-        className={listSubheader({
-          inset,
-          className,
-        })}
-      >
-        <ListItemText {...textProps}>{children}</ListItemText>
-      </li>
-    );
-  }
-);
+  return (
+    <li
+      {...remaining}
+      ref={ref}
+      role={role}
+      className={listSubheader({
+        inset,
+        className,
+      })}
+    >
+      <ListItemText {...textProps}>{children}</ListItemText>
+    </li>
+  );
+}

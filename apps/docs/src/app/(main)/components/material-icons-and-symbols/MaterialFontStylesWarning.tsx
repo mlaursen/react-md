@@ -1,8 +1,8 @@
 import { type ReactElement } from "react";
 
-import { Blockquote } from "@/components/Blockquote.jsx";
+import { Blockquote } from "@/components/Blockquote.js";
 
-import { CopyCode } from "./CopyCode.jsx";
+import { CopyCode } from "./CopyCode.js";
 
 export function MaterialFontStylesWarning(): ReactElement {
   return (
@@ -14,7 +14,7 @@ export function MaterialFontStylesWarning(): ReactElement {
       <CopyCode lang="scss">
         {`@use "@react-md/core";
 
-[class*="material-"] {
+.rmd-icon[class*="material-"] {
   @include core.icon-use-var(font-size, size);
 }
 `}

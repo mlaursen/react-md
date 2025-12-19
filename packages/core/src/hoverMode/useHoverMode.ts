@@ -172,7 +172,7 @@ export function useHoverMode(
     [visible, setVisible] = state;
   }
 
-  const visibilityTimeout = useRef<NodeJS.Timeout>();
+  const visibilityTimeout = useRef<NodeJS.Timeout>(undefined);
   const clearVisibilityTimeout = useCallback(() => {
     globalThis.clearTimeout(visibilityTimeout.current);
   }, []);

@@ -1,7 +1,7 @@
 import { type ReactElement } from "react";
 
-import { CopyCode } from "./CopyCode.jsx";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { CopyCode } from "./CopyCode.js";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 
 export function IconImportAndUsage(): ReactElement | null {
   const { selectedIconName, iconType } = useMaterialIconsAndSymbols();

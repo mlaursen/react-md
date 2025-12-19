@@ -8,7 +8,7 @@ exports[`NavItemLink > should allow an addon to be rendered before or after the 
     aria-current="page"
     class="rmd-nav-item__content rmd-nav-item__link rmd-nav-item__link--active rmd-button rmd-button--text rmd-interaction-surface rmd-none rmd-bold"
     href="/"
-    id=":r4:"
+    id="_r_4_"
   >
     <span>
       Before
@@ -32,7 +32,7 @@ exports[`NavItemLink > should apply the correct styling, HTML attributes, and al
   <a
     class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
     href="/"
-    id=":r0:"
+    id="_r_0_"
   >
     <span
       class="rmd-nowrap rmd-ellipsis"
@@ -50,7 +50,7 @@ exports[`NavItemLink > should apply the correct styling, HTML attributes, and al
   <a
     class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none custom-class-name"
     href="/"
-    id=":r0:"
+    id="_r_0_"
     style="color: white;"
   >
     <span
@@ -70,7 +70,7 @@ exports[`NavItemLink > should apply the correct styling, HTML attributes, and al
     aria-current="page"
     class="rmd-nav-item__content rmd-nav-item__link rmd-nav-item__link--active rmd-button rmd-button--text rmd-interaction-surface rmd-none rmd-bold"
     href="/"
-    id=":r0:"
+    id="_r_0_"
     style=""
   >
     <span
@@ -90,7 +90,7 @@ exports[`NavItemLink > should apply the correct styling, HTML attributes, and al
     aria-current="page"
     class="rmd-nav-item__content rmd-nav-item__link rmd-nav-item__link--active rmd-button rmd-button--text rmd-interaction-surface rmd-none custom-active-class"
     href="/"
-    id=":r0:"
+    id="_r_0_"
     style=""
   >
     <span
@@ -109,7 +109,7 @@ exports[`NavItemLink > should apply the correct styling, HTML attributes, and al
   <a
     class="rmd-nav-item__content rmd-nav-item__link rmd-button rmd-button--text rmd-interaction-surface rmd-none"
     href="/"
-    id=":r0:"
+    id="_r_0_"
     style=""
   >
     <span
@@ -124,7 +124,7 @@ exports[`NavItemLink > should apply the correct styling, HTML attributes, and al
 exports[`NavItemLink > should support an overflow only tooltip by default 1`] = `
 <span
   class="rmd-tooltip rmd-tooltip--right rmd-tooltip--visible"
-  id=":r2:-tooltip"
+  id="_r_2_-tooltip"
   role="tooltip"
   style="position: fixed; left: 24px; top: 16px;"
 >

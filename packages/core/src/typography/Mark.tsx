@@ -1,4 +1,9 @@
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { type MarkClassNameOptions, mark } from "./markStyles.js";
 
@@ -9,6 +14,7 @@ import { type MarkClassNameOptions, mark } from "./markStyles.js";
  */
 export interface MarkProps
   extends HTMLAttributes<HTMLElement>, MarkClassNameOptions {
+  ref?: Ref<HTMLElement>;
   children: ReactNode;
 }
 
@@ -32,13 +38,12 @@ export interface MarkProps
  * @see {@link https://react-md.dev/components/mark | Mark Demos}
  * @since 6.0.0
  */
-export const Mark = forwardRef<HTMLElement, MarkProps>(
-  function Mark(props, ref) {
-    const { children, className, ...remaining } = props;
-    return (
-      <mark {...remaining} ref={ref} className={mark({ className })}>
-        {children}
-      </mark>
-    );
-  }
-);
+export function Mark(props: MarkProps): ReactElement {
+  const { ref, children, className, ...remaining } = props;
+
+  return (
+    <mark {...remaining} ref={ref} className={mark({ className })}>
+      {children}
+    </mark>
+  );
+}

@@ -1,5 +1,10 @@
 import { cnb } from "cnbuilder";
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { getIcon } from "../icon/config.js";
 import { FORM_CONFIG } from "./formConfig.js";
@@ -13,7 +18,10 @@ import { type InputToggleSize, inputToggle } from "./inputToggleStyles.js";
  * @internal
  */
 export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
+  ref?: Ref<HTMLSpanElement>;
+
   type: "checkbox" | "radio";
+
   /**
    * Note: If this is `undefined` and the {@link FORM_CONFIG.uncontrolledToggles} is `false`,
    * the icon state won't work.
@@ -59,11 +67,9 @@ export interface InputToggleIconProps extends HTMLAttributes<HTMLSpanElement> {
  * of a css overlay hack.
  * @internal
  */
-export const InputToggleIcon = forwardRef<
-  HTMLSpanElement,
-  InputToggleIconProps
->(function InputToggleIcon(props, ref) {
+export function InputToggleIcon(props: InputToggleIconProps): ReactElement {
   const {
+    ref,
     type,
     size = "normal",
     icon: propIcon,
@@ -125,4 +131,4 @@ export const InputToggleIcon = forwardRef<
       {icon}
     </span>
   );
-});
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 import { InputToggle, type RadioProps } from "./InputToggle.js";
 
@@ -25,8 +25,8 @@ import { InputToggle, type RadioProps } from "./InputToggle.js";
  *
  * @see {@link https://react-md.dev/components/radio | Radio Demos}
  */
-export const Radio = forwardRef<HTMLInputElement, RadioProps>(
-  function Radio(props, ref) {
-    return <InputToggle {...props} ref={ref} type="radio" />;
-  }
-);
+export function Radio(props: RadioProps): ReactElement {
+  const { ref, ...remaininig } = props;
+
+  return <InputToggle {...remaininig} ref={ref} type="radio" />;
+}

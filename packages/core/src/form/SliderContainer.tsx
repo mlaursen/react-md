@@ -1,4 +1,9 @@
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { sliderContainer } from "./sliderStyles.js";
 
@@ -33,6 +38,8 @@ export interface SliderAddonProps {
  */
 export interface SliderContainerProps
   extends HTMLAttributes<HTMLDivElement>, SliderAddonProps {
+  ref?: Ref<HTMLDivElement>;
+
   vertical: boolean;
 }
 
@@ -47,32 +54,31 @@ export interface SliderContainerProps
  * @since 6.0.0 Removed the `label` support since you'll generally want to use
  * a `Fieldset` instead.
  */
-export const SliderContainer = forwardRef<HTMLDivElement, SliderContainerProps>(
-  function SliderContainer(props, ref) {
-    const {
-      className,
-      children,
-      beforeAddon,
-      afterAddon,
-      vertical,
-      ...remaining
-    } = props;
+export function SliderContainer(props: SliderContainerProps): ReactElement {
+  const {
+    ref,
+    className,
+    children,
+    beforeAddon,
+    afterAddon,
+    vertical,
+    ...remaining
+  } = props;
 
-    return (
-      <div
-        {...remaining}
-        ref={ref}
-        className={sliderContainer({
-          className,
-          vertical,
-          beforeAddon: !!beforeAddon,
-          afterAddon: !!afterAddon,
-        })}
-      >
-        {beforeAddon}
-        {children}
-        {afterAddon}
-      </div>
-    );
-  }
-);
+  return (
+    <div
+      {...remaining}
+      ref={ref}
+      className={sliderContainer({
+        className,
+        vertical,
+        beforeAddon: !!beforeAddon,
+        afterAddon: !!afterAddon,
+      })}
+    >
+      {beforeAddon}
+      {children}
+      {afterAddon}
+    </div>
+  );
+}

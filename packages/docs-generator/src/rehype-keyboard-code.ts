@@ -1,6 +1,5 @@
 import { type Element, type ElementContent, type Root } from "hast";
 import { toString } from "mdast-util-to-string";
-import { type Plugin } from "unified";
 import { visitParents } from "unist-util-visit-parents";
 
 const MODIFIERS = "Shift|Ctrl|Alt";
@@ -27,10 +26,7 @@ export interface RehypeKeyboardCodeOptions {
  * - `Alt+ArrowUp`
  * - `Ctrl+End`
  */
-export const rehypeKeyboardCode: Plugin<
-  [options?: RehypeKeyboardCodeOptions],
-  Root
-> = (options = {}) => {
+export function rehypeKeyboardCode(options: RehypeKeyboardCodeOptions = {}) {
   const { className = "inline-code inline-code--ticked" } = options;
 
   const createKbd = (match: string): Element => {
@@ -44,7 +40,7 @@ export const rehypeKeyboardCode: Plugin<
     };
   };
 
-  return (root) => {
+  return function keyboardCode(root: Root): void {
     visitParents(root, "element", (node, ancestors) => {
       const parent = ancestors.at(-1);
       if (
@@ -72,4 +68,4 @@ export const rehypeKeyboardCode: Plugin<
       parent.children.splice(parent.children.indexOf(node), 1, ...replacements);
     });
   };
-};
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { useSsr } from "../SsrProvider.js";
 import { Portal } from "../portal/Portal.js";
@@ -28,6 +28,8 @@ export interface OverlayProps
     BaseOverlayClassNameOptions,
     CSSTransitionComponentProps,
     TransitionActions {
+  ref?: Ref<HTMLSpanElement>;
+
   /**
    * Set this to `true` if the overlay should be rendered with an `opacity: 0`
    * and disabling the animation. This is useful if you'd like a "close on
@@ -80,69 +82,68 @@ export interface OverlayProps
  * @since 6.0.0 Removed the `onRequestClose` prop in favor of using
  * the `onClick` prop instead.
  */
-export const Overlay = forwardRef<HTMLSpanElement, OverlayProps>(
-  function Overlay(props, nodeRef) {
-    const {
-      children,
-      className,
+export function Overlay(props: OverlayProps): ReactElement {
+  const {
+    ref: nodeRef,
+    children,
+    className,
+    visible,
+    noOpacity = false,
+    clickable = !noOpacity,
+    temporary = true,
+    timeout = DEFAULT_OVERLAY_TIMEOUT,
+    classNames = DEFAULT_OVERLAY_CLASSNAMES,
+    disableTransition = false,
+    align = "center",
+    justify = "center",
+    appear,
+    enter,
+    exit,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    exitedHidden = true,
+    disablePortal: propDisablePortal = false,
+    ...remaining
+  } = props;
+
+  const ssr = useSsr();
+  const { elementProps, rendered, disablePortal } = useCSSTransition({
+    nodeRef,
+    transitionIn: visible,
+    timeout: noOpacity ? 0 : timeout,
+    classNames: noOpacity ? "" : classNames,
+    className: overlay({
       visible,
-      noOpacity = false,
-      clickable = !noOpacity,
-      temporary = true,
-      timeout = DEFAULT_OVERLAY_TIMEOUT,
-      classNames = DEFAULT_OVERLAY_CLASSNAMES,
-      disableTransition = false,
-      align = "center",
-      justify = "center",
-      appear,
-      enter,
-      exit,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      exitedHidden = true,
-      disablePortal: propDisablePortal = false,
-      ...remaining
-    } = props;
+      clickable,
+      align,
+      justify,
+      className,
+    }),
+    appear: appear && !disableTransition && !ssr,
+    enter: enter && !disableTransition,
+    exit: exit && !disableTransition,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    temporary,
+    exitedHidden,
+    disablePortal: propDisablePortal,
+  });
 
-    const ssr = useSsr();
-    const { elementProps, rendered, disablePortal } = useCSSTransition({
-      nodeRef,
-      transitionIn: visible,
-      timeout: noOpacity ? 0 : timeout,
-      classNames: noOpacity ? "" : classNames,
-      className: overlay({
-        visible,
-        clickable,
-        align,
-        justify,
-        className,
-      }),
-      appear: appear && !disableTransition && !ssr,
-      enter: enter && !disableTransition,
-      exit: exit && !disableTransition,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      temporary,
-      exitedHidden,
-      disablePortal: propDisablePortal,
-    });
-
-    return (
-      <Portal disabled={disablePortal}>
-        {rendered && (
-          <span {...remaining} {...elementProps}>
-            {children}
-          </span>
-        )}
-      </Portal>
-    );
-  }
-);
+  return (
+    <Portal disabled={disablePortal}>
+      {rendered && (
+        <span {...remaining} {...elementProps}>
+          {children}
+        </span>
+      )}
+    </Portal>
+  );
+}

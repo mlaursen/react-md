@@ -1,4 +1,9 @@
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { type PropsWithRef } from "../types.js";
 import { listItemText } from "./listItemStyles.js";
@@ -7,6 +12,7 @@ import { listItemText } from "./listItemStyles.js";
  * @internal
  */
 export interface ListItemTextProps extends HTMLAttributes<HTMLSpanElement> {
+  ref?: Ref<HTMLSpanElement>;
   secondaryText?: ReactNode;
   secondaryTextProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>>;
 
@@ -21,40 +27,39 @@ export interface ListItemTextProps extends HTMLAttributes<HTMLSpanElement> {
  *
  * @internal
  */
-export const ListItemText = forwardRef<HTMLSpanElement, ListItemTextProps>(
-  function ListItemText(props, ref) {
-    const {
-      className,
-      secondaryText,
-      secondaryTextProps,
-      secondaryTextClamped = false,
-      secondaryTextClassName,
-      children,
-      ...remaining
-    } = props;
+export function ListItemText(props: ListItemTextProps): ReactElement {
+  const {
+    ref,
+    className,
+    secondaryText,
+    secondaryTextProps,
+    secondaryTextClamped = false,
+    secondaryTextClassName,
+    children,
+    ...remaining
+  } = props;
 
-    return (
-      <span
-        {...remaining}
-        ref={ref}
-        className={listItemText({
-          className,
-        })}
-      >
-        {children}
-        {secondaryText && (
-          <span
-            {...secondaryTextProps}
-            className={listItemText({
-              clamped: secondaryTextClamped,
-              className: secondaryTextClassName,
-              secondary: true,
-            })}
-          >
-            {secondaryText}
-          </span>
-        )}
-      </span>
-    );
-  }
-);
+  return (
+    <span
+      {...remaining}
+      ref={ref}
+      className={listItemText({
+        className,
+      })}
+    >
+      {children}
+      {secondaryText && (
+        <span
+          {...secondaryTextProps}
+          className={listItemText({
+            clamped: secondaryTextClamped,
+            className: secondaryTextClassName,
+            secondary: true,
+          })}
+        >
+          {secondaryText}
+        </span>
+      )}
+    </span>
+  );
+}

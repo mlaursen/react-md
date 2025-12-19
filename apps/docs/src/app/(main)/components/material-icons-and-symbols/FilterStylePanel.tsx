@@ -5,8 +5,8 @@ import { Select } from "@react-md/core/form/Select";
 import StyleOutlinedIcon from "@react-md/material-icons/StyleOutlinedIcon";
 import { type ReactElement } from "react";
 
-import { FilterPanel } from "./FilterPanel.jsx";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { FilterPanel } from "./FilterPanel.js";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import {
   MATERIAL_ICON_FAMILY_TYPES,
   MATERIAL_SYMBOL_FAMILY_TYPES,

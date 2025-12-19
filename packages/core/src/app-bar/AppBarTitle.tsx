@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { type ReactElement, type Ref } from "react";
 
 import { type TextOverflow } from "../cssUtils.js";
 import { Typography, type TypographyProps } from "../typography/Typography.js";
@@ -14,6 +14,8 @@ import { type AppBarTitleClassNameOptions, appBarTitle } from "./styles.js";
  */
 export interface AppBarTitleProps
   extends TypographyProps, AppBarTitleClassNameOptions {
+  ref?: Ref<HTMLHeadingElement>;
+
   /** @defaultValue `"headline-6"` */
   type?: TypographyType;
 
@@ -47,29 +49,29 @@ export interface AppBarTitleProps
  * prop inherited through the base `Typography` component. The `textOverflow`
  * will default to `"ellipsis"` which is new as well.
  */
-export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
-  function AppBarTitle(props, ref) {
-    const {
-      type = "headline-6",
-      keyline = "small",
-      children,
-      className,
-      textOverflow = "ellipsis",
-      ...remaining
-    } = props;
-    return (
-      <Typography
-        {...remaining}
-        ref={ref}
-        type={type}
-        className={appBarTitle({
-          keyline,
-          className,
-        })}
-        textOverflow={textOverflow}
-      >
-        {children}
-      </Typography>
-    );
-  }
-);
+export function AppBarTitle(props: AppBarTitleProps): ReactElement {
+  const {
+    ref,
+    type = "headline-6",
+    keyline = "small",
+    children,
+    className,
+    textOverflow = "ellipsis",
+    ...remaining
+  } = props;
+
+  return (
+    <Typography
+      {...remaining}
+      ref={ref}
+      type={type}
+      className={appBarTitle({
+        keyline,
+        className,
+      })}
+      textOverflow={textOverflow}
+    >
+      {children}
+    </Typography>
+  );
+}

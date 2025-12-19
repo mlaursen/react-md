@@ -6,7 +6,7 @@ import { type HighlightedCodeBlockWithAppBarAdditionalProps } from "@react-md/co
 import { useTypescriptEnabledContext } from "@react-md/code/TypescriptEnabledProvider";
 import { type ReactElement, type ReactNode } from "react";
 
-import { ConfigureTypescriptEnabled } from "./MainLayout/ConfigureTypescriptEnabled.jsx";
+import { ConfigureTypescriptEnabled } from "./MainLayout/ConfigureTypescriptEnabled.js";
 
 export interface TypescriptCodeBlockContainerProps extends HighlightedCodeBlockWithAppBarAdditionalProps {
   tsCode: ReactNode;

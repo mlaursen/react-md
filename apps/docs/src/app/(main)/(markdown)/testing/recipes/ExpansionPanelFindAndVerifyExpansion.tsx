@@ -1,12 +1,12 @@
 import { type ReactElement } from "react";
 
-import { FrameworkCodeSwap } from "../FrameworkCodeSwap.jsx";
+import { FrameworkCodeSwap } from "../FrameworkCodeSwap.js";
 
 const DEFAULT_CODE = `
 import { describe, expect, it } from "{FRAMEWORK}";
 import { rmdRender, screen, userEvent } from "@react-md/core/test-utils";
 
-import ExpansionPanelGroupExample from "@/components/expansion-panel/ExpansionPanelGroupExample.jsx";
+import ExpansionPanelGroupExample from "@/components/expansion-panel/ExpansionPanelGroupExample.js";
 
 describe("ExpansionPanelGroupExample", () => {
   it("should be able to expand and collapse panels", async () => {

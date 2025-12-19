@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { bem } from "../utils/bem.js";
 
@@ -64,17 +64,19 @@ export function fab(options: FloatingActionButtonClassNameOptions): string {
 export interface FloatingActionButtonProps
   extends
     HTMLAttributes<HTMLSpanElement>,
-    FloatingActionButtonClassNameOptions {}
+    FloatingActionButtonClassNameOptions {
+  ref?: Ref<HTMLSpanElement>;
+}
 
 /**
  * @since 6.0.0
  * @internal
  */
-export const FloatingActionButton = forwardRef<
-  HTMLSpanElement,
-  FloatingActionButtonProps
->(function FloatingActionButton(props, ref) {
+export function FloatingActionButton(
+  props: FloatingActionButtonProps
+): ReactElement {
   const {
+    ref,
     children,
     className,
     position = null,
@@ -98,4 +100,4 @@ export const FloatingActionButton = forwardRef<
       {children}
     </span>
   );
-});
+}

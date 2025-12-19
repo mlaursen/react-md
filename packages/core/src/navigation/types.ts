@@ -1,8 +1,10 @@
 import {
   type AnchorHTMLAttributes,
+  type ComponentType,
   type ForwardRefExoticComponent,
   type HTMLAttributes,
   type ReactNode,
+  type Ref,
 } from "react";
 
 import { type DividerProps } from "../divider/Divider.js";
@@ -135,14 +137,21 @@ export type NavigationItem =
 /**
  * @since 6.0.0
  */
-export type CustomNavigationLinkComponent = ForwardRefExoticComponent<
-  AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
->;
+export type CustomNavigationLinkComponent =
+  | ForwardRefExoticComponent<
+      AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
+    >
+  | ComponentType<
+      AnchorHTMLAttributes<HTMLAnchorElement> & {
+        ref?: Ref<HTMLAnchorElement>;
+        href: string;
+      }
+    >;
 
 /**
  * @since 6.0.0
  */
-export type NavigationLinkComponent = "a" | CustomNavigationLinkComponent;
+export type NavigationLinkComponent = CustomNavigationLinkComponent | "a";
 
 /**
  * @since 6.0.0

@@ -5,7 +5,7 @@ exports[`Tree > should apply the correct styling, HTML attributes, and allow a r
   aria-activedescendant=""
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r0:"
+  id="tree-_r_0_"
   role="tree"
   tabindex="0"
 />
@@ -16,7 +16,7 @@ exports[`Tree > should apply the correct styling, HTML attributes, and allow a r
   aria-activedescendant=""
   aria-label="Tree"
   class="rmd-list rmd-tree custom-class-name"
-  id="tree-:r0:"
+  id="tree-_r_0_"
   role="tree"
   style="color: white;"
   tabindex="0"
@@ -28,7 +28,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
   aria-activedescendant=""
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:ra:"
+  id="tree-_r_a_"
   role="tree"
   tabindex="0"
 >
@@ -39,7 +39,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rb:"
+      id="tree-item-_r_b_"
       role="treeitem"
       tabindex="-1"
     >
@@ -60,7 +60,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
       aria-expanded="false"
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rc:"
+      id="tree-item-_r_c_"
       role="treeitem"
       tabindex="-1"
     >
@@ -80,7 +80,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-      id="tree-item-:rc:-group"
+      id="tree-item-_r_c_-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
     >
@@ -91,7 +91,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rd:"
+          id="tree-item-_r_d_"
           role="treeitem"
           tabindex="-1"
         >
@@ -112,7 +112,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:re:"
+          id="tree-item-_r_e_"
           role="treeitem"
           tabindex="-1"
         >
@@ -132,7 +132,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:re:-group"
+          id="tree-item-_r_e_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -144,7 +144,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:rf:"
+              id="tree-item-_r_f_"
               role="treeitem"
               tabindex="-1"
             >
@@ -164,7 +164,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:rf:-group"
+              id="tree-item-_r_f_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -175,7 +175,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:rg:"
+                  id="tree-item-_r_g_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -199,7 +199,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rh:"
+          id="tree-item-_r_h_"
           role="treeitem"
           tabindex="-1"
         >
@@ -221,7 +221,7 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:ri:"
+      id="tree-item-_r_i_"
       role="treeitem"
       tabindex="-1"
     >
@@ -239,10 +239,10 @@ exports[`Tree > should handle multi-select tree behavior 1`] = `
 
 exports[`Tree > should handle multi-select tree behavior 2`] = `
 <ul
-  aria-activedescendant="tree-item-:rc:"
+  aria-activedescendant="tree-item-_r_c_"
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:ra:"
+  id="tree-_r_a_"
   role="tree"
   tabindex="0"
 >
@@ -253,7 +253,7 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
     <span
       aria-selected="true"
       class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rb:"
+      id="tree-item-_r_b_"
       role="treeitem"
       tabindex="-1"
     >
@@ -274,7 +274,7 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
       aria-expanded="true"
       aria-selected="true"
       class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rc:"
+      id="tree-item-_r_c_"
       role="treeitem"
       tabindex="-1"
     >
@@ -294,7 +294,7 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
-      id="tree-item-:rc:-group"
+      id="tree-item-_r_c_-group"
       role="group"
       style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
@@ -305,7 +305,7 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rd:"
+          id="tree-item-_r_d_"
           role="treeitem"
           tabindex="-1"
         >
@@ -326,7 +326,7 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:re:"
+          id="tree-item-_r_e_"
           role="treeitem"
           tabindex="-1"
         >
@@ -346,7 +346,7 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:re:-group"
+          id="tree-item-_r_e_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -358,7 +358,7 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:rf:"
+              id="tree-item-_r_f_"
               role="treeitem"
               tabindex="-1"
             >
@@ -378,7 +378,7 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:rf:-group"
+              id="tree-item-_r_f_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -389,7 +389,7 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:rg:"
+                  id="tree-item-_r_g_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -413,7 +413,7 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rh:"
+          id="tree-item-_r_h_"
           role="treeitem"
           tabindex="-1"
         >
@@ -435,7 +435,7 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:ri:"
+      id="tree-item-_r_i_"
       role="treeitem"
       tabindex="-1"
     >
@@ -453,10 +453,10 @@ exports[`Tree > should handle multi-select tree behavior 2`] = `
 
 exports[`Tree > should handle multi-select tree behavior 3`] = `
 <ul
-  aria-activedescendant="tree-item-:rc:"
+  aria-activedescendant="tree-item-_r_c_"
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:ra:"
+  id="tree-_r_a_"
   role="tree"
   tabindex="0"
 >
@@ -467,7 +467,7 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
     <span
       aria-selected="true"
       class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rb:"
+      id="tree-item-_r_b_"
       role="treeitem"
       tabindex="-1"
     >
@@ -488,7 +488,7 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
       aria-expanded="true"
       aria-selected="true"
       class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rc:"
+      id="tree-item-_r_c_"
       role="treeitem"
       tabindex="-1"
     >
@@ -508,7 +508,7 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
-      id="tree-item-:rc:-group"
+      id="tree-item-_r_c_-group"
       role="group"
       style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
@@ -519,7 +519,7 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rd:"
+          id="tree-item-_r_d_"
           role="treeitem"
           tabindex="-1"
         >
@@ -540,7 +540,7 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:re:"
+          id="tree-item-_r_e_"
           role="treeitem"
           tabindex="-1"
         >
@@ -560,7 +560,7 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:re:-group"
+          id="tree-item-_r_e_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -572,7 +572,7 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:rf:"
+              id="tree-item-_r_f_"
               role="treeitem"
               tabindex="-1"
             >
@@ -592,7 +592,7 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:rf:-group"
+              id="tree-item-_r_f_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -603,7 +603,7 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:rg:"
+                  id="tree-item-_r_g_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -627,7 +627,7 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rh:"
+          id="tree-item-_r_h_"
           role="treeitem"
           tabindex="-1"
         >
@@ -649,7 +649,7 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:ri:"
+      id="tree-item-_r_i_"
       role="treeitem"
       tabindex="-1"
     >
@@ -667,10 +667,10 @@ exports[`Tree > should handle multi-select tree behavior 3`] = `
 
 exports[`Tree > should handle multi-select tree behavior 4`] = `
 <ul
-  aria-activedescendant="tree-item-:rb:"
+  aria-activedescendant="tree-item-_r_b_"
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:ra:"
+  id="tree-_r_a_"
   role="tree"
   tabindex="0"
 >
@@ -681,7 +681,7 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--focused rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rb:"
+      id="tree-item-_r_b_"
       role="treeitem"
       tabindex="-1"
     >
@@ -702,7 +702,7 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
       aria-expanded="true"
       aria-selected="true"
       class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rc:"
+      id="tree-item-_r_c_"
       role="treeitem"
       tabindex="-1"
     >
@@ -722,7 +722,7 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
-      id="tree-item-:rc:-group"
+      id="tree-item-_r_c_-group"
       role="group"
       style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
@@ -733,7 +733,7 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rd:"
+          id="tree-item-_r_d_"
           role="treeitem"
           tabindex="-1"
         >
@@ -754,7 +754,7 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:re:"
+          id="tree-item-_r_e_"
           role="treeitem"
           tabindex="-1"
         >
@@ -774,7 +774,7 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:re:-group"
+          id="tree-item-_r_e_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -786,7 +786,7 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:rf:"
+              id="tree-item-_r_f_"
               role="treeitem"
               tabindex="-1"
             >
@@ -806,7 +806,7 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:rf:-group"
+              id="tree-item-_r_f_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -817,7 +817,7 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:rg:"
+                  id="tree-item-_r_g_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -841,7 +841,7 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rh:"
+          id="tree-item-_r_h_"
           role="treeitem"
           tabindex="-1"
         >
@@ -863,7 +863,7 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:ri:"
+      id="tree-item-_r_i_"
       role="treeitem"
       tabindex="-1"
     >
@@ -881,10 +881,10 @@ exports[`Tree > should handle multi-select tree behavior 4`] = `
 
 exports[`Tree > should handle multi-select tree behavior 5`] = `
 <ul
-  aria-activedescendant="tree-item-:rc:"
+  aria-activedescendant="tree-item-_r_c_"
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:ra:"
+  id="tree-_r_a_"
   role="tree"
   tabindex="0"
 >
@@ -895,7 +895,7 @@ exports[`Tree > should handle multi-select tree behavior 5`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rb:"
+      id="tree-item-_r_b_"
       role="treeitem"
       tabindex="-1"
     >
@@ -916,7 +916,7 @@ exports[`Tree > should handle multi-select tree behavior 5`] = `
       aria-expanded="false"
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--focused rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rc:"
+      id="tree-item-_r_c_"
       role="treeitem"
       tabindex="-1"
     >
@@ -936,7 +936,7 @@ exports[`Tree > should handle multi-select tree behavior 5`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-      id="tree-item-:rc:-group"
+      id="tree-item-_r_c_-group"
       role="group"
       style="max-height: 0; --rmd-tree-depth: 1; padding-top: 0px; padding-bottom: 0px;"
     >
@@ -947,7 +947,7 @@ exports[`Tree > should handle multi-select tree behavior 5`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rd:"
+          id="tree-item-_r_d_"
           role="treeitem"
           tabindex="-1"
         >
@@ -968,7 +968,7 @@ exports[`Tree > should handle multi-select tree behavior 5`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:re:"
+          id="tree-item-_r_e_"
           role="treeitem"
           tabindex="-1"
         >
@@ -988,7 +988,7 @@ exports[`Tree > should handle multi-select tree behavior 5`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:re:-group"
+          id="tree-item-_r_e_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -1000,7 +1000,7 @@ exports[`Tree > should handle multi-select tree behavior 5`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:rf:"
+              id="tree-item-_r_f_"
               role="treeitem"
               tabindex="-1"
             >
@@ -1020,7 +1020,7 @@ exports[`Tree > should handle multi-select tree behavior 5`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:rf:-group"
+              id="tree-item-_r_f_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -1031,7 +1031,7 @@ exports[`Tree > should handle multi-select tree behavior 5`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:rg:"
+                  id="tree-item-_r_g_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -1055,7 +1055,7 @@ exports[`Tree > should handle multi-select tree behavior 5`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rh:"
+          id="tree-item-_r_h_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1077,7 +1077,7 @@ exports[`Tree > should handle multi-select tree behavior 5`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:ri:"
+      id="tree-item-_r_i_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1098,7 +1098,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
   aria-activedescendant=""
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r1:"
+  id="tree-_r_1_"
   role="tree"
   tabindex="0"
 >
@@ -1109,7 +1109,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r2:"
+      id="tree-item-_r_2_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1130,7 +1130,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
       aria-expanded="false"
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r3:"
+      id="tree-item-_r_3_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1150,7 +1150,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-      id="tree-item-:r3:-group"
+      id="tree-item-_r_3_-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
     >
@@ -1161,7 +1161,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r4:"
+          id="tree-item-_r_4_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1182,7 +1182,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r5:"
+          id="tree-item-_r_5_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1202,7 +1202,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:r5:-group"
+          id="tree-item-_r_5_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -1214,7 +1214,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:r6:"
+              id="tree-item-_r_6_"
               role="treeitem"
               tabindex="-1"
             >
@@ -1234,7 +1234,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:r6:-group"
+              id="tree-item-_r_6_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -1245,7 +1245,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:r7:"
+                  id="tree-item-_r_7_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -1269,7 +1269,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r8:"
+          id="tree-item-_r_8_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1291,7 +1291,7 @@ exports[`Tree > should handle single select tree behavior 1`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r9:"
+      id="tree-item-_r_9_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1309,10 +1309,10 @@ exports[`Tree > should handle single select tree behavior 1`] = `
 
 exports[`Tree > should handle single select tree behavior 2`] = `
 <ul
-  aria-activedescendant="tree-item-:r3:"
+  aria-activedescendant="tree-item-_r_3_"
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r1:"
+  id="tree-_r_1_"
   role="tree"
   tabindex="0"
 >
@@ -1323,7 +1323,7 @@ exports[`Tree > should handle single select tree behavior 2`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r2:"
+      id="tree-item-_r_2_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1344,7 +1344,7 @@ exports[`Tree > should handle single select tree behavior 2`] = `
       aria-expanded="true"
       aria-selected="true"
       class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r3:"
+      id="tree-item-_r_3_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1364,7 +1364,7 @@ exports[`Tree > should handle single select tree behavior 2`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
-      id="tree-item-:r3:-group"
+      id="tree-item-_r_3_-group"
       role="group"
       style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
@@ -1375,7 +1375,7 @@ exports[`Tree > should handle single select tree behavior 2`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r4:"
+          id="tree-item-_r_4_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1396,7 +1396,7 @@ exports[`Tree > should handle single select tree behavior 2`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r5:"
+          id="tree-item-_r_5_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1416,7 +1416,7 @@ exports[`Tree > should handle single select tree behavior 2`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:r5:-group"
+          id="tree-item-_r_5_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -1428,7 +1428,7 @@ exports[`Tree > should handle single select tree behavior 2`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:r6:"
+              id="tree-item-_r_6_"
               role="treeitem"
               tabindex="-1"
             >
@@ -1448,7 +1448,7 @@ exports[`Tree > should handle single select tree behavior 2`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:r6:-group"
+              id="tree-item-_r_6_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -1459,7 +1459,7 @@ exports[`Tree > should handle single select tree behavior 2`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:r7:"
+                  id="tree-item-_r_7_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -1483,7 +1483,7 @@ exports[`Tree > should handle single select tree behavior 2`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r8:"
+          id="tree-item-_r_8_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1505,7 +1505,7 @@ exports[`Tree > should handle single select tree behavior 2`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r9:"
+      id="tree-item-_r_9_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1523,10 +1523,10 @@ exports[`Tree > should handle single select tree behavior 2`] = `
 
 exports[`Tree > should handle single select tree behavior 3`] = `
 <ul
-  aria-activedescendant="tree-item-:r3:"
+  aria-activedescendant="tree-item-_r_3_"
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r1:"
+  id="tree-_r_1_"
   role="tree"
   tabindex="0"
 >
@@ -1537,7 +1537,7 @@ exports[`Tree > should handle single select tree behavior 3`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r2:"
+      id="tree-item-_r_2_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1558,7 +1558,7 @@ exports[`Tree > should handle single select tree behavior 3`] = `
       aria-expanded="true"
       aria-selected="true"
       class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r3:"
+      id="tree-item-_r_3_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1578,7 +1578,7 @@ exports[`Tree > should handle single select tree behavior 3`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
-      id="tree-item-:r3:-group"
+      id="tree-item-_r_3_-group"
       role="group"
       style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
@@ -1589,7 +1589,7 @@ exports[`Tree > should handle single select tree behavior 3`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r4:"
+          id="tree-item-_r_4_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1610,7 +1610,7 @@ exports[`Tree > should handle single select tree behavior 3`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r5:"
+          id="tree-item-_r_5_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1630,7 +1630,7 @@ exports[`Tree > should handle single select tree behavior 3`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:r5:-group"
+          id="tree-item-_r_5_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -1642,7 +1642,7 @@ exports[`Tree > should handle single select tree behavior 3`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:r6:"
+              id="tree-item-_r_6_"
               role="treeitem"
               tabindex="-1"
             >
@@ -1662,7 +1662,7 @@ exports[`Tree > should handle single select tree behavior 3`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:r6:-group"
+              id="tree-item-_r_6_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -1673,7 +1673,7 @@ exports[`Tree > should handle single select tree behavior 3`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:r7:"
+                  id="tree-item-_r_7_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -1697,7 +1697,7 @@ exports[`Tree > should handle single select tree behavior 3`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r8:"
+          id="tree-item-_r_8_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1719,7 +1719,7 @@ exports[`Tree > should handle single select tree behavior 3`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r9:"
+      id="tree-item-_r_9_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1737,10 +1737,10 @@ exports[`Tree > should handle single select tree behavior 3`] = `
 
 exports[`Tree > should handle single select tree behavior 4`] = `
 <ul
-  aria-activedescendant="tree-item-:r2:"
+  aria-activedescendant="tree-item-_r_2_"
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r1:"
+  id="tree-_r_1_"
   role="tree"
   tabindex="0"
 >
@@ -1751,7 +1751,7 @@ exports[`Tree > should handle single select tree behavior 4`] = `
     <span
       aria-selected="true"
       class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r2:"
+      id="tree-item-_r_2_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1772,7 +1772,7 @@ exports[`Tree > should handle single select tree behavior 4`] = `
       aria-expanded="true"
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r3:"
+      id="tree-item-_r_3_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1792,7 +1792,7 @@ exports[`Tree > should handle single select tree behavior 4`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
-      id="tree-item-:r3:-group"
+      id="tree-item-_r_3_-group"
       role="group"
       style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
@@ -1803,7 +1803,7 @@ exports[`Tree > should handle single select tree behavior 4`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r4:"
+          id="tree-item-_r_4_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1824,7 +1824,7 @@ exports[`Tree > should handle single select tree behavior 4`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r5:"
+          id="tree-item-_r_5_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1844,7 +1844,7 @@ exports[`Tree > should handle single select tree behavior 4`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:r5:-group"
+          id="tree-item-_r_5_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -1856,7 +1856,7 @@ exports[`Tree > should handle single select tree behavior 4`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:r6:"
+              id="tree-item-_r_6_"
               role="treeitem"
               tabindex="-1"
             >
@@ -1876,7 +1876,7 @@ exports[`Tree > should handle single select tree behavior 4`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:r6:-group"
+              id="tree-item-_r_6_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -1887,7 +1887,7 @@ exports[`Tree > should handle single select tree behavior 4`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:r7:"
+                  id="tree-item-_r_7_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -1911,7 +1911,7 @@ exports[`Tree > should handle single select tree behavior 4`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r8:"
+          id="tree-item-_r_8_"
           role="treeitem"
           tabindex="-1"
         >
@@ -1933,7 +1933,7 @@ exports[`Tree > should handle single select tree behavior 4`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r9:"
+      id="tree-item-_r_9_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1951,10 +1951,10 @@ exports[`Tree > should handle single select tree behavior 4`] = `
 
 exports[`Tree > should handle single select tree behavior 5`] = `
 <ul
-  aria-activedescendant="tree-item-:r3:"
+  aria-activedescendant="tree-item-_r_3_"
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r1:"
+  id="tree-_r_1_"
   role="tree"
   tabindex="0"
 >
@@ -1965,7 +1965,7 @@ exports[`Tree > should handle single select tree behavior 5`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r2:"
+      id="tree-item-_r_2_"
       role="treeitem"
       tabindex="-1"
     >
@@ -1986,7 +1986,7 @@ exports[`Tree > should handle single select tree behavior 5`] = `
       aria-expanded="false"
       aria-selected="true"
       class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r3:"
+      id="tree-item-_r_3_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2006,7 +2006,7 @@ exports[`Tree > should handle single select tree behavior 5`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-      id="tree-item-:r3:-group"
+      id="tree-item-_r_3_-group"
       role="group"
       style="max-height: 0; --rmd-tree-depth: 1; padding-top: 0px; padding-bottom: 0px;"
     >
@@ -2017,7 +2017,7 @@ exports[`Tree > should handle single select tree behavior 5`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r4:"
+          id="tree-item-_r_4_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2038,7 +2038,7 @@ exports[`Tree > should handle single select tree behavior 5`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r5:"
+          id="tree-item-_r_5_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2058,7 +2058,7 @@ exports[`Tree > should handle single select tree behavior 5`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:r5:-group"
+          id="tree-item-_r_5_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -2070,7 +2070,7 @@ exports[`Tree > should handle single select tree behavior 5`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:r6:"
+              id="tree-item-_r_6_"
               role="treeitem"
               tabindex="-1"
             >
@@ -2090,7 +2090,7 @@ exports[`Tree > should handle single select tree behavior 5`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:r6:-group"
+              id="tree-item-_r_6_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -2101,7 +2101,7 @@ exports[`Tree > should handle single select tree behavior 5`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:r7:"
+                  id="tree-item-_r_7_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -2125,7 +2125,7 @@ exports[`Tree > should handle single select tree behavior 5`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r8:"
+          id="tree-item-_r_8_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2147,7 +2147,7 @@ exports[`Tree > should handle single select tree behavior 5`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r9:"
+      id="tree-item-_r_9_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2168,7 +2168,7 @@ exports[`Tree > should render the tree item as a link if the to or href exists o
   aria-activedescendant=""
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r2o:"
+  id="tree-_r_2o_"
   role="tree"
   tabindex="0"
 >
@@ -2180,7 +2180,7 @@ exports[`Tree > should render the tree item as a link if the to or href exists o
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="/path-1"
-      id="tree-item-:r2p:"
+      id="tree-item-_r_2p_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2201,7 +2201,7 @@ exports[`Tree > should render the tree item as a link if the to or href exists o
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--link rmd-list-item rmd-interaction-surface"
       href="https://example.com"
-      id="tree-item-:r2q:"
+      id="tree-item-_r_2q_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2222,7 +2222,7 @@ exports[`Tree > should render the tree item as a link if the to or href exists o
       aria-disabled="true"
       aria-selected="false"
       class="rmd-tree-item__content rmd-tree-item__content--disabled rmd-list-item rmd-list-item--disabled-color rmd-interaction-surface"
-      id="tree-item-:r2r:"
+      id="tree-item-_r_2r_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2243,7 +2243,7 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
   aria-activedescendant=""
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r1p:"
+  id="tree-_r_1p_"
   role="tree"
   tabindex="0"
 >
@@ -2254,7 +2254,7 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r1q:"
+      id="tree-item-_r_1q_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2275,7 +2275,7 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
       aria-expanded="false"
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r1r:"
+      id="tree-item-_r_1r_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2301,7 +2301,7 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r1s:"
+      id="tree-item-_r_1s_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2319,10 +2319,10 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
 
 exports[`Tree > should support conditionally rendering child trees by enabling temporaryChildItems 2`] = `
 <ul
-  aria-activedescendant="tree-item-:r1r:"
+  aria-activedescendant="tree-item-_r_1r_"
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r1p:"
+  id="tree-_r_1p_"
   role="tree"
   tabindex="0"
 >
@@ -2333,7 +2333,7 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r1q:"
+      id="tree-item-_r_1q_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2354,7 +2354,7 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
       aria-expanded="true"
       aria-selected="true"
       class="rmd-tree-item__content rmd-tree-item__content--focused rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r1r:"
+      id="tree-item-_r_1r_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2374,7 +2374,7 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
-      id="tree-item-:r1r:-group"
+      id="tree-item-_r_1r_-group"
       role="group"
       style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
@@ -2385,7 +2385,7 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r1t:"
+          id="tree-item-_r_1t_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2406,7 +2406,7 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r1u:"
+          id="tree-item-_r_1u_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2432,7 +2432,7 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r1v:"
+          id="tree-item-_r_1v_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2454,7 +2454,7 @@ exports[`Tree > should support conditionally rendering child trees by enabling t
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r1s:"
+      id="tree-item-_r_1s_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2475,7 +2475,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
   aria-activedescendant=""
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:rj:"
+  id="tree-_r_j_"
   role="tree"
   tabindex="0"
 >
@@ -2486,7 +2486,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rk:"
+      id="tree-item-_r_k_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2507,7 +2507,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
       aria-expanded="true"
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rl:"
+      id="tree-item-_r_l_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2527,7 +2527,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse"
-      id="tree-item-:rl:-group"
+      id="tree-item-_r_l_-group"
       role="group"
       style="--rmd-tree-depth: 1;"
     >
@@ -2538,7 +2538,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
         <span
           aria-selected="true"
           class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rm:"
+          id="tree-item-_r_m_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2559,7 +2559,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rn:"
+          id="tree-item-_r_n_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2579,7 +2579,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:rn:-group"
+          id="tree-item-_r_n_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -2591,7 +2591,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:ro:"
+              id="tree-item-_r_o_"
               role="treeitem"
               tabindex="-1"
             >
@@ -2611,7 +2611,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:ro:-group"
+              id="tree-item-_r_o_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -2622,7 +2622,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:rp:"
+                  id="tree-item-_r_p_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -2646,7 +2646,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rq:"
+          id="tree-item-_r_q_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2668,7 +2668,7 @@ exports[`Tree > should support default selected and expanded ids 1`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rr:"
+      id="tree-item-_r_r_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2689,7 +2689,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
   aria-activedescendant=""
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:rs:"
+  id="tree-_r_s_"
   role="tree"
   tabindex="0"
 >
@@ -2700,7 +2700,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:rt:"
+      id="tree-item-_r_t_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2721,7 +2721,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
       aria-expanded="true"
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:ru:"
+      id="tree-item-_r_u_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2741,7 +2741,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse"
-      id="tree-item-:ru:-group"
+      id="tree-item-_r_u_-group"
       role="group"
       style="--rmd-tree-depth: 1;"
     >
@@ -2752,7 +2752,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
         <span
           aria-selected="true"
           class="rmd-tree-item__content rmd-tree-item__content--selected rmd-list-item rmd-interaction-surface"
-          id="tree-item-:rv:"
+          id="tree-item-_r_v_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2773,7 +2773,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r10:"
+          id="tree-item-_r_10_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2793,7 +2793,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:r10:-group"
+          id="tree-item-_r_10_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -2805,7 +2805,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:r11:"
+              id="tree-item-_r_11_"
               role="treeitem"
               tabindex="-1"
             >
@@ -2825,7 +2825,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:r11:-group"
+              id="tree-item-_r_11_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -2836,7 +2836,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:r12:"
+                  id="tree-item-_r_12_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -2860,7 +2860,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r13:"
+          id="tree-item-_r_13_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2882,7 +2882,7 @@ exports[`Tree > should support default selected and expanded ids 2`] = `
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r14:"
+      id="tree-item-_r_14_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2903,7 +2903,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
   aria-activedescendant=""
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r24:"
+  id="tree-_r_24_"
   role="tree"
   tabindex="0"
 >
@@ -2914,7 +2914,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r25:"
+      id="tree-item-_r_25_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2935,7 +2935,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
       aria-expanded="false"
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r26:"
+      id="tree-item-_r_26_"
       role="treeitem"
       tabindex="-1"
     >
@@ -2954,7 +2954,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-      id="tree-item-:r26:-group"
+      id="tree-item-_r_26_-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
     >
@@ -2965,7 +2965,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r27:"
+          id="tree-item-_r_27_"
           role="treeitem"
           tabindex="-1"
         >
@@ -2986,7 +2986,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r28:"
+          id="tree-item-_r_28_"
           role="treeitem"
           tabindex="-1"
         >
@@ -3005,7 +3005,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:r28:-group"
+          id="tree-item-_r_28_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -3017,7 +3017,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:r29:"
+              id="tree-item-_r_29_"
               role="treeitem"
               tabindex="-1"
             >
@@ -3036,7 +3036,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:r29:-group"
+              id="tree-item-_r_29_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -3047,7 +3047,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:r2a:"
+                  id="tree-item-_r_2a_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -3071,7 +3071,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r2b:"
+          id="tree-item-_r_2b_"
           role="treeitem"
           tabindex="-1"
         >
@@ -3093,7 +3093,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r2c:"
+      id="tree-item-_r_2c_"
       role="treeitem"
       tabindex="-1"
     >
@@ -3114,7 +3114,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
   aria-activedescendant=""
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r24:"
+  id="tree-_r_24_"
   role="tree"
   tabindex="0"
 >
@@ -3125,7 +3125,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r25:"
+      id="tree-item-_r_25_"
       role="treeitem"
       tabindex="-1"
     >
@@ -3156,7 +3156,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
       aria-expanded="false"
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r26:"
+      id="tree-item-_r_26_"
       role="treeitem"
       tabindex="-1"
     >
@@ -3186,7 +3186,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-      id="tree-item-:r26:-group"
+      id="tree-item-_r_26_-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
     >
@@ -3197,7 +3197,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r27:"
+          id="tree-item-_r_27_"
           role="treeitem"
           tabindex="-1"
         >
@@ -3228,7 +3228,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r28:"
+          id="tree-item-_r_28_"
           role="treeitem"
           tabindex="-1"
         >
@@ -3258,7 +3258,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:r28:-group"
+          id="tree-item-_r_28_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -3270,7 +3270,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:r29:"
+              id="tree-item-_r_29_"
               role="treeitem"
               tabindex="-1"
             >
@@ -3300,7 +3300,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:r29:-group"
+              id="tree-item-_r_29_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -3311,7 +3311,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:r2a:"
+                  id="tree-item-_r_2a_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -3345,7 +3345,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r2b:"
+          id="tree-item-_r_2b_"
           role="treeitem"
           tabindex="-1"
         >
@@ -3377,7 +3377,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r2c:"
+      id="tree-item-_r_2c_"
       role="treeitem"
       tabindex="-1"
     >
@@ -3408,7 +3408,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
   aria-activedescendant=""
   aria-label="Tree"
   class="rmd-list rmd-tree"
-  id="tree-:r24:"
+  id="tree-_r_24_"
   role="tree"
   tabindex="0"
 >
@@ -3419,7 +3419,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r25:"
+      id="tree-item-_r_25_"
       role="treeitem"
       tabindex="-1"
     >
@@ -3440,7 +3440,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
       aria-expanded="false"
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r26:"
+      id="tree-item-_r_26_"
       role="treeitem"
       tabindex="-1"
     >
@@ -3460,7 +3460,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
     </span>
     <ul
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-      id="tree-item-:r26:-group"
+      id="tree-item-_r_26_-group"
       role="group"
       style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
     >
@@ -3471,7 +3471,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r27:"
+          id="tree-item-_r_27_"
           role="treeitem"
           tabindex="-1"
         >
@@ -3492,7 +3492,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
           aria-expanded="false"
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r28:"
+          id="tree-item-_r_28_"
           role="treeitem"
           tabindex="-1"
         >
@@ -3512,7 +3512,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
         </span>
         <ul
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-          id="tree-item-:r28:-group"
+          id="tree-item-_r_28_-group"
           role="group"
           style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
@@ -3524,7 +3524,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
               aria-expanded="false"
               aria-selected="false"
               class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-              id="tree-item-:r29:"
+              id="tree-item-_r_29_"
               role="treeitem"
               tabindex="-1"
             >
@@ -3544,7 +3544,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
             </span>
             <ul
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-              id="tree-item-:r29:-group"
+              id="tree-item-_r_29_-group"
               role="group"
               style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
@@ -3555,7 +3555,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
                 <span
                   aria-selected="false"
                   class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-                  id="tree-item-:r2a:"
+                  id="tree-item-_r_2a_"
                   role="treeitem"
                   tabindex="-1"
                 >
@@ -3579,7 +3579,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
         <span
           aria-selected="false"
           class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-          id="tree-item-:r2b:"
+          id="tree-item-_r_2b_"
           role="treeitem"
           tabindex="-1"
         >
@@ -3601,7 +3601,7 @@ exports[`Tree > should support rendering the expander icon to the left of the it
     <span
       aria-selected="false"
       class="rmd-tree-item__content rmd-list-item rmd-interaction-surface"
-      id="tree-item-:r2c:"
+      id="tree-item-_r_2c_"
       role="treeitem"
       tabindex="-1"
     >

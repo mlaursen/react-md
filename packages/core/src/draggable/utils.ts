@@ -125,7 +125,7 @@ interface UpdateDragPositionOptions extends Omit<
   "container"
 > {
   event: ClientPositionEvent;
-  nodeRef: RefObject<HTMLElement>;
+  nodeRef: RefObject<HTMLElement | null>;
   focus?: boolean;
   isDragStart: boolean;
   setValue: (value: number) => void;

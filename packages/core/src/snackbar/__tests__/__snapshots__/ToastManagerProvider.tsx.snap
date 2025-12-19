@@ -4,11 +4,11 @@ exports[`ToastManagerProvider > default toast manager > should work without need
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r0:"
+  id="snackbar-_r_0_"
 >
   <div
     class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
-    id="toast-:r1:"
+    id="toast-_r_1_"
     role="status"
   >
     <div
@@ -24,11 +24,11 @@ exports[`ToastManagerProvider > default toast manager > should work without need
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r0:"
+  id="snackbar-_r_0_"
 >
   <div
     class="rmd-toast"
-    id="toast-:r1:"
+    id="toast-_r_1_"
     role="status"
   >
     <div
@@ -43,7 +43,7 @@ exports[`ToastManagerProvider > default toast manager > should work without need
 exports[`ToastManagerProvider > toast queue > should add a toast next in queue if a different toast is being displayed and duplicates are allowed or the toast does not exist in the queue yet 1`] = `
 <div
   class="rmd-toast"
-  id="toast-:r10:"
+  id="toast-_r_10_"
   role="status"
 >
   <div
@@ -57,7 +57,7 @@ exports[`ToastManagerProvider > toast queue > should add a toast next in queue i
 exports[`ToastManagerProvider > toast queue > should allow a toast to replace the currently shown toast 1`] = `
 <div
   class="rmd-toast"
-  id="toast-:rk:"
+  id="toast-_r_k_"
   role="status"
 >
   <div
@@ -72,11 +72,11 @@ exports[`ToastManagerProvider > toast queue > should not trigger a timeout if th
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1d:"
+  id="snackbar-_r_1d_"
 >
   <div
     class="rmd-toast rmd-toast--x rmd-scale-transition--enter rmd-scale-transition--enter-active"
-    id="toast-:r1e:"
+    id="toast-_r_1e_"
     role="alert"
   >
     <div
@@ -104,11 +104,11 @@ exports[`ToastManagerProvider > toast queue > should not trigger a timeout if th
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1d:"
+  id="snackbar-_r_1d_"
 >
   <div
     class="rmd-toast rmd-toast--x rmd-scale-transition--exit rmd-scale-transition--exit-active"
-    id="toast-:r1e:"
+    id="toast-_r_1e_"
     role="alert"
   >
     <div
@@ -136,11 +136,11 @@ exports[`ToastManagerProvider > toast queue > should support rendering multiple 
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1f:"
+  id="snackbar-_r_1f_"
 >
   <div
     class="rmd-toast"
-    id="toast-:r1g:"
+    id="toast-_r_1g_"
     role="status"
   >
     <div
@@ -151,7 +151,7 @@ exports[`ToastManagerProvider > toast queue > should support rendering multiple 
   </div>
   <div
     class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
-    id="toast-:r1h:"
+    id="toast-_r_1h_"
     role="status"
   >
     <div
@@ -162,7 +162,7 @@ exports[`ToastManagerProvider > toast queue > should support rendering multiple 
   </div>
   <div
     class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
-    id="toast-:r1i:"
+    id="toast-_r_1i_"
     role="status"
   >
     <div
@@ -178,11 +178,11 @@ exports[`ToastManagerProvider > toast queue > should support rendering multiple 
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1f:"
+  id="snackbar-_r_1f_"
 >
   <div
     class="rmd-toast"
-    id="toast-:r1h:"
+    id="toast-_r_1h_"
     role="status"
   >
     <div
@@ -193,7 +193,7 @@ exports[`ToastManagerProvider > toast queue > should support rendering multiple 
   </div>
   <div
     class="rmd-toast"
-    id="toast-:r1i:"
+    id="toast-_r_1i_"
     role="status"
   >
     <div
@@ -204,7 +204,7 @@ exports[`ToastManagerProvider > toast queue > should support rendering multiple 
   </div>
   <div
     class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
-    id="toast-:r1j:"
+    id="toast-_r_1j_"
     role="status"
   >
     <div
@@ -220,11 +220,11 @@ exports[`ToastManagerProvider > toast queue > should support rendering multiple 
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1f:"
+  id="snackbar-_r_1f_"
 >
   <div
     class="rmd-toast rmd-scale-transition--exit rmd-scale-transition--exit-active"
-    id="toast-:r1h:"
+    id="toast-_r_1h_"
     role="status"
   >
     <div
@@ -235,7 +235,7 @@ exports[`ToastManagerProvider > toast queue > should support rendering multiple 
   </div>
   <div
     class="rmd-toast rmd-scale-transition--exit rmd-scale-transition--exit-active"
-    id="toast-:r1i:"
+    id="toast-_r_1i_"
     role="status"
   >
     <div
@@ -246,7 +246,7 @@ exports[`ToastManagerProvider > toast queue > should support rendering multiple 
   </div>
   <div
     class="rmd-toast"
-    id="toast-:r1j:"
+    id="toast-_r_1j_"
     role="status"
   >
     <div
@@ -262,11 +262,11 @@ exports[`ToastManagerProvider > toast queue > should support rendering multiple 
 <div
   class="rmd-snackbar rmd-snackbar--bottom"
   data-testid="snackbar"
-  id="snackbar-:r1f:"
+  id="snackbar-_r_1f_"
 >
   <div
     class="rmd-toast rmd-scale-transition--exit rmd-scale-transition--exit-active"
-    id="toast-:r1j:"
+    id="toast-_r_1j_"
     role="status"
   >
     <div
@@ -277,7 +277,7 @@ exports[`ToastManagerProvider > toast queue > should support rendering multiple 
   </div>
   <div
     class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
-    id="toast-:r1k:"
+    id="toast-_r_1k_"
     role="status"
   >
     <div

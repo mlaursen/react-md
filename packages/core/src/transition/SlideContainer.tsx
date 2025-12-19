@@ -1,5 +1,5 @@
 import { cnb } from "cnbuilder";
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import { bem } from "../utils/bem.js";
 
@@ -72,7 +72,9 @@ export function slideContainer(
 
 /** @since 6.0.0 */
 export interface SlideContainerProps
-  extends HTMLAttributes<HTMLDivElement>, SlideContainerClassNameOptions {}
+  extends HTMLAttributes<HTMLDivElement>, SlideContainerClassNameOptions {
+  ref?: Ref<HTMLDivElement>;
+}
 
 /**
  * The `SlideContainer` is used to enable a slide transition when child `Slide`
@@ -125,18 +127,16 @@ export interface SlideContainerProps
  * @see {@link https://react-md.dev/components/slide | Slide Demos}
  * @since 6.0.0
  */
-export const SlideContainer = forwardRef<HTMLDivElement, SlideContainerProps>(
-  function SlideContainer(props, ref) {
-    const { className, direction, vertical, children, ...remaining } = props;
+export function SlideContainer(props: SlideContainerProps): ReactElement {
+  const { ref, className, direction, vertical, children, ...remaining } = props;
 
-    return (
-      <div
-        {...remaining}
-        ref={ref}
-        className={slideContainer({ className, direction, vertical })}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+  return (
+    <div
+      {...remaining}
+      ref={ref}
+      className={slideContainer({ className, direction, vertical })}
+    >
+      {children}
+    </div>
+  );
+}

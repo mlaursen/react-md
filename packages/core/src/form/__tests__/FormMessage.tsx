@@ -4,12 +4,12 @@ import { describe, expect, it } from "vitest";
 import { render, screen } from "../../test-utils/index.js";
 import { type PropsWithRef } from "../../types.js";
 import { FormMessage } from "../FormMessage.js";
-import { type FormMessageProps } from "../types.js";
+import { type ConfigurableFormMessageProps } from "../types.js";
 
 describe("FormMessage", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLDivElement>();
-    const props: PropsWithRef<FormMessageProps> = {
+    const props: PropsWithRef<ConfigurableFormMessageProps> = {
       "data-testid": "container",
       ref,
     };

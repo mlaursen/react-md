@@ -8,7 +8,7 @@ import { useToggle } from "@react-md/core/useToggle";
 import RefreshOutlinedIcon from "@react-md/material-icons/RefreshOutlinedIcon";
 import { type ReactElement } from "react";
 
-import { ScssCodeEditor } from "@/components/DemoCode/ScssCodeEditor.jsx";
+import { ScssCodeEditor } from "@/components/DemoCode/ScssCodeEditor.js";
 
 export interface SassDocExampleEditorProps {
   scssCodeFile: ScssCodeFile;

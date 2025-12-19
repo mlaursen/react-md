@@ -199,7 +199,7 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
       <MenuItemButton
         {...(remaining as DropdownMenuItemButtonProps)}
         id={id}
-        ref={fixedTo as RefObject<HTMLLIElement>}
+        ref={fixedTo as RefObject<HTMLLIElement | null>}
         iconRotatorProps={iconRotatorProps}
       >
         {buttonChildren}
@@ -210,7 +210,7 @@ export function DropdownMenu(props: DropdownMenuProps): ReactElement {
       <MenuButton
         {...(remaining as DropdownMenuButtonProps)}
         id={id}
-        ref={fixedTo as RefObject<HTMLButtonElement>}
+        ref={fixedTo as RefObject<HTMLButtonElement | null>}
         floating={floating}
         iconRotatorProps={iconRotatorProps}
       >

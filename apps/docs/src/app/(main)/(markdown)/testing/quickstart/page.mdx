@@ -77,7 +77,7 @@ Now replace all `@testing-library/react` imports with `@react-md/core/test-utils
 -import { render, userEvent } from "@testing-library/react";
 +import { rmdRender, userEvent } from "@react-md/core/test-utils";
 
- import App from "../App.jsx";
+ import App from "../App.js";
 
  describe('App', () => {
    it('should render without crashing', () => {

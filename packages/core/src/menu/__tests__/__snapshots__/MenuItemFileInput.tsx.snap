@@ -3,7 +3,7 @@
 exports[`MenuItemFileInput > should apply the correct styling, HTMLAttributes, and allow a ref 1`] = `
 <li
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
-  id="menu-item-:r0:"
+  id="menu-item-_r_0_"
   role="menuitem"
   tabindex="-1"
 >
@@ -24,7 +24,7 @@ exports[`MenuItemFileInput > should apply the correct styling, HTMLAttributes, a
 exports[`MenuItemFileInput > should apply the correct styling, HTMLAttributes, and allow a ref 2`] = `
 <li
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item custom-class-name"
-  id="menu-item-:r0:"
+  id="menu-item-_r_0_"
   role="menuitem"
   style="color: orange;"
   tabindex="-1"
@@ -55,7 +55,7 @@ exports[`MenuItemFileInput > should default to using the upload icon as the left
 exports[`MenuItemFileInput > should default to using the upload icon as the leftAddon 2`] = `
 <li
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
-  id="menu-item-:r2:"
+  id="menu-item-_r_2_"
   role="menuitem"
   tabindex="-1"
 >
@@ -76,7 +76,7 @@ exports[`MenuItemFileInput > should default to using the upload icon as the left
 exports[`MenuItemFileInput > should default to using the upload icon as the leftAddon 3`] = `
 <li
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
-  id="menu-item-:r2:"
+  id="menu-item-_r_2_"
   role="menuitem"
   tabindex="-1"
 >

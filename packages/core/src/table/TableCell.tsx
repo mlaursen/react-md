@@ -2,10 +2,11 @@
 
 import {
   type ButtonHTMLAttributes,
+  type ReactElement,
   type ReactNode,
+  type Ref,
   type TdHTMLAttributes,
   type ThHTMLAttributes,
-  forwardRef,
 } from "react";
 
 import { getIcon } from "../icon/config.js";
@@ -69,6 +70,8 @@ export interface TableCellOptions extends TableCellConfig {
  * @since 6.0.0 Removed `disablePadding` in favor of `padding`.
  */
 export interface TableCellProps extends TableCellAttributes, TableCellOptions {
+  ref?: Ref<HTMLTableCellElement>;
+
   /**
    * If you want to apply a sort icon for a header cell, set this prop to either
    * `"ascending"` or `"descending"`. When you change the sort order, this prop
@@ -213,88 +216,87 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
  *
  * @see {@link https://react-md.dev/components/table | Table Demos}
  */
-export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
-  function TableCell(props, ref) {
-    const {
-      "aria-sort": sortOrder,
-      className,
-      grow = false,
-      scope: propScope,
-      hAlign: propHAlign,
-      vAlign: propVAlign,
-      header: propHeader,
-      lineWrap: propDisableLineWrap,
-      inputToggle,
-      children,
-      beforeChildren,
-      afterChildren,
-      sticky,
-      sortIcon: propSortIcon,
-      sortIconAfter = false,
-      sortIconRotated,
-      iconRotatorProps,
-      padding = "horizontal",
-      contentProps,
-      ...remaining
-    } = props;
+export function TableCell(props: TableCellProps): ReactElement {
+  const {
+    ref,
+    "aria-sort": sortOrder,
+    className,
+    grow = false,
+    scope: propScope,
+    hAlign: propHAlign,
+    vAlign: propVAlign,
+    header: propHeader,
+    lineWrap: propDisableLineWrap,
+    inputToggle,
+    children,
+    beforeChildren,
+    afterChildren,
+    sticky,
+    sortIcon: propSortIcon,
+    sortIconAfter = false,
+    sortIconRotated,
+    iconRotatorProps,
+    padding = "horizontal",
+    contentProps,
+    ...remaining
+  } = props;
 
-    const sortIcon = getIcon("sort", propSortIcon);
+  const sortIcon = getIcon("sort", propSortIcon);
 
-    // Note: unlike the other usages of `useTableConfig`, the `propHeader`
-    // is not provided. This is so that `TableCheckbox` components can still
-    // be a sticky header without being rendered as a `<th>`. This also makes
-    // it so the scope can be defaulted to `col` or `row` automatically.
-    const {
-      header: inheritedHeader,
-      hAlign,
-      vAlign,
-      lineWrap,
-    } = useTableConfig({
-      hAlign: propHAlign,
-      vAlign: propVAlign,
-      lineWrap: propDisableLineWrap,
-    });
-    const header = propHeader ?? inheritedHeader;
+  // Note: unlike the other usages of `useTableConfig`, the `propHeader`
+  // is not provided. This is so that `TableCheckbox` components can still
+  // be a sticky header without being rendered as a `<th>`. This also makes
+  // it so the scope can be defaulted to `col` or `row` automatically.
+  const {
+    header: inheritedHeader,
+    hAlign,
+    vAlign,
+    lineWrap,
+  } = useTableConfig({
+    hAlign: propHAlign,
+    vAlign: propVAlign,
+    lineWrap: propDisableLineWrap,
+  });
+  const header = propHeader ?? inheritedHeader;
 
-    let scope = propScope;
-    if (!scope && header) {
-      scope = !inheritedHeader && propHeader ? "row" : "col";
-    }
-
-    const Component = header ? "th" : "td";
-    return (
-      <Component
-        {...remaining}
-        ref={ref}
-        aria-sort={sortOrder === "none" ? undefined : sortOrder}
-        className={tableCell({
-          className,
-          grow,
-          header,
-          sticky,
-          inputToggle,
-          hAlign,
-          vAlign,
-          lineWrap: !sortOrder && lineWrap,
-          padding: sortIcon && sortOrder ? "none" : padding,
-          isInTableHeader: inheritedHeader,
-        })}
-        scope={scope}
-      >
-        {beforeChildren}
-        <TableCellContent
-          {...contentProps}
-          icon={sortIcon}
-          iconAfter={sortIconAfter}
-          iconRotatorProps={iconRotatorProps}
-          sortOrder={sortOrder}
-          hAlign={hAlign}
-          rotated={sortIconRotated}
-        >
-          {children}
-        </TableCellContent>
-        {afterChildren}
-      </Component>
-    );
+  let scope = propScope;
+  if (!scope && header) {
+    scope = !inheritedHeader && propHeader ? "row" : "col";
   }
-);
+
+  const Component = header ? "th" : "td";
+  return (
+    <Component
+      {...remaining}
+      ref={ref}
+      aria-sort={sortOrder === "none" ? undefined : sortOrder}
+      className={tableCell({
+        className,
+        grow,
+        header,
+        sticky,
+        inputToggle,
+        hAlign,
+        vAlign,
+        lineWrap: !sortOrder && lineWrap,
+        padding: sortIcon && sortOrder ? "none" : padding,
+        isInTableHeader: inheritedHeader,
+      })}
+      scope={scope}
+    >
+      {beforeChildren}
+      <TableCellContent
+        {...contentProps}
+        icon={sortIcon}
+        iconAfter={sortIconAfter}
+        iconRotatorProps={iconRotatorProps}
+        sortOrder={sortOrder}
+        hAlign={hAlign}
+        rotated={sortIconRotated}
+      >
+        {children}
+      </TableCellContent>
+      {afterChildren}
+    </Component>
+  );
+}

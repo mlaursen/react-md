@@ -4,7 +4,7 @@ exports[`DropdownMenu > should allow for a custom dropdown icon before or after 
 <button
   aria-haspopup="menu"
   class="rmd-button rmd-button--text rmd-interaction-surface"
-  id="menubutton-:r1s:"
+  id="menubutton-_r_1s_"
   type="button"
 >
   <span>
@@ -23,7 +23,7 @@ exports[`DropdownMenu > should allow for a custom dropdown icon before or after 
 <button
   aria-haspopup="menu"
   class="rmd-button rmd-button--text rmd-interaction-surface"
-  id="menubutton-:r1s:"
+  id="menubutton-_r_1s_"
   type="button"
 >
   <span
@@ -42,7 +42,7 @@ exports[`DropdownMenu > should allow for a custom dropdown icon before or after 
 <button
   aria-haspopup="menu"
   class="rmd-button rmd-button--text rmd-interaction-surface"
-  id="menubutton-:r1s:"
+  id="menubutton-_r_1s_"
   type="button"
 >
   <span
@@ -59,9 +59,9 @@ exports[`DropdownMenu > should allow for a custom dropdown icon before or after 
 
 exports[`DropdownMenu > should be able to render as a sheet 1`] = `
 <div
-  aria-labelledby="menubutton-:r1f:"
+  aria-labelledby="menubutton-_r_1f_"
   class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline rmd-sheet rmd-sheet--vertical rmd-sheet--raised rmd-sheet--bottom rmd-sheet--touchable-height"
-  id="dialog-:r1l:"
+  id="dialog-_r_1l_"
   role="dialog"
   tabindex="-1"
 >
@@ -78,9 +78,9 @@ exports[`DropdownMenu > should be able to render as a sheet 1`] = `
     </button>
   </div>
   <div
-    aria-labelledby="menubutton-:r1f:"
+    aria-labelledby="menubutton-_r_1f_"
     class="rmd-menu"
-    id="menu-:r1h:"
+    id="menu-_r_1h_"
     role="menu"
     tabindex="0"
   >
@@ -90,7 +90,7 @@ exports[`DropdownMenu > should be able to render as a sheet 1`] = `
     >
       <li
         class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
-        id="menuitem-:r1m:"
+        id="menuitem-_r_1m_"
         role="menuitem"
         tabindex="-1"
       >
@@ -102,7 +102,7 @@ exports[`DropdownMenu > should be able to render as a sheet 1`] = `
       </li>
       <li
         class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
-        id="menuitem-:r1n:"
+        id="menuitem-_r_1n_"
         role="menuitem"
         tabindex="-1"
       >
@@ -114,7 +114,7 @@ exports[`DropdownMenu > should be able to render as a sheet 1`] = `
       </li>
       <li
         class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
-        id="menuitem-:r1o:"
+        id="menuitem-_r_1o_"
         role="menuitem"
         tabindex="-1"
       >
@@ -146,7 +146,7 @@ exports[`DropdownMenu > should remove the dropdown icon when rendered as an icon
   aria-haspopup="menu"
   aria-label="Options"
   class="rmd-button rmd-button--icon rmd-interaction-surface"
-  id="menubutton-:r1p:"
+  id="menubutton-_r_1p_"
   type="button"
 >
   <span
@@ -163,7 +163,7 @@ exports[`DropdownMenu > should remove the dropdown icon when rendered as an icon
   aria-haspopup="menu"
   aria-label="Options"
   class="rmd-button rmd-button--icon rmd-button--contained rmd-background-container rmd-secondary-container rmd-interaction-surface"
-  id="menubutton-:r1p:"
+  id="menubutton-_r_1p_"
   type="button"
 >
   <span
@@ -179,7 +179,7 @@ exports[`DropdownMenu > should render as a button and toggle the visibility when
 <button
   aria-haspopup="menu"
   class="rmd-button rmd-button--text rmd-interaction-surface"
-  id="menubutton-:r0:"
+  id="menubutton-_r_0_"
   type="button"
 >
   <span>
@@ -196,9 +196,9 @@ exports[`DropdownMenu > should render as a button and toggle the visibility when
 
 exports[`DropdownMenu > should render as a button and toggle the visibility when clicked 2`] = `
 <div
-  aria-labelledby="menubutton-:r0:"
+  aria-labelledby="menubutton-_r_0_"
   class="rmd-menu rmd-menu--elevated"
-  id="menu-:r2:"
+  id="menu-_r_2_"
   role="menu"
   style="position: fixed; transform-origin: 0 0; left: 16px; top: 0px;"
   tabindex="-1"
@@ -209,7 +209,7 @@ exports[`DropdownMenu > should render as a button and toggle the visibility when
   >
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
-      id="menuitem-:r3:"
+      id="menuitem-_r_3_"
       role="menuitem"
       tabindex="-1"
     >
@@ -221,7 +221,7 @@ exports[`DropdownMenu > should render as a button and toggle the visibility when
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
-      id="menuitem-:r4:"
+      id="menuitem-_r_4_"
       role="menuitem"
       tabindex="-1"
     >
@@ -233,7 +233,7 @@ exports[`DropdownMenu > should render as a button and toggle the visibility when
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
-      id="menuitem-:r5:"
+      id="menuitem-_r_5_"
       role="menuitem"
       tabindex="-1"
     >
@@ -251,7 +251,7 @@ exports[`DropdownMenu > should render as a menuitem when a DropdownMenu is a chi
 <li
   aria-haspopup="menu"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
-  id="menuitem-:r22:"
+  id="menuitem-_r_22_"
   role="menuitem"
   tabindex="-1"
 >
@@ -273,7 +273,7 @@ exports[`DropdownMenu > should render as a menuitem when a DropdownMenu is a chi
 <li
   aria-haspopup="dialog"
   class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
-  id="menuitem-:r26:"
+  id="menuitem-_r_26_"
   role="menuitem"
   tabindex="-1"
 >

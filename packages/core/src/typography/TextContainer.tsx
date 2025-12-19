@@ -1,4 +1,4 @@
-import { type HTMLAttributes, forwardRef } from "react";
+import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
 import {
   type TextContainerClassNameOptions,
@@ -12,7 +12,9 @@ import {
  * behavior. Use the `textContainer` class name utility instead.
  */
 export interface TextContainerProps
-  extends HTMLAttributes<HTMLDivElement>, TextContainerClassNameOptions {}
+  extends HTMLAttributes<HTMLDivElement>, TextContainerClassNameOptions {
+  ref?: Ref<HTMLDivElement>;
+}
 
 /**
  * This component should be used to render text based content with an
@@ -47,14 +49,12 @@ export interface TextContainerProps
  * @since 6.0.0 Removed the `clone` prop and the children render function
  * behavior. Use the `textContainer` class name utility instead.
  */
-export const TextContainer = forwardRef<HTMLDivElement, TextContainerProps>(
-  function TextContainer(props, ref) {
-    const { className, children, ...remaining } = props;
+export function TextContainer(props: TextContainerProps): ReactElement {
+  const { ref, className, children, ...remaining } = props;
 
-    return (
-      <div {...remaining} ref={ref} className={textContainer({ className })}>
-        {children}
-      </div>
-    );
-  }
-);
+  return (
+    <div {...remaining} ref={ref} className={textContainer({ className })}>
+      {children}
+    </div>
+  );
+}

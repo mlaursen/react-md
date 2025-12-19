@@ -1,6 +1,10 @@
 "use client";
 
-import { type MouseEventHandler, type ReactNode, forwardRef } from "react";
+import {
+  type MouseEventHandler,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 import { Button, type ButtonProps } from "../button/Button.js";
 import { cssUtils } from "../cssUtils.js";
@@ -39,71 +43,70 @@ export interface NavItemButtonProps
  * @see {@link https://react-md.dev/components/navigation | Navigation Demos}
  * @since 6.0.0
  */
-export const NavItemButton = forwardRef<HTMLButtonElement, NavItemButtonProps>(
-  function NavItemButton(props, ref) {
-    const {
-      className,
-      collapsed,
-      icon,
-      iconRotatorProps,
-      disableIconRotator,
-      children,
-      beforeAddon,
-      afterAddon,
-      spanProps,
-      onBlur,
-      onContextMenu,
-      onFocus,
-      onMouseEnter,
-      onMouseLeave,
-      onTouchEnd,
-      onTouchStart,
-      tooltipOptions,
-      ...remaining
-    } = props;
+export function NavItemButton(props: NavItemButtonProps): ReactElement {
+  const {
+    ref,
+    className,
+    collapsed,
+    icon,
+    iconRotatorProps,
+    disableIconRotator,
+    children,
+    beforeAddon,
+    afterAddon,
+    spanProps,
+    onBlur,
+    onContextMenu,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
+    onTouchEnd,
+    onTouchStart,
+    tooltipOptions,
+    ...remaining
+  } = props;
 
-    const { elementProps, tooltipProps, overflowRef } = useTooltip({
-      overflowOnly: true,
-      defaultPosition: "right",
-      ...tooltipOptions,
-      onBlur,
-      onContextMenu,
-      onFocus,
-      onMouseEnter,
-      onMouseLeave,
-      onTouchEnd,
-      onTouchStart,
-    });
+  const { elementProps, tooltipProps, overflowRef } = useTooltip({
+    overflowOnly: true,
+    defaultPosition: "right",
+    ...tooltipOptions,
+    onBlur,
+    onContextMenu,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
+    onTouchEnd,
+    onTouchStart,
+  });
 
-    return (
-      <>
-        <Button
-          aria-expanded={!collapsed}
-          {...remaining}
-          {...elementProps}
-          ref={ref}
-          className={navItemContent({ className })}
+  return (
+    <>
+      <Button
+        aria-expanded={!collapsed}
+        {...remaining}
+        {...elementProps}
+        ref={ref}
+        className={navItemContent({ className })}
+      >
+        {beforeAddon}
+        <span
+          {...spanProps}
+          ref={overflowRef}
+          className={cssUtils({
+            className: spanProps?.className,
+            textOverflow: "ellipsis",
+          })}
         >
-          {beforeAddon}
-          <span
-            {...spanProps}
-            ref={overflowRef}
-            className={cssUtils({
-              className: spanProps?.className,
-              textOverflow: "ellipsis",
-            })}
-          >
-            {children}
-          </span>
-          {afterAddon}
-          {!disableIconRotator && (
-            <IconRotator {...iconRotatorProps} rotated={!collapsed}>
-              {getIcon("dropdown", icon)}
-            </IconRotator>
-          )}
-        </Button>
-        <Tooltip {...tooltipProps}>{children}</Tooltip>
-      </>
-    );
-  }
-);
+          {children}
+        </span>
+        {afterAddon}
+        {!disableIconRotator && (
+          <IconRotator {...iconRotatorProps} rotated={!collapsed}>
+            {getIcon("dropdown", icon)}
+          </IconRotator>
+        )}
+      </Button>
+      <Tooltip {...tooltipProps}>{children}</Tooltip>
+    </>
+  );
+}

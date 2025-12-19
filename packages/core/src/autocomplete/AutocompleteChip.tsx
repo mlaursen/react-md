@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 import { Chip } from "../chip/Chip.js";
 import { getIcon } from "../icon/config.js";
@@ -12,11 +12,9 @@ import { type AutocompleteChipProps } from "./types.js";
  * @see {@link https://react-md.dev/components/autocomplete | Autocomplete Demos}
  * @since 6.0.0
  */
-export const AutocompleteChip = forwardRef<
-  HTMLButtonElement,
-  AutocompleteChipProps
->(function AutocompleteChip(props, ref) {
+export function AutocompleteChip(props: AutocompleteChipProps): ReactElement {
   const {
+    ref,
     "aria-description": propAriaDescription,
     children,
     className,
@@ -47,4 +45,4 @@ export const AutocompleteChip = forwardRef<
       {children}
     </Chip>
   );
-});
+}

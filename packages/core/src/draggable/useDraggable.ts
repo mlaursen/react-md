@@ -5,6 +5,7 @@ import {
   type HTMLAttributes,
   type Ref,
   type RefCallback,
+  type RefObject,
   useCallback,
   useEffect,
   useRef,
@@ -13,11 +14,7 @@ import {
 
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { useScrollLock } from "../scroll/useScrollLock.js";
-import {
-  type NonNullRef,
-  type UseStateInitializer,
-  type UseStateSetter,
-} from "../types.js";
+import { type UseStateInitializer, type UseStateSetter } from "../types.js";
 import { useDir } from "../typography/WritingDirectionProvider.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useEnsuredState } from "../useEnsuredState.js";
@@ -331,7 +328,7 @@ export interface DraggableImplementation<
    * for manually persisting the value into local storage once the user has
    * stopped dragging.
    */
-  draggedOnce: NonNullRef<boolean>;
+  draggedOnce: RefObject<boolean>;
 
   value: number;
   setValue: UseStateSetter<number>;

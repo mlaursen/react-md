@@ -3,11 +3,11 @@
 import { useTypescriptEnabledContext } from "@react-md/code/TypescriptEnabledProvider";
 import { type ReactElement } from "react";
 
-import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.jsx";
+import { SegmentedButtonGroup } from "@/components/SegmentedButtonGroup.js";
 import {
   SegmentedButtons,
   type SegmentedButtonsProps,
-} from "@/components/SegmentedButtons.jsx";
+} from "@/components/SegmentedButtons.js";
 
 export type CodeLanguage = "js" | "ts";
 

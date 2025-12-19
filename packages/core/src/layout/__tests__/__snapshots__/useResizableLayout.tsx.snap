@@ -27,7 +27,7 @@ exports[`useResizableLayout > should allow you to create a resizable layout quic
 exports[`useResizableLayout > should allow you to create a resizable layout quickly 2`] = `
 <main
   class="rmd-layout-main rmd-layout-main--offset-v rmd-layout-h"
-  id="main-:r5:"
+  id="main-_r_5_"
 >
   Hello, world!
   <div
@@ -40,13 +40,13 @@ exports[`useResizableLayout > should allow you to create a resizable layout quic
 
 exports[`useResizableLayout > should allow you to create a resizable layout quickly 3`] = `
 <button
-  aria-controls="layout-nav-:r0:"
+  aria-controls="layout-nav-_r_0_"
   aria-label="Resize Navigation"
   aria-valuemax="100"
   aria-valuemin="0"
   aria-valuenow="32"
   class="rmd-window-splitter rmd-window-splitter--h rmd-window-splitter--no-inactive-bg rmd-layout-splitter rmd-layout-splitter--offset-v rmd-layout-splitter--responsive rmd-display-none"
-  id="splitter-:r1:"
+  id="splitter-_r_1_"
   role="separator"
   type="button"
 />
@@ -54,13 +54,13 @@ exports[`useResizableLayout > should allow you to create a resizable layout quic
 
 exports[`useResizableLayout > should allow you to create a resizable layout quickly 4`] = `
 <button
-  aria-controls="layout-nav-:r0:"
+  aria-controls="layout-nav-_r_0_"
   aria-label="Resize Navigation"
   aria-valuemax="100"
   aria-valuemin="0"
   aria-valuenow="32"
   class="rmd-window-splitter rmd-window-splitter--h rmd-window-splitter--no-inactive-bg rmd-layout-splitter rmd-layout-splitter--offset-v rmd-layout-splitter--responsive"
-  id="splitter-:r1:"
+  id="splitter-_r_1_"
   role="separator"
   type="button"
 />
@@ -68,13 +68,13 @@ exports[`useResizableLayout > should allow you to create a resizable layout quic
 
 exports[`useResizableLayout > should allow you to create a resizable layout quickly 5`] = `
 <button
-  aria-controls="layout-nav-:r0:"
+  aria-controls="layout-nav-_r_0_"
   aria-label="Resize Navigation"
   aria-valuemax="100"
   aria-valuemin="0"
   aria-valuenow="38"
   class="rmd-window-splitter rmd-window-splitter--h rmd-window-splitter--no-inactive-bg rmd-layout-splitter rmd-layout-splitter--offset-v rmd-layout-splitter--responsive"
-  id="splitter-:r1:"
+  id="splitter-_r_1_"
   role="separator"
   type="button"
 />
@@ -82,13 +82,13 @@ exports[`useResizableLayout > should allow you to create a resizable layout quic
 
 exports[`useResizableLayout > should allow you to create a resizable layout quickly 6`] = `
 <button
-  aria-controls="layout-nav-:r0:"
+  aria-controls="layout-nav-_r_0_"
   aria-label="Resize Navigation"
   aria-valuemax="100"
   aria-valuemin="0"
   aria-valuenow="0"
   class="rmd-window-splitter rmd-window-splitter--h rmd-window-splitter--no-inactive-bg rmd-layout-splitter rmd-layout-splitter--offset-v rmd-layout-splitter--responsive"
-  id="splitter-:r1:"
+  id="splitter-_r_1_"
   role="separator"
   type="button"
 />

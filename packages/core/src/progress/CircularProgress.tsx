@@ -1,7 +1,7 @@
 import {
   type CSSProperties,
   type HTMLAttributes,
-  forwardRef,
+  type ReactElement,
   useMemo,
 } from "react";
 
@@ -128,11 +128,11 @@ export interface CircularProgressProps
  * @since 6.0.0 Updated the determinate circular progress to no longer
  * rotate while increasing the value and require a label for accessibility.
  */
-export const CircularProgress = forwardRef<
-  HTMLSpanElement,
-  LabelRequiredForA11y<CircularProgressProps>
->(function CircularProgress(props, ref) {
+export function CircularProgress(
+  props: LabelRequiredForA11y<CircularProgressProps>
+): ReactElement {
   const {
+    ref,
     id: propId,
     className,
     svgStyle,
@@ -212,4 +212,4 @@ export const CircularProgress = forwardRef<
       </svg>
     </span>
   );
-});
+}

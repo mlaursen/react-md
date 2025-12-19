@@ -1,6 +1,11 @@
 "use client";
 
-import { type ComponentType, type HTMLAttributes, forwardRef } from "react";
+import {
+  type ComponentType,
+  type HTMLAttributes,
+  type ReactElement,
+  type Ref,
+} from "react";
 
 import { Portal } from "../portal/Portal.js";
 import { useEnsuredId } from "../useEnsuredId.js";
@@ -16,6 +21,8 @@ import { type SnackbarPosition, snackbar } from "./snackbarStyles.js";
  * @since 6.0.0 The `id` prop is optional
  */
 export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
+  ref?: Ref<HTMLDivElement>;
+
   /** @defaultValue `"snackbar-" + useId()` */
   id?: string;
 
@@ -147,41 +154,40 @@ export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
  * @since 6.0.0 Rewritten to use a new API that supports adding toasts
  * outside of React components and rendering multiple toasts at once.
  */
-export const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(
-  function Snackbar(props, ref) {
-    const {
-      id: propId,
-      className,
-      limit = 1,
-      absolute,
-      position = "bottom",
-      renderToast: RenderToast = DefaultToastRenderer,
-      disablePortal,
-      toastDefaults,
-      ...remaining
-    } = props;
-    const id = useEnsuredId(propId, "snackbar");
-    const queue = useToastQueue(limit);
+export function Snackbar(props: SnackbarProps): ReactElement {
+  const {
+    ref,
+    id: propId,
+    className,
+    limit = 1,
+    absolute,
+    position = "bottom",
+    renderToast: RenderToast = DefaultToastRenderer,
+    disablePortal,
+    toastDefaults,
+    ...remaining
+  } = props;
+  const id = useEnsuredId(propId, "snackbar");
+  const queue = useToastQueue(limit);
 
-    return (
-      <Portal disabled={disablePortal}>
-        {queue.length > 0 && (
-          <div
-            {...remaining}
-            id={id}
-            ref={ref}
-            className={snackbar({ absolute, position, className })}
-          >
-            {queue.map((toast) => (
-              <RenderToast
-                {...toast}
-                key={toast.toastId}
-                toastDefaults={toastDefaults}
-              />
-            ))}
-          </div>
-        )}
-      </Portal>
-    );
-  }
-);
+  return (
+    <Portal disabled={disablePortal}>
+      {queue.length > 0 && (
+        <div
+          {...remaining}
+          id={id}
+          ref={ref}
+          className={snackbar({ absolute, position, className })}
+        >
+          {queue.map((toast) => (
+            <RenderToast
+              {...toast}
+              key={toast.toastId}
+              toastDefaults={toastDefaults}
+            />
+          ))}
+        </div>
+      )}
+    </Portal>
+  );
+}

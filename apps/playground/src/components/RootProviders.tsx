@@ -5,7 +5,7 @@ import { MenuConfigurationProvider } from "@react-md/core/menu/MenuConfiguration
 import { TooltipHoverModeProvider } from "@react-md/core/tooltip/TooltipHoverModeProvider";
 import { type ReactElement, type ReactNode } from "react";
 
-import { rmdConfig } from "../rmdConfig.jsx";
+import { rmdConfig } from "../rmdConfig.js";
 
 export interface RootProvidersProps {
   children: ReactNode;

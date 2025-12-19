@@ -408,6 +408,6 @@ export interface SpinButtonImplementation<
 > {
   value: SpinButtonValue;
   setValue: (value: SpinButtonValue) => void;
-  spinButtonRef: RefObject<E>;
+  spinButtonRef: RefObject<E | null>;
   spinButtonProps: Readonly<ProvidedSpinButtonProps<E>>;
 }

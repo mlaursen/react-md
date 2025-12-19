@@ -5,7 +5,7 @@ import { type ReactElement, type ReactNode } from "react";
 import {
   SegmentedButtons,
   type SegmentedButtonsProps,
-} from "./SegmentedButtons.jsx";
+} from "./SegmentedButtons.js";
 
 export interface SegmentedButtonGroupProps<
   V extends string,

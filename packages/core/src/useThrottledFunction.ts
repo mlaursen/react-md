@@ -86,9 +86,9 @@ export function useThrottledFunction<F extends AnyFunction>(
   func: F,
   wait: number
 ): ThrottledFunction<F> {
-  const args = useRef<Parameters<F>>();
-  const result = useRef<ReturnType<F>>();
-  const timeout = useRef<NodeJS.Timeout>();
+  const args = useRef<Parameters<F>>(undefined);
+  const result = useRef<ReturnType<F>>(undefined);
+  const timeout = useRef<NodeJS.Timeout>(undefined);
   const funcRef = useRef(func);
   const lastCalledTime = useRef(0);
 

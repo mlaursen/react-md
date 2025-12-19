@@ -4,7 +4,7 @@ exports[`Toast > should apply the correct styling, HTML attributes, and allow a 
 <div
   class="rmd-toast rmd-scale-transition--enter rmd-scale-transition--enter-active"
   data-testid="toast"
-  id="toast-:r0:"
+  id="toast-_r_0_"
 >
   <div
     class="rmd-toast-content"
@@ -16,7 +16,7 @@ exports[`Toast > should apply the correct styling, HTML attributes, and allow a 
 <div
   class="rmd-toast custom-class-name rmd-scale-transition--enter rmd-scale-transition--enter-active"
   data-testid="toast"
-  id="toast-:r0:"
+  id="toast-_r_0_"
   style="color: white;"
 >
   <div

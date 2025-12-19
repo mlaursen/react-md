@@ -7,11 +7,11 @@ import { Slide } from "@react-md/core/transition/Slide";
 import { SlideContainer } from "@react-md/core/transition/SlideContainer";
 import { type ReactElement } from "react";
 
-import { FontIconImportAndUsage } from "./FontIconImportAndUsage.jsx";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
-import { MaterialSymbolStylesheets } from "./MaterialSymbolStylesheets.jsx";
-import { MaterialSymbolUsage } from "./MaterialSymbolUsage.jsx";
-import { SVGIconImportAndUsage } from "./SVGIconImportAndUsage.jsx";
+import { FontIconImportAndUsage } from "./FontIconImportAndUsage.js";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
+import { MaterialSymbolStylesheets } from "./MaterialSymbolStylesheets.js";
+import { MaterialSymbolUsage } from "./MaterialSymbolUsage.js";
+import { SVGIconImportAndUsage } from "./SVGIconImportAndUsage.js";
 import { isMaterialIconType } from "./searchParams.js";
 
 export function HowToUseSheetContent(): ReactElement | null {

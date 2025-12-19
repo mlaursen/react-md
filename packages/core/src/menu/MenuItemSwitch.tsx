@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { type ReactElement } from "react";
 
 import {
   MenuItemInputToggle,
@@ -38,8 +38,8 @@ import {
  * @see {@link https://react-md.dev/components/menu#menuitemswitch-example | DropdownMenu Demos}
  * @since 2.8.0
  */
-export const MenuItemSwitch = forwardRef<HTMLLIElement, MenuItemSwitchProps>(
-  function MenuItemSwitch(props, ref) {
-    return <MenuItemInputToggle {...props} ref={ref} type="switch" />;
-  }
-);
+export function MenuItemSwitch(props: MenuItemSwitchProps): ReactElement {
+  const { ref, ...remaining } = props;
+
+  return <MenuItemInputToggle {...remaining} ref={ref} type="switch" />;
+}

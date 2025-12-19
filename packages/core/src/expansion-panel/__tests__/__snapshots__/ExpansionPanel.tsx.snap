@@ -2,9 +2,9 @@
 
 exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and allow a ref 1`] = `
 <div
-  aria-labelledby="expansion-panel-:rk:"
+  aria-labelledby="expansion-panel-_r_k_"
   class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-  id="expansion-panel-:rk:-content"
+  id="expansion-panel-_r_k_-content"
   role="region"
   style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
 >
@@ -14,9 +14,9 @@ exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and
 
 exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and allow a ref 2`] = `
 <div
-  aria-labelledby="expansion-panel-:rk:"
+  aria-labelledby="expansion-panel-_r_k_"
   class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-  id="expansion-panel-:rk:-content"
+  id="expansion-panel-_r_k_-content"
   role="region"
   style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
 >
@@ -27,7 +27,7 @@ exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and
 exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and allow a ref on the content element 1`] = `
 <div
   class="rmd-box rmd-box--column rmd-box--full-width rmd-box--align-stretch rmd-box--justify-stretch rmd-card rmd-card--shadowed rmd-expansion-panel rmd-expansion-panel--animate"
-  id="expansion-panel-:rl:-container"
+  id="expansion-panel-_r_l_-container"
 >
   <h6
     class="rmd-typography rmd-typography--subtitle-1 rmd-no-margin rmd-expansion-panel__heading"
@@ -35,7 +35,7 @@ exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and
     <button
       aria-expanded="false"
       class="rmd-button-unstyled rmd-expansion-panel__button"
-      id="expansion-panel-:rl:"
+      id="expansion-panel-_r_l_"
       type="button"
     >
       <span
@@ -47,9 +47,9 @@ exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and
     </button>
   </h6>
   <div
-    aria-labelledby="expansion-panel-:rl:"
+    aria-labelledby="expansion-panel-_r_l_"
     class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-    id="expansion-panel-:rl:-content"
+    id="expansion-panel-_r_l_-content"
     role="region"
     style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
   >
@@ -61,7 +61,7 @@ exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and
 exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and allow a ref on the content element 2`] = `
 <div
   class="rmd-box rmd-box--column rmd-box--full-width rmd-box--align-stretch rmd-box--justify-stretch rmd-card rmd-card--shadowed rmd-expansion-panel rmd-expansion-panel--animate custom-class-name"
-  id="expansion-panel-:rl:-container"
+  id="expansion-panel-_r_l_-container"
   style="color: white;"
 >
   <h6
@@ -70,7 +70,7 @@ exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and
     <button
       aria-expanded="false"
       class="rmd-button-unstyled rmd-expansion-panel__button"
-      id="expansion-panel-:rl:"
+      id="expansion-panel-_r_l_"
       type="button"
     >
       <span
@@ -82,9 +82,9 @@ exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and
     </button>
   </h6>
   <div
-    aria-labelledby="expansion-panel-:rl:"
+    aria-labelledby="expansion-panel-_r_l_"
     class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-    id="expansion-panel-:rl:-content"
+    id="expansion-panel-_r_l_-content"
     role="region"
     style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
   >
@@ -98,7 +98,7 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
   <div>
     <div
       class="rmd-box rmd-box--column rmd-box--full-width rmd-box--align-stretch rmd-box--justify-stretch rmd-card rmd-card--shadowed rmd-expansion-panel rmd-expansion-panel--animate"
-      id="expansion-panel-:r0:-1-container"
+      id="expansion-panel-_r_0_-1-container"
     >
       <h6
         class="rmd-typography rmd-typography--subtitle-1 rmd-no-margin rmd-expansion-panel__heading"
@@ -106,7 +106,7 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
         <button
           aria-expanded="false"
           class="rmd-button-unstyled rmd-expansion-panel__button"
-          id="expansion-panel-:r0:-1"
+          id="expansion-panel-_r_0_-1"
           type="button"
         >
           Panel 1
@@ -119,9 +119,9 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
         </button>
       </h6>
       <div
-        aria-labelledby="expansion-panel-:r0:-1"
+        aria-labelledby="expansion-panel-_r_0_-1"
         class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-        id="expansion-panel-:r0:-1-content"
+        id="expansion-panel-_r_0_-1-content"
         role="region"
         style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
       >
@@ -130,7 +130,7 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
     </div>
     <div
       class="rmd-box rmd-box--column rmd-box--full-width rmd-box--align-stretch rmd-box--justify-stretch rmd-card rmd-card--shadowed rmd-expansion-panel rmd-expansion-panel--animate"
-      id="expansion-panel-:r0:-2-container"
+      id="expansion-panel-_r_0_-2-container"
     >
       <h6
         class="rmd-typography rmd-typography--subtitle-1 rmd-no-margin rmd-expansion-panel__heading"
@@ -138,7 +138,7 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
         <button
           aria-expanded="false"
           class="rmd-button-unstyled rmd-expansion-panel__button"
-          id="expansion-panel-:r0:-2"
+          id="expansion-panel-_r_0_-2"
           type="button"
         >
           Panel 2
@@ -151,9 +151,9 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
         </button>
       </h6>
       <div
-        aria-labelledby="expansion-panel-:r0:-2"
+        aria-labelledby="expansion-panel-_r_0_-2"
         class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-        id="expansion-panel-:r0:-2-content"
+        id="expansion-panel-_r_0_-2-content"
         role="region"
         style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
       >
@@ -162,7 +162,7 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
     </div>
     <div
       class="rmd-box rmd-box--column rmd-box--full-width rmd-box--align-stretch rmd-box--justify-stretch rmd-card rmd-card--shadowed rmd-expansion-panel rmd-expansion-panel--animate"
-      id="expansion-panel-:r0:-3-container"
+      id="expansion-panel-_r_0_-3-container"
     >
       <h6
         class="rmd-typography rmd-typography--subtitle-1 rmd-no-margin rmd-expansion-panel__heading"
@@ -170,7 +170,7 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
         <button
           aria-expanded="false"
           class="rmd-button-unstyled rmd-expansion-panel__button"
-          id="expansion-panel-:r0:-3"
+          id="expansion-panel-_r_0_-3"
           type="button"
         >
           Panel 3
@@ -183,9 +183,9 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
         </button>
       </h6>
       <div
-        aria-labelledby="expansion-panel-:r0:-3"
+        aria-labelledby="expansion-panel-_r_0_-3"
         class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
-        id="expansion-panel-:r0:-3-content"
+        id="expansion-panel-_r_0_-3-content"
         role="region"
         style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
       >

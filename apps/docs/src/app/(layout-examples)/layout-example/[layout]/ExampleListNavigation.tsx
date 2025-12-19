@@ -14,7 +14,7 @@ import { pascalCase } from "@/utils/strings.js";
 
 import styles from "./ExampleListNavigation.module.scss";
 import { LayoutIcon } from "./LayoutIcon.js";
-import { NavigationTypeIcon } from "./NavigationTypeIcon.jsx";
+import { NavigationTypeIcon } from "./NavigationTypeIcon.js";
 import { SimpleNavItem } from "./SimpleNavItem.js";
 import { LAYOUT_TYPES, type LayoutType } from "./layouts.js";
 import { NAVIGATION_TYPES } from "./navTypes.js";

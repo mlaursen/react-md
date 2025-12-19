@@ -5,8 +5,9 @@ import {
   type CSSProperties,
   type HTMLAttributes,
   type MouseEvent,
+  type ReactElement,
   type ReactNode,
-  forwardRef,
+  type Ref,
 } from "react";
 
 import {
@@ -50,6 +51,7 @@ export interface BaseMenuItemInputToggleProps
     HTMLAttributes<HTMLLIElement>,
     ConfigurableInputToggleIconProps,
     ListItemChildrenTextProps {
+  ref?: Ref<HTMLLIElement>;
   checked: boolean;
   onCheckedChange: MenuItemInputToggleCheckedCallback;
 
@@ -139,11 +141,11 @@ export type MenuItemInputToggleProps =
  * @see {@link MenuItemSwitch} for switch examples
  * @since 2.8.0
  */
-export const MenuItemInputToggle = forwardRef<
-  HTMLLIElement,
-  MenuItemInputToggleProps
->(function MenuItemInputToggle(props, ref) {
+export function MenuItemInputToggle(
+  props: MenuItemInputToggleProps
+): ReactElement {
   const {
+    ref,
     id: propId,
     type,
     disabled = false,
@@ -278,4 +280,4 @@ export const MenuItemInputToggle = forwardRef<
       {children}
     </ListItem>
   );
-});
+}

@@ -27,7 +27,7 @@ exports[`useTemporaryLayout > should allow you to create a temporary layout quic
 exports[`useTemporaryLayout > should allow you to create a temporary layout quickly 2`] = `
 <main
   class="rmd-layout-main rmd-layout-main--offset-v"
-  id="main-:r0:"
+  id="main-_r_0_"
 >
   Hello, world!
 </main>
@@ -37,7 +37,7 @@ exports[`useTemporaryLayout > should allow you to create a temporary layout quic
 <div
   aria-label="Navigation"
   class="rmd-dialog rmd-dialog--fixed rmd-dialog--outline rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width"
-  id="dialog-:r1:"
+  id="dialog-_r_1_"
   role="dialog"
   tabindex="-1"
 >
@@ -52,7 +52,7 @@ exports[`useTemporaryLayout > should allow you to create a temporary layout quic
         <input
           checked=""
           class="rmd-hidden-input"
-          id="radio-:r2:"
+          id="radio-_r_2_"
           name="pathname"
           type="radio"
           value="/"
@@ -74,7 +74,7 @@ exports[`useTemporaryLayout > should allow you to create a temporary layout quic
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r3:"
+          id="radio-_r_3_"
           name="pathname"
           type="radio"
           value="/1"
@@ -96,7 +96,7 @@ exports[`useTemporaryLayout > should allow you to create a temporary layout quic
       >
         <input
           class="rmd-hidden-input"
-          id="radio-:r4:"
+          id="radio-_r_4_"
           name="pathname"
           type="radio"
           value="/2"
@@ -116,7 +116,7 @@ exports[`useTemporaryLayout > should allow you to create a temporary layout quic
 exports[`useTemporaryLayout > should not offset the main element for static app bar layouts 1`] = `
 <main
   class="rmd-layout-main"
-  id="main-:r5:"
+  id="main-_r_5_"
 >
   Hello, world!
 </main>
@@ -125,7 +125,7 @@ exports[`useTemporaryLayout > should not offset the main element for static app 
 exports[`useTemporaryLayout > should not offset the main element for static app bar layouts 2`] = `
 <main
   class="rmd-layout-main rmd-layout-main--offset-v"
-  id="main-:r5:"
+  id="main-_r_5_"
 >
   Hello, world!
 </main>
@@ -134,7 +134,7 @@ exports[`useTemporaryLayout > should not offset the main element for static app 
 exports[`useTemporaryLayout > should not offset the main element for static app bar layouts 3`] = `
 <main
   class="rmd-layout-main rmd-layout-main--offset-v"
-  id="main-:r5:"
+  id="main-_r_5_"
 >
   Hello, world!
 </main>

@@ -10,7 +10,7 @@ import { useFocusCodeEditor } from "@react-md/code/useFocusCodeEditor";
 import { Snackbar } from "@react-md/core/snackbar/Snackbar";
 import { type ReactElement } from "react";
 
-import { ScssCodeError } from "./ScssCodeError.jsx";
+import { ScssCodeError } from "./ScssCodeError.js";
 import { useScssCodeEditor } from "./useScssCodeEditor.js";
 
 export interface ScssCodeEditorProps {

@@ -6,11 +6,7 @@ import {
   type RefObject,
 } from "react";
 
-import {
-  type NonNullMutableRef,
-  type NonNullRef,
-  type UseStateSetter,
-} from "../types.js";
+import { type UseStateSetter } from "../types.js";
 
 /**
  * Set this to `"roving"` when:
@@ -182,7 +178,7 @@ export interface KeyboardMovementUpdateFocusIndexOptions {
  */
 export interface KeyboardMovementContext extends Required<KeyboardMovementBehavior> {
   /** {@inheritDoc KeyboardMovementConfig} */
-  config: NonNullRef<KeyboardMovementConfig>;
+  config: RefObject<KeyboardMovementConfig>;
 
   /** @see {@link TabIndexBehavior} */
   tabIndexBehavior: TabIndexBehavior | undefined;
@@ -280,7 +276,7 @@ export interface KeyboardMovementExtensionData<
   E extends HTMLElement,
 > extends KeyboardMovementContext {
   event: KeyboardEvent<E>;
-  currentFocusIndex: NonNullMutableRef<number>;
+  currentFocusIndex: RefObject<number>;
   setFocusIndex: (index: number, focusables: readonly HTMLElement[]) => void;
   setActiveDescendantId: (id: string) => void;
 }
@@ -398,10 +394,10 @@ export interface KeyboardMovementProps<E extends HTMLElement> extends Required<
  * @internal
  */
 export interface KeyboardMovementProviderImplementation<E extends HTMLElement> {
-  nodeRef: RefObject<E>;
+  nodeRef: RefObject<E | null>;
   movementProps: Readonly<KeyboardMovementProps<E>>;
   movementContext: Readonly<KeyboardMovementContext>;
-  currentFocusIndex: NonNullMutableRef<number>;
+  currentFocusIndex: RefObject<number>;
   activeDescendantId: string;
   setActiveDescendantId: UseStateSetter<string>;
 }

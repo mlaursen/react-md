@@ -1,8 +1,7 @@
-import { type FormEvent, createRef } from "react";
+import { type FormEvent, type RefObject, createRef } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 import { fireEvent, render, screen } from "../../test-utils/index.js";
-import { type NonNullMutableRef } from "../../types.js";
 import { Form } from "../Form.js";
 
 describe("Form", () => {
@@ -30,7 +29,7 @@ describe("Form", () => {
   it("should prevent default form behavior unless disablePreventDefault is enabled", () => {
     // hide the `Error: Not implemented: HTMLFormElement.prototype.requestSubmit`
     const error = vi.spyOn(console, "error").mockImplementation(() => {});
-    const prevented: NonNullMutableRef<boolean> = { current: false };
+    const prevented: RefObject<boolean> = { current: false };
     const onSubmit = vi.fn((event: FormEvent<HTMLFormElement>) => {
       prevented.current = event.isDefaultPrevented();
     });

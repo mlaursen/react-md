@@ -4,7 +4,7 @@ exports[`useContextMenu > should work as expected 1`] = `
 <div
   aria-label="Context Menu"
   class="rmd-menu rmd-menu--elevated"
-  id="menu-:r0:"
+  id="menu-_r_0_"
   role="menu"
   style="left: 300px; top: 600px; position: fixed; transform-origin: 0 0;"
   tabindex="-1"
@@ -15,7 +15,7 @@ exports[`useContextMenu > should work as expected 1`] = `
   >
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
-      id="menuitem-:r1:"
+      id="menuitem-_r_1_"
       role="menuitem"
       tabindex="-1"
     >
@@ -27,7 +27,7 @@ exports[`useContextMenu > should work as expected 1`] = `
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
-      id="menuitem-:r2:"
+      id="menuitem-_r_2_"
       role="menuitem"
       tabindex="-1"
     >
@@ -39,7 +39,7 @@ exports[`useContextMenu > should work as expected 1`] = `
     </li>
     <li
       class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
-      id="menuitem-:r3:"
+      id="menuitem-_r_3_"
       role="menuitem"
       tabindex="-1"
     >

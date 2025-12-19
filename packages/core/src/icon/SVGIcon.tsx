@@ -1,4 +1,9 @@
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
+import {
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from "react";
 
 import { type SVGIconClassNameOptions, icon } from "./styles.js";
 
@@ -7,6 +12,8 @@ import { type SVGIconClassNameOptions, icon } from "./styles.js";
  */
 export interface SVGIconProps
   extends HTMLAttributes<SVGSVGElement>, SVGIconClassNameOptions {
+  ref?: Ref<SVGSVGElement>;
+
   /**
    * Boolean if the SVG should gain the `focusable` attribute. This is disabled
    * by default since IE11 and Edge actually default this to true and keyboard's
@@ -78,45 +85,44 @@ export interface SVGIconProps
  *
  * @see {@link https://react-md.dev/components/icon | Icon Demos}
  */
-export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
-  function SVGIcon(props, ref) {
-    const {
-      "aria-hidden": ariaHidden = true,
-      focusable = "false",
-      use,
-      xmlns = use ? "http://www.w3.org/2000/svg" : undefined,
-      viewBox = "0 0 24 24",
-      dense = false,
-      className,
-      theme,
-      inline,
-      children: propChildren,
-      ...remaining
-    } = props;
+export function SVGIcon(props: SVGIconProps): ReactElement {
+  const {
+    ref,
+    "aria-hidden": ariaHidden = true,
+    focusable = "false",
+    use,
+    xmlns = use ? "http://www.w3.org/2000/svg" : undefined,
+    viewBox = "0 0 24 24",
+    dense = false,
+    className,
+    theme,
+    inline,
+    children: propChildren,
+    ...remaining
+  } = props;
 
-    let children = propChildren;
-    if (!children && use) {
-      children = <use xlinkHref={use} />;
-    }
-
-    return (
-      <svg
-        {...remaining}
-        aria-hidden={ariaHidden}
-        ref={ref}
-        className={icon({
-          type: "svg",
-          dense,
-          theme,
-          inline,
-          className,
-        })}
-        focusable={focusable}
-        xmlns={xmlns}
-        viewBox={viewBox}
-      >
-        {children}
-      </svg>
-    );
+  let children = propChildren;
+  if (!children && use) {
+    children = <use xlinkHref={use} />;
   }
-);
+
+  return (
+    <svg
+      {...remaining}
+      aria-hidden={ariaHidden}
+      ref={ref}
+      className={icon({
+        type: "svg",
+        dense,
+        theme,
+        inline,
+        className,
+      })}
+      focusable={focusable}
+      xmlns={xmlns}
+      viewBox={viewBox}
+    >
+      {children}
+    </svg>
+  );
+}

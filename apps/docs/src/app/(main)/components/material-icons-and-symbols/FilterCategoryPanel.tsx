@@ -5,8 +5,8 @@ import { useAppSize } from "@react-md/core/media-queries/AppSizeProvider";
 import CategoryOutlinedIcon from "@react-md/material-icons/CategoryOutlinedIcon";
 import { type ReactElement } from "react";
 
-import { FilterPanel } from "./FilterPanel.jsx";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.jsx";
+import { FilterPanel } from "./FilterPanel.js";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import {
   MATERIAL_ICON_CATEGORIES,
   MATERIAL_SYMBOL_CATEGORIES,

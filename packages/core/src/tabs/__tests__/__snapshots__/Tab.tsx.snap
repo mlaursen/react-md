@@ -4,7 +4,7 @@ exports[`Tab > should support rendering an icon in different positions around th
 <button
   aria-selected="false"
   class="rmd-tab rmd-interaction-surface"
-  id="tab-:r0:"
+  id="tab-_r_0_"
   role="tab"
   tabindex="-1"
   type="button"
@@ -25,7 +25,7 @@ exports[`Tab > should support rendering an icon in different positions around th
 <button
   aria-selected="false"
   class="rmd-tab rmd-tab--stacked rmd-interaction-surface"
-  id="tab-:r0:"
+  id="tab-_r_0_"
   role="tab"
   tabindex="-1"
   type="button"
@@ -46,7 +46,7 @@ exports[`Tab > should support rendering an icon in different positions around th
 <button
   aria-selected="false"
   class="rmd-tab rmd-tab--reversed rmd-interaction-surface"
-  id="tab-:r0:"
+  id="tab-_r_0_"
   role="tab"
   tabindex="-1"
   type="button"
@@ -67,7 +67,7 @@ exports[`Tab > should support rendering an icon in different positions around th
 <button
   aria-selected="false"
   class="rmd-tab rmd-tab--stacked rmd-tab--stacked-reversed rmd-interaction-surface"
-  id="tab-:r0:"
+  id="tab-_r_0_"
   role="tab"
   tabindex="-1"
   type="button"
