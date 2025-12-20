@@ -360,8 +360,9 @@ $_swappable-properties: text-align;
   $parent-selector: true
 ) {
   @if $css-modules {
-    $selector: ":global #{$selector} :local";
+    $selector: ":global(#{$selector})";
   }
+
   @if $parent-selector {
     $selector: "#{$selector} &";
   }
