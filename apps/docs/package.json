@@ -2,7 +2,7 @@
   "name": "docs",
   "type": "module",
   "private": true,
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "The documentation site for react-md",
   "scripts": {
     "run-script": "tsx --tsconfig scripts/tsconfig.json",

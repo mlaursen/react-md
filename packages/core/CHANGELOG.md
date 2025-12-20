@@ -1,5 +1,12 @@
 # @react-md/core
 
+## 6.5.1
+
+### Patch Changes
+
+- f83cf31: Fixed the optional-css-module sass util to work with turbopack
+- b0306dd: Updated code for new eslint rules which mostly changed usage of `window` to `globalThis`. This should generally not require any changes on your end.
+
 ## 6.5.0
 
 ### Minor Changes
