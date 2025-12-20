@@ -69,7 +69,7 @@
     "rehype-slug": "^6.0.0",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
-    "sass": "^1.97.0",
+    "sass": "^1.97.1",
     "sucrase": "^3.35.1",
     "ts-morph": "^27.0.2",
     "unified": "^11.0.5",

@@ -41,7 +41,7 @@
     "@types/sassdoc": "workspace:*",
     "docs-generator": "workspace:*",
     "prettier": "^3.7.4",
-    "sass": "^1.97.0",
+    "sass": "^1.97.1",
     "sassdoc": "^2.7.4"
   },
   "devDependencies": {
