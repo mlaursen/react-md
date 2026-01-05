@@ -1,5 +1,11 @@
 # @react-md/core
 
+## 6.5.2
+
+### Patch Changes
+
+- 1e0d118: Fixed material symbols not correctly applying the `fill` customization
+
 ## 6.5.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # react-md
 
+## 6.3.3
+
+### Patch Changes
+
+- Updated dependencies [1e0d118]
+  - @react-md/core@6.5.2
+
 ## 6.3.2
 
 ### Patch Changes
