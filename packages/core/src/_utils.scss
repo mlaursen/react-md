@@ -142,6 +142,9 @@ $_swappable-properties: text-align;
 /// @returns {String} the name to be used in a `var()`
 @function get-var-name($variables, $name, $group) {
   @if $group == icon {
+    @if $name == symbol-fill {
+      @return --rmd-symbol-fill;
+    }
     @if $name == symbol-grade {
       @return --rmd-symbol-grad;
     }
