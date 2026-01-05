@@ -294,10 +294,13 @@ export function MaterialIconsAndSymbolsProvider({
     ]
   );
 
-  const router = useRouter();
   const pathname = usePathname();
   useEffect(() => {
-    router.replace(
+    // do not use `router.replace` since that causes a full page re-render and
+    // RSC call for each change...
+    history.replaceState(
+      null,
+      "",
       getIconUrl({
         search,
         iconCategory,
@@ -310,15 +313,13 @@ export function MaterialIconsAndSymbolsProvider({
         symbolStylesheet,
         symbolOpticalSize,
         symbolWeight,
-      }),
-      { scroll: false }
+      })
     );
   }, [
     iconCategory,
     iconFamily,
     iconType,
     pathname,
-    router,
     search,
     selectedIconName,
     symbolFill,
