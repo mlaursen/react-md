@@ -247,7 +247,7 @@ export function getIconUrl(options: IconUrlOptions): string {
     params.set(ICON_QUERY, search);
   }
 
-  if (iconType === "symbol" && selectedIconName) {
+  if (iconType === "symbol") {
     if (symbolFill !== INITIAL_STATE.symbolFill) {
       params.set(SYMBOL_FILL, `${symbolFill}`);
     }
