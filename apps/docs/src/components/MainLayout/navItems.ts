@@ -929,6 +929,11 @@ export const navItems: readonly NavigationItem[] = [
     items: [
       {
         type: "route",
+        href: "/v6-to-v7",
+        children: "v6 to v7",
+      },
+      {
+        type: "route",
         href: "/v5-to-v6",
         children: "v5 to v6",
       },

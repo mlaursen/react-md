@@ -1,0 +1,29 @@
+---
+title: Migrate from v6 to v7
+description: This migration guide will walk you through the steps of upgrading react-md from v6 to v7.
+docType: Migrations
+keywords: [migrate, react19, react-19, rsc]
+---
+
+# Migrate from v6 to v7
+
+This release drops support for React < 19. To continue using React 18, stay on
+the v6.x.x releases.
+
+```sh
+npm install react@19 react-dom@19 @react-md/core@7
+
+# optional
+npm install @react-md/material-icons@7
+
+# optional
+npm install -D @types/react@19 @types/react-dom@19
+```
+
+## Breaking Changes
+
+As mentioned above, this release will only support React 19 going forward. The breaking changes include:
+
+- `@react-md/core` components no longer use `forwardRef`
+- The `@types/react` and `@types/react-dom` packages might include type issues
+  with the new `Ref` type changes and should be updated
