@@ -1,0 +1,9 @@
+@use "everything" as *;
+
+.container {
+  grid-column: 1 / -1;
+  margin: spacing-get-var(sm) spacing-get-var(md);
+  position: sticky;
+  top: calc(app-bar-get-var(height) + spacing-get-var(sm));
+  z-index: 10;
+}

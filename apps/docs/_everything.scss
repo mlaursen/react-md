@@ -3,6 +3,17 @@
 
 @use "@react-md/core";
 @use "@react-md/code";
+@use "sass:color";
+
+@function rgba-color-mix($color, $opacity, $light) {
+  // prettier-ignore
+  $background: if(
+    sass($light): core.$light-theme-background-color;
+    else: core.$dark-theme-background-color
+  );
+
+  @return color-mix(in srgb, #{$color} #{$opacity + "%"}, #{$background});
+}
 
 @mixin light-theme($core) {
   @if $core {
@@ -22,7 +33,7 @@
   --info-color: #{core.$blue-900};
   --warning-bg: #{core.$yellow-700};
   --warning-color: #{core.$black};
-  --error-bg: #{rgba(core.$red-700, 0.24)};
+  --error-bg: #{rgba-color-mix(core.$red-700, 24, true)};
   --error-color: #{core.$red-700};
   --success-bg: #{core.$green-a-100};
   --success-color: #{core.$green-900};
@@ -39,11 +50,11 @@
   --logo-outline: #{core.$white};
   --phone-app-bar-bg: #{core.$grey-900};
   // TODO: Figure out good colors for these...
-  --info-bg: #{rgba(core.$blue-900, 0.12)};
+  --info-bg: #{rgba-color-mix(core.$blue-900, 12, false)};
   --info-color: #{core.$light-blue-200};
-  --warning-bg: #{rgba(core.$yellow-700, 0.24)};
+  --warning-bg: #{rgba-color-mix(core.$yellow-700, 24, false)};
   --warning-color: #{core.$yellow-700};
-  --error-bg: #{rgba(core.$red-700, 0.24)};
+  --error-bg: #{rgba-color-mix(core.$red-700, 24, false)};
   --error-color: #{core.$red-700};
   --success-bg: #{core.$green-900};
   --success-color: #{core.$light-green-a-100};

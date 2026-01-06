@@ -10,6 +10,8 @@ declare global {
       NEXT_PUBLIC_BRANCH_NAME: string;
       NEXT_PUBLIC_GTAG_ID?: string;
 
+      NEXT_PUBLIC_FORCE_HIDE_VERSION_BANNER?: string;
+
       NEXT_PUBLIC_ALGOLIA_APP_ID: string;
       NEXT_PUBLIC_ALGOLIA_API_KEY: string;
       NEXT_PUBLIC_ALGOLIA_INDEX_NAME: string;
@@ -44,3 +46,6 @@ export const IS_PRODUCTION_ENV = DEPLOYMENT_ENV === "production";
 export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 export const ALGOLIA_API_KEY = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY;
 export const ALGOLIA_INDEX_NAME = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME;
+
+export const FORCE_HIDE_VERSION_BANNER =
+  process.env.NEXT_PUBLIC_FORCE_HIDE_VERSION_BANNER === "true";
