@@ -22,11 +22,13 @@ describe("useResizeObserver", () => {
     const observe = vi.fn();
     const resizeObserverSpy = vi
       .spyOn(globalThis, "ResizeObserver")
-      .mockImplementation(() => ({
-        observe,
-        disconnect: vi.fn(),
-        unobserve: vi.fn(),
-      }));
+      .mockImplementation(function () {
+        return {
+          observe,
+          disconnect: vi.fn(),
+          unobserve: vi.fn(),
+        };
+      });
 
     function UpdateTest({
       onUpdate,
@@ -58,6 +60,7 @@ describe("useResizeObserver", () => {
     render(<Test />);
     expect(observe).toHaveBeenCalledTimes(5);
     expect(resizeObserverSpy).toHaveBeenCalledTimes(1);
+    resizeObserverSpy.mockRestore();
   });
 
   it("should do nothing when disabled, both the height and width are disabled, or there is no element", () => {

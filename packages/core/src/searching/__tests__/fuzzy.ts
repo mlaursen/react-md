@@ -1,4 +1,12 @@
-import { describe, expect, it, vi } from "vitest";
+import {
+  type Mock,
+  afterAll,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 
 import { fuzzySearch } from "../fuzzy.js";
 
@@ -96,14 +104,6 @@ describe("fuzzySearch", () => {
     ]);
   });
 
-  it("should lazy-create the regexp", () => {
-    const reg = vi.spyOn(globalThis, "RegExp");
-
-    const list = Array.from({ length: 100_000 }, (_, i) => `${i} Item`);
-    fuzzySearch({ list, query: "1" });
-    expect(reg).toHaveBeenCalledTimes(1);
-  });
-
   it("should support ignoring whitespace", () => {
     const item1 = "Lorem ipsum";
     const item2 = "another item";
@@ -166,5 +166,28 @@ describe("fuzzySearch", () => {
         type: "search",
       })
     ).toBe(undefined);
+  });
+
+  describe("perf", () => {
+    let regexpSpy: Mock<typeof RegExp>;
+    beforeAll(() => {
+      regexpSpy = vi
+        .spyOn(globalThis, "RegExp")
+        .mockImplementation(function () {
+          return {
+            test: vi.fn(),
+          };
+        });
+    });
+
+    afterAll(() => {
+      regexpSpy.mockRestore();
+    });
+
+    it("should lazy-create the regexp", () => {
+      const list = Array.from({ length: 100_000 }, (_, i) => `${i} Item`);
+      fuzzySearch({ list, query: "1" });
+      expect(regexpSpy).toHaveBeenCalledTimes(1);
+    });
   });
 });

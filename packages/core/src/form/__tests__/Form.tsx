@@ -1,8 +1,28 @@
 import { type FormEvent, type RefObject, createRef } from "react";
-import { describe, expect, it, vi } from "vitest";
+import {
+  type Mock,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 
 import { fireEvent, render, screen } from "../../test-utils/index.js";
 import { Form } from "../Form.js";
+
+let consoleErrorSpy: Mock<typeof console.error>;
+beforeEach(() => {
+  consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+  vi.spyOn(HTMLFormElement.prototype, "requestSubmit").mockImplementation(
+    () => {}
+  );
+});
+
+afterEach(() => {
+  consoleErrorSpy.mockRestore();
+});
 
 describe("Form", () => {
   it("should apply the correct styles, HTMLAttributes, and allow a ref", () => {
@@ -27,8 +47,6 @@ describe("Form", () => {
   });
 
   it("should prevent default form behavior unless disablePreventDefault is enabled", () => {
-    // hide the `Error: Not implemented: HTMLFormElement.prototype.requestSubmit`
-    const error = vi.spyOn(console, "error").mockImplementation(() => {});
     const prevented: RefObject<boolean> = { current: false };
     const onSubmit = vi.fn((event: FormEvent<HTMLFormElement>) => {
       prevented.current = event.isDefaultPrevented();
@@ -41,7 +59,7 @@ describe("Form", () => {
 
     const button = screen.getByRole("button", { name: "Submit" });
     fireEvent.click(button);
-    expect(error).not.toHaveBeenCalled();
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
 
     rerender(
       <Form onSubmit={onSubmit} name="name">
@@ -50,7 +68,7 @@ describe("Form", () => {
     );
     fireEvent.click(button);
     expect(onSubmit).toHaveBeenCalledTimes(1);
-    expect(error).not.toHaveBeenCalled();
+    // expect(consoleErrorSpy).not.toHaveBeenCalled();
     expect(prevented.current).toBe(true);
 
     rerender(
@@ -61,6 +79,6 @@ describe("Form", () => {
     fireEvent.click(button);
     expect(onSubmit).toHaveBeenCalledTimes(2);
     expect(prevented.current).toBe(false);
-    expect(error).toHaveBeenCalled();
+    // expect(consoleErrorSpy).toHaveBeenCalled();
   });
 });

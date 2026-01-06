@@ -105,7 +105,9 @@ beforeEach(() => {
   mockFileReader = new MockFileReader();
   fileReader = vi.spyOn(globalThis, "FileReader");
 
-  fileReader.mockImplementation(() => mockFileReader);
+  fileReader.mockImplementation(function () {
+    return mockFileReader;
+  });
   mockFileReader.abort = abort;
   mockFileReader.readAsText = readAsText;
   mockFileReader.readAsDataURL = readAsDataURL;

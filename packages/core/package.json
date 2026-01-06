@@ -125,7 +125,7 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.2.2",
-    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/coverage-v8": "^4.0.16",
     "chokidar": "^5.0.0",
     "eslint": "^9.39.2",
     "filesize": "^11.0.13",
@@ -142,7 +142,7 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.16"
   },
   "peerDependencies": {
     "@jest/globals": ">= 29 <=31",
