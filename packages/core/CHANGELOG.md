@@ -1,5 +1,11 @@
 # @react-md/core
 
+## 7.0.0
+
+### Major Changes
+
+- e56a973: BREAKING CHANGE: v7 dropped support for React < 19. Upgrade to react 19 or continue using v6.x.x
+
 ## 6.5.2
 
 ### Patch Changes

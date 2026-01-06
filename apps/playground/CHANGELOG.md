@@ -1,5 +1,14 @@
 # playground
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies [e56a973]
+  - @react-md/core@7.0.0
+  - @react-md/material-icons@7.0.0
+  - @react-md/code@0.0.16
+
 ## 0.0.7
 
 ### Patch Changes
