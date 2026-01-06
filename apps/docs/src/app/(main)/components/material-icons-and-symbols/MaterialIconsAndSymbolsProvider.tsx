@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation.js";
+import { usePathname, useSearchParams } from "next/navigation.js";
 import {
   type ReactElement,
   type ReactNode,
