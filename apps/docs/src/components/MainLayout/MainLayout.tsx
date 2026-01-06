@@ -14,21 +14,28 @@ import { cnb } from "cnbuilder";
 import { usePathname } from "next/navigation.js";
 import { type ReactElement, type ReactNode, useEffect } from "react";
 
-import { WebsiteSearch } from "@/components/WebsiteSearch/WebsiteSearch.jsx";
+import { WebsiteSearch } from "@/components/WebsiteSearch/WebsiteSearch.js";
+import {
+  FORCE_HIDE_VERSION_BANNER,
+  IS_PRODUCTION_ENV,
+} from "@/constants/env.js";
 
 import { GithubLink } from "../GithubLink.jsx";
 import styles from "./MainLayout.module.scss";
 import { MainNavigation } from "./MainNavigation.jsx";
 import { MainTitle } from "./MainTitle.jsx";
+import { VersionBanner } from "./VersionBanner.js";
 import { VersionDropdown } from "./VersionDropdown.jsx";
 import { WebsiteConfiguration } from "./WebsiteConfiguration.jsx";
 
 const isThemeBuilderRoute = (pathname: string): boolean =>
   pathname === "/customization/theme-builder";
 
-const isFullViewportRoute = (pathname: string): boolean =>
-  isThemeBuilderRoute(pathname) ||
+const isMaterialIconsAndSymbolsRoute = (pathname: string): boolean =>
   pathname === "/components/material-icons-and-symbols";
+
+const isFullViewportRoute = (pathname: string): boolean =>
+  isThemeBuilderRoute(pathname) || isMaterialIconsAndSymbolsRoute(pathname);
 
 const isTableOfContentsRoute = (pathname: string): boolean =>
   pathname !== "/" && !isFullViewportRoute(pathname);
@@ -104,6 +111,9 @@ export function MainLayout(props: MainLayoutProps): ReactElement {
           mainProps.className
         )}
       >
+        {!IS_PRODUCTION_ENV && !FORCE_HIDE_VERSION_BANNER && (
+          <VersionBanner hidden={isMaterialIconsAndSymbolsRoute(pathname)} />
+        )}
         {children}
       </Main>
     </>
