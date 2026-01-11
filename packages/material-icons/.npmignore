@@ -1,4 +1,4 @@
 # I only want the README.md, CHANGELOG.md, LICENSE, package.json, and compiled to be published
 /*
-!/*.d.ts
-!/*Icon.js
+!/dist/**
+!/types.d.ts
