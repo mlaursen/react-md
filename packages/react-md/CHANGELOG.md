@@ -1,5 +1,13 @@
 # react-md
 
+## 7.0.1
+
+### Patch Changes
+
+- 168b9d9: Fixed peerDependencies to reflect React 19 requirement
+- Updated dependencies [168b9d9]
+  - @react-md/core@7.0.1
+
 ## 7.0.0
 
 ### Major Changes
