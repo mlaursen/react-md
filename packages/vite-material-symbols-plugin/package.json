@@ -1,0 +1,80 @@
+{
+  "name": "@react-md/vite-material-symbols-plugin",
+  "version": "1.0.0",
+  "description": "A vite plugin for react-md that automatically adds the material symbols link in the base html",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "clean-dist": "rm -rf dist",
+    "clean-cache": "rm -rf .turbo node_modules",
+    "clean": "concurrently 'pnpm clean-dist' 'pnpm clean-cache'",
+    "check-format": "prettier --check .",
+    "format": "prettier --write .",
+    "lint": "NODE_ENV=production eslint .",
+    "lint-fix": "pnpm lint --fix",
+    "typecheck": "tsc --noEmit",
+    "typecheck-watch": "pnpm typecheck --watch",
+    "build-dist": "rollup -c rollup.config.ts",
+    "build-dist-watch": "pnpm build-dist --watch",
+    "build-types": "tsc -p tsconfig.types.json",
+    "build-types-watch": "pnpm build-types --watch",
+    "build": "pnpm build-types && pnpm build-dist"
+  },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/npm-packages.git",
+    "directory": "packages/code"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/npm-packages/issues"
+  },
+  "keywords": [
+    "vite",
+    "material symbol",
+    "material symbols",
+    "react-md"
+  ],
+  "license": "MIT",
+  "packageManager": "pnpm@10.28.0",
+  "devDependencies": {
+    "@react-md/core": "workspace:*",
+    "@react-md/eslint-config": "workspace:*",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "@types/node": "^24.10.4",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.2",
+    "prettier": "^3.7.4",
+    "rollup": "^4.55.1",
+    "rollup-plugin-dts": "^6.3.0",
+    "rollup-plugin-swc3": "^0.12.1",
+    "vite": "^7.3.1"
+  },
+  "peerDependencies": {
+    "@react-md/core": ">= 6",
+    "react-md": ">= 6",
+    "vite": ">= 7"
+  },
+  "peerDependenciesMeta": {
+    "@react-md/core": {
+      "optional": true
+    },
+    "react-md": {
+      "optional": true
+    },
+    "vite": {
+      "optional": false
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "volta": {
+    "node": "24.12.0",
+    "pnpm": "10.28.0"
+  }
+}

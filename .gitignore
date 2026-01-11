@@ -22,6 +22,7 @@ coverage/
 
 # generated files
 /packages/*/dist
+/packages/*/types
 /packages/material-icons/*Icon.js
 /packages/material-icons/*Icon.d.ts
 

@@ -1,0 +1,6 @@
+.turbo
+node_modules
+
+/dist
+/types
+/coverage
