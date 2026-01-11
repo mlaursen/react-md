@@ -1,5 +1,12 @@
 # @react-md/code
 
+## 0.0.18
+
+### Patch Changes
+
+- Updated dependencies [2eeac34]
+  - @react-md/material-icons@7.0.2
+
 ## 0.0.17
 
 ### Patch Changes

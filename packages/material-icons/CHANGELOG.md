@@ -1,5 +1,11 @@
 # @react-md/material-icons
 
+## 7.0.2
+
+### Patch Changes
+
+- 2eeac34: Updated the .npmignore after moving files to the dist folder
+
 ## 7.0.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # docs-generator
 
+## 0.0.18
+
+### Patch Changes
+
+- @react-md/code@0.0.18
+
 ## 0.0.17
 
 ### Patch Changes
