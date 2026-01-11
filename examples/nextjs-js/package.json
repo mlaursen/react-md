@@ -3,23 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint"
   },
   "dependencies": {
-    "@react-md/core": "^6.3.1",
-    "@react-md/material-icons": "^6.2.3",
+    "@react-md/core": "^7.0.1",
+    "@react-md/material-icons": "^7.0.2",
     "cnbuilder": "^3.1.0",
-    "next": "15.3.1",
+    "next": "16.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
-    "eslint-config-next": "15.3.1",
+    "eslint-config-next": "16.1.1",
     "sass": "^1.86.3"
   }
 }

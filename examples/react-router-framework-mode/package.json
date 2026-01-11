@@ -1,5 +1,5 @@
 {
-  "name": "reac-t-router-framework-mode",
+  "name": "react-router-framework-mode",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,8 +9,8 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@react-md/core": "^6.3.1",
-    "@react-md/material-icons": "^6.2.3",
+    "@react-md/core": "^7.0.1",
+    "@react-md/material-icons": "^7.0.2",
     "@react-router/node": "^7.5.1",
     "@react-router/serve": "^7.5.1",
     "cnbuilder": "^3.1.0",
@@ -25,10 +25,10 @@
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.1",
     "prettier": "^3.5.3",
-    "react-router-devtools": "^1.1.0",
+    "react-router-devtools": "^6.1.0",
     "sass-embedded": "^1.86.3",
     "typescript": "^5.7.2",
     "vite": "^7.0.4",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^6.0.4"
   }
 }

@@ -1,17 +1,14 @@
 // @ts-check
-import { FlatCompat } from "@eslint/eslintrc";
-import { configs, defineConfig, gitignore } from "@mlaursen/eslint-config";
+import { configs, gitignore } from "@mlaursen/eslint-config";
+import nextPlugin from "@next/eslint-plugin-next";
+import { defineConfig } from "eslint/config";
 
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-});
-
-export default defineConfig(
+export default defineConfig([
+  nextPlugin.configs["core-web-vitals"],
   gitignore(import.meta.url),
-  // @ts-expect-error some eslint typedef mismatch
-  ...compat.config({
-    // extends: ["plugin:@next/next/recommended"],
-    extends: ["plugin:@next/next/core-web-vitals"],
+  ...configs.recommendedFrontend({
+    testFramework: "jest",
+    tsconfigRootDir:
+      process.env.STRICT_TYPING === "true" ? import.meta.dirname : undefined,
   }),
-  ...configs.frontend("jest")
-);
+]);
