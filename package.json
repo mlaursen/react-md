@@ -48,8 +48,8 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
-    "@mlaursen/release-script": "^0.0.8",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.1",
+    "@mlaursen/release-script": "^0.1.0",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.2",
     "husky": "^9.1.7",
