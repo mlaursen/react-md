@@ -241,6 +241,12 @@ export type OverridableStringUnion<
     }[keyof Overrides];
 
 /**
+ * @see https://github.com/microsoft/TypeScript/issues/29729#issuecomment-471566609
+ * @since 7.1.0
+ */
+export type LiteralStringUnion<T extends U, U = string> = T | (U & {});
+
+/**
  * @since 6.2.0
  */
 export type IsEmptyObject<T> = keyof T extends never ? true : false;

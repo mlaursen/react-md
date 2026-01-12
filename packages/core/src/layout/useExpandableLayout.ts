@@ -9,7 +9,11 @@ import { type AppSize } from "../media-queries/appSize.js";
 import { MEDIA_QUERY_CONFIG } from "../media-queries/config.js";
 import { useMediaQuery } from "../media-queries/useMediaQuery.js";
 import { type CSSTransitionElementProps } from "../transition/types.js";
-import { type CssPosition, type UseStateInitializer } from "../types.js";
+import {
+  type CssPosition,
+  type LiteralStringUnion,
+  type UseStateInitializer,
+} from "../types.js";
 import { useToggle } from "../useToggle.js";
 import { useDevEffect } from "../utils/useDevEffect.js";
 import { type LayoutNavProps } from "./LayoutNav.js";
@@ -75,7 +79,7 @@ export interface ExpandableLayoutOptions extends TemporaryLayoutOptions {
    *
    * @defaultValue `"tablet"`
    */
-  temporaryUntil?: "tablet" | "desktop" | (string & {});
+  temporaryUntil?: LiteralStringUnion<"tablet" | "desktop">;
 }
 
 /**
