@@ -55,9 +55,9 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "npm-run-all2": "^8.0.4",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.0",
     "tsx": "^4.21.0",
-    "turbo": "^2.7.3",
+    "turbo": "^2.7.5",
     "typescript": "^5.9.3"
   },
   "lint-staged": {

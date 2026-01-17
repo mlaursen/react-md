@@ -7,7 +7,7 @@ export default defineConfig([
   gitignore(join(import.meta.url, "..", "..")),
   ...configs.recommendedFrontend({
     testFramework: "jest",
-    tsconfigRootDir:
-      process.env.STRICT_TYPING === "true" ? import.meta.dirname : undefined,
+    tsconfigRootDir: import.meta.dirname,
+    strictTypeChecked: process.env.STRICT_TYPING === "true",
   }),
 ]);

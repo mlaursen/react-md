@@ -40,13 +40,13 @@
   "dependencies": {
     "@types/sassdoc": "workspace:*",
     "docs-generator": "workspace:*",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.0",
     "sass": "^1.97.2",
     "sassdoc": "^2.7.4"
   },
   "devDependencies": {
     "@react-md/eslint-config": "workspace:*",
-    "@swc/cli": "^0.7.9",
+    "@swc/cli": "^0.7.10",
     "@swc/core": "^1.15.8",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.10.4",

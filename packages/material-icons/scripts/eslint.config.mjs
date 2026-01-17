@@ -4,8 +4,8 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig([
   ...configs.typescript({
-    tsconfigRootDir:
-      process.env.STRICT_TYPING === "true" ? import.meta.dirname : undefined,
+    tsconfigRootDir: import.meta.dirname,
+    strictTypeChecked: process.env.STRICT_TYPING === "true",
   }),
   {
     rules: {

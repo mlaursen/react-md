@@ -5,8 +5,8 @@ import { join } from "node:path";
 export default defineConfig([
   gitignore(join(import.meta.url, "..", "..")),
   ...configs.typescript({
-    tsconfigRootDir:
-      process.env.STRICT_TYPING === "true" ? import.meta.dirname : undefined,
+    tsconfigRootDir: import.meta.dirname,
+    strictTypeChecked: process.env.STRICT_TYPING === "true",
   }),
   {
     ignores: ["**/__testfixtures__", "dist/**"],

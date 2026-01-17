@@ -30,6 +30,6 @@ export default defineConfig({
     },
 
     // increase test timeout for tooltips since they are funky
-    testTimeout: 10000,
+    testTimeout: 10_000,
   },
 });
