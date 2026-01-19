@@ -43,7 +43,7 @@
     "turbo-release": "pnpm turbo-s --filter=react-md --filter=@react-md/codemod --filter=@react-md/material-icons",
     "clean-release-dist": "pnpm turbo-release clean-dist",
     "build-release-packages": "pnpm turbo-release build",
-    "build-release": "npm-run-all core-index-file build-release-packages",
+    "build-release": "pnpm core-index-file && pnpm build-release-packages",
     "release": "pnpm run run-script scripts/release.ts"
   },
   "devDependencies": {
@@ -54,7 +54,6 @@
     "eslint": "^9.39.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "npm-run-all2": "^8.0.4",
     "prettier": "^3.8.0",
     "tsx": "^4.21.0",
     "turbo": "^2.7.5",
