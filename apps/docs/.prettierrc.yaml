@@ -6,6 +6,8 @@ plugins:
 
 importOrder:
   - "<THIRD_PARTY_MODULES>"
+  - "^[@.]/rmdConfig.js$"
+  - "^[@.]/constants/rmdConfig.js$"
   - "^@/(.*)$"
   - "^[./]"
 importOrderSeparation: true

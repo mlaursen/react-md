@@ -52,6 +52,11 @@
   },
   "sideEffects": [
     "dist/**/*.scss",
+    "dist/form/formConfig.js",
+    "dist/icon/config.js",
+    "dist/icon/materialConfig.js",
+    "dist/interaction/config.js",
+    "dist/media-queries/config.js",
     "dist/test-utils/polyfills"
   ],
   "scripts": {

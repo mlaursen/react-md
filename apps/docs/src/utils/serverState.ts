@@ -10,6 +10,8 @@ import { cookies } from "next/headers.js";
 import { type CSSProperties } from "react";
 import "server-only";
 
+import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.js";
+
 import fallbackThemeStyles from "@/components/LoadThemeStyles/SystemTheme.module.scss";
 import { type CodeLanguage } from "@/components/MainLayout/ConfigureTypescriptEnabled.js";
 import {
@@ -19,7 +21,6 @@ import {
   PACKAGE_MANAGER_KEY,
 } from "@/constants/cookies.js";
 import { PRISM_THEMES, type PrismTheme } from "@/constants/prismThemes.js";
-import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.js";
 import { getCookie, getThemeCookie } from "@/utils/serverCookies.js";
 
 import { kebabCase, pascalCase } from "./strings.js";

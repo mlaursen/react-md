@@ -12,8 +12,9 @@ import { TooltipHoverModeProvider } from "@react-md/core/tooltip/TooltipHoverMod
 import { WritingDirectionProvider } from "@react-md/core/typography/WritingDirectionProvider";
 import { type ReactElement, type ReactNode } from "react";
 
-import { CODE_LANGUAGE_KEY, PACKAGE_MANAGER_KEY } from "@/constants/cookies.js";
 import { rmdConfig } from "@/constants/rmdConfig.js";
+
+import { CODE_LANGUAGE_KEY, PACKAGE_MANAGER_KEY } from "@/constants/cookies.js";
 import { setCookie } from "@/utils/clientCookies.js";
 import { type AppCookies } from "@/utils/serverState.js";
 
