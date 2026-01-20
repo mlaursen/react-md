@@ -44,6 +44,19 @@ $disable-svg: false !default;
 /// @type Boolean
 $disable-symbol: false !default;
 
+/// Set to  `true` if not using the material symbols or material icon fonts.
+/// When this is false, the following code will be added to override the
+/// default stylesheet:
+///
+/// ```scss
+/// .rmd-icon[class*="material-"] {
+///   @include use-var(font-size, size);
+/// }
+/// ```
+///
+/// @type Boolean
+$disable-material-icons-font-fix: false !default;
+
 /// Set to `true` to disable the dense icon sizes
 /// @type Boolean
 $disable-dense: false !default;
@@ -271,6 +284,12 @@ $_disable-icons: $disable-font and $disable-svg and $disable-symbol;
 /// layer behavior
 @mixin styles($disable-layer: false) {
   @if not $_disable-icons {
+    @if not $disable-material-icons-font-fix {
+      .rmd-icon[class*="material-"] {
+        @include use-var(font-size, size);
+      }
+    }
+
     @include utils.optional-layer(icon, $disable-layer) {
       @include theme.default-system-theme {
         @include use-dark-theme;

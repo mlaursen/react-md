@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import Script from "next/script.js";
 import { type PropsWithChildren, type ReactElement } from "react";
 
-import "./layout.scss";
-
 export const metadata: Metadata = {
   icons: {
     other: [

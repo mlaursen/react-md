@@ -1,5 +1,0 @@
-@use "everything" as *;
-
-.rmd-icon[class*="material-"] {
-  @include icon-use-var(font-size, size);
-}
