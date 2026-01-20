@@ -61,7 +61,8 @@ export function CreateStackBlitzProject(
   const typescriptTemplateFiles: TemplateFile[] = [...TS_STACKBLITZ_TEMPLATE];
   for (const codeFile of readOnlyFiles) {
     const { code, lang } = codeFile;
-    const remappedName = readOnlyImports[codeFile.name.replace(/\.t/, ".j")];
+    const remappedName =
+      readOnlyImports[codeFile.name.replace(/\.tsx?/, ".js")];
     if (!remappedName) {
       throw new Error(`Unable to find name for ${codeFile.name}`);
     }
