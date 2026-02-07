@@ -61,16 +61,16 @@
     "@react-md/core": "workspace:*"
   },
   "devDependencies": {
-    "@swc/cli": "^0.7.10",
-    "@swc/core": "^1.15.8",
+    "@swc/cli": "^0.8.0",
+    "@swc/core": "^1.15.11",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.10.4",
     "chokidar": "^5.0.0",
-    "glob": "^13.0.0",
+    "glob": "^13.0.1",
     "npm-run-all2": "^8.0.2",
-    "prettier": "^3.8.0",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "prettier": "^3.8.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
