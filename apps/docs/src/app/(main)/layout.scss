@@ -10,7 +10,7 @@ $is_production: $env == production;
   :root {
     @if $color-scheme == system and not $disable-default-system-theme {
       @media (prefers-color-scheme: dark) {
-        @include dark-theme(false);
+        @include dark-theme(false, true);
       }
     }
 
@@ -23,6 +23,7 @@ $is_production: $env == production;
     }
 
     @if $disable-default-root-theme {
+      @include default-color-scheme;
       @include variables;
       @include code-variables;
 
@@ -32,7 +33,7 @@ $is_production: $env == production;
         $is_production
       {
         @media (prefers-color-scheme: dark) {
-          @include dark-theme(true);
+          @include dark-theme(true, true);
         }
       }
     }

@@ -15,9 +15,9 @@
   @return color-mix(in srgb, #{$color} #{$opacity + "%"}, #{$background});
 }
 
-@mixin light-theme($core) {
+@mixin light-theme($core, $disable-color-scheme-var: false) {
   @if $core {
-    @include core.use-light-theme;
+    @include core.use-light-theme($disable-color-scheme-var);
   }
   @include code.use-light-theme;
 
@@ -39,9 +39,9 @@
   --success-color: #{core.$green-900};
 }
 
-@mixin dark-theme($core) {
+@mixin dark-theme($core, $disable-color-scheme-var: false) {
   @if $core {
-    @include core.use-dark-theme;
+    @include core.use-dark-theme($disable-color-scheme-var);
   }
   @include code.use-dark-theme;
 

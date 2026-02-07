@@ -23,6 +23,14 @@
 /// @type String
 $color-scheme: light !default;
 
+/// Set this to true to prevent setting the `color-scheme` property on the
+/// `:root` element or when using the
+/// `theme-use-light-theme`/`theme-use-dark-theme` mixins.
+///
+/// @since 7.1.0
+/// @type Boolean
+$disable-color-scheme: false !default;
+
 /// The dark elevation feature is generally recommended to keep enabled since it
 /// helps with visibility when your app is using the dark color scheme either
 /// through `$color-scheme: dark` or `using the `use-dark-theme mixin. When this
@@ -394,6 +402,7 @@ $_validated_color_scheme: utils.validate(
 
 /// The available configurable css variables and mostly used internally for the
 /// `get-var`, `set-var`, and `use-var` utils.
+/// @since 7.1.0
 /// @type List
 $theme-variables: (
   background-color,
@@ -416,7 +425,8 @@ $theme-variables: (
   outline-width,
   outline-color,
   outline-grey-color,
-  inverse-color
+  inverse-color,
+  color-scheme
 );
 
 /// Checks if a theme variable is disabled and should not be able to be
@@ -605,7 +615,15 @@ $theme-variables: (
 }
 
 /// Creates all the css variables for the light theme respecting feature flags
-@mixin use-light-theme-colors {
+///
+/// @since 7.1.0 Supports the `$disable-color-scheme` param
+/// @param {Boolean} $disable-color-scheme-var [false] - Set to `true` to
+/// disable setting the color-scheme var
+@mixin use-light-theme-colors($disable-color-scheme-var: false) {
+  @if not $disable-color-scheme and not $disable-color-scheme-var {
+    @include theme-set-var(color-scheme, light);
+  }
+
   @include theme-set-var(inverse-color, $light-theme-inverse-color);
   @include theme-set-var(background-color, $light-theme-background-color);
   @if $disable-dark-elevation and not $disable-surface-color {
@@ -636,7 +654,15 @@ $theme-variables: (
 }
 
 /// Creates all the css variables for the dark theme respecting feature flags
-@mixin use-dark-theme-colors {
+///
+/// @since 7.1.0 Supports the `$disable-color-scheme` param
+/// @param {Boolean} $disable-color-scheme-var [false] - Set to `true` to
+/// disable setting the color-scheme var
+@mixin use-dark-theme-colors($disable-color-scheme-var: false) {
+  @if not $disable-color-scheme and not $disable-color-scheme-var {
+    @include theme-set-var(color-scheme, dark);
+  }
+
   @include theme-set-var(inverse-color, $dark-theme-inverse-color);
   @include theme-set-var(background-color, $dark-theme-background-color);
   @if $disable-dark-elevation and not $disable-surface-color {
@@ -851,5 +877,18 @@ $theme-variables: (
         @content;
       }
     }
+  }
+}
+
+@mixin default-color-scheme {
+  @if not $disable-color-scheme {
+    // prettier-ignore
+    @include theme-use-var(
+      color-scheme,
+      $fallback: if(
+        sass($color-scheme == system): light dark;
+        else: $color-scheme
+      )
+    );
   }
 }

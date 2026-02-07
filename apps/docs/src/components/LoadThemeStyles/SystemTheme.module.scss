@@ -3,13 +3,13 @@
 @if $color-scheme == dark {
   @media (prefers-color-scheme: light) {
     .container {
-      @include dark-theme(true);
+      @include dark-theme(true, true);
     }
   }
 } @else {
   @media (prefers-color-scheme: dark) {
     .container {
-      @include dark-theme(true);
+      @include dark-theme(true, true);
     }
   }
 }

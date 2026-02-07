@@ -330,8 +330,10 @@ $_layer-order: (
 ///     @include use-light-theme;
 ///   }
 ///
-@mixin use-light-theme {
-  @include theme.use-light-theme-colors;
+/// @param {Boolean} $disable-color-scheme-var [false] - Set to `true` to
+/// disable setting the color-scheme var
+@mixin use-light-theme($disable-color-scheme-var: false) {
+  @include theme.use-light-theme-colors($disable-color-scheme-var);
   @include interaction.use-light-surface;
   @include transition.transition-use-light-theme;
   @include icon.use-light-theme;
@@ -355,8 +357,11 @@ $_layer-order: (
 ///     @include use-dark-theme;
 ///   }
 ///
-@mixin use-dark-theme {
-  @include theme.use-dark-theme-colors;
+///
+/// @param {Boolean} $disable-color-scheme-var [false] - Set to `true` to
+/// disable setting the color-scheme var
+@mixin use-dark-theme($disable-color-scheme-var: false) {
+  @include theme.use-dark-theme-colors($disable-color-scheme-var);
   @include interaction.use-dark-surface;
   @include transition.transition-use-dark-theme;
   @include icon.use-dark-theme;
@@ -514,6 +519,7 @@ $_layer-order: (
 
   @if not theme.$disable-default-root-theme {
     :root {
+      @include theme.default-color-scheme;
       @include variables;
 
       @if theme.$color-scheme == system {
