@@ -103,8 +103,12 @@ export const CUSTOM_MDX_COMPONENTS: CustomMDXComponents = {
   tbody: TableBody,
   tfoot: TableFooter,
   tr: TableRow,
-  td: TableCell,
-  th: TableCell,
+  td: function Td(props) {
+    return <TableCell lineWrap padding="vertical" {...props} />;
+  },
+  th: function Th(props) {
+    return <TableCell lineWrap padding="vertical" {...props} />;
+  },
   // table: ({ children }) => (
   //   <div className={tableContainer()}>
   //     <table className={table({ fullWidth: true })}>{children}</table>

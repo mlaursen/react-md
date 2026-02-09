@@ -101,47 +101,27 @@ export function getMaterialIconComponentName(
   return pascalCase(`${iconName}${suffix}`);
 }
 
-type DefinedSpecs = Omit<MaterialSymbolConfiguration, "family">;
-
 interface FontStylesheetOptions {
   iconType: IconType;
   iconFamily: MaterialIconFamily;
 }
 
-export function getFontStylesheet(options: FontStylesheetOptions): string;
-export function getFontStylesheet(
-  options: FontStylesheetOptions & DefinedSpecs
-): string;
-export function getFontStylesheet(
-  options: FontStylesheetOptions & Partial<DefinedSpecs>
-): string {
-  const {
-    iconType,
-    iconFamily,
-    opticalSize = "20..48",
-    weight = "100..700",
-    fill = "0..1",
-    grade = "-50..200",
-  } = options;
+export function getFontStylesheet(options: FontStylesheetOptions): string {
+  const { iconType, iconFamily } = options;
 
-  let specs = "";
   let familyName = iconFamily
     .split("-")
     .map((part) => upperFirst(part))
     .join("+");
 
-  if (isMaterialIconType(iconType)) {
-    if (familyName === "Rounded") {
-      familyName = "Round";
-    } else if (familyName === "Filled") {
-      familyName = "";
-    }
-  } else {
-    specs = `:opsz,wght,FILL,GRAD@${opticalSize},${weight},${fill},${grade}`;
+  if (familyName === "Rounded") {
+    familyName = "Round";
+  } else if (familyName === "Filled") {
+    familyName = "";
   }
 
   const name = upperFirst(iconType.split("-")[0]);
-  const suffix = `${name}s${familyName ? `+${familyName}` : ""}${specs}`;
+  const suffix = `${name}s${familyName ? `+${familyName}` : ""}`;
 
   return `https://fonts.googleapis.com/css2?family=Material+${suffix}`;
 }

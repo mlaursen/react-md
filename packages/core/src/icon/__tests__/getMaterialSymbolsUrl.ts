@@ -81,4 +81,19 @@ describe("getMaterialSymbolsUrl", () => {
       "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..200&icon_names=abc"
     );
   });
+
+  it("should allow multiple families to be loaded at once using the same specs", () => {
+    expect(
+      getMaterialSymbolsUrl({
+        names: [],
+        family: ["outlined", "rounded", "sharp"],
+        fill: { min: 0, max: 1 },
+        grade: { min: -25, max: 200 },
+        opticalSize: { min: 20, max: 48 },
+        weight: { min: 100, max: 700 },
+      })
+    ).toBe(
+      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Material+Symbols+Rounded&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..200"
+    );
+  });
 });

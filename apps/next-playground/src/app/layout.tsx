@@ -1,5 +1,5 @@
 import { RootHtml } from "@react-md/core/RootHtml";
-import { MaterialSymbolsLinks } from "@react-md/core/icon/MaterialSymbolsLinks";
+import { getMaterialSymbolsUrl } from "@react-md/core/icon/getMaterialSymbolsUrl";
 import { type MaterialSymbolName } from "@react-md/core/icon/material";
 import { DEFAULT_MATERIAL_SYMBOL_NAMES } from "@react-md/core/icon/symbols";
 import { type Metadata } from "next";
@@ -34,6 +34,14 @@ const names = [
 
 export const metadata: Metadata = {
   title: "Next Playground - react-md",
+  icons: {
+    other: [
+      {
+        rel: "stylesheet",
+        url: getMaterialSymbolsUrl({ names }),
+      },
+    ],
+  },
 };
 
 // TODO: Add this to main docs and maybe some components to automate it. should
@@ -59,7 +67,6 @@ export default function Layout({ children }: LayoutProps): ReactElement {
       beforeBodyChildren={
         <head>
           <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
-          <MaterialSymbolsLinks names={names} />
         </head>
       }
     >

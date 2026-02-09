@@ -29,7 +29,7 @@ export interface MaterialSymbolsGoogleFontUrlOptions {
    *
    * @defaultValue `"outlined"`
    */
-  family?: MaterialSymbolFamily;
+  family?: MaterialSymbolFamily | readonly MaterialSymbolFamily[];
 
   /**
    * Provide this value if the `MATERIAL_CONFIG.fill` is not the default.
@@ -77,8 +77,6 @@ export interface MaterialSymbolsUrlOptions extends MaterialSymbolsGoogleFontUrlO
 export function getMaterialSymbolsUrl(
   options: MaterialSymbolsUrlOptions = {}
 ): string {
-  const { family = MATERIAL_CONFIG.family } = options;
-
   // the names have to be sorted for the google fonts api
   const names = alphaNumericSort([
     ...new Set(options.names ?? DEFAULT_MATERIAL_SYMBOL_NAMES),
@@ -93,10 +91,22 @@ export function getMaterialSymbolsUrl(
     options.opticalSize,
     MATERIAL_CONFIG.opticalSize
   );
-
-  const variant = family.charAt(0).toUpperCase() + family.slice(1);
   const specs = `:opsz,wght,FILL,GRAD@${opticalSize},${weight},${fill},${grade}`;
-  const baseUrl = `https://fonts.googleapis.com/css2?family=Material+Symbols+${variant}${specs}`;
 
-  return `${baseUrl}&icon_names=${names.join(",")}`;
+  const families =
+    typeof options.family === "string" || options.family === undefined
+      ? [options.family ?? MATERIAL_CONFIG.family]
+      : options.family;
+  let familiesQs = "";
+  for (const [i, family] of families.entries()) {
+    const variant = family.charAt(0).toUpperCase() + family.slice(1);
+    familiesQs += (i === 0 ? "" : "&") + "family=Material+Symbols+" + variant;
+  }
+
+  let iconNames = "";
+  if (names.length > 0) {
+    iconNames = `&icon_names=${names.join(",")}`;
+  }
+
+  return `https://fonts.googleapis.com/css2?${familiesQs}${specs}${iconNames}`;
 }

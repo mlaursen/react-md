@@ -1,13 +1,15 @@
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import Script from "next/script.js";
 import { type PropsWithChildren, type ReactElement } from "react";
+
+import { EVERY_ICON_AND_SYMBOL_GOOGLE_FONT_URL } from "@/constants/googleFontsApi.js";
 
 export const metadata: Metadata = {
   icons: {
     other: [
       {
         rel: "stylesheet",
-        url: "https://fonts.googleapis.com/css2?family=Material+Icons&family=Material+Icons+Outlined&family=Material+Icons+Round&family=Material+Icons+Sharp&family=Material+Icons+Two+Tone&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block",
+        url: EVERY_ICON_AND_SYMBOL_GOOGLE_FONT_URL,
       },
     ],
   },
