@@ -1,0 +1,21 @@
+@use "everything" as *;
+
+@include styles;
+@include code-styles;
+
+:root {
+  @include variables;
+  @include code-variables;
+
+  @media (prefers-color-scheme: dark) {
+    @include dark-theme;
+  }
+}
+
+.light-theme {
+  @include light-theme;
+}
+
+.dark-theme {
+  @include dark-theme;
+}

@@ -4,7 +4,7 @@
     "target": "es5",
     "module": "nodenext",
     "sourceMap": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "nodenext",
@@ -34,7 +34,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "*.mjs"
+    "*.mjs",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

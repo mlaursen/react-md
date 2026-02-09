@@ -31,10 +31,6 @@
       "outputs": ["coverage/**"]
     },
     "test-run-snapshot": {},
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
     "clean": {
       "cache": false
     },
