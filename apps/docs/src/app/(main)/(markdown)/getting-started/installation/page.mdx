@@ -203,12 +203,41 @@ This file should just be imported anywhere within the application to take effect
  );
 ```
 
+### Configure Material Symbols
+
+If using [Material Symbols] instead of font or svg icons, import
+`@react-md/core/icon/configureMaterialSymbols` instead which just handles
+calling `configureIcons()` with the default icons:
+
+```diff fileName="src/index.tsx"
++import "@react-md/core/icon/configureMaterialSymbols";
+ import { CoreProviders } from "@react-md/core/CoreProviders";
+ import { createRoot } from "react-dom/client"
+
+-import "./rmdConfig.js";
+ import App from "./App.js";
+
+ const container = document.getElementById("root");
+ const root = createRoot(container);
+ root.render(
+   <CoreProviders>
+     <App />
+   </CoreProviders>
+ );
+```
+
+> !Success! Check out the [material symbols setup page] for some additional
+> packages, components, and utils that can be used to bootstrap and automate
+> including additional icons.
+
 [sass]: https://sass-lang.com/
 [@use rule]: https://sass-lang.com/blog/the-module-system-is-launched/
 [roboto]: https://fonts.google.com/specimen/Roboto
 [react context]: https://react.dev/reference/react/createContext
 [material icons]: https://fonts.google.com/icons?icon.set=Material+Icons
+[material symbols]: https://fonts.google.com/icons?icon.set=Material+Symbols
 [including the icon fonts through google fonts]: https://developers.google.com/fonts/docs/material_icons#setup_method_1_using_via_google_fonts
 [coreproviders]: /components/core-providers
 [material icons page]: /components/material-icons-and-symbols
 [color palette playground]: /customization/colors#playground
+[material symbols setup page]: /customization/material-symbols

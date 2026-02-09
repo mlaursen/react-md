@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MaterialSymbolsLinks > should default to adding preconnect links to the google fonts and rendering the correct google fonts api url with the \`MATERIAL_CONFIG\` and \`DEFAULT_MATERIAL_SYMBOL_NAMES\` 1`] = `
+<link
+  data-testid="link"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=arrow_drop_down,arrow_upward,cancel,check,check_box,check_box_outline_blank,close,close_small,error,indeterminate_check_box,keyboard_arrow_down,keyboard_arrow_left,keyboard_arrow_right,menu,notifications,radio_button_checked,radio_button_unchecked,upload,visibility"
+  rel="stylesheet"
+/>
+`;

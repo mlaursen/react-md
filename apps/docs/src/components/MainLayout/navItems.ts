@@ -42,6 +42,11 @@ export const navItems: readonly NavigationItem[] = [
       },
       {
         type: "route",
+        href: "/material-symbols",
+        children: "Material Symbols",
+      },
+      {
+        type: "route",
         href: "/colors",
         children: "Colors",
       },

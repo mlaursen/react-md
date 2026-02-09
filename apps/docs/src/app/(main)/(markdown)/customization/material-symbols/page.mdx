@@ -1,0 +1,51 @@
+---
+title: Material Symbols
+description: This page walks through the installation steps for using material symbols as the default icons throughout the app.
+docType: Guides
+docGroup: Customization
+group: Material Symbols
+keywords: [icon, symbol, material, fonts, google]
+---
+
+# Material Symbols Setup
+
+> !Success! Switching to Material Symbols is completely optional.
+
+> !Info! This page assumes you have gone through the initial installation steps
+> and would like to use [Material Symbols] throughout the app.
+
+## Usage with [next.js]
+
+## Usage with [vite]
+
+A simple vite plugin can be installed and added to the `vite.config.ts` that
+just searches all the included files for `MaterialSymbol` components and
+extracts the material symbol name from the `name` prop.
+
+```sh
+npm install -D @react-md/vite-material-symbols-plugin
+```
+
+```diff
+ import { resolve } from 'node:path'
+ import { defineConfig } from 'vite'
+ import react from '@vitejs/plugin-react-swc'
++import { materialSymbolsPlugin } from "@react-md/vite-material-symbols-plugin";
+
+ // https://vite.dev/config/
+ export default defineConfig({
+-  plugins: [react()],
++  plugins: [react(), materialSymbolsPlugin()],
+   resolve: {
+     alias: {
+       everything: resolve(import.meta.dirname, 'src/_everything.scss'),
+     },
+   },
+ })
+```
+
+See the [configuration]($GITHUB/packages/vite-material-symbols-plugin/README.md#Configuration) for additional plugin options.
+
+[next.js]: https://nextjs.org
+[material symbols]: https://fonts.google.com/icons?icon.set=Material+Symbols
+[vite]: https://vite.dev

@@ -1,4 +1,4 @@
-# @react-md/vite-plugin-material-symbols
+# @react-md/vite-material-symbols-plugin
 
 This is a very simple [vite] plugin to handle automatically include material
 symbols from the google fonts API when using the `MaterialSymbol` component
@@ -9,7 +9,7 @@ from `@react-md/core`. This plugin searches all the included files for
 ## Installation
 
 ```sh
-npm install -D @react-md/vite-plugin-material-symbols
+npm install -D @react-md/vite-material-symbols-plugin
 ```
 
 ## Setup
@@ -20,7 +20,7 @@ Add the plugin to the `vite.config.ts`:
  import { resolve } from 'node:path'
  import { defineConfig } from 'vite'
  import react from '@vitejs/plugin-react-swc'
-+import { materialSymbolsPlugin } from "@react-md/vite-plugin-material-symbols";
++import { materialSymbolsPlugin } from "@react-md/vite-material-symbols-plugin";
 
  // https://vite.dev/config/
  export default defineConfig({

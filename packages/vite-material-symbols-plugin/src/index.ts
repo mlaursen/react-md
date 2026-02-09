@@ -1,10 +1,12 @@
+import { getMaterialSymbolsUrl } from "@react-md/core/icon/getMaterialSymbolsUrl";
+import { type MaterialSymbolName } from "@react-md/core/icon/material";
+import { DEFAULT_MATERIAL_SYMBOL_NAMES } from "@react-md/core/icon/symbols";
 import { glob, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { type HtmlTagDescriptor, type Plugin } from "vite";
 
 import { addMaterialSymbolNames } from "./addMaterialSymbolNames.js";
 import { PRECONNECT_LINKS } from "./constants.js";
-import { getMaterialSymbolOption } from "./getMaterialSymbolOption.js";
 import { type MaterialSymbolPluginOptions } from "./types.js";
 
 /**
@@ -16,24 +18,19 @@ export function materialSymbolsPlugin(
   options: MaterialSymbolPluginOptions = {}
 ): Plugin {
   const {
-    family = "outlined",
+    family,
+    fill,
+    grade,
+    opticalSize,
+    weight,
     pattern = "src/**/*.{ts,tsx,js,jsx}",
-    defaultSymbolNames = [],
+    defaultSymbolNames = DEFAULT_MATERIAL_SYMBOL_NAMES,
     disablePreconnectLinks,
   } = options;
-  const symbolNames = new Set<string>(defaultSymbolNames);
-
-  const variant = family.charAt(0).toUpperCase() + family.slice(1);
-  const fill = getMaterialSymbolOption(options.fill, 0);
-  const grade = getMaterialSymbolOption(options.grade, 0);
-  const weight = getMaterialSymbolOption(options.weight, 400);
-  const opticalSize = getMaterialSymbolOption(options.opticalSize, 48);
-
-  const specs = `:opsz,wght,FILL,GRAD@${opticalSize},${weight},${fill},${grade}`;
-  const baseUrl = `https://fonts.googleapis.com/css2?family=Material+Symbols+${variant}${specs}`;
+  const symbolNames = new Set<MaterialSymbolName>(defaultSymbolNames);
 
   return {
-    name: "@react-md/vite-plugin-material-symbols",
+    name: "@react-md/vite-material-symbols-plugin",
     async configResolved(config) {
       const root = config.root ?? process.cwd();
 
@@ -53,16 +50,19 @@ export function materialSymbolsPlugin(
         return [];
       }
 
-      const sortedNames = [...symbolNames].toSorted();
-
-      const fontUrl = `${baseUrl}&icon_names=${sortedNames.join(",")}&display=block`;
-
       const result: HtmlTagDescriptor[] = [
         {
           tag: "link",
           attrs: {
             rel: "stylesheet",
-            href: fontUrl,
+            href: getMaterialSymbolsUrl({
+              names: [...symbolNames],
+              family,
+              fill,
+              grade,
+              weight,
+              opticalSize,
+            }),
           },
           injectTo: "head",
         },

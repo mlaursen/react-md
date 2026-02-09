@@ -28,39 +28,51 @@ The default icons used by ReactMD component can be configured using the
 library but can be configured to use the `@react-md/material-icons` SVG components,
 `MaterialSymbol` components, or any custom icon.
 
-Since the
-[Installation](/getting-started/installation#configuring-custom-icons) page
-shows how to configure icons using the SVG material icons, this will show how
-to use material symbols instead.
-
-> !Info! Note: This would require including the icon font `<link>`. See the
-> [Material Symbols](/components/material-icons-and-symbols?icon=air&icon.stylesheet)
-> stylesheet for more info.
+> See [Material Symbols](./material-symbols) for material symbol setup.
 
 ```tsx fileName="src/rmdConfig.tsx"
 "use client";
 
-import { MaterialSymbol } from "@react-md/core/icon/MaterialSymbol";
 import { configureIcons } from "@react-md/core/icon/config";
 
+import {
+  BackIcon,
+  CheckboxCheckedIcon,
+  CheckboxIcon,
+  CheckboxIndeterminateIcon,
+  CloseIcon,
+  DropdownIcon,
+  ErrorIcon,
+  ExpanderIcon,
+  ForwardIcon,
+  MenuIcon,
+  NotificationIcon,
+  PasswordIcon,
+  RadioIcon,
+  RadioCheckedIcon,
+  SelectedIcon
+  SortIcon,
+  UploadIcon,
+} from "./CustomIcons";
+
 configureIcons({
-  back: <MaterialSymbol name="keyboard_arrow_left" />,
-  close: <MaterialSymbol name="close" />,
-  checkbox: <MaterialSymbol name="check_box_outline_blank" />,
-  checkboxChecked: <MaterialSymbol name="check_box" />,
-  checkboxIndeterminate: <MaterialSymbol name="indeterminate_check_box" />,
-  dropdown: <MaterialSymbol name="arrow_drop_down" />,
-  error: <MaterialSymbol name="error" />,
-  expander: <MaterialSymbol name="keyboard_arrow_down" />,
-  forward: <MaterialSymbol name="keyboard_arrow_right" />,
-  menu: <MaterialSymbol name="menu" />,
-  notification: <MaterialSymbol name="notifications" />,
-  password: <MaterialSymbol name="visibility" />,
-  radio: <MaterialSymbol name="radio_button_unchecked" />,
-  radioChecked: <MaterialSymbol name="radio_button_checked" />,
-  selected: <MaterialSymbol name="check" />,
-  sort: <MaterialSymbol name="arrow_upward" />,
-  upload: <MaterialSymbol name="upload" />,
+  back: <BackIcon />,
+  close: <CloseIcon />,
+  checkbox: <CheckboxIcon/>,
+  checkboxChecked: <CheckboxCheckedIcon />,
+  checkboxIndeterminate: <CheckboxIndeterminateIcon />,
+  dropdown: <DropdownIcon />,
+  error: <ErrorIcon />,
+  expander: <ExpanderIcon />,
+  forward: <ForwardIcon />,
+  menu: <MenuIcon />,
+  notification: <NotificationIcon />,
+  password: <PasswordIcon />,
+  radio: <RadioIcon />,
+  radioChecked: <RadioCheckedIcon />,
+  selected: <SelectedIcon />,
+  sort: <SortIcon />,
+  upload: <UploadIcon />,
 });
 ```
 

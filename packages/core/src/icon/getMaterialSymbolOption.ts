@@ -1,7 +1,11 @@
-import { type ValueOrRange } from "./types.js";
+import { type GoogleFontsAPIValueOrRange } from "./getMaterialSymbolsUrl.js";
 
+/**
+ * @internal
+ * @since 7.1.0
+ */
 export function getMaterialSymbolOption<T extends number>(
-  value: ValueOrRange<T> | undefined,
+  value: GoogleFontsAPIValueOrRange<T> | undefined,
   fallback: T
 ): string {
   if (!value) {

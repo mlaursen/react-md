@@ -1,17 +1,7 @@
-import {
-  type MaterialSymbolFamily,
-  type MaterialSymbolName,
-} from "@react-md/core/icon/material";
-import {
-  type MaterialSymbolFill,
-  type MaterialSymbolGrade,
-  type MaterialSymbolOpticalSize,
-  type MaterialSymbolWeight,
-} from "@react-md/core/icon/materialConfig";
+import { type MaterialSymbolsGoogleFontUrlOptions } from "@react-md/core/icon/getMaterialSymbolsUrl";
+import { type MaterialSymbolName } from "@react-md/core/icon/material";
 
-export type ValueOrRange<T extends number> = T | { min: T; max: T };
-
-export interface MaterialSymbolPluginOptions {
+export interface MaterialSymbolPluginOptions extends MaterialSymbolsGoogleFontUrlOptions {
   /**
    * An optional list of material symbol names to include when the simple regex
    * matcher does not work. For example, if you have a custom component that
@@ -20,41 +10,6 @@ export interface MaterialSymbolPluginOptions {
    * names.
    */
   defaultSymbolNames?: readonly MaterialSymbolName[];
-
-  /**
-   * Provide this value if the `MATERIAL_CONFIG.family` is not the default.
-   *
-   * @defaultValue `"outlined"`
-   */
-  family?: MaterialSymbolFamily;
-
-  /**
-   * Provide this value if the `MATERIAL_CONFIG.fill` is not the default.
-   *
-   * @defaultValue `0`
-   */
-  fill?: ValueOrRange<MaterialSymbolFill>;
-
-  /**
-   * Provide this value if the `MATERIAL_CONFIG.grade` is not the default.
-   *
-   * @defaultValue `0`
-   */
-  grade?: ValueOrRange<MaterialSymbolGrade>;
-
-  /**
-   * Provide this value if the `MATERIAL_CONFIG.weight` is not the default.
-   *
-   * @defaultValue `400`
-   */
-  weight?: ValueOrRange<MaterialSymbolWeight>;
-
-  /**
-   * Provide this value if the `MATERIAL_CONFIG.opticalSize` is not the default.
-   *
-   * @defaultValue `48`
-   */
-  opticalSize?: ValueOrRange<MaterialSymbolOpticalSize>;
 
   /**
    * Use this prop to prevent the google fonts preconnect links from being included
