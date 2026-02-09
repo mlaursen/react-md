@@ -31,11 +31,11 @@
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mlaursen/npm-packages.git",
-    "directory": "packages/code"
+    "url": "git+https://github.com/mlaursen/react-md.git",
+    "directory": "packages/vite-material-symbols-plugin"
   },
   "bugs": {
-    "url": "https://github.com/mlaursen/npm-packages/issues"
+    "url": "https://github.com/mlaursen/react-md/issues"
   },
   "keywords": [
     "vite",
