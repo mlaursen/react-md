@@ -19,7 +19,7 @@ keywords: [icon, symbol, material, fonts, google]
 The easiest way to use Material Symbols with next.js is to create a list of
 used symbol names and add it to a layout's metadata:
 
-```diff src/app/layout.tsx
+```diff fileName="src/app/layout.tsx"
  import { RootHtml } from "@react-md/core/RootHtml";
 +import { getMaterialSymbolsUrl } from "@react-md/core/icon/getMaterialSymbolsUrl";
 +import { type MaterialSymbolName } from "@react-md/core/icon/material";
@@ -67,7 +67,7 @@ extracts the material symbol name from the `name` prop.
 npm install -D @react-md/vite-material-symbols-plugin
 ```
 
-```diff
+```diff fileName="vite.config.ts"
  import { resolve } from 'node:path'
  import { defineConfig } from 'vite'
  import react from '@vitejs/plugin-react-swc'
