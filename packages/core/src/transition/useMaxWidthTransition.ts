@@ -7,7 +7,7 @@ import { Children, cloneElement, isValidElement } from "react";
 import { maxWidthTransition } from "./maxWidthTransition.js";
 
 declare module "react" {
-  interface CSSProperites {
+  interface CSSProperties {
     "--rmd-max-width"?: string | number;
     "--rmd-max-width-gap"?: string | number;
   }

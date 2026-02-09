@@ -12,8 +12,8 @@ declare module "react" {
     "--rmd-window-splitter-y"?: string | number;
     "--rmd-window-splitter-z"?: string | number;
     "--rmd-window-splitter-position"?: string | number;
-    "--rmd-window-splitter-backgrond-color"?: string;
-    "--rmd-window-splitter-inactive-backgrond-color"?: string;
+    "--rmd-window-splitter-background-color"?: string;
+    "--rmd-window-splitter-inactive-background-color"?: string;
     "--rmd-window-splitter-opacity"?: string | number;
   }
 }
