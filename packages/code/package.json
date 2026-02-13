@@ -75,8 +75,8 @@
     "@testing-library/user-event": "^14.6.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.10.4",
-    "@types/prismjs": "^1.26.5",
-    "@types/react": "^19.2.13",
+    "@types/prismjs": "^1.26.6",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "chokidar-cli": "^3.0.0",
     "eslint": "^9.39.2",
@@ -89,7 +89,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "sass": "^1.97.3",
-    "stylelint": "^17.1.1",
+    "stylelint": "^17.2.0",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {

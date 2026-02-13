@@ -48,7 +48,7 @@
     "@types/unist": "^3.0.3",
     "estree-util-value-to-estree": "^3.5.0",
     "github-slugger": "^2.0.0",
-    "glob": "^13.0.1",
+    "glob": "^13.0.3",
     "gray-matter": "^4.0.3",
     "hast-util-heading-rank": "^3.0.0",
     "hast-util-properties-to-mdx-jsx-attributes": "^1.0.1",

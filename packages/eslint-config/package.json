@@ -12,7 +12,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@mlaursen/eslint-config": "^12.0.2"
+    "@mlaursen/eslint-config": "^12.0.4"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
