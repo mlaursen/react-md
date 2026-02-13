@@ -31,6 +31,7 @@ export default function SimpleExample(): ReactElement {
   );
 }
 
+// eslint-disable-next-line no-unassigned-vars
 let columns: BoxOptions["gridColumns"];
 // columns = "fit";
 // columns = "fill";

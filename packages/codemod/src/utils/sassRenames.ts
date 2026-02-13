@@ -28,7 +28,7 @@ export function renameFromRenameEntries(
   }
 
   for (const [regex, replacement] of entries) {
-    let renamed = name;
+    let renamed: string;
     if (typeof replacement === "string") {
       renamed = name.replace(regex, replacement);
     } else {
