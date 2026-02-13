@@ -10,7 +10,7 @@ export default defineConfig({
     // I do not like having tests in the same folders as the rest of the files
     include: ["**/__tests__/**.{ts,tsx,js,jsx}"],
     coverage: {
-      include: ["src/**"],
+      include: ["src/**/*.{ts,tsx}"],
       exclude: [
         "**/index.ts",
         "**/types.ts",
@@ -25,6 +25,7 @@ export default defineConfig({
         "**/test-utils/polyfills/TextDecoder.ts",
         // can't really test jest with vitest
         "**/test-utils/jest-globals/**",
+        // "**/__snapshots__/**",
         ...coverageConfigDefaults.exclude,
       ],
     },

@@ -21,10 +21,13 @@
     "check-format": {},
     "typecheck": {},
     "test": {
+      "interactive": true,
       "cache": false
     },
     "test-run": {},
     "test-coverage": {
+      "interactive": true,
+      "cache": false,
       "outputs": ["coverage/**"]
     },
     "test-run-coverage": {
