@@ -18,7 +18,6 @@ interface VirtualizedColumns {
   columns: number;
   containerRef: RefCallback<HTMLDivElement>;
   containerStyle: CSSProperties;
-  containerWidth: number;
 }
 
 export function useVirtualizedColumns(): VirtualizedColumns {
@@ -50,6 +49,5 @@ export function useVirtualizedColumns(): VirtualizedColumns {
     columns,
     containerRef,
     containerStyle,
-    containerWidth,
   };
 }

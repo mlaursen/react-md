@@ -2,7 +2,7 @@ import { Box } from "@react-md/core/box/Box";
 import { box } from "@react-md/core/box/styles";
 import { Typography } from "@react-md/core/typography/Typography";
 import { type ReactElement } from "react";
-import { type ListChildComponentProps } from "react-window";
+import { type RowComponentProps } from "react-window";
 
 import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.js";
 import styles from "./RenderVirtualizedRow.module.scss";
@@ -15,14 +15,12 @@ export interface VirtualizedData {
   columns: number;
 }
 
-export type RenderVirtualizedRowProps =
-  ListChildComponentProps<VirtualizedData>;
+export type RenderVirtualizedRowProps = RowComponentProps<VirtualizedData>;
 
 export function RenderVirtualizedRow(
   props: RenderVirtualizedRowProps
 ): ReactElement {
-  const { index, style, data } = props;
-  const { list, columns } = data;
+  const { index, style, list, columns } = props;
 
   const match = list[index];
   if (typeof match === "string") {

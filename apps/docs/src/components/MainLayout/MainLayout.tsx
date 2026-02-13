@@ -106,7 +106,7 @@ export function MainLayout(props: MainLayoutProps): ReactElement {
       <Main
         {...mainProps}
         className={cnb(
-          styles.main,
+          !isMaterialIconsAndSymbolsRoute(pathname) && styles.main,
           isTableOfContentsRoute(pathname) && styles.mainGrid,
           mainProps.className
         )}

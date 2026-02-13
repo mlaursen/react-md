@@ -1,19 +1,9 @@
 "use client";
 
-import { delegateEvent } from "@react-md/core/delegateEvent";
 import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
 import Fuse from "fuse.js";
-import {
-  type RefObject,
-  useDeferredValue,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react";
-import {
-  type VariableSizeList,
-  type VariableSizeListProps,
-} from "react-window";
+import { useDeferredValue, useEffect, useMemo } from "react";
+import { type ListProps, useListRef } from "react-window";
 
 import { chunk } from "@/utils/lists.js";
 
@@ -42,12 +32,10 @@ const getRowHeight = (row: CategoryOrIconNames, isFirst: boolean): number => {
  */
 export type CategoryOrIconNames = string | readonly MaterialIconAndSymbolName[];
 
-export interface VirtualizedWindowProps extends Pick<
-  Required<VariableSizeListProps<VirtualizedData>>,
-  "height" | "outerRef" | "itemSize" | "itemCount" | "style" | "itemData"
-> {
-  ref: RefObject<VariableSizeList | null>;
-}
+export type VirtualizedWindowProps = Pick<
+  Required<ListProps<VirtualizedData>>,
+  "rowCount" | "rowHeight" | "rowProps" | "listRef"
+>;
 
 interface Options extends IconsByCategoryOptions {
   search: string;
@@ -58,6 +46,7 @@ interface Options extends IconsByCategoryOptions {
 interface Result {
   list: readonly CategoryOrIconNames[];
   listProps: VirtualizedWindowProps;
+  scrollToTop: () => void;
 }
 
 export function useVirtualizedWindow(options: Options): Result {
@@ -106,8 +95,8 @@ export function useVirtualizedWindow(options: Options): Result {
   const itemSize = (index: number): number =>
     getRowHeight(list[index], index === 0);
 
-  const listRef = useRef<VariableSizeList>(null);
-  const outerRef = useRef<HTMLDivElement>(null);
+  const listRef = useListRef(null);
+  // const outerRef = useRef<HTMLDivElement>(null);
   const itemData = useMemo<VirtualizedData>(
     () => ({
       list,
@@ -118,73 +107,30 @@ export function useVirtualizedWindow(options: Options): Result {
 
   useEffect(() => {
     const virtualizedList = listRef.current;
-    const container = outerRef.current;
-    if (!container || !virtualizedList) {
+    if (!virtualizedList || !selectedIconName) {
       return;
     }
 
-    const scrollCallback = (): void => {
-      const scrollTop = window.scrollY - container.offsetTop;
+    const index = list.findIndex((row) => row.includes(selectedIconName));
+    if (index === -1) {
+      return;
+    }
 
-      virtualizedList.scrollTo(scrollTop);
-    };
-
-    const scrollHandler = delegateEvent("scroll", globalThis.window, true, {
-      passive: true,
+    virtualizedList.scrollToRow({
+      index,
+      align: "smart",
+      behavior: "instant",
     });
-
-    scrollCallback();
-
-    scrollHandler.add(scrollCallback);
-    return () => {
-      scrollHandler.remove(scrollCallback);
-    };
-  }, []);
-  useEffect(() => {
-    const virtualizedList = listRef.current;
-    if (!virtualizedList) {
-      return;
-    }
-
-    virtualizedList.resetAfterIndex(0);
-  }, [iconType, iconFamily, iconCategory, searchTerm, columns]);
-  useEffect(() => {
-    const container = outerRef.current;
-    if (!selectedIconName || !container) {
-      return;
-    }
-
-    let offset = -(container.offsetTop + getRowHeight(list[0], true));
-    for (const [i, row] of list.entries()) {
-      offset += getRowHeight(row, i === 0);
-      if (typeof row !== "string" && row.includes(selectedIconName)) {
-        const viewportBottom = window.innerHeight - container.offsetTop - 48;
-        const selectedIconBottom = offset - window.scrollY + 160;
-        const difference = selectedIconBottom - viewportBottom;
-        if (difference > 0) {
-          window.scrollTo({
-            top: window.scrollY + difference,
-            behavior: "instant",
-          });
-        }
-
-        return;
-      }
-    }
-  }, [list, columns, selectedIconName]);
+  }, [list, listRef, selectedIconName]);
 
   return {
     list,
     listProps: {
-      ref: listRef,
-      height: window.innerHeight,
-      outerRef,
-      style: {
-        height: "100%",
-      },
-      itemSize,
-      itemCount: list.length,
-      itemData,
+      listRef,
+      rowHeight: itemSize,
+      rowCount: list.length,
+      rowProps: itemData,
     },
+    scrollToTop: () => listRef.current?.scrollToRow({ index: 0 }),
   };
 }

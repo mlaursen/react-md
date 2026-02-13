@@ -1,8 +1,6 @@
 import { NoSsr } from "@react-md/core/NoSsr";
 import { type ReactElement } from "react";
 
-import { ReturnToTop } from "@/components/ReturnToTop.js";
-
 import { FiltersSheet } from "./FiltersSheet.js";
 import { FullScreenVirtualizedList } from "./FullScreenVirtualizedList.js";
 import { HowToUseSheet } from "./HowToUseSheet.js";
@@ -15,7 +13,6 @@ export default function MaterialIconsAndSymbolsPage(): ReactElement {
     <>
       <MaterialIconsAndSymbolsProvider>
         <SearchAndFilters />
-        <ReturnToTop />
         <NoSsr>
           <FullScreenVirtualizedList />
         </NoSsr>

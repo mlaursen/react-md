@@ -65,7 +65,7 @@
     "next-mdx-remote": "^5.0.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-window": "^1.8.11",
+    "react-window": "^2.2.6",
     "server-only": "^0.0.1",
     "sharp": "^0.34.5"
   },
@@ -81,7 +81,6 @@
     "@types/node": "^24.10.4",
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
-    "@types/react-window": "^1.8.8",
     "chokidar": "^5.0.0",
     "dotenv": "^17.2.4",
     "eslint": "^9.39.2",

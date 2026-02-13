@@ -6,13 +6,14 @@ import { DEFAULT_SHEET_TIMEOUT } from "@react-md/core/sheet/styles";
 import { useColorScheme } from "@react-md/core/theme/useColorScheme";
 import { useHtmlClassName } from "@react-md/core/useHtmlClassName";
 import { cnb } from "cnbuilder";
-import { type ReactElement } from "react";
-import { VariableSizeList } from "react-window";
+import { type ReactElement, useState } from "react";
+import { List } from "react-window";
 
 import styles from "./FullScreenVirtualizedList.module.scss";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import { NoMatches } from "./NoMatches.js";
 import { RenderVirtualizedRow } from "./RenderVirtualizedRow.js";
+import { ReturnToTop } from "./ReturnToTop.js";
 import { useVirtualizedColumns } from "./useVirtualizedColumns.js";
 import { useVirtualizedWindow } from "./useVirtualizedWindow.js";
 
@@ -27,9 +28,8 @@ export function FullScreenVirtualizedList(): ReactElement {
     selectedIconName,
   } = useMaterialIconsAndSymbols();
   const { colorScheme } = useColorScheme();
-  const { columns, containerRef, containerStyle, containerWidth } =
-    useVirtualizedColumns();
-  const { list, listProps } = useVirtualizedWindow({
+  const { columns, containerRef, containerStyle } = useVirtualizedColumns();
+  const { list, listProps, scrollToTop } = useVirtualizedWindow({
     search,
     columns,
     iconType,
@@ -52,6 +52,8 @@ export function FullScreenVirtualizedList(): ReactElement {
       className: cnb(styles.container, isEmpty && styles.empty),
       transitionIn: filtersVisible,
     });
+
+  const [scrollToTopVisible, setScrollToTopVisible] = useState(false);
   const { elementProps: howToUseTransitionProps } =
     useHorizontalLayoutTransition({
       className: styles.grid,
@@ -69,9 +71,14 @@ export function FullScreenVirtualizedList(): ReactElement {
     <div {...howToUseTransitionProps} id="virtualized-grid-container">
       <div {...filterPanelTransitionProps} style={containerStyle}>
         {isEmpty && <NoMatches />}
-        <VariableSizeList {...listProps} width={containerWidth}>
-          {RenderVirtualizedRow}
-        </VariableSizeList>
+        <ReturnToTop visible={scrollToTopVisible} scrollToTop={scrollToTop} />
+        <List
+          {...listProps}
+          rowComponent={RenderVirtualizedRow}
+          onRowsRendered={(visibleRows) => {
+            setScrollToTopVisible(visibleRows.startIndex > 0);
+          }}
+        />
       </div>
     </div>
   );
