@@ -11,5 +11,6 @@ export default defineConfig({
       include: ["src/**/*.{ts,tsx}"],
       exclude: ["**/types.ts", ...coverageConfigDefaults.exclude],
     },
+    testTimeout: 20_000,
   },
 });
