@@ -1075,8 +1075,8 @@ importers:
   packages/vite-material-symbols-plugin:
     dependencies:
       react-md:
-        specifier: '>= 6'
-        version: 7.0.1(@jest/globals@30.2.0)(@jest/types@30.2.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@24.10.13)(jsdom@28.0.0)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: '>=7.0.2'
+        version: 7.0.2(@jest/globals@30.2.0)(@jest/types@30.2.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@24.10.13)(jsdom@28.0.0)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))
     devDependencies:
       '@react-md/core':
         specifier: workspace:*
@@ -2991,8 +2991,8 @@ packages:
     peerDependencies:
       prettier: '*'
 
-  '@react-md/core@7.0.1':
-    resolution: {integrity: sha512-P2Os+9xl20+POhgi0oYLmC6fRJMm3uRFYSnIdMO3IAfxdFYjdE5j07+lR20QlABOnkTjeJlMwG4tQB/wRNTkyg==}
+  '@react-md/core@7.0.2':
+    resolution: {integrity: sha512-aMvU8pgwrsbj+S/oCvOI899CT2jGQOZj19NlmDIXFT/R7Leuk9+d6dA+MyHsX16VRVVUgAXEI2uLmEa4LW7s9Q==}
     peerDependencies:
       '@jest/globals': '>= 29 <=31'
       '@jest/types': '>= 29 <=31'
@@ -7647,8 +7647,8 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
-  react-md@7.0.1:
-    resolution: {integrity: sha512-nkFYMMZPgJOunEN8g0gO/NDHpUKHQCRdD6MMxd0B1uTLXpJeXtyUq3w3suNM49Td0nqLsRWD6Vj27WhvkggKPw==}
+  react-md@7.0.2:
+    resolution: {integrity: sha512-n35KZqybmcnzG3PiZLDW/K8M1DVBGVMJjejchTwZVqb8puGa77nn9ls7Hi15oFZfjF1tM+QhAPud3vBOyHJyzg==}
     peerDependencies:
       '@jest/globals': '>= 29 <=31'
       '@jest/types': '>= 29 <=31'
@@ -11533,7 +11533,7 @@ snapshots:
       make-synchronized: 0.8.0
       prettier: 3.8.1
 
-  '@react-md/core@7.0.1(@jest/globals@30.2.0)(@jest/types@30.2.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@24.10.13)(jsdom@28.0.0)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))':
+  '@react-md/core@7.0.2(@jest/globals@30.2.0)(@jest/types@30.2.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@24.10.13)(jsdom@28.0.0)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))':
     dependencies:
       cnbuilder: 3.1.0
       nanoid: 5.1.6
@@ -17005,9 +17005,9 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-md@7.0.1(@jest/globals@30.2.0)(@jest/types@30.2.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@24.10.13)(jsdom@28.0.0)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)):
+  react-md@7.0.2(@jest/globals@30.2.0)(@jest/types@30.2.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@24.10.13)(jsdom@28.0.0)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)):
     dependencies:
-      '@react-md/core': 7.0.1(@jest/globals@30.2.0)(@jest/types@30.2.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@24.10.13)(jsdom@28.0.0)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))
+      '@react-md/core': 7.0.2(@jest/globals@30.2.0)(@jest/types@30.2.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@24.10.13)(jsdom@28.0.0)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))
     optionalDependencies:
       '@jest/globals': 30.2.0
       '@jest/types': 30.2.0
