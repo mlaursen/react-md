@@ -1,6 +1,6 @@
 {
   "name": "@react-md/vite-material-symbols-plugin",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A vite plugin for react-md that automatically adds the material symbols link in the base html",
   "type": "module",
   "exports": {
@@ -65,8 +65,8 @@
     "vitest": "^4.0.18"
   },
   "peerDependencies": {
-    "@react-md/core": ">= 6",
-    "react-md": ">= 6",
+    "@react-md/core": ">=7.0.2",
+    "react-md": ">=7.0.2",
     "vite": ">= 7"
   },
   "peerDependenciesMeta": {

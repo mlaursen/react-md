@@ -1,5 +1,15 @@
 # @react-md/core
 
+## 7.0.2
+
+### Patch Changes
+
+- 4b7fc3a: Fixed the MenuItemButton not applying the height prop correctly.
+- ecb35d3: Added support for a new color-scheme variable to help with light-dark() function usage.
+- 017f081: Updated the mutable config objects to be recognized as side-effects to not strip from builds.
+- 7daefe7: Fixed the custom css properties for window-splitter and max width transition.
+- 9630b94: Fix material icon font and material symbols by always enforcing the icon font size.
+
 ## 7.0.1
 
 ### Patch Changes
