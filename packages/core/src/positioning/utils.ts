@@ -228,8 +228,6 @@ export function getTransformOrigin(options: TransformOriginOptions): string {
     case "inner-right":
       x = "100%";
       break;
-    default:
-      x = "0";
   }
 
   let y = "0";
@@ -248,8 +246,6 @@ export function getTransformOrigin(options: TransformOriginOptions): string {
       case "top":
         y = "0";
         break;
-      default:
-        y = "0";
     }
   }
 

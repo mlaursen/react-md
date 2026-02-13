@@ -27,7 +27,7 @@ export function tryToSubmitRelatedForm<E extends HTMLElement>(
   formId: string | undefined
 ): void {
   const { currentTarget } = event;
-  let form: HTMLElement | null = null;
+  let form: HTMLElement | null;
   if (formId) {
     form = document.getElementById(formId);
   } else {

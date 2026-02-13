@@ -250,7 +250,7 @@ exports[`DropdownMenu > should render as a button and toggle the visibility when
 exports[`DropdownMenu > should render as a menuitem when a DropdownMenu is a child of another DropdownMenu 1`] = `
 <li
   aria-haspopup="menu"
-  class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
+  class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
   id="menuitem-_r_22_"
   role="menuitem"
   tabindex="-1"
@@ -272,7 +272,7 @@ exports[`DropdownMenu > should render as a menuitem when a DropdownMenu is a chi
 exports[`DropdownMenu > should render as a menuitem when a DropdownMenu is a child of another DropdownMenu 2`] = `
 <li
   aria-haspopup="dialog"
-  class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
+  class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
   id="menuitem-_r_26_"
   role="menuitem"
   tabindex="-1"

@@ -9,7 +9,7 @@ exports[`MenuBar > should support a click-first hover mode behavior by default 1
 >
   <li
     aria-haspopup="menu"
-    class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
+    class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
     id="menuitem-_r_0_"
     role="menuitem"
     tabindex="-1"
@@ -28,7 +28,7 @@ exports[`MenuBar > should support a click-first hover mode behavior by default 1
   </li>
   <li
     aria-haspopup="menu"
-    class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
+    class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
     id="menuitem-_r_4_"
     role="menuitem"
     tabindex="-1"
@@ -47,7 +47,7 @@ exports[`MenuBar > should support a click-first hover mode behavior by default 1
   </li>
   <li
     aria-haspopup="menu"
-    class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
+    class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
     id="menuitem-_r_8_"
     role="menuitem"
     tabindex="-1"
@@ -66,7 +66,7 @@ exports[`MenuBar > should support a click-first hover mode behavior by default 1
   </li>
   <li
     aria-haspopup="menu"
-    class="rmd-list-item rmd-list-item--medium rmd-interaction-surface rmd-menu-item"
+    class="rmd-list-item rmd-list-item--normal rmd-interaction-surface rmd-menu-item"
     id="menuitem-_r_c_"
     role="menuitem"
     tabindex="-1"

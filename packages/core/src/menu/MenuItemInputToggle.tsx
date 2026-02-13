@@ -181,7 +181,7 @@ export function MenuItemInputToggle(
     MenuItemCheckboxProps & { type: "checkbox" | "radio" | "switch" };
   const id = useEnsuredId(propId, "menu-item");
 
-  let icon = propIcon;
+  let icon: ReactElement;
   if (type === "switch") {
     icon = (
       <SwitchTrack

@@ -403,7 +403,7 @@ describe("Autocomplete", () => {
     expect(autocomplete).toHaveValue("New Value");
   });
 
-  it("should allow for a creatable version by inserting an option into the fultered result list", async () => {
+  it("should allow for a creatable version by inserting an option into the filtered result list", async () => {
     const onValueChange = vi.fn();
     function Test(): ReactElement {
       return (

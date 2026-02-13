@@ -98,7 +98,7 @@ export function MenuItemFileInput(props: MenuItemFileInputProps): ReactElement {
         // elements to be removed from the DOM, a normal `<input type="file" />`
         // can't be used. Instead, create a temporary file input element and
         // click it to trigger the file upload behavior.
-        let input: HTMLInputElement | null = document.createElement("input");
+        const input = document.createElement("input");
         input.type = "file";
         if (accept) {
           input.accept = accept;
@@ -114,7 +114,6 @@ export function MenuItemFileInput(props: MenuItemFileInputProps): ReactElement {
         // @ts-expect-error
         input.addEventListener("change", onChange);
         input.click();
-        input = null;
       }}
     >
       {children}

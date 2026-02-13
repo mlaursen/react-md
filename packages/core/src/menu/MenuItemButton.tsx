@@ -120,6 +120,7 @@ export function MenuItemButton(props: MenuItemButtonProps): ReactElement {
       aria-expanded={visible || undefined}
       id={id}
       ref={ref}
+      height={height}
       rightAddon={rightAddon}
       onClick={(event) => {
         onClick(event);

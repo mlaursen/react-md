@@ -18,6 +18,7 @@ describe("getNumberOfDigits", () => {
   });
 
   it("should return undefined if the value is undefined", () => {
+    // eslint-disable-next-line no-unassigned-vars
     let u: undefined;
 
     expect(getNumberOfDigits(u)).toBe(undefined);
