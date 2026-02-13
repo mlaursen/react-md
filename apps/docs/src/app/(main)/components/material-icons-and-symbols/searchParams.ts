@@ -269,5 +269,5 @@ export function getIconUrl(options: IconUrlOptions): string {
   if (symbolStylesheet) {
     q = (q ? `${q}&` : "") + SYMBOL_STYLESHEET;
   }
-  return pathname + q ? `?${q}` : "";
+  return pathname + (q ? `?${q}` : "");
 }
