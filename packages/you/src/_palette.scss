@@ -1,0 +1,285 @@
+////
+/// @group core.palette
+////
+
+@use "sass:map";
+@use "sass:meta";
+
+@use "utils";
+@use "tokens";
+
+$configure-tokens: (color-scheme, light-theme, dark-theme);
+$-current-tokens-added: false;
+$-light-tokens-added: false;
+$-dark-tokens-added: false;
+
+/// This defines the total color scheme for your app and can be either:
+/// - `light-dark` - (default) supports both the light and dark themes in the
+///   app using the
+///   [light-dark() function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/light-dark).
+///   Override the system preference globally or a section of the app by
+///   setting `color-scheme: light` or `color-scheme: dark`.
+/// - `system` - to default to the light theme and switch to the dark theme
+///   with the `@media (prefers-color-scheme: dark)` media query
+/// - `light` - if only the light theme should be used preventing any dark
+///   theme variables from being set
+/// - `dark` - if only the dark theme should be used preventing any light
+///   theme variables from being set
+///
+/// @type {light-dark | light | dark | system}
+/// @since 8.0.0 Defaults to `light-dark` instead of `light`
+$-color-scheme: light-dark;
+
+$-light-theme-tokens: (
+  primary: #6750a4,
+  primary-container: #eaddff,
+  on-primary: #fff,
+  on-primary-container: #21005e,
+  inverse-primary: #d0bcff,
+  secondary: #625b71,
+  secondary-container: #e8def8,
+  on-secondary: #fff,
+  on-secondary-container: #1e192b,
+  tertiary: #7d5260,
+  tertiary-container: #ffd8e4,
+  on-tertiary: #fff,
+  on-tertiary-container: #370b1e,
+  surface: #fef7ff,
+  surface-dim: #ded8e1,
+  surface-bright: #fef7ff,
+  surface-container-lowest: #fff,
+  surface-container-low: #f7f2fa,
+  surface-container: #f3edf7,
+  surface-container-high: #ece6f0,
+  surface-container-highest: #e6e0e9,
+  surface-variant: #e7e0ec,
+  on-surface: #1c1b1f,
+  on-surface-variant: #49454e,
+  inverse-surface: #313033,
+  on-inverse-surface: #f4eff4,
+  background: #fef7ff,
+  on-background: #1c1b1f,
+  error: #b3261e,
+  error-container: #f9dedc,
+  on-error: #fff,
+  on-error-container: #410e0b,
+  outline: #79747e,
+  outline-variant: #c4c7c5,
+  shadow: #000,
+  surface-tint: #6750a4,
+  scrim: #000,
+);
+$-dark-theme-tokens: (
+  primary: #d0bcff,
+  primary-container: #4f378b,
+  on-primary: #371e73,
+  on-primary-container: #eaddff,
+  inverse-primary: #6750a4,
+  secondary: #ccc2dc,
+  secondary-container: #4a4458,
+  on-secondary: #332d41,
+  on-secondary-container: #e8def8,
+  tertiary: #efb8c8,
+  tertiary-container: #633b48,
+  on-tertiary: #492532,
+  on-tertiary-container: #ffd8e4,
+  surface: #141218,
+  surface-dim: #141218,
+  surface-bright: #3b383e,
+  surface-container-lowest: #0f0d13,
+  surface-container-low: #1d1b20,
+  surface-container: #211f26,
+  surface-container-high: #2b2930,
+  surface-container-highest: #36343b,
+  surface-variant: #49454f,
+  on-surface: #e6e1e5,
+  on-surface-variant: #cac4d0,
+  inverse-surface: #e6e1e5,
+  on-inverse-surface: #313033,
+  background: #141218,
+  on-background: #e6e1e5,
+  error: #f2b8b5,
+  error-container: #8c1d18,
+  on-error: #601410,
+  on-error-container: #f9dedc,
+  outline: #938f99,
+  outline-variant: #444746,
+  shadow: #000,
+  surface-tint: #d0bcff,
+  scrim: #000,
+);
+
+$-token-names: map.keys($-light-theme-tokens);
+
+$-tokens: (
+  current: $-light-theme-tokens,
+  light: $-light-theme-tokens,
+  dark: $-dark-theme-tokens,
+);
+
+// NOTE: These are "addon colors". whatever that means
+// $-fixed-primary-color: #eaddff;
+// $-fixed-on-primary-color: #21005d;
+// $-fixed-primary-dim-color: #d0bcff;
+// $-fixed-on-primary-variant-color: #4f378b;
+// $-fixed-secondary-color: #e8def8;
+// $-fixed-on-secondary-color: #1d192b;
+// $-fixed-secondary-dim-color: #ccc2dc;
+// $-fixed-on-secondary-variant-color: #4a4458;
+// $-fixed-tertiary-color: #ffd8e4;
+// $-fixed-on-tertiary-color: #31111d;
+// $-fixed-tertiary-dim-color: #ef88c8;
+// $-fixed-on-tertiary-variant-color: #633b48;
+// $-fixed-surface-dim-color: #ded8e1;
+// $-fixed-surface-bright-color: #fef7ff;
+// $-fixed-surface-container-lowest-color: #ffffff;
+// $-fixed-surface-container-low-color: #f7f2fa;
+// $-fixed-surface-container-color: #f3edf7;
+// $-fixed-surface-container-high-color: #ece6f0;
+// $-fixed-surface-container-highest-color: #e6e0e9;
+
+// $-state-layer-1: 8;
+// $-state-layer-2: 10;
+// $-state-layer-3: 16;
+
+@function -get-light-dark-tokens() {
+  $tokens: ();
+  @each $token in map.keys($-light-theme-tokens) {
+    $value: light-dark(
+      tokens.get-var("palette.light.#{$token}"),
+      tokens.get-var("palette.dark.#{$token}")
+    );
+    $tokens: map.merge($tokens, (#{$token}: $value));
+  }
+
+  @return $tokens;
+}
+
+@mixin configure($color-scheme: null, $light-theme: null, $dark-theme: null) {
+  @if $color-scheme {
+    $-color-scheme: utils.validate(
+      (light, dark, light-dark, system),
+      $color-scheme,
+      "color-scheme"
+    ) !global;
+  }
+
+  $-light-theme-tokens: map.merge(
+    $-light-theme-tokens,
+    utils.get-config-map(light-theme, $light-theme, $-token-names)
+  );
+  $-dark-theme-tokens: map.merge(
+    $-dark-theme-tokens,
+    utils.get-config-map(dark-theme, $dark-theme, $-token-names)
+  );
+
+  @if $-color-scheme == light {
+    $-tokens: map.deep-merge(
+      $-tokens,
+      (
+        light: null,
+        dark: null,
+        current: $-light-theme-tokens,
+      )
+    ) !global;
+  } @else if $-color-scheme == "dark" {
+    $-tokens: map.deep-merge(
+      $-tokens,
+      (
+        light: null,
+        dark: null,
+        current: $-dark-theme-tokens,
+      )
+    ) !global;
+  } @else {
+    @if not $-light-tokens-added {
+      $-light-tokens-added: true !global;
+      @include tokens.register-tokens(
+        $tokens: $-light-theme-tokens,
+        $prefix: "palette.light"
+      );
+    }
+
+    @if not $-dark-tokens-added {
+      $-dark-tokens-added: true !global;
+      @include tokens.register-tokens(
+        $tokens: $-dark-theme-tokens,
+        $prefix: "palette.dark"
+      );
+    }
+
+    // prettier-ignore
+    $tokens: if(
+      sass($color-scheme == system): $-light-theme-tokens;
+      else: -get-light-dark-tokens()
+    );
+
+    @if not $-current-tokens-added {
+      $-current-tokens-added: true !global;
+
+      @include tokens.register-tokens(
+        $tokens: $tokens,
+        $prefix: "palette.current"
+      );
+    }
+
+    $-tokens: map.deep-merge(
+      $-tokens,
+      (
+        light: $-light-theme-tokens,
+        dark: $-dark-theme-tokens,
+        current: $tokens,
+      )
+    ) !global;
+  }
+}
+
+@mixin use-light-theme($prefix: false, $register-tokens: false) {
+  // prettier-ignore
+  $tokens: if(sass($prefix): $-light-theme-tokens; else: $-tokens);
+
+  @include tokens.set-default-tokens(
+    $tokens: $-light-theme-tokens,
+    $prefix: "palette.current",
+    $register-tokens: $register-tokens
+  );
+}
+
+@mixin use-dark-theme($prefix: false, $register-tokens: false) {
+  // prettier-ignore
+  $tokens: if(sass($prefix): $-dark-theme-tokens; else: $-tokens);
+  @include tokens.set-default-tokens(
+    $tokens: $-dark-theme-tokens,
+    $prefix: "palette.current",
+    $register-tokens: $register-tokens
+  );
+}
+
+@mixin use-light-dark-theme($set-color-scheme: false) {
+  @if $set-color-scheme {
+    color-scheme: light dark;
+  }
+
+  @each $token, $value in -get-light-dark-tokens() {
+    @include tokens.set-var("palette.current.#{$token}", $value);
+  }
+}
+
+@mixin variables($set-color-scheme: false) {
+  @if $set-color-scheme {
+    $color-scheme: light;
+    @if $-color-scheme == dark {
+      $color-scheme: dark;
+    } @else if $-color-scheme == light-dark {
+      $color-scheme: light dark;
+    }
+
+    color-scheme: $color-scheme;
+  }
+
+  @include tokens.set-default-tokens(
+    $tokens: $-tokens,
+    $register-tokens: false,
+    $prefix: "palette"
+  );
+}

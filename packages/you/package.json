@@ -1,0 +1,155 @@
+{
+  "name": "@react-md/you",
+  "version": "0.0.1",
+  "description": "The core components and functionality for react-md using the material-you color scheme",
+  "type": "module",
+  "sass": "./dist/_index.scss",
+  "exports": {
+    ".": {
+      "sass": "./dist/_index.scss"
+    },
+    "./*": "./dist/*.js",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "dist/**/*.scss"
+  ],
+  "scripts": {
+    "clean-dist": "rm -rf dist",
+    "clean-cache": "rm -rf .turbo node_modules",
+    "clean": "concurrently 'pnpm clean-dist' 'pnpm clean-cache'",
+    "check-format": "prettier --check .",
+    "format": "prettier --write .",
+    "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
+    "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
+    "lint": "concurrently 'pnpm lint-scripts' 'pnpm lint-styles'",
+    "lint-fix": "concurrently 'pnpm lint-scripts --fix' 'pnpm lint-styles --fix'",
+    "typecheck": "tsc --noEmit",
+    "typecheck-watch": "pnpm typecheck --watch",
+    "test": "vitest",
+    "test-run": "vitest run",
+    "test-coverage": "vitest --coverage",
+    "test-run-coverage": "pnpm test-run --coverage",
+    "test-run-snapshot": "pnpm test-run -u",
+    "compile-scss": "sass index.scss dist/index.css",
+    "build-esm": "swc -d ./dist --strip-leading-paths src",
+    "build-esm-watch": "pnpm run build-esm --watch",
+    "build-types": "tsc -P tsconfig.types.json",
+    "build-types-watch": "pnpm run build-types --watch",
+    "build-scss": "mlaursen-cli copy-scss-files",
+    "build-scss-watch": "pnpm build-scss --watch",
+    "build": "concurrently 'pnpm build-esm' 'pnpm build-scss' 'pnpm build-types'",
+    "prepare-release": "pnpm clean-dist && pnpm build",
+    "dev": "concurrently 'pnpm build-esm-watch' 'pnpm build-scss-watch' 'pnpm build-types-watch'"
+  },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "keywords": [
+    "react",
+    "material design",
+    "material you",
+    "react-md",
+    "components",
+    "ui",
+    "library"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "cnbuilder": "^3.1.0",
+    "nanoid": "^5.1.6",
+    "remove-accents": "^0.5.0"
+  },
+  "devDependencies": {
+    "@jest/globals": "^30.2.0",
+    "@jest/types": "^30.2.0",
+    "@microsoft/api-extractor": "^7.56.3",
+    "@mlaursen/cli": "^0.1.0",
+    "@react-md/eslint-config": "workspace:*",
+    "@react-md/stylelint-config": "workspace:*",
+    "@swc/cli": "^0.8.0",
+    "@swc/core": "^1.15.11",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "@types/lodash": "^4.17.23",
+    "@types/node": "^24.10.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react-swc": "^4.2.3",
+    "@vitest/coverage-v8": "^4.0.18",
+    "chokidar": "^5.0.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.2",
+    "filesize": "^11.0.13",
+    "glob": "13.0.3",
+    "jsdom": "^28.0.0",
+    "lodash": "^4.17.23",
+    "lz-string": "^1.5.0",
+    "prettier": "^3.8.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sass": "^1.97.3",
+    "stylelint": "^17.2.0",
+    "ts-morph": "^27.0.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "peerDependencies": {
+    "@jest/globals": ">= 29 <=31",
+    "@jest/types": ">= 29 <=31",
+    "@testing-library/dom": ">= 9",
+    "@testing-library/jest-dom": ">= 6",
+    "@testing-library/react": ">= 14",
+    "@testing-library/user-event": ">= 14",
+    "react": ">= 19",
+    "react-dom": ">= 19",
+    "vitest": ">= 3"
+  },
+  "peerDependenciesMeta": {
+    "@jest/globals": {
+      "optional": true
+    },
+    "@jest/types": {
+      "optional": true
+    },
+    "@testing-library/dom": {
+      "optional": true
+    },
+    "@testing-library/jest-dom": {
+      "optional": true
+    },
+    "@testing-library/react": {
+      "optional": true
+    },
+    "@testing-library/user-event": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    },
+    "vitest": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "volta": {
+    "node": "24.12.0",
+    "pnpm": "10.28.0"
+  }
+}

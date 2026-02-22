@@ -1,0 +1,22 @@
+@use "sass:list";
+
+@function list-filter($list, $value) {
+  $next-list: ();
+  @each $item in $list {
+    @if $item != $value {
+      $next-list: list.append($next-list, $item);
+    }
+  }
+
+  @return $next-list;
+}
+
+@function list-concat($lists...) {
+  $combined: ();
+  @each $list in $lists {
+    @each $item in $list {
+      $combined: list.append($combined, $item);
+    }
+  }
+  @return $combined;
+}

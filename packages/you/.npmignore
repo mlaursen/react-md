@@ -1,0 +1,6 @@
+# I only want the src, dist, README.md, CHANGELOG.md, LICENSE and, package.json to be published
+/*
+!/src/**
+src/**/*.scss
+!/dist/**
+**/__tests__/**

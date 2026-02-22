@@ -1,0 +1,16 @@
+@use "palette";
+@use "font";
+@use "typescale";
+@use "shape";
+
+///
+/// @param {Boolean} $set-color-scheme [false] - Set to `true` to also set the
+/// `:root` `color-scheme` property
+@mixin variables($set-color-scheme: false) {
+  @include palette.variables($set-color-scheme: $set-color-scheme);
+  @include font.variables;
+  @include typescale.variables;
+  @include shape.variables;
+  // @include transition.variables;
+  // @include interaction.variables;
+}

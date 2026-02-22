@@ -1,0 +1,35 @@
+/// Generates a pseudo element with most used styles.
+///
+/// @example scss
+///   $styles: (
+///     "&::before": map.merge(pseudo-element(), (
+///       background: "palette.current.surface-container-low"
+///     ))
+///   );
+///
+/// @param {Number} z-index [0] - The z-index for the pseudo element.
+/// @param {Boolean} fixed [false] - Set to `true` to change from `position:
+/// absolute` to `position: fixed`
+/// @param {Number} inset [0] - Used to apply any inset styles from the parent
+/// element.
+/// @param {String} border-radius [inherit] - You normally want to inherit the
+/// `border-radius`, but it can be configured with this param if needed.
+@function pseudo-element(
+  $z-index: 0,
+  $fixed: false,
+  $inset: 0,
+  $border-radius: inherit
+) {
+  // prettier-ignore
+  @return (
+    border-radius: $border-radius,
+    content: "",
+    inset: $inset,
+    pointer-events: none,
+    position: if(
+      sass($fixed): fixed;
+      else: absolute
+    ),
+    z-index: $z-index
+  );
+}

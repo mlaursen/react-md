@@ -1,0 +1,25 @@
+/// A helper mixin to apply hover styles only when the user is using a mouse. If
+/// you just use `:hover`, the styles will also be applied after touching an
+/// element on touch screens until another element is focused.
+///
+/// @example scss
+///   .selector {
+///
+///     @include mouse-hover {
+///       background-color: red;
+///     }
+///   }
+///
+/// @param {Boolean} wrap-in-hover [true] - Set this to `false` if the content
+/// should not automatically be wrapped in `&:hover`
+@mixin mouse-hover($wrap-in-hover: true) {
+  @media (hover: hover) and (pointer: fine) {
+    @if $wrap-in-hover {
+      &:hover {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+}

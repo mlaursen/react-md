@@ -1,0 +1,80 @@
+@use "sass:map";
+
+@use "tokens";
+@use "utils";
+
+$configure-tokens: (
+  corner-none,
+  corner-extra-small,
+  corner-small,
+  corner-medium,
+  corner-large,
+  corner-large-increased,
+  corner-extra-large,
+  corner-extra-large-increased,
+  corner-extra-extra-large,
+  corner-full
+);
+
+$-tokens: (
+  corner: (
+    none: 0,
+    extra-small: utils.to-rem(4),
+    small: utils.to-rem(8),
+    medium: utils.to-rem(12),
+    large: utils.to-rem(16),
+    large-increased: utils.to-rem(20),
+    extra-large: utils.to-rem(28),
+    extra-large-increased: utils.to-rem(32),
+    extra-extra-large: utils.to-rem(48),
+    full: utils.to-rem(1000),
+  ),
+);
+
+@mixin -update($value, $name) {
+  @if $value {
+    $-tokens: map.set($-tokens, "corner", $name, $value) !global;
+  }
+}
+
+@mixin configure(
+  $corner-none: null,
+  $corner-extra-small: null,
+  $corner-small: null,
+  $corner-medium: null,
+  $corner-large: null,
+  $corner-large-increased: null,
+  $corner-extra-large: null,
+  $corner-extra-large-increased: null,
+  $corner-extra-extra-large: null,
+  $corner-full: null
+) {
+  @include -update($corner-none, none);
+  @include -update($corner-extra-small, extra-small);
+  @include -update($corner-small, small);
+  @include -update($corner-medium, medium);
+  @include -update($corner-large, large);
+  @include -update($corner-large-increased, large-increased);
+  @include -update($corner-extra-large, extra-large);
+  @include -update($corner-extra-large-increased, extra-large-increased);
+  @include -update($corner-extra-extra-large, extra-extra-large);
+  @include -update($corner-full, full);
+
+  @if not $-tokens-added {
+    $-tokens-added: true !global;
+    @include tokens.register-tokens($tokens: $-tokens, $prefix: shape);
+  }
+}
+
+@mixin variables {
+  $register-tokens: not $-tokens-added;
+  @if $register-tokens {
+    $-tokens-added: true !global;
+  }
+
+  @include tokens.set-default-tokens(
+    $tokens: $-tokens,
+    $prefix: "shape",
+    $register-tokens: $register-tokens
+  );
+}

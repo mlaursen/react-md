@@ -1,0 +1,211 @@
+@use "sass:list";
+@use "sass:meta";
+@use "sass:string";
+
+@use "utils";
+
+/// The var prefix to use with react-md
+/// @type {String}
+$-var-prefix: "--rmd-";
+
+/// @type {List}
+$-tokens: ();
+$-force-added: ();
+
+$configure-tokens: ("var-prefix");
+
+/// Used to get the current CSS variable name from react-md tokens.
+///
+/// @param {String} $name - token name. i.e `"font.brand"`
+/// @returns {String} the var name. i.e. `"--rmd-font-brand"`
+@function get-var-name($name) {
+  @if not list.index($-tokens, $name) {
+    $-tokens: list.append($-tokens, $name) !global;
+    $-force-added: list.append($-force-added, $name) !global;
+  }
+
+  $hyphenated-name: utils.str-replace($name, ".", "-");
+  @return #{$-var-prefix + $hyphenated-name};
+}
+
+/// Gets a css variable declaration.
+///
+/// @returns {String} `var(--name, fallback)` or `var(--name)`
+@function get-var($name, $fallback: null) {
+  $var: get-var-name($name);
+  @if $fallback {
+    @return var(#{$var}, #{$fallback});
+  }
+
+  @return var(#{$var});
+}
+
+/// @access private
+@function -is-letter($char) {
+  $letters: "abcdefghijklmnopqrstuvwxyz";
+  @return string.index($letters, $char) != null;
+}
+
+/// @access private
+@function -has-letter-dot-letter($token) {
+  $length: string.length($token);
+  @if $length < 8 {
+    @return false;
+  }
+
+  @for $i from 1 through $length - 2 {
+    $char-1: string.slice($token, $i, $i);
+    $char-2: string.slice($token, $i + 1, $i + 1);
+    $char-3: string.slice($token, $i + 2, $i + 2);
+
+    @if is-letter($char-1) and $char-2 == "." and is-letter($char-3) {
+      @return true;
+    }
+  }
+  @return false;
+}
+
+/// @access private
+@function -is-maybe-token-string($token) {
+  @return meta.type-of($token) == string and not string.index($token, " ")
+    and -has-letter-dot-letter($token);
+}
+
+/// This is used to create a `var(...)` declaration from a token name
+///
+/// @param {any} $token - An optional token name or any value. This
+/// function will be ignored if it is not a string.
+/// @param {fallback} $fallback [null] - An optional fallback value.
+/// This can be set to another token name which will be used.
+@function get-token-var($token, $fallback: null) {
+  @if meta.type-of($token) != string {
+    @return $token;
+  }
+
+  @if list.index($-tokens, $token) {
+    @return get-var($token, get-token-var($fallback));
+  }
+
+  @if -is-maybe-token-string($token) {
+    @return get-var($token, get-token-var($fallback));
+  }
+
+  @return $token;
+}
+
+/// @param {String} $name - The token name to set
+/// @param {any} $value - The value to use. If this is set to `null` or false,
+/// the token will not be updated.
+@mixin set-var($name, $value) {
+  @if $value {
+    #{get-var-name($name)}: #{get-token-var($value)};
+  }
+}
+
+/// A simple helper function to set a property to a token's value.
+///
+/// @param {String} $property - The css property name to use.
+/// @param {String} $name - The token name to use
+/// @param {any} $fallback [null] - An optional fallback value or token name
+@mixin use-var($property, $name, $fallback: null) {
+  #{$property}: get-var($name, $fallback);
+}
+
+/// Used to negate a number or a variable that might be a `var` statement.
+///
+/// @param {String} css-variable - The token name, `var()`, or number to negate.
+/// @returns {String} the calc string
+@function negate-var($css-variable, $fallback: null) {
+  @return calc(-1 * #{get-token-var($css-variable, $fallback)});
+}
+
+/// This function is used to convert any color value (including custom
+/// properties) into an rgb value with opacity.
+///
+/// @param {Color | String} $color - The token or color that should be
+/// converted to an rgb value.
+/// @param {Number | String} $opacity - The token or opacity value that should
+/// be used
+/// @param {Color | String} $color-fallback [null] - An optional fallback value
+/// for the color if it was set to a token name.
+/// @param {Number | String} $opacity-fallback [null] - An optional fallback
+/// value for the opacity if it was set to a token name.
+/// @return {String} - `rgb(from $color r g b / $opacity)`
+@function get-rgb-var(
+  $color,
+  $opacity,
+  $color-fallback: null,
+  $opacity-fallback: null
+) {
+  $color-value: get-token-var($color, $color-fallback);
+  $opacity-value: get-token-var($opacity, $opacity-fallback);
+  @return rgb(from $color-value r g b / $opacity-value);
+}
+
+/// This mixin is used to register tokens so that the `verify-tokens` mixin
+/// works correctly.
+///
+/// @param {Map} $tokens - this should be the locally scoped tokens map for a
+/// specific module.
+/// @param {String} $prefix [null] - An optional starting prefix.
+@mixin register-tokens($tokens, $prefix: null) {
+  @if meta.type-of($tokens) != map {
+    @error "register-tokens() only supports maps";
+  }
+
+  // prettier-ignore
+  $var-prefix: if(sass($prefix): $prefix + "."; else: "");
+  @each $maybe-prefix, $maybe-value in $tokens {
+    @if meta.type-of($maybe-value) == map {
+      @include register-tokens($maybe-value, $var-prefix + $maybe-prefix);
+    } @else {
+      $name: "#{$var-prefix}#{$maybe-prefix}";
+
+      $force-added-index: list.index($-force-added, $name);
+      @if $force-added-index {
+        $-force-added: utils.list-filter($-force-added, $name) !global;
+      } @else {
+        $-tokens: list.append($-tokens, $name) !global;
+      }
+    }
+  }
+}
+
+///
+/// @param {Map} $tokens - the map of tokens to iterate over
+/// @param {String} $prefix [null] - an optional starting prefix
+/// @param {Boolean} $register-tokens [false] - set to `true` to also register
+/// these tokens immediately
+@mixin set-default-tokens($tokens, $prefix: null, $register-tokens: false) {
+  @if $register-tokens {
+    @include register-tokens($tokens, $prefix);
+  }
+
+  // prettier-ignore
+  $var-prefix: if(sass($prefix): $prefix + "."; else: "");
+  @each $maybe-prefix, $maybe-value in $tokens {
+    $name: "#{$var-prefix}#{$maybe-prefix}";
+    @if meta.type-of($maybe-value) == map {
+      @include set-default-tokens($maybe-value, $name);
+    } @else {
+      @include set-var($name, $maybe-value);
+    }
+  }
+}
+
+/// This is an internal mixin that is just used to ensure that no invalid
+/// tokens have been called.
+@mixin verify-tokens {
+  @if list.length($-force-added) > 0 {
+    @error "The following tokens do not exist and need to be removed or fixed. #{$-force-added}. Valid tokens are #{$-tokens}";
+  }
+}
+
+/// Used to configure the token variables globally.
+///
+/// @param {String} $var-prefix [null] - Override the global var prefix
+@mixin configure($var-prefix: null) {
+  @if $var-prefix {
+    $-var-prefix: $var-prefix !global;
+  }
+}

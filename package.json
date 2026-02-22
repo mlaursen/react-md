@@ -88,6 +88,7 @@
     "packages/react-md",
     "packages/sassdoc-generator",
     "packages/stylelint-config",
-    "packages/vite-material-symbols-plugin"
+    "packages/vite-material-symbols-plugin",
+    "packages/you"
   ]
 }

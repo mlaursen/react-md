@@ -1,0 +1,73 @@
+@use "tokens";
+@use "palette";
+@use "font";
+@use "typescale";
+@use "shape";
+
+@use "token-styles";
+
+@use "variables";
+
+/// A simple CSS reset for react-md that:
+/// - applies box-sizing: border-box to everything for easier positioning and
+///   calculations
+/// - updates the `html` and `body` to be full height without any padding or
+///   margin to ensure your app can utilize the full viewport
+/// - applies the root background, text color, and typography to the `html`
+///   element
+/// - ensures touch events are bubbleable to the `body` element on iOS for
+///   "close on outside click" behavior
+/// - remove the `-webkit-tap-highlight-color` for touch devices
+///
+/// This should not be used when using the `styles` mixin since it is
+/// included by default.
+@mixin css-reset {
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    &:has(body.rmd-touch-mode) {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+  }
+
+  body {
+    @include tokens.use-var(background-color, "palette.current.background");
+    @include tokens.use-var(color, "palette.current.on-background");
+    @include token-styles.token-styles(
+      typescale.get-font-styles(
+        $variant: body-large,
+        $prominent: false,
+        $overrides: (
+          letter-spacing: null,
+        )
+      )
+    );
+
+    &:where(.rmd-touch-mode) {
+      // this allows for click events to be bubbleable on iOS to the root
+      // document
+      cursor: pointer;
+    }
+  }
+}
+
+@mixin styles($set-color-scheme: true) {
+  @layer config {
+    :root {
+      @include variables.variables($set-color-scheme: $set-color-scheme);
+    }
+  }
+
+  @include css-reset;
+  // @include typography.styles;
+  // @include transition.styles;
+  // @include interaction.styles;
+  // @include elevation.styles;
+  // @include icon.styles;
+  // @include button.styles;
+
+  @include tokens.verify-tokens;
+}

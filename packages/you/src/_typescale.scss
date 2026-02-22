@@ -1,0 +1,238 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+
+@use "utils";
+@use "tokens";
+
+@function get-letter-spacing($tracking) {
+  @return math.div($tracking, 16) * 1rem;
+}
+
+$-tokens: (
+  display-large: (
+    font: "font.brand",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(57),
+    line-height: utils.to-rem(64),
+    tracking: get-letter-spacing(-0.25),
+  ),
+  display-medium: (
+    font: "font.brand",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(45),
+    line-height: utils.to-rem(52),
+    tracking: get-letter-spacing(0),
+  ),
+  display-small: (
+    font: "font.brand",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(36),
+    line-height: utils.to-rem(44),
+    tracking: get-letter-spacing(0),
+  ),
+  headline-large: (
+    font: "font.brand",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(28),
+    line-height: utils.to-rem(40),
+    tracking: get-letter-spacing(0),
+  ),
+  headline-medium: (
+    font: "font.brand",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(28),
+    line-height: utils.to-rem(36),
+    tracking: get-letter-spacing(0),
+  ),
+  headline-small: (
+    font: "font.brand",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(24),
+    line-height: utils.to-rem(32),
+    tracking: get-letter-spacing(0),
+  ),
+  title-large: (
+    font: "font.brand",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(22),
+    line-height: utils.to-rem(28),
+    tracking: get-letter-spacing(0),
+  ),
+  title-medium: (
+    font: "font.plain",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(16),
+    line-height: utils.to-rem(24),
+    tracking: get-letter-spacing(0.25),
+  ),
+  title-small: (
+    font: "font.plain",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(14),
+    line-height: utils.to-rem(20),
+    tracking: get-letter-spacing(0.1),
+  ),
+  label-large: (
+    font: "font.plain",
+    weight: "weight.medium",
+    weight-emphasized: "weight.bold",
+    size: utils.to-rem(14),
+    line-height: utils.to-rem(20),
+    tracking: get-letter-spacing(0.1),
+  ),
+  label-medium: (
+    font: "font.plain",
+    weight: "weight.medium",
+    weight-emphasized: "weight.bold",
+    size: utils.to-rem(12),
+    line-height: utils.to-rem(16),
+    tracking: get-letter-spacing(0.5),
+  ),
+  label-small: (
+    font: "font.plain",
+    weight: "weight.medium",
+    weight-emphasized: "weight.bold",
+    size: utils.to-rem(11),
+    line-height: utils.to-rem(16),
+    tracking: get-letter-spacing(0.5),
+  ),
+  body-large: (
+    font: "font.plain",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(16),
+    line-height: utils.to-rem(24),
+    tracking: get-letter-spacing(0.5),
+  ),
+  body-medium: (
+    font: "font.plain",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(14),
+    line-height: utils.to-rem(20),
+    tracking: get-letter-spacing(0.25),
+  ),
+  body-small: (
+    font: "font.plain",
+    weight: "weight.regular",
+    weight-emphasized: "weight.medium",
+    size: utils.to-rem(12),
+    line-height: utils.to-rem(20),
+    tracking: get-letter-spacing(0.4),
+  ),
+);
+
+$-variants: map.keys($-tokens);
+$-properties: map.keys(map.get($-tokens, list.nth($-variants, 1)));
+
+$configure-tokens: $-variants;
+
+@mixin -update($value, $name) {
+  @if $value {
+    $-tokens: map.set(
+      $-tokens,
+      $name,
+      map.merge(
+        map.get($-tokens, $name),
+        utils.get-config-map($name, $value, $-properties)
+      )
+    ) !global;
+  }
+}
+
+@mixin configure(
+  $display-large: null,
+  $display-medium: null,
+  $display-small: null,
+  $headline-large: null,
+  $headline-medium: null,
+  $headline-small: null,
+  $title-large: null,
+  $title-medium: null,
+  $title-small: null,
+  $label-large: null,
+  $label-medium: null,
+  $label-small: null,
+  $body-large: null,
+  $body-medium: null,
+  $body-small: null
+) {
+  @include -update($display-large, display-large);
+  @include -update($display-medium, display-medium);
+  @include -update($display-small, display-small);
+
+  @include -update($headline-large, headline-large);
+  @include -update($headline-medium, headline-medium);
+  @include -update($headline-small, headline-small);
+
+  @include -update($title-large, title-large);
+  @include -update($title-medium, title-medium);
+  @include -update($title-small, title-small);
+
+  @include -update($label-large, label-large);
+  @include -update($label-medium, label-medium);
+  @include -update($label-small, label-small);
+
+  @include -update($body-large, body-large);
+  @include -update($body-medium, body-medium);
+  @include -update($body-small, body-small);
+}
+
+@mixin variables {
+  $register-tokens: not $-tokens-added;
+  @if $register-tokens {
+    $-tokens-added: true !global;
+  }
+
+  @include tokens.set-default-tokens(
+    $tokens: $-tokens,
+    $prefix: "typescale",
+    $register-tokens: $register-tokens
+  );
+}
+
+@function get-font-styles($variant, $prominent: false, $overrides: ()) {
+  $variant: utils.validate($-variants, $variant, "typeface variant");
+  $properties: map.get($-tokens, $variant);
+  @if not $properties {
+    @error "The typescale configure mixin has not been called before attempting to apply typescale styles";
+  }
+
+  @if $prominent {
+    $font-weight: tokens.get-token-var(map.get($properties, weight-emphasized));
+    @return map.deep-merge(
+      (
+        font-weight: $font-weight,
+      ),
+      $overrides
+    );
+  }
+
+  $font-weight: tokens.get-token-var(map.get($properties, weight));
+  $font-size: tokens.get-token-var(map.get($properties, size));
+  $line-height: map.get($properties, line-height);
+  $font-family: tokens.get-token-var(map.get($properties, font));
+  $letter-spacing: map.get($properties, tracking);
+  @if $letter-spacing == 0rem {
+    $letter-spacing: null;
+  }
+
+  // prettier-ignore
+  @return map.deep-merge(
+    (
+      font: $font-weight $font-size#{"/"}$line-height $font-family,
+      letter-spacing: $letter-spacing,
+    ),
+    $overrides
+  );
+}

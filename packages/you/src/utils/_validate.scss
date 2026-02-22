@@ -1,0 +1,66 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+
+/// Internal validation function to ensure the user overrides variables with
+/// accepted values.
+///
+/// @since 6.4.0 Added support for strings so that single item lists can be used.
+/// @param {List|Map|String} options - The list or map of available options.
+/// This can also be a single item list.
+/// @param {String|Number} key-or-value - Either the map key or list value to
+/// check if exists
+/// @param {String} error-message - The additional error message to display
+/// @returns {any} the value from the list or map
+@function validate($options, $key-or-value, $error-message) {
+  @if meta.type-of($options) == string {
+    $options: list.append((), $options);
+  }
+
+  $type: meta.type-of($options);
+  $is-map: $type == map;
+  $is-list: $type == list;
+  @if not $is-map and not $is-list {
+    @error "Unable to validate anything except for lists and maps at this time. Received: '#{$options}'.";
+  }
+
+  $choices: $options;
+  @if $is-map {
+    $choices: map.keys($options);
+  }
+
+  @if not list.index($choices, $key-or-value) {
+    @if not $choices or list.length($choices) < 1 {
+      @error "no choices";
+    }
+    // NOTE: sass does not support newlines in error messages
+    @error "Invalid #{$error-message}: '#{$key-or-value}'. Choose one of: #{$choices}";
+  }
+
+  @if $is-list {
+    @return $key-or-value;
+  }
+
+  @return map.get($options, $key-or-value);
+}
+
+@function get-config-map($name, $map, $choices: null) {
+  @if not $map {
+    @return ();
+  }
+
+  $type-of: meta.type-of($map);
+  @if $type-of != map and ($type-of != list or list.length($map) != 0) {
+    @error "#{$name} must be a map or null but #{$type-of} was provided instead";
+  }
+
+  @if $choices {
+    @each $key in map.keys($map) {
+      @if not list.index($choices, $key) {
+        @error "#{$key} is not a valid configuration for #{$name}. Choose one of #{$choices}";
+      }
+    }
+  }
+
+  @return $map;
+}
