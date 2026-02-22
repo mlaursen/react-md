@@ -73,5 +73,21 @@
   "volta": {
     "node": "24.12.0",
     "pnpm": "10.28.0"
-  }
+  },
+  "workspaces": [
+    "apps/docs",
+    "apps/next-playground",
+    "apps/vite-playground",
+    "packages/@types__sassdoc",
+    "packages/code",
+    "packages/codemod",
+    "packages/core",
+    "packages/docs-generator",
+    "packages/eslint-config",
+    "packages/material-icons",
+    "packages/react-md",
+    "packages/sassdoc-generator",
+    "packages/stylelint-config",
+    "packages/vite-material-symbols-plugin"
+  ]
 }
