@@ -35,7 +35,6 @@ export function addImportSpecifier(options: AddImportSpecifierOptions): void {
       name: packageName,
       force: true,
     });
-    // eslint-disable-next-line no-useless-assignment
     declarations = root.find(j.ImportDeclaration, {
       source: { value: packageName },
     });

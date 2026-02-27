@@ -47,10 +47,10 @@
   "devDependencies": {
     "@react-md/eslint-config": "workspace:*",
     "@swc/cli": "^0.8.0",
-    "@swc/core": "^1.15.11",
+    "@swc/core": "^1.15.17",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "@types/node": "^24.10.4",
-    "eslint": "^9.39.2",
+    "@types/node": "^24.10.15",
+    "eslint": "^9.39.3",
     "npm-run-all2": "^8.0.2",
     "typescript": "^5.9.3"
   },

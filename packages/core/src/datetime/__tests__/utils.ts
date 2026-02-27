@@ -4,7 +4,6 @@ import { getTimeStep } from "../utils.js";
 
 describe("getTimeStep", () => {
   it("should return the step if it is not an object", () => {
-    // eslint-disable-next-line no-unassigned-vars
     let u: undefined;
 
     expect(getTimeStep(u)).toBe(undefined);
