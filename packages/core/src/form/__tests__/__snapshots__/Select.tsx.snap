@@ -6,7 +6,7 @@ exports[`Select > should allow for the OptGroup to be used 1`] = `
   class="rmd-menu rmd-menu--elevated"
   id="combobox-popup-_r_1r_"
   role="listbox"
-  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0px;"
   tabindex="-1"
 >
   <ul
@@ -295,7 +295,7 @@ exports[`Select > should automatically pull options from the children and update
   class="rmd-menu rmd-menu--elevated"
   id="combobox-popup-_r_9_"
   role="listbox"
-  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0px;"
   tabindex="-1"
 >
   <ul
@@ -372,7 +372,7 @@ exports[`Select > should automatically pull options from the children and update
   class="rmd-menu rmd-menu--elevated"
   id="combobox-popup-_r_9_"
   role="listbox"
-  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0px;"
   tabindex="-1"
 >
   <ul

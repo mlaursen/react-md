@@ -6,7 +6,7 @@ exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and
   class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
   id="expansion-panel-_r_k_-content"
   role="region"
-  style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+  style="max-height: 0px; padding-top: 0px; padding-bottom: 0px;"
 >
   Content
 </div>
@@ -18,7 +18,7 @@ exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and
   class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
   id="expansion-panel-_r_k_-content"
   role="region"
-  style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+  style="max-height: 0px; padding-top: 0px; padding-bottom: 0px;"
 >
   Content
 </div>
@@ -51,7 +51,7 @@ exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and
     class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
     id="expansion-panel-_r_l_-content"
     role="region"
-    style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+    style="max-height: 0px; padding-top: 0px; padding-bottom: 0px;"
   >
     Content
   </div>
@@ -86,7 +86,7 @@ exports[`ExpansionPanel > should apply the correct styling, HTML attributes, and
     class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
     id="expansion-panel-_r_l_-content"
     role="region"
-    style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+    style="max-height: 0px; padding-top: 0px; padding-bottom: 0px;"
   >
     Content
   </div>
@@ -123,7 +123,7 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
         class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
         id="expansion-panel-_r_0_-1-content"
         role="region"
-        style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+        style="max-height: 0px; padding-top: 0px; padding-bottom: 0px;"
       >
         Panel 1 Contents
       </div>
@@ -155,7 +155,7 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
         class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
         id="expansion-panel-_r_0_-2-content"
         role="region"
-        style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+        style="max-height: 0px; padding-top: 0px; padding-bottom: 0px;"
       >
         Panel 2 Contents
       </div>
@@ -187,7 +187,7 @@ exports[`ExpansionPanel > should default to single expansion, allowing all panel
         class="rmd-card__content rmd-card__content--padded rmd-collapse rmd-collapse--no-overflow rmd-display-none"
         id="expansion-panel-_r_0_-3-content"
         role="region"
-        style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+        style="max-height: 0px; padding-top: 0px; padding-bottom: 0px;"
       >
         Panel 3 Contents
       </div>

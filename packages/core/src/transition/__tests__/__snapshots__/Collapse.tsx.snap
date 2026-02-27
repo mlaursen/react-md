@@ -10,7 +10,7 @@ exports[`useCollapseTransition > should apply the rmd-display-none if the tempor
   <div
     class="rmd-collapse rmd-collapse--no-overflow rmd-display-none"
     data-testid="element"
-    style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+    style="max-height: 0px; padding-top: 0px; padding-bottom: 0px;"
   >
     This is some content.
   </div>
@@ -27,7 +27,7 @@ exports[`useCollapseTransition > should apply the rmd-display-none if the tempor
   <div
     class="rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
     data-testid="element"
-    style="max-height: 0; transition-duration: 250ms;"
+    style="max-height: 0px; transition-duration: 250ms;"
   >
     This is some content.
   </div>
@@ -61,7 +61,7 @@ exports[`useCollapseTransition > should apply the rmd-display-none if the tempor
   <div
     class="rmd-collapse rmd-collapse--leave rmd-collapse--no-overflow"
     data-testid="element"
-    style="max-height: 0; transition-duration: 200ms; padding-top: 0px; padding-bottom: 0px;"
+    style="max-height: 0px; transition-duration: 200ms; padding-top: 0px; padding-bottom: 0px;"
   >
     This is some content.
   </div>
@@ -78,7 +78,7 @@ exports[`useCollapseTransition > should apply the rmd-display-none if the tempor
   <div
     class="rmd-collapse rmd-collapse--no-overflow rmd-display-none"
     data-testid="element"
-    style="max-height: 0; padding-top: 0px; padding-bottom: 0px;"
+    style="max-height: 0px; padding-top: 0px; padding-bottom: 0px;"
   >
     This is some content.
   </div>
@@ -112,7 +112,7 @@ exports[`useCollapseTransition > should default to not being temporary if the mi
   <div
     class="rmd-collapse rmd-collapse--no-overflow"
     data-testid="element"
-    style="max-height: 0; padding-top: 0px; padding-bottom: 16px;"
+    style="max-height: 0px; padding-top: 0px; padding-bottom: 16px;"
   >
     This is some content.
   </div>
@@ -129,7 +129,7 @@ exports[`useCollapseTransition > should default to not being temporary if the mi
   <div
     class="rmd-collapse rmd-collapse--no-overflow"
     data-testid="element"
-    style="max-height: 0; padding-top: 8px; padding-bottom: 0px;"
+    style="max-height: 0px; padding-top: 8px; padding-bottom: 0px;"
   >
     This is some content.
   </div>
@@ -156,7 +156,7 @@ exports[`useCollapseTransition > should default to not rendering the element whe
   <div
     class="rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
     data-testid="element"
-    style="max-height: 0; transition-duration: 250ms;"
+    style="max-height: 0px; transition-duration: 250ms;"
   >
     This is some content.
   </div>
@@ -190,7 +190,7 @@ exports[`useCollapseTransition > should default to not rendering the element whe
   <div
     class="rmd-collapse rmd-collapse--leave rmd-collapse--no-overflow"
     data-testid="element"
-    style="max-height: 0; transition-duration: 200ms; padding-top: 0px; padding-bottom: 0px;"
+    style="max-height: 0px; transition-duration: 200ms; padding-top: 0px; padding-bottom: 0px;"
   >
     This is some content.
   </div>
