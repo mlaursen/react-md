@@ -1,6 +1,7 @@
 import { getMaterialSymbolsUrl } from "@react-md/core/icon/getMaterialSymbolsUrl";
 import { type MaterialSymbolName } from "@react-md/core/icon/material";
 import { DEFAULT_MATERIAL_SYMBOL_NAMES } from "@react-md/core/icon/symbols";
+import { minimatch } from "minimatch";
 import { glob, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { type HtmlTagDescriptor, type Plugin } from "vite";
@@ -43,6 +44,33 @@ export function materialSymbolsPlugin(
           // skip failed files
         }
       }
+    },
+
+    configureServer: (server) => {
+      const { root } = server.config;
+      const sliceFrom = root.length + 1;
+      const handler = async (file: string): Promise<void> => {
+        const relativeFile = file.slice(sliceFrom);
+        if (!minimatch(relativeFile, pattern)) {
+          return;
+        }
+
+        const fileSymbolNames = new Set<MaterialSymbolName>();
+        const contents = await readFile(file, "utf8");
+        addMaterialSymbolNames(contents, fileSymbolNames);
+        const additions = fileSymbolNames.difference(symbolNames);
+        if (additions.size === 0) {
+          return;
+        }
+
+        for (const name of fileSymbolNames) {
+          symbolNames.add(name);
+        }
+        server.ws.send({ type: "full-reload" });
+      };
+
+      server.watcher.on("add", handler);
+      server.watcher.on("change", handler);
     },
 
     transformIndexHtml() {

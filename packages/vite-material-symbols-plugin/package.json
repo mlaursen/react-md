@@ -45,6 +45,9 @@
   ],
   "license": "MIT",
   "packageManager": "pnpm@10.28.0",
+  "dependencies": {
+    "minimatch": "^10.2.4"
+  },
   "devDependencies": {
     "@react-md/core": "workspace:*",
     "@react-md/eslint-config": "workspace:*",
