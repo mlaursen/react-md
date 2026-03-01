@@ -16,6 +16,10 @@ export default defineConfig({
       },
     }),
   ],
+  css: {
+    // allow @debug statements
+    devSourcemap: true,
+  },
   resolve: {
     alias: {
       everything: resolve(import.meta.dirname, "src/_everything.scss"),
