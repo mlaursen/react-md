@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "description": "The core components and functionality for react-md using the material-you color scheme",
   "type": "module",
-  "sass": "./dist/_index.scss",
+  "sass": "./dist/styles/_index.scss",
   "exports": {
     ".": {
-      "sass": "./dist/_index.scss"
+      "sass": "./dist/styles/_index.scss"
     },
     "./*": "./dist/*.js",
     "./package.json": "./package.json"

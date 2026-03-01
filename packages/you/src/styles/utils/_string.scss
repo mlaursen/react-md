@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:string";
 
 /// Replace `$search` with `$replace` in `$string`
@@ -22,4 +23,24 @@
   }
 
   @return $string;
+}
+
+///
+/// @param {String} $string - the string to split
+/// @param {String} $delimiter - the substring to split by
+/// @return {List} - a list of strings split by the delimiter
+@function str-split($string, $delimiter) {
+  $delimiter-length: string.length($delimiter);
+
+  $result: ();
+  $remaining: $string;
+  $index: string.index($remaining, $delimiter);
+  @while $index != null {
+    $part: string.slice($remaining, 1, $index - 1);
+    $result: list.append($result, $part);
+    $remaining: string.slice($remaining, $index + $delimiter-length);
+    $index: string.index($remaining, $delimiter);
+  }
+
+  @return list.append($result, $remaining);
 }

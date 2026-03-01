@@ -16,6 +16,7 @@ $configure-tokens: (
   corner-full
 );
 
+$-tokens-registered: false;
 $-tokens: (
   corner: (
     none: 0,
@@ -60,16 +61,16 @@ $-tokens: (
   @include -update($corner-extra-extra-large, extra-extra-large);
   @include -update($corner-full, full);
 
-  @if not $-tokens-added {
-    $-tokens-added: true !global;
+  @if not $-tokens-registered {
+    $-tokens-registered: true !global;
     @include tokens.register-tokens($tokens: $-tokens, $prefix: shape);
   }
 }
 
 @mixin variables {
-  $register-tokens: not $-tokens-added;
+  $register-tokens: not $-tokens-registered;
   @if $register-tokens {
-    $-tokens-added: true !global;
+    $-tokens-registered: true !global;
   }
 
   @include tokens.set-default-tokens(

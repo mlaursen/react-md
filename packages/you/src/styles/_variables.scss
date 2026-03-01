@@ -2,6 +2,9 @@
 @use "font";
 @use "typescale";
 @use "shape";
+@use "transition";
+@use "interaction";
+@use "media-queries";
 
 ///
 /// @param {Boolean} $set-color-scheme [false] - Set to `true` to also set the
@@ -11,6 +14,7 @@
   @include font.variables;
   @include typescale.variables;
   @include shape.variables;
-  // @include transition.variables;
-  // @include interaction.variables;
+  @include transition.variables;
+  @include interaction.variables;
+  @include media-queries.variables;
 }

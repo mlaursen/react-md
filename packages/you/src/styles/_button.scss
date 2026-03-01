@@ -1,0 +1,346 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+@use "utils";
+@use "tokens";
+@use "token-styles";
+@use "typescale";
+@use "interaction";
+
+$-tokens-registered: false;
+$-tokens: (
+  container: (
+    color: "palette.current.primary",
+    shadow-color: "palette.current.shadow",
+    elevation: 0,
+    height: 2.5rem,
+    shape: (
+      round: "shape.corner.full",
+      square: "shape.corner.medium",
+    ),
+  ),
+  leading-space: 1.5rem,
+  trailing-space: 1.5rem,
+  icon-label-space: 0.5rem,
+  pressed: (
+    container: (
+      shape: "shape.corner.small",
+    ),
+    state-layer: (
+      color: "palette.current.on-primary",
+      opacity: 0.1,
+      elevation: 0,
+    ),
+    label-text: (
+      color: "palette.current.on-primary",
+    ),
+    icon: (
+      color: "palette.current.on-primary",
+    ),
+  ),
+  unselected: (
+    container: (
+      color: "palette.current.surface-container",
+    ),
+    icon: (
+      color: null,
+    ),
+    hovered: (
+      state-layer: (
+        color: "palette.current.on-surface-variant",
+      ),
+      label-text: (
+        color: "palette.current.on-surface-variant",
+      ),
+      icon: (
+        color: "palette.current.on-surface-variant",
+      ),
+    ),
+    focused: (
+      state-layer: (
+        color: "palette.current.on-surface-variant",
+      ),
+      label-text: (
+        color: "palette.current.on-surface-variant",
+      ),
+      icon: (
+        color: "palette.current.on-surface-variant",
+      ),
+    ),
+    pressed: (
+      state-layer: (
+        color: "palette.current.on-surface-variant",
+      ),
+      label-text: (
+        color: "palette.current.on-surface-variant",
+      ),
+      icon: (
+        color: "palette.current.on-surface-variant",
+      ),
+    ),
+  ),
+  selected: (
+    container: (
+      color: "palette.current.primary",
+      shape: (
+        round: "shape.container.medium",
+        square: "shape.container.full",
+      ),
+    ),
+    icon: (
+      color: null,
+    ),
+    hovered: (
+      state-layer: (
+        color: "palette.current.on-primary",
+      ),
+      label-text: (
+        color: "palette.current.on-primary",
+      ),
+      icon: (
+        color: "palette.current.on-primary",
+      ),
+    ),
+    focused: (
+      state-layer: (
+        color: "palette.current.on-primary",
+      ),
+      label-text: (
+        color: "palette.current.on-primary",
+      ),
+      icon: (
+        color: "palette.current.on-primary",
+      ),
+    ),
+    pressed: (
+      state-layer: (
+        color: "palette.current.on-primary",
+      ),
+      label-text: (
+        color: "palette.current.on-primary",
+      ),
+      icon: (
+        color: "palette.current.on-primary",
+      ),
+    ),
+  ),
+  label-text: (
+    color: "palette.current.on-primary",
+    // NOTE: this is just .label-text in material design
+    font: "typescale.label.large",
+    unselected: (
+      color: "palette.current.on-surface-variant",
+    ),
+    selected: (
+      color: "palette.current.on-primary",
+    ),
+  ),
+  icon: (
+    color: "palette.current.on-primary",
+    size: 1.25rem,
+    unselected: (
+      color: "palette.current.on-surface-variant",
+    ),
+    selected: (
+      color: "palette.current.on-primary",
+    ),
+  ),
+  focus: (
+    indicator: (
+      color: "palette.current.secondary",
+      thickness: 3px,
+      outline: (
+        offset: 2px,
+      ),
+    ),
+  ),
+  disabled: (
+    container: (
+      color: "palette.current.on-surface",
+      opacity: 0.1,
+      elevation: 0,
+      label-text: (
+        color: "palette.current.on-surface",
+        opacity: 0.38,
+      ),
+      icon: (
+        color: "palette.current.on-surface",
+        opacity: 0.38,
+      ),
+    ),
+  ),
+  hovered: (
+    state-layer: (
+      color: "palette.current.on-primary",
+      opacity: 0.08,
+    ),
+    label-text: (
+      color: "palette.current.on-primary",
+    ),
+    icon: (
+      color: "palette.current.on-primary",
+    ),
+  ),
+  focused: (
+    state-layer: (
+      color: "palette.current.on-primary",
+      opacity: 0.1,
+      elevation: 0,
+    ),
+    label-text: (
+      color: "palette.current.on-primary",
+    ),
+    icon: (
+      color: "palette.current.on-primary",
+    ),
+  ),
+);
+
+$-base-styles: map.deep-merge(
+  (
+    "elevation.level": "button.container.elevation",
+    "elevation.shadow-color": "button.container.shadow-color",
+    "icon.color": "button.icon.color",
+    align-items: center,
+    background: "button.container.color",
+    color: "button.label-text.color",
+    border-width: 0,
+    display: inline-flex,
+    flex-shrink: 0,
+    font: "typescale.label-large",
+    justify-content: center,
+  ),
+  ()
+);
+$-base-unselected-styles: (
+  background: "button.unselected.container.color",
+  color: "button.label-text.unselected.color",
+);
+$-base-selected-styles: (
+  background: "button.selected.container.color",
+  color: "button.label-text.selected.color",
+);
+$-text-styles: ();
+$-icon-styles: ();
+$-round-styles: ();
+$-square-styles: ();
+$-extra-small-styles: ();
+$-small-styles: ();
+$-medium-styles: ();
+$-large-styles: ();
+$-extra-large-styles: ();
+
+$-filled-styles: ();
+$-filled-unselected-styles: ();
+$-filled-selected-styles: ();
+
+$-text-styles: ();
+$-tonal-styles: ();
+$-tonal-unselected-styles: ();
+$-tonal-selected-styles: ();
+
+$-outlined-styles: ();
+
+$-elevated-styles: ();
+$-elevated-unselected-styles: ();
+$-elevated-selected-styles: ();
+
+$configure-tokens: (
+  base-styles,
+  text-styles,
+  filled-styles,
+  outlined-styles,
+  tonal-styles,
+  elevated-styles,
+  extra-small-styles,
+  small-styles,
+  medium-styles,
+  large-styles,
+  extra-large-styles,
+  round-styles,
+  square-styles
+);
+
+@mixin configure(
+  $base-styles: null,
+  $text-styles: null,
+  $filled-styles: null,
+  $outlined-styles: null,
+  $tonal-styles: null,
+  $elevated-styles: null,
+  $extra-small-styles: null,
+  $small-styles: null,
+  $medium-styles: null,
+  $large-styles: null,
+  $extra-large-styles: null,
+  $round-styles: null,
+  $square-styles: null
+) {
+  @if $base-styles {
+    $-base-styles: map.deep-merge($-base-styles, $base-styles) !global;
+  }
+
+  @if not $-tokens-registered {
+    $-tokens-registered: true !global;
+    @include tokens.register-tokens($tokens: $-tokens, $prefix: "button");
+  }
+}
+
+@mixin styles {
+  .rmd-button {
+    @include token-styles.token-styles($-base-styles, $-tokens);
+
+    &--extra-small {
+      @include token-styles.token-styles($-extra-small-styles);
+    }
+
+    // default
+    &--small {
+      @include token-styles.token-styles($-small-styles);
+    }
+
+    &--medium {
+      @include token-styles.token-styles($-medium-styles);
+    }
+
+    &--large {
+      @include token-styles.token-styles($-large-styles);
+    }
+
+    &--extra-large {
+      @include token-styles.token-styles($-extra-large-styles);
+    }
+
+    &--square {
+      @include token-styles.token-styles($-square-styles);
+    }
+
+    // default
+    &--round {
+      @include token-styles.token-styles($-round-styles);
+    }
+
+    &--text {
+      @include token-styles.token-styles($-text-styles);
+    }
+
+    &--outlined {
+      @include token-styles.token-styles($-outlined-styles);
+    }
+
+    &--tonal {
+      @include token-styles.token-styles($-tonal-styles);
+    }
+
+    // default
+    &--filled {
+      @include token-styles.token-styles($-filled-styles);
+    }
+
+    &--elevated {
+      @include token-styles.token-styles($-elevated-styles);
+    }
+  }
+}

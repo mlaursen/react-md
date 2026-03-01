@@ -1,5 +1,8 @@
 @use "sass:math";
 
+///
+/// @param {Number} $value - a unitless number to convert to rem
+/// @return {Number} - the value in rem
 @function to-rem($value) {
   @if not math.is-unitless($value) {
     @error "#{$value} must be a unitless number to convert to rem";

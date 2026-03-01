@@ -1,0 +1,372 @@
+@use "sass:map";
+@use "sass:meta";
+
+@use "utils";
+@use "tokens";
+@use "token-styles";
+
+$configure-tokens: (
+  focus-opacity,
+  hover-opacity,
+  pressed-opacity,
+  dragged-opacity,
+  disabled-opacity,
+  focus-width,
+  focus-active-width,
+  focus-color,
+  focus-inward-offset,
+  focus-outward-offset,
+  focus-animation
+);
+
+$-tokens-registered: false;
+$-tokens: (
+  background: null,
+  opacity: null,
+  hover: (
+    opacity: 0.1,
+  ),
+  focus: (
+    opacity: 0.08,
+
+    duration: null,
+    color: null,
+    active-width: null,
+    width: null,
+    inward-offset: null,
+    outward-offset: null,
+  ),
+  pressed: (
+    opacity: 0.1,
+  ),
+  dragged: (
+    opacity: 0.16,
+  ),
+  disabled: (
+    opacity: 0.38,
+  ),
+);
+
+$-focus-width: utils.to-rem(3);
+$-focus-active-width: utils.to-rem(8);
+$-focus-color: "palette.current.secondary";
+$-focus-inward-offset: 0;
+$-focus-outward-offset: utils.to-rem(2);
+$-focus-animation: true;
+
+@mixin -update($value, $group, $name) {
+  @if $value {
+    $-tokens: map.set(
+      $-tokens,
+      $group,
+      $name,
+      map.merge(
+        map.get($-tokens, $group, $name),
+        (
+          opacity: $value,
+          opacity-percent: $value * 100%,
+        )
+      )
+    ) !global;
+  }
+}
+
+@mixin configure(
+  $focus-animation: null,
+  $focus-width: null,
+  $focus-active-width: null,
+  $focus-color: null,
+  $focus-inward-offset: null,
+  $focus-outward-offset: null,
+  $focus-opacity: null,
+  $hover-opacity: null,
+  $pressed-opacity: null,
+  $dragged-opacity: null,
+  $disabled-opacity: null
+) {
+  @if $focus-animation == true or $focus-animation == false {
+    $-focus-animation: $focus-animation !global;
+  }
+
+  @if $focus-width {
+    $-focus-width: $focus-width !global;
+  }
+
+  @if $focus-active-width {
+    $-focus-active-width: $focus-active-width !global;
+  }
+
+  @if $focus-color {
+    $-focus-color: $focus-color !global;
+  }
+
+  @if $focus-inward-offset {
+    $-focus-inward-offset: $focus-inward-offset !global;
+  }
+
+  @if $focus-outward-offset {
+    $-focus-outward-offset: $focus-outward-offset !global;
+  }
+
+  @include -update($focus-opacity, focus, opacity);
+  @include -update($hover-opacity, hover, opacity);
+  @include -update($pressed-opacity, pressed, opacity);
+  @include -update($dragged-opacity, dragged, opacity);
+  @include -update($disabled-opacity, disabled, opacity);
+}
+
+@mixin variables {
+  $register-tokens: not $-tokens-registered;
+  @if $register-tokens {
+    $-tokens-registered: true !global;
+  }
+
+  @include tokens.set-default-tokens(
+    $tokens: $-tokens,
+    $prefix: "interaction",
+    $register-tokens: $register-tokens
+  );
+}
+
+@function container(
+  $focus-selector: "&:focus-visible",
+  $disabled-selector: "&:disabled",
+  $clickable: true,
+  $hoverable: true,
+  $elevation: null,
+  $direction: outward
+) {
+  $direction: utils.validate(
+    (outward, inward),
+    $direction,
+    "interaction focus direction"
+  );
+
+  $background: tokens.get-rgb-var(
+    "interaction.background",
+    "interaction.opacity"
+  );
+
+  $styles: (
+    outline: 0,
+    position: relative,
+
+    "&::before": map.merge(
+        utils.pseudo-element(),
+        (
+          background: $background,
+          box-sizing: border-box,
+          transition: tokens.get-token-var("transition.duration.short-3")
+            background tokens.get-token-var("transition.easing.linear"),
+        )
+      ),
+  );
+  @if $clickable {
+    $styles: map.set($styles, cursor, pointer);
+    $styles: map.set(
+      $styles,
+      mouse-hover,
+      (
+        "interaction.opacity": "interaction.hover.opacity",
+      )
+    );
+  }
+  @if $focus-selector {
+    $inward-offset: tokens.get-token-var(
+      "interaction.focus.inward-offset",
+      $-focus-inward-offset
+    );
+    $outward-offset: tokens.get-token-var(
+      "interaction.focus.outward-offset",
+      $-focus-outward-offset
+    );
+    $focus-width: tokens.get-token-var(
+      "interaction.focus.width",
+      $-focus-width
+    );
+
+    $duration: tokens.get-token-var(
+      "interaction.focus.duration",
+      "transition.duration.extra-long-1"
+    );
+    $color: tokens.get-token-var(
+      "interaction.focus.color",
+      "palette.current.secondary"
+    );
+
+    $focus-active-styles: (
+      animation-name: (
+          rmd-focus-outward-grow,
+          rmd-focus-outward-shrink,
+        ),
+      inset: tokens.negate-var($outward-offset),
+      outline: $focus-width solid currentcolor,
+    );
+    @if $direction == "inward" {
+      $focus-active-styles: (
+        border: $focus-width solid currentcolor,
+        animation-name: (
+            rmd-focus-inward-grow,
+            rmd-focus-inward-shrink,
+          ),
+        inset: $inward-offset,
+      );
+    }
+
+    $focus-styles: (
+      "&::before": (
+          animation-delay: (
+              0s,
+              calc($duration * 0.25),
+            ),
+          animation-duration: (
+              calc($duration * 0.25),
+              calc($duration * 0.75),
+            ),
+          animation-timing-function: "transition.easing.emphasized",
+          transition-duration: "transition.duration.short-3",
+          transition-property: (
+              background,
+              border-width,
+              outline-width,
+            ),
+          transition-timing-function: "transition.easing.emphasized",
+          "@media (prefers-reduced-motion)": (
+              "&": (
+                  animation: none,
+                ),
+            ),
+        ),
+      "#{$focus-selector}::before": map.merge(
+          (
+            color: $color,
+          ),
+          $focus-active-styles
+        ),
+    );
+    @if not $-focus-animation {
+      $focus-styles: map.deep-merge(
+        $focus-styles,
+        (
+          "&::before": (
+              animation-delay: null,
+              animation-duration: null,
+              animation-timing-function: null,
+              "@media (prefers-reduced-motion)": null,
+            ),
+          "#{$focus-selector}::before": (
+              animation-name: null,
+            ),
+        )
+      );
+    }
+    $styles: map.deep-merge($styles, $focus-styles);
+  }
+
+  $disabled-styles: ();
+  @if meta.type-of($elevation) == number {
+    $styles: map.merge(
+      $styles,
+      (
+        "elevation.level": $elevation,
+        "elevation.shadow-color": "palette.current.shadow",
+      )
+    );
+    $disabled-styles: map.merge(
+      $disabled-styles,
+      (
+        "elevation.level": $elevation,
+        "elevation.transition-duration": 0,
+      )
+    );
+  }
+
+  @if $disabled-selector {
+    $disabled-styles: map.merge(
+      $disabled-styles,
+      (
+        "interaction.opacity": 0,
+        cursor: auto,
+      )
+    );
+
+    $styles: map.merge(
+      $styles,
+      (
+        $disabled-selector: $disabled-styles,
+      )
+    );
+  }
+
+  @return $styles;
+}
+
+@mixin styles {
+  $inward-offset: tokens.get-token-var(
+    "interaction.focus.inward-offset",
+    $-focus-inward-offset
+  );
+  $outward-offset: tokens.get-token-var(
+    "interaction.focus.outward-offset",
+    $-focus-outward-offset
+  );
+  $focus-width: tokens.get-token-var("interaction.focus.width", $-focus-width);
+
+  .rmd-interaction-outward,
+  .rmd-interaction-inward {
+    @include token-styles.token-styles(container());
+  }
+
+  .rmd-interaction-inward:focus-visible::before {
+    @include token-styles.token-styles(
+      (
+        animation-name: (
+          rmd-focus-inward-grow,
+          rmd-focus-inward-shrink,
+        ),
+        border: $focus-width solid currentcolor,
+        inset: $inward-offset,
+        outline: 0,
+      )
+    );
+  }
+
+  @if $-focus-animation {
+    $active-width: tokens.get-token-var(
+      "interaction.focus.active-width",
+      $-focus-active-width
+    );
+
+    @keyframes rmd-focus-outward-grow {
+      from {
+        outline-width: 0;
+      }
+
+      to {
+        outline-width: $active-width;
+      }
+    }
+
+    @keyframes rmd-focus-outward-shrink {
+      from {
+        outline-width: $active-width;
+      }
+    }
+
+    @keyframes rmd-focus-inward-grow {
+      from {
+        border-width: 0;
+      }
+
+      to {
+        border-width: $active-width;
+      }
+    }
+
+    @keyframes rmd-focus-inward-shrink {
+      from {
+        border-width: $active-width;
+      }
+    }
+  }
+}

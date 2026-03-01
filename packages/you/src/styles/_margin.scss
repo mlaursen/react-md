@@ -1,0 +1,79 @@
+@use "token-styles";
+
+$-none-styles: (
+  margin: 0,
+);
+$-top-styles: (
+  margin-top: 0,
+);
+$-bottom-styles: (
+  margin-bottom: 0,
+);
+$-centered-styles: (
+  margin-inline: auto,
+);
+$-force-end-styles: (
+  margin-left: auto,
+
+  "rtl": (
+    margin-left: 0,
+    margin-right: auto,
+  ),
+);
+$configure-tokens: (
+  none-styles,
+  top-styles,
+  bottom-styles,
+  centered-styles,
+  force-end-styles
+);
+
+@mixin configure(
+  $none-styles: null,
+  $top-styles: null,
+  $bottom-styles: null,
+  $centered-styles: null,
+  $force-end-styles: null
+) {
+  @if $none-styles {
+    $-none-styles: $none-styles !global;
+  }
+
+  @if $top-styles {
+    $-top-styles: $top-styles !global;
+  }
+
+  @if $bottom-styles {
+    $-bottom-styles: $bottom-styles !global;
+  }
+
+  @if $centered-styles {
+    $-centered-styles: $centered-styles !global;
+  }
+
+  @if $force-end-styles {
+    $-force-end-styles: $force-end-styles !global;
+  }
+}
+
+@mixin styles {
+  .rmd-margin-none {
+    @include token-styles.token-styles($-none-styles);
+  }
+
+  .rmd-margin-none-top {
+    @include token-styles.token-styles($-top-styles);
+  }
+
+  .rmd-margin-none-bottom {
+    @include token-styles.token-styles($-bottom-styles);
+  }
+
+  .rmd-margin-centered {
+    @include token-styles.token-styles($-centered-styles);
+  }
+
+  .rmd-margin-force-end {
+    @include token-styles.token-styles($-force-end-styles);
+  }
+}

@@ -1,0 +1,198 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+@use "utils";
+@use "tokens";
+@use "token-styles";
+
+$-sizes: small medium large;
+$-variants: svg font symbol;
+
+$-tokens-registered: false;
+$-tokens: (
+  color: null,
+  size: null,
+  small: (
+    size: null,
+  ),
+  medium: (
+    size: null,
+  ),
+  large: (
+    size: null,
+  ),
+  symbol: (
+    fill: 0,
+    weight: 400,
+    grade: 0,
+    optical-size: 48,
+  ),
+);
+
+$-base-styles: (
+  color: (
+    default: "icon.color",
+    fallback: currentcolor,
+  ),
+  font-size: (
+    default: "icon.size",
+    fallback: 1.5rem,
+  ),
+  flex-shrink: 0,
+  user-select: none,
+);
+$-svg-styles: (
+  fill: currentcolor,
+  height: 1em,
+  width: 1em,
+);
+$-font-styles: (
+  letter-spacing: normal,
+  overflow: hidden,
+  text-align: center,
+  text-transform: none,
+  white-space: nowrap,
+);
+
+// NOTE: The additional `font-variation-settings` are set in the `configure`
+// mixin since there isn't a great way (yet) to build a value that combines
+// multiple tokens
+$-symbol-styles: $-font-styles;
+
+$-small-styles: (
+  "icon.size": (
+    default: "icon.small.size",
+    fallback: 1.25rem,
+  ),
+);
+$-large-styles: (
+  "icon.size": (
+    default: "icon.small.size",
+    fallback: 2rem,
+  ),
+);
+
+$configure-tokens: (
+  variants,
+  sizes,
+  base-styles,
+  svg-styles,
+  font-styles,
+  symbol-styles,
+  symbol-grade,
+  symbol-fill,
+  symbol-weight,
+  symbol-optical-size
+);
+
+@mixin configure(
+  $variants: null,
+  $sizes: null,
+  $base-styles: null,
+  $svg-styles: null,
+  $font-styles: null,
+  $symbol-styles: null,
+  $symbol-fill: null,
+  $symbol-grade: null,
+  $symbol-weight: null,
+  $symbol-optical-size: null
+) {
+  @if $variants {
+    $-variants: $variants !global;
+  }
+
+  @if $sizes {
+    $-sizes: $sizes !global;
+  }
+
+  @if $base-styles {
+    $-base-styles: map.deep-merge($-base-styles, $base-styles) !global;
+  }
+
+  @if $svg-styles {
+    $-svg-styles: map.deep-merge($-svg-styles, $svg-styles) !global;
+  }
+
+  @if $font-styles {
+    $-font-styles: map.deep-merge($-font-styles, $font-styles) !global;
+  }
+
+  @if list.index($-variants, symbol) {
+    $fill: tokens.get-var("icon.symbol.fill");
+    $weight: tokens.get-var("icon.symbol.weight");
+    $grade: tokens.get-var("icon.symbol.grade");
+    $optical-size: tokens.get-var("icon.symbol.optical-size");
+    $settings: string.unquote(
+      '"fill" #{$fill}, "wght" #{$weight}, "GRAD" #{$grade}, "opsz" #{$optical-size}'
+    );
+
+    $-symbol-styles: map.deep-merge(
+      $-symbol-styles,
+      (
+        font-variation-settings: $settings,
+      )
+    );
+  }
+  @if $symbol-styles {
+    $-symbol-styles: map.deep-merge($-symbol-styles, $symbol-styles) !global;
+  }
+
+  @if $symbol-fill {
+    $-tokens: map.set($-tokens, symbol, fill, $symbol-fill);
+  }
+
+  @if $symbol-grade {
+    $-tokens: map.set($-tokens, symbol, grade $symbol-grade);
+  }
+
+  @if $symbol-weight {
+    $-tokens: map.set($-tokens, symbol, weight, $symbol-weight);
+  }
+
+  @if $symbol-optical-size {
+    $-tokens: map.set($-tokens, symbol, optical-size, $symbol-optical-size);
+  }
+
+  @if not $-tokens-registered {
+    $-tokens-registered: true !global;
+    @include tokens.register-tokens($tokens: $-tokens, $prefix: "icon");
+  }
+}
+
+@mixin styles {
+  .rmd-icon {
+    @include token-styles.token-styles($-base-styles);
+
+    @if list.index($-sizes, small) {
+      &--small {
+        @include token-styles.token-styles($-small-styles);
+      }
+    }
+
+    @if list.index($-sizes, large) {
+      &--large {
+        @include token-styles.token-styles($-large-styles);
+      }
+    }
+
+    @if list.index($-variants, font) {
+      &--font {
+        @include token-styles.token-styles($-font-styles);
+      }
+    }
+
+    @if list.index($-variants, svg) {
+      &--svg {
+        @include token-styles.token-styles($-svg-styles);
+      }
+    }
+
+    @if list.index($-variants, symbol) {
+      &--symbol {
+        @include token-styles.token-styles($-symbol-styles);
+      }
+    }
+  }
+}

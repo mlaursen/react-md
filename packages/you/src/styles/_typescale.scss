@@ -131,6 +131,7 @@ $-tokens: (
     tracking: get-letter-spacing(0.4),
   ),
 );
+$-tokens-registered: false;
 
 $-variants: map.keys($-tokens);
 $-properties: map.keys(map.get($-tokens, list.nth($-variants, 1)));
@@ -189,9 +190,9 @@ $configure-tokens: $-variants;
 }
 
 @mixin variables {
-  $register-tokens: not $-tokens-added;
+  $register-tokens: not $-tokens-registered;
   @if $register-tokens {
-    $-tokens-added: true !global;
+    $-tokens-registered: true !global;
   }
 
   @include tokens.set-default-tokens(

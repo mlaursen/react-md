@@ -1,4 +1,5 @@
 @use "sass:list";
+@use "sass:map";
 @use "sass:meta";
 @use "sass:string";
 
@@ -75,8 +76,9 @@ $configure-tokens: ("var-prefix");
 ///
 /// @param {any} $token - An optional token name or any value. This
 /// function will be ignored if it is not a string.
-/// @param {fallback} $fallback [null] - An optional fallback value.
+/// @param {any} $fallback [null] - An optional fallback value.
 /// This can be set to another token name which will be used.
+/// @returns {String} `var(--name, fallback)` or `var(--name)`
 @function get-token-var($token, $fallback: null) {
   @if meta.type-of($token) != string {
     @return $token;
@@ -91,6 +93,23 @@ $configure-tokens: ("var-prefix");
   }
 
   @return $token;
+}
+
+/// This is used to create a `var(...)` declaration for a component's tokens.
+/// The component tokens are not set globally so the token Map is used to
+/// provide an optional fallback value.
+///
+/// @param {String} $name - the token name to use
+/// @param {Map} $tokens - the component Map of tokens with optional fallback
+/// values
+/// @returns {String} `var(--name, fallback)` or `var(--name)`
+@function get-comp-token-var($name, $tokens) {
+  @if meta.type-of($name) != string or not string.index($name, ".") {
+    @return get-token-var($name);
+  }
+
+  $parts: utils.list-slice(utils.str-split($name, "."), 2);
+  @return get-token-var($name, map.get($tokens, $parts...));
 }
 
 /// @param {String} $name - The token name to set

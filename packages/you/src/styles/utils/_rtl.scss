@@ -1,0 +1,33 @@
+$-disable-rtl: false;
+
+///
+/// @param {Boolean} $disable-rtl [null] - set to true or false to configure
+/// the global right-to-left behavior.
+@mixin configure-rtl($disable-rtl: null) {
+  @if $disable-rtl == false or $disable-rtl == true {
+    $-disable-rtl: $disable-rtl !global;
+  }
+}
+
+/// Used to apply styles when using rtl behavior
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @example scss
+///   .selector {
+///     margin-right: 1rem;
+///
+///     // swap the margin in RTL
+///     @include rtl {
+///       margin-left: 1rem;
+///       margin-right: auto;
+///     }
+///   }
+@mixin rtl {
+  @if not $-disable-rtl {
+    [dir="rtl"] & {
+      @content;
+    }
+  }
+}

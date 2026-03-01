@@ -1,12 +1,6 @@
 @use "tokens";
-@use "palette";
-@use "font";
 @use "typescale";
-@use "shape";
-
 @use "token-styles";
-
-@use "variables";
 
 /// A simple CSS reset for react-md that:
 /// - applies box-sizing: border-box to everything for easier positioning and
@@ -34,7 +28,7 @@
   }
 
   body {
-    @include tokens.use-var(background-color, "palette.current.background");
+    @include tokens.use-var(background, "palette.current.background");
     @include tokens.use-var(color, "palette.current.on-background");
     @include token-styles.token-styles(
       typescale.get-font-styles(
@@ -52,22 +46,4 @@
       cursor: pointer;
     }
   }
-}
-
-@mixin styles($set-color-scheme: true) {
-  @layer config {
-    :root {
-      @include variables.variables($set-color-scheme: $set-color-scheme);
-    }
-  }
-
-  @include css-reset;
-  // @include typography.styles;
-  // @include transition.styles;
-  // @include interaction.styles;
-  // @include elevation.styles;
-  // @include icon.styles;
-  // @include button.styles;
-
-  @include tokens.verify-tokens;
 }

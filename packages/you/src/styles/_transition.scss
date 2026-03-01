@@ -1,0 +1,113 @@
+@use "sass:map";
+
+@use "utils";
+@use "tokens";
+
+$-tokens-registered: false;
+$-tokens: (
+  duration: (
+    extra-long-1: 700ms,
+    extra-long-2: 800ms,
+    extra-long-3: 900ms,
+    extra-long-4: 1000ms,
+    long-1: 450ms,
+    long-2: 500ms,
+    long-3: 550ms,
+    long-4: 600ms,
+    medium-1: 250ms,
+    medium-2: 300ms,
+    medium-3: 350ms,
+    medium-4: 400ms,
+    short-1: 50ms,
+    short-2: 100ms,
+    short-3: 150ms,
+    short-4: 200ms,
+  ),
+  easing: (
+    emphasized: cubic-bezier(0.2, 0, 0, 1),
+    emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15),
+    emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1),
+    linear: cubic-bezier(0, 0, 1, 1),
+    standard: cubic-bezier(0.2, 0, 0, 1),
+    standard-accelerate: cubic-bezier(0.3, 0, 1, 1),
+    standard-decelerate: cubic-bezier(0, 0, 0, 1),
+  ),
+);
+$configure-tokens: utils.list-concat(
+  map.keys(map.get($-tokens, duration)),
+  map.keys(map.get($-tokens, easing))
+);
+
+@mixin -update($value, $group, $name) {
+  @if $value {
+    $-tokens: map.set($-tokens, $group, $name, $value) !global;
+  }
+}
+
+@mixin configure(
+  $extra-long-1: null,
+  $extra-long-2: null,
+  $extra-long-3: null,
+  $extra-long-4: null,
+  $long-1: null,
+  $long-2: null,
+  $long-3: null,
+  $long-4: null,
+  $medium-1: null,
+  $medium-2: null,
+  $medium-3: null,
+  $medium-4: null,
+  $short-1: null,
+  $short-2: null,
+  $short-3: null,
+  $short-4: null,
+  $emphasized: null,
+  $emphasized-accelerate: null,
+  $emphasized-decelerate: null,
+  $linear: null,
+  $standard: null,
+  $standard-accelerate: null,
+  $standard-decelerate: null
+) {
+  @include -update($extra-long-1, duration, extra-long-1);
+  @include -update($extra-long-2, duration, extra-long-2);
+  @include -update($extra-long-3, duration, extra-long-3);
+  @include -update($extra-long-4, duration, extra-long-4);
+  @include -update($long-1, duration, long-1);
+  @include -update($long-2, duration, long-2);
+  @include -update($long-3, duration, long-3);
+  @include -update($long-4, duration, long-4);
+  @include -update($medium-1, duration, medium-1);
+  @include -update($medium-2, duration, medium-2);
+  @include -update($medium-3, duration, medium-3);
+  @include -update($medium-4, duration, medium-4);
+  @include -update($short-1, duration, short-1);
+  @include -update($short-2, duration, short-2);
+  @include -update($short-3, duration, short-3);
+  @include -update($short-4, duration, short-4);
+
+  @include -update($emphasized, easing, emphasized);
+  @include -update($emphasized-accelerate, easing, emphasized-accelerate);
+  @include -update($emphasized-decelerate, easing, emphasized-decelerate);
+  @include -update($linear, easing, linear);
+  @include -update($standard, easing, standard);
+  @include -update($standard-accelerate, easing, standard-accelerate);
+  @include -update($standard-decelerate, easing, standard-decelerate);
+}
+
+@mixin variables {
+  $register-tokens: not $-tokens-registered;
+  @if $register-tokens {
+    $-tokens-registered: true !global;
+  }
+
+  @include tokens.set-default-tokens(
+    $tokens: $-tokens,
+    $prefix: "transition",
+    $register-tokens: $register-tokens
+  );
+}
+
+@mixin styles {
+  //
+}

@@ -2,16 +2,18 @@
 /// @group core.palette
 ////
 
+@use "sass:list";
 @use "sass:map";
 @use "sass:meta";
+@use "sass:string";
 
 @use "utils";
 @use "tokens";
 
 $configure-tokens: (color-scheme, light-theme, dark-theme);
-$-current-tokens-added: false;
-$-light-tokens-added: false;
-$-dark-tokens-added: false;
+$-current-tokens-registered: false;
+$-light-tokens-registered: false;
+$-dark-tokens-registered: false;
 
 /// This defines the total color scheme for your app and can be either:
 /// - `light-dark` - (default) supports both the light and dark themes in the
@@ -192,16 +194,16 @@ $-tokens: (
       )
     ) !global;
   } @else {
-    @if not $-light-tokens-added {
-      $-light-tokens-added: true !global;
+    @if not $-light-tokens-registered {
+      $-light-tokens-registered: true !global;
       @include tokens.register-tokens(
         $tokens: $-light-theme-tokens,
         $prefix: "palette.light"
       );
     }
 
-    @if not $-dark-tokens-added {
-      $-dark-tokens-added: true !global;
+    @if not $-dark-tokens-registered {
+      $-dark-tokens-registered: true !global;
       @include tokens.register-tokens(
         $tokens: $-dark-theme-tokens,
         $prefix: "palette.dark"
@@ -214,8 +216,8 @@ $-tokens: (
       else: -get-light-dark-tokens()
     );
 
-    @if not $-current-tokens-added {
-      $-current-tokens-added: true !global;
+    @if not $-current-tokens-registered {
+      $-current-tokens-registered: true !global;
 
       @include tokens.register-tokens(
         $tokens: $tokens,
@@ -282,4 +284,63 @@ $-tokens: (
     $register-tokens: false,
     $prefix: "palette"
   );
+}
+
+@mixin styles {
+  $ignored: (outline, outline-variant, shadow, surface-tint, scrim);
+  $no-text-color: (
+    inverse-primary,
+    surface-dim,
+    surface-bright,
+    surface-container-lowest,
+    surface-container-low,
+    surface-container,
+    surface-container-high,
+    surface-container-highest
+  );
+
+  @each $name in map.keys($-light-theme-tokens) {
+    @if not list.index($ignored, $name) {
+      $is-on-color: string.index($name, "on-") == 1;
+      $is-no-color: list.index($no-text-color, $name);
+
+      .rmd-#{$name} {
+        @if $is-on-color {
+          @include tokens.use-var(color, "palette.current.#{$name}");
+        } @else {
+          @include tokens.use-var(background, "palette.current.#{$name}");
+
+          @if not $is-no-color {
+            @include tokens.use-var(color, "palette.current.on-#{$name}");
+          }
+        }
+      }
+
+      @if not
+        $is-no-color and not
+        $is-on-color and not
+        string.index($name, "container-")
+      {
+        .rmd-text-#{$name} {
+          @include tokens.use-var(color, "palette.current.#{$name}");
+        }
+      }
+    }
+  }
+
+  .rmd-current-color {
+    color: currentcolor;
+  }
+
+  .rmd-palette-light {
+    @include use-light-theme;
+  }
+
+  .rmd-palette-dark {
+    @include use-dark-theme;
+  }
+
+  .rmd-palette-light-dark {
+    @include use-light-dark-theme;
+  }
 }

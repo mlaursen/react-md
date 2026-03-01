@@ -1,0 +1,154 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+@use "utils";
+@use "tokens";
+@use "typescale";
+@use "token-styles";
+
+$-tokens: (
+  display-large: (),
+  display-large-prominent: (),
+  display-medium: (),
+  display-medium-prominent: (),
+  display-small: (),
+  display-small-prominent: (),
+  headline-large: (),
+  headline-large-prominent: (),
+  headline-medium: (),
+  headline-medium-prominent: (),
+  headline-small: (),
+  headline-small-prominent: (),
+  title-large: (),
+  title-large-prominent: (),
+  title-medium: (),
+  title-medium-prominent: (),
+  title-small: (),
+  title-small-prominent: (),
+  label-large: (),
+  label-large-prominent: (),
+  label-medium: (),
+  label-medium-prominent: (),
+  label-small: (),
+  label-small-prominent: (),
+  body-large: (),
+  body-large-prominent: (),
+  body-medium: (),
+  body-medium-prominent: (),
+  body-small: (),
+  body-small-prominent: (),
+);
+$configure-tokens: map.keys($-tokens);
+
+@mixin -update($value, $name) {
+  @if meta.type-of($value) == map {
+    $-tokens: map.set(
+      $-tokens,
+      $name,
+      map.merge(map.get($-tokens, name), $value)
+    ) !global;
+  }
+}
+
+@mixin configure(
+  $display-large: null,
+  $display-large-prominent: null,
+  $display-medium: null,
+  $display-medium-prominent: null,
+  $display-small: null,
+  $display-small-prominent: null,
+  $headline-large: null,
+  $headline-large-prominent: null,
+  $headline-medium: null,
+  $headline-medium-prominent: null,
+  $headline-small: null,
+  $headline-small-prominent: null,
+  $title-large: null,
+  $title-large-prominent: null,
+  $title-medium: null,
+  $title-medium-prominent: null,
+  $title-small: null,
+  $title-small-prominent: null,
+  $label-large: null,
+  $label-large-prominent: null,
+  $label-medium: null,
+  $label-medium-prominent: null,
+  $label-small: null,
+  $label-small-prominent: null,
+  $body-large: null,
+  $body-large-prominent: null,
+  $body-medium: null,
+  $body-medium-prominent: null,
+  $body-small: null,
+  $body-small-prominent: null
+) {
+  @include -update($display-large, display-large);
+  @include -update($display-large-prominent, display-large-prominent);
+  @include -update($display-medium, display-medium);
+  @include -update($display-medium-prominent, display-medium-prominent);
+  @include -update($display-small, display-small);
+  @include -update($display-small-prominent, display-small-prominent);
+
+  @include -update($headline-large, headline-large);
+  @include -update($headline-large-prominent, headline-large-prominent);
+  @include -update($headline-medium, headline-medium);
+  @include -update($headline-medium-prominent, headline-medium-prominent);
+  @include -update($headline-small, headline-small);
+  @include -update($headline-small-prominent, headline-small-prominent);
+
+  @include -update($title-large, title-large);
+  @include -update($title-large-prominent, title-large-prominent);
+  @include -update($title-medium, title-medium);
+  @include -update($title-medium-prominent, title-medium-prominent);
+  @include -update($title-small, title-small);
+  @include -update($title-small-prominent, title-small-prominent);
+
+  @include -update($label-large, label-large);
+  @include -update($label-large-prominent, label-large-prominent);
+  @include -update($label-medium, label-medium);
+  @include -update($label-medium-prominent, label-medium-prominent);
+  @include -update($label-small, label-small);
+  @include -update($label-small-prominent, label-small-prominent);
+
+  @include -update($body-large, body-large);
+  @include -update($body-large-prominent, body-large-prominent);
+  @include -update($body-medium, body-medium);
+  @include -update($body-medium-prominent, body-medium-prominent);
+  @include -update($body-small, body-small);
+  @include -update($body-small-prominent, body-small-prominent);
+}
+
+@mixin styles {
+  $variants: map.keys($-tokens);
+  @if not list.length($variants) {
+    @error "typography has not been configured";
+  }
+
+  @each $variant in $variants {
+    @if not string.index($variant, -prominent) {
+      $prominent: "#{$variant}-prominent";
+      .rmd-typography-#{$variant},
+      .rmd-typography-#{$prominent} {
+        @include token-styles.token-styles(
+          typescale.get-font-styles(
+            $variant: $variant,
+            $prominent: false,
+            $overrides: map.get($-tokens, $variant)
+          )
+        );
+      }
+
+      .rmd-typography-#{$prominent} {
+        @include token-styles.token-styles(
+          typescale.get-font-styles(
+            $variant: $variant,
+            $prominent: true,
+            $overrides: map.get($-tokens, $prominent)
+          )
+        );
+      }
+    }
+  }
+}

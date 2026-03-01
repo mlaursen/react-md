@@ -1,0 +1,251 @@
+////
+/// @group core.media-queries
+////
+
+@use "sass:list";
+
+@use "utils";
+@use "tokens";
+
+$-tokens-registered: false;
+$-tokens: (
+  phone: (
+    max-width: 47.9375em,
+  ),
+  tablet: (
+    min-width: 48em,
+    max-width: 65em,
+  ),
+  desktop: (
+    min-width: 64.0625em,
+  ),
+  large-desktop: (
+    min-width: 80em,
+  ),
+);
+$configure-tokens: (
+  phone-max-width,
+  tablet-min-width,
+  tablet-max-width,
+  desktop-min-width,
+  large-desktop-min-width
+);
+
+///
+/// @param {Number} $phone-max-width [null] -
+/// @param {Number} $tablet-min-width [null] -
+/// @param {Number} $tablet-max-width [null] -
+/// @param {Number} $desktop-min-width [null] -
+/// @param {Number} $large-desktop-min-width [null] -
+@mixin configure(
+  $phone-max-width: null,
+  $tablet-min-width: null,
+  $tablet-max-width: null,
+  $desktop-min-width: null,
+  $large-desktop-min-width: null
+) {
+  @if $phone-max-width {
+    $-phone-max-width: $phone-max-width !global;
+  }
+
+  @if $tablet-min-width {
+    $-tablet-min-width: $tablet-min-width !global;
+  }
+
+  @if $tablet-max-width {
+    $-tablet-max-width: $tablet-max-width !global;
+  }
+
+  @if $desktop-min-width {
+    $-desktop-min-width: $desktop-min-width !global;
+  }
+
+  @if $large-desktop-min-width {
+    $-large-desktop-min-width: $large-desktop-min-width !global;
+  }
+
+  @if not $-tokens-registered {
+    $-tokens-registered: true !global;
+    @include tokens.register-tokens($tokens: $-tokens, $prefix: "media");
+  }
+}
+
+@mixin variables {
+  $register-tokens: not $-tokens-registered;
+  @if $register-tokens {
+    $-tokens-registered: true !global;
+  }
+
+  @include tokens.set-default-tokens(
+    $tokens: $-tokens,
+    $register-tokens: $register-tokens,
+    $prefix: "media"
+  );
+}
+
+/// @access private
+/// @type List
+$-media-types: (phone, tablet, tablet-only, desktop, large-desktop);
+
+/// Applies styles for phones only.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @example scss - Example Usage SCSS
+///   .example {
+///     background-color: red;
+///
+///     @include phone-media {
+///       color: blue;
+///     }
+///   }
+///
+/// @content
+@mixin phone-media {
+  @media screen and (max-width: #{$phone-max-width}) {
+    @content;
+  }
+}
+
+/// Applies styles when the viewport is at least as wide as a tablet's min
+/// width.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @example scss
+///   .example {
+///     display: flex;
+///     flex-direction: column;
+///
+///     @include tablet-media {
+///       flex-direction: row;
+///     }
+///   }
+///
+/// @content
+@mixin tablet-media {
+  @media screen and (min-width: #{$tablet-min-width}) {
+    @content;
+  }
+}
+
+/// Applies styles for tablets only.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @example scss
+///   .example {
+///     background-color: red;
+///
+///     @include tablet-only-media {
+///       color: blue;
+///     }
+///   }
+///
+/// @content
+@mixin tablet-only-media {
+  @media screen and (min-width: #{$tablet-min-width}) and (max-width: #{$tablet-max-width}) {
+    @content;
+  }
+}
+
+/// Applies styles when the viewport is at least as wide as a desktop's min
+/// width.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @example scss
+///   .example {
+///     width: 100%;
+///
+///     @include desktop-media {
+///       width: 33%;
+///     }
+///   }
+///
+/// @content
+@mixin desktop-media {
+  @media screen and (min-width: #{$desktop-min-width}) {
+    @content;
+  }
+}
+
+/// Applies styles when the viewport is at least as wide as a large desktop's
+/// min width.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @example scss
+///   .example {
+///     width: 100%;
+///
+///     @include large-desktop-media {
+///       width: 33%;
+///     }
+///   }
+///
+/// @content
+@mixin large-desktop-media {
+  @media screen and (min-width: #{$large-desktop-min-width}) {
+    @content;
+  }
+}
+
+/// Applies one of the media queries.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @param {String} $type - This should be one of `phone`, `tablet`,
+/// `tablet-only`, `desktop`, or `large-desktop`
+/// @content
+@mixin media($type) {
+  $type: utils.validate($-media-types, $type, "media type");
+
+  @if $type == phone {
+    @include phone-media {
+      @content;
+    }
+  } @else if $type == tablet {
+    @include tablet-media {
+      @content;
+    }
+  } @else if $type == tablet-only {
+    @include tablet-only-media {
+      @content;
+    }
+  } @else if $type == desktop {
+    @include desktop-media {
+      @content;
+    }
+  } @else if $type == large-desktop {
+    @include large-desktop-media {
+      @content;
+    }
+  }
+}
+
+/// Applies one of the media queries.
+///
+/// Note: This will need to be included at the end of a block with the new Sass
+/// rules or prefix styles with `& {}`
+///
+/// @param {String} $type-or-media-query - This should be one of `phone`, `tablet`,
+/// `tablet-only`, `desktop`, or `large-desktop` or a generic media query
+/// @content
+@mixin media-or-media-query($type-or-media-query) {
+  @if not list.index($-media-types, $type-or-media-query) {
+    @media #{$type-or-media-query} {
+      @content;
+    }
+  } @else {
+    @include media($type-or-media-query) {
+      @content;
+    }
+  }
+}

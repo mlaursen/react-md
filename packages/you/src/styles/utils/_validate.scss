@@ -44,6 +44,14 @@
   @return map.get($options, $key-or-value);
 }
 
+/// This is used for the `configure` mixins to ensure the overrides have been
+/// provided correctly.
+///
+/// @param {String} $name - the configure group name
+/// @param {Map | null} $map - the map to validate and configure
+/// @param {List} $choices [null] - an optional list of choices. should be a
+/// list of strings
+/// @return {Map} - the config map with validation when possible
 @function get-config-map($name, $map, $choices: null) {
   @if not $map {
     @return ();

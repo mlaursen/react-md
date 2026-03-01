@@ -1,0 +1,164 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:string";
+
+@use "tokens";
+@use "utils";
+
+$-tokens-registered: false;
+$-tokens: (
+  font: (
+    brand: string.unquote('"Roboto Flex", Roboto, sans-serif'),
+    plain: string.unquote('"Roboto Flex", Roboto, sans-serif'),
+    monospace: string.unquote('"Roboto Mono", Roboto, sans-serif'),
+  ),
+  weight: (
+    regular: 400,
+    medium: 500,
+    bold: 700,
+  ),
+);
+$-font-styles: italic oblique normal;
+$-font-weights: map.keys(map.get($-tokens, weight));
+$-text-alignments: left center right;
+$-text-decorations: underline overline line-through none;
+$-text-transforms: capitalize uppercase lowercase;
+$-text-overflows: nowrap ellipsis;
+
+$-font-token-names: map.keys(map.get($-tokens, font));
+$-weight-token-names: map.keys(map.get($-tokens, weight));
+$configure-tokens: list.join($-font-token-names, $-weight-token-names);
+
+@mixin -update($value, $group, $name) {
+  @if $value {
+    $-tokens: map.set($-tokens, $group, $name, $value) !global;
+  }
+}
+
+///
+/// @param {String} $brand [null] -
+/// @param {String} $plain [null] -
+/// @param {String} $monospace [null] -
+/// @param {Number} $regular [null] -
+/// @param {Number} $medium [null] -
+/// @param {Number} $bold [null] -
+@mixin configure(
+  $brand: null,
+  $plain: null,
+  $monospace: null,
+  $regular: null,
+  $medium: null,
+  $bold: null
+) {
+  @include -update($brand, font, brand);
+  @include -update($plain, font, plain);
+  @include -update($monospace, font, monospace);
+
+  @include -update($regular, weight, regular);
+  @include -update($medium, weight, medium);
+  @include -update($bold, weight, bold);
+
+  @if not $-tokens-registered {
+    $-tokens-registered: true !global;
+    @include tokens.register-tokens($tokens: $-tokens);
+  }
+}
+
+/// Used to enable `text-overflow` for an element.
+///
+/// @param {String} $white-space [nowrap] - the `white-space` value.
+@function text-overflow($white-space: nowrap) {
+  @return (
+    overflow: hidden,
+    overflow-wrap: anywhere,
+    text-overflow: ellipsis,
+    white-space: $white-space
+  );
+}
+
+/// Used to enable `text-overflow` for an element.
+///
+/// @param {String} $white-space [nowrap] - the `white-space` value.
+@mixin text-overflow($white-space: nowrap) {
+  @each $property, $value in text-overflow($white-space) {
+    #{$property}: #{$value};
+  }
+}
+
+/// Generates the font variables
+@mixin variables {
+  $register-tokens: not $-tokens-registered;
+  @if $register-tokens {
+    $-tokens-registered: true !global;
+  }
+
+  @include tokens.set-default-tokens(
+    $tokens: $-tokens,
+    $register-tokens: $register-tokens
+  );
+}
+
+/// Generates the font styles.
+@mixin styles {
+  @each $scope, $tokens in $-tokens {
+    // prettier-ignore
+    $property: if(
+      sass($scope == "font"): font-family;
+      else: font-weight
+    );
+
+    @each $name in map.keys($tokens) {
+      .rmd-#{$property}-#{$name} {
+        @include tokens.use-var($property, "#{$scope}.#{$name}");
+      }
+    }
+
+    @each $font-style in $-font-styles {
+      .rmd-#{$font-style} {
+        font-style: $font-style;
+      }
+    }
+
+    @each $font-weight in $-font-weights {
+      .rmd-#{$font-weight} {
+        font-weight: $font-weight;
+      }
+    }
+
+    @each $text-alignment in $-text-alignments {
+      $is-left: $text-alignment == left;
+
+      .rmd-align-#{$text-alignment} {
+        text-align: $text-alignment;
+
+        @if $is-left or $text-alignment == right {
+          @include utils.rtl {
+            text-align: if(sass($is-left): right; else: left);
+          }
+        }
+      }
+    }
+
+    @each $text-decoration in $-text-decorations {
+      .rmd-#{$text-decoration} {
+        text-decoration: $text-decoration;
+      }
+    }
+
+    @each $text-transform in $-text-transforms {
+      .rmd-#{$text-transform} {
+        text-transform: $text-transform;
+      }
+    }
+
+    @each $text-overflow in $-text-overflows {
+      .rmd-#{text-overflow} {
+        @if $text-overflow == nowrap {
+          white-space: nowrap;
+        } @else if $text-overflow == ellipsis {
+          @include text-overflow(null);
+        }
+      }
+    }
+  }
+}

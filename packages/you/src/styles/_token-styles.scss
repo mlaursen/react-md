@@ -1,0 +1,191 @@
+@use "sass:meta";
+@use "sass:list";
+@use "sass:map";
+@use "sass:string";
+
+@use "utils";
+@use "tokens";
+@use "typescale";
+
+$-typescale-prefix: "typescale.";
+
+@function -is-typescale($property, $value) {
+  @return $property == font and meta.type-of($value) == string and
+    string.index($value, $-typescale-prefix) == 1;
+}
+
+@function -is-set-var($property) {
+  @return string.index($property, ".");
+}
+
+@function -transform-list($list) {
+  @if meta.type-of($list) != list {
+    @return $list;
+  }
+
+  $transformed: ();
+  @each $item in $list {
+    @if meta.type-of($item) == map {
+      $default: map.get($item, default);
+      $fallback: map.get($item, fallback);
+      @if $default {
+        $transformed: list.append(
+          $transformed,
+          tokens.get-token-var($default, $fallback)
+        );
+      }
+    } @else {
+      $transformed: list.append($transformed, tokens.get-token-var($item));
+    }
+  }
+
+  @return $transformed;
+}
+
+@mixin -set-var($property, $value, $tokens) {
+  $default: $value;
+  $fallback: null;
+  @if meta.type-of($value) == map {
+    $default: map.get($value, default);
+    $fallback: map.get($value, fallback);
+  }
+
+  @if $tokens and not $fallback {
+    @include tokens.set-var(
+      $property,
+      tokens.get-comp-token-var($default, $tokens)
+    );
+  } @else {
+    @include tokens.set-var(
+      $property,
+      tokens.get-token-var($default, $fallback)
+    );
+  }
+}
+
+@mixin -map-styles($property, $value, $tokens) {
+  $default: map.get($value, default);
+  $fallback: map.get($value, fallback);
+  @if $default {
+    #{$property}: tokens.get-token-var($default, $fallback);
+  } @else if string.slice($property, 1, 6) == "@media" {
+    @media #{string.slice($property, 7)} {
+      @include token-styles($value, $tokens);
+    }
+  } @else {
+    // it should be a selector
+    #{$property} {
+      @include token-styles($value, $tokens);
+    }
+  }
+}
+
+/// This is used to convert a Map into styles for each module. The map is a
+/// simple `property: value` pair for most cases. There are a few additions to
+/// add some more dynamic styling.
+///
+/// @example scss - Basic Styling
+///   $styles: (
+///     margin: 0,
+///     padding: 1rem,
+///     text-overflow: hidden,
+///   );
+///
+/// @example scss - Nested Selectors
+///   $styles: (
+///     position: relative,
+///
+///     "&::before": map.merge(
+///       utils.pseudo-element(),
+///       (
+///         background: #000,
+///         opacity: 0.3
+///       )
+///     ),
+///
+///     ":focus-visible &": (
+///       // ...whatever
+///     ),
+///   );
+///
+/// @example scss - Using Tokens
+///   $styles: (
+///     background: "palette.current.background",
+///     color: (
+///       default: "some.token.namespace",
+///       fallback: "palette.current.on-background",
+///     ),
+///   );
+///
+/// @example scss - Setting Tokens
+///   $styles: (
+///     "palette.current.background": #faf,
+///     "palette.current.on-background": (
+///       default: "some.token.namespace",
+///       fallback: #000,
+///     ),
+///   );
+///
+/// @example scss - Mouse Hover Styles
+///   $styles: (
+///     "mouse-hover": (
+///       cursor: pointer,
+///       opacity: 0.13,
+///     ),
+///   );
+///
+/// @example scss - RTL
+///   $styles: (
+///     margin-left: auto,
+///
+///     "rtl": (
+///       margin-left: 0,
+///       margin-right: auto,
+///     ),
+///   );
+///
+/// @example scss - Breakpoints
+///
+/// @example scss - Media Queries
+///   $styles: (
+///     "@media (prefers-reduced-motion)": (
+///       animation: none
+///     ),
+///   );
+///
+///
+/// @param {Map} styles - the map of styles to generate
+@mixin token-styles($styles, $tokens: null) {
+  @each $property, $value in $styles {
+    @if $property == "mouse-hover" {
+      @include utils.mouse-hover(true) {
+        @include token-styles($value, $tokens);
+      }
+    } @else if $property == "rtl" {
+      @include utils.rtl {
+        @include token-styles($value, $tokens);
+      }
+    } @else if -is-typescale($property, $value) {
+      @include token-styles(
+        typescale.get-font-styles(
+          utils.str-replace($value, $-typescale-prefix, "")
+        ),
+        $tokens
+      );
+    } @else if -is-set-var($property) {
+      @include -set-var($property, $value, $tokens);
+    } @else if meta.type-of($value) == map {
+      @include -map-styles($property, $value, $tokens);
+    } @else if meta.type-of($value) != list {
+      // prettier-ignore
+      $resolved-value: if(
+        sass($tokens): tokens.get-comp-token-var($value, $tokens);
+        else: tokens.get-token-var($value)
+      );
+
+      #{$property}: #{$resolved-value};
+    } @else if list.length($value) > 0 {
+      #{$property}: tokens.get-token-var($value);
+    }
+  }
+}

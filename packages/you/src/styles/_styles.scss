@@ -1,0 +1,43 @@
+@use "tokens";
+@use "palette";
+@use "font";
+@use "typescale";
+@use "margin";
+@use "shape";
+
+@use "token-styles";
+@use "css-reset";
+
+@use "transition";
+@use "interaction";
+@use "elevation";
+@use "typography";
+@use "icon";
+
+@use "button";
+
+@use "variables";
+
+@mixin styles($set-color-scheme: true) {
+  @layer config {
+    :root {
+      @include variables.variables($set-color-scheme: $set-color-scheme);
+    }
+  }
+
+  @include css-reset.css-reset;
+  @include elevation.styles;
+  @include interaction.styles;
+  @include typography.styles;
+  @include transition.styles;
+  @include icon.styles;
+  @include button.styles;
+
+  // these styles come last since I want the utility classes to override any
+  // other styles
+  @include palette.styles;
+  @include font.styles;
+  @include margin.styles;
+
+  @include tokens.verify-tokens;
+}

@@ -1,0 +1,43 @@
+@use "sass:list";
+
+///
+/// @param {List} $list - the list to filter
+/// @param {String | Number} $value - the value to omit
+/// @return {List} - a filtered list
+@function list-filter($list, $value) {
+  $next-list: ();
+  @each $item in $list {
+    @if $item != $value {
+      $next-list: list.append($next-list, $item);
+    }
+  }
+
+  @return $next-list;
+}
+
+///
+/// @param {List} $lists - the lists to combine
+/// @return {List} - a combined list
+@function list-concat($lists...) {
+  $combined: ();
+  @each $list in $lists {
+    @each $item in $list {
+      $combined: list.append($combined, $item);
+    }
+  }
+  @return $combined;
+}
+
+///
+/// @param {List} $list -
+/// @param {Number} $start -
+/// @param {Number} $end [list.length($list)] -
+/// @return {List} -
+@function list-slice($list, $start, $end: list.length($list)) {
+  $result: ();
+  @for $i from $start through $end {
+    $result: list.append($result, list.nth($list, $i));
+  }
+
+  @return $result;
+}
