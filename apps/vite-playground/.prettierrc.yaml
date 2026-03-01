@@ -6,6 +6,7 @@ plugins:
 
 importOrder:
   - "<THIRD_PARTY_MODULES>"
+  - "^./index.scss"
   - "^@/(.*)$"
   - "^[./]"
 importOrderSeparation: true

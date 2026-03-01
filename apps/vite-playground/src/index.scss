@@ -1,21 +1,62 @@
-@use "everything" as *;
+@use "sass:string";
 
-@include styles;
-@include code-styles;
+// @use "everything" as *;
+//
+// @include styles;
+// @include code-styles;
+//
+// :root {
+//   @include variables;
+//   @include code-variables;
+//
+//   @media (prefers-color-scheme: dark) {
+//     @include dark-theme;
+//   }
+// }
+//
+// .light-theme {
+//   @include light-theme;
+// }
+//
+// .dark-theme {
+//   @include dark-theme;
+// }
+
+@use "@react-md/core";
+@use "@react-md/code";
+@use "@react-md/you";
 
 :root {
-  @include variables;
-  @include code-variables;
+  @include core.spacing-variables;
+  @include core.box-variables;
+  @include core.typography-set-var(line-length, core.$text-line-length);
+  @include core.typography-set-var(
+    text-container-padding,
+    core.$text-container-padding
+  );
 
-  @media (prefers-color-scheme: dark) {
-    @include dark-theme;
-  }
+  @include code.variables;
+  --code-color: #{light-dark(core.$pink-600, core.$pink-400)};
+  --code-preview-bg: #{light-dark(
+      core.$white,
+      core.$dark-theme-background-color
+    )};
+  --color-preview-background-color: #{light-dark(core.$black, core.$white)};
+  --color-preview-border-color: #{light-dark(core.$white, core.$black)};
+  --code-inline-font-family: "Source Code Pro", monospace;
 }
+@include core.box-styles;
 
-.light-theme {
-  @include light-theme;
+.rmd-box {
+  box-sizing: border-box;
 }
+@include core.typography-text-container-styles;
 
-.dark-theme {
-  @include dark-theme;
-}
+@include code.styles;
+
+@include you.configure(
+  $font: (
+    monospace: string.unquote("'Source Code Pro', monospace"),
+  )
+);
+@include you.styles();
