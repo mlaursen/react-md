@@ -149,15 +149,26 @@ $configure-tokens: ("var-prefix");
 /// for the color if it was set to a token name.
 /// @param {Number | String} $opacity-fallback [null] - An optional fallback
 /// value for the opacity if it was set to a token name.
+/// @param {Map | null} tokens [null] - optional component-level tokens which
+/// can be used to provide fallback values
 /// @return {String} - `rgb(from $color r g b / $opacity)`
 @function get-rgb-var(
   $color,
   $opacity,
   $color-fallback: null,
-  $opacity-fallback: null
+  $opacity-fallback: null,
+  $tokens: null
 ) {
-  $color-value: get-token-var($color, $color-fallback);
-  $opacity-value: get-token-var($opacity, $opacity-fallback);
+  $color-value: null;
+  $opacity-value: null;
+  @if $tokens {
+    $color-value: get-comp-token-var($color, $tokens);
+    $opacity-value: get-comp-token-var($opacity, $tokens);
+  } @else {
+    $color-value: get-token-var($color, $color-fallback);
+    $opacity-value: get-token-var($opacity, $opacity-fallback);
+  }
+
   @return rgb(from $color-value r g b / $opacity-value);
 }
 

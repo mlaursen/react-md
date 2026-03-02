@@ -1,0 +1,17 @@
+.container {
+  overflow: auto;
+  width: 100%;
+}
+
+.table {
+  border-spacing: 0;
+  max-width: 100%;
+
+  td,
+  th {
+    height: 3.25rem;
+    padding: 0.375rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+}

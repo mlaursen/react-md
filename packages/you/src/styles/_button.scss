@@ -5,6 +5,7 @@
 
 @use "utils";
 @use "tokens";
+@use "font";
 @use "token-styles";
 @use "typescale";
 @use "interaction";
@@ -13,6 +14,7 @@ $-tokens-registered: false;
 $-tokens: (
   container: (
     color: "palette.current.primary",
+    opacity: 1,
     shadow-color: "palette.current.shadow",
     elevation: 0,
     height: 2.5rem,
@@ -128,8 +130,7 @@ $-tokens: (
   ),
   label-text: (
     color: "palette.current.on-primary",
-    // NOTE: this is just .label-text in material design
-    font: "typescale.label.large",
+    opacity: 1,
     unselected: (
       color: "palette.current.on-surface-variant",
     ),
@@ -139,6 +140,7 @@ $-tokens: (
   ),
   icon: (
     color: "palette.current.on-primary",
+    opacity: 1,
     size: 1.25rem,
     unselected: (
       color: "palette.current.on-surface-variant",
@@ -147,28 +149,19 @@ $-tokens: (
       color: "palette.current.on-primary",
     ),
   ),
-  focus: (
-    indicator: (
-      color: "palette.current.secondary",
-      thickness: 3px,
-      outline: (
-        offset: 2px,
-      ),
-    ),
-  ),
   disabled: (
     container: (
       color: "palette.current.on-surface",
       opacity: 0.1,
       elevation: 0,
-      label-text: (
-        color: "palette.current.on-surface",
-        opacity: 0.38,
-      ),
-      icon: (
-        color: "palette.current.on-surface",
-        opacity: 0.38,
-      ),
+    ),
+    label-text: (
+      color: "palette.current.on-surface",
+      opacity: 0.38,
+    ),
+    icon: (
+      color: "palette.current.on-surface",
+      opacity: 0.38,
     ),
   ),
   hovered: (
@@ -184,10 +177,12 @@ $-tokens: (
     ),
   ),
   focused: (
+    container: (
+      elevation: 0,
+    ),
     state-layer: (
       color: "palette.current.on-primary",
       opacity: 0.1,
-      elevation: 0,
     ),
     label-text: (
       color: "palette.current.on-primary",
@@ -196,23 +191,274 @@ $-tokens: (
       color: "palette.current.on-primary",
     ),
   ),
-);
-
-$-base-styles: map.deep-merge(
-  (
-    "elevation.level": "button.container.elevation",
-    "elevation.shadow-color": "button.container.shadow-color",
-    "icon.color": "button.icon.color",
-    align-items: center,
-    background: "button.container.color",
-    color: "button.label-text.color",
-    border-width: 0,
-    display: inline-flex,
-    flex-shrink: 0,
-    font: "typescale.label-large",
-    justify-content: center,
+  extra-small: (
+    container: (
+      height: 2rem,
+    ),
+    leading-space: 0.75rem,
+    trailing-space: 0.75rem,
+    icon-label-space: 0.5rem,
+    outlined: (
+      outline: (
+        width: 1px,
+      ),
+    ),
+    icon: (
+      size: 1.25rem,
+    ),
+    shape: (
+      round: "shape.corner.full",
+      square: "shape.corner.medium",
+    ),
+    selected: (
+      container: (
+        shape: (
+          round: "shape.corner.full",
+          square: "shape.corner.medium",
+        ),
+      ),
+    ),
   ),
-  ()
+  small: (
+    container: (
+      height: 2.5rem,
+    ),
+    leading-space: 1rem,
+    trailing-space: 1rem,
+    icon-label-space: 0.5rem,
+    outlined: (
+      outline: (
+        width: 1px,
+      ),
+    ),
+    icon: (
+      size: 1.25rem,
+    ),
+    shape: (
+      round: "shape.corner.full",
+      square: "shape.corner.medium",
+    ),
+    selected: (
+      container: (
+        shape: (
+          round: "shape.corner.full",
+          square: "shape.corner.medium",
+        ),
+      ),
+    ),
+  ),
+  medium: (
+    container: (
+      height: 3.5rem,
+    ),
+    leading-space: 1.5rem,
+    trailing-space: 1.5rem,
+    icon-label-space: 0.5rem,
+    outlined: (
+      outline: (
+        width: 1px,
+      ),
+    ),
+    icon: (
+      size: 1.5rem,
+    ),
+    shape: (
+      round: "shape.corner.full",
+      square: "shape.corner.large",
+    ),
+    selected: (
+      container: (
+        shape: (
+          round: "shape.corner.full",
+          square: "shape.corner.large",
+        ),
+      ),
+    ),
+  ),
+  large: (
+    container: (
+      height: 6rem,
+    ),
+    leading-space: 3rem,
+    trailing-space: 3rem,
+    icon-label-space: 0.75rem,
+    outlined: (
+      outline: (
+        width: 2px,
+      ),
+    ),
+    icon: (
+      size: 2rem,
+    ),
+    shape: (
+      round: "shape.corner.full",
+      square: "shape.corner.extra-large",
+    ),
+    selected: (
+      container: (
+        shape: (
+          round: "shape.corner.full",
+          square: "shape.corner.large",
+        ),
+      ),
+    ),
+  ),
+  extra-large: (
+    container: (
+      height: 8.5rem,
+    ),
+    leading-space: 4rem,
+    trailing-space: 4rem,
+    icon-label-space: 1rem,
+    outlined: (
+      outline: (
+        width: 3px,
+      ),
+    ),
+    icon: (
+      size: 2.5rem,
+    ),
+    shape: (
+      round: "shape.corner.full",
+      square: "shape.corner.extra-large",
+    ),
+    selected: (
+      container: (
+        shape: (
+          round: "shape.corner.full",
+          square: "shape.corner.large",
+        ),
+      ),
+    ),
+  ),
+  filled: (
+    container: (
+      color: "palette.current.primary",
+      shadow-color: "palette.current.shadow",
+      elevation: 0,
+    ),
+    label-text: (
+      color: "palette.current.on-primary",
+    ),
+    icon: (
+      color: "palette.current.on-primary",
+    ),
+    unselected: (
+      label-text: (
+        color: "palette.current.on-surface-variant",
+      ),
+      icon: (
+        color: "palette.current.on-surface-variant",
+      ),
+    ),
+    selected: (
+      label-text: (
+        color: "palette.current.on-primary",
+      ),
+      icon: (
+        color: "palette.current.on-primary",
+      ),
+    ),
+  ),
+  outlined: (
+    outline: (
+      color: "palette.current.outline-variant",
+      width: 0.0625rem,
+    ),
+    label-text: (
+      color: "palette.current.on-surface-variant",
+    ),
+    icon: (
+      color: "palette.current.on-surface-variant",
+    ),
+    unselected: (
+      label-text: (
+        color: "palette.current.on-surface-variant",
+      ),
+      icon: (
+        color: "palette.current.on-surface-variant",
+      ),
+    ),
+    selected: (
+      container: (
+        color: "palette.current.inverse-surface",
+      ),
+      label-text: (
+        color: "palette.current.inverse-on-surface",
+      ),
+      icon: (
+        color: "palette.current.inverse-on-surface",
+      ),
+    ),
+    disabled: (
+      outline: (
+        color: "palette.current.outline-variant",
+      ),
+    ),
+  ),
+);
+$-disabled-selector: "&:disabled, &--disabled";
+$-hovered-selector: "mouse-hover";
+$-focused-selector: "&:focus-visible";
+$-pressed-selector: "&:active";
+
+$-base-styles: (
+  "elevation.level": "button.container.elevation",
+  "elevation.shadow-color": "button.container.shadow-color",
+  "interaction.hovered.container.color": "button.hovered.state-layer.color",
+  "interaction.hovered.container.opacity": "button.hovered.state-layer.opacity",
+  "interaction.focused.container.color": "button.focused.state-layer.color",
+  "interaction.focused.container.opacity": "button.focused.state-layer.opacity",
+  "interaction.focused.container.elevation":
+    "button.focused.container.elevation",
+  "icon.color": tokens.get-rgb-var(
+      $color: "button.icon.color",
+      $opacity: "button.icon.opacity",
+      $tokens: $-tokens,
+    ),
+  "icon.size": "button.icon.size",
+  align-items: center,
+  background: tokens.get-rgb-var(
+      $color: "button.container.color",
+      $opacity: "button.container.opacity",
+      $tokens: $-tokens,
+    ),
+  border-width: 0,
+  color: tokens.get-rgb-var(
+      $color: "button.label-text.color",
+      $opacity: "button.label-text.opacity",
+      $tokens: $-tokens,
+    ),
+  display: inline-flex,
+  flex-shrink: 0,
+  font: "typescale.label-large",
+  gap: "button.icon-label-space",
+  height: "button.container.height",
+  justify-content: center,
+  padding-left: "button.leading-space",
+  padding-right: "button.trailing-space",
+
+  "rtl": (
+    padding-left: "button.trailing-space",
+    padding-right: "button.leading-space",
+  ),
+
+  $-hovered-selector: (
+    // "interaction.background": "button.hovered.state-layer.color",
+    // "interaction.opacity": "button.hovered.state-layer.opacity",
+    "button.label-text.color": "button.hovered.label-text.color",
+    "button.icon.color": "button.hovered.icon.color",
+  ),
+
+  $-disabled-selector: (
+    "button.container.elevation": "button.disabled.container.elevation",
+    "button.container.color": "button.disabled.container.color",
+    "button.container.opacity": "button.disabled.container.opacity",
+    "button.label-text.color": "button.disabled.label-text.color",
+    "button.label-text.opacity": "button.disabled.label-text.opacity",
+    "button.icon.color": "button.disabled.icon.color",
+    "button.icon.opacity": "button.disabled.icon.opacity",
+  ),
 );
 $-base-unselected-styles: (
   background: "button.unselected.container.color",
@@ -223,25 +469,112 @@ $-base-selected-styles: (
   color: "button.label-text.selected.color",
 );
 $-text-styles: ();
-$-icon-styles: ();
-$-round-styles: ();
-$-square-styles: ();
-$-extra-small-styles: ();
-$-small-styles: ();
-$-medium-styles: ();
-$-large-styles: ();
-$-extra-large-styles: ();
+$-icon-styles: (
+  color: currentcolor,
+);
+$-round-styles: (
+  border-radius: "button.container.shape.round",
+);
+$-square-styles: (
+  border-radius: "button.container.shape.square",
+);
+$-extra-small-styles: (
+  "button.container.height": "button.extra-small.container.height",
+  "button.container.shape.round": "button.extra-small.shape.round",
+  "button.container.shape.square": "button.extra-small.shape.square",
+  "button.leading-space": "button.extra-small.leading-space",
+  "button.trailing-space": "button.extra-small.trailing-space",
+  "button.icon-label-space": "button.extra-small.icon-label-space",
+  "button.icon.size": "button.extra-small.icon.size",
+);
+$-small-styles: (
+  "button.container.height": "button.small.container.height",
+  "button.container.shape.round": "button.small.shape.round",
+  "button.container.shape.square": "button.small.shape.square",
+  "button.leading-space": "button.small.leading-space",
+  "button.trailing-space": "button.small.trailing-space",
+  "button.icon-label-space": "button.small.icon-label-space",
+  "button.icon.size": "button.small.icon.size",
+);
+$-medium-styles: (
+  "button.container.height": "button.medium.container.height",
+  "button.container.shape.round": "button.medium.shape.round",
+  "button.container.shape.square": "button.medium.shape.square",
+  "button.leading-space": "button.medium.leading-space",
+  "button.trailing-space": "button.medium.trailing-space",
+  "button.icon-label-space": "button.medium.icon-label-space",
+  "button.icon.size": "button.medium.icon.size",
+  font-size: 1rem,
+  letter-spacing: typescale.get-letter-spacing(0.15),
+  line-height: 1.5rem,
+);
+$-large-styles: (
+  "button.container.height": "button.large.container.height",
+  "button.container.shape.round": "button.large.shape.round",
+  "button.container.shape.square": "button.large.shape.square",
+  "button.leading-space": "button.large.leading-space",
+  "button.trailing-space": "button.large.trailing-space",
+  "button.icon-label-space": "button.large.icon-label-space",
+  "button.icon.size": "button.large.icon.size",
+  font-size: 1.5rem,
+  font-weight: "weight.regular",
+  letter-spacing: 0,
+  line-height: 2rem,
+);
+$-extra-large-styles: (
+  "button.container.height": "button.extra-large.container.height",
+  "button.container.shape.round": "button.extra-large.shape.round",
+  "button.container.shape.square": "button.extra-large.shape.square",
+  "button.leading-space": "button.extra-large.leading-space",
+  "button.trailing-space": "button.extra-large.trailing-space",
+  "button.icon-label-space": "button.extra-large.icon-label-space",
+  "button.icon.size": "button.extra-large.icon.size",
+  font-size: 2rem,
+  font-weight: "weight.regular",
+  letter-spacing: 0,
+  line-height: 2.5rem,
+);
 
-$-filled-styles: ();
-$-filled-unselected-styles: ();
-$-filled-selected-styles: ();
+$-filled-styles: (
+  "button.container.color": "button.filled.container.color",
+  "button.container.shadow-color": "button.filled.container.shadow-color",
+  "button.container.elevation": "button.filled.container.elevation",
+  "button.label-text.color": "button.filled.label-text.color",
+  "button.icon.color": "button.filled.icon.color",
+);
+$-filled-unselected-styles: (
+  "button.container.color": "button.filled.unselected.container.color",
+  "button.label-text.color": "button.filled.unselected.label-text.color",
+  "button.icon.color": "button.filled.unselected.icon.color",
+);
+$-filled-selected-styles: (
+  "button.container.color": "button.filled.selected.container.color",
+  "button.label-text.color": "button.filled.selected.label-text.color",
+  "button.icon.color": "button.filled.selected.icon.color",
+);
 
-$-text-styles: ();
 $-tonal-styles: ();
 $-tonal-unselected-styles: ();
 $-tonal-selected-styles: ();
 
-$-outlined-styles: ();
+$-outlined-styles: (
+  "button.container.color": "palette.current.background",
+  "button.label-text.color": "button.outlined.label-text.color",
+  "button.icon.color": "button.outlined.icon.color",
+
+  "&::after": map.merge(
+      utils.pseudo-element(),
+      (
+        border-color: "button.outlined.outline.color",
+        border-style: solid,
+        border-width: "button.outlined.outline.width",
+        box-sizing: border-box,
+      )
+    ),
+  $-disabled-selector: (
+    "button.outlined.outline.color": "button.outlined.disabled.outline.color",
+  ),
+);
 
 $-elevated-styles: ();
 $-elevated-unselected-styles: ();
@@ -293,54 +626,54 @@ $configure-tokens: (
     @include token-styles.token-styles($-base-styles, $-tokens);
 
     &--extra-small {
-      @include token-styles.token-styles($-extra-small-styles);
+      @include token-styles.token-styles($-extra-small-styles, $-tokens);
     }
 
     // default
     &--small {
-      @include token-styles.token-styles($-small-styles);
+      @include token-styles.token-styles($-small-styles, $-tokens);
     }
 
     &--medium {
-      @include token-styles.token-styles($-medium-styles);
+      @include token-styles.token-styles($-medium-styles, $-tokens);
     }
 
     &--large {
-      @include token-styles.token-styles($-large-styles);
+      @include token-styles.token-styles($-large-styles, $-tokens);
     }
 
     &--extra-large {
-      @include token-styles.token-styles($-extra-large-styles);
+      @include token-styles.token-styles($-extra-large-styles, $-tokens);
     }
 
     &--square {
-      @include token-styles.token-styles($-square-styles);
+      @include token-styles.token-styles($-square-styles, $-tokens);
     }
 
     // default
     &--round {
-      @include token-styles.token-styles($-round-styles);
+      @include token-styles.token-styles($-round-styles, $-tokens);
     }
 
     &--text {
-      @include token-styles.token-styles($-text-styles);
+      @include token-styles.token-styles($-text-styles, $-tokens);
     }
 
     &--outlined {
-      @include token-styles.token-styles($-outlined-styles);
+      @include token-styles.token-styles($-outlined-styles, $-tokens);
     }
 
     &--tonal {
-      @include token-styles.token-styles($-tonal-styles);
+      @include token-styles.token-styles($-tonal-styles, $-tokens);
     }
 
     // default
     &--filled {
-      @include token-styles.token-styles($-filled-styles);
+      @include token-styles.token-styles($-filled-styles, $-tokens);
     }
 
     &--elevated {
-      @include token-styles.token-styles($-elevated-styles);
+      @include token-styles.token-styles($-elevated-styles, $-tokens);
     }
   }
 }

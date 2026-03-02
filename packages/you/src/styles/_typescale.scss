@@ -202,6 +202,35 @@ $configure-tokens: $-variants;
   );
 }
 
+@function get-font-shorthand(
+  $font-weight,
+  $font-size,
+  $line-height,
+  $font-family
+) {
+  @return $font-weight $font-size#{"/"}$line-height $font-family;
+}
+
+@function get-custom-font-styles(
+  $font-weight,
+  $font-size,
+  $line-height,
+  $font-family,
+  $letter-spacing: null
+) {
+  @if $letter-spacing == 0rem {
+    $letter-spacing: null;
+  }
+
+  $font: get-font-shorthand(
+    $font-weight,
+    $font-size,
+    $line-height,
+    $font-family
+  );
+  @return (font: $font, letter-spacing: $letter-spacing);
+}
+
 @function get-font-styles($variant, $prominent: false, $overrides: ()) {
   $variant: utils.validate($-variants, $variant, "typeface variant");
   $properties: map.get($-tokens, $variant);
@@ -224,15 +253,13 @@ $configure-tokens: $-variants;
   $line-height: map.get($properties, line-height);
   $font-family: tokens.get-token-var(map.get($properties, font));
   $letter-spacing: map.get($properties, tracking);
-  @if $letter-spacing == 0rem {
-    $letter-spacing: null;
-  }
-
-  // prettier-ignore
   @return map.deep-merge(
-    (
-      font: $font-weight $font-size#{"/"}$line-height $font-family,
-      letter-spacing: $letter-spacing,
+    get-custom-font-styles(
+      $font-weight,
+      $font-size,
+      $line-height,
+      $font-family,
+      $letter-spacing
     ),
     $overrides
   );

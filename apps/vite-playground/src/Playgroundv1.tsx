@@ -1,10 +1,11 @@
-import { Box } from "@react-md/core/box/Box";
-import { Typography } from "@react-md/you/typography/Typography";
+import { Typography } from "@react-md/core/material-you/typography/Typography";
 import {
   type TypographySize,
   type TypographyVariant,
-} from "@react-md/you/typography/styles";
-import { type ReactElement } from "react";
+} from "@react-md/core/material-you/typography/styles";
+import { Fragment, type ReactElement } from "react";
+
+import { Buttons } from "./Buttons";
 
 const variants: TypographyVariant[] = [
   "body",
@@ -15,23 +16,25 @@ const variants: TypographyVariant[] = [
 ];
 const sizes: TypographySize[] = ["small", "medium", "large"];
 
-export function TypographyExample(): ReactElement {
+export function Playground(): ReactElement {
   return (
-    <Box fullWidth>
+    <>
+      <Buttons />
       {variants.map((variant) => (
-        <Box key={variant} fullWidth grid>
+        <Fragment key={variant}>
           {sizes.map((size) => (
-            <Box key={size} stacked align="start">
+            <Fragment key={size}>
               <Typography size={size} variant={variant}>
                 {variant + "-" + size}
               </Typography>
               <Typography size={size} variant={variant} prominent>
                 {variant + "-" + size + " prominent"}
               </Typography>
-            </Box>
+            </Fragment>
           ))}
-        </Box>
+          <hr />
+        </Fragment>
       ))}
-    </Box>
+    </>
   );
 }

@@ -44,8 +44,8 @@ export function Button(props: Readonly<ButtonProps>): ReactElement {
         variant,
       })}
     >
-      {(variant === "elevated" || variant === "tonal") && <Elevation />}
       {children}
+      {(variant === "elevated" || variant === "tonal") && <Elevation />}
     </button>
   );
 }

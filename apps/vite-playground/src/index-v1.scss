@@ -1,0 +1,51 @@
+// @use "everything" as *;
+//
+// @include styles;
+// @include code-styles;
+//
+// :root {
+//   @include variables;
+//   @include code-variables;
+//
+//   @media (prefers-color-scheme: dark) {
+//     @include dark-theme;
+//   }
+// }
+//
+// .light-theme {
+//   @include light-theme;
+// }
+//
+// .dark-theme {
+//   @include dark-theme;
+// }
+
+@use "@react-md/core";
+@use "@react-md/core/material-you";
+
+@include material-you.configure(
+  $interaction: (
+    focus-animation: false,
+  )
+  // // $tokens: (
+// //   var-prefix: "--",
+// // ),
+// $palette: (
+//     // color-scheme: light,
+//     light-theme: (),
+//     dark-theme: (),
+//     // fixed-theme: (),
+ //   ) // $font: (weight-regular: 100)
+);
+
+@include material-you.styles;
+
+@include core.css-utils;
+@include core.box-styles;
+
+:root {
+  @include core.spacing-variables;
+  @include core.box-variables;
+
+  // color-scheme: light;
+}

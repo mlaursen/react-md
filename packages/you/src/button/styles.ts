@@ -57,7 +57,7 @@ export function button(options: ButtonClassNameOptions = {}): string {
       [shape]: true,
       [variant]: true,
     }),
-    // interaction({ focus: "inward" }),
+    interaction({ focus: "inward" }),
     className
   );
 }

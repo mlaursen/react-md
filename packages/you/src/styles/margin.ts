@@ -4,8 +4,8 @@ import { type OverridableStringUnion } from "../types.js";
 
 export type DefaultMargin =
   | "none"
-  | "top"
-  | "bottom"
+  | "none-top"
+  | "none-bottom"
   | "centered"
   | "force-end";
 export interface MarginOverrides {}

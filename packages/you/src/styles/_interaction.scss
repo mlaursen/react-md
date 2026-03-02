@@ -6,28 +6,36 @@
 @use "token-styles";
 
 $configure-tokens: (
-  focus-opacity,
-  hover-opacity,
+  focused-color,
+  focused-opacity,
+  focused-width,
+  focused-animation focused-active-width,
+  focused-inward-offset,
+  focused-outward-offset,
+  hovered-opacity,
   pressed-opacity,
   dragged-opacity,
-  disabled-opacity,
-  focus-width,
-  focus-active-width,
-  focus-color,
-  focus-inward-offset,
-  focus-outward-offset,
-  focus-animation
+  disabled-opacity
 );
 
 $-tokens-registered: false;
 $-tokens: (
-  background: null,
-  opacity: null,
-  hover: (
-    opacity: 0.1,
+  container: (
+    color: null,
+    opacity: null,
   ),
-  focus: (
-    opacity: 0.08,
+  hovered: (
+    container: (
+      color: null,
+      opacity: 0.1,
+    ),
+  ),
+  focused: (
+    container: (
+      color: null,
+      opacity: 0.08,
+      elevation: null,
+    ),
 
     duration: null,
     color: null,
@@ -37,22 +45,28 @@ $-tokens: (
     outward-offset: null,
   ),
   pressed: (
-    opacity: 0.1,
+    container: (
+      opacity: 0.1,
+    ),
   ),
   dragged: (
-    opacity: 0.16,
+    container: (
+      opacity: 0.16,
+    ),
   ),
   disabled: (
-    opacity: 0.38,
+    container: (
+      opacity: 0.38,
+    ),
   ),
 );
 
-$-focus-width: utils.to-rem(3);
-$-focus-active-width: utils.to-rem(8);
-$-focus-color: "palette.current.secondary";
-$-focus-inward-offset: 0;
-$-focus-outward-offset: utils.to-rem(2);
-$-focus-animation: true;
+$-focused-width: utils.to-rem(3);
+$-focused-active-width: utils.to-rem(8);
+$-focused-color: "palette.current.secondary";
+$-focused-inward-offset: 0;
+$-focused-outward-offset: utils.to-rem(2);
+$-focused-animation: true;
 
 @mixin -update($value, $group, $name) {
   @if $value {
@@ -72,44 +86,44 @@ $-focus-animation: true;
 }
 
 @mixin configure(
-  $focus-animation: null,
-  $focus-width: null,
-  $focus-active-width: null,
-  $focus-color: null,
-  $focus-inward-offset: null,
-  $focus-outward-offset: null,
-  $focus-opacity: null,
-  $hover-opacity: null,
+  $focused-animation: null,
+  $focused-width: null,
+  $focused-active-width: null,
+  $focused-color: null,
+  $focused-inward-offset: null,
+  $focused-outward-offset: null,
+  $focused-opacity: null,
+  $hovered-opacity: null,
   $pressed-opacity: null,
   $dragged-opacity: null,
   $disabled-opacity: null
 ) {
-  @if $focus-animation == true or $focus-animation == false {
-    $-focus-animation: $focus-animation !global;
+  @if $focused-animation == true or $focused-animation == false {
+    $-focused-animation: $focused-animation !global;
   }
 
-  @if $focus-width {
-    $-focus-width: $focus-width !global;
+  @if $focused-width {
+    $-focused-width: $focused-width !global;
   }
 
-  @if $focus-active-width {
-    $-focus-active-width: $focus-active-width !global;
+  @if $focused-active-width {
+    $-focused-active-width: $focused-active-width !global;
   }
 
-  @if $focus-color {
-    $-focus-color: $focus-color !global;
+  @if $focused-color {
+    $-focused-color: $focused-color !global;
   }
 
-  @if $focus-inward-offset {
-    $-focus-inward-offset: $focus-inward-offset !global;
+  @if $focused-inward-offset {
+    $-focused-inward-offset: $focused-inward-offset !global;
   }
 
-  @if $focus-outward-offset {
-    $-focus-outward-offset: $focus-outward-offset !global;
+  @if $focused-outward-offset {
+    $-focused-outward-offset: $focused-outward-offset !global;
   }
 
-  @include -update($focus-opacity, focus, opacity);
-  @include -update($hover-opacity, hover, opacity);
+  @include -update($focused-opacity, focused, opacity);
+  @include -update($hovered-opacity, hovered, opacity);
   @include -update($pressed-opacity, pressed, opacity);
   @include -update($dragged-opacity, dragged, opacity);
   @include -update($disabled-opacity, disabled, opacity);
@@ -129,7 +143,7 @@ $-focus-animation: true;
 }
 
 @function container(
-  $focus-selector: "&:focus-visible",
+  $focused-selector: "&:focus-visible",
   $disabled-selector: "&:disabled",
   $clickable: true,
   $hoverable: true,
@@ -143,8 +157,8 @@ $-focus-animation: true;
   );
 
   $background: tokens.get-rgb-var(
-    "interaction.background",
-    "interaction.opacity"
+    "interaction.container.color",
+    "interaction.container.opacity"
   );
 
   $styles: (
@@ -165,55 +179,57 @@ $-focus-animation: true;
     $styles: map.set($styles, cursor, pointer);
     $styles: map.set(
       $styles,
-      mouse-hover,
+      "mouse-hover",
       (
-        "interaction.opacity": "interaction.hover.opacity",
+        "interaction.container.color": "interaction.hovered.container.color",
+        "interaction.container.opacity":
+          "interaction.hovered.container.opacity",
       )
     );
   }
-  @if $focus-selector {
+  @if $focused-selector {
     $inward-offset: tokens.get-token-var(
-      "interaction.focus.inward-offset",
-      $-focus-inward-offset
+      "interaction.focused.inward-offset",
+      $-focused-inward-offset
     );
     $outward-offset: tokens.get-token-var(
-      "interaction.focus.outward-offset",
-      $-focus-outward-offset
+      "interaction.focused.outward-offset",
+      $-focused-outward-offset
     );
-    $focus-width: tokens.get-token-var(
-      "interaction.focus.width",
-      $-focus-width
+    $focused-width: tokens.get-token-var(
+      "interaction.focused.width",
+      $-focused-width
     );
 
     $duration: tokens.get-token-var(
-      "interaction.focus.duration",
+      "interaction.focused.duration",
       "transition.duration.extra-long-1"
     );
     $color: tokens.get-token-var(
-      "interaction.focus.color",
+      "interaction.focused.color",
       "palette.current.secondary"
     );
 
-    $focus-active-styles: (
+    $focused-active-styles: (
       animation-name: (
-          rmd-focus-outward-grow,
-          rmd-focus-outward-shrink,
+          rmd-focused-outward-grow,
+          rmd-focused-outward-shrink,
         ),
       inset: tokens.negate-var($outward-offset),
-      outline: $focus-width solid currentcolor,
+      outline: $focused-width solid currentcolor,
     );
     @if $direction == "inward" {
-      $focus-active-styles: (
-        border: $focus-width solid currentcolor,
+      $focused-active-styles: (
+        border: $focused-width solid currentcolor,
         animation-name: (
-            rmd-focus-inward-grow,
-            rmd-focus-inward-shrink,
+            rmd-focused-inward-grow,
+            rmd-focused-inward-shrink,
           ),
         inset: $inward-offset,
       );
     }
 
-    $focus-styles: (
+    $focused-styles: (
       "&::before": (
           animation-delay: (
               0s,
@@ -237,16 +253,16 @@ $-focus-animation: true;
                 ),
             ),
         ),
-      "#{$focus-selector}::before": map.merge(
+      "#{$focused-selector}::before": map.merge(
           (
             color: $color,
           ),
-          $focus-active-styles
+          $focused-active-styles
         ),
     );
-    @if not $-focus-animation {
-      $focus-styles: map.deep-merge(
-        $focus-styles,
+    @if not $-focused-animation {
+      $focused-styles: map.deep-merge(
+        $focused-styles,
         (
           "&::before": (
               animation-delay: null,
@@ -254,13 +270,13 @@ $-focus-animation: true;
               animation-timing-function: null,
               "@media (prefers-reduced-motion)": null,
             ),
-          "#{$focus-selector}::before": (
+          "#{$focused-selector}::before": (
               animation-name: null,
             ),
         )
       );
     }
-    $styles: map.deep-merge($styles, $focus-styles);
+    $styles: map.deep-merge($styles, $focused-styles);
   }
 
   $disabled-styles: ();
@@ -285,7 +301,7 @@ $-focus-animation: true;
     $disabled-styles: map.merge(
       $disabled-styles,
       (
-        "interaction.opacity": 0,
+        "interaction.container.opacity": 0,
         cursor: auto,
       )
     );
@@ -303,41 +319,30 @@ $-focus-animation: true;
 
 @mixin styles {
   $inward-offset: tokens.get-token-var(
-    "interaction.focus.inward-offset",
-    $-focus-inward-offset
+    "interaction.focused.inward-offset",
+    $-focused-inward-offset
   );
   $outward-offset: tokens.get-token-var(
-    "interaction.focus.outward-offset",
-    $-focus-outward-offset
+    "interaction.focused.outward-offset",
+    $-focused-outward-offset
   );
-  $focus-width: tokens.get-token-var("interaction.focus.width", $-focus-width);
+  $focused-width: tokens.get-token-var(
+    "interaction.focused.width",
+    $-focused-width
+  );
 
-  .rmd-interaction-outward,
-  .rmd-interaction-inward {
+  .rmd-interaction-inward,
+  .rmd-interaction-outward {
     @include token-styles.token-styles(container());
   }
 
-  .rmd-interaction-inward:focus-visible::before {
-    @include token-styles.token-styles(
-      (
-        animation-name: (
-          rmd-focus-inward-grow,
-          rmd-focus-inward-shrink,
-        ),
-        border: $focus-width solid currentcolor,
-        inset: $inward-offset,
-        outline: 0,
-      )
-    );
-  }
-
-  @if $-focus-animation {
+  @if $-focused-animation {
     $active-width: tokens.get-token-var(
-      "interaction.focus.active-width",
-      $-focus-active-width
+      "interaction.focused.active-width",
+      $-focused-active-width
     );
 
-    @keyframes rmd-focus-outward-grow {
+    @keyframes rmd-focused-outward-grow {
       from {
         outline-width: 0;
       }
@@ -347,13 +352,13 @@ $-focus-animation: true;
       }
     }
 
-    @keyframes rmd-focus-outward-shrink {
+    @keyframes rmd-focused-outward-shrink {
       from {
         outline-width: $active-width;
       }
     }
 
-    @keyframes rmd-focus-inward-grow {
+    @keyframes rmd-focused-inward-grow {
       from {
         border-width: 0;
       }
@@ -363,7 +368,7 @@ $-focus-animation: true;
       }
     }
 
-    @keyframes rmd-focus-inward-shrink {
+    @keyframes rmd-focused-inward-shrink {
       from {
         border-width: $active-width;
       }

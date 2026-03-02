@@ -21,15 +21,14 @@
   $border-radius: inherit
 ) {
   // prettier-ignore
+  $position: if(sass($fixed): fixed; else: absolute);
+
   @return (
     border-radius: $border-radius,
-    content: "",
+    content: '""',
     inset: $inset,
     pointer-events: none,
-    position: if(
-      sass($fixed): fixed;
-      else: absolute
-    ),
+    position: $position,
     z-index: $z-index
   );
 }

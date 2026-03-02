@@ -164,14 +164,14 @@
     interaction.$configure-tokens
   );
   @include interaction.configure(
-    $focus-animation: map.get($interaction, focus-animation),
-    $focus-width: map.get($interaction, focus-width),
-    $focus-active-width: map.get($interaction, focus-active-width),
-    $focus-color: map.get($interaction, focus-color),
-    $focus-inward-offset: map.get($interaction, focus-inward-offset),
-    $focus-outward-offset: map.get($interaction, focus-outward-offset),
-    $focus-opacity: map.get($interaction, focus-opacity),
-    $hover-opacity: map.get($interaction, hover-opacity),
+    $focused-animation: map.get($interaction, focused-animation),
+    $focused-width: map.get($interaction, focused-width),
+    $focused-active-width: map.get($interaction, focused-active-width),
+    $focused-color: map.get($interaction, focused-color),
+    $focused-inward-offset: map.get($interaction, focused-inward-offset),
+    $focused-outward-offset: map.get($interaction, focused-outward-offset),
+    $focused-opacity: map.get($interaction, focused-opacity),
+    $hovered-opacity: map.get($interaction, hovered-opacity),
     $pressed-opacity: map.get($interaction, pressed-opacity),
     $dragged-opacity: map.get($interaction, dragged-opacity),
     $disabled-opacity: map.get($interaction, disabled-opacity)
