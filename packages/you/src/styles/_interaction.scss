@@ -205,7 +205,13 @@ $-focused-animation: true;
       "interaction.focused.duration",
       "transition.duration.extra-long-1"
     );
-    $color: tokens.get-token-var(
+    $focused-container-color: tokens.get-rgb-var(
+      $color: "interaction.focused.container.color",
+      $color-fallback: "palette.on-surface",
+      $opacity: "interaction.focused.container.opacity",
+      $opacity-fallback: 0.1,
+    );
+    $focused-color: tokens.get-token-var(
       "interaction.focused.color",
       "palette.secondary"
     );
@@ -255,7 +261,8 @@ $-focused-animation: true;
         ),
       "#{$focused-selector}::before": map.merge(
           (
-            color: $color,
+            background: $focused-container-color,
+            color: $focused-color,
           ),
           $focused-active-styles
         ),

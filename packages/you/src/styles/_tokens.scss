@@ -84,11 +84,7 @@ $configure-tokens: ("var-prefix");
     @return $token;
   }
 
-  @if list.index($-tokens, $token) {
-    @return get-var($token, get-token-var($fallback));
-  }
-
-  @if -is-maybe-token-string($token) {
+  @if list.index($-tokens, $token) or -is-maybe-token-string($token) {
     @return get-var($token, get-token-var($fallback));
   }
 

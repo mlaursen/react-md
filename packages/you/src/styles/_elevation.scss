@@ -156,7 +156,7 @@ $-base-styles: (
     position: absolute,
   ),
   "&::before, &::after": (
-    content: "",
+    content: '""',
     transition-property: (
       box-shadow,
       opacity,
