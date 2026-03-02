@@ -28,8 +28,8 @@
   }
 
   body {
-    @include tokens.use-var(background, "palette.current.background");
-    @include tokens.use-var(color, "palette.current.on-background");
+    @include tokens.use-var(background, "palette.background");
+    @include tokens.use-var(color, "palette.on-background");
     @include token-styles.token-styles(
       typescale.get-font-styles(
         $variant: body-large,

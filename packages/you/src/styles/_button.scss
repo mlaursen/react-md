@@ -13,9 +13,9 @@
 $-tokens-registered: false;
 $-tokens: (
   container: (
-    color: "palette.current.primary",
+    color: "palette.primary",
     opacity: 1,
-    shadow-color: "palette.current.shadow",
+    shadow-color: "palette.shadow",
     elevation: 0,
     height: 2.5rem,
     shape: (
@@ -31,61 +31,61 @@ $-tokens: (
       shape: "shape.corner.small",
     ),
     state-layer: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
       opacity: 0.1,
       elevation: 0,
     ),
     label-text: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
     ),
     icon: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
     ),
   ),
   unselected: (
     container: (
-      color: "palette.current.surface-container",
+      color: "palette.surface-container",
     ),
     icon: (
       color: null,
     ),
     hovered: (
       state-layer: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
       label-text: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
       icon: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
     ),
     focused: (
       state-layer: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
       label-text: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
       icon: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
     ),
     pressed: (
       state-layer: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
       label-text: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
       icon: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
     ),
   ),
   selected: (
     container: (
-      color: "palette.current.primary",
+      color: "palette.primary",
       shape: (
         round: "shape.container.medium",
         square: "shape.container.full",
@@ -96,84 +96,84 @@ $-tokens: (
     ),
     hovered: (
       state-layer: (
-        color: "palette.current.on-primary",
+        color: "palette.on-primary",
       ),
       label-text: (
-        color: "palette.current.on-primary",
+        color: "palette.on-primary",
       ),
       icon: (
-        color: "palette.current.on-primary",
+        color: "palette.on-primary",
       ),
     ),
     focused: (
       state-layer: (
-        color: "palette.current.on-primary",
+        color: "palette.on-primary",
       ),
       label-text: (
-        color: "palette.current.on-primary",
+        color: "palette.on-primary",
       ),
       icon: (
-        color: "palette.current.on-primary",
+        color: "palette.on-primary",
       ),
     ),
     pressed: (
       state-layer: (
-        color: "palette.current.on-primary",
+        color: "palette.on-primary",
       ),
       label-text: (
-        color: "palette.current.on-primary",
+        color: "palette.on-primary",
       ),
       icon: (
-        color: "palette.current.on-primary",
+        color: "palette.on-primary",
       ),
     ),
   ),
   label-text: (
-    color: "palette.current.on-primary",
+    color: "palette.on-primary",
     opacity: 1,
     unselected: (
-      color: "palette.current.on-surface-variant",
+      color: "palette.on-surface-variant",
     ),
     selected: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
     ),
   ),
   icon: (
-    color: "palette.current.on-primary",
+    color: "palette.on-primary",
     opacity: 1,
     size: 1.25rem,
     unselected: (
-      color: "palette.current.on-surface-variant",
+      color: "palette.on-surface-variant",
     ),
     selected: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
     ),
   ),
   disabled: (
     container: (
-      color: "palette.current.on-surface",
+      color: "palette.on-surface",
       opacity: 0.1,
       elevation: 0,
     ),
     label-text: (
-      color: "palette.current.on-surface",
+      color: "palette.on-surface",
       opacity: 0.38,
     ),
     icon: (
-      color: "palette.current.on-surface",
+      color: "palette.on-surface",
       opacity: 0.38,
     ),
   ),
   hovered: (
     state-layer: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
       opacity: 0.08,
     ),
     label-text: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
     ),
     icon: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
     ),
   ),
   focused: (
@@ -181,14 +181,14 @@ $-tokens: (
       elevation: 0,
     ),
     state-layer: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
       opacity: 0.1,
     ),
     label-text: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
     ),
     icon: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
     ),
   ),
   extra-small: (
@@ -333,66 +333,66 @@ $-tokens: (
   ),
   filled: (
     container: (
-      color: "palette.current.primary",
-      shadow-color: "palette.current.shadow",
+      color: "palette.primary",
+      shadow-color: "palette.shadow",
       elevation: 0,
     ),
     label-text: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
     ),
     icon: (
-      color: "palette.current.on-primary",
+      color: "palette.on-primary",
     ),
     unselected: (
       label-text: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
       icon: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
     ),
     selected: (
       label-text: (
-        color: "palette.current.on-primary",
+        color: "palette.on-primary",
       ),
       icon: (
-        color: "palette.current.on-primary",
+        color: "palette.on-primary",
       ),
     ),
   ),
   outlined: (
     outline: (
-      color: "palette.current.outline-variant",
+      color: "palette.outline-variant",
       width: 0.0625rem,
     ),
     label-text: (
-      color: "palette.current.on-surface-variant",
+      color: "palette.on-surface-variant",
     ),
     icon: (
-      color: "palette.current.on-surface-variant",
+      color: "palette.on-surface-variant",
     ),
     unselected: (
       label-text: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
       icon: (
-        color: "palette.current.on-surface-variant",
+        color: "palette.on-surface-variant",
       ),
     ),
     selected: (
       container: (
-        color: "palette.current.inverse-surface",
+        color: "palette.inverse-surface",
       ),
       label-text: (
-        color: "palette.current.inverse-on-surface",
+        color: "palette.inverse-on-surface",
       ),
       icon: (
-        color: "palette.current.inverse-on-surface",
+        color: "palette.inverse-on-surface",
       ),
     ),
     disabled: (
       outline: (
-        color: "palette.current.outline-variant",
+        color: "palette.outline-variant",
       ),
     ),
   ),
@@ -558,7 +558,7 @@ $-tonal-unselected-styles: ();
 $-tonal-selected-styles: ();
 
 $-outlined-styles: (
-  "button.container.color": "palette.current.background",
+  "button.container.color": "palette.background",
   "button.label-text.color": "button.outlined.label-text.color",
   "button.icon.color": "button.outlined.icon.color",
 

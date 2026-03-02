@@ -110,17 +110,17 @@ $-typescale-prefix: "typescale.";
 ///
 /// @example scss - Using Tokens
 ///   $styles: (
-///     background: "palette.current.background",
+///     background: "palette.background",
 ///     color: (
 ///       default: "some.token.namespace",
-///       fallback: "palette.current.on-background",
+///       fallback: "palette.on-background",
 ///     ),
 ///   );
 ///
 /// @example scss - Setting Tokens
 ///   $styles: (
-///     "palette.current.background": #faf,
-///     "palette.current.on-background": (
+///     "palette.background": #faf,
+///     "palette.on-background": (
 ///       default: "some.token.namespace",
 ///       fallback: #000,
 ///     ),

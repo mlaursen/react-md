@@ -63,7 +63,7 @@ $-tokens: (
 
 $-focused-width: utils.to-rem(3);
 $-focused-active-width: utils.to-rem(8);
-$-focused-color: "palette.current.secondary";
+$-focused-color: "palette.secondary";
 $-focused-inward-offset: 0;
 $-focused-outward-offset: utils.to-rem(2);
 $-focused-animation: true;
@@ -207,7 +207,7 @@ $-focused-animation: true;
     );
     $color: tokens.get-token-var(
       "interaction.focused.color",
-      "palette.current.secondary"
+      "palette.secondary"
     );
 
     $focused-active-styles: (
@@ -285,7 +285,7 @@ $-focused-animation: true;
       $styles,
       (
         "elevation.level": $elevation,
-        "elevation.shadow-color": "palette.current.shadow",
+        "elevation.shadow-color": "palette.shadow",
       )
     );
     $disabled-styles: map.merge(

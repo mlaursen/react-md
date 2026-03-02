@@ -184,7 +184,7 @@ $-tokens: (
         current: $-light-theme-tokens,
       )
     ) !global;
-  } @else if $-color-scheme == "dark" {
+  } @else if $-color-scheme == dark {
     $-tokens: map.deep-merge(
       $-tokens,
       (
@@ -219,10 +219,7 @@ $-tokens: (
     @if not $-current-tokens-registered {
       $-current-tokens-registered: true !global;
 
-      @include tokens.register-tokens(
-        $tokens: $tokens,
-        $prefix: "palette.current"
-      );
+      @include tokens.register-tokens($tokens: $tokens, $prefix: "palette");
     }
 
     $-tokens: map.deep-merge(
@@ -237,22 +234,17 @@ $-tokens: (
 }
 
 @mixin use-light-theme($prefix: false, $register-tokens: false) {
-  // prettier-ignore
-  $tokens: if(sass($prefix): $-light-theme-tokens; else: $-tokens);
-
   @include tokens.set-default-tokens(
     $tokens: $-light-theme-tokens,
-    $prefix: "palette.current",
+    $prefix: "palette",
     $register-tokens: $register-tokens
   );
 }
 
 @mixin use-dark-theme($prefix: false, $register-tokens: false) {
-  // prettier-ignore
-  $tokens: if(sass($prefix): $-dark-theme-tokens; else: $-tokens);
   @include tokens.set-default-tokens(
     $tokens: $-dark-theme-tokens,
-    $prefix: "palette.current",
+    $prefix: "palette",
     $register-tokens: $register-tokens
   );
 }
@@ -263,7 +255,7 @@ $-tokens: (
   }
 
   @each $token, $value in -get-light-dark-tokens() {
-    @include tokens.set-var("palette.current.#{$token}", $value);
+    @include tokens.set-var("palette.#{$token}", $value);
   }
 }
 
@@ -279,9 +271,22 @@ $-tokens: (
     color-scheme: $color-scheme;
   }
 
+  @if map.get($-tokens, light) and map.get($-tokens, dark) {
+    @include tokens.set-default-tokens(
+      $tokens: map.remove($-tokens, "current"),
+      $register-tokens: false,
+      $prefix: "palette"
+    );
+  }
+
+  $register-tokens: false;
+  @if not $-current-tokens-registered {
+    $register-tokens: true;
+    $-current-tokens-registered: true !global;
+  }
   @include tokens.set-default-tokens(
-    $tokens: $-tokens,
-    $register-tokens: false,
+    $tokens: map.get($-tokens, "current"),
+    $register-tokens: $register-tokens,
     $prefix: "palette"
   );
 }
@@ -306,12 +311,12 @@ $-tokens: (
 
       .rmd-#{$name} {
         @if $is-on-color {
-          @include tokens.use-var(color, "palette.current.#{$name}");
+          @include tokens.use-var(color, "palette.#{$name}");
         } @else {
-          @include tokens.use-var(background, "palette.current.#{$name}");
+          @include tokens.use-var(background, "palette.#{$name}");
 
           @if not $is-no-color {
-            @include tokens.use-var(color, "palette.current.on-#{$name}");
+            @include tokens.use-var(color, "palette.on-#{$name}");
           }
         }
       }
@@ -322,7 +327,7 @@ $-tokens: (
         string.index($name, "container-")
       {
         .rmd-text-#{$name} {
-          @include tokens.use-var(color, "palette.current.#{$name}");
+          @include tokens.use-var(color, "palette.#{$name}");
         }
       }
     }
@@ -332,15 +337,25 @@ $-tokens: (
     color: currentcolor;
   }
 
-  .rmd-palette-light {
-    @include use-light-theme;
+  @if $-color-scheme == light-dark or $-color-scheme == system {
+    .rmd-palette-light {
+      @include use-light-theme;
+    }
+
+    .rmd-palette-dark {
+      @include use-dark-theme;
+    }
+
+    .rmd-palette-light-dark {
+      @include use-light-dark-theme;
+    }
   }
 
-  .rmd-palette-dark {
-    @include use-dark-theme;
-  }
-
-  .rmd-palette-light-dark {
-    @include use-light-dark-theme;
+  @if $-color-scheme == system {
+    @media (prefers-color-scheme: dark) {
+      :root {
+        @include use-dark-theme;
+      }
+    }
   }
 }
