@@ -407,13 +407,12 @@ export function Select<Value extends string>(
           })}
         </SelectedOption>
         <input
-          aria-hidden
+          inert
           id={inputId}
           ref={inputRefCallback}
           type="text"
           autoComplete={autoComplete}
           name={name}
-          tabIndex={-1}
           disabled={disabled}
           required={required}
           placeholder=" "
