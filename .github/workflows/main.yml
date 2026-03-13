@@ -34,7 +34,9 @@ jobs:
       - run: pnpm typecheck
 
       - run: pnpm test-run-coverage
-      - run: pnpx codecov -t ${{ secrets.CODECOV_TOKEN }}
+      - uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   # validate_matrix:
   #   name: Validate Using Node Matrix

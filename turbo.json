@@ -24,16 +24,21 @@
       "interactive": true,
       "cache": false
     },
-    "test-run": {},
+    "test-run": {
+      "dependsOn": ["^build"]
+    },
     "test-coverage": {
       "interactive": true,
       "cache": false,
       "outputs": ["coverage/**"]
     },
     "test-run-coverage": {
+      "dependsOn": ["^build"],
       "outputs": ["coverage/**"]
     },
-    "test-run-snapshot": {},
+    "test-run-snapshot": {
+      "dependsOn": ["^build"]
+    },
     "clean": {
       "cache": false
     },
