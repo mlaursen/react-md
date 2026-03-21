@@ -69,7 +69,7 @@ describe("useTemporaryLayout", () => {
 
     expect(appBar).toMatchSnapshot();
     expect(main).toMatchSnapshot();
-    expect(() => screen.getByRole("dialog")).toThrowError();
+    expect(() => screen.getByRole("dialog")).toThrow();
 
     await user.click(navToggle);
     const nav = await screen.findByRole("dialog", { name: "Navigation" });

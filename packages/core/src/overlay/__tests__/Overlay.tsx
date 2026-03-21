@@ -87,10 +87,10 @@ describe("Overlay", () => {
 
     fireEvent.click(button);
     await waitFor(() => {
-      expect(() => screen.getByTestId("overlay")).not.toThrowError();
+      expect(() => screen.getByTestId("overlay")).not.toThrow();
     });
     await waitFor(() => {
-      expect(() => within(container).getByTestId("overlay")).toThrowError();
+      expect(() => within(container).getByTestId("overlay")).toThrow();
     });
   });
 
@@ -171,7 +171,7 @@ describe("Overlay", () => {
     } as const;
 
     const { rerender } = render(<Overlay {...props} />);
-    expect(() => screen.getByTestId("overlay")).toThrowError();
+    expect(() => screen.getByTestId("overlay")).toThrow();
 
     rerender(<Overlay {...props} visible />);
     await waitFor(() => {

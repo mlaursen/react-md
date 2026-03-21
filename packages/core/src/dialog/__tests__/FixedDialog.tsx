@@ -99,8 +99,8 @@ describe("FixedDialog", () => {
       <Test overlayProps={{ "data-testid": "overlay" }} />
     );
 
-    expect(() => screen.getByRole("dialog")).toThrowError();
-    expect(() => screen.getByTestId("overlay")).toThrowError();
+    expect(() => screen.getByRole("dialog")).toThrow();
+    expect(() => screen.getByTestId("overlay")).toThrow();
     const button = screen.getByRole("button", { name: "Button" });
     await user.click(button);
 

@@ -1146,7 +1146,7 @@ describe("findSizingContainer", () => {
     const element = document.createElement("span");
     element.dataset.sizingSelector = ".query";
 
-    expect(() => findSizingContainer(element)).toThrowError(
+    expect(() => findSizingContainer(element)).toThrow(
       "Unable to find a child element using the `data-sizing-selector`"
     );
   });

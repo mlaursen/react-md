@@ -53,12 +53,10 @@ describe("TooltipHoverModeProvider", () => {
     const button2 = screen.getByRole("button", { name: "Button 2" });
     const button3 = screen.getByRole("button", { name: "Button 3" });
     const button4 = screen.getByRole("button", { name: "Button 4" });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.hover(button1);
-    expect(() =>
-      screen.getByRole("tooltip", { name: "Tooltip 1" })
-    ).toThrowError();
+    expect(() => screen.getByRole("tooltip", { name: "Tooltip 1" })).toThrow();
 
     const tooltip1 = await screen.findByRole("tooltip", { name: "Tooltip 1" });
     expect(tooltip1).toHaveClass("rmd-tooltip--enter");
@@ -76,9 +74,7 @@ describe("TooltipHoverModeProvider", () => {
 
     await waitForElementToBeRemoved(tooltip1);
     await user.hover(button3);
-    expect(() =>
-      screen.getByRole("tooltip", { name: "Tooltip 3" })
-    ).toThrowError();
+    expect(() => screen.getByRole("tooltip", { name: "Tooltip 3" })).toThrow();
 
     const tooltip3 = await screen.findByRole("tooltip", { name: "Tooltip 3" });
     expect(tooltip3).toBeInTheDocument();

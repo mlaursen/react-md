@@ -56,11 +56,11 @@ describe("CircularProgressSuspense", () => {
     const progress = await screen.findByRole("progressbar", {
       name: "Loading",
     });
-    expect(() => screen.getByText("Hello, world!")).toThrowError();
+    expect(() => screen.getByText("Hello, world!")).toThrow();
 
     resolve();
     await waitForElementToBeRemoved(progress);
-    expect(() => screen.getByText("Hello, world!")).not.toThrowError();
+    expect(() => screen.getByText("Hello, world!")).not.toThrow();
   });
 
   it("should not provide the loading aria-label if the aria-labelledby prop was provided", async () => {

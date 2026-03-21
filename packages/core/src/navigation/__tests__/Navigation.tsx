@@ -89,7 +89,7 @@ describe("Navigation", () => {
       throw new Error("Unable to find path2.parentElement");
     }
 
-    expect(() => within(path2Parent).getByText("Route 1")).toThrowError();
+    expect(() => within(path2Parent).getByText("Route 1")).toThrow();
   });
 
   it("should allow route groups to be expanded", async () => {

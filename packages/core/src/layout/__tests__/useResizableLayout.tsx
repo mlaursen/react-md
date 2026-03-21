@@ -127,7 +127,7 @@ describe("useResizableLayout", () => {
     expect(isElementVisible(windowSplitter)).toBe(false);
     expect(windowSplitter).toMatchSnapshot();
     expect(getSizeVar()).toBe("256px");
-    expect(() => screen.getByRole("dialog")).toThrowError();
+    expect(() => screen.getByRole("dialog")).toThrow();
 
     await user.click(navToggle);
     expect(isElementVisible(nav)).toBe(true);

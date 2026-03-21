@@ -136,31 +136,31 @@ describe("Slider", () => {
       };
       const { rerender } = rmdRender(<SingleThumbTest {...props} />);
       const container = screen.getByTestId("container");
-      expect(() => screen.getByTestId("before")).not.toThrowError();
-      expect(() => screen.getByText("After!")).not.toThrowError();
+      expect(() => screen.getByTestId("before")).not.toThrow();
+      expect(() => screen.getByText("After!")).not.toThrow();
       expect(container).toMatchSnapshot();
 
       rerender(<SingleThumbTest {...props} beforeAddon={null} />);
-      expect(() => screen.getByTestId("before")).toThrowError();
-      expect(() => screen.getByText("After!")).not.toThrowError();
+      expect(() => screen.getByTestId("before")).toThrow();
+      expect(() => screen.getByText("After!")).not.toThrow();
       expect(container).toMatchSnapshot();
 
       rerender(<SingleThumbTest {...props} afterAddon={null} />);
-      expect(() => screen.getByTestId("before")).not.toThrowError();
+      expect(() => screen.getByTestId("before")).not.toThrow();
       expect(container).toMatchSnapshot();
 
       rerender(<SingleThumbTest {...props} vertical />);
-      expect(() => screen.getByTestId("before")).not.toThrowError();
-      expect(() => screen.getByText("After!")).not.toThrowError();
+      expect(() => screen.getByTestId("before")).not.toThrow();
+      expect(() => screen.getByText("After!")).not.toThrow();
       expect(container).toMatchSnapshot();
 
       rerender(<SingleThumbTest {...props} vertical beforeAddon={null} />);
-      expect(() => screen.getByTestId("before")).toThrowError();
-      expect(() => screen.getByText("After!")).not.toThrowError();
+      expect(() => screen.getByTestId("before")).toThrow();
+      expect(() => screen.getByText("After!")).not.toThrow();
       expect(container).toMatchSnapshot();
 
       rerender(<SingleThumbTest {...props} vertical afterAddon={null} />);
-      expect(() => screen.getByTestId("before")).not.toThrowError();
+      expect(() => screen.getByTestId("before")).not.toThrow();
       expect(container).toMatchSnapshot();
     });
 
@@ -791,7 +791,7 @@ describe("Slider", () => {
           min: { name: "Minimum" },
           max: { name: "Maximum" },
         })
-      ).not.toThrowError();
+      ).not.toThrow();
 
       rerender(
         <>
@@ -1069,7 +1069,7 @@ describe("Slider", () => {
     it("should support rendering a tooltip while focused or dragging by enabling the discrete prop", async () => {
       const user = userEvent.setup();
       rmdRender(<SingleThumbTest discrete />);
-      expect(() => screen.getByRole("tooltip")).toThrowError();
+      expect(() => screen.getByRole("tooltip")).toThrow();
       const { slider } = getSliderTestElements({ name: "Slider" });
       await user.tab();
       expect(slider).toHaveFocus();
@@ -1089,7 +1089,7 @@ describe("Slider", () => {
     it("should support rendering the tooltip while hovered", async () => {
       const user = userEvent.setup();
       rmdRender(<SingleThumbTest discrete tooltipVisibility="hover" />);
-      expect(() => screen.getByRole("tooltip")).toThrowError();
+      expect(() => screen.getByRole("tooltip")).toThrow();
       const { slider } = getSliderTestElements({ name: "Slider" });
       await user.hover(slider);
 
@@ -1124,7 +1124,7 @@ describe("Slider", () => {
       const user = userEvent.setup();
       rmdRender(<RangeSliderTest discrete />);
       const { minSlider, maxSlider } = getRangeSliderTestElements();
-      expect(() => screen.getByRole("tooltip")).toThrowError();
+      expect(() => screen.getByRole("tooltip")).toThrow();
       await user.tab();
       expect(minSlider).toHaveFocus();
 
@@ -1149,7 +1149,7 @@ describe("Slider", () => {
       const user = userEvent.setup();
       rmdRender(<RangeSliderTest discrete tooltipVisibility="hover" />);
       const { minSlider, maxSlider } = getRangeSliderTestElements();
-      expect(() => screen.getByRole("tooltip")).toThrowError();
+      expect(() => screen.getByRole("tooltip")).toThrow();
       await user.hover(minSlider);
 
       let minTooltip = screen.getByRole("tooltip");
@@ -1235,10 +1235,10 @@ describe("Slider", () => {
       const { sliderContainer } = getSliderTestElements({ name: "Slider" });
       const marks = screen.getAllByTestId(/^mark-/);
       expect(marks).toHaveLength(4);
-      expect(() => screen.getByText("First")).not.toThrowError();
-      expect(() => screen.getByText("Second")).not.toThrowError();
-      expect(() => screen.getByText("Third")).not.toThrowError();
-      expect(() => screen.getByText("Fourth")).not.toThrowError();
+      expect(() => screen.getByText("First")).not.toThrow();
+      expect(() => screen.getByText("Second")).not.toThrow();
+      expect(() => screen.getByText("Third")).not.toThrow();
+      expect(() => screen.getByText("Fourth")).not.toThrow();
       expect(sliderContainer).toMatchSnapshot();
     });
   });

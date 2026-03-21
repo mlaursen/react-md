@@ -35,7 +35,7 @@ describe("ToastContent", () => {
       </ToastContent>
     );
 
-    expect(() => screen.getByTestId("content")).toThrowError();
+    expect(() => screen.getByTestId("content")).toThrow();
     expect(container).toMatchSnapshot();
   });
 

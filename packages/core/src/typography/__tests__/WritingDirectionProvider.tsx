@@ -112,7 +112,7 @@ describe("WritingDirectionProvider", () => {
       throw new Error("toggleDir was not set");
     }
 
-    expect(toggleDir).toThrowError(
+    expect(toggleDir).toThrow(
       "Tried to toggle the current writing direction without initializing the `Dir` component."
     );
   });

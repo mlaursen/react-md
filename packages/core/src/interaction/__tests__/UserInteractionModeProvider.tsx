@@ -19,7 +19,7 @@ describe("UserInteractionModeProvider", () => {
           </UserInteractionModeProvider>
         </UserInteractionModeProvider>
       )
-    ).toThrowError(
+    ).toThrow(
       "The `UserInteractionModeProvider` cannot be mounted multiple times."
     );
 

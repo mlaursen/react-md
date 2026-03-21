@@ -79,45 +79,45 @@ describe("Tooltip", () => {
     vi.useFakeTimers();
     rmdRender(<Test />);
     const button = screen.getByRole("button", { name: "Button" });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.mouseEnter(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     act(() => {
       vi.advanceTimersByTime(800);
     });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.mouseLeave(button);
     act(() => {
       vi.runAllTimers();
     });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.mouseEnter(button);
     act(() => {
       vi.runAllTimers();
     });
-    expect(() => screen.getByRole("tooltip")).not.toThrowError();
+    expect(() => screen.getByRole("tooltip")).not.toThrow();
   });
 
   it("should display the tooltip after focusing for 1s by default only in keyboard mode", () => {
     vi.useFakeTimers();
     rmdRender(<Test />);
     const button = screen.getByRole("button", { name: "Button" });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.focus(button);
     act(() => {
       vi.advanceTimersByTime(1000);
     });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.keyDown(document.body);
     fireEvent.focus(button);
@@ -149,10 +149,10 @@ describe("Tooltip", () => {
 
     rmdRender(<Test />);
     const button = screen.getByRole("button", { name: "Button" });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.touchStart(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
     act(() => {
       vi.advanceTimersByTime(1000);
     });
@@ -179,21 +179,21 @@ describe("Tooltip", () => {
     act(() => {
       vi.runAllTimers();
     });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.touchStart(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
     act(() => {
       vi.advanceTimersByTime(800);
     });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     const empty = vi.spyOn(Selection.prototype, "empty");
     fireEvent.contextMenu(button);
     act(() => {
       vi.runAllTimers();
     });
-    expect(() => screen.getByRole("tooltip")).not.toThrowError();
+    expect(() => screen.getByRole("tooltip")).not.toThrow();
     expect(empty).not.toHaveBeenCalled();
 
     const empty2 = vi.fn();
@@ -216,7 +216,7 @@ describe("Tooltip", () => {
     const toggleTooltip = screen.getByRole("button", {
       name: "Toggle Tooltip",
     });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
     expect(button).not.toHaveAttribute("aria-describedby");
 
     await user.click(toggleTooltip);
@@ -244,20 +244,20 @@ describe("Tooltip", () => {
   it("should support rendering the tooltip using display: none instead of temporarily", async () => {
     const user = userEvent.setup();
     rmdRender(<Test tooltip={{ temporary: false }} hoverTimeout={0} />);
-    expect(() => screen.getByRole("tooltip")).not.toThrowError();
+    expect(() => screen.getByRole("tooltip")).not.toThrow();
 
     await user.tab();
     await waitFor(() => {
       expect(() =>
         screen.getByRole("tooltip", { name: "Tooltip" })
-      ).not.toThrowError();
+      ).not.toThrow();
     });
   });
 
   it("should close the tooltip whenever the escape key is pressed", async () => {
     const user = userEvent.setup();
     rmdRender(<Test hoverTimeout={0} />);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.tab();
     const tooltip = await screen.findByRole("tooltip");
@@ -272,7 +272,7 @@ describe("Tooltip", () => {
   it("should close the tooltip whenever the page is scrolled", async () => {
     const user = userEvent.setup();
     rmdRender(<Test hoverTimeout={0} />);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.tab();
     const tooltip = await screen.findByRole("tooltip");
@@ -288,7 +288,7 @@ describe("Tooltip", () => {
     const user = userEvent.setup();
     rmdRender(<Test hoverTimeout={0} />);
     const button = screen.getByRole("button", { name: "Button" });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.tab();
     let tooltip = await screen.findByRole("tooltip");
@@ -300,7 +300,7 @@ describe("Tooltip", () => {
     await waitForElementToBeRemoved(tooltip);
 
     fireEvent.focus(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.tab();
     await user.tab({ shift: true });
@@ -323,7 +323,7 @@ describe("Tooltip", () => {
       document.dispatchEvent(new Event("visibilitychange"));
     });
     fireEvent.focus(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
   });
 
   it("should use the position prop when provided instead of determining a position within the viewport", async () => {
@@ -333,7 +333,7 @@ describe("Tooltip", () => {
     const user = userEvent.setup();
     rmdRender(<Test hoverTimeout={0} position="above" />);
     const button = screen.getByRole("button", { name: "Button" });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     const baseRect = document.body.getBoundingClientRect();
     vi.spyOn(button, "getBoundingClientRect").mockReturnValue({
@@ -367,32 +367,32 @@ describe("Tooltip", () => {
     const user = userEvent.setup();
     rmdRender(<Test hoverTimeout={0} disabled />);
     const button = screen.getByRole("button", { name: "Button" });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.tab();
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.tab();
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.hover(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.unhover(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.touchStart(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     fireEvent.touchEnd(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
   });
 
   it("should automatically attempt to determine the spacing based on the computed style of the spacing custom property", async () => {
     const user = userEvent.setup();
     const { rerender } = rmdRender(<Test hoverTimeout={0} />);
     const button = screen.getByRole("button", { name: "Button" });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     const spacing = "0.825rem";
     const spacingPixels = parseCssLengthUnit({ value: spacing });
@@ -453,7 +453,7 @@ describe("Tooltip", () => {
     await waitForElementToBeRemoved(tooltip);
 
     rerender(<Test dense disableAutoSpacing hoverTimeout={0} />);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
     await user.hover(button);
     tooltip = await screen.findByRole("tooltip");
     await waitFor(() => {
@@ -477,7 +477,7 @@ describe("Tooltip", () => {
 
     const resizeNode = screen.getByTestId("resize-node");
     const button = screen.getByRole("button", { name: "Button" });
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     const rect = resizeNode.getBoundingClientRect();
     vi.spyOn(resizeNode, "scrollWidth", "get").mockReturnValue(300);
@@ -489,16 +489,16 @@ describe("Tooltip", () => {
       .mockReturnValue({ ...rect, width: 300 });
 
     await user.hover(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.unhover(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     offsetWidth.mockReturnValue(150);
     getBoundingClientRect.mockReturnValue({ ...rect, width: 150 });
     await user.hover(button);
     await waitFor(() => {
-      expect(() => screen.getByRole("tooltip")).not.toThrowError();
+      expect(() => screen.getByRole("tooltip")).not.toThrow();
     });
   });
 });

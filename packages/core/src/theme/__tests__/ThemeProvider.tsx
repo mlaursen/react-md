@@ -21,7 +21,7 @@ describe("ThemeProvider", () => {
     // hide React uncaught error message
     error.mockImplementation(() => {});
 
-    expect(() => render(<Test />)).toThrowError(
+    expect(() => render(<Test />)).toThrow(
       "The `ThemeProvider` has not been initialized."
     );
   });

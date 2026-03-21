@@ -166,7 +166,7 @@ describe("useFileUpload", () => {
     expect(fileName).toHaveTextContent("");
     expect(progress).toHaveTextContent("");
     expect(result).toHaveTextContent("");
-    expect(() => screen.getAllByRole("listitem")).toThrowError();
+    expect(() => screen.getAllByRole("listitem")).toThrow();
 
     await userEvent.upload(input, file);
 
@@ -175,14 +175,14 @@ describe("useFileUpload", () => {
     expect(fileName).toHaveTextContent("README.txt");
     expect(progress).toHaveTextContent("0");
     expect(result).toHaveTextContent("");
-    expect(() => screen.getAllByRole("listitem")).toThrowError();
+    expect(() => screen.getAllByRole("listitem")).toThrow();
 
     mockFileReader.triggerProgressEvent(100, 1000);
     expect(status).toHaveTextContent("uploading");
     expect(fileName).toHaveTextContent("README.txt");
     expect(progress).toHaveTextContent("10");
     expect(result).toHaveTextContent("");
-    expect(() => screen.getAllByRole("listitem")).toThrowError();
+    expect(() => screen.getAllByRole("listitem")).toThrow();
 
     const content = "pretend-bytes";
     mockFileReader.triggerLoadEvent(content);
@@ -190,14 +190,14 @@ describe("useFileUpload", () => {
     expect(fileName).toHaveTextContent("README.txt");
     expect(progress).toHaveTextContent("100");
     expect(result).toHaveTextContent(content);
-    expect(() => screen.getAllByRole("listitem")).toThrowError();
+    expect(() => screen.getAllByRole("listitem")).toThrow();
 
     fireEvent.click(screen.getByRole("button", { name: "Reset" }));
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
     expect(progress).toHaveTextContent("");
     expect(result).toHaveTextContent("");
-    expect(() => screen.getAllByRole("listitem")).toThrowError();
+    expect(() => screen.getAllByRole("listitem")).toThrow();
   });
 
   it("should not cause infinite rerenders if the reset function is added to a useEffect's dependency array", () => {
@@ -242,14 +242,14 @@ describe("useFileUpload", () => {
     await userEvent.upload(input, file1);
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).not.toThrowError();
+    ).not.toThrow();
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
 
     fireEvent.click(reset);
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).toThrowError();
+    ).toThrow();
 
     const file2 = createFile("file2.txt", 2000);
     expect(file2.size).toBe(2000);
@@ -257,20 +257,20 @@ describe("useFileUpload", () => {
 
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).not.toThrowError();
+    ).not.toThrow();
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
 
     fireEvent.click(reset);
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).toThrowError();
+    ).toThrow();
 
     const file3 = createFile("file3.txt", 800);
     expect(file3.size).toBe(800);
     await userEvent.upload(input, file3);
 
-    expect(() => screen.getByRole("listitem")).toThrowError();
+    expect(() => screen.getByRole("listitem")).toThrow();
     expect(status).toHaveTextContent("uploading");
     expect(fileName).toHaveTextContent(file3.name);
 
@@ -285,14 +285,14 @@ describe("useFileUpload", () => {
     expect(fileName).toHaveTextContent(file3.name);
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).not.toThrowError();
+    ).not.toThrow();
 
     fireEvent.click(clearErrors);
     expect(status).toHaveTextContent("complete");
     expect(fileName).toHaveTextContent(file3.name);
     expect(() =>
       screen.getByRole("listitem", { name: "FileSizeError" })
-    ).toThrowError();
+    ).toThrow();
   });
 
   it("should generate the correct accept list based on extensions", () => {

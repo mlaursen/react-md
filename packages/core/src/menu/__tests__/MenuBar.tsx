@@ -76,10 +76,10 @@ describe("MenuBar", () => {
     expect(menubar).toMatchSnapshot();
 
     await user.hover(menubarItems[0]);
-    expect(() => screen.getByRole("menu")).toThrowError();
+    expect(() => screen.getByRole("menu")).toThrow();
 
     await user.unhover(menubarItems[0]);
-    expect(() => screen.getByRole("menu")).toThrowError();
+    expect(() => screen.getByRole("menu")).toThrow();
 
     await user.click(menubarItems[1]);
     await waitFor(() => {
@@ -89,17 +89,17 @@ describe("MenuBar", () => {
 
     await user.hover(menubarItems[2]);
     await waitFor(() => {
-      expect(() => screen.getByRole("menu", { name: "Style" })).toThrowError();
+      expect(() => screen.getByRole("menu", { name: "Style" })).toThrow();
     });
     await waitFor(() => {
       expect(() =>
         screen.getByRole("menu", { name: "Text Align" })
-      ).not.toThrowError();
+      ).not.toThrow();
     });
 
     await user.click(document.body);
     await waitFor(() => {
-      expect(() => screen.getByRole("menu")).toThrowError();
+      expect(() => screen.getByRole("menu")).toThrow();
     });
   });
 
@@ -114,9 +114,7 @@ describe("MenuBar", () => {
     // with a lot of tests
     await waitFor(
       () => {
-        expect(() =>
-          screen.getByRole("menu", { name: "Font" })
-        ).not.toThrowError();
+        expect(() => screen.getByRole("menu", { name: "Font" })).not.toThrow();
       },
       { timeout: 10 }
     );
@@ -129,15 +127,13 @@ describe("MenuBar", () => {
     await user.hover(item4);
     await waitFor(
       () => {
-        expect(() =>
-          screen.getByRole("menu", { name: "Size" })
-        ).not.toThrowError();
+        expect(() => screen.getByRole("menu", { name: "Size" })).not.toThrow();
       },
       { timeout: 10 }
     );
     await user.click(document.body);
     await waitFor(() => {
-      expect(() => screen.getByRole("menu")).toThrowError();
+      expect(() => screen.getByRole("menu")).toThrow();
     });
   });
 
@@ -148,38 +144,36 @@ describe("MenuBar", () => {
     const font = screen.getByRole("menuitem", { name: "Font" });
     const style = screen.getByRole("menuitem", { name: "Style" });
     fireEvent.mouseEnter(font);
-    expect(() => screen.getByRole("menu")).toThrowError();
+    expect(() => screen.getByRole("menu")).toThrow();
 
     act(() => {
       vi.advanceTimersByTime(800);
     });
-    expect(() => screen.getByRole("menu")).toThrowError();
+    expect(() => screen.getByRole("menu")).toThrow();
     act(() => {
       vi.advanceTimersByTime(200);
     });
-    expect(() => screen.getByRole("menu")).not.toThrowError();
+    expect(() => screen.getByRole("menu")).not.toThrow();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(() => screen.getByRole("menu")).not.toThrowError();
+    expect(() => screen.getByRole("menu")).not.toThrow();
 
     fireEvent.mouseLeave(font);
     act(() => {
       vi.runAllTimers();
     });
-    expect(() => screen.getByRole("menu")).not.toThrowError();
+    expect(() => screen.getByRole("menu")).not.toThrow();
 
     fireEvent.mouseEnter(style);
-    expect(() => screen.getByRole("menu")).not.toThrowError();
+    expect(() => screen.getByRole("menu")).not.toThrow();
     act(() => {
       vi.runAllTimers();
     });
-    expect(() => screen.getByRole("menu")).not.toThrowError();
+    expect(() => screen.getByRole("menu")).not.toThrow();
     // animates into the new menu
-    expect(() =>
-      screen.getByRole("menuitem", { name: "Bold" })
-    ).not.toThrowError();
+    expect(() => screen.getByRole("menuitem", { name: "Bold" })).not.toThrow();
   });
 
   it("should open nested dropdown menus immediately on hover", async () => {

@@ -82,7 +82,7 @@ describe("LocalStorageColorSchemeProvider", () => {
     vi.spyOn(console, "error").mockImplementation(() => {});
     render(<Test />);
 
-    expect(() => setColorScheme?.("dark")).toThrowError(
+    expect(() => setColorScheme?.("dark")).toThrow(
       "The `ColorSchemeProvider` has not been initialized."
     );
   });

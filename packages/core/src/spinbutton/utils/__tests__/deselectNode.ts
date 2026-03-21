@@ -122,6 +122,6 @@ describe("deselectNode", () => {
 
     const node = document.createElement("div");
     node.textContent = "Hello, world!";
-    expect(() => deselectNode(node)).not.toThrowError();
+    expect(() => deselectNode(node)).not.toThrow();
   });
 });

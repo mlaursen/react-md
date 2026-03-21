@@ -102,7 +102,7 @@ describe("Autocomplete", () => {
     expect(autocomplete).toHaveAttribute("aria-expanded", "false");
     expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
 
-    expect(() => screen.getByRole("listbox")).toThrowError();
+    expect(() => screen.getByRole("listbox")).toThrow();
     await user.click(autocomplete);
 
     const listbox = screen.getByRole("listbox", { name: "Fruits" });
@@ -120,7 +120,7 @@ describe("Autocomplete", () => {
     const autocomplete = screen.getByRole("combobox", { name: "Field" });
     await user.tab();
     expect(autocomplete).toHaveFocus();
-    expect(() => screen.getByRole("listbox")).toThrowError();
+    expect(() => screen.getByRole("listbox")).toThrow();
 
     // the listbox should appear if the user types
     await user.type(autocomplete, "a", { skipClick: true });
@@ -242,7 +242,7 @@ describe("Autocomplete", () => {
   it("should be able to render a CircularProgress bar when the loading prop is enabled", () => {
     const { rerender } = rmdRender(<Autocomplete {...FRUIT_PROPS} />);
 
-    expect(() => screen.getByRole("progressbar")).toThrowError();
+    expect(() => screen.getByRole("progressbar")).toThrow();
 
     rerender(<Autocomplete {...FRUIT_PROPS} loading />);
     const progressbar = screen.getByRole("progressbar", { name: "Loading" });
@@ -323,7 +323,7 @@ describe("Autocomplete", () => {
     await user.click(autocomplete);
     expect(() => {
       screen.getByRole("option", { name: "Orange", selected: true });
-    }).not.toThrowError();
+    }).not.toThrow();
 
     rerender(
       <Autocomplete
@@ -338,7 +338,7 @@ describe("Autocomplete", () => {
     await user.click(autocomplete);
     expect(() => {
       screen.getByRole("option", { name: FRUITS[2], selected: true });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it("should allow for a default value", async () => {
@@ -359,7 +359,7 @@ describe("Autocomplete", () => {
         name: FRUIT_OBJECTS[1].label,
         selected: true,
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it("should not set the default value if a query was provided and the filtering is disabled through the noopAutocompleteFilter", async () => {
@@ -376,7 +376,7 @@ describe("Autocomplete", () => {
     await user.click(autocomplete);
     expect(() => {
       screen.getByRole("option", { selected: true });
-    }).toThrowError();
+    }).toThrow();
   });
 
   it("should allow any value to be typed when the allowAnyValue prop is enabled", async () => {
@@ -450,7 +450,7 @@ describe("Autocomplete", () => {
     options = within(listbox).getAllByRole("option");
     expect(options).toHaveLength(1);
     expect(options[0]).toHaveTextContent('Add: "A new fruit"');
-    expect(() => screen.getByText("No Options")).toThrowError();
+    expect(() => screen.getByText("No Options")).toThrow();
 
     await user.click(options[0]);
     expect(listbox).not.toBeInTheDocument();
@@ -467,7 +467,7 @@ describe("Autocomplete", () => {
     expect(options).toHaveLength(FRUIT_OBJECTS.length);
     expect(() =>
       within(listbox).getByRole("option", { name: 'Add: "A new fruit"' })
-    ).toThrowError();
+    ).toThrow();
 
     await user.type(autocomplete, "[Backspace]t");
     options = within(listbox).getAllByRole("option");
@@ -494,7 +494,7 @@ describe("Autocomplete", () => {
         <Autocomplete {...BASE_PROPS} options={["a", "b", "c"]} />
       );
       unmount();
-    }).not.toThrowError();
+    }).not.toThrow();
     expect(() => {
       const { unmount } = rmdRender(
         <Autocomplete
@@ -504,7 +504,7 @@ describe("Autocomplete", () => {
         />
       );
       unmount();
-    }).not.toThrowError();
+    }).not.toThrow();
     expect(() => {
       const { unmount } = rmdRender(
         <Autocomplete
@@ -514,7 +514,7 @@ describe("Autocomplete", () => {
         />
       );
       unmount();
-    }).not.toThrowError();
+    }).not.toThrow();
 
     expect(() => {
       const { unmount } = rmdRender(
@@ -530,7 +530,7 @@ describe("Autocomplete", () => {
         />
       );
       unmount();
-    }).toThrowError();
+    }).toThrow();
     error.mockRestore();
   });
 
@@ -561,14 +561,14 @@ describe("Autocomplete", () => {
 
       await user.tab();
       expect(autocomplete).toHaveFocus();
-      expect(() => screen.getByRole("listbox")).toThrowError();
+      expect(() => screen.getByRole("listbox")).toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "false");
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
 
       await user.keyboard("[ArrowDown]");
       expect(() =>
         screen.getByRole("listbox", { name: "Fruits" })
-      ).not.toThrowError();
+      ).not.toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "true");
       expect(autocomplete).toHaveAttribute(
         "aria-activedescendant",
@@ -585,14 +585,14 @@ describe("Autocomplete", () => {
 
       await user.tab();
       expect(autocomplete).toHaveFocus();
-      expect(() => screen.getByRole("listbox")).toThrowError();
+      expect(() => screen.getByRole("listbox")).toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "false");
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
 
       await user.keyboard("{Alt>}[ArrowDown]{/Alt}");
       expect(() =>
         screen.getByRole("listbox", { name: "Fruits" })
-      ).not.toThrowError();
+      ).not.toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "true");
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
     });
@@ -606,14 +606,14 @@ describe("Autocomplete", () => {
 
       await user.tab();
       expect(autocomplete).toHaveFocus();
-      expect(() => screen.getByRole("listbox")).toThrowError();
+      expect(() => screen.getByRole("listbox")).toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "false");
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
 
       await user.keyboard("[ArrowUp]");
       expect(() =>
         screen.getByRole("listbox", { name: "Fruits" })
-      ).not.toThrowError();
+      ).not.toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "true");
       expect(autocomplete).toHaveAttribute(
         "aria-activedescendant",
@@ -736,7 +736,7 @@ describe("Autocomplete", () => {
 
       await expect(
         user.click(screen.getByRole("button", { name: "Options" }))
-      ).rejects.toThrowError(ERROR_MESSAGE);
+      ).rejects.toThrow(ERROR_MESSAGE);
 
       rerender(
         // @ts-expect-error
@@ -747,7 +747,7 @@ describe("Autocomplete", () => {
       );
       await expect(
         user.click(screen.getByRole("button", { name: "Options" }))
-      ).rejects.toThrowError(ERROR_MESSAGE);
+      ).rejects.toThrow(ERROR_MESSAGE);
       rerender(
         <Autocomplete
           listboxLabel="Options"
@@ -757,7 +757,7 @@ describe("Autocomplete", () => {
       );
       await expect(
         user.click(screen.getByRole("button", { name: "Options" }))
-      ).rejects.toThrowError(ERROR_MESSAGE);
+      ).rejects.toThrow(ERROR_MESSAGE);
 
       error.mockRestore();
     });
@@ -777,7 +777,7 @@ describe("Autocomplete", () => {
             listboxLabel="Label"
           />
         )
-      ).not.toThrowError();
+      ).not.toThrow();
 
       expect(() =>
         rmdRender(
@@ -802,7 +802,7 @@ describe("Autocomplete", () => {
             }}
           />
         )
-      ).not.toThrowError();
+      ).not.toThrow();
     });
   });
 
@@ -914,9 +914,7 @@ describe("Autocomplete", () => {
       );
 
       const autocomplete = screen.getByRole("combobox", { name: "Field" });
-      expect(() =>
-        screen.getByRole("button", { name: "Apple" })
-      ).toThrowError();
+      expect(() => screen.getByRole("button", { name: "Apple" })).toThrow();
       await user.click(autocomplete);
       const listbox = screen.getByRole("listbox", { name: "Fruits" });
       expect(listbox).toHaveAttribute("aria-multiselectable", "true");
@@ -982,12 +980,8 @@ describe("Autocomplete", () => {
       );
 
       await user.click(screen.getByRole("combobox", { name: "Field" }));
-      expect(() =>
-        screen.getByRole("option", { name: "Apple" })
-      ).toThrowError();
-      expect(() =>
-        screen.getByRole("option", { name: "Orange" })
-      ).toThrowError();
+      expect(() => screen.getByRole("option", { name: "Apple" })).toThrow();
+      expect(() => screen.getByRole("option", { name: "Orange" })).toThrow();
     });
   });
 
@@ -995,14 +989,10 @@ describe("Autocomplete", () => {
     it("should allow the clear button to be removed", () => {
       const { rerender } = rmdRender(<Autocomplete {...FRUIT_PROPS} />);
 
-      expect(() =>
-        screen.getByRole("button", { name: "Clear" })
-      ).not.toThrowError();
+      expect(() => screen.getByRole("button", { name: "Clear" })).not.toThrow();
 
       rerender(<Autocomplete {...FRUIT_PROPS} disableClearButton />);
-      expect(() =>
-        screen.getByRole("button", { name: "Clear" })
-      ).toThrowError();
+      expect(() => screen.getByRole("button", { name: "Clear" })).toThrow();
     });
 
     it("should pass through the visibility prop", () => {
@@ -1054,12 +1044,10 @@ describe("Autocomplete", () => {
 
       expect(() =>
         screen.getByRole("button", { name: "Fruits" })
-      ).not.toThrowError();
+      ).not.toThrow();
 
       rerender(<Autocomplete {...FRUIT_PROPS} disableDropdownButton />);
-      expect(() =>
-        screen.getByRole("button", { name: "Fruits" })
-      ).toThrowError();
+      expect(() => screen.getByRole("button", { name: "Fruits" })).toThrow();
     });
 
     it("should allow the dropdown button to be customized", async () => {

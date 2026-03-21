@@ -17,7 +17,7 @@ describe("TreeItemExpander", () => {
           isLeafNode={false}
         />
       )
-    ).toThrowError("Cannot find a parent Tree component");
+    ).toThrow("Cannot find a parent Tree component");
 
     error.mockRestore();
   });

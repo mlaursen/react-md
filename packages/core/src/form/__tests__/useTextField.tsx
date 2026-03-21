@@ -150,13 +150,13 @@ describe("useTextField", () => {
         disableMaxLength: true,
       });
 
-      expect(() => screen.getByTestId("error-icon")).toThrowError();
+      expect(() => screen.getByTestId("error-icon")).toThrow();
 
       await user.type(field, "invalid");
-      expect(() => screen.getByTestId("error-icon")).not.toThrowError();
+      expect(() => screen.getByTestId("error-icon")).not.toThrow();
 
       await user.clear(field);
-      expect(() => screen.getByTestId("error-icon")).toThrowError();
+      expect(() => screen.getByTestId("error-icon")).toThrow();
     });
 
     it("should allow for a custom isErrored function", async () => {
@@ -233,9 +233,9 @@ describe("useTextField", () => {
         disableMaxLength: true,
       });
 
-      expect(() => screen.getByTestId("right-addon")).not.toThrowError();
-      expect(() => screen.getByTestId("wrapper")).toThrowError();
-      expect(() => screen.getByTestId("error-icon")).toThrowError();
+      expect(() => screen.getByTestId("right-addon")).not.toThrow();
+      expect(() => screen.getByTestId("wrapper")).toThrow();
+      expect(() => screen.getByTestId("error-icon")).toThrow();
       expect(getErrorIcon).toHaveBeenCalledWith({
         error: false,
         errorIcon,
@@ -243,9 +243,9 @@ describe("useTextField", () => {
       });
 
       await user.type(field, "inva");
-      expect(() => screen.getByTestId("right-addon")).toThrowError();
-      expect(() => screen.getByTestId("wrapper")).not.toThrowError();
-      expect(() => screen.getByTestId("error-icon")).not.toThrowError();
+      expect(() => screen.getByTestId("right-addon")).toThrow();
+      expect(() => screen.getByTestId("wrapper")).not.toThrow();
+      expect(() => screen.getByTestId("error-icon")).not.toThrow();
       expect(getErrorIcon).toHaveBeenCalledWith({
         error: true,
         errorIcon,
@@ -287,10 +287,10 @@ describe("useTextField", () => {
   describe("counter", () => {
     it("should be able to display an inline counter when the maxLength and counter options are provided", async () => {
       const { user, rerender, field, message, container } = setup();
-      expect(() => screen.getByTestId("counter")).toThrowError();
+      expect(() => screen.getByTestId("counter")).toThrow();
 
       rerender({ maxLength: 20 });
-      expect(() => screen.getByTestId("counter")).toThrowError();
+      expect(() => screen.getByTestId("counter")).toThrow();
       expect(field).toHaveAttribute("maxLength", "20");
 
       rerender({ counter: true, maxLength: 20 });

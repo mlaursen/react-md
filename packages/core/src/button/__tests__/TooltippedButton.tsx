@@ -46,10 +46,10 @@ describe("TooltippedButton", () => {
     const button = screen.getByRole("button", { name: "Favorite" });
     await user.hover(button);
 
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     await user.unhover(button);
-    expect(() => screen.getByRole("tooltip")).toThrowError();
+    expect(() => screen.getByRole("tooltip")).toThrow();
 
     rerender(<TooltippedButton {...props} tooltip="Tooltip" />);
     await user.hover(button);

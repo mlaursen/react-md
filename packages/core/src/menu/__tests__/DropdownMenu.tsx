@@ -396,7 +396,7 @@ describe("DropdownMenu", () => {
     await waitFor(() => {
       expect(menu).not.toHaveClass("rmd-scale-transition--enter");
     });
-    expect(() => screen.getByRole("dialog")).toThrowError();
+    expect(() => screen.getByRole("dialog")).toThrow();
 
     await user.keyboard("{Escape}");
     await waitFor(() => {
@@ -423,7 +423,7 @@ describe("DropdownMenu", () => {
     });
     expect(() =>
       within(sheet).getByRole("menu", { name: "Dropdown" })
-    ).not.toThrowError();
+    ).not.toThrow();
     menu = await screen.findByRole("menu", { name: "Dropdown" });
     expect(sheet).toMatchSnapshot();
     expect(sheet).toHaveFocus();
@@ -630,7 +630,7 @@ describe("DropdownMenu", () => {
 
     await user.keyboard("{Tab}");
     await waitFor(() => {
-      expect(() => screen.getByRole("menu")).toThrowError();
+      expect(() => screen.getByRole("menu")).toThrow();
     });
     expect(screen.getByRole("button", { name: "Dropdown" })).toHaveFocus();
   });

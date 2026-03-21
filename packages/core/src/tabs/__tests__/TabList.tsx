@@ -628,7 +628,7 @@ describe("TabList", () => {
       const back = screen.getByRole("button", { name: "back" });
       const forward = screen.getByRole("button", { name: "forward" });
 
-      expect(() => screen.getByRole("tooltip")).toThrowError();
+      expect(() => screen.getByRole("tooltip")).toThrow();
 
       fireEvent.mouseEnter(back);
       await waitFor(() => {
@@ -639,7 +639,7 @@ describe("TabList", () => {
 
       fireEvent.mouseLeave(back);
       await waitFor(() => {
-        expect(() => screen.getByRole("tooltip")).toThrowError();
+        expect(() => screen.getByRole("tooltip")).toThrow();
       });
 
       fireEvent.mouseEnter(forward);
@@ -651,7 +651,7 @@ describe("TabList", () => {
 
       fireEvent.mouseLeave(forward);
       await waitFor(() => {
-        expect(() => screen.getByRole("tooltip")).toThrowError();
+        expect(() => screen.getByRole("tooltip")).toThrow();
       });
     });
 
@@ -660,10 +660,8 @@ describe("TabList", () => {
       rmdRender(<Test scrollButtons="auto" />);
 
       const tablist = screen.getByTestId("tablist");
-      expect(() => screen.getByRole("button", { name: "back" })).toThrowError();
-      expect(() =>
-        screen.getByRole("button", { name: "forward" })
-      ).toThrowError();
+      expect(() => screen.getByRole("button", { name: "back" })).toThrow();
+      expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
 
       vi.spyOn(tablist, "offsetWidth", "get").mockReturnValue(300);
       const scrollWidth = vi
@@ -673,21 +671,17 @@ describe("TabList", () => {
       act(() => {
         observer.resizeElement(tablist);
       });
-      expect(() => screen.getByRole("button", { name: "back" })).toThrowError();
-      expect(() =>
-        screen.getByRole("button", { name: "forward" })
-      ).toThrowError();
+      expect(() => screen.getByRole("button", { name: "back" })).toThrow();
+      expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
 
       scrollWidth.mockReturnValue(400);
       act(() => {
         observer.resizeElement(tablist);
       });
-      expect(() =>
-        screen.getByRole("button", { name: "back" })
-      ).not.toThrowError();
+      expect(() => screen.getByRole("button", { name: "back" })).not.toThrow();
       expect(() =>
         screen.getByRole("button", { name: "forward" })
-      ).not.toThrowError();
+      ).not.toThrow();
     });
 
     it('should allow the scroll buttons to be dynamically added only if there is overflow when not a phone by setting the scrollButtons to "auto-tablet-or-above"', () => {
@@ -696,10 +690,8 @@ describe("TabList", () => {
       rmdRender(<Test scrollButtons="auto-tablet-or-above" />);
 
       const tablist = screen.getByTestId("tablist");
-      expect(() => screen.getByRole("button", { name: "back" })).toThrowError();
-      expect(() =>
-        screen.getByRole("button", { name: "forward" })
-      ).toThrowError();
+      expect(() => screen.getByRole("button", { name: "back" })).toThrow();
+      expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
 
       vi.spyOn(tablist, "offsetWidth", "get").mockReturnValue(300);
       const scrollWidth = vi
@@ -709,19 +701,15 @@ describe("TabList", () => {
       act(() => {
         observer.resizeElement(tablist);
       });
-      expect(() => screen.getByRole("button", { name: "back" })).toThrowError();
-      expect(() =>
-        screen.getByRole("button", { name: "forward" })
-      ).toThrowError();
+      expect(() => screen.getByRole("button", { name: "back" })).toThrow();
+      expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
 
       scrollWidth.mockReturnValue(400);
       act(() => {
         observer.resizeElement(tablist);
       });
-      expect(() => screen.getByRole("button", { name: "back" })).toThrowError();
-      expect(() =>
-        screen.getByRole("button", { name: "forward" })
-      ).toThrowError();
+      expect(() => screen.getByRole("button", { name: "back" })).toThrow();
+      expect(() => screen.getByRole("button", { name: "forward" })).toThrow();
     });
   });
 });

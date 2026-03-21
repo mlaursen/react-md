@@ -95,8 +95,8 @@ describe("useTransition", () => {
 
       expect(() =>
         screen.getByText(`The current stage is: "exited"`)
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
       expect(stages).toEqual(["exited"]);
 
       act(() => {
@@ -104,15 +104,15 @@ describe("useTransition", () => {
       });
       expect(() =>
         screen.getByText(`The current stage is: "exited"`)
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
       fireEvent.click(toggle);
       expect(stages).toEqual(["exited", "enter", "entering"]);
       expect(() =>
         screen.getByText(`The current stage is: "entering"`)
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
       act(() => {
         vi.runAllTimers();
@@ -121,8 +121,8 @@ describe("useTransition", () => {
       expect(stages).toEqual(["exited", "enter", "entering", "entered"]);
       expect(() =>
         screen.getByText(`The current stage is: "entered"`)
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
       // Exit flow
       fireEvent.click(toggle);
@@ -136,8 +136,8 @@ describe("useTransition", () => {
       ]);
       expect(() =>
         screen.getByText(`The current stage is: "exiting"`)
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
       act(() => {
         vi.runAllTimers();
@@ -153,31 +153,31 @@ describe("useTransition", () => {
       ]);
       expect(() =>
         screen.getByText(`The current stage is: "exited"`)
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
     });
 
     it("should mount and unmount the component if the temporary option is enabled", () => {
       render(<Test temporary />);
 
       const toggle = screen.getByRole("button");
-      expect(() => screen.getByText(/^The current stage/)).toThrowError();
+      expect(() => screen.getByText(/^The current stage/)).toThrow();
 
       fireEvent.click(toggle);
-      expect(() => screen.getByText(/^The current stage/)).not.toThrowError();
+      expect(() => screen.getByText(/^The current stage/)).not.toThrow();
 
       act(() => {
         vi.runAllTimers();
       });
-      expect(() => screen.getByText(/^The current stage/)).not.toThrowError();
+      expect(() => screen.getByText(/^The current stage/)).not.toThrow();
 
       fireEvent.click(toggle);
-      expect(() => screen.getByText(/^The current stage/)).not.toThrowError();
+      expect(() => screen.getByText(/^The current stage/)).not.toThrow();
 
       act(() => {
         vi.runAllTimers();
       });
-      expect(() => screen.getByText(/^The current stage/)).toThrowError();
+      expect(() => screen.getByText(/^The current stage/)).toThrow();
     });
 
     it("should trigger the callbacks at each stage", () => {
@@ -247,80 +247,80 @@ describe("useTransition", () => {
       const { rerender } = render(<Test appear />);
       expect(() =>
         screen.getByText('The current stage is: "exited"')
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
       act(() => {
         vi.runAllTimers();
       });
       expect(() =>
         screen.getByText('The current stage is: "exited"')
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
       rerender(<Test appear defaultTransitionIn key="new-key" />);
       expect(() =>
         screen.getByText('The current stage is: "entering"')
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: true")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
       act(() => {
         vi.runAllTimers();
       });
       expect(() =>
         screen.getByText('The current stage is: "entered"')
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: true")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
       fireEvent.click(screen.getByRole("button"));
       expect(() =>
         screen.getByText('The current stage is: "exiting"')
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
       act(() => {
         vi.runAllTimers();
       });
       expect(() =>
         screen.getByText('The current stage is: "exited"')
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
     });
 
     it("should handle temporary appear transitions correctly", () => {
       const { rerender } = render(<Test appear temporary />);
-      expect(() => screen.getByText(/^The current stage is/)).toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      expect(() => screen.getByText(/^The current stage is/)).toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
       act(() => {
         vi.runAllTimers();
       });
-      expect(() => screen.getByText(/^The current stage is/)).toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      expect(() => screen.getByText(/^The current stage is/)).toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
       rerender(<Test appear temporary defaultTransitionIn key="new-key" />);
       expect(() =>
         screen.getByText('The current stage is: "entering"')
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: true")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
       act(() => {
         vi.runAllTimers();
       });
       expect(() =>
         screen.getByText('The current stage is: "entered"')
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: true")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
       fireEvent.click(screen.getByRole("button"));
       expect(() =>
         screen.getByText('The current stage is: "exiting"')
-      ).not.toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      ).not.toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
       act(() => {
         vi.runAllTimers();
       });
-      expect(() => screen.getByText(/^The current stage is/)).toThrowError();
-      expect(() => screen.getByText("Appearing: false")).not.toThrowError();
+      expect(() => screen.getByText(/^The current stage is/)).toThrow();
+      expect(() => screen.getByText("Appearing: false")).not.toThrow();
     });
 
     it("should access the element's scrollTop attribute to trigger a reflow when the reflow option is enabled and the stage is not entered or exited", () => {
@@ -353,14 +353,14 @@ describe("useTransition", () => {
 
       expect(() =>
         screen.getByText(`The current stage is: "exited"`)
-      ).not.toThrowError();
+      ).not.toThrow();
       expect(stages).toEqual(["exited"]);
 
       fireEvent.click(toggle);
       expect(stages).toEqual(["exited", "enter", "entering"]);
       expect(() =>
         screen.getByText(`The current stage is: "entering"`)
-      ).not.toThrowError();
+      ).not.toThrow();
 
       act(() => {
         vi.advanceTimersByTime(300);
@@ -368,7 +368,7 @@ describe("useTransition", () => {
       expect(stages).toEqual(["exited", "enter", "entering"]);
       expect(() =>
         screen.getByText(`The current stage is: "entering"`)
-      ).not.toThrowError();
+      ).not.toThrow();
 
       fireEvent.click(toggle);
       expect(stages).toEqual([
@@ -380,7 +380,7 @@ describe("useTransition", () => {
       ]);
       expect(() =>
         screen.getByText(`The current stage is: "exiting"`)
-      ).not.toThrowError();
+      ).not.toThrow();
 
       act(() => {
         vi.runAllTimers();
@@ -395,7 +395,7 @@ describe("useTransition", () => {
       ]);
       expect(() =>
         screen.getByText(`The current stage is: "exited"`)
-      ).not.toThrowError();
+      ).not.toThrow();
 
       fireEvent.click(toggle);
       act(() => {
@@ -426,7 +426,7 @@ describe("useTransition", () => {
       ]);
       expect(() =>
         screen.getByText(`The current stage is: "entered"`)
-      ).not.toThrowError();
+      ).not.toThrow();
     });
   });
 

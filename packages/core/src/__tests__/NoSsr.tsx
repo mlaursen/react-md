@@ -21,7 +21,7 @@ describe("NoSsr", () => {
       </NoSsr>
     );
 
-    expect(() => screen.getByText("Some Text")).not.toThrowError();
+    expect(() => screen.getByText("Some Text")).not.toThrow();
   });
 
   it("should always render the children if ssr mode has not been initialized", () => {
@@ -33,7 +33,7 @@ describe("NoSsr", () => {
       </SsrProvider>
     );
 
-    expect(() => screen.getByText("Some Text")).not.toThrowError();
+    expect(() => screen.getByText("Some Text")).not.toThrow();
   });
 
   // I don't really know how to test this part

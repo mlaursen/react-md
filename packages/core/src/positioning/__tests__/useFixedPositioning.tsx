@@ -76,11 +76,11 @@ describe("useFixedPositioning", () => {
     const getElement = (): HTMLElement => screen.getByTestId("element");
     const button = screen.getByRole("button");
 
-    expect(getElement).toThrowError();
+    expect(getElement).toThrow();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(button);
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     act(() => {
@@ -89,13 +89,13 @@ describe("useFixedPositioning", () => {
     expect(container).toMatchSnapshot();
 
     fireEvent.click(button);
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).toThrowError();
+    expect(getElement).toThrow();
     expect(container).toMatchSnapshot();
   });
 

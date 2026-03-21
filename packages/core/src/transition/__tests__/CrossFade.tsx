@@ -63,13 +63,13 @@ describe("CrossFade", () => {
     );
     const getElement = (): HTMLElement => screen.getByTestId("element");
 
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     rerender(
@@ -77,13 +77,13 @@ describe("CrossFade", () => {
         <div data-testid="element">This is some new content.</div>
       </CrossFade>
     );
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
   });
 
@@ -92,23 +92,23 @@ describe("CrossFade", () => {
     const getElement = (): HTMLElement => screen.getByTestId("element");
     const toggle = screen.getByRole("button");
 
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(getElement().className).toBe("");
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     // no transition for exit
     fireEvent.click(toggle);
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(getElement().className).toBe("");
     expect(container).toMatchSnapshot();
 
@@ -116,7 +116,7 @@ describe("CrossFade", () => {
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(getElement().className).toBe("");
     expect(container).toMatchSnapshot();
   });
@@ -126,22 +126,22 @@ describe("CrossFade", () => {
     const getElement = (): HTMLElement => screen.getByTestId("element");
     const toggle = screen.getByRole("button");
 
-    expect(getElement).toThrowError();
+    expect(getElement).toThrow();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     // no transition for exit
     fireEvent.click(toggle);
-    expect(getElement).toThrowError();
+    expect(getElement).toThrow();
   });
 
   it("should correctly merge the className prop", () => {
@@ -149,25 +149,25 @@ describe("CrossFade", () => {
     const getElement = (): HTMLElement => screen.getByTestId("element");
     const toggle = screen.getByRole("button");
 
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(getElement().className).toBe("custom-class");
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(getElement()).toHaveClass("custom-class");
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(getElement().className).toBe("custom-class");
     expect(container).toMatchSnapshot();
 
     // no transition for exit
     fireEvent.click(toggle);
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(getElement().className).toBe("custom-class");
     expect(container).toMatchSnapshot();
 
@@ -175,7 +175,7 @@ describe("CrossFade", () => {
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(getElement().className).toBe("custom-class");
     expect(container).toMatchSnapshot();
   });

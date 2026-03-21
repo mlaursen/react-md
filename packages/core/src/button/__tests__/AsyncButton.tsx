@@ -55,14 +55,14 @@ describe("AsyncButton", () => {
     );
     const button = screen.getByRole("button", { name: "Button" });
     expect(button).not.toHaveAttribute("aria-disabled");
-    expect(() => within(button).getByRole("progressbar")).toThrowError();
+    expect(() => within(button).getByRole("progressbar")).toThrow();
     expect(button).toMatchSnapshot();
 
     await user.click(button);
 
     expect(button).toHaveAttribute("aria-disabled", "true");
     expect(button).toBeEnabled();
-    expect(() => within(button).getByRole("progressbar")).not.toThrowError();
+    expect(() => within(button).getByRole("progressbar")).not.toThrow();
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(button).toMatchSnapshot();
 
@@ -76,7 +76,7 @@ describe("AsyncButton", () => {
     await waitFor(() => {
       expect(button).toBeEnabled();
     });
-    expect(() => within(button).getByRole("progressbar")).toThrowError();
+    expect(() => within(button).getByRole("progressbar")).toThrow();
 
     await user.click(button);
     await user.click(button);
@@ -99,7 +99,7 @@ describe("AsyncButton", () => {
 
     expect(button).not.toHaveAttribute("aria-disabled");
     expect(button).toBeEnabled();
-    expect(() => within(button).getByRole("progressbar")).toThrowError();
+    expect(() => within(button).getByRole("progressbar")).toThrow();
 
     const onClick = vi.fn(() => {});
     rerender(<AsyncButton onClick={onClick}>Button</AsyncButton>);
@@ -108,16 +108,16 @@ describe("AsyncButton", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(button).not.toHaveAttribute("aria-disabled");
     expect(button).toBeEnabled();
-    expect(() => within(button).getByRole("progressbar")).toThrowError();
+    expect(() => within(button).getByRole("progressbar")).toThrow();
   });
 
   it("should display the loading spinner if the loading prop is true", () => {
     const { rerender } = rmdRender(<AsyncButton loading>Button</AsyncButton>);
     const button = screen.getByRole("button", { name: "Button" });
-    expect(() => within(button).getByRole("progressbar")).not.toThrowError();
+    expect(() => within(button).getByRole("progressbar")).not.toThrow();
 
     rerender(<AsyncButton loading={false}>Button</AsyncButton>);
-    expect(() => within(button).getByRole("progressbar")).toThrowError();
+    expect(() => within(button).getByRole("progressbar")).toThrow();
   });
 
   it("should should be able to render a linear progress bar above or below the content", () => {
@@ -170,13 +170,13 @@ describe("AsyncButton", () => {
     const { rerender } = rmdRender(<AsyncButton {...props} />);
 
     const button = screen.getByRole("button", { name: "Button" });
-    expect(() => screen.getByText("Button")).not.toThrowError();
-    expect(() => screen.getByText("Loading...")).toThrowError();
+    expect(() => screen.getByText("Button")).not.toThrow();
+    expect(() => screen.getByText("Loading...")).toThrow();
     expect(button).toMatchSnapshot();
 
     rerender(<AsyncButton loading {...props} />);
-    expect(() => screen.getByText("Button")).toThrowError();
-    expect(() => screen.getByText("Loading...")).not.toThrowError();
+    expect(() => screen.getByText("Button")).toThrow();
+    expect(() => screen.getByText("Loading...")).not.toThrow();
     expect(button).toMatchSnapshot();
   });
 

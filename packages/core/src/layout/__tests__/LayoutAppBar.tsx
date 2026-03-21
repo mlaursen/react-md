@@ -103,7 +103,7 @@ describe("LayoutAppBar", () => {
 
   it("should throw an if there is no main element since it renders the SkipToMainContent component", () => {
     const error = vi.spyOn(console, "error").mockImplementation(() => {});
-    expect(() => rmdRender(<LayoutAppBar />)).toThrowError();
+    expect(() => rmdRender(<LayoutAppBar />)).toThrow();
     error.mockRestore();
   });
 

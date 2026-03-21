@@ -101,7 +101,7 @@ describe("TextArea", () => {
         messageContainerProps={{ "data-testid": "message-container" }}
       />
     );
-    expect(() => screen.getByTestId("message-container")).toThrowError();
+    expect(() => screen.getByTestId("message-container")).toThrow();
 
     rerender(
       <TextArea
@@ -167,8 +167,8 @@ describe("TextArea", () => {
     );
 
     const container = screen.getByTestId("container");
-    expect(() => screen.getByTestId("favorite")).not.toThrowError();
-    expect(() => screen.getByTestId("close")).not.toThrowError();
+    expect(() => screen.getByTestId("favorite")).not.toThrow();
+    expect(() => screen.getByTestId("close")).not.toThrow();
     expect(container).toMatchSnapshot();
   });
 
@@ -220,23 +220,23 @@ describe("TextArea", () => {
     const getResizeContainer = () => screen.getByTestId("resize-container");
 
     const container = screen.getByTestId("container");
-    expect(getResizeContainer).toThrowError();
+    expect(getResizeContainer).toThrow();
     expect(container).toMatchSnapshot();
 
     rerender(<TextArea {...props} resize="vertical" />);
-    expect(getResizeContainer).toThrowError();
+    expect(getResizeContainer).toThrow();
     expect(container).toMatchSnapshot();
 
     rerender(<TextArea {...props} resize="horizontal" />);
-    expect(getResizeContainer).toThrowError();
+    expect(getResizeContainer).toThrow();
     expect(container).toMatchSnapshot();
 
     rerender(<TextArea {...props} resize="both" />);
-    expect(getResizeContainer).toThrowError();
+    expect(getResizeContainer).toThrow();
     expect(container).toMatchSnapshot();
 
     rerender(<TextArea {...props} resize="auto" />);
-    expect(getResizeContainer).not.toThrowError();
+    expect(getResizeContainer).not.toThrow();
     expect(container).toMatchSnapshot();
   });
 

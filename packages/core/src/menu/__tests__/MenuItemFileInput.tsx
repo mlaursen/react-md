@@ -58,7 +58,7 @@ describe("MenuItemFileInput", () => {
       </MenuItemFileInput>
     );
     expect(menuItem.querySelector(".rmd-icon")).toBe(null);
-    expect(() => screen.getByTestId("icon")).not.toThrowError();
+    expect(() => screen.getByTestId("icon")).not.toThrow();
     expect(menuItem).toMatchSnapshot();
   });
 

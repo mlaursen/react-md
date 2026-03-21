@@ -73,51 +73,51 @@ describe("CSSTransition", () => {
     const getElement = (): HTMLElement => screen.getByTestId("element");
     const toggle = screen.getByRole("button");
 
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     rerender(<Test temporary />);
-    expect(getElement).toThrowError();
+    expect(getElement).toThrow();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     fireEvent.click(toggle);
-    expect(getElement).not.toThrowError();
+    expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();
 
     act(() => {
       vi.runAllTimers();
     });
-    expect(getElement).toThrowError();
+    expect(getElement).toThrow();
     expect(container).toMatchSnapshot();
   });
 
