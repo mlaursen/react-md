@@ -220,11 +220,10 @@ exports[`Select > should apply the correct styling, HTMLAttributes, and allow a 
     class="rmd-box rmd-box--gap rmd-selected-option rmd-text-field"
   />
   <input
-    aria-hidden="true"
     class="rmd-select rmd-select--outline rmd-text-field"
     id="select-value-_r_1_"
+    inert=""
     placeholder=" "
-    tabindex="-1"
     type="text"
   />
   <span
@@ -263,11 +262,10 @@ exports[`Select > should apply the correct styling, HTMLAttributes, and allow a 
     class="rmd-box rmd-box--gap rmd-selected-option rmd-text-field"
   />
   <input
-    aria-hidden="true"
     class="rmd-select rmd-select--outline rmd-text-field"
     id="select-value-_r_1_"
+    inert=""
     placeholder=" "
-    tabindex="-1"
     type="text"
   />
   <span
