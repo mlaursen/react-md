@@ -1078,8 +1078,8 @@ importers:
         specifier: ^10.2.4
         version: 10.2.4
       react-md:
-        specifier: '>=7.0.2'
-        version: 7.0.2(@jest/globals@30.3.0)(@jest/types@30.3.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.1.0(@types/node@24.12.0)(jsdom@28.1.0)(vite@7.3.1(@types/node@24.12.0)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))
+        specifier: '>=7.0.3'
+        version: 7.0.3(@jest/globals@30.3.0)(@jest/types@30.3.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.1.0(@types/node@24.12.0)(jsdom@28.1.0)(vite@7.3.1(@types/node@24.12.0)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))
     devDependencies:
       '@react-md/core':
         specifier: workspace:*
@@ -2983,8 +2983,8 @@ packages:
     peerDependencies:
       prettier: '*'
 
-  '@react-md/core@7.0.2':
-    resolution: {integrity: sha512-aMvU8pgwrsbj+S/oCvOI899CT2jGQOZj19NlmDIXFT/R7Leuk9+d6dA+MyHsX16VRVVUgAXEI2uLmEa4LW7s9Q==}
+  '@react-md/core@7.0.3':
+    resolution: {integrity: sha512-jNvyY+L6n0bktmVs7pNdGcf6ozq9yyDZiib5dY/5cMUf3PbaaDaOlhThoVgD4NflPktS/Kw8+eh/7FkU+kUnIA==}
     peerDependencies:
       '@jest/globals': '>= 29 <=31'
       '@jest/types': '>= 29 <=31'
@@ -7661,8 +7661,8 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
-  react-md@7.0.2:
-    resolution: {integrity: sha512-n35KZqybmcnzG3PiZLDW/K8M1DVBGVMJjejchTwZVqb8puGa77nn9ls7Hi15oFZfjF1tM+QhAPud3vBOyHJyzg==}
+  react-md@7.0.3:
+    resolution: {integrity: sha512-yJtQ5XJC6hoyTjyVQdqrw61NFOSkDGll2VqN03aGDpWJYb+BT90j5NsPgbzO06Hl2LDTVOo+G6NJCrIfaoSNqQ==}
     peerDependencies:
       '@jest/globals': '>= 29 <=31'
       '@jest/types': '>= 29 <=31'
@@ -11511,7 +11511,7 @@ snapshots:
       make-synchronized: 0.8.0
       prettier: 3.8.1
 
-  '@react-md/core@7.0.2(@jest/globals@30.3.0)(@jest/types@30.3.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.1.0(@types/node@24.12.0)(jsdom@28.1.0)(vite@7.3.1(@types/node@24.12.0)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))':
+  '@react-md/core@7.0.3(@jest/globals@30.3.0)(@jest/types@30.3.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.1.0(@types/node@24.12.0)(jsdom@28.1.0)(vite@7.3.1(@types/node@24.12.0)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))':
     dependencies:
       cnbuilder: 3.1.0
       nanoid: 5.1.7
@@ -16982,9 +16982,9 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-md@7.0.2(@jest/globals@30.3.0)(@jest/types@30.3.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.1.0(@types/node@24.12.0)(jsdom@28.1.0)(vite@7.3.1(@types/node@24.12.0)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))):
+  react-md@7.0.3(@jest/globals@30.3.0)(@jest/types@30.3.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.1.0(@types/node@24.12.0)(jsdom@28.1.0)(vite@7.3.1(@types/node@24.12.0)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))):
     dependencies:
-      '@react-md/core': 7.0.2(@jest/globals@30.3.0)(@jest/types@30.3.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.1.0(@types/node@24.12.0)(jsdom@28.1.0)(vite@7.3.1(@types/node@24.12.0)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))
+      '@react-md/core': 7.0.3(@jest/globals@30.3.0)(@jest/types@30.3.0)(@testing-library/dom@10.4.1)(@testing-library/jest-dom@6.9.1)(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@testing-library/user-event@14.6.1(@testing-library/dom@10.4.1))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.1.0(@types/node@24.12.0)(jsdom@28.1.0)(vite@7.3.1(@types/node@24.12.0)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3)))
     optionalDependencies:
       '@jest/globals': 30.3.0
       '@jest/types': 30.3.0
