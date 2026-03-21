@@ -1,5 +1,13 @@
 # react-md
 
+## 7.0.3
+
+### Patch Changes
+
+- 0d1e580: Fixed the base react-md package to include missing exports
+- Updated dependencies [ed88576]
+  - @react-md/core@7.0.3
+
 ## 7.0.2
 
 ### Patch Changes

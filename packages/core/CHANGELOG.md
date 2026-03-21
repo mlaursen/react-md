@@ -1,5 +1,11 @@
 # @react-md/core
 
+## 7.0.3
+
+### Patch Changes
+
+- ed88576: Updated the Select component to use inert over aria-hidden+tabindex=-1
+
 ## 7.0.2
 
 ### Patch Changes
