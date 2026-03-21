@@ -108,7 +108,7 @@ exports[`Autocomplete > multiselect > should allow the options to be rendered wi
   class="rmd-menu rmd-menu--elevated"
   id="autocomplete-listbox-_r_vl_"
   role="listbox"
-  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0px;"
   tabindex="-1"
 >
   <ul
@@ -324,7 +324,7 @@ exports[`Autocomplete > multiselect > should allow the options to be rendered wi
   class="rmd-menu rmd-menu--elevated"
   id="autocomplete-listbox-_r_vl_"
   role="listbox"
-  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0px;"
   tabindex="-1"
 >
   <ul
@@ -732,7 +732,7 @@ exports[`Autocomplete > should attempt to pull menu item props from the options 
   class="rmd-menu rmd-menu--elevated"
   id="autocomplete-listbox-_r_8p_"
   role="listbox"
-  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0;"
+  style="position: fixed; transform-origin: 50% 0; left: 16px; top: 0px; min-width: 0px;"
   tabindex="-1"
 >
   <ul

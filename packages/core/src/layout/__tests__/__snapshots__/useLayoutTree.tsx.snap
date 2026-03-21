@@ -127,7 +127,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
       id="tree-item-_r_k_-group"
       role="group"
-      style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
+      style="max-height: 0px; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 1;"
     >
       <li
         class="rmd-tree-item rmd-tree-item--expander-right"
@@ -160,7 +160,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
           id="tree-item-_r_l_-group"
           role="group"
-          style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
+          style="max-height: 0px; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 2;"
         >
           <li
             class="rmd-tree-item rmd-tree-item--expander-right"
@@ -193,7 +193,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--no-overflow rmd-display-none"
               id="tree-item-_r_m_-group"
               role="group"
-              style="max-height: 0; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
+              style="max-height: 0px; padding-top: 0px; padding-bottom: 0px; --rmd-tree-depth: 3;"
             >
               <li
                 class="rmd-tree-item"
@@ -352,7 +352,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
       class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
       id="tree-item-_r_k_-group"
       role="group"
-      style="max-height: 0; --rmd-tree-depth: 1; transition-duration: 250ms;"
+      style="max-height: 0px; --rmd-tree-depth: 1; transition-duration: 250ms;"
     >
       <li
         class="rmd-tree-item rmd-tree-item--expander-right"
@@ -385,7 +385,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
           class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
           id="tree-item-_r_l_-group"
           role="group"
-          style="max-height: 0; --rmd-tree-depth: 2; transition-duration: 250ms;"
+          style="max-height: 0px; --rmd-tree-depth: 2; transition-duration: 250ms;"
         >
           <li
             class="rmd-tree-item rmd-tree-item--expander-right"
@@ -418,7 +418,7 @@ exports[`useLayoutTree > should automatically expand parent items if the pathnam
               class="rmd-list rmd-tree-group rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow"
               id="tree-item-_r_m_-group"
               role="group"
-              style="max-height: 0; --rmd-tree-depth: 3; transition-duration: 250ms;"
+              style="max-height: 0px; --rmd-tree-depth: 3; transition-duration: 250ms;"
             >
               <li
                 class="rmd-tree-item"
