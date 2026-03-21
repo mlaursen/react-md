@@ -34,7 +34,7 @@
     "sassdoc-dev": "pnpm --filter sassdoc-generator dev",
     "clean": "pnpm turbo-s clean && pnpm clean-root",
     "clean-dist": "pnpm turbo-s clean-dist",
-    "clean-root": "rm -rf .turbo-s coverage node_modules",
+    "clean-root": "rm -rf .turbo coverage node_modules",
     "core-export-map": "pnpm --filter core export-map",
     "core-index-file": "pnpm --filter core create-index-file",
     "validate": "pnpm lint && pnpm typecheck",
