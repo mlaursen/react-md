@@ -54,10 +54,10 @@
     "@react-md/code": "workspace:*",
     "@react-md/core": "workspace:*",
     "@react-md/material-icons": "workspace:*",
-    "algoliasearch": "^5.49.2",
+    "algoliasearch": "^5.50.0",
     "cnbuilder": "^3.1.0",
     "docs-generator": "workspace:*",
-    "filesize": "^11.0.13",
+    "filesize": "^11.0.14",
     "fuse.js": "^7.1.0",
     "gray-matter": "^4.0.3",
     "js-cookie": "^3.0.5",
@@ -70,7 +70,7 @@
     "sharp": "^0.34.5"
   },
   "devDependencies": {
-    "@algolia/client-search": "^5.49.2",
+    "@algolia/client-search": "^5.50.0",
     "@inquirer/confirm": "^6.0.10",
     "@next/eslint-plugin-next": "^16.2.1",
     "@react-md/eslint-config": "workspace:*",
@@ -90,10 +90,10 @@
     "prettier": "^3.8.1",
     "sass": "^1.98.0",
     "sassdoc-generator": "workspace:*",
-    "stylelint": "^17.5.0",
+    "stylelint": "^17.6.0",
     "svgo": "^4.0.1",
     "tsx": "^4.21.0",
-    "typedoc": "^0.28.17",
+    "typedoc": "^0.28.18",
     "typescript": "^5.9.3"
   },
   "volta": {
