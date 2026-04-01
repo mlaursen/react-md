@@ -1,160 +1,256 @@
 # core
 app-bar:
-  - packages/core/src//app-bar/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/app-bar/**/*
 
 autocomplete:
-  - packages/core/src/autocomplete/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/autocomplete/**/*
 
 avatar:
-  - packages/core/src/avatar/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/avatar/**/*
 
 badge:
-  - packages/core/src/badge/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/badge/**/*
 
 box:
-  - packages/core/src/box/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/box/**/*
 
 button:
-  - packages/core/src/button/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/button/**/*
 
 card:
-  - packages/core/src/card/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/card/**/*
 
 chip:
-  - packages/core/src/chip/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/chip/**/*
 
 datetime:
-  - packages/core/src/datetime/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/datetime/**/*
 
 dialog:
-  - packages/core/src/dialog/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/dialog/**/*
 
 divider:
-  - packages/core/src/divider/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/divider/**/*
 
 expansion-panel:
-  - packages/core/src/expansion-panel/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/expansion-panel/**/*
 
 file-input:
-  - packages/core/src/files/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/files/**/*
 
 form:
-  - packages/core/src/form/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/form/**/*
 
 icon:
-  - packages/core/src/icon/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/icon/**/*
 
 interaction:
-  - packages/core/src/interaction/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/interaction/**/*
 
 layout:
-  - packages/core/src/layout/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/layout/**/*
 
 link:
-  - packages/core/src/link/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/link/**/*
 
 list:
-  - packages/core/src/list/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/list/**/*
 
 media-queries:
-  - packages/core/src/media-queries/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/media-queries/**/*
 
 menu:
-  - packages/core/src/menu/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/menu/**/*
 
 navigation:
-  - packages/core/src/navigation/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/navigation/**/*
 
 overlay:
-  - packages/core/src/overlay/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/overlay/**/*
 
 portal:
-  - packages/core/src/portal/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/portal/**/*
 
 progress:
-  - packages/core/src/progress/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/progress/**/*
 
 responsive-item:
-  - packages/core/src/responsive-item/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/responsive-item/**/*
 
 segmented-button:
-  - packages/core/src/segmented-button/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/segmented-button/**/*
 
 sheet:
-  - packages/core/src/sheet/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/sheet/**/*
 
 snackbar:
-  - packages/core/src/snackbar/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/snackbar/**/*
 
 spinbutton:
-  - packages/core/src/spinbutton/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/spinbutton/**/*
 
 table:
-  - packages/core/src/table/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/table/**/*
 
 tabs:
-  - packages/core/src/tabs/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/tabs/**/*
 
 test-utils:
-  - packages/core/src/test-utils/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/test-utils/**/*
 
 theme:
-  - packages/core/src/theme/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/theme/**/*
 
 tooltip:
-  - packages/core/src/tooltip/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/tooltip/**/*
 
 transition:
-  - packages/core/src/transition/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/transition/**/*
 
 tree:
-  - packages/core/src/tree/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/tree/**/*
 
 typography:
-  - packages/core/src/typography/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/typography/**/*
 
 window-splitter:
-  - packages/core/src/window-splitter/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/window-splitter/**/*
 
 styles:
-  - packages/**/*.scss
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/**/*.scss
 
 utils:
-  - packages/core/src/draggable/**/*
-  - packages/core/src/error-boundary/**/*
-  - packages/core/src/focus/**/*
-  - packages/core/src/hoverMode/**/*
-  - packages/core/src/movement/**/*
-  - packages/core/src/positioning/**/*
-  - packages/core/src/scroll/**/*
-  - packages/core/src/searching/**/*
-  - packages/core/src/storage/**/*
-  - packages/core/src/suspense/**/*
-  - packages/core/src/utils/**/*
-  - packages/core/src/*.ts
-  - packages/core/src/*.tsx
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/core/src/draggable/**/*
+          - packages/core/src/error-boundary/**/*
+          - packages/core/src/focus/**/*
+          - packages/core/src/hoverMode/**/*
+          - packages/core/src/movement/**/*
+          - packages/core/src/positioning/**/*
+          - packages/core/src/scroll/**/*
+          - packages/core/src/searching/**/*
+          - packages/core/src/storage/**/*
+          - packages/core/src/suspense/**/*
+          - packages/core/src/utils/**/*
+          - packages/core/src/*.ts
+          - packages/core/src/*.tsx
 
 # other packages
 code:
-  - packages/code/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/code/**/*
 
 codemod:
-  - packages/codemod/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/codemod/**/*
 
 material-icons:
-  - packages/material-icons/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/material-icons/**/*
 
 vite-material-symbols-plugin:
-  - packages/vite-material-symbols-plugin/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/vite-material-symbols-plugin/**/*
 
 # internal stuffs
 docs:
-  - apps/docs/**/*
-  - docs/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - apps/docs/**/*
+          - docs/**/*
 
 examples:
-  - examples/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - examples/**/*
 
 playground:
-  - apps/next-playground/**/*
-  - apps/vite-playground/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - apps/next-playground/**/*
+          - apps/vite-playground/**/*

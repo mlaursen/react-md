@@ -5,14 +5,15 @@
 # file with configuration.  For more information, see:
 # https://github.com/actions/labeler/blob/master/README.md
 
-name: Labeler
-on: [pull_request]
+name: "Pull Request Labeler"
+on:
+  - pull_request_target
 
 jobs:
-  label:
+  labeler:
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/labeler@v4.3.0
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: actions/labeler@v6
