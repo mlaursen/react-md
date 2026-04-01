@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v2
         with:
           version: 10.33.0
@@ -47,7 +47,7 @@ jobs:
   #       node-version: [16.x]
 
   #   steps:
-  #     - uses: actions/checkout@v4
+  #     - uses: actions/checkout@v6
   #     - uses: pnpm/action-setup@v2.2.4
 
   #     - name: Use Node.js ${{ matrix.node-version }}
