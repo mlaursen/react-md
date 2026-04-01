@@ -61,7 +61,7 @@
     "@react-md/core": "workspace:*"
   },
   "devDependencies": {
-    "@swc/cli": "^0.8.0",
+    "@swc/cli": "^0.8.1",
     "@swc/core": "^1.15.21",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.12.0",

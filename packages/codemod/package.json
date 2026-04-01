@@ -67,7 +67,7 @@
     "@jest/globals": "^30.3.0",
     "@jest/types": "^30.3.0",
     "@react-md/eslint-config": "workspace:*",
-    "@swc/cli": "^0.8.0",
+    "@swc/cli": "^0.8.1",
     "@swc/core": "^1.15.21",
     "@swc/jest": "^0.2.39",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",

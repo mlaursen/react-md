@@ -46,7 +46,7 @@
   "license": "MIT",
   "packageManager": "pnpm@10.33.0",
   "dependencies": {
-    "minimatch": "^10.2.4"
+    "minimatch": "^10.2.5"
   },
   "devDependencies": {
     "@react-md/core": "workspace:*",
@@ -61,7 +61,7 @@
     "prettier": "^3.8.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "rollup": "^4.60.0",
+    "rollup": "^4.60.1",
     "rollup-plugin-dts": "^6.4.1",
     "rollup-plugin-swc3": "^0.12.1",
     "vite": "^7.3.1",
