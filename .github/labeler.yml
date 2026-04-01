@@ -1,115 +1,160 @@
-alert:
-  - packages/alert/src/**/*
-
+# core
 app-bar:
-  - packages/app-bar/src/**/*
+  - packages/core/src//app-bar/**/*
 
 autocomplete:
-  - packages/autocomplete/src/**/*
+  - packages/core/src/autocomplete/**/*
 
 avatar:
-  - packages/avatar/src/**/*
+  - packages/core/src/avatar/**/*
 
 badge:
-  - packages/badge/src/**/*
+  - packages/core/src/badge/**/*
+
+box:
+  - packages/core/src/box/**/*
 
 button:
-  - packages/button/src/**/*
+  - packages/core/src/button/**/*
 
 card:
-  - packages/card/src/**/*
+  - packages/core/src/card/**/*
 
 chip:
-  - packages/chip/src/**/*
+  - packages/core/src/chip/**/*
+
+datetime:
+  - packages/core/src/datetime/**/*
 
 dialog:
-  - packages/dialog/src/**/*
+  - packages/core/src/dialog/**/*
 
 divider:
-  - packages/divider/src/**/*
-
-elevation:
-  - packages/elevation/src/**/*
+  - packages/core/src/divider/**/*
 
 expansion-panel:
-  - packages/expansion-panel/src/**/*
+  - packages/core/src/expansion-panel/**/*
+
+file-input:
+  - packages/core/src/files/**/*
 
 form:
-  - packages/form/src/**/*
+  - packages/core/src/form/**/*
 
 icon:
-  - packages/icon/src/**/*
+  - packages/core/src/icon/**/*
+
+interaction:
+  - packages/core/src/interaction/**/*
 
 layout:
-  - packages/layout/src/**/*
+  - packages/core/src/layout/**/*
 
 link:
-  - packages/link/src/**/*
+  - packages/core/src/link/**/*
 
 list:
-  - packages/list/src/**/*
+  - packages/core/src/list/**/*
 
-material-icons:
-  - packages/material-icons/src/**/*
-
-media:
-  - packages/media/src/**/*
+media-queries:
+  - packages/core/src/media-queries/**/*
 
 menu:
-  - packages/menu/src/**/*
+  - packages/core/src/menu/**/*
+
+navigation:
+  - packages/core/src/navigation/**/*
 
 overlay:
-  - packages/overlay/src/**/*
+  - packages/core/src/overlay/**/*
 
 portal:
-  - packages/portal/src/**/*
+  - packages/core/src/portal/**/*
 
 progress:
-  - packages/progress/src/**/*
+  - packages/core/src/progress/**/*
+
+responsive-item:
+  - packages/core/src/responsive-item/**/*
+
+segmented-button:
+  - packages/core/src/segmented-button/**/*
 
 sheet:
-  - packages/sheet/src/**/*
+  - packages/core/src/sheet/**/*
 
-states:
-  - packages/states/src/**/*
+snackbar:
+  - packages/core/src/snackbar/**/*
+
+spinbutton:
+  - packages/core/src/spinbutton/**/*
 
 table:
-  - packages/table/src/**/*
+  - packages/core/src/table/**/*
 
 tabs:
-  - packages/tabs/src/**/*
+  - packages/core/src/tabs/**/*
+
+test-utils:
+  - packages/core/src/test-utils/**/*
 
 theme:
-  - packages/theme/src/**/*
+  - packages/core/src/theme/**/*
 
 tooltip:
-  - packages/tooltip/src/**/*
+  - packages/core/src/tooltip/**/*
 
 transition:
-  - packages/transition/src/**/*
+  - packages/core/src/transition/**/*
 
 tree:
-  - packages/tree/src/**/*
+  - packages/core/src/tree/**/*
 
 typography:
-  - packages/typography/src/**/*
+  - packages/core/src/typography/**/*
+
+window-splitter:
+  - packages/core/src/window-splitter/**/*
+
+styles:
+  - packages/**/*.scss
 
 utils:
-  - packages/utils/src/**/*
+  - packages/core/src/draggable/**/*
+  - packages/core/src/error-boundary/**/*
+  - packages/core/src/focus/**/*
+  - packages/core/src/hoverMode/**/*
+  - packages/core/src/movement/**/*
+  - packages/core/src/positioning/**/*
+  - packages/core/src/scroll/**/*
+  - packages/core/src/searching/**/*
+  - packages/core/src/storage/**/*
+  - packages/core/src/suspense/**/*
+  - packages/core/src/utils/**/*
+  - packages/core/src/*.ts
+  - packages/core/src/*.tsx
 
-# special cases
-documentation:
-  - packages/documentation/src/**/*
+# other packages
+code:
+  - packages/code/**/*
 
-form-control:
-  - packages/form/src/toggle/**/*
-  - packages/form/src/label/**/*
+codemod:
+  - packages/codemod/**/*
 
-select:
-  - packages/form/src/select/**/*
+material-icons:
+  - packages/material-icons/**/*
 
-text-field:
-  - packages/form/src/text-field/**/*
+vite-material-symbols-plugin:
+  - packages/vite-material-symbols-plugin/**/*
 
-wia-aria:
-  - packages/utils/src/wia-aria/**/*
+# internal stuffs
+docs:
+  - apps/docs/**/*
+  - docs/**/*
+
+examples:
+  - examples/**/*
+
+playground:
+  - apps/next-playground/**/*
+  - apps/vite-playground/**/*
