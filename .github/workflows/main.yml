@@ -22,7 +22,7 @@ jobs:
           version: 10.33.0
 
       - name: Use Volta Node Version
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: "package.json"
           cache: pnpm
@@ -51,7 +51,7 @@ jobs:
   #     - uses: pnpm/action-setup@v2.2.4
 
   #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v4
+  #       uses: actions/setup-node@v6
   #       with:
   #         node-version: ${{ matrix.node-version }}
   #         cache: pnpm
