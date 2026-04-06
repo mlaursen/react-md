@@ -100,7 +100,8 @@ export function getMaterialSymbolsUrl(
   let familiesQs = "";
   for (const [i, family] of families.entries()) {
     const variant = family.charAt(0).toUpperCase() + family.slice(1);
-    familiesQs += (i === 0 ? "" : "&") + "family=Material+Symbols+" + variant;
+    familiesQs +=
+      (i === 0 ? "" : "&") + "family=Material+Symbols+" + variant + specs;
   }
 
   let iconNames = "";
@@ -108,5 +109,5 @@ export function getMaterialSymbolsUrl(
     iconNames = `&icon_names=${names.join(",")}`;
   }
 
-  return `https://fonts.googleapis.com/css2?${familiesQs}${specs}${iconNames}`;
+  return `https://fonts.googleapis.com/css2?${familiesQs}${iconNames}`;
 }
