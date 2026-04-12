@@ -22,7 +22,7 @@
     "@react-md/material-icons": "workspace:*",
     "cnbuilder": "^3.1.0",
     "js-cookie": "^3.0.5",
-    "next": "^16.2.2",
+    "next": "^16.2.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
