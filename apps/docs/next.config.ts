@@ -1,8 +1,8 @@
 // @ts-check
 import withMDX from "@next/mdx";
+import { type NextConfig } from "next";
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   pageExtensions: ["ts", "tsx", "mdx"],
