@@ -15,11 +15,11 @@
     "build": "npm-run-all build-esm build-types",
     "build-esm": "swc -d ./dist --strip-leading-paths src",
     "build-esm-watch": "pnpm run build-esm --watch",
-    "build-types": "tsc -P tsconfig.types.json",
+    "build-types": "tsgo -P tsconfig.types.json",
     "build-types-watch": "pnpm run build-types --watch",
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsgo --noEmit",
     "check-format": "prettier --check .",
     "format": "prettier --write .",
     "lint": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
@@ -52,7 +52,7 @@
     "@types/node": "^24.12.2",
     "eslint": "^9.39.4",
     "npm-run-all2": "^8.0.2",
-    "typescript": "^6.0.3"
+    "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "volta": {
     "node": "24.12.0",

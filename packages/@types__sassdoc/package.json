@@ -30,7 +30,7 @@
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.12.2",
     "prettier": "^3.8.3",
-    "typescript": "^6.0.3"
+    "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "peerDependencies": {
     "sassdoc": "^2.7.4"

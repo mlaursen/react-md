@@ -50,6 +50,7 @@
     "@changesets/cli": "^2.31.0",
     "@mlaursen/release-script": "^0.2.0",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "@typescript/native-preview": "beta",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.4",
     "husky": "^9.1.7",
@@ -57,7 +58,7 @@
     "prettier": "^3.8.3",
     "tsx": "^4.21.0",
     "turbo": "^2.9.6",
-    "typescript": "^6.0.3"
+    "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "lint-staged": {
     "**/*.{scss,js,jsx,md,yml,json,ts,tsx}": [

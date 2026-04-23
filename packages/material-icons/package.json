@@ -13,7 +13,7 @@
   "scripts": {
     "run-script": "tsx --tsconfig scripts/tsconfig.json",
     "update-icons": "pnpm run run-script scripts/updateMaterialIcons.ts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsgo --noEmit",
     "lint": "eslint -c scripts/eslint.config.mjs \"scripts/**/*.ts\"",
     "lint-fix": "pnpm lint --fix",
     "check-format": "prettier --check .",
@@ -49,6 +49,7 @@
     "@types/lodash": "^4.17.24",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
+    "@typescript/native-preview": "beta",
     "eslint": "^9.39.4",
     "glob": "^13.0.6",
     "lodash": "^4.18.1",
@@ -57,7 +58,7 @@
     "react": "^19.2.5",
     "svgo": "^4.0.1",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.3"
+    "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "peerDependencies": {
     "react": ">= 19",

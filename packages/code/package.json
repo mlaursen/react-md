@@ -18,13 +18,13 @@
     "build": "npm-run-all build-esm build-types build-scss",
     "build-esm": "swc -d ./dist --strip-leading-paths src",
     "build-esm-watch": "pnpm run build-esm --watch",
-    "build-types": "tsc -P tsconfig.types.json",
+    "build-types": "tsgo -P tsconfig.types.json",
     "build-types-watch": "pnpm run build-types --watch",
     "build-scss": "cp -f src/_code.scss dist/_code.scss",
     "build-scss-watch": "chokidar \"src/*.scss\" -c \"pnpm run build-scss\"",
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsgo --noEmit",
     "lint-scripts": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
     "lint": "npm-run-all lint-scripts lint-styles",
@@ -78,6 +78,7 @@
     "@types/prismjs": "^1.26.6",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@typescript/native-preview": "beta",
     "chokidar-cli": "^3.0.0",
     "eslint": "^9.39.4",
     "jest": "^30.3.0",
@@ -90,7 +91,7 @@
     "react-dom": "^19.2.5",
     "sass": "^1.99.0",
     "stylelint": "^17.8.0",
-    "typescript": "^6.0.3"
+    "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "peerDependencies": {
     "react": ">= 19",

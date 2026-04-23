@@ -10,7 +10,7 @@
     "clean": "concurrently 'pnpm clean-dist' 'pnpm clean-cache'",
     "check-format": "prettier --check .",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsgo --noEmit",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
     "lint-fix": "pnpm lint --fix",
     "dev": "next dev"
@@ -35,13 +35,14 @@
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@typescript/native-preview": "beta",
     "concurrently": "^9.2.1",
     "eslint": "^9.39.4",
     "prettier": "^3.8.3",
     "sass-embedded": "^1.99.0",
     "serve": "^14.2.6",
     "ts-node": "^10.9.2",
-    "typescript": "^6.0.3"
+    "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "volta": {
     "node": "24.12.0",

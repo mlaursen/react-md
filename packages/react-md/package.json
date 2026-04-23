@@ -29,7 +29,7 @@
     "build": "npm-run-all build-esm build-scss build-types",
     "build-esm": "swc -d ./dist --strip-leading-paths src",
     "build-esm-watch": "pnpm run build-esm --watch",
-    "build-types": "tsc -P tsconfig.types.json",
+    "build-types": "tsgo -P tsconfig.types.json",
     "build-types-watch": "pnpm run build-types --watch",
     "build-scss": "pnpm run run-script scripts/copySassFiles.ts",
     "build-scss-watch": "pnpm run build-scss --watch",
@@ -37,7 +37,7 @@
     "clean": "rm -rf .turbo dist node_modules",
     "check-format": "prettier --check .",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsgo --noEmit"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
@@ -72,7 +72,7 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.3"
+    "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "peerDependencies": {
     "@jest/globals": ">= 29 <=31",

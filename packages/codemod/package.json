@@ -16,7 +16,7 @@
     "prepare-release": "npm-run-all clean-dist build",
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsgo --noEmit",
     "check-format": "prettier --check .",
     "format": "prettier --write .",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
@@ -79,7 +79,7 @@
     "jest-watch-typeahead": "^3.0.1",
     "prettier": "^3.8.3",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.3"
+    "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "publishConfig": {
     "access": "public"
