@@ -3,8 +3,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
-    "declaration": true,
-    "declarationDir": "./dist",
+    "rootDir": "./src",
     "emitDeclarationOnly": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],

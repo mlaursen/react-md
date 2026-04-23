@@ -3,8 +3,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
-    "declaration": true,
-    "declarationDir": "./dist",
+    "rootDir": "./src",
     "emitDeclarationOnly": true
   },
   "exclude": ["node_modules", "dist", "*.mjs"]

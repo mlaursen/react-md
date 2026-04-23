@@ -74,7 +74,7 @@ export class ErrorBoundary extends Component<
     return { error, errored: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+  override componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     this.props.onError?.(error, errorInfo);
   }
 
@@ -82,7 +82,7 @@ export class ErrorBoundary extends Component<
     this.setState({ error: null, errored: false });
   };
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const { fallback } = this.props;
     const { error, errored } = this.state;
 

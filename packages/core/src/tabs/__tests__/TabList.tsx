@@ -59,6 +59,7 @@ class MockedObserver implements globalThis.IntersectionObserver {
   root: Document | Element | null;
   rootMargin: string;
   thresholds: readonly number[];
+  scrollMargin: string;
 
   elements: Set<Element>;
 
@@ -74,6 +75,7 @@ class MockedObserver implements globalThis.IntersectionObserver {
         : (options.threshold ?? []);
 
     this.elements = new Set();
+    this.scrollMargin = options.scrollMargin ?? "";
   }
 
   observe(target: Element): void {

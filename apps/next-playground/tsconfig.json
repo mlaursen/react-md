@@ -1,31 +1,50 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "target": "es5",
-    "module": "nodenext",
-    "sourceMap": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "esModuleInterop": true,
-    "moduleResolution": "nodenext",
-    "resolveJsonModule": true,
-    "downlevelIteration": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
     "noEmit": true,
+    "module": "nodenext",
+    "target": "esnext",
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
+    "jsx": "preserve",
+    "types": ["node"],
+    "allowJs": true,
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "./dist",
+
+    // Stricter Typechecking Options
+    // "noUncheckedIndexedAccess": true,
+    // "exactOptionalPropertyTypes": true,
+
+    // Style Options
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    // "noPropertyAccessFromIndexSignature": true,
+
+    "useDefineForClassFields": false,
+
+    // Recommended Options
+    "strict": true,
+    "verbatimModuleSyntax": true,
     "isolatedModules": true,
-    "incremental": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+
+    "rootDir": ".",
+
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [

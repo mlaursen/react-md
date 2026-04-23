@@ -93,6 +93,8 @@ export function FilterSymbolCustomization(): ReactElement {
                     className: styles.lastLabel,
                     textOverflow: "nowrap",
                   };
+                default:
+                  return;
               }
             }}
           />

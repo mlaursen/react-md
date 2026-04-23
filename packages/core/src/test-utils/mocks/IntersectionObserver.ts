@@ -2,6 +2,7 @@ export class IntersectionObserverMock implements IntersectionObserver {
   root: Document | Element | null;
   rootMargin: string;
   thresholds: readonly number[];
+  scrollMargin: string;
 
   elements: Set<Element>;
 
@@ -17,6 +18,7 @@ export class IntersectionObserverMock implements IntersectionObserver {
         : (options.threshold ?? []);
 
     this.elements = new Set();
+    this.scrollMargin = options.scrollMargin ?? "";
   }
 
   observe(target: Element): void {

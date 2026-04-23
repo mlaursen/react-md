@@ -51,7 +51,8 @@ export function getParser(
     case "tsx":
       return "typescript";
     default:
-    // unsupported
+      // unsupported
+      return;
   }
 }
 

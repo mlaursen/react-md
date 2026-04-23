@@ -3,7 +3,7 @@
   "compilerOptions": {
     "noEmit": false,
     "sourceMap": false,
-    "declarationDir": "./types",
+    "rootDir": "./src",
     "emitDeclarationOnly": true
   },
   "include": ["src"],

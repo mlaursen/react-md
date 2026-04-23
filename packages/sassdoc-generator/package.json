@@ -52,7 +52,7 @@
     "@types/node": "^24.12.2",
     "eslint": "^9.39.4",
     "npm-run-all2": "^8.0.2",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "volta": {
     "node": "24.12.0",

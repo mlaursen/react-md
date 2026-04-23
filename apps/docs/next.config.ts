@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   pageExtensions: ["ts", "tsx", "mdx"],
+  typescript: {
+    // doesn't really seem like next.js supports v6 yet
+    tsconfigPath: "./tsconfig.next.json",
+  },
   headers: async () => [
     {
       source: "/(.*)",

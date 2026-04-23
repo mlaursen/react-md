@@ -41,7 +41,7 @@
     "sass-embedded": "^1.99.0",
     "serve": "^14.2.6",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "volta": {
     "node": "24.12.0",

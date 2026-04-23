@@ -1,20 +1,41 @@
 {
+  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    "target": "esnext",
+    "noEmit": true,
     "module": "nodenext",
-    "outDir": "./dist",
+    "target": "esnext",
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
+    "jsx": "preserve",
+    "types": ["node"],
+    "allowJs": true,
+
+    // Other Outputs
+    "sourceMap": true,
     "declaration": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "moduleResolution": "nodenext",
-    "resolveJsonModule": true,
-    "downlevelIteration": true,
-    "noUncheckedIndexedAccess": true,
+    "declarationMap": true,
+    "declarationDir": "./types",
+
+    // Stricter Typechecking Options
+    // "noUncheckedIndexedAccess": true,
+    // "exactOptionalPropertyTypes": true,
+
+    // Style Options
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["esnext"]
+    // "noPropertyAccessFromIndexSignature": true,
+
+    "useDefineForClassFields": false,
+
+    // Recommended Options
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true
   },
   "exclude": ["node_modules", "dist", "types"]
 }

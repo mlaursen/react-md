@@ -82,6 +82,7 @@ describe("Table", () => {
       readonly root: Element | Document | null;
       readonly rootMargin: string;
       readonly thresholds: readonly number[];
+      readonly scrollMargin: string;
 
       // for testing purposes
       readonly callback: IntersectionObserverCallback;
@@ -98,6 +99,7 @@ describe("Table", () => {
         this.rootMargin = rootMargin;
         this.thresholds =
           typeof threshold === "number" ? [threshold] : threshold;
+        this.scrollMargin = options.scrollMargin ?? "";
 
         // eslint-disable-next-line unicorn/no-this-assignment, @typescript-eslint/no-this-alias
         _observer = this;

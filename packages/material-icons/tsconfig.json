@@ -1,19 +1,40 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "nodenext",
-    "strict": true,
     "noEmit": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "moduleResolution": "nodenext",
-    "resolveJsonModule": true,
-    "downlevelIteration": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
+    "module": "nodenext",
+    "target": "esnext",
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"]
+    "types": ["node"],
+    "allowJs": true,
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "./dist",
+
+    // Stricter Typechecking Options
+    // "noUncheckedIndexedAccess": true,
+    // "exactOptionalPropertyTypes": true,
+
+    // Style Options
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    // "noPropertyAccessFromIndexSignature": true,
+
+    "useDefineForClassFields": false,
+
+    // Recommended Options
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true
   },
   "exclude": ["node_modules"]
 }

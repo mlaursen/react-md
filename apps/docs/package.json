@@ -95,7 +95,7 @@
     "svgo": "^4.0.1",
     "tsx": "^4.21.0",
     "typedoc": "^0.28.19",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "volta": {
     "node": "24.12.0",

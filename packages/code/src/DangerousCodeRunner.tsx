@@ -24,7 +24,7 @@ export class DangerousCodeRunner extends Component<
   DangerousCodeRunnerProps,
   DangerousCodeRunnerState
 > {
-  state = {
+  override state = {
     error: null,
     element: null,
     prevCode: "",
@@ -64,15 +64,15 @@ export class DangerousCodeRunner extends Component<
 
   // Note: This is different than the react-runner and was added so that errors
   // show up immediately if the demo code is broken
-  componentDidMount(): void {
+  override componentDidMount(): void {
     this.props.onRendered(this.state.error);
   }
 
-  componentDidUpdate(): void {
+  override componentDidUpdate(): void {
     this.props.onRendered(this.state.error);
   }
 
-  render(): ReactElement | null {
+  override render(): ReactElement | null {
     return this.state.error ? null : this.state.element;
   }
 }
