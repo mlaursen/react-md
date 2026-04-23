@@ -8,7 +8,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "clean-dist": "rm -rf dist",
+    "clean-dist": "rm -rf dist types",
     "clean-cache": "rm -rf .turbo node_modules",
     "clean": "concurrently 'pnpm clean-dist' 'pnpm clean-cache'",
     "check-format": "prettier --check .",
