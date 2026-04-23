@@ -13,7 +13,7 @@
     "test-coverage": "TURBO_UI=true pnpm turbo-s test-coverage",
     "test-run": "pnpm turbo-s test-run",
     "test-run-snapshot": "pnpm turbo-s test-run-snapshot",
-    "test-run-coverage": "pnpm turbo-s test-run-coverage",
+    "test-run-coverage": "pnpm turbo-s test-run-coverage --concurrency=1",
     "typecheck": "pnpm turbo-s typecheck",
     "typecheck-watch": "pnpm turbo-s typecheck-watch",
     "build": "pnpm turbo-s build",
