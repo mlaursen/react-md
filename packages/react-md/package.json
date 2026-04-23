@@ -23,7 +23,6 @@
     "dist/test-utils/polyfills"
   ],
   "scripts": {
-    "run-script": "tsx --tsconfig scripts/tsconfig.json",
     "dev": "npm-run-all --parallel build-esm-watch build-scss-watch build-types-watch",
     "prepare-release": "npm-run-all clean-dist build",
     "build": "npm-run-all build-esm build-scss build-types",
@@ -31,7 +30,7 @@
     "build-esm-watch": "pnpm run build-esm --watch",
     "build-types": "tsgo -P tsconfig.types.json",
     "build-types-watch": "pnpm run build-types --watch",
-    "build-scss": "pnpm run run-script scripts/copySassFiles.ts",
+    "build-scss": "node scripts/copySassFiles.ts",
     "build-scss-watch": "pnpm run build-scss --watch",
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
@@ -71,7 +70,6 @@
     "prettier": "^3.8.3",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "tsx": "^4.21.0",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "peerDependencies": {

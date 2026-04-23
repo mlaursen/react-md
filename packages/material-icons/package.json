@@ -11,14 +11,13 @@
   },
   "sideEffects": false,
   "scripts": {
-    "run-script": "tsx --tsconfig scripts/tsconfig.json",
-    "update-icons": "pnpm run run-script scripts/updateMaterialIcons.ts",
+    "update-icons": "node scripts/updateMaterialIcons.ts",
     "typecheck": "tsgo --noEmit",
     "lint": "eslint -c scripts/eslint.config.mjs \"scripts/**/*.ts\"",
     "lint-fix": "pnpm lint --fix",
     "check-format": "prettier --check .",
     "format": "prettier --write .",
-    "build": "pnpm run run-script scripts/build.ts",
+    "build": "node scripts/build.ts",
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo node_modules dist"
   },
@@ -57,7 +56,6 @@
     "pretty-ms": "^9.3.0",
     "react": "^19.2.5",
     "svgo": "^4.0.1",
-    "tsx": "^4.21.0",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "peerDependencies": {

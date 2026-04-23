@@ -6,7 +6,7 @@
   "description": "The documentation site for react-md",
   "scripts": {
     "run-script": "tsx --tsconfig scripts/tsconfig.json",
-    "create-env": "pnpm run run-script scripts/createEnv.ts",
+    "create-env": "node scripts/createEnv.ts",
     "create-scss-lookup": "pnpm run run-script scripts/createScssLookup.ts",
     "create-stackblitz-template": "pnpm run run-script scripts/createStackBlitzTemplate.ts",
     "update-algolia-index": "pnpm run run-script scripts/updateAlgoliaIndex.ts",
@@ -28,7 +28,7 @@
     "generator-dev": "nodemon --config scripts/nodemon.docs-generator.json",
     "build-env": "npm-run-all --parallel create-env create-scss-lookup create-stackblitz-template",
     "build-full-env": "npm-run-all --parallel build-env sassdoc build-typedoc",
-    "build-typedoc": "pnpm run run-script scripts/typedoc.ts",
+    "build-typedoc": "node scripts/typedoc.ts",
     "next-dev": "next dev",
     "build": "next build",
     "build-full": "npm-run-all build-full-env build",

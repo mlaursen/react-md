@@ -85,9 +85,8 @@
     "build-scss": "mlaursen-cli copy-scss-files -r '_colors.scss' -r '_a11y.scss'",
     "build-scss-watch": "pnpm build-scss --watch",
     "build": "concurrently 'pnpm build-esm' 'pnpm build-scss' 'pnpm build-types'",
-    "run-script": "tsx --tsconfig scripts/tsconfig.json",
-    "export-map": "pnpm run run-script scripts/getExportMap.ts",
-    "create-index-file": "pnpm run run-script scripts/createIndexFile.ts",
+    "export-map": "node scripts/getExportMap.ts",
+    "create-index-file": "node scripts/createIndexFile.ts",
     "prepare-release": "pnpm clean-dist && pnpm build",
     "dev": "concurrently 'pnpm build-esm-watch' 'pnpm build-scss-watch' 'pnpm build-types-watch'"
   },
@@ -150,7 +149,6 @@
     "stylelint": "^17.9.0",
     "ts-morph": "^28.0.0",
     "ts-node": "^10.9.2",
-    "tsx": "^4.21.0",
     "typescript": "npm:@typescript/typescript6@^6.0.0",
     "vitest": "^4.1.5"
   },

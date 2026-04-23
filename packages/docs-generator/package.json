@@ -15,7 +15,7 @@
     "build-esm-watch": "pnpm run build-esm --watch",
     "build-types": "tsgo -P tsconfig.types.json",
     "build-types-watch": "pnpm run build-types --watch",
-    "prism-themes": "tsx src/scripts/create-prism-themes.ts",
+    "prism-themes": "node src/scripts/create-prism-themes.ts",
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
     "typecheck": "tsgo --noEmit",
@@ -100,7 +100,6 @@
     "pretty-ms": "^9.3.0",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.30.0",
-    "tsx": "^4.21.0",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "volta": {
