@@ -92,7 +92,7 @@
     "prettier": "^3.8.3",
     "sass": "^1.99.0",
     "sassdoc-generator": "workspace:*",
-    "stylelint": "^17.8.0",
+    "stylelint": "^17.9.0",
     "svgo": "^4.0.1",
     "tsx": "^4.21.0",
     "typedoc": "^0.28.19",
