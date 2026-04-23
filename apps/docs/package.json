@@ -30,10 +30,10 @@
     "build-full-env": "npm-run-all --parallel build-env sassdoc build-typedoc",
     "build-typedoc": "pnpm run run-script scripts/typedoc.ts",
     "next-dev": "next dev",
-    "next-build": "next build",
+    "build": "next build",
+    "build-full": "npm-run-all build-full-env build",
     "dev": "npm-run-all build-env \"create-env --dev\" dev-tasks",
     "dev-tasks": "npm-run-all --parallel watch-demos \"sassdoc --touch\" watch-scss-lookup generator-dev",
-    "build": "npm-run-all build-full-env next-build",
     "start": "next start"
   },
   "repository": {

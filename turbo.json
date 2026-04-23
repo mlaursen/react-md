@@ -2,8 +2,25 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
-    "docs#build": {
+    "docs#build-env": {
       "dependsOn": ["^build"],
+      "outputs": [".env.local"]
+    },
+    "docs#sassdoc": {
+      "dependsOn": ["^build"],
+      "outputs": ["src/generated/sassdoc/**"]
+    },
+    "docs#build-typedoc": {
+      "dependsOn": ["^build"],
+      "outputs": ["public/typedoc/**"]
+    },
+    "docs#build": {
+      "dependsOn": [
+        "^build",
+        "docs#build-env",
+        "docs#sassdoc",
+        "docs#build-typedoc"
+      ],
       "outputs": [
         "src/generated/**",
         "public/typedoc/**",
