@@ -60,7 +60,7 @@
     "filesize": "^11.0.17",
     "fuse.js": "^7.3.0",
     "gray-matter": "^4.0.3",
-    "js-cookie": "^3.0.5",
+    "js-cookie": "^3.0.7",
     "next": "^16.2.6",
     "next-mdx-remote": "^6.0.0",
     "react": "^19.2.6",

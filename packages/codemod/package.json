@@ -57,7 +57,7 @@
     "commander": "^14.0.3",
     "glob": "^13.0.6",
     "jscodeshift": "^17.3.0",
-    "postcss": "^8.5.14",
+    "postcss": "^8.5.15",
     "postcss-scss": "^4.0.9",
     "postcss-value-parser": "^4.2.0"
   },
