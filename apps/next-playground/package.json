@@ -21,7 +21,7 @@
     "@react-md/core": "workspace:*",
     "@react-md/material-icons": "workspace:*",
     "cnbuilder": "^3.1.0",
-    "js-cookie": "^3.0.5",
+    "js-cookie": "^3.0.7",
     "next": "^16.2.6",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
