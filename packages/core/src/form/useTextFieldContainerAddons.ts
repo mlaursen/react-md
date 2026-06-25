@@ -168,7 +168,7 @@ export function useTextFieldContainerAddons(
     ref: propLeftAddonRef,
     theme,
     addon: leftAddon,
-    extra: `+ var(--rmd-addon-spacing)${leftAddonExtraCalc ? ` ${leftAddonExtraCalc}` : ""}`,
+    extra: `+ var(--rmd-text-field-addon-spacing)${leftAddonExtraCalc ? ` ${leftAddonExtraCalc}` : ""}`,
   });
 
   const [paddingRight, rightAddonRef] = useAddonPadding({
