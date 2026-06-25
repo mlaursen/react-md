@@ -1,5 +1,14 @@
 # @react-md/vite-material-symbols-plugin
 
+## 2.1.3
+
+### Patch Changes
+
+- Updated dependencies [4165a39]
+- Updated dependencies [7fb173f]
+  - @react-md/core@7.0.7
+  - react-md@7.0.8
+
 ## 2.1.2
 
 ### Patch Changes

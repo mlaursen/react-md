@@ -1,5 +1,12 @@
 # @react-md/core
 
+## 7.0.7
+
+### Patch Changes
+
+- 4165a39: Updated the MaterialSymbol so that it always prefers the props over global defaults and inline styles override everything.
+- 7fb173f: Fixed the useTextFieldContainerAddons to use the correct custom property name
+
 ## 7.0.6
 
 ### Patch Changes
