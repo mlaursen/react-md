@@ -177,13 +177,12 @@ export interface MaterialSymbolFontVariationSettings {
 interface ApplyOptions {
   name: "fill" | "wght" | "grad" | "opsz";
   value: number | undefined;
-  defaultValue: number;
   style: CSSProperties | undefined;
 }
 
 const applyVar = (options: ApplyOptions): CSSProperties | undefined => {
-  const { name, value, defaultValue, style } = options;
-  if (value !== undefined && value !== defaultValue) {
+  const { name, value, style } = options;
+  if (value !== undefined) {
     const varName = `--rmd-symbol-${name}` as const;
     return {
       ...style,
@@ -207,32 +206,32 @@ export function getFontVariationSettings(
     grade,
     opticalSize,
     weight,
+    style: propStyle,
   } = options;
-  let { style } = options;
-  style = applyVar({
-    style,
+  let style = applyVar({
+    style: undefined,
     name: "fill",
     value: fill,
-    defaultValue: MATERIAL_CONFIG.fill,
   });
   style = applyVar({
     style,
     name: "grad",
     value: grade,
-    defaultValue: MATERIAL_CONFIG.grade,
   });
   style = applyVar({
     style,
     name: "opsz",
     value: opticalSize,
-    defaultValue: MATERIAL_CONFIG.opticalSize,
   });
   style = applyVar({
     style,
     name: "wght",
     value: weight,
-    defaultValue: MATERIAL_CONFIG.weight,
   });
+
+  if (propStyle !== undefined && propStyle) {
+    style = { ...style, ...propStyle };
+  }
 
   return { style, family };
 }

@@ -102,4 +102,74 @@ describe("MaterialSymbol", () => {
       fontVariationSettings: '"FILL" 1, "wght" 400, "GRAD" -25, "opsz" 48',
     });
   });
+
+  it("should always prefer the style prop over the props", () => {
+    const { rerender } = render(
+      <MaterialSymbol
+        data-testid="icon"
+        name="air"
+        fill={1}
+        weight={100}
+        grade={-25}
+        opticalSize={20}
+        family="rounded"
+        style={{
+          "--rmd-symbol-fill": 0,
+          "--rmd-symbol-wght": 300,
+          "--rmd-symbol-opsz": 40,
+          "--rmd-symbol-grad": 200,
+        }}
+      />
+    );
+
+    const icon = screen.getByTestId("icon");
+    expect(icon.style.getPropertyValue("--rmd-symbol-fill")).toBe("0");
+    expect(icon.style.getPropertyValue("--rmd-symbol-wght")).toBe("300");
+    expect(icon.style.getPropertyValue("--rmd-symbol-opsz")).toBe("40");
+    expect(icon.style.getPropertyValue("--rmd-symbol-grad")).toBe("200");
+
+    rerender(
+      <MaterialSymbol
+        data-testid="icon"
+        name="air"
+        fill={1}
+        weight={100}
+        grade={-25}
+        opticalSize={20}
+        family="rounded"
+      />
+    );
+    expect(icon.style.getPropertyValue("--rmd-symbol-fill")).toBe("1");
+    expect(icon.style.getPropertyValue("--rmd-symbol-wght")).toBe("100");
+    expect(icon.style.getPropertyValue("--rmd-symbol-opsz")).toBe("20");
+    expect(icon.style.getPropertyValue("--rmd-symbol-grad")).toBe("-25");
+  });
+
+  it("should force the font variation settings if the prop is defined", () => {
+    render(
+      <MaterialSymbol
+        data-testid="icon"
+        name="air"
+        fill={MATERIAL_CONFIG.fill}
+        weight={MATERIAL_CONFIG.weight}
+        grade={MATERIAL_CONFIG.grade}
+        opticalSize={MATERIAL_CONFIG.opticalSize}
+        family="rounded"
+      />
+    );
+
+    const icon = screen.getByTestId("icon");
+    expect(icon.style.getPropertyValue("--rmd-symbol-fill")).toBe(
+      `${MATERIAL_CONFIG.fill}`
+    );
+    expect(icon.style.getPropertyValue("--rmd-symbol-wght")).toBe(
+      `${MATERIAL_CONFIG.weight}`
+    );
+    expect(icon.style.getPropertyValue("--rmd-symbol-grad")).toBe(
+      `${MATERIAL_CONFIG.grade}`
+    );
+    expect(icon.style.getPropertyValue("--rmd-symbol-opsz")).toBe(
+      `${MATERIAL_CONFIG.opticalSize}`
+    );
+  });
 });
