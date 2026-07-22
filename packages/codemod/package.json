@@ -57,12 +57,12 @@
     "commander": "^14.0.3",
     "glob": "^13.0.6",
     "jscodeshift": "^17.3.0",
-    "postcss": "^8.5.16",
+    "postcss": "^8.5.17",
     "postcss-scss": "^4.0.9",
     "postcss-value-parser": "^4.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.6",
+    "@babel/core": "^8.0.1",
     "@babel/preset-env": "^7.29.5",
     "@jest/globals": "^30.4.1",
     "@jest/types": "^30.4.1",
