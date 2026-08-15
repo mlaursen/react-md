@@ -2,7 +2,7 @@ import input from "@inquirer/input";
 import { globSync } from "glob";
 
 export async function getFilesToTransform(
-  files: readonly string[]
+  files: readonly string[],
 ): Promise<readonly string[]> {
   let filePatterns = files;
   if (!files.length) {

@@ -104,7 +104,7 @@ describe("useTemporaryLayout", () => {
     rmdRender(<Layout defaultVisible />);
 
     expect(
-      screen.getByRole("dialog", { name: "Navigation" })
+      screen.getByRole("dialog", { name: "Navigation" }),
     ).toBeInTheDocument();
   });
 });

@@ -21,7 +21,7 @@ import { useId } from "react";
  */
 export function useEnsuredId(
   propId: string | undefined,
-  prefix: string
+  prefix: string,
 ): string {
   const id = useId();
 

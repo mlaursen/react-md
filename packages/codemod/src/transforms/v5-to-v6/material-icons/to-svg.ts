@@ -32,7 +32,7 @@ import { ONLY_SYMBOL_AVAILABLE, RENAMED_ICONS } from "./constants.js";
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -45,7 +45,7 @@ export default function transformer(
       j.ImportDeclaration,
       (path) =>
         path.source.value === "@react-md/material-icons" ||
-        path.source.value === "react-md"
+        path.source.value === "react-md",
     )
     .forEach((importDeclaration) => {
       j(importDeclaration)
@@ -72,7 +72,7 @@ export default function transformer(
           });
           const declaration = j.importDeclaration(
             [defaultSpecifier],
-            j.stringLiteral(updatedPath)
+            j.stringLiteral(updatedPath),
           );
 
           // rename any references to the v6Name

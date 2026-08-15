@@ -9,13 +9,14 @@ import { Typography } from "@react-md/core/typography/Typography";
 import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 
-import styles from "./FilterSymbolCustomization.module.scss";
-import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import {
   indexToMaterialGrade,
   indexToMaterialOpticalSize,
   indexToMaterialWeight,
 } from "./constants.js";
+import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
+
+import styles from "./FilterSymbolCustomization.module.scss";
 
 const SHARED_PROPS = {
   marks: true,
@@ -64,7 +65,7 @@ export function FilterSymbolCustomization(): ReactElement {
                 children: indexToMaterialWeight(value),
                 className: cnb(
                   value === 0 && styles.firstLabel,
-                  value === 6 && styles.lastLabel
+                  value === 6 && styles.lastLabel,
                 ),
               };
             }}

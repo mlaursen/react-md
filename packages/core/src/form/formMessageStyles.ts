@@ -15,7 +15,7 @@ export function formMessage(options: FormMessageClassNameOptions = {}): string {
   return cnb(
     styles({ [theme]: theme !== "none" }),
     cssUtils({ textColor: error ? "error" : "text-secondary" }),
-    className
+    className,
   );
 }
 
@@ -28,7 +28,7 @@ export interface FormMessageTextClassNameOptions {
  * @since 6.0.0
  */
 export function formMessageText(
-  options: FormMessageTextClassNameOptions = {}
+  options: FormMessageTextClassNameOptions = {},
 ): string {
   const { className } = options;
 
@@ -44,7 +44,7 @@ export interface FormMessageCounterClassNameOptions {
  * @since 6.0.0
  */
 export function formMessageCounter(
-  options: FormMessageCounterClassNameOptions = {}
+  options: FormMessageCounterClassNameOptions = {},
 ): string {
   const { className } = options;
 

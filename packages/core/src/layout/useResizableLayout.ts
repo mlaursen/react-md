@@ -151,7 +151,7 @@ export interface ResizableLayoutImplementation extends ExpandableLayoutImplement
  * @since 6.0.0
  */
 export function useResizableLayout(
-  options: ResizableLayoutOptions
+  options: ResizableLayoutOptions,
 ): ResizableLayoutImplementation {
   const {
     navId: propNavId,

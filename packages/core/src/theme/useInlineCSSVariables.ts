@@ -37,7 +37,7 @@ import {
  * @since 6.0.0
  */
 export function useInlineCSSVariables<Name extends CSSVariableName>(
-  variables: ReadonlyCSSVariableList<Name>
+  variables: ReadonlyCSSVariableList<Name>,
 ): CSSProperties {
   return useMemo(() => {
     const style: CSSVariablesProperties<Name> = {};

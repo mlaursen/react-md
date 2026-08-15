@@ -40,19 +40,19 @@ describe("isPointInCircle", () => {
   const center: Point = { x: 0, y: 0 };
   it("should return true for a point at the center", () => {
     expect(isPointInCircle({ point: { x: 0, y: 0 }, center, radius: 1 })).toBe(
-      true
+      true,
     );
   });
 
   it("should return true for a point on the boundary", () => {
     expect(isPointInCircle({ point: { x: 1, y: 0 }, center, radius: 1 })).toBe(
-      true
+      true,
     );
   });
 
   it("should return false for a point outside the circle", () => {
     expect(isPointInCircle({ point: { x: 2, y: 0 }, center, radius: 1 })).toBe(
-      false
+      false,
     );
   });
 });

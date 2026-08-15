@@ -8,7 +8,7 @@ import { type ReactElement, type ReactNode } from "react";
 
 const getSelectedOptionChildren = (
   // `<string>` can be replaced with the `Select` value type if known
-  options: GetSelectedOptionChildrenOptions<string>
+  options: GetSelectedOptionChildrenOptions<string>,
 ): ReactNode => {
   const {
     // current value

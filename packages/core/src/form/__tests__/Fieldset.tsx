@@ -3,8 +3,8 @@ import { describe, expect, it } from "vitest";
 
 import { render, screen } from "../../test-utils/index.js";
 import { Fieldset } from "../Fieldset.js";
-import { Legend } from "../Legend.js";
 import { fieldset } from "../fieldsetStyles.js";
+import { Legend } from "../Legend.js";
 
 describe("Fieldset", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
@@ -26,7 +26,7 @@ describe("Fieldset", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(fieldset).toMatchSnapshot();
 

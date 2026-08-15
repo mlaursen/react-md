@@ -1,8 +1,9 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+
 import { assertString } from "docs-generator/utils/assertions";
 import { glob } from "glob";
 import matter from "gray-matter";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 
 import { assertBoolean, assertDate } from "@/utils/assertions.js";
 import { slug } from "@/utils/slug.js";
@@ -51,7 +52,7 @@ export async function getBlogs(cwd: string): Promise<readonly Blog[]> {
         exerpt,
         pinned: !!pinned,
       });
-    })
+    }),
   );
 
   blogs.sort((a, b) => b.date.getTime() - a.date.getTime());

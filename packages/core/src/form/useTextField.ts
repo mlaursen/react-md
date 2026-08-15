@@ -396,7 +396,7 @@ export interface ValidatedTextFieldImplementation<
 export function useTextField<
   E extends HTMLInputElement | HTMLTextAreaElement = HTMLInputElement,
 >(
-  options: TextFieldHookOptions<E> & { disableMessage: true }
+  options: TextFieldHookOptions<E> & { disableMessage: true },
 ): TextFieldImplementation<E>;
 
 /**
@@ -656,7 +656,7 @@ export function useTextField<
       pattern,
       required,
       validationType,
-    ]
+    ],
   );
 
   const errorIcon = getIcon("error", propErrorIcon);

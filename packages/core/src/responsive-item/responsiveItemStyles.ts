@@ -60,7 +60,7 @@ export interface ResponsiveItemClassNameOptions {
 
 /** @since 6.0.0 */
 export function responsiveItem(
-  options: ResponsiveItemClassNameOptions = {}
+  options: ResponsiveItemClassNameOptions = {},
 ): string {
   const {
     className,
@@ -77,6 +77,6 @@ export function responsiveItem(
       [aspectRatio]: aspectRatio,
       "full-width": fullWidth,
     }),
-    className
+    className,
   );
 }

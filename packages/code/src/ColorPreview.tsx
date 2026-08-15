@@ -36,7 +36,7 @@ export function ColorPreview(props: ColorPreviewProps): ReactElement {
         !icon && "color-preview--text",
         icon && "color-preview--icon",
         !icon && disableCode && "color-preview--color-only",
-        className
+        className,
       )}
     >
       {content}

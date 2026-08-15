@@ -84,7 +84,7 @@ export default function ServerUploadExample(): ReactElement {
             className={cnb(
               styles.list,
               isOver && styles.dragover,
-              (isOver || isDragging) && styles.dragging
+              (isOver || isDragging) && styles.dragging,
             )}
           >
             {stats.map((stat) => {
@@ -133,7 +133,7 @@ export default function ServerUploadExample(): ReactElement {
                 >
                   {`Remaining File ${i + 1 + totalFiles}`}
                 </ListItem>
-              )
+              ),
             )}
           </List>
           <FileInput
@@ -241,7 +241,7 @@ interface FakeServerUploadImplementation {
 
 function useFakeServerUpload(
   complete: readonly CompletedFileUploadStats[],
-  totalSize: number
+  totalSize: number,
 ): FakeServerUploadImplementation {
   const { handleAsync, pending } = useAsyncFunction();
   const [progress, setProgress] = useState<number | undefined>();
@@ -265,7 +265,7 @@ function useFakeServerUpload(
       let current = 0;
       const chunks = getRandomUploadSizes(
         totalSize,
-        randomInt({ min: 5, max: 15 })
+        randomInt({ min: 5, max: 15 }),
       );
       for (const bytes of chunks) {
         await wait(randomInt({ min: 15, max: 300 }));
@@ -284,7 +284,7 @@ function useFakeServerUpload(
 
 function getRandomUploadSizes(
   totalSize: number,
-  chunks = 10
+  chunks = 10,
 ): readonly number[] {
   const numbers = Array.from({ length: chunks }, () => Math.random());
   const sum = numbers.reduce((total, n) => total + n, 0);

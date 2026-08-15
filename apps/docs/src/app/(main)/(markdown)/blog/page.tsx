@@ -1,3 +1,6 @@
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
 import { Avatar } from "@react-md/core/avatar/Avatar";
 import { Box } from "@react-md/core/box/Box";
 import { button } from "@react-md/core/button/styles";
@@ -8,8 +11,6 @@ import { Typography } from "@react-md/core/typography/Typography";
 import ChevronRightIcon from "@react-md/material-icons/ChevronRightIcon";
 import { type Metadata } from "next";
 import Link from "next/link.js";
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 import { type ReactElement } from "react";
 
 import { LinkableHeading } from "@/components/LinkableHeading.js";

@@ -486,18 +486,13 @@ $variables: (
             @include use-var(color, outline-text-color);
 
             @if not $disable-outline-raisable {
-              $outline-box-shadow: inset
-                0
-                0
-                0
-                #{get-var(outline-width)}
+              $outline-box-shadow: inset 0 0 0 #{get-var(outline-width)}
                 #{get-var(outline-color)};
 
               @include box-shadows.box-shadow-transition(
                 $start-shadow: $outline-box-shadow,
-                $end-shadow: box-shadows.box-shadow(
-                    $outline-raisable-box-shadow-z-value
-                  ),
+                $end-shadow:
+                  box-shadows.box-shadow($outline-raisable-box-shadow-z-value),
                 $duration: $outline-raisable-transition-duration,
                 $active-selectors: "&.rmd-chip--pressed",
                 $pseudo-before: false,

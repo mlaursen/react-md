@@ -17,7 +17,7 @@ export interface RangeDefaultValueOptions extends GetMiddleOfRangeOptions {
  * @since 6.0.0
  */
 export function getRangeDefaultValue(
-  options: RangeDefaultValueOptions
+  options: RangeDefaultValueOptions,
 ): UseStateInitializer<number> {
   const { defaultValue } = options;
   if (defaultValue !== undefined) {

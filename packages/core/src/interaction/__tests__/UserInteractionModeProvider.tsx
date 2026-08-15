@@ -17,10 +17,10 @@ describe("UserInteractionModeProvider", () => {
           <UserInteractionModeProvider>
             <span />
           </UserInteractionModeProvider>
-        </UserInteractionModeProvider>
-      )
+        </UserInteractionModeProvider>,
+      ),
     ).toThrow(
-      "The `UserInteractionModeProvider` cannot be mounted multiple times."
+      "The `UserInteractionModeProvider` cannot be mounted multiple times.",
     );
 
     error.mockRestore();
@@ -30,7 +30,7 @@ describe("UserInteractionModeProvider", () => {
     render(
       <UserInteractionModeProvider>
         <span />
-      </UserInteractionModeProvider>
+      </UserInteractionModeProvider>,
     );
 
     expect(document.body.className).toContain("mouse-mode");
@@ -69,7 +69,7 @@ describe("UserInteractionModeProvider", () => {
       // @ts-expect-error this is a hidden type only added for tests
       <UserInteractionModeProvider now={now}>
         <span />
-      </UserInteractionModeProvider>
+      </UserInteractionModeProvider>,
     );
     expect(document.body.className).toContain("mouse-mode");
 
@@ -107,7 +107,7 @@ describe("UserInteractionModeProvider", () => {
     render(
       <UserInteractionModeProvider>
         <Test />
-      </UserInteractionModeProvider>
+      </UserInteractionModeProvider>,
     );
 
     const mode = screen.getByTestId("mode");

@@ -41,7 +41,7 @@ export interface CircularProgressSuspenseProps extends CircularProgressProps {
  * @since 6.0.0
  */
 export function CircularProgressSuspense(
-  props: CircularProgressSuspenseProps
+  props: CircularProgressSuspenseProps,
 ): ReactElement {
   const {
     children,

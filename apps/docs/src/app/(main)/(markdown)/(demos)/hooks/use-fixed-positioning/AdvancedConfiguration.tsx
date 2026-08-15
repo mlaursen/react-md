@@ -267,7 +267,7 @@ const WIDTHS = {
 function useConfiguration() {
   const [transitionIn, setTransitionIn] = useState(false);
   const [anchor, setAnchor] = useState<keyof typeof ANCHORS>(
-    "BELOW_CENTER_ANCHOR"
+    "BELOW_CENTER_ANCHOR",
   );
   const [disabled, setDisabled] = useState(false);
   const [disableSwapping, setDisableSwapping] = useState(false);

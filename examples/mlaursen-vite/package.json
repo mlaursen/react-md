@@ -1,12 +1,12 @@
 {
   "name": "mlaursen-vite",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "prepare": "husky",
-    "format": "prettier --write .",
-    "check-format": "prettier --check .",
+    "check-format": "oxfmt --check",
+    "format": "oxfmt",
     "lint": "NODE_ENV=production eslint .",
     "lint-fix": "pnpm lint --fix",
     "typecheck": "tsc --noEmit",
@@ -34,7 +34,6 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.12.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -46,15 +45,12 @@
     "husky": "^9.1.7",
     "jsdom": "^29.1.1",
     "lint-staged": "^17.0.4",
-    "prettier": "^3.8.3",
     "sass-embedded": "^1.99.0",
     "typescript": "^6.0.3",
     "vite": "^8.0.16",
     "vitest": "^4.1.6"
   },
   "lint-staged": {
-    "**/*.{scss,js,jsx,md,yml,json,ts,tsx}": [
-      "prettier --write"
-    ]
+    "*": "oxfmt --no-error-on-unmatched-pattern"
   }
 }

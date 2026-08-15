@@ -32,14 +32,14 @@ describe("SkipToMainContent", () => {
         {...props}
         style={{ opacity: 0.5 }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(link).toMatchSnapshot();
   });
 
   it("should automatically find the main element for convenience", () => {
     expect(() =>
-      render(<SkipToMainContent />, { wrapper: MainIdWrapper })
+      render(<SkipToMainContent />, { wrapper: MainIdWrapper }),
     ).not.toThrow();
   });
 
@@ -47,7 +47,7 @@ describe("SkipToMainContent", () => {
     // hide thrown error in test reports
     vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => render(<SkipToMainContent mainId="not-found" />)).toThrow(
-      'Unable to find a main element to focus with an id of "not-found". There should be at least one <main> element or an element with role="main" on the page for accessibility.'
+      'Unable to find a main element to focus with an id of "not-found". There should be at least one <main> element or an element with role="main" on the page for accessibility.',
     );
   });
 
@@ -59,10 +59,10 @@ describe("SkipToMainContent", () => {
         <>
           <SkipToMainContent mainId="not-found" />
           <main id="main-id" />
-        </>
-      )
+        </>,
+      ),
     ).toThrow(
-      'Unable to find a main element to focus with an id of "not-found" but a main element was found with an id of "main-id".'
+      'Unable to find a main element to focus with an id of "not-found" but a main element was found with an id of "main-id".',
     );
   });
 
@@ -86,7 +86,7 @@ describe("SkipToMainContent", () => {
         onClick={(event) => {
           event.stopPropagation();
         }}
-      />
+      />,
     );
     fireEvent.click(link);
     expect(document.body).toHaveFocus();

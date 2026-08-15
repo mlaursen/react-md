@@ -5,11 +5,11 @@ import { withinRange } from "../withinRange.js";
 describe("withinRange", () => {
   it("should return the value if the min or max values are undefined", () => {
     expect(withinRange({ value: 100, min: undefined, max: undefined })).toBe(
-      100
+      100,
     );
     expect(withinRange({ value: 0, min: undefined, max: undefined })).toBe(0);
     expect(withinRange({ value: -100, min: undefined, max: undefined })).toBe(
-      -100
+      -100,
     );
   });
 

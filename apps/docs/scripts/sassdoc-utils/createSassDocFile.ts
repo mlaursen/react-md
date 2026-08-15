@@ -7,11 +7,11 @@ import { sort } from "./sort.js";
 
 const stringify = (
   map: ReadonlyMap<string, FormattedSassDocItem>,
-  order: ReadonlyMap<string, number>
+  order: ReadonlyMap<string, number>,
 ): string => JSON.stringify(Object.fromEntries(sort(map, order)));
 
 export async function createSassDocFile(
-  generated: GeneratedSassDocWithOrder
+  generated: GeneratedSassDocWithOrder,
 ): Promise<void> {
   const {
     mixins,

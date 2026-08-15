@@ -13,9 +13,9 @@ import {
   DefaultToastRenderer,
   type ToastRendererProps,
 } from "./DefaultToastRenderer.js";
+import { type SnackbarPosition, snackbar } from "./snackbarStyles.js";
 import { type ConfigurableToastProps } from "./Toast.js";
 import { useToastQueue } from "./ToastManagerProvider.js";
-import { type SnackbarPosition, snackbar } from "./snackbarStyles.js";
 
 /**
  * @since 6.0.0 The `id` prop is optional

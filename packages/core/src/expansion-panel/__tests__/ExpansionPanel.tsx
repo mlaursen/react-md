@@ -143,7 +143,7 @@ describe("ExpansionPanel", () => {
         manualIds
         multiple
         defaultExpandedIds={() => ["panel-1", "panel-2"]}
-      />
+      />,
     );
     const panel1 = screen.getByRole("button", { name: "Panel 1" });
     const panel2 = screen.getByRole("button", { name: "Panel 2" });
@@ -236,7 +236,7 @@ describe("ExpansionPanel", () => {
           style: { color: "white" },
           className: "custom-class-name",
         }}
-      />
+      />,
     );
     expect(contentEl).toMatchSnapshot();
   });
@@ -263,7 +263,7 @@ describe("ExpansionPanel", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(containerEl).toMatchSnapshot();
   });
@@ -271,7 +271,7 @@ describe("ExpansionPanel", () => {
   it("should support disabling the transition", async () => {
     const user = userEvent.setup();
     const { rerender } = render(
-      <Test disableTransition defaultExpandedIndex={0} />
+      <Test disableTransition defaultExpandedIndex={0} />,
     );
     const panel1 = screen.getByRole("button", { name: "Panel 1" });
 

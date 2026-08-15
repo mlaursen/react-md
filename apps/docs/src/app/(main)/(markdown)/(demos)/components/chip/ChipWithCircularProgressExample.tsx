@@ -50,7 +50,7 @@ function useDemoState(): DemoStateHookResult {
           enabled: !prevState.enabled,
         }));
       },
-      randomInt({ min: 3, max: 5 }) * 1000
+      randomInt({ min: 3, max: 5 }) * 1000,
     );
 
     return () => {

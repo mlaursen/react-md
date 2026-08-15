@@ -25,7 +25,7 @@ describe("CircularProgress", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(element).toMatchSnapshot();
 
@@ -34,7 +34,7 @@ describe("CircularProgress", () => {
         {...props}
         svgStyle={{ color: "red" }}
         svgClassName="custom-svg-class-name"
-      />
+      />,
     );
     expect(element).toMatchSnapshot();
 
@@ -43,7 +43,7 @@ describe("CircularProgress", () => {
         {...props}
         circleStyle={{ color: "orange" }}
         circleClassName="custom-circle-class-name"
-      />
+      />,
     );
     expect(element).toMatchSnapshot();
   });
@@ -65,20 +65,20 @@ describe("CircularProgress", () => {
 
   it("should be able to render as a dense size", () => {
     const { rerender } = render(
-      <CircularProgress aria-label="Progressbar" dense />
+      <CircularProgress aria-label="Progressbar" dense />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
 
     rerender(
-      <CircularProgress aria-label="Progressbar" dense disableCentered />
+      <CircularProgress aria-label="Progressbar" dense disableCentered />,
     );
     expect(progress).toMatchSnapshot();
   });
 
   it("should render as a determinate progress bar when the value is provided", () => {
     const { rerender } = render(
-      <CircularProgress aria-label="Progressbar" value={30} />
+      <CircularProgress aria-label="Progressbar" value={30} />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toHaveAttribute("aria-valuenow", "30");
@@ -91,7 +91,11 @@ describe("CircularProgress", () => {
 
   it("should allow the transition to be disabled for determinate progress bars", () => {
     const { rerender } = render(
-      <CircularProgress aria-label="Progressbar" value={30} disableTransition />
+      <CircularProgress
+        aria-label="Progressbar"
+        value={30}
+        disableTransition
+      />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
@@ -102,20 +106,20 @@ describe("CircularProgress", () => {
 
   it("should allow the animation to be simplified when the disableShrink prop is enabled", () => {
     const { rerender } = render(
-      <CircularProgress aria-label="Progressbar" disableShrink />
+      <CircularProgress aria-label="Progressbar" disableShrink />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
 
     rerender(
-      <CircularProgress aria-label="Progressbar" disableShrink value={100} />
+      <CircularProgress aria-label="Progressbar" disableShrink value={100} />,
     );
     expect(progress).toMatchSnapshot();
   });
 
   it("should be able to render as any of the theme colors", () => {
     const { rerender } = render(
-      <CircularProgress aria-label="Progressbar" theme="primary" />
+      <CircularProgress aria-label="Progressbar" theme="primary" />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
@@ -133,7 +137,7 @@ describe("CircularProgress", () => {
     expect(progress).toMatchSnapshot();
 
     rerender(
-      <CircularProgress aria-label="Progressbar" theme="current-color" />
+      <CircularProgress aria-label="Progressbar" theme="current-color" />,
     );
     expect(progress).toMatchSnapshot();
   });
@@ -145,7 +149,7 @@ describe("CircularProgress", () => {
         dashoffset={100}
         center={20}
         radius={5}
-      />
+      />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();

@@ -1,9 +1,10 @@
+import { glob, readFile } from "node:fs/promises";
+import { join } from "node:path";
+
 import { getMaterialSymbolsUrl } from "@react-md/core/icon/getMaterialSymbolsUrl";
 import { type MaterialSymbolName } from "@react-md/core/icon/material";
 import { DEFAULT_MATERIAL_SYMBOL_NAMES } from "@react-md/core/icon/symbols";
 import { minimatch } from "minimatch";
-import { glob, readFile } from "node:fs/promises";
-import { join } from "node:path";
 import { type HtmlTagDescriptor, type Plugin } from "vite";
 
 import { addMaterialSymbolNames } from "./addMaterialSymbolNames.js";
@@ -16,7 +17,7 @@ import { type MaterialSymbolPluginOptions } from "./types.js";
  * due to formatting and will include commented code.
  */
 export function materialSymbolsPlugin(
-  options: MaterialSymbolPluginOptions = {}
+  options: MaterialSymbolPluginOptions = {},
 ): Plugin {
   const {
     family,

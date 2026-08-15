@@ -10,7 +10,7 @@ export interface ColorHeadingWrapperProps {
 }
 
 export function ColorHeadingWrapper(
-  props: ColorHeadingWrapperProps
+  props: ColorHeadingWrapperProps,
 ): ReactElement {
   const { heading, children } = props;
   if (!heading) {

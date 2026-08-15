@@ -20,7 +20,7 @@ export interface CookieColorSchemeProviderProps {
 }
 
 export function CookieColorSchemeProvider(
-  props: CookieColorSchemeProviderProps
+  props: CookieColorSchemeProviderProps,
 ): ReactElement {
   const { children, defaultColorScheme } = props;
 

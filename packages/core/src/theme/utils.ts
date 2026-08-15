@@ -25,7 +25,7 @@ export function hexToRGB(hex: string): RGB {
 
   hex = hex.replace(
     SHORTHAND_REGEX,
-    (_m, r, g, b) => `${r}${r}${g}${g}${b}${b}`
+    (_m, r, g, b) => `${r}${r}${g}${g}${b}${b}`,
   );
 
   const result = hex.match(VERBOSE_REGEX) || [];
@@ -102,7 +102,7 @@ export function getLuminance(color: string): number {
  */
 export function getContrastRatio(
   background: string,
-  foreground: string
+  foreground: string,
 ): number {
   const backgroundLuminance = getLuminance(background) + 0.05;
   const foregroundLuminance = getLuminance(foreground) + 0.05;
@@ -154,7 +154,7 @@ export const AAA_CONTRAST_RATIO = 7;
 export function isContrastCompliant(
   background: string,
   foreground: string,
-  compliance: ContrastRatioCompliance | number = "normal"
+  compliance: ContrastRatioCompliance | number = "normal",
 ): boolean {
   let ratio: number;
   switch (compliance) {
@@ -187,7 +187,7 @@ export function isContrastCompliant(
 export function contrastColor(
   backgroundColor: string,
   lightColor = white,
-  darkColor = black
+  darkColor = black,
 ): string {
   const lightContrast = getContrastRatio(backgroundColor, lightColor);
   const darkContrast = getContrastRatio(backgroundColor, darkColor);

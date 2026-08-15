@@ -28,7 +28,7 @@ describe("MenuVisibilityProvider", () => {
     const button = screen.getByRole("button", { name: "Button" });
     fireEvent.click(button);
     expect(error instanceof Error && error.message).toBe(
-      '"MenuVisibilityProvider" must be a parent component'
+      '"MenuVisibilityProvider" must be a parent component',
     );
   });
 });

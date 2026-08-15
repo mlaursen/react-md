@@ -37,7 +37,7 @@ export interface ToggleImplementation {
  * @param defaultValue - `false`
  */
 export function useToggle(
-  defaultValue: UseStateInitializer<boolean> = false
+  defaultValue: UseStateInitializer<boolean> = false,
 ): ToggleImplementation {
   const [toggled, setToggled] = useState(defaultValue);
 

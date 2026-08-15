@@ -25,7 +25,7 @@ describe("createAcceptFromExtensions", () => {
         "mpg",
         "webm",
         "mov",
-      ])
+      ]),
     ).toBe(".svg,.jpeg,.jpg,.png,.apng,.mkv,.mp4,.mpeg,.mpg,.webm,.mov");
   });
 });

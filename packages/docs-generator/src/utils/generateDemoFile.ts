@@ -1,13 +1,14 @@
+import { existsSync } from "node:fs";
+import { mkdir, writeFile } from "node:fs/promises";
+import { basename, dirname } from "node:path";
+
 import {
   type CodeFile,
   type ScssCodeFile,
   type TypescriptCodeFile,
 } from "@react-md/code/types";
 import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
-import { existsSync } from "node:fs";
-import { mkdir, writeFile } from "node:fs/promises";
-import { basename, dirname } from "node:path";
-import { format } from "prettier";
+import { format } from "oxfmt";
 import { type Project, VariableDeclarationKind } from "ts-morph";
 
 import { type InlineDemoProps } from "./createDemo.js";
@@ -53,7 +54,7 @@ function getStackBlitzDemoName(demoOutPath: string, demoName: string): string {
 }
 
 const toPropString = (
-  props: Record<string, number | boolean | string | undefined>
+  props: Record<string, number | boolean | string | undefined>,
 ): string => {
   let jsxProps = "";
   for (const [name, value] of Object.entries(props)) {
@@ -140,8 +141,8 @@ async function getServerComponentSource({
           type: "Readonly<Record<string, string>>",
           initializer: JSON.stringify(
             Object.fromEntries(
-              [...readOnlyImports].map((name) => [basename(name), name])
-            )
+              [...readOnlyImports].map((name) => [basename(name), name]),
+            ),
           ),
         },
       ],
@@ -219,7 +220,12 @@ async function getServerComponentSource({
     returnType: "ReactElement",
     isDefaultExport: true,
   });
-  return await format(sourceFile.getFullText(), { parser: "typescript" });
+
+  const formatted = await format(
+    sourceFile.getFilePath(),
+    sourceFile.getFullText(),
+  );
+  return formatted.code;
 }
 
 export interface GenerateDemoFileOptions extends ParseCompleteDemoFileOptions {
@@ -229,7 +235,7 @@ export interface GenerateDemoFileOptions extends ParseCompleteDemoFileOptions {
 }
 
 export async function generateDemoFile(
-  options: GenerateDemoFileOptions
+  options: GenerateDemoFileOptions,
 ): Promise<void> {
   const {
     props,
@@ -258,7 +264,7 @@ export async function generateDemoFile(
   const clientSourceFile = project.createSourceFile(
     demoOutPath,
     CLIENT_TEMPLATE,
-    { overwrite: true }
+    { overwrite: true },
   );
   const dependencies = new Set<string>();
   const importScope: Record<string, string> = {};
@@ -272,7 +278,7 @@ export async function generateDemoFile(
         name
           .split("/")
           .slice(0, name.startsWith("@") ? 2 : 1)
-          .join("/")
+          .join("/"),
       );
     }
 
@@ -300,7 +306,7 @@ export async function generateDemoFile(
   const clientDemoOutPath = demoOutPath.replace(/(\..+)$/, "Client$1");
   const clientImportName = basename(clientDemoOutPath).replace(
     /\.ts(x)?/,
-    ".js"
+    ".js",
   );
   clientSourceFile.addFunction({
     name: clientDemoName,
@@ -316,10 +322,11 @@ export async function generateDemoFile(
     await mkdir(demoOutDir, { recursive: true });
   }
 
-  await writeFile(
-    clientDemoOutPath,
-    await format(clientSourceFile.getFullText(), { parser: "typescript" })
+  const formatted = await format(
+    clientSourceFile.getFilePath(),
+    clientSourceFile.getFullText(),
   );
+  await writeFile(clientDemoOutPath, formatted.code);
   await writeFile(
     demoOutPath,
     await getServerComponentSource({
@@ -337,6 +344,6 @@ export async function generateDemoFile(
       dependencies,
       clientDemoName,
       clientImportName,
-    })
+    }),
   );
 }

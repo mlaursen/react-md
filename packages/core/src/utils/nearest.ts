@@ -42,7 +42,7 @@ export function nearest(options: NearestOptions): number {
     max,
     Math.max(
       min,
-      Number.parseFloat((zeroToOne * range + min).toFixed(decimals))
-    )
+      Number.parseFloat((zeroToOne * range + min).toFixed(decimals)),
+    ),
   );
 }

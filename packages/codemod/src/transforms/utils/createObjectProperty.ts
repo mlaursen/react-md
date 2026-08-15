@@ -7,7 +7,7 @@ export interface CreateObjectPropertyOptions {
 }
 
 export function createObjectProperty(
-  options: CreateObjectPropertyOptions
+  options: CreateObjectPropertyOptions,
 ): ObjectProperty {
   const { j, name, local = name } = options;
   const prop = j.objectProperty(j.identifier(name), j.identifier(local));

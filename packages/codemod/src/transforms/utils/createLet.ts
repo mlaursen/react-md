@@ -27,7 +27,7 @@ export function createLet(options: CreateLetOptions): VariableDeclaration {
         type,
         isTypescript,
       }),
-      value
+      value,
     ),
   ]);
   if (comment) {

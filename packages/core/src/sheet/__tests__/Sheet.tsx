@@ -49,7 +49,7 @@ describe("Sheet", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(dialog).toMatchSnapshot();
   });

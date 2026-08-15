@@ -43,7 +43,7 @@ const TabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(
   function TabPanels(props, ref) {
     const { children } = props;
     return <div ref={ref}>{children}</div>;
-  }
+  },
 );
 
 interface TabPanelProps extends ProvidedTabPanelProps {

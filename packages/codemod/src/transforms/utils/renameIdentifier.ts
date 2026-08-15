@@ -15,7 +15,7 @@ export function renameIdentifier(options: RenameIdentifierOptions): void {
       j.identifier.from({
         name: to,
         comments: identifier.node.comments || null,
-      })
+      }),
     );
   });
 }

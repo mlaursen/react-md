@@ -10,11 +10,12 @@ import {
   isValidElement,
 } from "react";
 
-import styles from "./Blockquote.module.scss";
 import {
   type BlockquoteTheme,
   BlockquoteThemeIcon,
 } from "./BlockquoteThemeIcon.js";
+
+import styles from "./Blockquote.module.scss";
 
 const THEME_REGEX = /!(Warn|Info|Success|Error)!/;
 
@@ -58,8 +59,8 @@ export function Blockquote(props: BlockquoteProps): ReactElement {
             cloneElement(
               child,
               { key: index },
-              childChildren.slice(Math.max(0, themeMatch.length + 2))
-            )
+              childChildren.slice(Math.max(0, themeMatch.length + 2)),
+            ),
           );
           return;
         }
@@ -81,7 +82,7 @@ export function Blockquote(props: BlockquoteProps): ReactElement {
                 {remaining.map((item, index) => (
                   <Fragment key={index}>{item}</Fragment>
                 ))}
-              </>
+              </>,
             );
             nextChildren.push(cloned);
             return;
@@ -107,7 +108,7 @@ export function Blockquote(props: BlockquoteProps): ReactElement {
           theme === "success" && styles.success,
           theme === "error" && styles.error,
           typography({ type: "subtitle-2" }),
-          className
+          className,
         )}
       >
         <BlockquoteThemeIcon theme={theme} />
@@ -122,7 +123,7 @@ export function Blockquote(props: BlockquoteProps): ReactElement {
       className={cnb(
         styles.blockquote,
         typography({ type: "subtitle-2" }),
-        className
+        className,
       )}
     >
       {children}

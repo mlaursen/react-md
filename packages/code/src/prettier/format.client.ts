@@ -8,7 +8,7 @@ import prettier from "prettier/standalone.js";
 
 export async function formatCode(
   source: string,
-  options?: Options
+  options?: Options,
 ): Promise<string> {
   return await prettier.format(source, {
     ...options,

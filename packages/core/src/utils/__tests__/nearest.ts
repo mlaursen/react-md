@@ -31,19 +31,19 @@ describe("nearest", () => {
     // - thumb2 -> min === thumb1Value, max === max
 
     expect(
-      nearest({ value: 44.3, min: 40, max: 100, steps: 100, range: 100 })
+      nearest({ value: 44.3, min: 40, max: 100, steps: 100, range: 100 }),
     ).toBe(44);
     expect(nearest({ value: 50, min: 20, max: 50, steps: 50, range: 50 })).toBe(
-      50
+      50,
     );
     expect(
-      nearest({ value: 22.3, min: 20, max: 50, steps: 50, range: 50 })
+      nearest({ value: 22.3, min: 20, max: 50, steps: 50, range: 50 }),
     ).toBe(22);
     expect(
-      nearest({ value: 12.3, min: 20, max: 50, steps: 50, range: 50 })
+      nearest({ value: 12.3, min: 20, max: 50, steps: 50, range: 50 }),
     ).toBe(20);
     expect(
-      nearest({ value: 0, min: 30, max: 50, steps: 100, range: 100 })
+      nearest({ value: 0, min: 30, max: 50, steps: 100, range: 100 }),
     ).toBe(30);
 
     // it's possible for the value to be larger than the min or max for range
@@ -55,10 +55,10 @@ describe("nearest", () => {
     const minValue = 2000;
     const maxValue = 8000;
     expect(nearest({ value: 10_000, min, max: maxValue, steps, range })).toBe(
-      maxValue
+      maxValue,
     );
     expect(nearest({ value: 0, min: minValue, max, steps, range })).toBe(
-      minValue
+      minValue,
     );
   });
 
@@ -69,7 +69,7 @@ describe("nearest", () => {
         max: 100,
         steps: 0,
         value: 100,
-      })
+      }),
     ).toBe(100);
 
     expect(
@@ -78,7 +78,7 @@ describe("nearest", () => {
         max: 100,
         steps: 0,
         value: 103,
-      })
+      }),
     ).toBe(100);
   });
 });

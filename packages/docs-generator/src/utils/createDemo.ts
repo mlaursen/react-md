@@ -1,5 +1,6 @@
-import { type CodePreviewProps } from "@react-md/code/CodePreview";
 import { dirname, join, parse, resolve } from "node:path";
+
+import { type CodePreviewProps } from "@react-md/code/CodePreview";
 import { type Project } from "ts-morph";
 
 import { assertString, assertStringArray } from "./assertions.js";
@@ -120,7 +121,7 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
           for (const item of parsed) {
             if (/\.tsx?$/.test(item)) {
               throw new Error(
-                `readOnlyImports must import jsx extensions but ${item} was found`
+                `readOnlyImports must import jsx extensions but ${item} was found`,
               );
             }
 
@@ -131,7 +132,7 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
           console.error(error);
           throw new Error(
             `readOnlyImports must be in the format of \`readOnlyImports={["@/components/Example.js"]}\``,
-            { cause: error }
+            { cause: error },
           );
         }
         break;
@@ -141,7 +142,7 @@ export async function createDemo(options: CreateDemoOptions): Promise<void> {
   }
   if (props.phone && !props.card) {
     errors.add(
-      "`phone` must be used with the `card` prop, but it was missing."
+      "`phone` must be used with the `card` prop, but it was missing.",
     );
   }
 
@@ -160,11 +161,11 @@ ${[...Object.keys(props), "disableImportOnlySCSS"]
   if (errors.size > 0) {
     const message = [...errors]
       .map((error) =>
-        error.startsWith("Valid demo props are") ? error : `- ${error}`
+        error.startsWith("Valid demo props are") ? error : `- ${error}`,
       )
       .join("\n");
     throw new Error(
-      `Unable to create a demo due to the following errors:\n${message}`
+      `Unable to create a demo due to the following errors:\n${message}`,
     );
   }
 
@@ -173,7 +174,7 @@ ${[...Object.keys(props), "disableImportOnlySCSS"]
   // /home/mlaursen/code/react-md/apps/docs/src/app/(main)/(markdown)/(demos)/components/button -> /components/button/
   const twoFoldersAboveDemo = demoDir.replace(
     resolve(demoDir, "..", "..") + "/",
-    ""
+    "",
   );
 
   const demoOutPath = join(generatedDir, twoFoldersAboveDemo, source);
@@ -226,7 +227,7 @@ ${[...Object.keys(props), "disableImportOnlySCSS"]
       readOnlyImports,
     }),
     "",
-    `Compiled ${aliasedDemoOutPath}`
+    `Compiled ${aliasedDemoOutPath}`,
   );
   replacePreElement({
     preElement,
@@ -235,7 +236,7 @@ ${[...Object.keys(props), "disableImportOnlySCSS"]
       createDemoMdxCode({
         demoName,
         aliasedDemoOutPath,
-      })
+      }),
     ),
   });
 }

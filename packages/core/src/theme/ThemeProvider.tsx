@@ -46,7 +46,7 @@ export function useTheme(): Readonly<ThemeContext>;
  * @since 6.0.0
  */
 export function useTheme(
-  allowUndefined: true
+  allowUndefined: true,
 ): Readonly<ThemeContext> | undefined;
 
 /**
@@ -55,7 +55,7 @@ export function useTheme(
  * @throws "The `ThemeProvider` has not been initialized."
  */
 export function useTheme(
-  allowUndefined?: boolean
+  allowUndefined?: boolean,
 ): Readonly<ThemeContext> | undefined {
   const theme = useContext(context);
   if (!theme && !allowUndefined) {
@@ -181,7 +181,7 @@ export function ThemeProvider(props: ThemeProviderProps): ReactElement {
       }
 
       return currentColor === "dark" ? DEFAULT_DARK_THEME : DEFAULT_LIGHT_THEME;
-    }
+    },
   );
 
   const derived = !theme;

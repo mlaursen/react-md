@@ -39,7 +39,7 @@ export interface ProvidedMaxTabPanelsHeightProps<
  */
 export interface MaxTabPanelHeightImplementation<E extends HTMLElement> {
   getMaxTabPanelHeightProps: (
-    style?: CSSProperties
+    style?: CSSProperties,
   ) => ProvidedMaxTabPanelsHeightProps<E>;
 }
 
@@ -99,7 +99,7 @@ export interface MaxTabPanelHeightImplementation<E extends HTMLElement> {
  * @since 6.0.0
  */
 export function useMaxTabPanelHeight<E extends HTMLElement = HTMLDivElement>(
-  options: MaxTabPanelHeightOptions<E>
+  options: MaxTabPanelHeightOptions<E>,
 ): MaxTabPanelHeightImplementation<E> {
   const { ref, style, defaultHeight, getTabPanelsProps } = options;
 

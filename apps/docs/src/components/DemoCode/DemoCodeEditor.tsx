@@ -1,12 +1,12 @@
 "use client";
 
 import { CodeBlockAppBar } from "@react-md/code/CodeBlockAppBar";
-import { useTypescriptEnabledContext } from "@react-md/code/TypescriptEnabledProvider";
 import {
   type RunnableCodeScope,
   type ScssCodeFile,
   type TypescriptCodeFile,
 } from "@react-md/code/types";
+import { useTypescriptEnabledContext } from "@react-md/code/TypescriptEnabledProvider";
 import { useCodeEditHistory } from "@react-md/code/useCodeEditHistory";
 import { Box } from "@react-md/core/box/Box";
 import { TooltippedButton } from "@react-md/core/button/TooltippedButton";
@@ -25,11 +25,12 @@ import { type ReactElement, type ReactNode, useMemo, useRef } from "react";
 
 import { GithubLink } from "../GithubLink.js";
 import { ConfigureTypescriptEnabled } from "../MainLayout/ConfigureTypescriptEnabled.js";
-import styles from "./DemoCodeEditor.module.scss";
 import { DemoCodePreview } from "./DemoCodePreview.js";
 import { type PreviewContainerOptions } from "./PreviewContainer.js";
 import { ScssCodeEditor } from "./ScssCodeEditor.js";
 import { TypescriptCodeEditor } from "./TypescriptCodeEditor.js";
+
+import styles from "./DemoCodeEditor.module.scss";
 
 export interface DemoCodeEditorProps extends PreviewContainerOptions {
   scope: RunnableCodeScope;
@@ -138,7 +139,7 @@ export function DemoCodeEditor(props: DemoCodeEditorProps): ReactElement {
               onClick={() => {
                 resetPreview();
                 setCode(
-                  isTypescriptEnabled ? tsCodeFile.code : tsCodeFile.compiled
+                  isTypescriptEnabled ? tsCodeFile.code : tsCodeFile.compiled,
                 );
               }}
             >

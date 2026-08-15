@@ -34,7 +34,7 @@ export function dependencies(root: Root): boolean {
           postcss.atRule({
             name: "use",
             params: `"react-md"${aliased}`,
-          })
+          }),
         );
       }
       node.remove();

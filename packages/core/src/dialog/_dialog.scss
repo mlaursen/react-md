@@ -362,8 +362,7 @@ $variables: (
             }
           } @else {
             &--outline:focus-visible {
-              outline: interaction.get-var(focus-color)
-                solid
+              outline: interaction.get-var(focus-color) solid
                 interaction.get-var(focus-width);
             }
           }

@@ -22,7 +22,7 @@ export interface DangerouslyRunCodeResult {
 }
 
 export function useDangerouslyRunnableCode(
-  options: DangerouslyRunCodeOptions
+  options: DangerouslyRunCodeOptions,
 ): DangerouslyRunCodeResult {
   const { code, scope, onRendered = noop } = options;
   const elementRef = useRef<ReactElement | null>(null);

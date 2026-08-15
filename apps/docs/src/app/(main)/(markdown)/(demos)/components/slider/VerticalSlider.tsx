@@ -15,11 +15,9 @@ export default function VerticalSlider(): ReactElement {
   return (
     <Form
       className={box({ fullWidth: true })}
-      style={
-        {
-          // "--rmd-slider-vertical-size": "15rem",
-        }
-      }
+      style={{
+        // "--rmd-slider-vertical-size": "15rem",
+      }}
     >
       <Fieldset fullWidth>
         <Legend id={legendId}>Slider</Legend>

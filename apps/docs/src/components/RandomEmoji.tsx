@@ -37,7 +37,7 @@ export function RandomEmoji(props: RandomEmojiProps): ReactElement {
       className={cnb(
         styles.container,
         inheritFont && styles.inherit,
-        className
+        className,
       )}
     >
       {emoji.current}

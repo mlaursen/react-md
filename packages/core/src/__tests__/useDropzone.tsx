@@ -35,7 +35,7 @@ describe("useDropzone", () => {
         onDragEnter={onDragEnter}
         onDragOver={onDragOver}
         onDrop={onDrop}
-      />
+      />,
     );
     const dropzone = screen.getByTestId("dropzone");
     expect(dropzone).not.toHaveClass("over");
@@ -87,7 +87,7 @@ describe("useDropzone", () => {
         onDrop={onDrop}
       >
         <Test onDrop={() => {}} />
-      </div>
+      </div>,
     );
 
     const dropzone = screen.getByTestId("dropzone");
@@ -107,7 +107,7 @@ describe("useDropzone", () => {
       <Test onDrop={() => {}}>
         <div data-testid="child1" />
         <div data-testid="child2" />
-      </Test>
+      </Test>,
     );
 
     const dropzone = screen.getByTestId("dropzone");

@@ -66,7 +66,7 @@ export interface SelectTestElements {
  * @since 6.0.0
  */
 export function getSelectTestElements(
-  options: GetPartsByRoleOptions
+  options: GetPartsByRoleOptions,
 ): SelectTestElements {
   const { container = screen, ...byRoleOptions } = options;
   const select = container.getByRole<HTMLDivElement>("combobox", byRoleOptions);
@@ -90,18 +90,18 @@ export function getSelectTestElements(
  * @since 6.0.0
  */
 export async function findSelectTestElements(
-  options: GetPartsByRoleOptions
+  options: GetPartsByRoleOptions,
 ): Promise<SelectTestElements> {
   const { container = screen, ...byRoleOptions } = options;
   const select = await container.findByRole<HTMLDivElement>(
     "combobox",
-    byRoleOptions
+    byRoleOptions,
   );
   const selectInput = await within(select).findByRole<HTMLInputElement>(
     "textbox",
     {
       hidden: true,
-    }
+    },
   );
   const selectedOption = select.firstElementChild;
   if (!(selectedOption instanceof HTMLDivElement)) {

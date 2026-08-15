@@ -35,7 +35,7 @@ describe("useHigherContrastChildren", () => {
     rerender(
       <Test>
         <p>Text</p>
-      </Test>
+      </Test>,
     );
     expect(container.firstElementChild).toBeInstanceOf(HTMLParagraphElement);
     expect(container).toMatchSnapshot();
@@ -43,7 +43,7 @@ describe("useHigherContrastChildren", () => {
     rerender(
       <Test disable>
         <p>Text</p>
-      </Test>
+      </Test>,
     );
     expect(container.firstElementChild).toBeInstanceOf(HTMLParagraphElement);
     expect(container).toMatchSnapshot();
@@ -55,7 +55,7 @@ describe("useHigherContrastChildren", () => {
         {"String 1"}
         {"String 2"}
         {"String 3"}
-      </Test>
+      </Test>,
     );
 
     expect(container.childElementCount).toBe(3);
@@ -69,7 +69,7 @@ describe("useHigherContrastChildren", () => {
         {"String 1"}
         <p>Text</p>
         {"String 3"}
-      </Test>
+      </Test>,
     );
     expect(container.childElementCount).toBe(3);
     expect(container.children[0]).toBeInstanceOf(HTMLSpanElement);
@@ -88,7 +88,7 @@ describe("useHigherContrastChildren", () => {
     const { container } = render(
       <Test>
         <>String</>
-      </Test>
+      </Test>,
     );
 
     expect(container.firstElementChild).toBeNull();

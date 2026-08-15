@@ -59,7 +59,7 @@ export interface MenuBarProviderOptions {
  * @since 6.0.0
  */
 export function useMenuBarProvider(
-  options: MenuBarProviderOptions
+  options: MenuBarProviderOptions,
 ): Readonly<MenuBarContext> {
   const { hoverTimeout, root, menubar, defaultActiveId = "" } = options;
 
@@ -85,6 +85,6 @@ export function useMenuBarProvider(
       menubar,
       menuitem: true,
     }),
-    [hoverMode, menubar, root]
+    [hoverMode, menubar, root],
   );
 }

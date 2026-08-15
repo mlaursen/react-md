@@ -36,7 +36,7 @@ const noop = (): void => {
  * @since 6.0.0 Added the `disablePortal` flag to the return value for SSR.
  */
 export function useTransition<E extends HTMLElement>(
-  options: TransitionHookOptions<E>
+  options: TransitionHookOptions<E>,
 ): TransitionHookReturnValue<E> {
   const {
     nodeRef,
@@ -97,7 +97,7 @@ export function useTransition<E extends HTMLElement>(
   const [state, dispatch] = useReducer(
     function reducer(
       state: TransitionState,
-      action: TransitionStage | "unmount"
+      action: TransitionStage | "unmount",
     ): TransitionState {
       const { appear, enter, exit } = configurationRef.current.timeout;
       const { appearing } = state;
@@ -156,7 +156,7 @@ export function useTransition<E extends HTMLElement>(
         rendered: !temporary || transitionIn,
         stage,
       };
-    }
+    },
   );
   const { appearing, rendered, stage } = state;
 

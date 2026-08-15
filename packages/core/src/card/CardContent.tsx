@@ -17,7 +17,7 @@ export interface CardContentProps
  * removed the `disableParagraphMargin` prop.
  */
 export const CardContent = function CardContent(
-  props: CardContentProps
+  props: CardContentProps,
 ): ReactElement {
   const {
     ref,

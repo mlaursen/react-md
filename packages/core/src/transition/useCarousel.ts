@@ -203,7 +203,7 @@ export function useCarousel(options: CarouselOptions): CarouselImplementation {
         };
       });
     },
-    []
+    [],
   );
   const increment = useCallback(() => {
     setCarouselSlideState((prevState) => ({

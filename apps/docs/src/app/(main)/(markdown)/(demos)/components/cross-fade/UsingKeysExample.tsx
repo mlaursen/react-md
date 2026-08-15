@@ -65,7 +65,7 @@ const Page1 = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
         </Typography>
       </TextContainer>
     );
-  }
+  },
 );
 
 const Page2 = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
@@ -83,5 +83,5 @@ const Page2 = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
         </Typography>
       </TextContainer>
     );
-  }
+  },
 );

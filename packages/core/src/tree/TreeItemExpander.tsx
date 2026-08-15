@@ -9,8 +9,8 @@ import {
   isValidElement,
 } from "react";
 
-import { IconRotator } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/config.js";
+import { IconRotator } from "../icon/IconRotator.js";
 import { useTreeContext } from "./TreeProvider.js";
 
 /**

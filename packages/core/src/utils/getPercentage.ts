@@ -31,7 +31,7 @@ export function getPercentage(options: GetPercentageOptions): number {
   if (validate) {
     if (min >= max) {
       throw new RangeError(
-        "A range must have the min value less than the max value"
+        "A range must have the min value less than the max value",
       );
     }
 

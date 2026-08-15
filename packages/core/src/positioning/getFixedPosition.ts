@@ -87,7 +87,7 @@ export function getFixedPosition(options: FixedPositionOptions): FixedPosition {
     anchor.y !== "below"
   ) {
     throw new Error(
-      'Unable to prevent overlap when the vertical anchor is not `"above"` or `"below"`'
+      'Unable to prevent overlap when the vertical anchor is not `"above"` or `"below"`',
     );
   }
 

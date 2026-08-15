@@ -67,7 +67,7 @@ export interface PortalContainerProviderProps {
  * @since 6.0.0
  */
 export function PortalContainerProvider(
-  props: PortalContainerProviderProps
+  props: PortalContainerProviderProps,
 ): ReactElement {
   const { container, children } = props;
   const [value, setValue] = useState<PortalContainerNode>(portalContainer);

@@ -14,9 +14,9 @@ describe("getMaterialSymbolsUrl", () => {
         grade: 0,
         opticalSize: 48,
         weight: 400,
-      })
+      }),
     ).toBe(
-      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=favorite"
+      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=favorite",
     );
     expect(
       getMaterialSymbolsUrl({
@@ -26,9 +26,9 @@ describe("getMaterialSymbolsUrl", () => {
         grade: 0,
         opticalSize: 48,
         weight: 400,
-      })
+      }),
     ).toBe(
-      "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=favorite"
+      "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=favorite",
     );
     expect(
       getMaterialSymbolsUrl({
@@ -38,9 +38,9 @@ describe("getMaterialSymbolsUrl", () => {
         grade: 0,
         opticalSize: 48,
         weight: 400,
-      })
+      }),
     ).toBe(
-      "https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=favorite"
+      "https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=favorite",
     );
   });
 
@@ -53,9 +53,9 @@ describe("getMaterialSymbolsUrl", () => {
         grade: 0,
         opticalSize: 48,
         weight: 400,
-      })
+      }),
     ).toBe(
-      "https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=abc,books_movies_and_music,favorite"
+      "https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0&icon_names=abc,books_movies_and_music,favorite",
     );
   });
 
@@ -64,7 +64,7 @@ describe("getMaterialSymbolsUrl", () => {
       getMaterialSymbolsUrl({
         ...MATERIAL_CONFIG,
         names: DEFAULT_MATERIAL_SYMBOL_NAMES,
-      })
+      }),
     );
   });
 
@@ -76,9 +76,9 @@ describe("getMaterialSymbolsUrl", () => {
         opticalSize: { min: 20, max: 48 },
         weight: { min: 100, max: 700 },
         names: ["abc"],
-      })
+      }),
     ).toBe(
-      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..200&icon_names=abc"
+      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..200&icon_names=abc",
     );
   });
 
@@ -91,9 +91,9 @@ describe("getMaterialSymbolsUrl", () => {
         grade: { min: -25, max: 200 },
         opticalSize: { min: 20, max: 48 },
         weight: { min: 100, max: 700 },
-      })
+      }),
     ).toBe(
-      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..200&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..200&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..200"
+      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..200&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..200&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..200",
     );
   });
 });

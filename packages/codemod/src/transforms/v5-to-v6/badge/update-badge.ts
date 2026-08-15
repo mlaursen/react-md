@@ -25,7 +25,7 @@ function createThemeHelper(j: JSCodeshift): FunctionDeclaration {
       j.tsTypeReference(j.identifier("BadgeTheme")),
       j.tsLiteralType(j.stringLiteral("default")),
       j.tsUndefinedKeyword(),
-    ])
+    ]),
   );
   const declaration = j.functionDeclaration(
     j.identifier("_toBadgeTheme"),
@@ -36,20 +36,20 @@ function createThemeHelper(j: JSCodeshift): FunctionDeclaration {
           j.binaryExpression(
             "===",
             j.identifier("theme"),
-            j.stringLiteral("default")
+            j.stringLiteral("default"),
           ),
           j.stringLiteral("greyscale"),
-          j.identifier("theme")
-        )
+          j.identifier("theme"),
+        ),
       ),
-    ])
+    ]),
   );
 
   declaration.returnType = j.tsTypeAnnotation(
     j.tsUnionType([
       j.tsTypeReference(j.identifier("BadgeTheme")),
       j.tsUndefinedKeyword(),
-    ])
+    ]),
   );
 
   return declaration;
@@ -94,9 +94,9 @@ function renameBadgeTheme(options: RenameBadgeThemeOptions): boolean {
                     ...jsxExpressionContainer.node,
                     expression: j.callExpression(
                       j.identifier("_toBadgeTheme"),
-                      [exp]
+                      [exp],
                     ),
-                  })
+                  }),
                 );
               }
             });
@@ -108,7 +108,7 @@ function renameBadgeTheme(options: RenameBadgeThemeOptions): boolean {
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -181,7 +181,7 @@ export default function transformer(
               j.jsxAttribute.from({
                 ...attr,
                 name: j.jsxIdentifier(camelCased),
-              })
+              }),
             );
             break;
           }
@@ -190,7 +190,7 @@ export default function transformer(
               j.jsxAttribute.from({
                 ...attr,
                 name: j.jsxIdentifier("ref"),
-              })
+              }),
             );
             break;
           case "aria-label":
@@ -226,13 +226,16 @@ export default function transformer(
         buttonProps.push(
           j.jsxAttribute(
             j.jsxIdentifier("aria-label"),
-            j.stringLiteral("Notifications")
-          )
+            j.stringLiteral("Notifications"),
+          ),
         );
       }
       if (!isButtonType) {
         buttonProps.push(
-          j.jsxAttribute(j.jsxIdentifier("buttonType"), j.stringLiteral("icon"))
+          j.jsxAttribute(
+            j.jsxIdentifier("buttonType"),
+            j.stringLiteral("icon"),
+          ),
         );
       }
 
@@ -251,8 +254,8 @@ export default function transformer(
           j.jsxExpressionContainer(
             j.callExpression(j.identifier("getIcon"), [
               j.stringLiteral("notification"),
-            ])
-          )
+            ]),
+          ),
         );
       }
 
@@ -262,7 +265,7 @@ export default function transformer(
           name: "Button",
           props: buttonProps,
           children,
-        })
+        }),
       );
     });
 

@@ -96,7 +96,7 @@ const noop = (): void => {
  * props must be passed to the `Menu` component manually.
  */
 export function useContextMenu(
-  options: ContextMenuHookOptions = {}
+  options: ContextMenuHookOptions = {},
 ): ContextMenuImplementation {
   const {
     anchor = BELOW_INNER_LEFT_ANCHOR,

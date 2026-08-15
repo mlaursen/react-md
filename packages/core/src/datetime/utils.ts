@@ -35,7 +35,7 @@ export interface TimeFieldStepOptions {
  * @since 6.3.0
  */
 export function getTimeStep(
-  step: TimeFieldStepOptions | "any" | number | undefined
+  step: TimeFieldStepOptions | "any" | number | undefined,
 ): number | "any" | undefined {
   if (!step || typeof step === "string" || typeof step === "number") {
     return step;

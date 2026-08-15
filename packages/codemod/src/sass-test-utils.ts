@@ -1,14 +1,15 @@
-import { describe, expect, it } from "@jest/globals";
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+
+import { describe, expect, it } from "@jest/globals";
 import postcssScss from "postcss-scss";
 
 import { type SassTransformer } from "./utils/types.js";
 
 export function applySassTransform(
   code: string,
-  transformer: SassTransformer
+  transformer: SassTransformer,
 ): string {
   const root = postcssScss.parse(code);
   const changed = transformer(root);
@@ -26,7 +27,7 @@ interface ExpectTestFixtureOptions {
 }
 
 export async function expectTextFixture(
-  options: ExpectTestFixtureOptions
+  options: ExpectTestFixtureOptions,
 ): Promise<void> {
   const { transform, importMetaUrl, testFilePrefix = "" } = options;
 

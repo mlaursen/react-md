@@ -52,7 +52,7 @@ export function LinkOption(props: Readonly<LinkOptionProps>): ReactElement {
             disableGap: true,
             disableWrap: true,
             disablePadding: true,
-          })
+          }),
       )}
       disableLeftAddonCenteredMedia
     />

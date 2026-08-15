@@ -26,7 +26,7 @@ export interface ExpansionPanelClassNameOptions {
  * @since 6.0.0
  */
 export function expansionPanel(
-  options: ExpansionPanelClassNameOptions = {}
+  options: ExpansionPanelClassNameOptions = {},
 ): string {
   const { className, expanded = false, disableTransition = false } = options;
 
@@ -44,7 +44,7 @@ export interface ExpansionPanelHeadingClassNameOptions {
  * @since 6.0.0
  */
 export function expansionPanelHeading(
-  options: ExpansionPanelHeadingClassNameOptions = {}
+  options: ExpansionPanelHeadingClassNameOptions = {},
 ): string {
   const { className } = options;
   return cnb(styles("heading"), className);
@@ -60,7 +60,7 @@ export interface ExpansionPanelButtonClassNameOptions {
  * @since 6.0.0
  */
 export function expansionPanelButton(
-  options: ExpansionPanelButtonClassNameOptions = {}
+  options: ExpansionPanelButtonClassNameOptions = {},
 ): string {
   const { className } = options;
   return cnb(styles("button"), className);

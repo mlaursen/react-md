@@ -8,7 +8,7 @@ const transformers = [renameTextToTypography, scaleTransitionProps] as const;
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   transformers.forEach((transformer) => {
     file.source = transformer(file, api, options);

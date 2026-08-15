@@ -9,13 +9,14 @@ import { cnb } from "cnbuilder";
 import { type ReactElement, useState } from "react";
 import { List } from "react-window";
 
-import styles from "./FullScreenVirtualizedList.module.scss";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import { NoMatches } from "./NoMatches.js";
 import { RenderVirtualizedRow } from "./RenderVirtualizedRow.js";
 import { ReturnToTop } from "./ReturnToTop.js";
 import { useVirtualizedColumns } from "./useVirtualizedColumns.js";
 import { useVirtualizedWindow } from "./useVirtualizedWindow.js";
+
+import styles from "./FullScreenVirtualizedList.module.scss";
 
 export function FullScreenVirtualizedList(): ReactElement {
   const { isDesktop } = useAppSize();
@@ -43,8 +44,8 @@ export function FullScreenVirtualizedList(): ReactElement {
   useHtmlClassName(
     cnb(
       colorScheme === "dark" && styles.dark,
-      colorScheme === "system" && styles.system
-    )
+      colorScheme === "system" && styles.system,
+    ),
   );
   const { elementProps: filterPanelTransitionProps } =
     useHorizontalLayoutTransition({

@@ -1,6 +1,7 @@
-import packageJson from "@react-md/core/package.json" with { type: "json" };
 import { execSync } from "node:child_process";
 import { writeFile } from "node:fs/promises";
+
+import packageJson from "@react-md/core/package.json" with { type: "json" };
 
 const vercelUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
 const branchName =

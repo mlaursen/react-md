@@ -14,13 +14,13 @@ export interface CreateExpressionOptions {
 const GLOBALS = ["undefined"];
 
 export function createExpression(
-  options: Omit<CreateExpressionOptions, "jsx">
+  options: Omit<CreateExpressionOptions, "jsx">,
 ): NormalExpression;
 export function createExpression(
-  options: CreateExpressionOptions & { jsx: true }
+  options: CreateExpressionOptions & { jsx: true },
 ): JSXAttributeExpression;
 export function createExpression(
-  options: CreateExpressionOptions
+  options: CreateExpressionOptions,
 ): NormalExpression | JSXAttributeExpression {
   const { j, value, jsx } = options;
 

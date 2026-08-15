@@ -9,8 +9,9 @@ import { type ReactElement, useId } from "react";
 import { FilterCategoryPanel } from "./FilterCategoryPanel.js";
 import { FilterStylePanel } from "./FilterStylePanel.js";
 import { FilterSymbolCustomization } from "./FilterSymbolCustomization.js";
-import styles from "./FiltersSheetContent.module.scss";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
+
+import styles from "./FiltersSheetContent.module.scss";
 
 export function FiltersSheetContent(): ReactElement {
   const { iconType } = useMaterialIconsAndSymbols();

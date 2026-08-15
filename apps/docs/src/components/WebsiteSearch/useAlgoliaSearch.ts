@@ -37,7 +37,7 @@ export type AlgoliaSearchImplementation = Pick<
 };
 
 export function useAlgoliaSearch(
-  options: AlgoliaSearchOptions
+  options: AlgoliaSearchOptions,
 ): AlgoliaSearchImplementation {
   const { hide } = options;
 
@@ -96,7 +96,7 @@ export function useAlgoliaSearch(
       setHits(result.hits);
       setLoading(false);
     },
-    [reset]
+    [reset],
   );
 
   const hitOptions = useAlgoliaSearchOptions(hits);

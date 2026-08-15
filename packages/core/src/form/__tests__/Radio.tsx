@@ -25,7 +25,7 @@ describe("Radio", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(container).toMatchSnapshot();
 

@@ -20,11 +20,10 @@ $mode: ripple !default;
 
 /// Convenience feature flag check for ripples
 /// @type Boolean
-$disable-ripple: not
-  list.index(
-    (ripple, both),
-    utils.validate((ripple, press, both, none), $mode, "interaction mode")
-  );
+$disable-ripple: not list.index(
+  (ripple, both),
+  utils.validate((ripple, press, both, none), $mode, "interaction mode")
+);
 
 /// Set to `true` if the interaction surface styles should not be created. This
 /// includes the:
@@ -553,7 +552,7 @@ $variables: (
 /// `true` to disable the focus background color styles.
 @mixin surface(
   $focus-selector: "&:focus" +
-    if(sass(not utils.$disable-focus-visible): "-visible" ; else: ""),
+    if(sass(not utils.$disable-focus-visible): "-visible"; else: ""),
   $keyboard-only-focus: utils.$disable-focus-visible,
   $disabled-selector: "&:disabled",
   $clickable: true,
@@ -675,11 +674,9 @@ $variables: (
 
         &--animating {
           transition:
-            transform
-              $ripple-transform-duration
+            transform $ripple-transform-duration
               transition.$deceleration-timing-function,
-            opacity
-              $ripple-opacity-duration
+            opacity $ripple-opacity-duration
               transition.$acceleration-timing-function;
         }
 

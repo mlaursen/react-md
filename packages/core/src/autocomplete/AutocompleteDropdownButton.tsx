@@ -3,8 +3,8 @@
 import { type ReactElement } from "react";
 
 import { Button } from "../button/Button.js";
-import { IconRotator } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/config.js";
+import { IconRotator } from "../icon/IconRotator.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { autocompleteDropdownButton } from "./autocompleteStyles.js";
@@ -18,7 +18,7 @@ import { type AutocompleteDropdownButtonProps } from "./types.js";
  * @since 6.0.0
  */
 export function AutocompleteDropdownButton(
-  props: LabelRequiredForA11y<AutocompleteDropdownButtonProps>
+  props: LabelRequiredForA11y<AutocompleteDropdownButtonProps>,
 ): ReactElement {
   const {
     id: propId,

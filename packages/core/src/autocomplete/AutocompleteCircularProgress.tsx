@@ -12,7 +12,7 @@ import { type AutocompleteCircularProgressProps } from "./types.js";
  * @since 6.0.0
  */
 export function AutocompleteCircularProgress(
-  props: AutocompleteCircularProgressProps
+  props: AutocompleteCircularProgressProps,
 ): ReactElement {
   const {
     "aria-labelledby": ariaLabelledby,

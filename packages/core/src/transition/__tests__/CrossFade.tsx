@@ -10,8 +10,8 @@ import {
 } from "vitest";
 
 import { act, fireEvent, render, screen } from "../../test-utils/index.js";
-import { CrossFade, type CrossFadeProps } from "../CrossFade.js";
 import { TRANSITION_CONFIG } from "../config.js";
+import { CrossFade, type CrossFadeProps } from "../CrossFade.js";
 
 interface TestProps extends Omit<
   CrossFadeProps<HTMLElement>,
@@ -59,7 +59,7 @@ describe("CrossFade", () => {
     const { container, rerender } = render(
       <CrossFade>
         <div data-testid="element">This is some content.</div>
-      </CrossFade>
+      </CrossFade>,
     );
     const getElement = (): HTMLElement => screen.getByTestId("element");
 
@@ -75,7 +75,7 @@ describe("CrossFade", () => {
     rerender(
       <CrossFade key="new-transition">
         <div data-testid="element">This is some new content.</div>
-      </CrossFade>
+      </CrossFade>,
     );
     expect(getElement).not.toThrow();
     expect(container).toMatchSnapshot();

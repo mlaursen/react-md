@@ -7,7 +7,7 @@ const noop = (file: FileInfo): string => file.source;
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   preset(noop).forEach((transform) => {
     file.source = transform(file, api, options);

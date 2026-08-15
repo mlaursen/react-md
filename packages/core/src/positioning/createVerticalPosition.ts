@@ -142,7 +142,7 @@ export function createAnchoredTop(config: VerticalFixConfig): YPosition {
  * @internal
  */
 export function createAnchoredVerticalCenter(
-  config: VerticalFixConfig
+  config: VerticalFixConfig,
 ): YPosition {
   const { vhMargin, screenBottom, elHeight, disableVHBounds } = config;
   let top = getCenterYCoord(config);
@@ -252,7 +252,7 @@ export function createAnchoredBelow(config: VerticalFixConfig): YPosition {
  * @internal
  */
 export function createVerticalPosition(
-  options: CreateVerticalPositionOptions
+  options: CreateVerticalPositionOptions,
 ): YPosition {
   const {
     y,

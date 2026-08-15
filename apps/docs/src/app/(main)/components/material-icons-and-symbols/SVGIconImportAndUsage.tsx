@@ -10,10 +10,11 @@ import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/Pa
 import { AdditionalChanges } from "./AdditionalChanges.js";
 import { CopyCode } from "./CopyCode.js";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
-import styles from "./SVGIconImportAndUsage.module.scss";
-import { TwoToneIconWarning } from "./TwoToneIconWarning.js";
 import { getIconUrl } from "./searchParams.js";
+import { TwoToneIconWarning } from "./TwoToneIconWarning.js";
 import { getMaterialIconComponentName } from "./utils.js";
+
+import styles from "./SVGIconImportAndUsage.module.scss";
 
 export function SVGIconImportAndUsage(): ReactElement | null {
   const pathname = usePathname();

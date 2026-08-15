@@ -18,7 +18,7 @@ export interface MergeImportDeclarationsOptions {
 }
 
 export function mergeImportDeclarations(
-  options: MergeImportDeclarationsOptions
+  options: MergeImportDeclarationsOptions,
 ): void {
   const { j, root, name = "react-md", force } = options;
 
@@ -33,16 +33,16 @@ export function mergeImportDeclarations(
   declarations.forEach((declaration, i) => {
     specifiers.push(
       ...(declaration.node.specifiers ?? []).filter(
-        (spec): spec is ImportSpecifier => j.ImportSpecifier.check(spec)
-      )
+        (spec): spec is ImportSpecifier => j.ImportSpecifier.check(spec),
+      ),
     );
 
     if (i === declarations.length - 1) {
       j(declaration).replaceWith(
         j.importDeclaration(
           sortImportSpecifiers(specifiers),
-          j.stringLiteral(name)
-        )
+          j.stringLiteral(name),
+        ),
       );
     } else {
       j(declaration).remove();

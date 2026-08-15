@@ -120,7 +120,7 @@ describe("getVirtualFocusDefaultIndex", () => {
         activeDescendantId: "",
         focusables: [button],
         includeDisabled: true,
-      })
+      }),
     ).toBe(0);
 
     expect(
@@ -128,7 +128,7 @@ describe("getVirtualFocusDefaultIndex", () => {
         activeDescendantId: "some-element-id",
         focusables: [],
         includeDisabled: true,
-      })
+      }),
     ).toBe(0);
 
     expect(
@@ -136,7 +136,7 @@ describe("getVirtualFocusDefaultIndex", () => {
         activeDescendantId: "",
         focusables: [button],
         includeDisabled: false,
-      })
+      }),
     ).toBe(0);
 
     expect(
@@ -144,7 +144,7 @@ describe("getVirtualFocusDefaultIndex", () => {
         activeDescendantId: "some-element-id",
         focusables: [],
         includeDisabled: false,
-      })
+      }),
     ).toBe(0);
   });
 
@@ -155,42 +155,42 @@ describe("getVirtualFocusDefaultIndex", () => {
         focusables,
         includeDisabled: true,
         activeDescendantId: "fake",
-      })
+      }),
     ).toBe(0);
     expect(
       getVirtualFocusDefaultIndex({
         focusables,
         includeDisabled: true,
         activeDescendantId: "button-1",
-      })
+      }),
     ).toBe(0);
     expect(
       getVirtualFocusDefaultIndex({
         focusables,
         includeDisabled: true,
         activeDescendantId: "input-1",
-      })
+      }),
     ).toBe(1);
     expect(
       getVirtualFocusDefaultIndex({
         focusables,
         includeDisabled: true,
         activeDescendantId: "select-1",
-      })
+      }),
     ).toBe(2);
     expect(
       getVirtualFocusDefaultIndex({
         focusables,
         includeDisabled: true,
         activeDescendantId: "textarea-1",
-      })
+      }),
     ).toBe(3);
     expect(
       getVirtualFocusDefaultIndex({
         focusables,
         includeDisabled: true,
         activeDescendantId: "input-1",
-      })
+      }),
     ).toBe(1);
   });
 });
@@ -201,13 +201,13 @@ describe("getFirstFocusableIndex", () => {
       getFirstFocusableIndex({
         focusables: [],
         includeDisabled: false,
-      })
+      }),
     ).toBe(-1);
     expect(
       getFirstFocusableIndex({
         focusables: [],
         includeDisabled: true,
-      })
+      }),
     ).toBe(-1);
 
     expect(
@@ -220,7 +220,7 @@ describe("getFirstFocusableIndex", () => {
           disabledTextarea,
         ],
         includeDisabled: false,
-      })
+      }),
     ).toBe(3);
     expect(
       getFirstFocusableIndex({
@@ -232,7 +232,7 @@ describe("getFirstFocusableIndex", () => {
           disabledTextarea,
         ],
         includeDisabled: true,
-      })
+      }),
     ).toBe(0);
 
     expect(
@@ -245,7 +245,7 @@ describe("getFirstFocusableIndex", () => {
           ariaDisabledSpan,
         ],
         includeDisabled: false,
-      })
+      }),
     ).toBe(-1);
   });
 });
@@ -256,13 +256,13 @@ describe("getLastFocusableIndex", () => {
       getLastFocusableIndex({
         focusables: [],
         includeDisabled: false,
-      })
+      }),
     ).toBe(-1);
     expect(
       getLastFocusableIndex({
         focusables: [],
         includeDisabled: true,
-      })
+      }),
     ).toBe(-1);
 
     expect(
@@ -275,7 +275,7 @@ describe("getLastFocusableIndex", () => {
           disabledTextarea,
         ],
         includeDisabled: false,
-      })
+      }),
     ).toBe(3);
     expect(
       getLastFocusableIndex({
@@ -287,7 +287,7 @@ describe("getLastFocusableIndex", () => {
           disabledTextarea,
         ],
         includeDisabled: true,
-      })
+      }),
     ).toBe(4);
 
     expect(
@@ -300,7 +300,7 @@ describe("getLastFocusableIndex", () => {
           ariaDisabledSpan,
         ],
         includeDisabled: false,
-      })
+      }),
     ).toBe(-1);
   });
 });
@@ -314,7 +314,7 @@ describe("getNextFocusableIndex", () => {
         includeDisabled: true,
         currentFocusIndex: 100,
         focusables: [],
-      })
+      }),
     ).toBe(100);
     expect(
       getNextFocusableIndex({
@@ -323,7 +323,7 @@ describe("getNextFocusableIndex", () => {
         includeDisabled: true,
         currentFocusIndex: 8,
         focusables: [],
-      })
+      }),
     ).toBe(8);
     expect(
       getNextFocusableIndex({
@@ -332,7 +332,7 @@ describe("getNextFocusableIndex", () => {
         includeDisabled: false,
         currentFocusIndex: -1,
         focusables: [],
-      })
+      }),
     ).toBe(-1);
     expect(
       getNextFocusableIndex({
@@ -341,7 +341,7 @@ describe("getNextFocusableIndex", () => {
         includeDisabled: false,
         currentFocusIndex: 3,
         focusables: [],
-      })
+      }),
     ).toBe(3);
   });
 
@@ -354,7 +354,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: true,
         currentFocusIndex: 0,
-      })
+      }),
     ).toBe(1);
     expect(
       getNextFocusableIndex({
@@ -363,7 +363,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: false,
         currentFocusIndex: 0,
-      })
+      }),
     ).toBe(1);
 
     expect(
@@ -373,7 +373,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: true,
         currentFocusIndex: 1,
-      })
+      }),
     ).toBe(2);
     expect(
       getNextFocusableIndex({
@@ -382,7 +382,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: false,
         currentFocusIndex: 1,
-      })
+      }),
     ).toBe(2);
 
     expect(
@@ -392,7 +392,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: true,
         currentFocusIndex: 3,
-      })
+      }),
     ).toBe(2);
 
     expect(
@@ -402,7 +402,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: false,
         currentFocusIndex: 3,
-      })
+      }),
     ).toBe(2);
 
     expect(
@@ -412,7 +412,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: true,
         currentFocusIndex: 4,
-      })
+      }),
     ).toBe(0);
     expect(
       getNextFocusableIndex({
@@ -421,7 +421,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: true,
         currentFocusIndex: 4,
-      })
+      }),
     ).toBe(4);
 
     expect(
@@ -431,7 +431,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: true,
         currentFocusIndex: 4,
-      })
+      }),
     ).toBe(3);
     expect(
       getNextFocusableIndex({
@@ -440,7 +440,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: true,
         currentFocusIndex: 0,
-      })
+      }),
     ).toBe(4);
     expect(
       getNextFocusableIndex({
@@ -449,7 +449,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: true,
         currentFocusIndex: 0,
-      })
+      }),
     ).toBe(0);
   });
 
@@ -469,7 +469,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: false,
         currentFocusIndex: 2,
-      })
+      }),
     ).toBe(3);
     expect(
       getNextFocusableIndex({
@@ -478,7 +478,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: false,
         currentFocusIndex: 3,
-      })
+      }),
     ).toBe(2);
 
     expect(
@@ -488,7 +488,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: false,
         currentFocusIndex: 2,
-      })
+      }),
     ).toBe(3);
     expect(
       getNextFocusableIndex({
@@ -497,7 +497,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: false,
         currentFocusIndex: 3,
-      })
+      }),
     ).toBe(2);
   });
 
@@ -519,7 +519,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: false,
         currentFocusIndex: 0,
-      })
+      }),
     ).toBe(6);
 
     expect(
@@ -529,7 +529,7 @@ describe("getNextFocusableIndex", () => {
         focusables,
         includeDisabled: false,
         currentFocusIndex: 6,
-      })
+      }),
     ).toBe(0);
   });
 });
@@ -575,7 +575,7 @@ describe("getSearchText", () => {
     const presentationalContainer = document.createElement("div");
     presentationalContainer.append(presentational);
     presentationalContainer.append(
-      document.createTextNode("This is the real content")
+      document.createTextNode("This is the real content"),
     );
     expect(getSearchText(presentationalContainer, true)).toBe("T");
   });
@@ -600,7 +600,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: undefined,
         activeDescendantId: "",
-      })
+      }),
     ).toBe(-1);
     expect(
       recalculateFocusIndex({
@@ -608,7 +608,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: undefined,
         activeDescendantId: "some-active-id",
-      })
+      }),
     ).toBe(-1);
     expect(
       recalculateFocusIndex({
@@ -616,7 +616,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: "roving",
         activeDescendantId: "",
-      })
+      }),
     ).toBe(-1);
     expect(
       recalculateFocusIndex({
@@ -624,7 +624,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: "roving",
         activeDescendantId: "some-active-id",
-      })
+      }),
     ).toBe(-1);
 
     select.focus();
@@ -635,7 +635,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: undefined,
         activeDescendantId: "",
-      })
+      }),
     ).toBe(1);
     expect(
       recalculateFocusIndex({
@@ -643,7 +643,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: "roving",
         activeDescendantId: "",
-      })
+      }),
     ).toBe(1);
 
     textarea.focus();
@@ -654,7 +654,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: undefined,
         activeDescendantId: "",
-      })
+      }),
     ).toBe(3);
     expect(
       recalculateFocusIndex({
@@ -662,7 +662,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: "roving",
         activeDescendantId: "",
-      })
+      }),
     ).toBe(3);
   });
 
@@ -675,7 +675,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: "virtual",
         activeDescendantId: "",
-      })
+      }),
     ).toBe(0);
     expect(
       recalculateFocusIndex({
@@ -683,7 +683,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: "virtual",
         activeDescendantId: "button-1",
-      })
+      }),
     ).toBe(0);
     expect(
       recalculateFocusIndex({
@@ -691,7 +691,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: "virtual",
         activeDescendantId: "select-1",
-      })
+      }),
     ).toBe(1);
     expect(
       recalculateFocusIndex({
@@ -699,7 +699,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: "virtual",
         activeDescendantId: "input-1",
-      })
+      }),
     ).toBe(2);
     expect(
       recalculateFocusIndex({
@@ -707,7 +707,7 @@ describe("recalculateFocusIndex", () => {
         includeDisabled: true,
         tabIndexBehavior: "virtual",
         activeDescendantId: "textarea-1",
-      })
+      }),
     ).toBe(3);
   });
 });

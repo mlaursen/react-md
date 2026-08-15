@@ -28,6 +28,6 @@ export function select(options: SelectClassNameOptions = {}): string {
       outline: theme === "outline",
       underline: theme === "underline",
     }),
-    className
+    className,
   );
 }

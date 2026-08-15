@@ -22,7 +22,7 @@ const ADD_EVENT_LISTENER_KEYS = ["once", "signal", "capture", "passive"];
 
 function convertEnabledToDisabled(
   j: JSCodeshift,
-  identifier: Identifier
+  identifier: Identifier,
 ): ObjectProperty {
   const enabled = j.memberExpression(identifier, j.identifier("enabled"));
   return j.objectProperty(
@@ -34,8 +34,8 @@ function convertEnabledToDisabled(
         type: "boolean",
         value: enabled,
       }),
-      j.unaryExpression("!", enabled)
-    )
+      j.unaryExpression("!", enabled),
+    ),
   );
 }
 
@@ -46,7 +46,7 @@ function convertEnabledToDisabled(
  */
 function createTypeofCaptureSpread(
   j: JSCodeshift,
-  identifier: Identifier
+  identifier: Identifier,
 ): SpreadElement {
   return j.spreadElement(
     j.conditionalExpression(
@@ -58,8 +58,8 @@ function createTypeofCaptureSpread(
       j.objectExpression([
         j.objectProperty(j.identifier("capture"), identifier),
       ]),
-      identifier
-    )
+      identifier,
+    ),
   );
 }
 
@@ -69,21 +69,21 @@ interface ExtractOptionsFromIdentifierOptions {
 }
 
 function getOptionsFromIdentifier(
-  options: ExtractOptionsFromIdentifierOptions
+  options: ExtractOptionsFromIdentifierOptions,
 ): ObjectPropertyKind[] {
   const { j, identifier } = options;
 
   return [
     j.objectProperty(
       j.identifier("onUpdate"),
-      j.memberExpression(identifier, j.identifier("onResize"))
+      j.memberExpression(identifier, j.identifier("onResize")),
     ),
     convertEnabledToDisabled(j, identifier),
     ...ADD_EVENT_LISTENER_KEYS.map((name) =>
       j.objectProperty(
         j.identifier(name),
-        j.memberExpression(identifier, j.identifier(name))
-      )
+        j.memberExpression(identifier, j.identifier(name)),
+      ),
     ),
   ];
 }
@@ -91,7 +91,7 @@ function getOptionsFromIdentifier(
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -112,7 +112,7 @@ export default function transformer(
               getOptionsFromIdentifier({
                 j,
                 identifier: options,
-              })
+              }),
             ),
           ];
           return;
@@ -134,7 +134,7 @@ export default function transformer(
                   j.objectProperty.from({
                     ...property,
                     key: j.identifier("onUpdate"),
-                  })
+                  }),
                 );
                 break;
               case "enabled": {
@@ -144,7 +144,7 @@ export default function transformer(
                       ...property,
                       key: j.identifier("disabled"),
                       value: j.booleanLiteral(true),
-                    })
+                    }),
                   );
                 } else if (
                   j.Identifier.check(value) ||
@@ -156,7 +156,7 @@ export default function transformer(
                       ...property,
                       key: j.identifier("disabled"),
                       value: j.unaryExpression("!", value),
-                    })
+                    }),
                   );
                 }
                 break;
@@ -168,7 +168,7 @@ export default function transformer(
                       ...property,
                       key: j.identifier("capture"),
                       value,
-                    })
+                    }),
                   );
                 } else if (j.ObjectExpression.check(value)) {
                   properties.push(...value.properties);
@@ -177,7 +177,7 @@ export default function transformer(
                   properties.splice(
                     spreadCount++,
                     0,
-                    createTypeofCaptureSpread(j, value)
+                    createTypeofCaptureSpread(j, value),
                   );
                 }
                 break;
@@ -192,7 +192,7 @@ export default function transformer(
               ...getOptionsFromIdentifier({
                 j,
                 identifier: property.argument,
-              })
+              }),
             );
             return;
           }
@@ -206,7 +206,7 @@ export default function transformer(
               j.objectMethod.from({
                 ...property,
                 key: j.identifier("onUpdate"),
-              })
+              }),
             );
             return;
           }
@@ -239,7 +239,7 @@ export default function transformer(
               ...getOptionsFromIdentifier({
                 j,
                 identifier: attr.argument,
-              })
+              }),
             );
           } else if (
             j.JSXAttribute.check(attr) &&
@@ -261,7 +261,7 @@ export default function transformer(
 
         const isInJsxElement = j(jsxElement).closest(j.JSXElement).length;
         const expressionContainer = j(jsxElement).closest(
-          j.JSXExpressionContainer
+          j.JSXExpressionContainer,
         );
         const node =
           expressionContainer.length && expressionContainer.get()?.node;
@@ -292,8 +292,8 @@ export default function transformer(
             options.push(
               j.objectProperty(
                 j.identifier("disabled"),
-                negateExpression({ j, expr })
-              )
+                negateExpression({ j, expr }),
+              ),
             );
           } else if (j.ConditionalExpression.check(expr)) {
             // if it is:
@@ -314,12 +314,12 @@ export default function transformer(
               options.push(
                 j.objectProperty(
                   j.identifier("disabled"),
-                  negateExpression({ j, expr: expr.test })
-                )
+                  negateExpression({ j, expr: expr.test }),
+                ),
               );
             } else {
               options.push(
-                j.objectProperty(j.identifier("disabled"), expr.test)
+                j.objectProperty(j.identifier("disabled"), expr.test),
               );
             }
           }

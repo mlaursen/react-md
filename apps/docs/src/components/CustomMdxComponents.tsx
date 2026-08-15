@@ -29,8 +29,9 @@ import { PackageManagerCodeBlock } from "@/components/PackageManagerCodeBlock/Pa
 import { TableOfContents } from "@/components/TableOfContents/TableOfContents.js";
 import { TypescriptCodeBlock } from "@/components/TypescriptCodeBlock.js";
 
-import styles from "./CustomMdxComponents.module.scss";
 import { MarkdownImage } from "./MarkdownImage.js";
+
+import styles from "./CustomMdxComponents.module.scss";
 
 interface HeadingProps {
   id: string;

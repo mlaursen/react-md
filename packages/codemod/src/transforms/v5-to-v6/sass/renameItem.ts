@@ -252,7 +252,7 @@ const REGEXP_RENAMES = renameRecordToEntries({
 
   "\\$rmd-theme-((on-)?(primary|secondary|warning|error|success))": (
     _,
-    match
+    match,
   ) => `$${match}-color`,
 
   "\\$rmd-theme-(light|dark)-(icon|((primary|secondary|hint|disabled)-text))-on-background-color":
@@ -285,7 +285,7 @@ const MIXIN_RENAMES = renameRecordToEntries({
 });
 
 export function renameItem(
-  options: TransformSassItemOptions
+  options: TransformSassItemOptions,
 ): string | undefined {
   const { name, type } = options;
   return (

@@ -46,7 +46,7 @@ export interface ResponsiveItemOverlayProps
  * and renders as a `<span>` instead of a `<div>`.
  */
 export function ResponsiveItemOverlay(
-  props: ResponsiveItemOverlayProps
+  props: ResponsiveItemOverlayProps,
 ): ReactElement {
   const { ref, className, children, position = "bottom", ...remaining } = props;
 

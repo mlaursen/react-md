@@ -22,7 +22,7 @@ const PORTAL_SPREAD_COMMENT =
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -70,7 +70,7 @@ export default function transformer(
             const name = getPropName(attr);
             if (["into", "intoId"].includes(name)) {
               comments.add(
-                `TODO: Check how the Portal prop \`${name}\` was used since it is no longer supported.`
+                `TODO: Check how the Portal prop \`${name}\` was used since it is no longer supported.`,
               );
             } else if (["disabled", "children"].includes(name)) {
               attributes.push(attr);
@@ -117,8 +117,8 @@ export default function transformer(
                     name: "disabled",
                     type: "JSXIdentifier",
                   },
-                  null
-                )
+                  null,
+                ),
               );
             }
             j(jsxElement).replaceWith(
@@ -129,14 +129,14 @@ export default function transformer(
                     type: "JSXIdentifier",
                     comments: jsxElement.node.comments || null,
                   },
-                  props
+                  props,
                 ),
                 j.jsxClosingElement({
                   name: portalName || "Portal",
                   type: "JSXIdentifier",
                 }),
-                jsxElement.node.children
-              )
+                jsxElement.node.children,
+              ),
             );
           }
         });

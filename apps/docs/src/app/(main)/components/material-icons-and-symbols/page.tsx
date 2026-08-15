@@ -6,6 +6,7 @@ import { FullScreenVirtualizedList } from "./FullScreenVirtualizedList.js";
 import { HowToUseSheet } from "./HowToUseSheet.js";
 import { MaterialIconsAndSymbolsProvider } from "./MaterialIconsAndSymbolsProvider.js";
 import { SearchAndFilters } from "./SearchAndFilters.js";
+
 import styles from "./page.module.scss";
 
 export default function MaterialIconsAndSymbolsPage(): ReactElement {

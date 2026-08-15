@@ -23,7 +23,7 @@ export interface ToastContentClassNameOptions {
  * @since 6.0.0
  */
 export function toastContent(
-  options: ToastContentClassNameOptions = {}
+  options: ToastContentClassNameOptions = {},
 ): string {
   const { action, closeButton, multiline, stacked, className } = options;
 
@@ -33,6 +33,6 @@ export function toastContent(
       "v-padding": multiline && (closeButton || !action),
       "t-padding": multiline && stacked,
     }),
-    className
+    className,
   );
 }

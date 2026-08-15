@@ -12,8 +12,8 @@ describe("TreeGroup", () => {
       render(
         <TreeGroup depth={1} collapsed={false}>
           <TreeItem depth={1} itemId="item-id" />
-        </TreeGroup>
-      )
+        </TreeGroup>,
+      ),
     ).toThrow("Cannot find a parent Tree component");
 
     error.mockRestore();
@@ -60,7 +60,7 @@ describe("TreeGroup", () => {
             <TreeItem depth={1} itemId="item-1-1-id" />
           </TreeGroup>
         </TreeProvider>
-      </div>
+      </div>,
     );
 
     const group = screen.getByRole("group");

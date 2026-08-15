@@ -6,7 +6,7 @@ import { type Test, visit } from "unist-util-visit";
 const HEX_CODE_REGEX = /#(?:[0-9a-fA-F]{3}){1,2}/gim;
 
 export const isTextNode = (
-  node: Node
+  node: Node,
 ): node is Node & { type: "text"; value: string } =>
   is(node, "text") && "value" in node && typeof node.value === "string";
 

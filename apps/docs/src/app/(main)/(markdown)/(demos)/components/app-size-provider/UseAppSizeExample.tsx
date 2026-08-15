@@ -19,7 +19,7 @@ export default function UseAppSizeExample(): ReactElement {
             isLandscape,
           },
           null,
-          2
+          2,
         )}
       </code>
     </pre>

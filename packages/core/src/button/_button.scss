@@ -46,8 +46,8 @@ $disable-contained-pressed-elevation: false !default;
 /// based off of the root background color.
 ///
 /// @type Boolean
-$disable-contained-interaction-colors: interaction.$light-surface-base-background-color
-  == interaction.$dark-surface-base-background-color !default;
+$disable-contained-interaction-colors: interaction.$light-surface-base-background-color ==
+  interaction.$dark-surface-base-background-color !default;
 
 /// Set to `true` to disable the floating button styles
 /// @type Boolean

@@ -6,8 +6,9 @@ import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
-import styles from "./VirtualizedMatch.module.scss";
 import { type MaterialIconAndSymbolName } from "./metadata.js";
+
+import styles from "./VirtualizedMatch.module.scss";
 
 export interface VirtualizedMatchProps extends Omit<ButtonProps, "children"> {
   name: MaterialIconAndSymbolName;
@@ -33,7 +34,7 @@ export function VirtualizedMatch(props: VirtualizedMatchProps): ReactElement {
           cssUtils({
             textTransform: "capitalize",
             textAlign: "center",
-          })
+          }),
         ),
         stacked: true,
       })}

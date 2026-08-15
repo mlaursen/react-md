@@ -13,14 +13,14 @@ export interface TabListScrollToOptions {
  * @since 6.0.0
  */
 export type GetTabListScrollToOptions = (
-  options: TabListScrollToOptions
+  options: TabListScrollToOptions,
 ) => ScrollToOptions | undefined;
 
 /**
  * @since 6.0.0
  */
 export const getTabListScrollToOptions: GetTabListScrollToOptions = (
-  options
+  options,
 ) => {
   const { isRTL, animate, vertical, increment, container } = options;
   const { scrollLeft, scrollTop, scrollWidth, scrollHeight } = container;

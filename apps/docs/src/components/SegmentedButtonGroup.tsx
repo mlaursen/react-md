@@ -14,7 +14,7 @@ export interface SegmentedButtonGroupProps<
 }
 
 export function SegmentedButtonGroup<V extends string>(
-  props: SegmentedButtonGroupProps<V>
+  props: SegmentedButtonGroupProps<V>,
 ): ReactElement {
   const { label, ...passThroughProps } = props;
 

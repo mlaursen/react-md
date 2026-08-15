@@ -149,7 +149,7 @@ export interface GeneratedSassDocWithOrder extends GeneratedSassDoc {
 
 async function run(
   src: string,
-  chunkSize?: number
+  chunkSize?: number,
 ): Promise<GeneratedSassDocWithOrder> {
   const items = await log(parse(src), "", "Parsed sass items");
   const mixins = new Map<string, FormattedMixinItem>();
@@ -197,7 +197,7 @@ async function run(
     await log(
       Promise.all(items.map((item, i) => format(item, i))),
       "Formatting the SassDoc items",
-      "Formatted the SassDoc items"
+      "Formatted the SassDoc items",
     );
   }
 
@@ -237,7 +237,7 @@ export interface GenerateOptions {
 }
 
 export async function generate(
-  options: GenerateOptions
+  options: GenerateOptions,
 ): Promise<GeneratedSassDocWithOrder> {
   const { src, clear, chunkSize } = options;
 
@@ -248,6 +248,6 @@ export async function generate(
   return await log(
     run(src, chunkSize),
     "Generating sassdoc",
-    "Generated sassdoc"
+    "Generated sassdoc",
   );
 }

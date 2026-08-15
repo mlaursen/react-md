@@ -30,7 +30,7 @@ const getLookupKeys = (node: MemberExpression): string[] => {
     case "Identifier":
       if (node.computed) {
         throw new Error(
-          "hardcode-scss-variables does not support computed keys"
+          "hardcode-scss-variables does not support computed keys",
         );
       }
       keys.push(node.property.name);
@@ -51,7 +51,7 @@ const getLookupKeys = (node: MemberExpression): string[] => {
 const getHardCodedValue = (
   keys: readonly string[],
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  lookup: Record<string, any>
+  lookup: Record<string, any>,
 ): unknown => {
   let index = 0;
   let result = lookup;
@@ -66,7 +66,7 @@ const getHardCodedValue = (
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -127,7 +127,7 @@ export default function transformer(
         j(memberExpression).replaceWith(j.literal(value));
       } else if (typeof value === "object" && Array.isArray(value)) {
         j(memberExpression).replaceWith(
-          j.arrayExpression(value.map((v) => j.literal(v)))
+          j.arrayExpression(value.map((v) => j.literal(v))),
         );
       }
     });

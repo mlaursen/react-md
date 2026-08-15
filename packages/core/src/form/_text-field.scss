@@ -271,7 +271,10 @@ $variables: (
 /// @param {any} fallback [null] - An optional fallback value
 /// @returns {String} a `var()` statement
 @function get-var($name, $fallback: null) {
-  @if $name == underlined-padding and not $underlined-padding and not $fallback
+  @if $name ==
+    underlined-padding and not
+    $underlined-padding and not
+    $fallback
   {
     $fallback: 0px;
   }
@@ -485,8 +488,7 @@ $variables: (
         @if not $disable-addon {
           &--outline-left {
             $distance: calc(
-              icon.get-var(size) +
-                get-var(outlined-padding) +
+              icon.get-var(size) + get-var(outlined-padding) +
                 get-var(addon-spacing)
             );
 
@@ -545,8 +547,7 @@ $variables: (
             position: absolute;
             right: 0;
             transform: scale(0);
-            transition: transform
-              transition.$linear-duration
+            transition: transform transition.$linear-duration
               transition.$linear-timing-function;
             z-index: 1;
           }
@@ -596,10 +597,8 @@ $variables: (
 
         @if not $disable-addon {
           $addon-offset: calc(
-            icon.get-var(size) +
-              get-var(underlined-padding) +
-              $underlined-label-left-offset *
-              2
+            icon.get-var(size) + get-var(underlined-padding) +
+              $underlined-label-left-offset * 2
           );
 
           &--underline-left-addon {

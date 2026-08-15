@@ -61,7 +61,7 @@ export function parseCssLengthUnit(options: ParseCssLengthUnitOptions): number {
 
   const fontSize = Number.parseFloat(
     globalThis.getComputedStyle(styleContainer).fontSize ||
-      `${fallbackFontSize}px`
+      `${fallbackFontSize}px`,
   );
 
   return parsed * fontSize;

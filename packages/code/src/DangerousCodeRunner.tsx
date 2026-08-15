@@ -32,7 +32,7 @@ export class DangerousCodeRunner extends Component<
 
   static getDerivedStateFromProps(
     nextProps: DangerousCodeRunnerProps,
-    prevState: DangerousCodeRunnerState
+    prevState: DangerousCodeRunnerState,
   ): DangerousCodeRunnerState | null {
     const { code, scope } = nextProps;
     if (prevState.prevCode === code && prevState.prevScope === scope) {
@@ -57,7 +57,7 @@ export class DangerousCodeRunner extends Component<
   }
 
   static getDerivedStateFromError(
-    error: Error
+    error: Error,
   ): Partial<DangerousCodeRunnerState> {
     return { error };
   }

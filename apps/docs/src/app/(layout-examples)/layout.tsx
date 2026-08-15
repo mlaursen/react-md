@@ -5,6 +5,7 @@ import { type ReactElement, type ReactNode } from "react";
 import { GtagAnalytics } from "@/components/GtagAnalytics.js";
 
 import { RootProviders } from "./RootProviders.js";
+
 import "./layout.scss";
 
 const roboto = Roboto_Flex({

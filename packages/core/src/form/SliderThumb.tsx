@@ -13,8 +13,8 @@ import {
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { type TooltipProps } from "../tooltip/Tooltip.js";
 import { type LabelRequiredForA11y } from "../types.js";
-import { SliderValueTooltip } from "./SliderValueTooltip.js";
 import { sliderThumb, sliderThumbInput } from "./sliderStyles.js";
+import { SliderValueTooltip } from "./SliderValueTooltip.js";
 import { type SliderValueOptions } from "./useSlider.js";
 
 const noop = (): void => {
@@ -113,7 +113,7 @@ export interface SliderThumbProps
   tooltipProps?: Partial<TooltipProps>;
   getTooltipProps: (
     value: number,
-    isFirstThumb: boolean
+    isFirstThumb: boolean,
   ) => Partial<TooltipProps> | undefined;
   getTooltipChildren: (value: number, isFirstThumb: boolean) => ReactNode;
 }
@@ -126,7 +126,7 @@ export interface SliderThumbProps
  * @since 6.0.0 Internal only component.
  */
 export function SliderThumb(
-  props: LabelRequiredForA11y<SliderThumbProps>
+  props: LabelRequiredForA11y<SliderThumbProps>,
 ): ReactElement {
   const {
     ref,

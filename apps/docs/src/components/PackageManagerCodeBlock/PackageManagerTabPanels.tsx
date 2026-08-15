@@ -11,7 +11,7 @@ export interface PackageManagerTabPanelsProps {
 }
 
 export function PackageManagerTabPanels(
-  props: PackageManagerTabPanelsProps
+  props: PackageManagerTabPanelsProps,
 ): ReactElement {
   const { managers, packageManagers, getTabPanelProps } = props;
   return (

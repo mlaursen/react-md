@@ -96,7 +96,7 @@ export interface CrossFadeProps<E extends HTMLElement>
  * wrapping children in a `<div>`.
  */
 export function CrossFade<E extends HTMLElement>(
-  props: CrossFadeProps<E>
+  props: CrossFadeProps<E>,
 ): ReactElement {
   const { appear = true, children, className, ...options } = props;
 

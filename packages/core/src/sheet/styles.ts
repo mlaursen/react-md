@@ -149,6 +149,6 @@ export function sheet(options: SheetClassNameOptions): string {
       "touchable-height": !horizontal && verticalSize === "touch",
       "recommended-height": !horizontal && verticalSize === "recommended",
     }),
-    className
+    className,
   );
 }

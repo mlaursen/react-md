@@ -8,7 +8,7 @@ import { type TextFieldAddonProps } from "./types.js";
  * correct styling.
  */
 export function TextFieldAddon(
-  props: TextFieldAddonProps
+  props: TextFieldAddonProps,
 ): ReactElement | null {
   const {
     ref,

@@ -2,8 +2,8 @@ import { createRef } from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { render, screen } from "../../test-utils/index.js";
-import { MaterialSymbol } from "../MaterialSymbol.js";
 import { MATERIAL_CONFIG } from "../materialConfig.js";
+import { MaterialSymbol } from "../MaterialSymbol.js";
 
 describe("MaterialSymbol", () => {
   beforeEach(() => {
@@ -34,7 +34,7 @@ describe("MaterialSymbol", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(icon).toMatchSnapshot();
   });
@@ -77,7 +77,7 @@ describe("MaterialSymbol", () => {
     });
 
     rerender(
-      <MaterialSymbol {...props} fill={1} grade={-25} opticalSize={48} />
+      <MaterialSymbol {...props} fill={1} grade={-25} opticalSize={48} />,
     );
     expect(icon).toMatchSnapshot();
     expect(icon).toHaveStyle({
@@ -119,7 +119,7 @@ describe("MaterialSymbol", () => {
           "--rmd-symbol-opsz": 40,
           "--rmd-symbol-grad": 200,
         }}
-      />
+      />,
     );
 
     const icon = screen.getByTestId("icon");
@@ -137,7 +137,7 @@ describe("MaterialSymbol", () => {
         grade={-25}
         opticalSize={20}
         family="rounded"
-      />
+      />,
     );
     expect(icon.style.getPropertyValue("--rmd-symbol-fill")).toBe("1");
     expect(icon.style.getPropertyValue("--rmd-symbol-wght")).toBe("100");
@@ -155,21 +155,21 @@ describe("MaterialSymbol", () => {
         grade={MATERIAL_CONFIG.grade}
         opticalSize={MATERIAL_CONFIG.opticalSize}
         family="rounded"
-      />
+      />,
     );
 
     const icon = screen.getByTestId("icon");
     expect(icon.style.getPropertyValue("--rmd-symbol-fill")).toBe(
-      `${MATERIAL_CONFIG.fill}`
+      `${MATERIAL_CONFIG.fill}`,
     );
     expect(icon.style.getPropertyValue("--rmd-symbol-wght")).toBe(
-      `${MATERIAL_CONFIG.weight}`
+      `${MATERIAL_CONFIG.weight}`,
     );
     expect(icon.style.getPropertyValue("--rmd-symbol-grad")).toBe(
-      `${MATERIAL_CONFIG.grade}`
+      `${MATERIAL_CONFIG.grade}`,
     );
     expect(icon.style.getPropertyValue("--rmd-symbol-opsz")).toBe(
-      `${MATERIAL_CONFIG.opticalSize}`
+      `${MATERIAL_CONFIG.opticalSize}`,
     );
   });
 });

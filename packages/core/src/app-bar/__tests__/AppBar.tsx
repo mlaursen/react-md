@@ -26,7 +26,7 @@ describe("AppBar", () => {
         {...props}
         style={{ backgroundColor: "orange" }}
         className="custom-class-name"
-      />
+      />,
     );
     appBar = screen.getByTestId("app-bar");
     expect(appBar).toMatchSnapshot();

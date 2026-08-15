@@ -5,7 +5,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -31,15 +31,15 @@ export default function transformer(
               j.objectExpression([
                 j.objectProperty(
                   j.identifier("display"),
-                  j.stringLiteral("inline-flex")
+                  j.stringLiteral("inline-flex"),
                 ),
                 j.objectProperty(
                   j.identifier("position"),
-                  j.stringLiteral("relative")
+                  j.stringLiteral("relative"),
                 ),
-              ])
-            )
-          )
+              ]),
+            ),
+          ),
         );
       }
 
@@ -48,7 +48,7 @@ export default function transformer(
           ...jsxElement.node,
           openingElement: j.jsxOpeningElement(j.jsxIdentifier("span"), props),
           closingElement: j.jsxClosingElement(j.jsxIdentifier("span")),
-        })
+        }),
       );
     });
   });

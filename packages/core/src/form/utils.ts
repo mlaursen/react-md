@@ -24,7 +24,7 @@ import { type KeyboardEvent } from "react";
  */
 export function tryToSubmitRelatedForm<E extends HTMLElement>(
   event: KeyboardEvent<E>,
-  formId: string | undefined
+  formId: string | undefined,
 ): void {
   const { currentTarget } = event;
   let form: HTMLElement | null;
@@ -43,7 +43,7 @@ export function tryToSubmitRelatedForm<E extends HTMLElement>(
   let submit = form.querySelector<HTMLButtonElement>('[type="submit"]');
   if (!submit && formId) {
     submit = document.querySelector<HTMLButtonElement>(
-      `[type="submit"][form="${formId}"]`
+      `[type="submit"][form="${formId}"]`,
     );
   }
 
@@ -67,7 +67,7 @@ export type ChangeableHTMLElement = EditableHTMLElement | HTMLSelectElement;
  * @since 6.0.0
  */
 export function isChangeableHTMLElement(
-  element: Element | null
+  element: Element | null,
 ): element is ChangeableHTMLElement {
   return !!element && "value" in element;
 }
@@ -81,7 +81,7 @@ export function isChangeableHTMLElement(
  */
 export function triggerManualChangeEvent(
   element: ChangeableHTMLElement | null,
-  value: string | number
+  value: string | number,
 ): void {
   if (!element) {
     return;

@@ -14,7 +14,7 @@ describe("NativeSelect", () => {
     const { rerender } = render(
       <NativeSelect ref={ref} label="Select">
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
 
     const select = screen.getByRole("combobox", { name: "Select" });
@@ -29,7 +29,7 @@ describe("NativeSelect", () => {
         className="custom-class-name"
       >
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
     expect(select).toMatchSnapshot();
   });
@@ -38,7 +38,7 @@ describe("NativeSelect", () => {
     render(
       <NativeSelect readOnly containerProps={{ "data-testid": "container" }}>
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
 
     const container = screen.getByTestId("container");
@@ -55,7 +55,7 @@ describe("NativeSelect", () => {
         containerProps={{ "data-testid": "container" }}
       >
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
 
     const container = screen.getByTestId("container");
@@ -72,7 +72,7 @@ describe("NativeSelect", () => {
         containerProps={{ "data-testid": "container" }}
       >
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
 
     const container = screen.getByTestId("container");
@@ -106,7 +106,7 @@ describe("NativeSelect", () => {
         messageContainerProps={{ "data-testid": "message-container" }}
       >
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
     expect(() => screen.getByTestId("message-container")).toThrow();
 
@@ -117,7 +117,7 @@ describe("NativeSelect", () => {
         messageProps={{ children: "Help text" }}
       >
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
 
     const messageContainer = screen.getByTestId("message-container");
@@ -131,7 +131,7 @@ describe("NativeSelect", () => {
         messageProps={{ children: "Help text" }}
       >
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
     expect(messageContainer).toMatchSnapshot();
   });
@@ -146,7 +146,7 @@ describe("NativeSelect", () => {
         messageProps={{ children: "Help Text" }}
       >
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
 
     const messageContainer = screen.getByTestId("message-container");
@@ -162,7 +162,7 @@ describe("NativeSelect", () => {
         rightAddon={<FontIcon data-testid="close">close</FontIcon>}
       >
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
 
     const container = screen.getByTestId("container");
@@ -184,7 +184,7 @@ describe("NativeSelect", () => {
         }}
       >
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
 
     const label = screen.getByTestId("label");
@@ -204,7 +204,7 @@ describe("NativeSelect", () => {
         }}
       >
         <option value="a">First</option>
-      </NativeSelect>
+      </NativeSelect>,
     );
 
     expect(label).not.toHaveStyle("background: orange");

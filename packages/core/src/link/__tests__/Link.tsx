@@ -24,7 +24,7 @@ describe("Link", () => {
         {...props}
         style={{ color: "blue" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(link).toMatchSnapshot();
   });

@@ -74,7 +74,7 @@ export interface ElementSizeImplementation<
  * @since 6.0.0
  */
 export function useElementSize<E extends HTMLElement>(
-  options: ElementSizeOptions<E> = {}
+  options: ElementSizeOptions<E> = {},
 ): ElementSizeImplementation<E> {
   const { defaultValue } = options;
 

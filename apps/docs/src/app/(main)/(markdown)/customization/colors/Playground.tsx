@@ -9,10 +9,11 @@ import { type ReactElement } from "react";
 import { MarkdownCode } from "@/components/MarkdownCode.js";
 import { MarkdownLink } from "@/components/MarkdownLink.js";
 
-import styles from "./Playground.module.scss";
 import { PrimaryOrSecondaryPicker } from "./PrimaryOrSecondaryPicker.js";
 import { SimplePreview } from "./SimplePreview.js";
 import { usePlaygroundColors } from "./usePlaygroundColors.js";
+
+import styles from "./Playground.module.scss";
 
 export interface PlaygroundProps {
   onReset: () => void;

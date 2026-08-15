@@ -1,12 +1,12 @@
 {
   "name": "project-root",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "prepare": "husky",
     "turbo-s": "cross-env TURBO_NO_UPDATE_NOTIFIER=1 TURBO_TELEMETRY_DISABLED=1 turbo",
-    "format": "pnpm turbo-s format",
-    "check-format": "pnpm turbo-s check-format",
+    "format": "oxfmt",
+    "check-format": "pnpm format --check",
     "lint": "pnpm turbo-s lint",
     "lint-fix": "pnpm turbo-s lint-fix",
     "test": "TURBO_UI=true pnpm turbo-s test",
@@ -49,20 +49,17 @@
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
     "@mlaursen/release-script": "^0.4.1",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@typescript/native-preview": "beta",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.4",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.4",
-    "prettier": "^3.8.3",
+    "oxfmt": "^0.68.0",
     "turbo": "^2.9.14",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "lint-staged": {
-    "**/*.{scss,js,jsx,md,yml,json,ts,tsx}": [
-      "prettier --write"
-    ]
+    "*": "oxfmt --no-error-on-unmatched-pattern"
   },
   "engines": {
     "node": "24.18.0",

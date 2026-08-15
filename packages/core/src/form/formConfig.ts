@@ -39,7 +39,7 @@ export const FORM_CONFIG: FormConfiguration = {
  */
 export function getFormConfig<N extends keyof FormConfiguration>(
   name: N,
-  override?: FormConfiguration[N]
+  override?: FormConfiguration[N],
 ): FormConfiguration[N] {
   if (override !== undefined) {
     return override;

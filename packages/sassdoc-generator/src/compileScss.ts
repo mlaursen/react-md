@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+
 import { type Importer, type StringOptions, compileString } from "sass";
 
 const FILE_URL = "file://";

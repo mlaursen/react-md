@@ -23,7 +23,7 @@ describe("ToastContent", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(content).toMatchSnapshot();
   });
@@ -32,7 +32,7 @@ describe("ToastContent", () => {
     const { container } = render(
       <ToastContent data-testid="content" disableWrapper>
         Content
-      </ToastContent>
+      </ToastContent>,
     );
 
     expect(() => screen.getByTestId("content")).toThrow();
@@ -51,7 +51,7 @@ describe("ToastContent", () => {
         // @ts-expect-error
         {
           lineHeight: "",
-        }
+        },
       );
 
     const { rerender, unmount } = render(<ToastContent {...props} />);
@@ -72,7 +72,7 @@ describe("ToastContent", () => {
       // @ts-expect-error
       {
         lineHeight: "22",
-      }
+      },
     );
     vi.spyOn(HTMLElement.prototype, "scrollHeight", "get").mockReturnValue(120);
     render(<ToastContent {...props} />);

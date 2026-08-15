@@ -28,12 +28,12 @@ export function createReturnOptionStatement({
         j.jsxAttribute(j.jsxIdentifier("key"), j.jsxExpressionContainer(value)),
         j.jsxAttribute(
           j.jsxIdentifier("value"),
-          j.jsxExpressionContainer(value)
+          j.jsxExpressionContainer(value),
         ),
         ...props,
       ]),
       j.jsxClosingElement(j.jsxIdentifier("Option")),
-      [j.jsxExpressionContainer(label)]
-    )
+      [j.jsxExpressionContainer(label)],
+    ),
   );
 }

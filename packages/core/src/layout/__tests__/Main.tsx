@@ -25,7 +25,7 @@ describe("Main", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(main).toMatchSnapshot();
 

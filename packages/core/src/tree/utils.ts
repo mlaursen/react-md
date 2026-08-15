@@ -17,7 +17,7 @@ import {
  */
 export function getTreeItemsFrom<T extends TreeItemNode = DefaultTreeItemNode>(
   data: TreeData<T>,
-  itemId: string | null
+  itemId: string | null,
 ): readonly T[] {
   const items: T[] = [];
   let currentId = itemId;
@@ -50,7 +50,7 @@ export function getTreeItemsFrom<T extends TreeItemNode = DefaultTreeItemNode>(
 export function getChildTreeItems<T extends TreeItemNode = DefaultTreeItemNode>(
   data: TreeData<T> | readonly T[],
   parentId: string | null,
-  recursive = false
+  recursive = false,
 ): readonly T[] {
   const items: readonly T[] = Array.isArray(data) ? data : Object.values(data);
 
@@ -59,7 +59,7 @@ export function getChildTreeItems<T extends TreeItemNode = DefaultTreeItemNode>(
     if (parentId === item.parentId) {
       treeItems.push(
         item,
-        ...(recursive ? getChildTreeItems(items, item.itemId, recursive) : [])
+        ...(recursive ? getChildTreeItems(items, item.itemId, recursive) : []),
       );
     }
   }

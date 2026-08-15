@@ -57,7 +57,7 @@ describe("ListSubheader", () => {
     rerender(
       <Test>
         <span>Some amazing custom content</span>
-      </Test>
+      </Test>,
     );
     expect(item).toMatchSnapshot();
   });
@@ -71,7 +71,7 @@ describe("ListSubheader", () => {
           style: { backgroundColor: "orange" },
           className: "custom-class-name",
         }}
-      />
+      />,
     );
 
     const item = screen.getByRole("presentation");

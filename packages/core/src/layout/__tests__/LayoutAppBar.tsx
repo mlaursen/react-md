@@ -17,7 +17,7 @@ const getVar = () =>
     .getPropertyValue("--rmd-layout-header-height");
 
 function Test(
-  props: LayoutAppBarProps & { nodeRef?: Ref<HTMLDivElement> }
+  props: LayoutAppBarProps & { nodeRef?: Ref<HTMLDivElement> },
 ): ReactElement {
   const { nodeRef, ...remaining } = props;
   return (
@@ -50,7 +50,7 @@ describe("LayoutAppBar", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(appBar).toMatchSnapshot();
 
@@ -109,7 +109,7 @@ describe("LayoutAppBar", () => {
 
   it("should allow props to be passed to the SkipToMainContent component", () => {
     rmdRender(
-      <Test skipProps={{ children: "Main", className: "custom-link-class" }} />
+      <Test skipProps={{ children: "Main", className: "custom-link-class" }} />,
     );
 
     const link = screen.getByRole("link");

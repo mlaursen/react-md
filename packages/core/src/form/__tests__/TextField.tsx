@@ -24,14 +24,14 @@ describe("TextField", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(field).toMatchSnapshot();
   });
 
   it("should support the readOnly state", () => {
     render(
-      <TextField readOnly containerProps={{ "data-testid": "container" }} />
+      <TextField readOnly containerProps={{ "data-testid": "container" }} />,
     );
 
     const container = screen.getByTestId("container");
@@ -46,7 +46,7 @@ describe("TextField", () => {
         label="Label"
         disabled
         containerProps={{ "data-testid": "container" }}
-      />
+      />,
     );
 
     const container = screen.getByTestId("container");
@@ -61,7 +61,7 @@ describe("TextField", () => {
         label="Label"
         error
         containerProps={{ "data-testid": "container" }}
-      />
+      />,
     );
 
     const container = screen.getByTestId("container");
@@ -92,7 +92,7 @@ describe("TextField", () => {
       <TextField
         label="Field"
         messageContainerProps={{ "data-testid": "message-container" }}
-      />
+      />,
     );
     expect(() => screen.getByTestId("message-container")).toThrow();
 
@@ -101,7 +101,7 @@ describe("TextField", () => {
         label="Field"
         messageContainerProps={{ "data-testid": "message-container" }}
         messageProps={{ children: "Help text" }}
-      />
+      />,
     );
 
     const messageContainer = screen.getByTestId("message-container");
@@ -113,7 +113,7 @@ describe("TextField", () => {
         inline
         messageContainerProps={{ "data-testid": "message-container" }}
         messageProps={{ children: "Help text" }}
-      />
+      />,
     );
     expect(messageContainer).toMatchSnapshot();
   });
@@ -126,7 +126,7 @@ describe("TextField", () => {
         theme="filled"
         messageContainerProps={{ "data-testid": "message-container" }}
         messageProps={{ children: "Help Text" }}
-      />
+      />,
     );
 
     const messageContainer = screen.getByTestId("message-container");
@@ -156,7 +156,7 @@ describe("TextField", () => {
         label="Field"
         leftAddon={<FontIcon data-testid="favorite">favorite</FontIcon>}
         rightAddon={<FontIcon data-testid="close">close</FontIcon>}
-      />
+      />,
     );
 
     const container = screen.getByTestId("container");
@@ -176,7 +176,7 @@ describe("TextField", () => {
           style: { background: "orange" },
           className: "label-props-class-name",
         }}
-      />
+      />,
     );
 
     const label = screen.getByTestId("label");
@@ -194,7 +194,7 @@ describe("TextField", () => {
         labelProps={{
           "data-testid": "label",
         }}
-      />
+      />,
     );
 
     expect(label).not.toHaveStyle("background: orange");

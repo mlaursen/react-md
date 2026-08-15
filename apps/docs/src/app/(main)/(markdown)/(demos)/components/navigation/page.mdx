@@ -96,7 +96,7 @@ export const LinkUnstyled = forwardRef<HTMLAnchorElement, LinkUnstyledProps>(
     const { href, ...remaining } = props;
 
     return <Link {...remaining} to={href} ref={ref} />;
-  }
+  },
 );
 ```
 

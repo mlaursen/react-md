@@ -11,9 +11,9 @@ import { type ReactElement, type ReactNode } from "react";
 import { PackageManagerTabPanels } from "@/components/PackageManagerCodeBlock/PackageManagerTabPanels.js";
 import { PackageManagerTabs } from "@/components/PackageManagerCodeBlock/PackageManagerTabs.js";
 
+import { type TestFramework } from "./constants.js";
 import { useTestFramework } from "./TestFrameworkProvider.js";
 import { TestFrameworksToggle } from "./TestFrameworksToggle.js";
-import { type TestFramework } from "./constants.js";
 
 export interface TestFrameworkNpmCodeProps {
   frameworks: Record<TestFramework, Record<PackageManager, ReactNode>>;

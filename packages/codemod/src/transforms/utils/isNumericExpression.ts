@@ -9,7 +9,7 @@ import { type ExpressionKind } from "../../types.js";
 
 export function isNumericExpression(
   j: JSCodeshift,
-  expr: SpreadElement | ExpressionKind
+  expr: SpreadElement | ExpressionKind,
 ): expr is NumericLiteral | UnaryExpression {
   return (
     j.NumericLiteral.check(expr) ||

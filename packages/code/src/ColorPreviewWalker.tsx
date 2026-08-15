@@ -15,7 +15,7 @@ export interface ColorPreviewWalkerProps {
  * traverse the react tree for any hex codes to create inline color previews.
  */
 export function ColorPreviewWalker(
-  props: ColorPreviewWalkerProps
+  props: ColorPreviewWalkerProps,
 ): ReactElement {
   const { children } = props;
 

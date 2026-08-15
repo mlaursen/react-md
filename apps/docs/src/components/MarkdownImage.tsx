@@ -8,13 +8,13 @@ export interface MarkdownImageProps extends Omit<ImageProps, "src"> {
 }
 
 export async function MarkdownImage(
-  props: Readonly<MarkdownImageProps>
+  props: Readonly<MarkdownImageProps>,
 ): Promise<ReactElement> {
   const { src: propSrc, ...remaining } = props;
   const src = await Promise.resolve(propSrc).then((result) =>
     typeof result === "string" || !("default" in result)
       ? result
-      : result.default
+      : result.default,
   );
   return (
     <Link href={typeof src === "string" ? src : src.src} target="_blank">

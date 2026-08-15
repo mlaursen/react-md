@@ -85,7 +85,7 @@ export function createAnchoredLeft(config: HorizontalFixConfig): XPosition {
  * @internal
  */
 export function createAnchoredInnerLeft(
-  config: HorizontalFixConfig
+  config: HorizontalFixConfig,
 ): XPosition {
   const { vwMargin, screenRight, elWidth, disableSwapping } = config;
 
@@ -129,7 +129,7 @@ export function createAnchoredInnerLeft(
  * @internal
  */
 export function createAnchoredHorizontalCenter(
-  config: HorizontalFixConfig
+  config: HorizontalFixConfig,
 ): XPosition {
   const { vwMargin, screenRight, elWidth } = config;
   let left = getCenterXCoord(config);
@@ -153,7 +153,7 @@ export function createAnchoredHorizontalCenter(
  * @internal
  */
 export function createAnchoredInnerRight(
-  config: HorizontalFixConfig
+  config: HorizontalFixConfig,
 ): XPosition {
   const { screenRight, vwMargin, elWidth, disableSwapping } = config;
 
@@ -270,7 +270,7 @@ export function createEqualWidth(options: EqualWidthOptions): XPosition {
  * @internal
  */
 export function createHorizontalPosition(
-  options: CreateHorizontalPositionOptions
+  options: CreateHorizontalPositionOptions,
 ): XPosition {
   const {
     x,

@@ -1,8 +1,18 @@
 {
   "name": "docs-generator",
-  "private": true,
   "version": "0.0.24",
+  "private": true,
   "description": "MDX Plugins for the documentation site",
+  "homepage": "https://react-md.dev",
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "license": "MIT",
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git"
+  },
   "type": "module",
   "exports": {
     "./*": "./dist/*.js"
@@ -19,8 +29,6 @@
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
     "typecheck": "tsgo --noEmit",
-    "check-format": "prettier --check .",
-    "format": "prettier --write .",
     "lint": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "lint-fix": "pnpm lint --fix",
     "test-run": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
@@ -28,16 +36,6 @@
     "test-run-coverage": "pnpm test-run --coverage",
     "test-run-snapshot": "pnpm test-run -u"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mlaursen/react-md.git"
-  },
-  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mlaursen/react-md/issues"
-  },
-  "homepage": "https://react-md.dev",
   "dependencies": {
     "@prettier/sync": "^0.6.1",
     "@react-md/code": "workspace:*",

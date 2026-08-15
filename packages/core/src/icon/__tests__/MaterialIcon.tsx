@@ -2,8 +2,8 @@ import { createRef } from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { rmdRender, screen } from "../../test-utils/index.js";
-import { MaterialIcon } from "../MaterialIcon.js";
 import { MATERIAL_CONFIG } from "../materialConfig.js";
+import { MaterialIcon } from "../MaterialIcon.js";
 
 describe("MaterialIcon", () => {
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe("MaterialIcon", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(icon).toMatchSnapshot();
   });

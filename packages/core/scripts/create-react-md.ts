@@ -1,7 +1,8 @@
-import { glob } from "glob";
 import { writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
-import { format } from "prettier";
+
+import { glob } from "glob";
+import { format } from "oxfmt";
 
 import { alphaNumericSort } from "../src/utils/alphaNumericSort.js";
 import {
@@ -11,18 +12,16 @@ import {
 } from "./constants.js";
 
 const write = async (filePath: string, contents: string): Promise<void> => {
-  await writeFile(
+  const formatted = await format(
     filePath,
-    await format(
-      `${GENERATED_FILE_BANNER}
+    `${GENERATED_FILE_BANNER}
 
 ${contents}
 `,
-      { filepath: filePath }
-    )
   );
+  await writeFile(filePath, formatted.code);
   console.log(
-    `Wrote ${filePath.replace(resolve("../react-md"), "packages/react-md")}`
+    `Wrote ${filePath.replace(resolve("../react-md"), "packages/react-md")}`,
   );
 };
 
@@ -34,12 +33,12 @@ const filesForBarrelFile = await glob("**/*.{ts,tsx}", {
 
 const barrelFileContents = alphaNumericSort(filesForBarrelFile)
   .map(
-    (name) => `export * from "@react-md/core/${name.replace(/\.tsx?$/, "")}"`
+    (name) => `export * from "@react-md/core/${name.replace(/\.tsx?$/, "")}"`,
   )
   .join(";\n");
 const indexFileName = resolve("../react-md/src/index.ts");
 const configureMaterialSymbols = resolve(
-  "../react-md/src/configureMaterialSymbols.ts"
+  "../react-md/src/configureMaterialSymbols.ts",
 );
 await Promise.all([
   write(indexFileName, barrelFileContents),
@@ -51,12 +50,12 @@ await Promise.all([
 
     write(
       resolve(`../react-md/src/${exportName}.ts`),
-      `${prefix} "@react-md/core/${exportName}"`
+      `${prefix} "@react-md/core/${exportName}"`,
     );
   }),
   write(
     configureMaterialSymbols,
-    'import "@react-md/core/icon/configureMaterialSymbols"'
+    'import "@react-md/core/icon/configureMaterialSymbols"',
   ),
 ]);
 
@@ -82,8 +81,6 @@ packageJson.exports = {
   },
   "./package.json": "./package.json",
 };
+const formatted = await format(packageJsonPath, JSON.stringify(packageJson));
 
-await writeFile(
-  packageJsonPath,
-  await format(JSON.stringify(packageJson), { filepath: packageJsonPath })
-);
+await writeFile(packageJsonPath, formatted.code);

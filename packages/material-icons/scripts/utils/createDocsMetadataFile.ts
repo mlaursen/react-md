@@ -8,7 +8,7 @@ import { type MaterialIconAndSymbolMetadata } from "./getMaterialMetadata.js";
 
 export async function createDocsMetadataFile(
   metadata: MaterialIconAndSymbolMetadata,
-  projectRoot: string
+  projectRoot: string,
 ): Promise<void> {
   const {
     iconsLookup,
@@ -29,7 +29,7 @@ export async function createDocsMetadataFile(
     "(main)",
     "components",
     "material-icons-and-symbols",
-    "metadata.ts"
+    "metadata.ts",
   );
 
   const generatedMetadata = await format(
@@ -48,7 +48,7 @@ export type CategoriesByFamilyType = Record<string, IconsByCategory>;
 ${printConst(
   "ICON_NAME_FIXES",
   Object.fromEntries(iconNameFixes),
-  "Record<string, string>"
+  "Record<string, string>",
 )}
 
 ${printConst("MATERIAL_ICONS", iconsLookup, "CategoriesByFamilyType")}
@@ -61,7 +61,7 @@ ${printConst("MATERIAL_SYMBOL_FAMILY_TYPES", symbolFamilyTypes)}
 ${printConst("MATERIAL_SYMBOL_CATEGORIES", symbolCategories)}
 ${printTypeUnion("MaterialSymbolCategory", symbolCategories)}
 
-`
+`,
   );
   await writeFile(docsMetadataFileName, generatedMetadata, "utf8");
   console.log(`Wrote "${docsMetadataFileName}"`);

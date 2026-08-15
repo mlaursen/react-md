@@ -18,7 +18,7 @@ describe("PortalContainerProvider", () => {
         <Portal>
           <div data-testid="div-2" />
         </Portal>
-      </PortalContainerProvider>
+      </PortalContainerProvider>,
     );
 
     const portalRoot = document.getElementById(PORTAL_CONTAINER_ID);
@@ -49,7 +49,7 @@ describe("PortalContainerProvider", () => {
         <Portal>
           <div data-testid="div-2" />
         </Portal>
-      </PortalContainerProvider>
+      </PortalContainerProvider>,
     );
 
     const div1 = screen.getByTestId("div-1");

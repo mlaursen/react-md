@@ -38,7 +38,7 @@ const renderWithManager = (ui: ReactElement): RenderResult =>
 
 const expectToastTimeoutFlow = (
   message: Element | null,
-  content: string
+  content: string,
 ): void => {
   expect(message).toHaveTextContent(content);
   act(() => {
@@ -827,7 +827,7 @@ describe("ToastManagerProvider", () => {
       expect(snackbar.childElementCount).toBe(3);
       expect(snackbar.firstElementChild).toHaveClass(LEAVE_CLASS_NAME);
       expect(snackbar.firstElementChild?.nextElementSibling).toHaveClass(
-        LEAVE_CLASS_NAME
+        LEAVE_CLASS_NAME,
       );
       expect(snackbar.lastElementChild).not.toHaveClass(LEAVE_CLASS_NAME);
       expect(snackbar).toMatchSnapshot();

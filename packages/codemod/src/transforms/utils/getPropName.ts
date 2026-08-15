@@ -3,7 +3,7 @@ import { type ASTPath } from "jscodeshift";
 import { type AnyJSXAttribute } from "../../types.js";
 
 export function getPropName(
-  attr: AnyJSXAttribute | ASTPath<AnyJSXAttribute>
+  attr: AnyJSXAttribute | ASTPath<AnyJSXAttribute>,
 ): string {
   const prop = "node" in attr ? attr.node : attr;
   if (prop.type !== "JSXAttribute") {

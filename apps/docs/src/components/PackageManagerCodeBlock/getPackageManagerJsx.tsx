@@ -9,7 +9,7 @@ export interface PackageManagerCodeBlockProps {
 }
 
 export function getPackageManagerJsx(
-  props: PackageManagerCodeBlockProps
+  props: PackageManagerCodeBlockProps,
 ): Record<PackageManager, ReactNode> {
   const { lineWrap, managers } = props;
   const nextManagers: Record<PackageManager, ReactNode> = { ...managers };

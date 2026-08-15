@@ -45,7 +45,7 @@ const delegatedEvents: DelegableEvent[] = [];
  */
 function createEventHandler(
   throttle: boolean,
-  callbacks: readonly EventListener[]
+  callbacks: readonly EventListener[],
 ): (event: WindowEventMap[keyof WindowEventMap]) => void {
   let running = false;
   const runCallbacks = (event: WindowEventMap[keyof WindowEventMap]) => () => {
@@ -79,7 +79,7 @@ function createDelegatedEventHandler(
   eventType: string,
   eventTarget: DelegatedEventTarget = globalThis.window,
   throttle = false,
-  options?: boolean | AddEventListenerOptions
+  options?: boolean | AddEventListenerOptions,
 ): DelegatedEventHandler {
   const callbacks: EventListener[] = [];
   const handler = createEventHandler(throttle, callbacks);
@@ -147,14 +147,14 @@ export function delegateEvent(
   eventType: string,
   eventTarget: DelegatedEventTarget = globalThis.window,
   throttle: boolean = eventType === "resize" || eventType === "scroll",
-  options?: boolean | AddEventListenerOptions
+  options?: boolean | AddEventListenerOptions,
 ): DelegatedEventHandler {
   let index = delegatedEvents.findIndex(
     (event) =>
       event.type === eventType &&
       event.target === eventTarget &&
       event.options === options &&
-      event.throttle === throttle
+      event.throttle === throttle,
   );
 
   if (index === -1) {
@@ -167,7 +167,7 @@ export function delegateEvent(
         eventType,
         eventTarget,
         throttle,
-        options
+        options,
       ),
     });
 

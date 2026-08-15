@@ -62,7 +62,7 @@ export type ExpansionListImplementation<E extends HTMLElement> =
  * @since 6.0.0
  */
 export function useExpansionList<E extends HTMLElement>(
-  options: ExpansionListHookOptions<E> = {}
+  options: ExpansionListHookOptions<E> = {},
 ): ExpansionListImplementation<E> {
   return useKeyboardMovementProvider({
     ...options,

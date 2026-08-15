@@ -29,7 +29,7 @@ export function getRadius(options: GetRadiusOptions): number {
     calcHypotenuse({ x, y }),
     calcHypotenuse({ x: width - x, y }),
     calcHypotenuse({ x: width - x, y: height - y }),
-    calcHypotenuse({ x, y: height - y })
+    calcHypotenuse({ x, y: height - y }),
   );
 }
 
@@ -39,7 +39,7 @@ export function getRippleStyle(
     | MouseEvent<HTMLElement>
     | TouchEvent<HTMLElement>
     | KeyboardEvent<HTMLElement>,
-  programmatic: boolean
+  programmatic: boolean,
 ): RippleStyle {
   const element =
     findSizingContainer(event.currentTarget) || event.currentTarget;
@@ -84,7 +84,7 @@ const ENTER_DELAY = 300;
 
 /** @internal */
 export function releaseRipple(
-  state: ElementInteractionState
+  state: ElementInteractionState,
 ): ElementInteractionState {
   // find the first non-exiting ripple which should now be released
   const i = state.ripples.findIndex((ripple) => !ripple.exiting);
@@ -111,7 +111,7 @@ interface UpdateRipplesStateOptions {
 
 /** @internal */
 export function updateRipplesState(
-  options: UpdateRipplesStateOptions
+  options: UpdateRipplesStateOptions,
 ): ElementInteractionState {
   const { type, ripple, state, holding } = options;
 

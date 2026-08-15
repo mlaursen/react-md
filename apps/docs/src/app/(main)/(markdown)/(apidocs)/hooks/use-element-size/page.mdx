@@ -11,7 +11,7 @@ hooks: [useElementSize]
 
 ```ts disableTransform
 function useElementSize<E extends HTMLElement>(
-  options?: ElementSizeOptions<E>
+  options?: ElementSizeOptions<E>,
 ): ElementSizeImplementation<E>;
 ```
 
@@ -131,7 +131,7 @@ useCSSVariables(
 
     // something that uses the element's height, width, or both
     return [{ var: "--something", value: (height / width) * 0.5 }];
-  }, [height, width, observedOnce])
+  }, [height, width, observedOnce]),
 );
 ```
 

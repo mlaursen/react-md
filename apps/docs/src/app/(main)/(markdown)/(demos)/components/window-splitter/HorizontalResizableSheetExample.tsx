@@ -6,8 +6,8 @@ import { DialogTitle } from "@react-md/core/dialog/DialogTitle";
 import { Sheet } from "@react-md/core/sheet/Sheet";
 import { useToggle } from "@react-md/core/useToggle";
 import { useWindowSize } from "@react-md/core/useWindowSize";
-import { WindowSplitter } from "@react-md/core/window-splitter/WindowSplitter";
 import { useWindowSplitter } from "@react-md/core/window-splitter/useWindowSplitter";
+import { WindowSplitter } from "@react-md/core/window-splitter/WindowSplitter";
 import CloseIcon from "@react-md/material-icons/CloseIcon";
 import { type ReactElement, useId } from "react";
 

@@ -35,7 +35,7 @@ export type CustomTypographyComponent = ElementType<
 /** @internal */
 function getComponent(
   as: CustomTypographyComponent | undefined,
-  type: TypographyType
+  type: TypographyType,
 ): ElementType {
   if (as) {
     return as;

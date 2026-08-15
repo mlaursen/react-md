@@ -1,13 +1,13 @@
 import { type ReactElement } from "react";
 
-import { PackageManagerCodeBlockContainer } from "./PackageManagerCodeBlockContainer.js";
 import {
   type PackageManagerCodeBlockProps,
   getPackageManagerJsx,
 } from "./getPackageManagerJsx.js";
+import { PackageManagerCodeBlockContainer } from "./PackageManagerCodeBlockContainer.js";
 
 export function PackageManagerCodeBlock(
-  props: PackageManagerCodeBlockProps
+  props: PackageManagerCodeBlockProps,
 ): ReactElement {
   return (
     <PackageManagerCodeBlockContainer managers={getPackageManagerJsx(props)} />

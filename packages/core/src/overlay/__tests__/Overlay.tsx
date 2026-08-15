@@ -1,8 +1,8 @@
 import { type ReactElement, createRef } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { SsrProvider } from "../../SsrProvider.js";
 import { Button } from "../../button/Button.js";
+import { SsrProvider } from "../../SsrProvider.js";
 import {
   fireEvent,
   render,
@@ -55,14 +55,14 @@ describe("Overlay", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(element).toMatchSnapshot();
   });
 
   it("should support rendering inline if disablePortal prop is true", () => {
     const { container } = render(
-      <Overlay data-testid="overlay" visible disablePortal />
+      <Overlay data-testid="overlay" visible disablePortal />,
     );
 
     const overlay = screen.getByTestId("overlay");
@@ -189,7 +189,7 @@ describe("Overlay", () => {
 
   it("should support passing the box align/justify to the box class name utils", () => {
     render(
-      <Overlay visible align="start" justify="end" data-testid="overlay" />
+      <Overlay visible align="start" justify="end" data-testid="overlay" />,
     );
     const overlay = screen.getByTestId("overlay");
 

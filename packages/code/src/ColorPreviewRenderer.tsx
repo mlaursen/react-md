@@ -6,7 +6,7 @@ import { type WalkChildrenRendererProps } from "./WalkChildren.js";
 export type ColorPreviewRendererProps = WalkChildrenRendererProps;
 
 export function ColorPreviewRenderer(
-  props: ColorPreviewRendererProps
+  props: ColorPreviewRendererProps,
 ): ReactElement {
   const { match } = props;
   const [color] = match;

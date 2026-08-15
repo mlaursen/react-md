@@ -15,8 +15,9 @@ import CloseIcon from "@react-md/material-icons/CloseIcon";
 import { filesize } from "filesize";
 import { type HTMLAttributes, type ReactElement, useId } from "react";
 
-import styles from "./FilePreviewCard.module.scss";
 import { SimpleFilePreview } from "./SimpleFilePreview.js";
+
+import styles from "./FilePreviewCard.module.scss";
 
 export interface FilePreviewCardProps
   extends HTMLAttributes<HTMLDivElement>, Omit<FileUploadStats, "key"> {

@@ -33,7 +33,7 @@ export function insertStatementIntoComponentBody({
   }
 
   const firstReturnIndex = component.body.body.findIndex((exp) =>
-    isRulesOfHooksReturnFound({ j, node: exp })
+    isRulesOfHooksReturnFound({ j, node: exp }),
   );
   if (firstReturnIndex === -1) {
     return;

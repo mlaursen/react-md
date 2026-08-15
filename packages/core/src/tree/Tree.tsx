@@ -13,11 +13,11 @@ import { List } from "../list/List.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import { type LabelRequiredForA11y } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
-import { RenderRecursively } from "../utils/RenderRecursively.js";
 import { identity } from "../utils/identity.js";
+import { RenderRecursively } from "../utils/RenderRecursively.js";
 import { DefaultTreeItemRenderer } from "./DefaultTreeItemRenderer.js";
-import { type TreeExpansionMode, TreeProvider } from "./TreeProvider.js";
 import { type TreeClassNameOptions, tree } from "./styles.js";
+import { type TreeExpansionMode, TreeProvider } from "./TreeProvider.js";
 import {
   type TreeData,
   type TreeItemNode,
@@ -230,7 +230,7 @@ export interface TreeProps<T extends TreeItemNode>
  * - `getItemProps`
  */
 export function Tree<T extends TreeItemNode>(
-  props: LabelRequiredForA11y<TreeProps<T>>
+  props: LabelRequiredForA11y<TreeProps<T>>,
 ): ReactElement {
   const {
     id,

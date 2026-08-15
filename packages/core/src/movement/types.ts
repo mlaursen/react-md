@@ -44,7 +44,7 @@ export type TabIndexBehavior = "roving" | "virtual";
  */
 export type GetFocusableElements = (
   container: HTMLElement,
-  programmatic: boolean
+  programmatic: boolean,
 ) => readonly HTMLElement[];
 
 /**
@@ -156,7 +156,7 @@ export interface KeyboardFocusFromKeyOptions {
  */
 export type KeyboardFocusAction = (
   focusables?: readonly HTMLElement[],
-  force?: boolean
+  force?: boolean,
 ) => void;
 
 /**
@@ -219,7 +219,7 @@ export interface KeyboardMovementContext extends Required<KeyboardMovementBehavi
    */
   focusCurrent: (
     focusables?: readonly HTMLElement[],
-    force?: boolean
+    force?: boolean,
   ) => HTMLElement | undefined;
 
   /**
@@ -248,7 +248,7 @@ export type GetDefaultFocusedIndex = (options: FocusableIndexOptions) => number;
  * @internal
  */
 export type ExtendKeyDown<E extends HTMLElement> = (
-  movementData: KeyboardMovementExtensionData<E>
+  movementData: KeyboardMovementExtensionData<E>,
 ) => void;
 
 /**
@@ -265,7 +265,7 @@ export interface KeyboardMovementFocusChangeEvent {
  * @internal
  */
 export type KeyboardMovementFocusChangeEventHandler = (
-  event: KeyboardMovementFocusChangeEvent
+  event: KeyboardMovementFocusChangeEvent,
 ) => void;
 
 /**

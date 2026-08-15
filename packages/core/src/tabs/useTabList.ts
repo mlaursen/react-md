@@ -79,7 +79,7 @@ export interface TabListHookReturnValue {
  * @internal
  */
 export function useTabList(
-  options: TabListHookOptions
+  options: TabListHookOptions,
 ): TabListHookReturnValue {
   const {
     ref: propRef,
@@ -134,7 +134,7 @@ export function useTabList(
 
         if (isScrollObserverEnabled && nodeRef.current) {
           setAutoScrollButtons(
-            nodeRef.current.scrollWidth > nodeRef.current.offsetWidth
+            nodeRef.current.scrollWidth > nodeRef.current.offsetWidth,
           );
         }
 
@@ -170,7 +170,7 @@ export function useTabList(
         nodeRef,
         showScrollButtons,
         vertical,
-      ]
+      ],
     ),
   });
   const forwardRef = useRef<HTMLDivElement>(null);

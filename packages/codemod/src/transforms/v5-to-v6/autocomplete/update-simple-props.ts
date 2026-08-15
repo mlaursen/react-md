@@ -19,7 +19,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -45,7 +45,7 @@ export default function transformer(
 
     root.findJSXElements(name).forEach((jsxElement) => {
       comments.add(
-        "TODO: Ensure the `Autocomplete` options are strings or add the `getOptionLabel` prop"
+        "TODO: Ensure the `Autocomplete` options are strings or add the `getOptionLabel` prop",
       );
       const props: JSXAttributes = [];
       const listboxProps: ObjectProperty[] = [];
@@ -62,20 +62,20 @@ export default function transformer(
           case "highlightStyle":
           case "highlightClassName":
             comments.add(
-              "TODO: The `Autocomplete` no longer supports highlighting matches and must be added manually"
+              "TODO: The `Autocomplete` no longer supports highlighting matches and must be added manually",
             );
             break;
           case "beforeResultsChildren":
           case "afterResultsChildren":
             comments.add(
-              "TODO: The `Autocomplete` no longer supports the `beforeResultsChildren` and `afterResultsChildren` props"
+              "TODO: The `Autocomplete` no longer supports the `beforeResultsChildren` and `afterResultsChildren` props",
             );
             break;
           case "autoComplete":
             if (j.StringLiteral.check(attr.value)) {
               if (attr.value.value !== "list") {
                 comments.add(
-                  "TODO: The `Autocomplete` no longer supports inline autocomplete behavior"
+                  "TODO: The `Autocomplete` no longer supports inline autocomplete behavior",
                 );
               }
             }
@@ -107,7 +107,7 @@ export default function transformer(
                     j,
                     name: "query",
                     local: query.name,
-                  })
+                  }),
                 );
               }
 
@@ -117,7 +117,7 @@ export default function transformer(
                     j,
                     name: "list",
                     local: list.name,
-                  })
+                  }),
                 );
               }
 
@@ -129,7 +129,7 @@ export default function transformer(
               props.push(attr);
             } else {
               comments.add(
-                "TODO: The `Autocomplete` filter behavior cannot be updated automatically"
+                "TODO: The `Autocomplete` filter behavior cannot be updated automatically",
               );
             }
             break;
@@ -138,8 +138,8 @@ export default function transformer(
             props.push(
               j.jsxAttribute(
                 j.jsxIdentifier("updateQueryOnSelect"),
-                j.literal("clear")
-              )
+                j.literal("clear"),
+              ),
             );
             break;
 
@@ -149,7 +149,7 @@ export default function transformer(
           case "getResultId":
           case "getResultLabel":
             comments.add(
-              "TODO: The `Autocomplete` cannot automatically convert to the `getOptionProps` API"
+              "TODO: The `Autocomplete` cannot automatically convert to the `getOptionProps` API",
             );
             break;
           case "getResultValue":
@@ -159,7 +159,7 @@ export default function transformer(
           case "listboxWidth":
             if (isJsxExpressionContainer(j, attr.value)) {
               listboxProps.push(
-                j.objectProperty(j.identifier("width"), attr.value.expression)
+                j.objectProperty(j.identifier("width"), attr.value.expression),
               );
             }
             break;
@@ -177,7 +177,7 @@ export default function transformer(
           case "closeOnScroll":
             if (isJsxExpressionContainer(j, attr.value)) {
               listboxProps.push(
-                j.objectProperty(j.identifier(name), attr.value.expression)
+                j.objectProperty(j.identifier(name), attr.value.expression),
               );
             }
             break;
@@ -191,8 +191,8 @@ export default function transformer(
         props.push(
           j.jsxAttribute(
             j.jsxIdentifier("listboxProps"),
-            j.jsxExpressionContainer(j.objectExpression(listboxProps))
-          )
+            j.jsxExpressionContainer(j.objectExpression(listboxProps)),
+          ),
         );
       }
 

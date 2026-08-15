@@ -1,9 +1,10 @@
+import { readFile } from "node:fs/promises";
+import { basename } from "node:path";
+
 import {
   type ReadonlyCodeFile,
   type TypescriptCodeFile,
 } from "@react-md/code/types";
-import { readFile } from "node:fs/promises";
-import { basename } from "node:path";
 
 import { transformTsToJs } from "./transformTsToJs.js";
 
@@ -13,7 +14,7 @@ export interface GetReadOnlyFilesOptions {
 }
 
 export async function getReadOnlyFiles(
-  options: GetReadOnlyFilesOptions
+  options: GetReadOnlyFilesOptions,
 ): Promise<readonly ReadonlyCodeFile[]> {
   const { aliasDir, readOnlyImports } = options;
   return await Promise.all<ReadonlyCodeFile>(
@@ -43,6 +44,6 @@ export async function getReadOnlyFiles(
         compiled: await transformTsToJs(code, importPath),
         readOnly: true,
       } satisfies TypescriptCodeFile;
-    })
+    }),
   );
 }

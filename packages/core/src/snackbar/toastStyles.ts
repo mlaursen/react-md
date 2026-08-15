@@ -67,6 +67,6 @@ export function toast(options: ToastClassNameOptions = {}): string {
       backgroundColor:
         theme !== "surface" && theme !== "current-color" ? theme : undefined,
     }),
-    className
+    className,
   );
 }

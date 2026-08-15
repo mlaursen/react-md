@@ -34,8 +34,6 @@
     },
     "lint": {},
     "lint-fix": {},
-    "format": {},
-    "check-format": {},
     "typecheck": {},
     "test": {
       "interactive": true,

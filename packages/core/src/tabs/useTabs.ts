@@ -136,7 +136,7 @@ export interface TabsImplementation<TabValue extends string | number = number> {
   getTabListProps: () => ProvidedTabListProps;
   getTabPanelProps: (tabValue: TabValue) => ProvidedTabPanelProps;
   getTabPanelsProps: <E extends HTMLElement>(
-    ref?: Ref<E>
+    ref?: Ref<E>,
   ) => ProvidedTabPanelsProps<E>;
 }
 
@@ -244,7 +244,7 @@ export function useTabs<TabValue extends number>(
     activeTab: TabValue;
     setActiveTab: Dispatch<TabValue>;
     defaultActiveTab?: never;
-  }
+  },
 ): TabsImplementation<TabValue> & { activeTab?: never; setActiveTab?: never };
 export function useTabs<TabValue extends number>(
   options: TabsHookOptions<TabValue> & {
@@ -252,7 +252,7 @@ export function useTabs<TabValue extends number>(
     activeTab?: never;
     setActiveTab?: never;
     defaultActiveTab?: UseStateInitializer<TabValue>;
-  }
+  },
 ): TabsImplementation<TabValue> & {
   activeTab: TabValue;
   setActiveTab: Dispatch<TabValue>;
@@ -312,7 +312,7 @@ export function useTabs<TabValue extends string>(
     activeTab?: never;
     setActiveTab?: never;
     defaultActiveTab?: UseStateInitializer<TabValue>;
-  }
+  },
 ): TabsImplementation<TabValue> & {
   activeTab: TabValue;
   setActiveTab: Dispatch<TabValue>;
@@ -422,7 +422,7 @@ export function useTabs<TabValue extends string>(
     activeTab: TabValue;
     setActiveTab: Dispatch<TabValue>;
     defaultActiveTab?: never;
-  }
+  },
 ): TabsImplementation<TabValue> & { activeTab?: never; setActiveTab?: never };
 /**
  * This hook can be uncontrolled/controlled and supports strongly typing the tab
@@ -432,7 +432,7 @@ export function useTabs<TabValue extends string>(
  * @since 6.0.0
  */
 export function useTabs<TabValue extends string | number>(
-  options: TabsHookOptions<TabValue> = {}
+  options: TabsHookOptions<TabValue> = {},
 ): TabsImplementation<TabValue> {
   const {
     baseId: propBaseId,

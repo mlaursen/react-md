@@ -48,7 +48,7 @@ export const DEFAULT_ACTIVE_HEADING_GET_ROOT_MARGIN = (): string => {
  * @since 6.0.0
  */
 function getHeadingElements(
-  items: readonly HeadingReferenceWithChildren[]
+  items: readonly HeadingReferenceWithChildren[],
 ): readonly HTMLElement[] {
   const headings: HTMLElement[] = [];
   for (const item of items) {
@@ -70,7 +70,7 @@ function getHeadingElements(
  * @since 6.0.0
  */
 function getLastHeadingId(
-  items: readonly HeadingReferenceWithChildren[]
+  items: readonly HeadingReferenceWithChildren[],
 ): string {
   const last = items.at(-1);
   if (!last) {
@@ -154,7 +154,7 @@ export function useActiveHeadingId(options: ActiveHeadingIdOptions): string {
 
         // get the first visible/intersecting item and set it
         let foundId = [...lookup.entries()].find(
-          ([_id, isIntersecting]) => isIntersecting
+          ([_id, isIntersecting]) => isIntersecting,
         )?.[0];
         if (
           !foundId &&
@@ -172,7 +172,7 @@ export function useActiveHeadingId(options: ActiveHeadingIdOptions): string {
           setActiveHeadingId(foundId);
         }
       },
-      [headings, scrollBottomThreshold]
+      [headings, scrollBottomThreshold],
     ),
   });
 

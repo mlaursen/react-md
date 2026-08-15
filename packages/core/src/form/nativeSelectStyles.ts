@@ -20,7 +20,7 @@ export interface NativeSelectClassNameOptions {
 
 /** @since 6.0.0 */
 export function nativeSelect(
-  options: NativeSelectClassNameOptions = {}
+  options: NativeSelectClassNameOptions = {},
 ): string {
   const { className, icon = false } = options;
 
@@ -41,7 +41,7 @@ export interface NativeSelectContainerClassNameOptions {
  * @since 6.0.0
  */
 export function nativeSelectContainer(
-  options: NativeSelectContainerClassNameOptions = {}
+  options: NativeSelectContainerClassNameOptions = {},
 ): string {
   const { className, label, multiple, underlined } = options;
 
@@ -52,6 +52,6 @@ export function nativeSelectContainer(
       underline: multiple && underlined,
       "underline-padded": label && multiple && underlined,
     }),
-    className
+    className,
   );
 }

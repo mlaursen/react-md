@@ -2,7 +2,7 @@ import { type IdentifierKind } from "../../types.js";
 
 export function getIdentifierName(
   identifier: IdentifierKind | null | undefined,
-  fallback = ""
+  fallback = "",
 ): string {
   if (typeof identifier?.name !== "string") {
     return fallback;

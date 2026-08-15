@@ -12,7 +12,7 @@ hooks: [useDebouncedFunction]
 ```ts disableTransform
 function useDebouncedFunction<F extends AnyFunction>(
   func: F,
-  wait: number
+  wait: number,
 ): DebouncedFunction<F>;
 ```
 

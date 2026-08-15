@@ -124,7 +124,7 @@ describe("ScaleTransition", () => {
 
   it("should merge the className and allow to be rendered by default", () => {
     const { container } = render(
-      <Test className="custom-class" defaultTransitionIn />
+      <Test className="custom-class" defaultTransitionIn />,
     );
 
     const getElement = (): HTMLElement => screen.getByTestId("element");

@@ -48,7 +48,7 @@ export function useAutocomplete<
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 >(
-  options: AutocompleteSingleSelectOptions<Option, ComboboxEl, PopupEl>
+  options: AutocompleteSingleSelectOptions<Option, ComboboxEl, PopupEl>,
 ): AutocompleteSingleSelectImplementation<Option, ComboboxEl, PopupEl>;
 /**
  * This is the multiselect autocomplete implementation.
@@ -61,7 +61,7 @@ export function useAutocomplete<
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 >(
-  options: AutocompleteMultiSelectOptions<Option, ComboboxEl, PopupEl>
+  options: AutocompleteMultiSelectOptions<Option, ComboboxEl, PopupEl>,
 ): AutocompleteMultiSelectImplementation<Option, ComboboxEl, PopupEl>;
 /**
  * This is an internal override implementation where the types are less strict
@@ -76,7 +76,7 @@ export function useAutocomplete<
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 >(
-  options: AutocompleteOptions<Option, ComboboxEl, PopupEl>
+  options: AutocompleteOptions<Option, ComboboxEl, PopupEl>,
 ): AutocompleteImplementation<Option, ComboboxEl, PopupEl>;
 /**
  * @see {@link https://react-md.dev/components/autocomplete | Autocomplete Demos}
@@ -88,7 +88,7 @@ export function useAutocomplete<
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 >(
-  options: AutocompleteOptions<Option, ComboboxEl, PopupEl>
+  options: AutocompleteOptions<Option, ComboboxEl, PopupEl>,
 ): AutocompleteImplementation<Option, ComboboxEl, PopupEl> {
   const {
     value: propValue,
@@ -158,7 +158,7 @@ export function useAutocomplete<
       onValueChange(value);
       setValueState(value);
     },
-    [onValueChange, setValueState]
+    [onValueChange, setValueState],
   );
 
   const combobox = useEditableCombobox<ComboboxEl, PopupEl>({
@@ -226,7 +226,7 @@ export function useAutocomplete<
 
   if (filterSelected && selectedOptions?.size) {
     availableOptions = availableOptions.filter(
-      (option) => !selectedOptions.has(option)
+      (option) => !selectedOptions.has(option),
     );
   }
 

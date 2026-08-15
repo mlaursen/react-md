@@ -10,7 +10,7 @@ import { RENDER_PORTAL_INTO_PROPS } from "../portal/constants.js";
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -43,8 +43,8 @@ export default function transformer(
                       name: "disablePortal",
                       type: "JSXIdentifier",
                     },
-                    null
-                  )
+                    null,
+                  ),
                 );
               } else {
                 j(jsxAttribute).remove();

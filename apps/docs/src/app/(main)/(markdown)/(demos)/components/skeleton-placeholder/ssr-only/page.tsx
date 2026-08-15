@@ -6,6 +6,7 @@ import { type ReactElement } from "react";
 import "server-only";
 
 import SsrOnlyExample from "../SsrOnlyExample.js";
+
 import styles from "./page.module.scss";
 
 const BASE_HREF = "/components/skeleton-placeholder";

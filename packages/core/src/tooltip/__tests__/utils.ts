@@ -21,7 +21,7 @@ describe("getAnchor", () => {
   it("should throw an error if an invalid anchor is provided through javascript", () => {
     // @ts-expect-error
     expect(() => getAnchor("invalid")).toThrow(
-      'Invalid tooltip position: "invalid"'
+      'Invalid tooltip position: "invalid"',
     );
   });
 });

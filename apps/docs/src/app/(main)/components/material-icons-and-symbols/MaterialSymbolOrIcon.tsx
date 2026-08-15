@@ -1,6 +1,6 @@
+import { type MaterialSymbolFamily } from "@react-md/core/icon/material";
 import { MaterialIcon } from "@react-md/core/icon/MaterialIcon";
 import { MaterialSymbol } from "@react-md/core/icon/MaterialSymbol";
-import { type MaterialSymbolFamily } from "@react-md/core/icon/material";
 import { type ReactElement } from "react";
 
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
@@ -12,7 +12,7 @@ export interface MaterialSymbolOrIconProps {
 }
 
 export function MaterialSymbolOrIcon(
-  props: MaterialSymbolOrIconProps
+  props: MaterialSymbolOrIconProps,
 ): ReactElement | null {
   const { iconName } = props;
   const { iconType, fill, weight, grade, opticalSize, iconFamily } =

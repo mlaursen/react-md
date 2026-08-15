@@ -32,7 +32,6 @@ import {
 import { type UseStateSetter } from "../types.js";
 import { usePageInactive } from "../usePageInactive.js";
 import { parseCssLengthUnit } from "../utils/parseCssLengthUnit.js";
-import { useTooltipHoverMode } from "./TooltipHoverModeProvider.js";
 import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
   DEFAULT_TOOLTIP_MARGIN,
@@ -41,6 +40,7 @@ import {
   DEFAULT_TOOLTIP_THRESHOLD,
   TOOLTIP_SPACING_VAR,
 } from "./constants.js";
+import { useTooltipHoverMode } from "./TooltipHoverModeProvider.js";
 import {
   type TooltipPositionHookOptions,
   useTooltipPosition,
@@ -397,7 +397,7 @@ export function useTooltip<
   TooltippedElement extends HTMLElement = HTMLButtonElement,
   TooltipElement extends HTMLElement = HTMLSpanElement,
 >(
-  options: TooltipOptions<TooltippedElement> = {}
+  options: TooltipOptions<TooltippedElement> = {},
 ): TooltipImplementation<TooltippedElement, TooltipElement> {
   const {
     id: propId,

@@ -9,9 +9,10 @@ import CloseOutlinedIcon from "@react-md/material-icons/CloseOutlinedIcon";
 import ShareOutlinedIcon from "@react-md/material-icons/ShareOutlinedIcon";
 import { type ReactElement } from "react";
 
-import styles from "./HowToUseSheetHeader.module.scss";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.js";
+
+import styles from "./HowToUseSheetHeader.module.scss";
 
 export function HowToUseSheetHeader(): ReactElement {
   const { selectedIconName, deselectIcon } = useMaterialIconsAndSymbols();

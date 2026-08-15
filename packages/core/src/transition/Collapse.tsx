@@ -72,7 +72,7 @@ export interface CollapseProps<E extends HTMLElement> extends Omit<
  * @since 4.0.0 Updated for the new CSS Transition API.
  */
 export function Collapse<E extends HTMLElement>(
-  props: CollapseProps<E>
+  props: CollapseProps<E>,
 ): ReactElement {
   const { children, collapsed, className, ...options } = props;
   const child = Children.only(children);

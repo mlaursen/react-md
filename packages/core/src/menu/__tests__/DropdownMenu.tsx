@@ -44,7 +44,7 @@ describe("DropdownMenu", () => {
           <MenuItem onClick={onItem2Click}>Item 2</MenuItem>
           <MenuItem onClick={onItem3Click}>Item 3</MenuItem>
         </DropdownMenu>
-      </>
+      </>,
     );
 
     const button = await screen.findByRole("button", { name: "Dropdown" });
@@ -72,7 +72,7 @@ describe("DropdownMenu", () => {
     await user.click(button);
     await waitFor(() => {
       expect(screen.getByRole("menu", { name: "Dropdown" })).not.toHaveClass(
-        "rmd-scale-transition--enter"
+        "rmd-scale-transition--enter",
       );
     });
 
@@ -98,7 +98,7 @@ describe("DropdownMenu", () => {
         <MenuItem>Item 1</MenuItem>
         <MenuItem>Item 2</MenuItem>
         <MenuItem>Item 3</MenuItem>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     const button = screen.getByRole("button", { name: "Dropdown" });
@@ -125,7 +125,7 @@ describe("DropdownMenu", () => {
         disableTransition
       >
         <MenuItem>Item</MenuItem>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     const button = screen.getByRole("button", { name: "Dropdown" });
@@ -145,7 +145,7 @@ describe("DropdownMenu", () => {
         disableTransition
       >
         <MenuItem>Item</MenuItem>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     await user.click(screen.getByRole("button", { name: "Dropdown" }));
@@ -165,7 +165,7 @@ describe("DropdownMenu", () => {
         <MenuItem>Apple</MenuItem>
         <MenuItem>Another 2</MenuItem>
         <MenuItem>Beep</MenuItem>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     const button = screen.getByRole("button", { name: "Dropdown" });
@@ -215,7 +215,7 @@ describe("DropdownMenu", () => {
     const { rerender } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
         <MenuItem>Item</MenuItem>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     await user.click(screen.getByRole("button", { name: "Dropdown" }));
@@ -230,7 +230,7 @@ describe("DropdownMenu", () => {
     rerender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition closeOnResize>
         <MenuItem>Item</MenuItem>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
     expect(menu).toBeInTheDocument();
 
@@ -252,7 +252,7 @@ describe("DropdownMenu", () => {
     const { rerender } = rmdRender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
         <MenuItem>Item</MenuItem>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     await user.click(screen.getByRole("button", { name: "Dropdown" }));
@@ -266,7 +266,7 @@ describe("DropdownMenu", () => {
     rerender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition closeOnScroll>
         <MenuItem>Item</MenuItem>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
     expect(menu).toBeInTheDocument();
 
@@ -282,7 +282,7 @@ describe("DropdownMenu", () => {
     rerender(
       <DropdownMenu buttonChildren="Dropdown" disableTransition>
         <MenuItem>Item</MenuItem>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     const button = screen.getByRole("button", { name: "Dropdown" });
@@ -332,7 +332,7 @@ describe("DropdownMenu", () => {
         removeListener: noop,
         addEventListener(
           _type: "change",
-          listener: Listener | EventListenerObject
+          listener: Listener | EventListenerObject,
         ) {
           if (typeof listener !== "function") {
             throw new TypeError("Invalid listener type");
@@ -385,7 +385,7 @@ describe("DropdownMenu", () => {
         <MenuItem>Item 1</MenuItem>
         <MenuItem>Item 2</MenuItem>
         <MenuItem>Item 3</MenuItem>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     let button = screen.getByRole("button", { name: "Dropdown" });
@@ -422,7 +422,7 @@ describe("DropdownMenu", () => {
       expect(sheet).not.toHaveClass("rmd-sheet--enter");
     });
     expect(() =>
-      within(sheet).getByRole("menu", { name: "Dropdown" })
+      within(sheet).getByRole("menu", { name: "Dropdown" }),
     ).not.toThrow();
     menu = await screen.findByRole("menu", { name: "Dropdown" });
     expect(sheet).toMatchSnapshot();
@@ -470,7 +470,7 @@ describe("DropdownMenu", () => {
         aria-label="Options"
         buttonType="icon"
         buttonChildren={<MaterialIcon name="more_vert" />}
-      />
+      />,
     );
     let button = screen.getByRole("button", { name: "Options" });
     expect(button).toMatchSnapshot();
@@ -480,7 +480,7 @@ describe("DropdownMenu", () => {
         aria-label="Options"
         floating="bottom-right"
         buttonChildren={<MaterialIcon name="more_vert" />}
-      />
+      />,
     );
     button = screen.getByRole("button", { name: "Options" });
     expect(button).toMatchSnapshot();
@@ -491,7 +491,7 @@ describe("DropdownMenu", () => {
       <DropdownMenu
         buttonChildren="Dropdown"
         icon={<MaterialIcon name="favorite" />}
-      />
+      />,
     );
     let button = screen.getByRole("button", { name: "Dropdown" });
     expect(button).toMatchSnapshot();
@@ -501,7 +501,7 @@ describe("DropdownMenu", () => {
         buttonChildren="Dropdown"
         icon={<MaterialIcon name="favorite" />}
         iconAfter={false}
-      />
+      />,
     );
     button = screen.getByRole("button", { name: "Dropdown" });
     expect(button).toMatchSnapshot();
@@ -514,7 +514,7 @@ describe("DropdownMenu", () => {
         icon={<MaterialIcon name="favorite" />}
         iconAfter={false}
         disableDropdownIcon
-      />
+      />,
     );
     button = screen.getByRole("button", { name: "Dropdown" });
     expect(button).toMatchSnapshot();
@@ -534,7 +534,7 @@ describe("DropdownMenu", () => {
           <MenuItem>Nested Item 2</MenuItem>
           <MenuItem>Nested Item 3</MenuItem>
         </DropdownMenu>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     const button = screen.getByRole("button", { name: "Dropdown" });
@@ -580,7 +580,7 @@ describe("DropdownMenu", () => {
 
     await user.keyboard("{Tab}");
     await waitForElementToBeRemoved(
-      await screen.findByRole("menu", { name: "Dropdown" })
+      await screen.findByRole("menu", { name: "Dropdown" }),
     );
     expect(button).toHaveFocus();
   });
@@ -595,14 +595,14 @@ describe("DropdownMenu", () => {
           Ice cream
         </MenuItem>
         <MenuItem>Eclair</MenuItem>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     await user.tab();
     await user.keyboard("{Enter}");
     await waitFor(() => {
       expect(screen.getByRole("menu", { name: "Dropdown" })).not.toHaveClass(
-        "rmd-scale-transition--enter"
+        "rmd-scale-transition--enter",
       );
     });
 

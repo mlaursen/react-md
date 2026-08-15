@@ -8,7 +8,7 @@ export interface IsRulesOfHooksReturnFoundOptions {
 }
 
 export function isRulesOfHooksReturnFound(
-  options: IsRulesOfHooksReturnFoundOptions
+  options: IsRulesOfHooksReturnFoundOptions,
 ): boolean {
   const { j, node: statement } = options;
 
@@ -37,7 +37,7 @@ export function isRulesOfHooksReturnFound(
         isRulesOfHooksReturnFound({
           j,
           node: stmt,
-        })
+        }),
       )) ||
     // then check the same things for `else` which also supports optional `if`s
     (j.ExpressionStatement.check(alternate) &&
@@ -47,7 +47,7 @@ export function isRulesOfHooksReturnFound(
       })) ||
     (j.BlockStatement.check(alternate) &&
       !!alternate.body.find((stmt) =>
-        isRulesOfHooksReturnFound({ j, node: stmt })
+        isRulesOfHooksReturnFound({ j, node: stmt }),
       ))
   );
 }

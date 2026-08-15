@@ -88,8 +88,8 @@ describe("getNavigationGroupId", () => {
     expect(
       getNavigationGroupId(
         { type: "group", id: "group-id", children: "Group", items: [] },
-        []
-      )
+        [],
+      ),
     ).toBe("group-id");
   });
 
@@ -112,17 +112,17 @@ describe("getPartsFromPathname", () => {
     expect(getPartsFromPathname("/")).toEqual(new Set(["/"]));
     expect(getPartsFromPathname("/hello")).toEqual(new Set(["/", "/hello"]));
     expect(getPartsFromPathname("/hello/world")).toEqual(
-      new Set(["/", "/hello", "/hello/world"])
+      new Set(["/", "/hello", "/hello/world"]),
     );
   });
 
   it("should ignore multiple slashes to fix apps that are unable to rewrite", () => {
     expect(getPartsFromPathname("///////")).toEqual(new Set(["/"]));
     expect(getPartsFromPathname("/hello/////world")).toEqual(
-      new Set(["/", "/hello", "/hello/world"])
+      new Set(["/", "/hello", "/hello/world"]),
     );
     expect(getPartsFromPathname("/hello/////world//////")).toEqual(
-      new Set(["/", "/hello", "/hello/world"])
+      new Set(["/", "/hello", "/hello/world"]),
     );
   });
 });

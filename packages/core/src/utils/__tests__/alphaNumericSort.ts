@@ -14,13 +14,13 @@ describe("alphaNumericSort", () => {
   it("should require an extractor if the provided list is not a list of strings or known object types", () => {
     // @ts-expect-error
     expect(() => alphaNumericSort(["a", 2])).toThrow(
-      "`alphaNumericSort` requires the `extractor` prop for lists that do not contain strings or known object types."
+      "`alphaNumericSort` requires the `extractor` prop for lists that do not contain strings or known object types.",
     );
 
     expect(
       alphaNumericSort(["a", 2], {
         extractor: (a) => (typeof a === "number" ? `${a}` : a),
-      })
+      }),
     ).toEqual([2, "a"]);
   });
 
@@ -29,7 +29,7 @@ describe("alphaNumericSort", () => {
     expect(
       alphaNumericSort(list, {
         extractor: (a) => a.name,
-      })
+      }),
     ).toEqual([{ name: "Another!" }, { name: "Hello" }, { name: "World!" }]);
   });
 

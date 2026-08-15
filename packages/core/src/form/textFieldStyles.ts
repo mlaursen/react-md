@@ -29,6 +29,6 @@ export function textField(options: TextFieldClassNameOptions = {}): string {
     styles({
       "placeholder-hidden": placeholderHidden,
     }),
-    className
+    className,
   );
 }

@@ -252,7 +252,7 @@ export interface IntersectionObserverHookOptions<
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
  */
 export function useIntersectionObserver<E extends HTMLElement>(
-  options: IntersectionObserverHookOptions<E>
+  options: IntersectionObserverHookOptions<E>,
 ): RefCallback<E> {
   const {
     ref,

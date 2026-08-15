@@ -11,7 +11,7 @@ export type NavigationItemStringChildrenRoute = NavigationItemRoute & {
 };
 
 export function sortNavItems(
-  items: readonly NavigationItemStringChildrenRoute[]
+  items: readonly NavigationItemStringChildrenRoute[],
 ): readonly NavigationItemStringChildrenRoute[] {
   return alphaNumericSort(items, { extractor: (item) => item.children });
 }

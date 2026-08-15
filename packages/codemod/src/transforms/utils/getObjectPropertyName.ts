@@ -9,7 +9,7 @@ export function getObjectPropertyName(
     | ObjectProperty
     | ObjectMethod
     | ASTPath<ObjectProperty | ObjectMethod>,
-  local = false
+  local = false,
 ): string {
   const node = "node" in objectProperty ? objectProperty.node : objectProperty;
   switch (node.key.type) {

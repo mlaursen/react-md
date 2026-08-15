@@ -22,8 +22,8 @@ export function addImportSpecifier(options: AddImportSpecifierOptions): void {
       .node.program.body.unshift(
         j.importDeclaration(
           [j.importSpecifier(j.identifier(name))],
-          j.stringLiteral(packageName)
-        )
+          j.stringLiteral(packageName),
+        ),
       );
     return;
   }

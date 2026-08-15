@@ -394,17 +394,13 @@ $variables: (
       @if not $disable-indeterminate {
         &--indeterminate {
           animation: rmd-progress-rotate
-            $circular-indeterminate-transition-duration
-            linear
-            infinite;
+            $circular-indeterminate-transition-duration linear infinite;
         }
 
         @if not $disable-circular-rotate-only {
           &--rotate-only {
             animation: rmd-progress-rotate-only
-              $circular-rotate-only-transition-duration
-              linear
-              infinite;
+              $circular-rotate-only-transition-duration linear infinite;
           }
         }
       }
@@ -420,8 +416,7 @@ $variables: (
 
       @if not $disable-determinate {
         &--animate {
-          transition: stroke-dashoffset
-            $circular-transition-duration
+          transition: stroke-dashoffset $circular-transition-duration
             transition.$linear-timing-function;
         }
       }
@@ -429,9 +424,7 @@ $variables: (
       @if not $disable-indeterminate {
         &--indeterminate {
           animation: rmd-circular-progress-size
-            $circular-indeterminate-transition-duration
-            ease-in-out
-            infinite;
+            $circular-indeterminate-transition-duration ease-in-out infinite;
         }
 
         @if not $disable-circular-rotate-only {

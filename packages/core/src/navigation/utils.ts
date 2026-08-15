@@ -20,7 +20,7 @@ export function getHrefFromParents(parents: readonly NavigationItem[]): string {
  */
 export function getNavigationGroupId(
   group: NavigationItem,
-  parents: readonly NavigationItem[]
+  parents: readonly NavigationItem[],
 ): string {
   if ("id" in group && typeof group.id === "string" && group.id) {
     return group.id;

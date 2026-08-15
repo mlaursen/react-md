@@ -11,7 +11,7 @@ export interface TypescriptCodeBlockProps extends TypescriptCodeBlockContainerPr
 }
 
 export function TypescriptCodeBlock(
-  props: TypescriptCodeBlockProps
+  props: TypescriptCodeBlockProps,
 ): ReactElement {
   const { tsCode, jsCode, isTsx, ...remaining } = props;
   const suffix = isTsx ? "x" : "";

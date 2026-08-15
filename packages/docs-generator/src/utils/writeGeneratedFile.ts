@@ -1,5 +1,6 @@
 import { writeFile } from "node:fs/promises";
-import { format } from "prettier";
+
+import { format } from "oxfmt";
 
 import { logComplete } from "./log.js";
 
@@ -18,16 +19,14 @@ interface WriteOptions {
 
 export async function writeGeneratedFile(options: WriteOptions): Promise<void> {
   const { log = true, fileName, contents } = options;
-  await writeFile(
+  const formatted = await format(
     fileName,
-    await format(
-      `${GENERATED_FILE_BANNER}
+    `${GENERATED_FILE_BANNER}
 
 ${contents}
 `,
-      { filepath: fileName }
-    )
   );
+  await writeFile(fileName, formatted.code);
   if (log) {
     logComplete(`Generated "${getAliasedFileName(fileName)}"`);
   }

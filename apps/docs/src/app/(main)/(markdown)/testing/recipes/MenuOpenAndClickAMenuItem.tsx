@@ -55,11 +55,11 @@ export default function MenuOpenAndClickAMenuItem(): ReactElement {
       code={{
         jest: DEFAULT_CODE.replaceAll(
           "{FRAMEWORK}",
-          "@jest/globals"
+          "@jest/globals",
         ).replaceAll("{LOCAL}", "jest"),
         vitest: DEFAULT_CODE.replaceAll("{FRAMEWORK}", "vitest").replaceAll(
           "{LOCAL}",
-          "vi"
+          "vi",
         ),
       }}
       lang="tsx"

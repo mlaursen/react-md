@@ -16,7 +16,7 @@ describe("getTransitionTimeout", () => {
         appear: true,
         enter: true,
         exit: true,
-      })
+      }),
     ).toEqual({
       appear: 0,
       enter: 0,
@@ -29,7 +29,7 @@ describe("getTransitionTimeout", () => {
         appear: true,
         enter: true,
         exit: true,
-      })
+      }),
     ).toEqual({
       appear: 150,
       enter: 150,
@@ -42,7 +42,7 @@ describe("getTransitionTimeout", () => {
         appear: false,
         enter: true,
         exit: true,
-      })
+      }),
     ).toEqual({
       appear: 0,
       enter: 150,
@@ -55,7 +55,7 @@ describe("getTransitionTimeout", () => {
         appear: false,
         enter: false,
         exit: true,
-      })
+      }),
     ).toEqual({
       appear: 0,
       enter: 0,
@@ -68,7 +68,7 @@ describe("getTransitionTimeout", () => {
         appear: false,
         enter: false,
         exit: false,
-      })
+      }),
     ).toEqual({
       appear: 0,
       enter: 0,
@@ -81,7 +81,7 @@ describe("getTransitionTimeout", () => {
         appear: true,
         enter: true,
         exit: true,
-      })
+      }),
     ).toEqual({
       appear: 100,
       enter: 0,
@@ -94,7 +94,7 @@ describe("getTransitionTimeout", () => {
         appear: true,
         enter: true,
         exit: true,
-      })
+      }),
     ).toEqual({
       appear: 200,
       enter: 200,
@@ -107,7 +107,7 @@ describe("getTransitionTimeout", () => {
         appear: false,
         enter: true,
         exit: true,
-      })
+      }),
     ).toEqual({
       appear: 0,
       enter: 0,
@@ -120,7 +120,7 @@ describe("getTransitionTimeout", () => {
         appear: false,
         enter: true,
         exit: true,
-      })
+      }),
     ).toEqual({
       appear: 0,
       enter: 100,
@@ -271,11 +271,11 @@ describe("getTransitionClassNames", () => {
 
   it("should create the correct classNames object when provided a string", () => {
     expect(
-      getTransitionClassNames({ ...DISABLED_TIMEOUT, classNames: "prefix" })
+      getTransitionClassNames({ ...DISABLED_TIMEOUT, classNames: "prefix" }),
     ).toEqual(EMPTY_CLASSES);
 
     expect(
-      getTransitionClassNames({ ...ALL_TIMEOUT, classNames: "prefix" })
+      getTransitionClassNames({ ...ALL_TIMEOUT, classNames: "prefix" }),
     ).toEqual({
       appear: "prefix--appear",
       appearActive: "prefix--appear-active",
@@ -289,7 +289,7 @@ describe("getTransitionClassNames", () => {
     });
 
     expect(
-      getTransitionClassNames({ ...APPEAR_ONLY_TIMEOUT, classNames: "prefix" })
+      getTransitionClassNames({ ...APPEAR_ONLY_TIMEOUT, classNames: "prefix" }),
     ).toEqual({
       appear: "prefix--appear",
       appearActive: "prefix--appear-active",
@@ -303,7 +303,10 @@ describe("getTransitionClassNames", () => {
     });
 
     expect(
-      getTransitionClassNames({ ...APPEAR_ENTER_TIMEOUT, classNames: "prefix" })
+      getTransitionClassNames({
+        ...APPEAR_ENTER_TIMEOUT,
+        classNames: "prefix",
+      }),
     ).toEqual({
       appear: "prefix--appear",
       appearActive: "prefix--appear-active",
@@ -317,7 +320,7 @@ describe("getTransitionClassNames", () => {
     });
 
     expect(
-      getTransitionClassNames({ ...APPEAR_EXIT_TIMEOUT, classNames: "prefix" })
+      getTransitionClassNames({ ...APPEAR_EXIT_TIMEOUT, classNames: "prefix" }),
     ).toEqual({
       appear: "prefix--appear",
       appearActive: "prefix--appear-active",
@@ -331,7 +334,7 @@ describe("getTransitionClassNames", () => {
     });
 
     expect(
-      getTransitionClassNames({ ...ENTER_ONLY_TIMEOUT, classNames: "prefix" })
+      getTransitionClassNames({ ...ENTER_ONLY_TIMEOUT, classNames: "prefix" }),
     ).toEqual({
       appear: "",
       appearActive: "",
@@ -345,7 +348,7 @@ describe("getTransitionClassNames", () => {
     });
 
     expect(
-      getTransitionClassNames({ ...ENTER_EXIT_TIMEOUT, classNames: "prefix" })
+      getTransitionClassNames({ ...ENTER_EXIT_TIMEOUT, classNames: "prefix" }),
     ).toEqual({
       appear: "",
       appearActive: "",
@@ -359,7 +362,7 @@ describe("getTransitionClassNames", () => {
     });
 
     expect(
-      getTransitionClassNames({ ...EXIT_ONLY_TIMEOUT, classNames: "prefix" })
+      getTransitionClassNames({ ...EXIT_ONLY_TIMEOUT, classNames: "prefix" }),
     ).toEqual({
       appear: "",
       appearActive: "",
@@ -379,49 +382,49 @@ describe("getTransitionClassNames", () => {
       getTransitionClassNames({
         ...DISABLED_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(EMPTY_CLASSES);
     expect(
       getTransitionClassNames({
         ...ALL_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(EMPTY_CLASSES);
     expect(
       getTransitionClassNames({
         ...APPEAR_ONLY_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(EMPTY_CLASSES);
     expect(
       getTransitionClassNames({
         ...APPEAR_ENTER_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(EMPTY_CLASSES);
     expect(
       getTransitionClassNames({
         ...APPEAR_EXIT_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(EMPTY_CLASSES);
     expect(
       getTransitionClassNames({
         ...ENTER_ONLY_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(EMPTY_CLASSES);
     expect(
       getTransitionClassNames({
         ...ENTER_EXIT_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(EMPTY_CLASSES);
     expect(
       getTransitionClassNames({
         ...EXIT_ONLY_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(EMPTY_CLASSES);
   });
 
@@ -442,49 +445,49 @@ describe("getTransitionClassNames", () => {
       getTransitionClassNames({
         ...DISABLED_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(classNames);
     expect(
       getTransitionClassNames({
         ...ALL_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(classNames);
     expect(
       getTransitionClassNames({
         ...APPEAR_ONLY_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(classNames);
     expect(
       getTransitionClassNames({
         ...APPEAR_ENTER_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(classNames);
     expect(
       getTransitionClassNames({
         ...APPEAR_EXIT_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(classNames);
     expect(
       getTransitionClassNames({
         ...ENTER_ONLY_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(classNames);
     expect(
       getTransitionClassNames({
         ...ENTER_EXIT_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(classNames);
     expect(
       getTransitionClassNames({
         ...EXIT_ONLY_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(classNames);
   });
 
@@ -509,49 +512,49 @@ describe("getTransitionClassNames", () => {
       getTransitionClassNames({
         ...DISABLED_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected);
     expect(
       getTransitionClassNames({
         ...ALL_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected);
     expect(
       getTransitionClassNames({
         ...APPEAR_ONLY_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected);
     expect(
       getTransitionClassNames({
         ...APPEAR_ENTER_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected);
     expect(
       getTransitionClassNames({
         ...APPEAR_EXIT_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected);
     expect(
       getTransitionClassNames({
         ...ENTER_ONLY_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected);
     expect(
       getTransitionClassNames({
         ...ENTER_EXIT_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected);
     expect(
       getTransitionClassNames({
         ...EXIT_ONLY_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected);
   });
 
@@ -578,19 +581,19 @@ describe("getTransitionClassNames", () => {
       getTransitionClassNames({
         ...APPEAR_ENTER_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected);
     expect(
       getTransitionClassNames({
         ...APPEAR_ONLY_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected);
     expect(
       getTransitionClassNames({
         ...ALL_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected);
 
     const expected2: Required<CSSTransitionClassNamesObject> = {
@@ -609,13 +612,13 @@ describe("getTransitionClassNames", () => {
       getTransitionClassNames({
         ...ENTER_ONLY_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected2);
     expect(
       getTransitionClassNames({
         ...ENTER_EXIT_TIMEOUT,
         classNames,
-      })
+      }),
     ).toEqual(expected2);
   });
 });

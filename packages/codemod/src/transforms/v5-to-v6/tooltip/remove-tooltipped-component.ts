@@ -6,7 +6,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -20,7 +20,7 @@ export default function transformer(
     replace: "useTooltip",
   }).forEach(() => {
     comments.add(
-      "TODO: The `Tooltipped` component has been removed. Update the code to use the `useTooltip` hook instead."
+      "TODO: The `Tooltipped` component has been removed. Update the code to use the `useTooltip` hook instead.",
     );
   });
 

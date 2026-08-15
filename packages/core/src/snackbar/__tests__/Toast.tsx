@@ -53,7 +53,7 @@ describe("Toast", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(toast).toMatchSnapshot();
   });
@@ -83,7 +83,7 @@ describe("Toast", () => {
           buttonType: "icon",
           "aria-label": "New Action",
         }}
-      />
+      />,
     );
 
     const newAction = screen.getByRole("button", { name: "New Action" });
@@ -97,7 +97,7 @@ describe("Toast", () => {
     render(
       <Toast data-testid="toast" visible={false}>
         Hello
-      </Toast>
+      </Toast>,
     );
 
     expect(() => screen.getByTestId("toast")).toThrow();

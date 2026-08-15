@@ -89,7 +89,7 @@ export interface InternalListItemClassNameOptions extends ListItemClassNameOptio
  * @since 6.0.0
  */
 export function listItem(
-  options: InternalListItemClassNameOptions = {}
+  options: InternalListItemClassNameOptions = {},
 ): string {
   const {
     className,
@@ -112,7 +112,7 @@ export function listItem(
     }),
     cssUtils({ surface: clickable }),
     pressedClassName,
-    className
+    className,
   );
 }
 
@@ -134,7 +134,7 @@ export interface ListItemTextClassNameOptions {
  * @since 6.0.0
  */
 export function listItemText(
-  options: ListItemTextClassNameOptions = {}
+  options: ListItemTextClassNameOptions = {},
 ): string {
   const { className, secondary = false, clamped = false } = options;
 
@@ -143,7 +143,7 @@ export function listItemText(
       clamped: secondary && clamped,
       secondary,
     }),
-    className
+    className,
   );
 }
 
@@ -202,7 +202,7 @@ export interface ListItemAddonClassNameOptions {
  * @since 6.0.0
  */
 export function listItemAddon(
-  options: ListItemAddonClassNameOptions = {}
+  options: ListItemAddonClassNameOptions = {},
 ): string {
   const {
     type = "icon",
@@ -225,6 +225,6 @@ export function listItemAddon(
       "media-large": type === "large-media",
       "media-centered": isMedia && !disableCenteredMedia,
     }),
-    className
+    className,
   );
 }

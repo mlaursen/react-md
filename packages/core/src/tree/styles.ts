@@ -62,7 +62,7 @@ export function treeItem(options: TreeItemClassNameOptions = {}): string {
       "expander-left": expander && expanderLeft,
       "expander-right": expander && !expanderLeft,
     }),
-    className
+    className,
   );
 }
 
@@ -98,7 +98,7 @@ export interface TreeItemContentClassNameOptions extends InternalListItemClassNa
  * @since 6.0.0
  */
 export function treeItemContent(
-  options: TreeItemContentClassNameOptions = {}
+  options: TreeItemContentClassNameOptions = {},
 ): string {
   const {
     className,
@@ -120,7 +120,7 @@ export function treeItemContent(
       className,
       disabled,
       ...remaining,
-    })
+    }),
   );
 }
 
@@ -141,7 +141,7 @@ export function treeItemMedia(options: TreeItemMediaClassNameOptions): string {
 
   return cnb(
     isMediaLeftAddon && treeItemStyles("media", { single: isLeafNode }),
-    className
+    className,
   );
 }
 

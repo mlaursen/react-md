@@ -2,8 +2,8 @@ import lodash from "lodash";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { render } from "../../test-utils/index.js";
-import { ThemeProvider, useTheme } from "../ThemeProvider.js";
 import { DEFAULT_DARK_THEME, DEFAULT_LIGHT_THEME } from "../constants.js";
+import { ThemeProvider, useTheme } from "../ThemeProvider.js";
 import { type ConfigurableThemeColors } from "../types.js";
 
 beforeEach(() => {
@@ -22,13 +22,13 @@ describe("ThemeProvider", () => {
     error.mockImplementation(() => {});
 
     expect(() => render(<Test />)).toThrow(
-      "The `ThemeProvider` has not been initialized."
+      "The `ThemeProvider` has not been initialized.",
     );
   });
 
   it("should attempt to derive the theme from the documentElement if the theme prop is not provided", () => {
     const defaultComputedStyle = globalThis.getComputedStyle(
-      document.documentElement
+      document.documentElement,
     );
     const getComputedStyle = vi
       .spyOn(globalThis, "getComputedStyle")
@@ -36,7 +36,7 @@ describe("ThemeProvider", () => {
         ...defaultComputedStyle,
         getPropertyValue(property) {
           const name = lodash.camelCase(
-            property.replace("--rmd-", "")
+            property.replace("--rmd-", ""),
           ) as "backgroundColor";
           return DEFAULT_LIGHT_THEME[name] ?? "";
         },
@@ -51,7 +51,7 @@ describe("ThemeProvider", () => {
     render(
       <ThemeProvider>
         <Test />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     expect(getComputedStyle).toHaveBeenCalledTimes(1);
@@ -73,7 +73,7 @@ describe("ThemeProvider", () => {
     render(
       <ThemeProvider theme={DEFAULT_DARK_THEME}>
         <Test />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     expect(getComputedStyle).not.toHaveBeenCalled();

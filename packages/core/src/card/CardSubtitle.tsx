@@ -37,7 +37,7 @@ export interface CardSubtitleProps extends TypographyProps {
  * `noWrap`/`disableSecondaryColor` props.
  */
 export const CardSubtitle = function CardSubtitle(
-  props: CardSubtitleProps
+  props: CardSubtitleProps,
 ): ReactElement {
   const {
     ref,

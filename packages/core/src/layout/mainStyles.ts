@@ -40,6 +40,6 @@ export function main(options: MainClassNameOptions = {}): string {
       "offset-v": appBarOffset,
     }),
     navOffset && "rmd-layout-h--active",
-    className
+    className,
   );
 }

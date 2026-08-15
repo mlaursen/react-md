@@ -23,7 +23,7 @@ import { useEnsuredId } from "@react-md/core/useEnsuredId";
 import type { HTMLAttributes, ReactElement } from "react";
 
 export function MaterialDesignComponent(
-  props: HTMLAttributes<HTMLDivElement>
+  props: HTMLAttributes<HTMLDivElement>,
 ): ReactElement {
   const id = useEnsuredId(props.id, "component-name");
 

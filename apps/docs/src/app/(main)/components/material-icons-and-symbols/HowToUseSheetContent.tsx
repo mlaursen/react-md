@@ -11,8 +11,8 @@ import { FontIconImportAndUsage } from "./FontIconImportAndUsage.js";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import { MaterialSymbolStylesheets } from "./MaterialSymbolStylesheets.js";
 import { MaterialSymbolUsage } from "./MaterialSymbolUsage.js";
-import { SVGIconImportAndUsage } from "./SVGIconImportAndUsage.js";
 import { isMaterialIconType } from "./searchParams.js";
+import { SVGIconImportAndUsage } from "./SVGIconImportAndUsage.js";
 
 export function HowToUseSheetContent(): ReactElement | null {
   const { selectedIconName, iconType, symbolStylesheet, setSymbolStylesheet } =

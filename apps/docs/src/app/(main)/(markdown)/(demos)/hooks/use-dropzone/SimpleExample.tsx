@@ -45,7 +45,7 @@ export default function SimpleExample(): ReactElement {
         styles.container,
         isOver && styles.dragover,
         (isOver || isDragging) && styles.dragging,
-        cssUtils({ textAlign: "center" })
+        cssUtils({ textAlign: "center" }),
       )}
     >
       {isUploading && (

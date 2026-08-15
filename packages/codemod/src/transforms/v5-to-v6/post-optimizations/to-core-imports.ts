@@ -13,7 +13,7 @@ import { EXPORT_MAP } from "../coreExportMap.js";
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -44,7 +44,7 @@ export default function transformer(
               ...(declarations.get(coreImportPath)?.specifiers ?? []),
               newSpecifier,
             ],
-            j.stringLiteral(coreImportPath)
+            j.stringLiteral(coreImportPath),
           );
 
           declarations.set(coreImportPath, replacement);
@@ -59,7 +59,7 @@ export default function transformer(
             ...declaration,
             specifiers: sortImportSpecifiers(declaration.specifiers ?? []),
           };
-        })
+        }),
       );
     });
 

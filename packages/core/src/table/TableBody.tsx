@@ -60,7 +60,7 @@ export function TableBody(props: TableBodyProps): ReactElement {
       disableBorders,
       disableHover,
     }),
-    [dense, hAlign, vAlign, lineWrap, disableBorders, disableHover]
+    [dense, hAlign, vAlign, lineWrap, disableBorders, disableHover],
   );
 
   return (

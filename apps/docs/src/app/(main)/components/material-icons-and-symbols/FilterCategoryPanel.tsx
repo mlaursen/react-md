@@ -14,7 +14,7 @@ import {
 import { isMaterialIconType } from "./searchParams.js";
 
 export function FilterCategoryPanel(
-  props: ProvidedExpansionPanelProps
+  props: ProvidedExpansionPanelProps,
 ): ReactElement {
   const { isDesktop } = useAppSize();
   const { iconType, iconCategory, setIconCategory } =

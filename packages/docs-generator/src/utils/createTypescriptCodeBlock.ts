@@ -19,7 +19,7 @@ export interface CreateTypescriptCodeBlockOptions extends ReplacePreElementWithJ
 }
 
 export async function createTypescriptCodeBlock(
-  options: CreateTypescriptCodeBlockOptions
+  options: CreateTypescriptCodeBlockOptions,
 ): Promise<void> {
   const { as, meta, filepath, codeElement, preElement, preElementParent } =
     options;

@@ -26,7 +26,7 @@ const setup = (props?: Omit<CircularProgressSuspenseProps, "children">) => {
         instance.addEventListener("resolve-promise", () => {
           resolve({ default: Content });
         });
-      })
+      }),
   );
 
   function Test(): ReactElement {

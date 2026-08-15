@@ -8,7 +8,7 @@ import "server-only";
 import { type SupportedCodeLanguage } from "../types.js";
 
 function isBuiltInParser(
-  parser: SupportedCodeLanguage | BuiltInParserName | undefined
+  parser: SupportedCodeLanguage | BuiltInParserName | undefined,
 ): parser is BuiltInParserName {
   return (
     !!parser &&
@@ -47,7 +47,7 @@ export interface FormatCodeOptions extends PrettierOptions {
 }
 
 export function getFormatCodeParser(
-  options: FormatCodeOptions
+  options: FormatCodeOptions,
 ): BuiltInParserName | undefined {
   const { code, parser, filepath } = options;
 
@@ -88,7 +88,7 @@ export interface FormatCodeResult {
 }
 
 export async function formatCode(
-  options: FormatCodeOptions
+  options: FormatCodeOptions,
 ): Promise<FormatCodeResult> {
   const { code } = options;
   try {

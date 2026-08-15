@@ -11,7 +11,7 @@ export interface BlockquoteThemeIconProps {
 }
 
 export function BlockquoteThemeIcon(
-  props: BlockquoteThemeIconProps
+  props: BlockquoteThemeIconProps,
 ): ReactElement {
   const { theme } = props;
 

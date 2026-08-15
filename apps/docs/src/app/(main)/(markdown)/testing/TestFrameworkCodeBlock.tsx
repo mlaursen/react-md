@@ -5,10 +5,10 @@ import { MarkdownCode } from "@/components/MarkdownCode.js";
 import { getPackageManagerJsx } from "@/components/PackageManagerCodeBlock/getPackageManagerJsx.js";
 import { TransformTypescriptCodeBlock } from "@/components/TransformTypescriptCodeBlock.js";
 
+import { type TestFramework } from "./constants.js";
 import { RenderFramework } from "./RenderFramework.js";
 import { TestFrameworkNpmCode } from "./TestFrameworkNpmCode.js";
 import { TestFrameworksToggle } from "./TestFrameworksToggle.js";
-import { type TestFramework } from "./constants.js";
 
 export interface TestFrameworkCodeBlockProps {
   lang: "sh" | "tsx" | "diff";

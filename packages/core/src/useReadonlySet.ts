@@ -82,7 +82,7 @@ export interface ReadonlySetImplementation<T> {
  * @since 6.0.0
  */
 export function useReadonlySet<T>(
-  options: ReadonlySetOptions<T> = {}
+  options: ReadonlySetOptions<T> = {},
 ): ReadonlySetImplementation<T> {
   const { defaultValue, toggleType = "multiple" } = options;
   const [value, setValue] = useState<ReadonlySet<T>>(() => {
@@ -116,7 +116,7 @@ export function useReadonlySet<T>(
         return nextValue;
       });
     },
-    [toggleType]
+    [toggleType],
   );
 
   return {

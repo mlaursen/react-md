@@ -8,7 +8,7 @@ import { type ReactElement } from "react";
 export type CodeEditorProgressProps = LinearProgressProps;
 
 export function CodeEditorProgress(
-  props: CodeEditorProgressProps
+  props: CodeEditorProgressProps,
 ): ReactElement {
   const {
     className,

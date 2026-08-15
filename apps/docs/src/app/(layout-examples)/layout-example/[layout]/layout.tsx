@@ -8,13 +8,13 @@ import { ExpandableLayoutExample } from "./ExpandableLayoutExample.js";
 import { FullHeightExpandableLayoutExample } from "./FullHeightExpandableLayoutExample.js";
 import { FullHeightLayoutExample } from "./FullHeightLayoutExample.js";
 import { FullHeightResizableLayoutExample } from "./FullHeightResizableLayoutExample.js";
-import { ResizableLayoutExample } from "./ResizableLayoutExample.js";
-import { TemporaryLayoutExample } from "./TemporaryLayoutExample.js";
 import {
   type ExampleLayoutProps,
   LAYOUT_TYPES,
   type LayoutType,
 } from "./layouts.js";
+import { ResizableLayoutExample } from "./ResizableLayoutExample.js";
+import { TemporaryLayoutExample } from "./TemporaryLayoutExample.js";
 
 const LAYOUTS = {
   temporary: TemporaryLayoutExample,
@@ -38,7 +38,7 @@ export interface RootLayoutProps extends RouteParams {
 }
 
 export default async function RootLayout(
-  props: RootLayoutProps
+  props: RootLayoutProps,
 ): Promise<ReactElement> {
   const { children, params } = props;
   const { layout } = await params;

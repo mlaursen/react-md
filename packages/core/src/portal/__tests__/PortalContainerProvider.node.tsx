@@ -18,7 +18,7 @@ describe("PortalContainerProvider", () => {
         <Portal>
           <div data-testid="div-2" />
         </Portal>
-      </PortalContainerProvider>
+      </PortalContainerProvider>,
     );
 
     expect(result).toBe("");

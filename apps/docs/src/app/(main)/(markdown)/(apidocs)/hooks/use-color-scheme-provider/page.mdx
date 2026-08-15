@@ -12,7 +12,7 @@ components: [ColorSchemeProvider]
 
 ```ts disableTransform
 function useColorSchemeProvider(
-  options: ColorSchemeProviderOptions = {}
+  options: ColorSchemeProviderOptions = {},
 ): ColorSchemeContext;
 ```
 
@@ -36,7 +36,7 @@ function MyColorSchemeProvider(props: PropsWithChildren): ReactElement {
   const { children } = props;
 
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
-    () => Cookies.get("colorScheme") || "system"
+    () => Cookies.get("colorScheme") || "system",
   );
   const value = useColorSchemeProvider({
     colorScheme,

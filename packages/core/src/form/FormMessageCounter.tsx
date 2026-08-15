@@ -53,7 +53,7 @@ export interface FormMessageCounterProps extends HTMLAttributes<HTMLSpanElement>
  * @since 6.3.0 Supports refs.
  */
 export function FormMessageCounter(
-  props: FormMessageCounterProps
+  props: FormMessageCounterProps,
 ): ReactElement {
   const { ref, children, className, ...remaining } = props;
 

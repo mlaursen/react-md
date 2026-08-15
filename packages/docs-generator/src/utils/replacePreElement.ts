@@ -13,7 +13,7 @@ export interface CreatePreJsxNodeOptions {
 }
 
 export function createPreJsxNode(
-  options: CreatePreJsxNodeOptions
+  options: CreatePreJsxNodeOptions,
 ): MdxJsxFlowElementHast {
   const { meta, preElement } = options;
 
@@ -27,7 +27,7 @@ export function createPreJsxNode(
   replacement.attributes.unshift(
     ...propertiesToMdxJsxAttributes(preElement.properties, {
       elementAttributeNameCase: "react",
-    })
+    }),
   );
 
   return replacement;
@@ -51,7 +51,7 @@ export function replacePreElement(options: ReplacePreElementOptions): void {
     // because of async behavior
     preElementParent.children.indexOf(preElement),
     1,
-    ...replacements
+    ...replacements,
   );
 }
 
@@ -65,7 +65,7 @@ export interface ReplacePreElementWithJsxNodeOptions extends CreatePreJsxNodeOpt
 }
 
 export function replacePreElementWithJsxNode(
-  options: ReplacePreElementWithJsxNodeOptions
+  options: ReplacePreElementWithJsxNodeOptions,
 ): void {
   const { meta, preElement, preElementParent } = options;
 

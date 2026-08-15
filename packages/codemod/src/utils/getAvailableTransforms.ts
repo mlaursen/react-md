@@ -1,6 +1,7 @@
-import { globSync } from "glob";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+
+import { globSync } from "glob";
 
 import { COMPARE_ALPHA_NUMERIC } from "./sort.js";
 
@@ -83,7 +84,7 @@ export function getAvailableTransforms(baseUrl: string): AvailableTransforms {
       const transformFile = transformNames.get(transformName);
       if (!transformFile) {
         throw new Error(
-          'Unable to find transform with name "' + transformName + '"'
+          'Unable to find transform with name "' + transformName + '"',
         );
       }
 

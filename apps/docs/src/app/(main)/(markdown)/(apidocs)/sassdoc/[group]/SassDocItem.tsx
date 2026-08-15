@@ -21,12 +21,13 @@ import { slug } from "@/utils/slug.js";
 
 import { ExpandableCodeBlock } from "./ExpandableCodeBlock.js";
 import { SassDocExamples } from "./SassDocExamples.js";
-import styles from "./SassDocItem.module.scss";
 import { SassDocLinks } from "./SassDocLinks.js";
 import { SassDocParameters } from "./SassDocParameters.js";
 import { SassDocReturns } from "./SassDocReturns.js";
 import { SassDocThrows } from "./SassDocThrows.js";
 import { VariableCodeBlock } from "./VariableCodeBlock.js";
+
+import styles from "./SassDocItem.module.scss";
 
 const RGB_REGEX = /^rgb\(((\b([01]?\d\d?|2[0-4]\d|25[0-5])\b),?){3}\)$/;
 const VERBOSE_REGEX = /^#([a-f\d]{3})([a-f\d]{3})?$/i;

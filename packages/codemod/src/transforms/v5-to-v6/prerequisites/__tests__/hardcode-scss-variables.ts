@@ -20,7 +20,7 @@ const margin = scssVariables[name];
 `;
 
     await expect(
-      applyTransform(transform, null, { source, path: "src/test.ts" })
+      applyTransform(transform, null, { source, path: "src/test.ts" }),
     ).rejects.toThrow("hardcode-scss-variables does not support computed keys");
   });
 });

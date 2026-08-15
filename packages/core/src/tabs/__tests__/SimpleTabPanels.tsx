@@ -13,7 +13,7 @@ import { TabList } from "../TabList.js";
 import { useTabs } from "../useTabs.js";
 
 function Test(
-  props: Partial<SimpleTabPanelsProps> & { nodeRef?: Ref<HTMLDivElement> }
+  props: Partial<SimpleTabPanelsProps> & { nodeRef?: Ref<HTMLDivElement> },
 ): ReactElement {
   const { nodeRef, ...remaining } = props;
   const { getTabProps, getTabListProps, getTabPanelProps, getTabPanelsProps } =
@@ -55,7 +55,7 @@ describe("SimpleTabPanels", () => {
         nodeRef={ref}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(tabPanels).toMatchSnapshot();
   });

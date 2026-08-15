@@ -2,6 +2,7 @@ import { Box } from "@react-md/core/box/Box";
 import { type ReactElement } from "react";
 
 import { ExampleProject, type ExampleProjectProps } from "./ExampleProject.js";
+
 import styles from "./ExampleProjects.module.scss";
 
 const PROJECTS: ExampleProjectProps[] = [

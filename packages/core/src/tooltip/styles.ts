@@ -69,6 +69,6 @@ export function tooltip(options: TooltipClassNameOptions): string {
       [position]: true,
     }),
     cssUtils({ textOverflow }),
-    className
+    className,
   );
 }

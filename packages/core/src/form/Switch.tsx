@@ -13,8 +13,8 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { type InputToggleLabelProps } from "./InputToggle.js";
 import { Label } from "./Label.js";
-import { SwitchTrack } from "./SwitchTrack.js";
 import { switchStyles } from "./switchStyles.js";
+import { SwitchTrack } from "./SwitchTrack.js";
 import {
   type FormComponentStates,
   type FormMessageContainerExtension,
@@ -149,7 +149,7 @@ export function Switch(props: SwitchProps): ReactElement {
               type="checkbox"
               className={cnb(
                 "rmd-switch__input rmd-hidden-input",
-                disabled && "rmd-hidden-input--disabled"
+                disabled && "rmd-hidden-input--disabled",
               )}
               disabled={disabled}
             />

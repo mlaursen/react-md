@@ -11,7 +11,7 @@ hooks: [useEnsuredRef]
 
 ```ts disableTransform
 function useEnsuredRef<E extends HTMLElement>(
-  propRef?: Ref<E | null>
+  propRef?: Ref<E | null>,
 ): EnsuredRefs<E>;
 ```
 
@@ -37,7 +37,7 @@ export const Example = forwardRef<HTMLDivElement, ExampleProps>(
     }, [nodeRef]);
 
     return <div ref={refHandler} />;
-  }
+  },
 );
 ```
 

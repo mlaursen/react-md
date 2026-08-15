@@ -87,7 +87,7 @@ export interface SliderTestElements {
  * @since 6.0.0
  */
 export function getSliderTestElements(
-  options: GetPartsByRoleOptions
+  options: GetPartsByRoleOptions,
 ): SliderTestElements {
   const { container = screen, ...byRoleOptions } = options;
   const slider = container.getByRole<HTMLSpanElement>("slider", byRoleOptions);
@@ -103,12 +103,12 @@ export function getSliderTestElements(
  * @since 6.0.0
  */
 export async function findSliderTestElements(
-  options: GetPartsByRoleOptions
+  options: GetPartsByRoleOptions,
 ): Promise<SliderTestElements> {
   const { container = screen, ...byRoleOptions } = options;
   const slider = await container.findByRole<HTMLSpanElement>(
     "slider",
-    byRoleOptions
+    byRoleOptions,
   );
 
   return {
@@ -184,16 +184,16 @@ export interface RangeSliderTestElements {
  * @since 6.0.0
  */
 export function getRangeSliderTestElements(
-  options: GetRangeSliderTestElementsOptions = {}
+  options: GetRangeSliderTestElementsOptions = {},
 ): RangeSliderTestElements {
   const { container = screen, min, max } = options;
   const minSlider = container.getByRole<HTMLSpanElement>(
     "slider",
-    min ?? { name: "Min" }
+    min ?? { name: "Min" },
   );
   const maxSlider = container.getByRole<HTMLSpanElement>(
     "slider",
-    max ?? { name: "Max" }
+    max ?? { name: "Max" },
   );
 
   const {
@@ -218,16 +218,16 @@ export function getRangeSliderTestElements(
  * @since 6.0.0
  */
 export async function findRangeSliderTestElements(
-  options: GetRangeSliderTestElementsOptions = {}
+  options: GetRangeSliderTestElementsOptions = {},
 ): Promise<RangeSliderTestElements> {
   const { container = screen, min, max } = options;
   const minSlider = await container.findByRole<HTMLSpanElement>(
     "slider",
-    min ?? { name: "Min" }
+    min ?? { name: "Min" },
   );
   const maxSlider = await container.findByRole<HTMLSpanElement>(
     "slider",
-    max ?? { name: "Max" }
+    max ?? { name: "Max" },
   );
   const {
     sliderInput: minSliderInput,

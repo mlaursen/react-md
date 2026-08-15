@@ -1,5 +1,5 @@
-import { AppSizeProvider } from "@react-md/core/media-queries/AppSizeProvider";
 import { type AppSizeQueries } from "@react-md/core/media-queries/appSize";
+import { AppSizeProvider } from "@react-md/core/media-queries/AppSizeProvider";
 import { type ReactNode } from "react";
 
 // these are the defaults and can be numbers or strings

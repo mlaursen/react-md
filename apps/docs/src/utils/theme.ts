@@ -9,14 +9,14 @@ type ReplaceAWithAccent<S extends string> =
   S extends `${infer Prefix}A${infer Suffix}` ? `${Prefix}Accent${Suffix}` : S;
 
 export function getMaterialColorShadeShorthand<S extends MaterialColorShade>(
-  shade: S
+  shade: S,
 ): ReplaceAWithAccent<S> {
   return shade.replace("A", "Accent") as ReplaceAWithAccent<S>;
 }
 
 export function getMaterialColorValue(
   materialColor: MaterialColorWithShade,
-  shade: MaterialColorShade
+  shade: MaterialColorShade,
 ): string {
   const name =
     `${materialColor}${getMaterialColorShadeShorthand(shade)}` as const;

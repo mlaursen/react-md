@@ -3,7 +3,7 @@
  */
 export function createFileList(
   window: Window & typeof globalThis,
-  fileOrFiles: File | readonly File[]
+  fileOrFiles: File | readonly File[],
 ): FileList & Iterable<File> {
   const files = Array.isArray(fileOrFiles) ? fileOrFiles : [fileOrFiles];
   const fileList: FileList & Iterable<File> = {

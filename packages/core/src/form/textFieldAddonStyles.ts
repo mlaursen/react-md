@@ -25,7 +25,7 @@ export interface TextFieldAddonClassNameOptions {
  * @since 6.0.0
  */
 export function textFieldAddon(
-  options: TextFieldAddonClassNameOptions = {}
+  options: TextFieldAddonClassNameOptions = {},
 ): string {
   const { className, after, presentational } = options;
 
@@ -36,6 +36,6 @@ export function textFieldAddon(
       presentational,
     }),
     box({ disablePadding: true }),
-    className
+    className,
   );
 }

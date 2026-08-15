@@ -2,8 +2,8 @@ import { getScrollbarWidth } from "@react-md/core/scroll/getScrollbarWidth";
 import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
 import { useResizeObserver } from "@react-md/core/useResizeObserver";
 import { useWindowSize } from "@react-md/core/useWindowSize";
-import { WindowSplitter } from "@react-md/core/window-splitter/WindowSplitter";
 import { useWindowSplitter } from "@react-md/core/window-splitter/useWindowSplitter";
+import { WindowSplitter } from "@react-md/core/window-splitter/WindowSplitter";
 import {
   type ReactElement,
   useCallback,
@@ -35,8 +35,8 @@ export function ResizeHowToUseSheet(): ReactElement {
         },
         { name: "--how-to-use-size", value: `${value}px` },
       ],
-      [offset, value]
-    )
+      [offset, value],
+    ),
   );
   const elementRef = useResizeObserver({
     disableHeight: true,

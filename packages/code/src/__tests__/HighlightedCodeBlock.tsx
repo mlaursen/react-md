@@ -13,7 +13,7 @@ describe("HighlightedCodeBlock", () => {
         highlightCode={highlightCode}
       >
         const x = 3;
-      </HighlightedCodeBlock>
+      </HighlightedCodeBlock>,
     );
 
     const container = screen.getByTestId("container");

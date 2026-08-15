@@ -77,7 +77,7 @@ describe("useEnsuredState", () => {
 
     const button = screen.getByRole("button", { name: "Toggle" });
     expect(() => fireEvent.click(button)).toThrow(
-      "Rendered fewer hooks than expected. This may be caused by an accidental early return statement."
+      "Rendered fewer hooks than expected. This may be caused by an accidental early return statement.",
     );
   });
 
@@ -108,11 +108,11 @@ describe("useEnsuredState", () => {
 
     const visibleError = CONTROLLED_ERROR.replace("Value", "Visible").replace(
       "value",
-      "visible"
+      "visible",
     );
     const defaultVisibleError = MISSING_DEFAULT_VALUE_ERROR.replace(
       "Value",
-      "Visible"
+      "Visible",
     );
 
     expect(() => render(<Test1 />)).toThrow(visibleError);

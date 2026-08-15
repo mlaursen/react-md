@@ -18,7 +18,7 @@ export type AsyncFunction<Args extends unknown[]> = (
  * @since 6.0.0
  */
 export type HandleAsyncFunction = <Args extends unknown[]>(
-  action: AsyncFunction<Args>
+  action: AsyncFunction<Args>,
 ) => AsyncFunction<Args>;
 
 /**
@@ -130,7 +130,7 @@ export interface AsyncFunctionHookImplementation {
  * @since 6.0.0
  */
 export function useAsyncFunction(
-  options: AsyncFunctionHookOptions = {}
+  options: AsyncFunctionHookOptions = {},
 ): AsyncFunctionHookImplementation {
   const { disabled } = options;
 
@@ -153,7 +153,7 @@ export function useAsyncFunction(
           }
         }
       },
-    [disabled, pending, unmounted]
+    [disabled, pending, unmounted],
   );
 
   return {

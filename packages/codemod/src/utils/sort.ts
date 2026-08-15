@@ -18,15 +18,15 @@ interface AlphaNumericSortOptions<T> {
 
 export function alphaNumericSort<T extends string>(
   list: readonly T[],
-  options?: Omit<AlphaNumericSortOptions<T>, "extractor">
+  options?: Omit<AlphaNumericSortOptions<T>, "extractor">,
 ): readonly T[];
 export function alphaNumericSort<T>(
   list: readonly T[],
-  options: AlphaNumericSortOptions<T> & { extractor: TextExtractor<T> }
+  options: AlphaNumericSortOptions<T> & { extractor: TextExtractor<T> },
 ): readonly T[];
 export function alphaNumericSort<T>(
   list: readonly T[],
-  options: AlphaNumericSortOptions<T> = {}
+  options: AlphaNumericSortOptions<T> = {},
 ): readonly T[] {
   const { extractor = defaultExtractor, descending = false } = options;
 

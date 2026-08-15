@@ -11,7 +11,7 @@ import {
 
 export function isSupportedValueReference(
   j: JSCodeshift,
-  prop: ObjectProperty | Property
+  prop: ObjectProperty | Property,
 ): prop is ObjectProperty & { value: SupportedValueReference } {
   return (
     j.StringLiteral.check(prop.value) ||
@@ -25,7 +25,7 @@ export function isSupportedValueReference(
 
 export function isSupportedLabelReference(
   j: JSCodeshift,
-  prop: ObjectProperty | Property
+  prop: ObjectProperty | Property,
 ): prop is ObjectProperty & { value: SupportedLabelReference } {
   return isSupportedValueReference(j, prop) || j.JSXElement.check(prop.value);
 }

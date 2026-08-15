@@ -19,7 +19,7 @@ describe("NullSuspense", () => {
           instance.addEventListener("resolve-promise", () => {
             resolve({ default: Content });
           });
-        })
+        }),
     );
 
     function Test(): ReactElement {

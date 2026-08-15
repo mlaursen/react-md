@@ -89,7 +89,7 @@ describe("useFuzzyMatch", () => {
     expect(regexp).not.toHaveBeenCalled();
     expect(match).toHaveTextContent("");
     expect(filtered).toHaveTextContent(
-      NON_DEPRECATED_STRING_PROPERTY_NAMES.join(",")
+      NON_DEPRECATED_STRING_PROPERTY_NAMES.join(","),
     );
 
     fireEvent.change(search, { target: { value: "la" } });
@@ -104,7 +104,7 @@ describe("useFuzzyMatch", () => {
         "toLocaleLowerCase",
         "toLocaleUpperCase",
         "toLowerCase",
-      ].join(",")
+      ].join(","),
     );
 
     fireEvent.change(search, { target: { value: "la" } });
@@ -119,14 +119,14 @@ describe("useFuzzyMatch", () => {
         "toLocaleLowerCase",
         "toLocaleUpperCase",
         "toLowerCase",
-      ].join(",")
+      ].join(","),
     );
 
     fireEvent.change(search, { target: { value: "lar" } });
     expect(regexp).toHaveBeenCalledTimes(2);
     expect(match).toHaveTextContent("localeCompare");
     expect(filtered).toHaveTextContent(
-      ["localeCompare", "toLocaleLowerCase", "toLocaleUpperCase"].join(",")
+      ["localeCompare", "toLocaleLowerCase", "toLocaleUpperCase"].join(","),
     );
   });
 

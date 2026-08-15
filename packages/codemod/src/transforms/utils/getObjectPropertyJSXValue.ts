@@ -18,7 +18,7 @@ export function getObjectPropertyJSXValue({
 }: Options): JSXAttributeValue {
   if (j.ObjectMethod.check(prop)) {
     return j.jsxExpressionContainer(
-      j.arrowFunctionExpression(prop.params, prop.body)
+      j.arrowFunctionExpression(prop.params, prop.body),
     );
   }
 
@@ -41,7 +41,7 @@ export function getObjectPropertyJSXValue({
       j.objectExpression.from({
         comments: value.comments || null,
         properties: [...value.properties],
-      })
+      }),
     );
   }
 

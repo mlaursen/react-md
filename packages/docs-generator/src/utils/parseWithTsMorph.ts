@@ -1,9 +1,10 @@
+import { basename } from "node:path";
+
 import {
   type BaseCodeFile,
   type TypescriptCodeFile,
 } from "@react-md/code/types";
-import { basename } from "node:path";
-import { format } from "prettier";
+import { format } from "oxfmt";
 import {
   type ImportDeclaration,
   type ImportSpecifier,
@@ -87,7 +88,7 @@ function handleImports(options: HandleImportsOptions): void {
   ) {
     const nonAliasedName = name
       .replace(/^@/, "src")
-      .replace(/\.js$/, (match, offset, fullString) => {
+      .replace(/\.js$/, (_match, _offset, fullString) => {
         const fileName = basename(fullString, ".js");
 
         return /^[A-Z]/.test(fileName) ? ".tsx" : ".ts";
@@ -106,7 +107,7 @@ function handleImports(options: HandleImportsOptions): void {
       // included in the original source code
       if (name === "react") {
         const sourceFileReactImport = sourceFile.getImportDeclarationOrThrow(
-          (imp) => imp.getModuleSpecifier().getLiteralText() === "react"
+          (imp) => imp.getModuleSpecifier().getLiteralText() === "react",
         );
         for (const namedImport of nextSourceNamedImports) {
           if (
@@ -135,7 +136,7 @@ function handleImports(options: HandleImportsOptions): void {
     }
 
     sourceFile.addStatements(
-      "\n\n" + nextSourceFile.getFullText().replace(/"use client";/, "")
+      "\n\n" + nextSourceFile.getFullText().replace(/"use client";/, ""),
     );
     project.removeSourceFile(nextSourceFile);
     // for some reason I can't get this to work anymore, so just move the
@@ -175,7 +176,7 @@ function handleImports(options: HandleImportsOptions): void {
 }
 
 export async function parseWithTsMorph(
-  options: ParseWithTsMorphOptions
+  options: ParseWithTsMorphOptions,
 ): Promise<ParseWithTsMorphResult> {
   const { project, demoOutPath, demoSourcePath, readOnlyImports } = options;
 
@@ -196,9 +197,11 @@ export async function parseWithTsMorph(
     });
   }
 
-  const tsCode = await format(sourceFile.getFullText(), {
-    parser: "typescript",
-  });
+  const formattedTsCode = await format(
+    sourceFile.getFilePath(),
+    sourceFile.getFullText(),
+  );
+  const tsCode = formattedTsCode.code;
   const jsCode = await transformTsToJs(tsCode, demoOutPath);
 
   return {

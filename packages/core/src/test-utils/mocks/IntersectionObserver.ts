@@ -8,7 +8,7 @@ export class IntersectionObserverMock implements IntersectionObserver {
 
   constructor(
     public callback: IntersectionObserverCallback,
-    options: IntersectionObserverInit = {}
+    options: IntersectionObserverInit = {},
   ) {
     this.root = options.root || null;
     this.rootMargin = options.rootMargin || "";

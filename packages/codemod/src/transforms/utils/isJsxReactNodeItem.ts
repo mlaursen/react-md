@@ -4,7 +4,7 @@ import { type JSXReactNodeItem } from "../../types.js";
 
 export function isJsxReactNodeItem(
   j: JSCodeshift,
-  thing: unknown
+  thing: unknown,
 ): thing is JSXReactNodeItem {
   return (
     j.JSXExpressionContainer.check(thing) ||

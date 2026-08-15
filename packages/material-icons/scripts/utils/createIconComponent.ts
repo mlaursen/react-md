@@ -1,7 +1,8 @@
-import { type MaterialIconFamily } from "@react-md/core/icon/material";
-import lodash from "lodash";
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
+
+import { type MaterialIconFamily } from "@react-md/core/icon/material";
+import lodash from "lodash";
 
 import { GENERATED_FILE_BANNER } from "../constants.js";
 import { type MaterialComponentMetadata } from "./converters.js";
@@ -19,7 +20,7 @@ interface GetMaterialIconComponentNameOptions {
 }
 
 function getMaterialIconComponentName(
-  options: GetMaterialIconComponentNameOptions
+  options: GetMaterialIconComponentNameOptions,
 ): string {
   const { name, iconFamily, iconNameFixes } = options;
 
@@ -36,7 +37,7 @@ interface CreateIconComponentOptions extends MaterialComponentMetadata {
 }
 
 export async function createIconComponent(
-  options: CreateIconComponentOptions
+  options: CreateIconComponentOptions,
 ): Promise<void> {
   const {
     created,
@@ -64,7 +65,7 @@ export default function ${componentName}(props: SVGIconProps): ReactElement {
 
   return <SVGIcon {...remaining} ref={ref}>${children}</SVGIcon>;
 }
-`
+`,
   );
 
   if (created.has(fileName)) {

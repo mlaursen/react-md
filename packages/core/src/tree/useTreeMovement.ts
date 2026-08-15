@@ -40,7 +40,7 @@ const isParentItemCollapsing = (item: HTMLElement): boolean =>
  * @internal
  */
 const getVisibleTreeItems = (
-  container: HTMLElement
+  container: HTMLElement,
 ): readonly HTMLElement[] => {
   const items = [
     ...container.querySelectorAll<HTMLElement>('[role="treeitem"]'),
@@ -51,7 +51,7 @@ const getVisibleTreeItems = (
       // do not include items that have a `hidden` parent group
       item.offsetParent &&
       // do not include items that are about to become hidden
-      !isParentItemCollapsing(item)
+      !isParentItemCollapsing(item),
   );
 };
 
@@ -86,7 +86,7 @@ interface TreeMovement extends KeyboardMovementProviderImplementation<HTMLUListE
  * @internal
  */
 export function useTreeMovement<T extends TreeItemNode>(
-  options: TreeMovementOptions<T>
+  options: TreeMovementOptions<T>,
 ): TreeMovement {
   const {
     ref,
@@ -140,7 +140,7 @@ export function useTreeMovement<T extends TreeItemNode>(
             const parentId = itemToElement[item.parentId];
             const focusables = getVisibleTreeItems(event.currentTarget);
             const index = focusables.findIndex(
-              (element) => element.id === parentId
+              (element) => element.id === parentId,
             );
             setFocusIndex(index, focusables);
           }
@@ -172,11 +172,11 @@ export function useTreeMovement<T extends TreeItemNode>(
           const itemIds = treeItemChildIds.get(item.parentId);
           if (itemIds) {
             const expandableIds = [...itemIds].filter(
-              (itemId) => expandable[itemId]
+              (itemId) => expandable[itemId],
             );
             if (expandableIds.length > 0) {
               expandMultipleTreeItems(
-                (prev) => new Set([...prev, ...expandableIds])
+                (prev) => new Set([...prev, ...expandableIds]),
               );
               currentFocusIndex.current = -1;
             }
@@ -198,7 +198,7 @@ export function useTreeMovement<T extends TreeItemNode>(
       const { elementToItem } = metadataLookup.current;
 
       return focusables.findIndex((element) =>
-        selectedIds.has(elementToItem[element.id])
+        selectedIds.has(elementToItem[element.id]),
       );
     },
   });

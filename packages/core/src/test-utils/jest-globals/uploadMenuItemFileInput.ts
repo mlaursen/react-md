@@ -36,7 +36,7 @@ export interface UploadMenuItemFileUploadOptions {
  * @since 6.0.0
  */
 export async function uploadMenuItemFileUpload(
-  options: UploadMenuItemFileUploadOptions
+  options: UploadMenuItemFileUploadOptions,
 ): Promise<void> {
   const { user, files, menuItem } = options;
 

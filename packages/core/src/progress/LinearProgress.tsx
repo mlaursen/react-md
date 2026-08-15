@@ -92,7 +92,7 @@ export interface LinearProgressProps
  * requires a label for accessibility.
  */
 export function LinearProgress(
-  props: LabelRequiredForA11y<LinearProgressProps>
+  props: LabelRequiredForA11y<LinearProgressProps>,
 ): ReactElement {
   const {
     ref,

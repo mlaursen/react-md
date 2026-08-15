@@ -1,7 +1,8 @@
-import { describe, expect, it } from "@jest/globals";
-import { compile } from "@mdx-js/mdx";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+
+import { describe, expect, it } from "@jest/globals";
+import { compile } from "@mdx-js/mdx";
 
 import { rehypeColorPreview } from "../rehype-color-preview.js";
 

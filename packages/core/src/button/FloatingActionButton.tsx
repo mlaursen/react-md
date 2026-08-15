@@ -56,7 +56,7 @@ export function fab(options: FloatingActionButtonClassNameOptions): string {
       br: position === "bottom-right",
       absolute,
     }),
-    className
+    className,
   );
 }
 
@@ -73,7 +73,7 @@ export interface FloatingActionButtonProps
  * @internal
  */
 export function FloatingActionButton(
-  props: FloatingActionButtonProps
+  props: FloatingActionButtonProps,
 ): ReactElement {
   const {
     ref,

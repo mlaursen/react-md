@@ -32,7 +32,7 @@ describe("HighlightText", () => {
     rerender(
       <HighlightText query="hello, world!">
         <span>Hello, world!</span>
-      </HighlightText>
+      </HighlightText>,
     );
     expect(wrapper).toMatchSnapshot();
   });
@@ -41,11 +41,11 @@ describe("HighlightText", () => {
     render(
       <HighlightText query="favorite">
         {"I'm Commander Shepard, and this is my favorite store on the Citadel."}
-      </HighlightText>
+      </HighlightText>,
     );
     const wrapper = screen.getByTestId("wrapper");
     expect(wrapper).toHaveTextContent(
-      "I'm Commander Shepard, and this is my favorite store on the Citadel."
+      "I'm Commander Shepard, and this is my favorite store on the Citadel.",
     );
     expect(wrapper).toMatchSnapshot();
   });
@@ -54,24 +54,24 @@ describe("HighlightText", () => {
     const { rerender } = render(
       <HighlightText query="t" highlight={MarkWithDataTestId}>
         {"I'm Commander Shepard, and this is my favorite store on the Citadel."}
-      </HighlightText>
+      </HighlightText>,
     );
 
     const wrapper = screen.getByTestId("wrapper");
     expect(screen.getAllByTestId("mark")).toHaveLength(5);
     expect(wrapper).toHaveTextContent(
-      "I'm Commander Shepard, and this is my favorite store on the Citadel."
+      "I'm Commander Shepard, and this is my favorite store on the Citadel.",
     );
     expect(wrapper).toMatchSnapshot();
 
     rerender(
       <HighlightText query="t" highlight={MarkWithDataTestId} firstMatchOnly>
         {"I'm Commander Shepard, and this is my favorite store on the Citadel."}
-      </HighlightText>
+      </HighlightText>,
     );
     expect(screen.getAllByTestId("mark")).toHaveLength(1);
     expect(wrapper).toHaveTextContent(
-      "I'm Commander Shepard, and this is my favorite store on the Citadel."
+      "I'm Commander Shepard, and this is my favorite store on the Citadel.",
     );
     expect(wrapper).toMatchSnapshot();
   });
@@ -83,13 +83,13 @@ describe("HighlightText", () => {
       <HighlightText query="t" highlight={MarkWithDataTestId}>
         Some prefixed text{show && " with a conditional"}
         {hide && " not valid"}. With a suffix.
-      </HighlightText>
+      </HighlightText>,
     );
 
     const wrapper = screen.getByTestId("wrapper");
     expect(screen.getAllByTestId("mark")).toHaveLength(5);
     expect(wrapper).toHaveTextContent(
-      "Some prefixed text with a conditional. With a suffix."
+      "Some prefixed text with a conditional. With a suffix.",
     );
     expect(wrapper).toMatchSnapshot();
   });
@@ -98,13 +98,13 @@ describe("HighlightText", () => {
     render(
       <HighlightText query="déjà" highlight={MarkWithDataTestId}>
         {"I often experience déjà vu when visiting this place."}
-      </HighlightText>
+      </HighlightText>,
     );
 
     const wrapper = screen.getByTestId("wrapper");
     expect(() => screen.getByTestId("mark")).not.toThrow();
     expect(wrapper).toHaveTextContent(
-      "I often experience déjà vu when visiting this place."
+      "I often experience déjà vu when visiting this place.",
     );
     expect(wrapper).toMatchSnapshot();
   });
@@ -113,7 +113,7 @@ describe("HighlightText", () => {
     const { rerender } = render(
       <HighlightText query="hello " highlight={MarkWithDataTestId}>
         Hello world
-      </HighlightText>
+      </HighlightText>,
     );
 
     const wrapper = screen.getByTestId("wrapper");
@@ -125,7 +125,7 @@ describe("HighlightText", () => {
     rerender(
       <HighlightText query=" " highlight={MarkWithDataTestId}>
         Hello world
-      </HighlightText>
+      </HighlightText>,
     );
     expect(() => screen.getByTestId("mark")).toThrow();
     expect(wrapper).toHaveTextContent("Hello world");

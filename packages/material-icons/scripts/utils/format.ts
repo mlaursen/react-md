@@ -1,8 +1,5 @@
-import { format as prettierFormat } from "prettier";
+import { format as oxfmt } from "oxfmt";
 
 export async function format(code: string): Promise<string> {
-  return prettierFormat(code, {
-    parser: "typescript",
-    trailingComma: "es5",
-  });
+  return (await oxfmt("Component.tsx", code)).code;
 }

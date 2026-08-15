@@ -516,8 +516,7 @@ $transition-variables: (
 
         max-width: 0;
         overflow: hidden;
-        transition: max-width
-          $max-width-transition-duration
+        transition: max-width $max-width-transition-duration
           $max-width-transition-timing-function;
         will-change: max-width;
 

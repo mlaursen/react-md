@@ -17,7 +17,7 @@ export interface PackageManagerCodeBlockContainerProps {
 }
 
 export function PackageManagerCodeBlockContainer(
-  props: PackageManagerCodeBlockContainerProps
+  props: PackageManagerCodeBlockContainerProps,
 ): ReactElement {
   const { managers } = props;
 

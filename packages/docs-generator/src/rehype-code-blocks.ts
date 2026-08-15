@@ -1,6 +1,7 @@
+import { dirname, join } from "node:path";
+
 import { type Root } from "hast";
 import { toString } from "mdast-util-to-string";
-import { dirname, join } from "node:path";
 import { Project } from "ts-morph";
 import { visitParents } from "unist-util-visit-parents";
 import { type VFile } from "vfile";
@@ -130,7 +131,7 @@ export function rehypeCodeBlocks(options: RehypeCodeBlocksOptions = {}) {
               preElement,
               preElementParent,
               codeElement: node,
-            })
+            }),
           );
           break;
         case "sh": {
@@ -173,7 +174,7 @@ export function rehypeCodeBlocks(options: RehypeCodeBlocksOptions = {}) {
               generatedDir,
               preElement,
               preElementParent,
-            })
+            }),
           );
           break;
         }
@@ -186,7 +187,7 @@ export function rehypeCodeBlocks(options: RehypeCodeBlocksOptions = {}) {
               preElement,
               preElementParent,
               codeElement: node,
-            })
+            }),
           );
           break;
         }

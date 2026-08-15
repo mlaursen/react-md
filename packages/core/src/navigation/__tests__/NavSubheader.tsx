@@ -24,7 +24,7 @@ describe("NavSubheader", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(subheader).toMatchSnapshot();
   });

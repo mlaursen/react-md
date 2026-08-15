@@ -55,13 +55,13 @@ function createDefaultLabelValueGetters({
       j.binaryExpression(
         "===",
         j.unaryExpression("typeof", option),
-        j.literal("string")
+        j.literal("string"),
       ),
       j.binaryExpression(
         "===",
         j.unaryExpression("typeof", option),
-        j.literal("number")
-      )
+        j.literal("number"),
+      ),
     ),
     j.blockStatement([
       j.expressionStatement(j.assignmentExpression("=", label, option)),
@@ -77,15 +77,15 @@ function createDefaultLabelValueGetters({
       j.assignmentExpression(
         "=",
         label,
-        j.memberExpression(option, j.identifier("label"))
-      )
+        j.memberExpression(option, j.identifier("label")),
+      ),
     ),
     j.expressionStatement(
       j.assignmentExpression(
         "=",
         value,
-        j.memberExpression(option, j.identifier("value"))
-      )
+        j.memberExpression(option, j.identifier("value")),
+      ),
     ),
   ]);
 
@@ -109,8 +109,8 @@ function createDefaultLabelValueGetters({
       ...ifOptionIsNull,
       j.ifStatement(
         ...elseIfOptionIsStringOrNumber,
-        elseLabelIsLabelAndValueIsValue
-      )
+        elseLabelIsLabelAndValueIsValue,
+      ),
     ),
   ];
 
@@ -154,6 +154,6 @@ export function createOptionsDotMap({
     j.blockStatement([
       ...statements,
       createReturnOptionStatement({ j, label, value }),
-    ])
+    ]),
   );
 }

@@ -2,11 +2,11 @@ import { type Ref, createRef } from "react";
 import { describe, expect, it } from "vitest";
 
 import { rmdRender, screen } from "../../test-utils/index.js";
-import { WindowSplitter, type WindowSplitterProps } from "../WindowSplitter.js";
 import {
   type WindowSplitterWidgetProps,
   useWindowSplitter,
 } from "../useWindowSplitter.js";
+import { WindowSplitter, type WindowSplitterProps } from "../WindowSplitter.js";
 
 type TestProps = Omit<WindowSplitterProps, keyof WindowSplitterWidgetProps> & {
   vertical?: boolean;
@@ -53,7 +53,7 @@ describe("WindowSplitter", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(windowSplitter).toMatchSnapshot();
   });
@@ -81,7 +81,7 @@ describe("WindowSplitter", () => {
 
     rerender(<Test {...props} inactiveBackground />);
     expect(windowSplitter).not.toHaveClass(
-      "rmd-window-splitter--no-inactive-bg"
+      "rmd-window-splitter--no-inactive-bg",
     );
     expect(windowSplitter).toMatchSnapshot();
 
@@ -91,7 +91,7 @@ describe("WindowSplitter", () => {
 
     rerender(<Test {...props} vertical inactiveBackground />);
     expect(windowSplitter).not.toHaveClass(
-      "rmd-window-splitter--no-inactive-bg"
+      "rmd-window-splitter--no-inactive-bg",
     );
     expect(windowSplitter).toMatchSnapshot();
   });

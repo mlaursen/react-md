@@ -12,7 +12,7 @@ hooks: [useThrottledFunction]
 ```ts disableTransform
 function useThrottledFunction<F extends AnyFunction>(
   func: F,
-  wait: number
+  wait: number,
 ): ThrottledFunction<F>;
 ```
 

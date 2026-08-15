@@ -7,7 +7,7 @@ import {
 } from "./replacePreElement.js";
 
 export function getTransformedNpmCode(
-  code: string
+  code: string,
 ): Record<PackageManager, string> {
   const yarnCode = code
     .replaceAll("npm", "yarn")

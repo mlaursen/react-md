@@ -11,7 +11,7 @@ export interface TableContainerClassNameOptions {
  * @since 6.0.0
  */
 export function tableContainer(
-  options: TableContainerClassNameOptions = {}
+  options: TableContainerClassNameOptions = {},
 ): string {
   const { className } = options;
 

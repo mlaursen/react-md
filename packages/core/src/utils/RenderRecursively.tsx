@@ -27,7 +27,7 @@ export interface RecursiveItemKeyOptions<Item = Record<string, unknown>> {
  * @since 6.0.0
  */
 export function getRecursiveItemKey<Item = Record<string, unknown>>(
-  options: RecursiveItemKeyOptions<Item>
+  options: RecursiveItemKeyOptions<Item>,
 ): string {
   const { depth, index } = options;
 
@@ -248,7 +248,7 @@ export interface RenderRecursivelyProps<
  * @since 6.0.0
  */
 export function RenderRecursively<Item, Data>(
-  props: RenderRecursivelyProps<Item, Data>
+  props: RenderRecursivelyProps<Item, Data>,
 ): ReactElement {
   const {
     data,

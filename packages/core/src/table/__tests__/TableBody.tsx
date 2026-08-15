@@ -23,7 +23,7 @@ describe("TableBody", () => {
     const { rerender } = render(
       <Table>
         <TableBody {...props} />
-      </Table>
+      </Table>,
     );
 
     const body = screen.getByTestId("body");
@@ -38,14 +38,14 @@ describe("TableBody", () => {
           style={{ color: "red" }}
           className="custom-class-name"
         />
-      </Table>
+      </Table>,
     );
     expect(body).toMatchSnapshot();
 
     rerender(
       <Table>
         <TableBody {...props} disableHover disableBorders />
-      </Table>
+      </Table>,
     );
     expect(body).toMatchSnapshot();
   });

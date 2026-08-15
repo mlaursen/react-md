@@ -65,7 +65,7 @@ export interface ResizingTextAreaReturnValue {
 
 /** @internal */
 export function useResizingTextArea(
-  options: ResizingTextAreaOptions
+  options: ResizingTextAreaOptions,
 ): ResizingTextAreaReturnValue {
   const {
     maxRows,

@@ -94,10 +94,10 @@ function updateTabsComponent(options: UpdateComponentOptions): void {
                     j.binaryExpression(
                       "===",
                       attr.value.expression,
-                      j.stringLiteral("vertical")
-                    )
-                  )
-                )
+                      j.stringLiteral("vertical"),
+                    ),
+                  ),
+                ),
               );
             }
             break;
@@ -117,12 +117,12 @@ function updateTabsComponent(options: UpdateComponentOptions): void {
           name: "TabList",
           props: [
             j.jsxSpreadAttribute(
-              j.callExpression(j.identifier("getTabListProps"), [])
+              j.callExpression(j.identifier("getTabListProps"), []),
             ),
             ...props,
           ],
           children: [j.jsxText("")],
-        })
+        }),
       );
     });
 }
@@ -179,14 +179,14 @@ function updateTabsManager(options: UpdateComponentOptions): void {
           case "iconAfter": {
             if (isPropEnabled(attr)) {
               options.push(
-                j.objectProperty(j.identifier(name), j.booleanLiteral(true))
+                j.objectProperty(j.identifier(name), j.booleanLiteral(true)),
               );
             } else if (
               isJsxExpressionContainer(j, attr.value) &&
               !j.BooleanLiteral.check(attr.value.expression)
             ) {
               options.push(
-                j.objectProperty(j.identifier(name), attr.value.expression)
+                j.objectProperty(j.identifier(name), attr.value.expression),
               );
             }
             break;
@@ -207,7 +207,7 @@ function updateTabsManager(options: UpdateComponentOptions): void {
         ]),
       });
       j(jsxElement).replaceWith(
-        j.jsxFragment(j.jsxOpeningFragment(), j.jsxClosingFragment(), children)
+        j.jsxFragment(j.jsxOpeningFragment(), j.jsxClosingFragment(), children),
       );
 
       if (tabConfigList) {
@@ -270,8 +270,8 @@ function updateTabsManager(options: UpdateComponentOptions): void {
                           j.binaryExpression(
                             "in",
                             j.stringLiteral("children"),
-                            tabConfig
-                          )
+                            tabConfig,
+                          ),
                         ),
 
                         // { ... }
@@ -283,9 +283,9 @@ function updateTabsManager(options: UpdateComponentOptions): void {
                               j.identifier("children"),
                               j.memberExpression(
                                 tabConfig,
-                                j.identifier("children")
-                              )
-                            )
+                                j.identifier("children"),
+                              ),
+                            ),
                           ),
                           // const { children: _c, contentStyle: _cs, contentClassName: _ccs, ...stillValidProps } = tab;
                           createDestructuredConst({
@@ -293,15 +293,15 @@ function updateTabsManager(options: UpdateComponentOptions): void {
                             props: [
                               j.objectProperty(
                                 j.identifier("children"),
-                                j.identifier("_c")
+                                j.identifier("_c"),
                               ),
                               j.objectProperty(
                                 j.identifier("contentStyle"),
-                                j.identifier("_cs")
+                                j.identifier("_cs"),
                               ),
                               j.objectProperty(
                                 j.identifier("contentClassName"),
-                                j.identifier("_ccn")
+                                j.identifier("_ccn"),
                               ),
                               j.restProperty(j.identifier("stillValidProps")),
                             ],
@@ -313,8 +313,8 @@ function updateTabsManager(options: UpdateComponentOptions): void {
                             j.assignmentExpression(
                               "=",
                               j.identifier("overrides"),
-                              j.identifier("stillValidProps")
-                            )
+                              j.identifier("stillValidProps"),
+                            ),
                           ),
                         ]),
                         // else {
@@ -325,10 +325,10 @@ function updateTabsManager(options: UpdateComponentOptions): void {
                             j.assignmentExpression(
                               "=",
                               j.identifier("children"),
-                              tabConfig
-                            )
+                              tabConfig,
+                            ),
                           ),
-                        ])
+                        ]),
                       ),
 
                       j.returnStatement(
@@ -343,21 +343,21 @@ function updateTabsManager(options: UpdateComponentOptions): void {
                               j.jsxExpressionContainer(
                                 j.memberExpression(
                                   j.identifier("tabProps"),
-                                  j.identifier("id")
-                                )
-                              )
+                                  j.identifier("id"),
+                                ),
+                              ),
                             ),
                           ],
                           children: [
                             j.jsxExpressionContainer(
-                              j.jsxIdentifier("children")
+                              j.jsxIdentifier("children"),
                             ),
                           ],
-                        })
+                        }),
                       ),
-                    ])
+                    ]),
                   ),
-                ])
+                ]),
               ),
             ];
           });
@@ -420,12 +420,12 @@ function updateTabPanels(options: UpdateTabPanelsOptions): void {
       if (tabsManager) {
         props.unshift(
           j.jsxSpreadAttribute(
-            j.callExpression(j.identifier("getTabPanelsProps"), [])
-          )
+            j.callExpression(j.identifier("getTabPanelsProps"), []),
+          ),
         );
       } else if (!spread) {
         comments.add(
-          "TODO: The `SlideContainer` had a spread property and might need to add {...getTabPanelsProps()} to work correctly"
+          "TODO: The `SlideContainer` had a spread property and might need to add {...getTabPanelsProps()} to work correctly",
         );
       }
 
@@ -435,7 +435,7 @@ function updateTabPanels(options: UpdateTabPanelsOptions): void {
           name: "SlideContainer",
           props: [...props],
           children,
-        })
+        }),
       );
     });
 
@@ -454,7 +454,10 @@ function updateTabPanels(options: UpdateTabPanelsOptions): void {
 
         if (disableScrollFix) {
           options.properties.push(
-            j.objectProperty(j.identifier("disableScrollFix"), disableScrollFix)
+            j.objectProperty(
+              j.identifier("disableScrollFix"),
+              disableScrollFix,
+            ),
           );
         }
 
@@ -462,8 +465,8 @@ function updateTabPanels(options: UpdateTabPanelsOptions): void {
           options.properties.push(
             j.objectProperty(
               j.identifier("disableTransition"),
-              disableTransition
-            )
+              disableTransition,
+            ),
           );
         }
       });
@@ -531,8 +534,8 @@ function updateTabPanel(options: UpdateTabPanelsOptions): void {
         const props = openingElement.attributes ?? [];
         props.unshift(
           j.jsxSpreadAttribute(
-            j.callExpression(j.identifier("getTabPanelProps"), [index])
-          )
+            j.callExpression(j.identifier("getTabPanelProps"), [index]),
+          ),
         );
 
         openingElement.attributes = props;
@@ -543,7 +546,7 @@ function updateTabPanel(options: UpdateTabPanelsOptions): void {
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -572,12 +575,12 @@ export default function transformer(
   const tabPanels = tabsLookup.get("TabPanels");
   const tabPanel = tabsLookup.get("TabPanel");
   const foundTabComponents = [tabsManager, tabs, tabPanels, tabPanel].filter(
-    Boolean
+    Boolean,
   ).length;
 
   if (foundTabComponents > 0 && foundTabComponents !== 4) {
     comments.add(
-      "TODO: The `TabsManager`, `Tabs`, `TabPanels`, and `TabPanel` components are not in the same file and will need to be updated manually."
+      "TODO: The `TabsManager`, `Tabs`, `TabPanels`, and `TabPanel` components are not in the same file and will need to be updated manually.",
     );
   }
 

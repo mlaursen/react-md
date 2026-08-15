@@ -24,11 +24,11 @@ import {
   type SliderThumbProps,
 } from "./SliderThumb.js";
 import { SliderTrack } from "./SliderTrack.js";
+import { getJumpValue, getSliderInputName } from "./sliderUtils.js";
 import {
   type SliderMarksOptions,
   SliderValueMarks,
 } from "./SliderValueMarks.js";
-import { getJumpValue, getSliderInputName } from "./sliderUtils.js";
 import { type RangeSliderState } from "./useRangeSlider.js";
 import { type SliderState, type SliderValueOptions } from "./useSlider.js";
 import { useSliderDraggable } from "./useSliderDraggable.js";
@@ -256,7 +256,7 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
    */
   getTooltipProps?: (
     value: number,
-    isFirstThumb: boolean
+    isFirstThumb: boolean,
   ) => Partial<TooltipProps>;
 
   /**
@@ -361,7 +361,7 @@ export interface RangeSliderProps extends BaseSliderProps, RangeSliderState {
 export function Slider(props: LabelRequiredForA11y<SliderProps>): ReactElement;
 export function Slider(props: RangeSliderProps): ReactElement;
 export function Slider(
-  props: LabelRequiredForA11y<SliderProps> | RangeSliderProps
+  props: LabelRequiredForA11y<SliderProps> | RangeSliderProps,
 ): ReactElement {
   const {
     "aria-label": ariaLabel,

@@ -29,7 +29,7 @@ export function SimpleNavItem(props: SimpleNavItemProps): ReactElement {
       className={cnb(
         styles.link,
         active && styles.active,
-        active && cssUtils({ fontWeight: "bold" })
+        active && cssUtils({ fontWeight: "bold" }),
       )}
       leftAddon={leftAddon}
     >

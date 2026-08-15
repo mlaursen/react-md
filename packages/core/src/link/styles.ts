@@ -46,7 +46,7 @@ export interface SkipToMainContentClassNameOptions {
  * @since 6.0.0
  */
 export function skipToMainContent(
-  options: SkipToMainContentClassNameOptions = {}
+  options: SkipToMainContentClassNameOptions = {},
 ): string {
   const { unstyled = false, className } = options;
 
@@ -55,6 +55,6 @@ export function skipToMainContent(
       skip: true,
       "skip-styled": !unstyled,
     }),
-    className
+    className,
   );
 }

@@ -98,7 +98,7 @@ export type SlideTransitionOptions<E extends HTMLElement> =
  * @since 6.0.0
  */
 export function useSlideTransition<E extends HTMLElement>(
-  options: SlideTransitionOptions<E>
+  options: SlideTransitionOptions<E>,
 ): CSSTransitionHookReturnValue<E> {
   const {
     timeout = DEFAULT_SLIDE_TRANSITION_TIMEOUT,

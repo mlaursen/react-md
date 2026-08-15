@@ -10,7 +10,7 @@ export type RenameEntries = readonly RenameEntry[];
 
 export function renameRecordToEntries(record: RenameRecord): RenameEntries {
   return Object.entries(record).map(
-    ([regex, replacement]) => [new RegExp(regex), replacement] as const
+    ([regex, replacement]) => [new RegExp(regex), replacement] as const,
   );
 }
 
@@ -20,7 +20,7 @@ interface RenameFromRenameEntriesOptions extends TransformSassItemOptions {
 }
 
 export function renameFromRenameEntries(
-  options: RenameFromRenameEntriesOptions
+  options: RenameFromRenameEntriesOptions,
 ): string | undefined {
   const { name, type, entries, entriesType } = options;
   if (type !== entriesType && entriesType !== "any") {

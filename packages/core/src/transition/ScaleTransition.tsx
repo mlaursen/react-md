@@ -70,7 +70,7 @@ export interface ScaleTransitionProps<E extends HTMLElement>
  * @since 6.0.0 Removed the built-in support for portalling.
  */
 export function ScaleTransition<E extends HTMLElement>(
-  props: ScaleTransitionProps<E>
+  props: ScaleTransitionProps<E>,
 ): ReactElement {
   const { children, className, ...options } = props;
   const child = Children.only(children);

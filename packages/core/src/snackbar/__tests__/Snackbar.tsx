@@ -8,13 +8,13 @@ import {
   screen,
 } from "../../test-utils/index.js";
 import { Snackbar } from "../Snackbar.js";
+import { type SnackbarPosition } from "../snackbarStyles.js";
 import { ToastManager } from "../ToastManager.js";
 import { ToastManagerProvider } from "../ToastManagerProvider.js";
-import { type SnackbarPosition } from "../snackbarStyles.js";
 
 const render = (
   ui: ReactElement,
-  options?: ReactMDRenderOptions
+  options?: ReactMDRenderOptions,
 ): RenderResult => {
   const manager = new ToastManager();
   manager.addToast({ children: "Toast" });
@@ -46,7 +46,7 @@ describe("Snackbar", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(snackbar).toMatchSnapshot();
   });

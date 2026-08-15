@@ -10,11 +10,11 @@ import {
 } from "vitest";
 
 import { act, fireEvent, render, screen } from "../../test-utils/index.js";
+import { TRANSITION_CONFIG } from "../config.js";
 import {
   ScaleTransition,
   type ScaleTransitionProps,
 } from "../ScaleTransition.js";
-import { TRANSITION_CONFIG } from "../config.js";
 
 interface TestProps extends Omit<
   ScaleTransitionProps<HTMLElement>,

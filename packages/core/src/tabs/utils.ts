@@ -9,7 +9,7 @@ export const getTabRoleOnly = (container: Element): readonly HTMLElement[] => [
  * @internal
  */
 export const getTabPanelRoleOnly = (
-  container: Element
+  container: Element,
 ): readonly HTMLElement[] => [
   ...container.querySelectorAll<HTMLElement>('[role="tabpanel"]'),
 ];

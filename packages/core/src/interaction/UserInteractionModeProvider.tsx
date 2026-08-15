@@ -84,7 +84,7 @@ export interface UserInteractionModeProviderProps {
  * if this component is mounted multiple times in your app.
  */
 export function UserInteractionModeProvider(
-  props: UserInteractionModeProviderProps
+  props: UserInteractionModeProviderProps,
 ): ReactElement {
   // eslint-disable-next-line react/prop-types
   const { children, now = DATE_NOW } =
@@ -94,7 +94,7 @@ export function UserInteractionModeProvider(
   const { __root } = useContext(context);
   if (__root) {
     throw new Error(
-      "The `UserInteractionModeProvider` cannot be mounted multiple times."
+      "The `UserInteractionModeProvider` cannot be mounted multiple times.",
     );
   }
 
@@ -202,7 +202,7 @@ export function UserInteractionModeProvider(
       mode,
       __root: true,
     }),
-    [mode]
+    [mode],
   );
   return <Provider value={value}>{children}</Provider>;
 }

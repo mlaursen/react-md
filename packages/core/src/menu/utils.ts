@@ -28,7 +28,7 @@ interface DefaultAnchorOptions {
  * @internal
  */
 export const getDefaultAnchor = (
-  options: DefaultAnchorOptions
+  options: DefaultAnchorOptions,
 ): PositionAnchor => {
   const { anchor, menubar, menuitem, floating, horizontal } = options;
   if (anchor) {

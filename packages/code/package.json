@@ -1,10 +1,19 @@
 {
   "name": "@react-md/code",
-  "private": true,
   "version": "0.0.24",
+  "private": true,
   "description": "The core components and functionality for react-md.",
+  "homepage": "https://react-md.dev",
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "license": "MIT",
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git"
+  },
   "type": "module",
-  "sass": "./dist/_code.scss",
   "exports": {
     ".": {
       "sass": "./dist/_code.scss"
@@ -29,28 +38,11 @@
     "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
     "lint": "npm-run-all lint-scripts lint-styles",
     "lint-fix": "npm-run-all \"lint-scripts --fix\" \"lint-styles --fix\"",
-    "check-format": "prettier --check .",
-    "format": "prettier --write .",
     "test-run": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
     "test": "pnpm test-run --watch",
     "test-run-coverage": "pnpm test-run --coverage",
     "test-run-snapshot": "pnpm test-run -u"
   },
-  "engines": {
-    "pnpm": ">=9",
-    "node": ">=20"
-  },
-  "engineStrict": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mlaursen/react-md.git"
-  },
-  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mlaursen/react-md/issues"
-  },
-  "homepage": "https://react-md.dev",
   "dependencies": {
     "@react-md/core": "workspace:*",
     "@react-md/material-icons": "workspace:*",
@@ -73,7 +65,6 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.12.2",
     "@types/prismjs": "^1.26.6",
     "@types/react": "^19.2.14",
@@ -104,5 +95,11 @@
     "react-dom": {
       "optional": false
     }
-  }
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "engineStrict": true,
+  "sass": "./dist/_code.scss"
 }

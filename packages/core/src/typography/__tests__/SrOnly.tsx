@@ -8,7 +8,7 @@ describe("SrOnly", () => {
   it("should apply the correct styling, HTML attributes, and allow a ref", () => {
     const ref = createRef<HTMLSpanElement>();
     const { container, rerender } = render(
-      <SrOnly ref={ref}>Some content</SrOnly>
+      <SrOnly ref={ref}>Some content</SrOnly>,
     );
 
     expect(ref.current).toBeInstanceOf(HTMLSpanElement);
@@ -18,7 +18,7 @@ describe("SrOnly", () => {
     rerender(
       <SrOnly ref={ref} style={{ opacity: 0.3 }} className="custom-class-name">
         Some content
-      </SrOnly>
+      </SrOnly>,
     );
     expect(container).toMatchSnapshot();
 
@@ -28,14 +28,14 @@ describe("SrOnly", () => {
     rerender(
       <SrOnly focusable tabIndex={-1}>
         Some content
-      </SrOnly>
+      </SrOnly>,
     );
     expect(container).toMatchSnapshot();
 
     rerender(
       <SrOnly as="h4" ref={ref}>
         Some content
-      </SrOnly>
+      </SrOnly>,
     );
     expect(ref.current).toBeInstanceOf(HTMLHeadingElement);
     expect(container).toMatchSnapshot();
@@ -45,7 +45,7 @@ describe("SrOnly", () => {
     const { rerender } = render(
       <SrOnly data-testid="sr" phoneOnly>
         Phone only text
-      </SrOnly>
+      </SrOnly>,
     );
 
     const sr = screen.getByTestId("sr");
@@ -54,7 +54,7 @@ describe("SrOnly", () => {
     rerender(
       <SrOnly data-testid="sr" phoneOnly focusable>
         Phone only text
-      </SrOnly>
+      </SrOnly>,
     );
     expect(sr).toMatchSnapshot();
   });

@@ -24,7 +24,7 @@ describe("Avatar", () => {
         {...props}
         style={{ color: "red" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(avatar).toMatchSnapshot();
 
@@ -59,7 +59,7 @@ describe("Avatar", () => {
           style: { opacity: 0.5 },
           className: "custom-class-name",
         }}
-      />
+      />,
     );
     expect(ref.current).toBeInstanceOf(HTMLImageElement);
     expect(ref.current).toBe(img);

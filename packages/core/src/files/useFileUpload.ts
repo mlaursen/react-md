@@ -217,7 +217,7 @@ const EMPTY_OBJECT = {} as const;
  * @since 2.9.0
  */
 export function useFileUpload<E extends HTMLElement, CustomError = never>(
-  options: FileUploadOptions<E, CustomError> = {}
+  options: FileUploadOptions<E, CustomError> = {},
 ): Readonly<FileUploadHookReturnValue<E, CustomError>> {
   const {
     maxFiles = -1,
@@ -236,7 +236,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
   const [state, dispatch] = useReducer(
     function reducer(
       state: FileUploadHookState<CustomError>,
-      action: Action<CustomError>
+      action: Action<CustomError>,
     ): FileUploadHookState<CustomError> {
       switch (action.type) {
         case "reset":
@@ -343,7 +343,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
       stats: EMPTY_OBJECT,
       errors: EMPTY_LIST,
       readers: EMPTY_OBJECT,
-    }
+    },
   );
   const { stats, errors, readers } = state;
 
@@ -351,7 +351,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
   const totalFiles = statsList.length;
   const totalBytes = statsList.reduce(
     (result, { file: { size } }) => result + size,
-    0
+    0,
   );
   const queueFiles = useCallback(
     (files: readonly File[]) => {
@@ -378,7 +378,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
       totalFiles,
       totalFileSize,
       isValidFileName,
-    ]
+    ],
   );
   const onDrop = useCallback(
     (event: DragEvent<E>) => {
@@ -397,13 +397,13 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
           files: [],
           errors: [
             new FileAccessError(
-              error instanceof Error ? error.message : undefined
+              error instanceof Error ? error.message : undefined,
             ),
           ],
         });
       }
     },
-    [queueFiles, propOnDrop]
+    [queueFiles, propOnDrop],
   );
   const onChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -421,13 +421,13 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
           files: [],
           errors: [
             new FileAccessError(
-              error instanceof Error ? error.message : undefined
+              error instanceof Error ? error.message : undefined,
             ),
           ],
         });
       }
     },
-    [queueFiles, propOnChange]
+    [queueFiles, propOnChange],
   );
 
   const remove = useCallback(
@@ -439,7 +439,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
 
       dispatch({ type: "remove", files });
     },
-    [readers]
+    [readers],
   );
   const reset = useCallback(() => {
     for (const reader of Object.values(readers)) {
@@ -458,7 +458,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
     (key: string, result: FileReaderResult = null) => {
       dispatch({ type: "complete", key, result });
     },
-    []
+    [],
   );
   const createProgressEventHandler = useCallback(
     (key: string) => (event: ProgressEvent) => {
@@ -467,7 +467,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>(
         dispatch({ type: "progress", key, progress: percentage });
       }
     },
-    []
+    [],
   );
 
   useEffect(() => {

@@ -13,7 +13,7 @@ describe("TextIconSpacing", () => {
     const { container } = render(
       <TextIconSpacing>
         <span />
-      </TextIconSpacing>
+      </TextIconSpacing>,
     );
     expect(container).toMatchSnapshot();
   });
@@ -22,7 +22,7 @@ describe("TextIconSpacing", () => {
     const { container } = render(
       <TextIconSpacing icon={<i data-testid="icon" />}>
         <span data-testid="span" />
-      </TextIconSpacing>
+      </TextIconSpacing>,
     );
 
     const icon = screen.getByTestId("icon");
@@ -36,7 +36,7 @@ describe("TextIconSpacing", () => {
     const { container } = render(
       <TextIconSpacing icon={<i data-testid="icon" />} iconAfter>
         <span data-testid="span" />
-      </TextIconSpacing>
+      </TextIconSpacing>,
     );
 
     const icon = screen.getByTestId("icon");
@@ -50,7 +50,7 @@ describe("TextIconSpacing", () => {
     const { rerender } = render(
       <TextIconSpacing icon={<i data-testid="icon" />}>
         <span />
-      </TextIconSpacing>
+      </TextIconSpacing>,
     );
 
     let icon = screen.getByTestId("icon");
@@ -59,7 +59,7 @@ describe("TextIconSpacing", () => {
     rerender(
       <TextIconSpacing icon={<i data-testid="icon" />} iconAfter>
         <span />
-      </TextIconSpacing>
+      </TextIconSpacing>,
     );
     icon = screen.getByTestId("icon");
     expect(icon).toHaveClass("rmd-icon--after", { exact: true });
@@ -69,7 +69,7 @@ describe("TextIconSpacing", () => {
     const { container, rerender } = render(
       <TextIconSpacing icon="Some text">
         <div />
-      </TextIconSpacing>
+      </TextIconSpacing>,
     );
 
     expect(container).toMatchSnapshot();
@@ -77,7 +77,7 @@ describe("TextIconSpacing", () => {
     rerender(
       <TextIconSpacing icon={<i />} forceIconWrap>
         <div />
-      </TextIconSpacing>
+      </TextIconSpacing>,
     );
     expect(container).toMatchSnapshot();
   });

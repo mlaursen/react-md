@@ -26,7 +26,7 @@ describe("findMatchInRange", () => {
         values: ["s"],
         startIndex: 0,
         endIndex: 1,
-      })
+      }),
     ).toBe(0);
     expect(
       findMatchInRange({
@@ -34,7 +34,7 @@ describe("findMatchInRange", () => {
         values: ["S", "s"],
         startIndex: 0,
         endIndex: 2,
-      })
+      }),
     ).toBe(0);
   });
 
@@ -45,7 +45,7 @@ describe("findMatchInRange", () => {
         values: ["stars"],
         startIndex: 0,
         endIndex: 1,
-      })
+      }),
     ).toBe(0);
     expect(
       findMatchInRange({
@@ -53,7 +53,7 @@ describe("findMatchInRange", () => {
         values: ["word", "stars"],
         startIndex: 0,
         endIndex: 2,
-      })
+      }),
     ).toBe(1);
     expect(
       findMatchInRange({
@@ -61,7 +61,7 @@ describe("findMatchInRange", () => {
         values: ["STars", "stars"],
         startIndex: 0,
         endIndex: 2,
-      })
+      }),
     ).toBe(0);
   });
 
@@ -72,7 +72,7 @@ describe("findMatchInRange", () => {
         values: ["b"],
         startIndex: 0,
         endIndex: 1,
-      })
+      }),
     ).toBe(-1);
     expect(
       findMatchInRange({
@@ -80,7 +80,7 @@ describe("findMatchInRange", () => {
         values: ["S", "v"],
         startIndex: 1,
         endIndex: 2,
-      })
+      }),
     ).toBe(-1);
   });
 });
@@ -88,89 +88,89 @@ describe("findMatchInRange", () => {
 describe("findMatchIndex", () => {
   it("should return the index of the first match that appears after the start index ignoring case", () => {
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 0 })).toBe(
-      1
+      1,
     );
     expect(findMatchIndex({ value: "A", values: lorem, startIndex: 0 })).toBe(
-      1
+      1,
     );
     expect(findMatchIndex({ value: "C", values: lorem, startIndex: 0 })).toBe(
-      4
+      4,
     );
 
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 1 })).toBe(
-      12
+      12,
     );
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 2 })).toBe(
-      12
+      12,
     );
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 3 })).toBe(
-      12
+      12,
     );
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 4 })).toBe(
-      12
+      12,
     );
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 5 })).toBe(
-      12
+      12,
     );
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 6 })).toBe(
-      12
+      12,
     );
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 7 })).toBe(
-      12
+      12,
     );
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 8 })).toBe(
-      12
+      12,
     );
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 9 })).toBe(
-      12
+      12,
     );
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 10 })).toBe(
-      12
+      12,
     );
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 11 })).toBe(
-      12
+      12,
     );
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 0 })).toBe(
-      12
+      12,
     );
   });
 
   it("should loop around if the match exists before the start index", () => {
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 2 })).toBe(
-      1
+      1,
     );
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 3 })).toBe(
-      1
+      1,
     );
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 4 })).toBe(
-      1
+      1,
     );
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 5 })).toBe(
-      1
+      1,
     );
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 6 })).toBe(
-      1
+      1,
     );
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 7 })).toBe(
-      1
+      1,
     );
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 8 })).toBe(
-      1
+      1,
     );
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 9 })).toBe(
-      1
+      1,
     );
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 10 })).toBe(
-      1
+      1,
     );
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 11 })).toBe(
-      1
+      1,
     );
   });
 
   it("should still return the correct match index if the start index is greater than the list of values", () => {
     expect(findMatchIndex({ value: "a", values: lorem, startIndex: 40 })).toBe(
-      1
+      1,
     );
   });
 
@@ -181,7 +181,7 @@ describe("findMatchIndex", () => {
         values: lorem,
         startIndex: 12,
         isSelfMatchable: true,
-      })
+      }),
     ).toBe(12);
     expect(
       findMatchIndex({
@@ -189,13 +189,13 @@ describe("findMatchIndex", () => {
         values: lorem,
         startIndex: 12,
         isSelfMatchable: false,
-      })
+      }),
     ).toBe(-1);
   });
 
   it("should default to be self matchable", () => {
     expect(findMatchIndex({ value: "d", values: lorem, startIndex: 12 })).toBe(
-      12
+      12,
     );
   });
 
@@ -213,33 +213,33 @@ describe("findMatchIndex", () => {
     ];
 
     expect(findMatchIndex({ value: "it", values: list, startIndex: 0 })).toBe(
-      2
+      2,
     );
     expect(findMatchIndex({ value: "it", values: list, startIndex: 1 })).toBe(
-      2
+      2,
     );
     expect(findMatchIndex({ value: "in", values: list, startIndex: 0 })).toBe(
-      1
+      1,
     );
 
     expect(
-      findMatchIndex({ value: "items", values: list, startIndex: 1 })
+      findMatchIndex({ value: "items", values: list, startIndex: 1 }),
     ).toBe(3);
     expect(
-      findMatchIndex({ value: "items", values: list, startIndex: 0 })
+      findMatchIndex({ value: "items", values: list, startIndex: 0 }),
     ).toBe(3);
     expect(
-      findMatchIndex({ value: "items", values: list, startIndex: 3 })
+      findMatchIndex({ value: "items", values: list, startIndex: 3 }),
     ).toBe(8);
   });
 
   it("should not error if there are no values provided", () => {
     expect(findMatchIndex({ value: "a", values: [], startIndex: 0 })).toBe(-1);
     expect(findMatchIndex({ value: "app", values: [], startIndex: 0 })).toBe(
-      -1
+      -1,
     );
     expect(findMatchIndex({ value: "items", values: [], startIndex: 0 })).toBe(
-      -1
+      -1,
     );
   });
 });

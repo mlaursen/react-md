@@ -106,7 +106,7 @@ export function avatar(options: AvatarClassNameOptions): string {
   return cnb(
     styles({ [color]: color, icon: size === "icon" }),
     cssUtils({ backgroundColor: theme }),
-    className
+    className,
   );
 }
 

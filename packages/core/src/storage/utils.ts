@@ -60,7 +60,7 @@ export interface GetItemFromStorageOptions<T> extends ModifyStorageOptions {
  * @since 6.0.0
  */
 export function getItemFromStorage<T>(
-  options: GetItemFromStorageOptions<T>
+  options: GetItemFromStorageOptions<T>,
 ): T {
   const {
     key,

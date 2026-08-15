@@ -55,7 +55,7 @@ export function card(options: CardClassNameOptions = {}): string {
       raisable: !bordered && raisable,
       interactable,
     }),
-    className
+    className,
   );
 }
 
@@ -82,7 +82,7 @@ export function cardHeader(options: CardHeaderClassNameOptions = {}): string {
       "addon-before": addonBefore && !addonAfter,
       surrounded: addonAfter && addonBefore,
     }),
-    className
+    className,
   );
 }
 
@@ -95,7 +95,7 @@ export interface CardHeaderContentClassNameOptions {
  * @since 6.0.0
  */
 export function cardHeaderContent(
-  options: CardHeaderContentClassNameOptions = {}
+  options: CardHeaderContentClassNameOptions = {},
 ): string {
   const { className } = options;
 
@@ -125,7 +125,7 @@ export interface CardSubtitleClassNameOptions {
  * @since 6.0.0
  */
 export function cardSubtitle(
-  options: CardSubtitleClassNameOptions = {}
+  options: CardSubtitleClassNameOptions = {},
 ): string {
   const { className } = options;
 
@@ -179,7 +179,7 @@ export function cardContent(options: CardContentClassNameOptions = {}): string {
     cssUtils({
       textColor: !disableSecondaryColor ? "text-secondary" : undefined,
     }),
-    className
+    className,
   );
 }
 

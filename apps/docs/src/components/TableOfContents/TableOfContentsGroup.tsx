@@ -11,7 +11,7 @@ export interface TableOfContentsGroupProps {
 }
 
 export function TableOfContentsGroup(
-  props: TableOfContentsGroupProps
+  props: TableOfContentsGroupProps,
 ): ReactElement {
   const { root, children } = props;
   return (
@@ -19,7 +19,7 @@ export function TableOfContentsGroup(
       className={cnb(
         typography({ type: "subtitle-1" }),
         styles.container,
-        !root && styles.noPadding
+        !root && styles.noPadding,
       )}
     >
       {children}

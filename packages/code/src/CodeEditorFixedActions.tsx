@@ -10,7 +10,7 @@ export interface CodeEditorFixedActionsProps extends BoxProps {
 }
 
 export function CodeEditorFixedActions(
-  props: CodeEditorFixedActionsProps
+  props: CodeEditorFixedActionsProps,
 ): ReactElement {
   const { className, children, ...remaining } = props;
 

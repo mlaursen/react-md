@@ -22,7 +22,7 @@ export interface CreateRehypePluginsOptions {
 }
 
 export default function createRehypePlugins(
-  options: CreateRehypePluginsOptions = {}
+  options: CreateRehypePluginsOptions = {},
 ) {
   const { tocOptions, slugOptions, codeBlockOptions, keyboardCodeOptions } =
     options;
@@ -36,7 +36,7 @@ export default function createRehypePlugins(
   return async function docsRehypePlugins(
     tree: Root,
     file: VFile,
-    callback: TransformCallback
+    callback: TransformCallback,
   ): Promise<void> {
     slug(tree);
     toc(tree, file);

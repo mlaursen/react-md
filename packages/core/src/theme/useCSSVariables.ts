@@ -36,7 +36,7 @@ import { type CSSVariableName, type ReadonlyCSSVariableList } from "./types.js";
  */
 export function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,
-  rootNode?: RefObject<HTMLElement | null> | HTMLElement
+  rootNode?: RefObject<HTMLElement | null> | HTMLElement,
 ): void {
   useEffect(() => {
     if (variables.length === 0) {
@@ -75,7 +75,7 @@ export function useCSSVariables<Name extends CSSVariableName>(
         // eslint-disable-next-line no-console
         console.warn(
           `The "${name}" css variable has already been set to "${currentValue}" ` +
-            `on the root element${overwritten}. There might be conflicting overrides.`
+            `on the root element${overwritten}. There might be conflicting overrides.`,
         );
       }
 

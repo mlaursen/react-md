@@ -1,7 +1,7 @@
-import { RootHtml } from "@react-md/core/RootHtml";
 import { getMaterialSymbolsUrl } from "@react-md/core/icon/getMaterialSymbolsUrl";
 import { type MaterialSymbolName } from "@react-md/core/icon/material";
 import { DEFAULT_MATERIAL_SYMBOL_NAMES } from "@react-md/core/icon/symbols";
+import { RootHtml } from "@react-md/core/RootHtml";
 import { type Metadata } from "next";
 import { Roboto_Flex } from "next/font/google";
 import { type ReactElement, type ReactNode } from "react";

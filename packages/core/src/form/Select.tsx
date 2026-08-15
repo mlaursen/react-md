@@ -14,8 +14,8 @@ import {
 } from "react";
 
 import { type BoxProps } from "../box/Box.js";
-import { IconRotator } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/config.js";
+import { IconRotator } from "../icon/IconRotator.js";
 import { type MenuProps } from "../menu/Menu.js";
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
 import {
@@ -25,17 +25,17 @@ import {
 } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
+import { getFormConfig } from "./formConfig.js";
+import { label as labelStyles } from "./labelStyles.js";
 import { Listbox } from "./Listbox.js";
 import { type OptionProps } from "./Option.js";
 import { SelectedOption } from "./SelectedOption.js";
+import { select } from "./selectStyles.js";
+import { extractOptionsFromChildren } from "./selectUtils.js";
 import {
   TextFieldContainer,
   type TextFieldContainerProps,
 } from "./TextFieldContainer.js";
-import { getFormConfig } from "./formConfig.js";
-import { label as labelStyles } from "./labelStyles.js";
-import { select } from "./selectStyles.js";
-import { extractOptionsFromChildren } from "./selectUtils.js";
 import { textField } from "./textFieldStyles.js";
 import { type UserAgentAutocompleteProps } from "./types.js";
 import { useFormReset } from "./useFormReset.js";
@@ -75,7 +75,7 @@ export interface GetSelectedOptionChildrenOptions<
  * @since 6.5.0
  */
 const defaultGetSelectedOptionChildren = (
-  options: GetSelectedOptionChildrenOptions
+  options: GetSelectedOptionChildrenOptions,
 ): ReactNode => {
   const { children, option, placeholder } = options;
 
@@ -247,7 +247,7 @@ export interface SelectProps<Value extends string>
    * @defaultValue `({ children, option, placeholder }) => children ?? (option?.children || placeholder)`
    */
   getSelectedOptionChildren?: (
-    options: GetSelectedOptionChildrenOptions<Value>
+    options: GetSelectedOptionChildrenOptions<Value>,
   ) => ReactNode;
 
   /**
@@ -290,7 +290,7 @@ export interface SelectProps<Value extends string>
  * @since 6.0.0 Rewritten with a new API.
  */
 export function Select<Value extends string>(
-  props: RequireAtLeastOne<SelectProps<Value>, "label" | keyof LabelA11y>
+  props: RequireAtLeastOne<SelectProps<Value>, "label" | keyof LabelA11y>,
 ): ReactElement {
   const {
     id,
@@ -343,7 +343,7 @@ export function Select<Value extends string>(
   const initialValue = useRef(currentValue);
   const { options, currentOption } = extractOptionsFromChildren(
     children,
-    currentValue
+    currentValue,
   );
 
   const { visible, comboboxProps, movementContext, getMenuProps } =
@@ -460,7 +460,7 @@ export function Select<Value extends string>(
           (option: "" | Value) => {
             triggerManualChangeEvent(inputRef.current, option);
           },
-          [inputRef]
+          [inputRef],
         )}
         selectedIconAfter={selectedIconAfter}
         disableSelectedIcon={disableSelectedIcon}

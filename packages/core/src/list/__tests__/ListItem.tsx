@@ -1,8 +1,8 @@
 import { type ReactElement, type Ref, createRef } from "react";
 import { describe, expect, it, vi } from "vitest";
 
-import { UserInteractionModeProvider } from "../../interaction/UserInteractionModeProvider.js";
 import { INTERACTION_CONFIG } from "../../interaction/config.js";
+import { UserInteractionModeProvider } from "../../interaction/UserInteractionModeProvider.js";
 import {
   fireEvent,
   render,
@@ -124,14 +124,14 @@ describe("ListItem", () => {
     rerender(
       <Test>
         <div>This is some content</div>
-      </Test>
+      </Test>,
     );
     expect(item).toMatchSnapshot();
 
     rerender(
       <Test disableTextChildren>
         <div>This is some content</div>
-      </Test>
+      </Test>,
     );
     expect(item).toMatchSnapshot();
   });
@@ -150,14 +150,14 @@ describe("ListItem", () => {
     rerender(
       <Test>
         <div>This is some content</div>
-      </Test>
+      </Test>,
     );
     expect(item).toMatchSnapshot();
 
     rerender(
       <Test disableTextChildren>
         <div>This is some content</div>
-      </Test>
+      </Test>,
     );
     expect(item).toMatchSnapshot();
 
@@ -181,7 +181,7 @@ describe("ListItem", () => {
         primaryText="Primary Text!"
         secondaryText="Secondary text!"
         disableTextChildren
-      />
+      />,
     );
     expect(item).toHaveTextContent("Primary Text!Secondary text!Item");
     expect(item).toMatchSnapshot();
@@ -194,7 +194,7 @@ describe("ListItem", () => {
         leftAddon="Pretend Icon"
         rightAddon="Pretend Avatar"
         rightAddonType="avatar"
-      />
+      />,
     );
     expect(item).toMatchSnapshot();
 
@@ -204,7 +204,7 @@ describe("ListItem", () => {
         leftAddonType="media"
         rightAddon="Pretend Avatar"
         rightAddonType="avatar"
-      />
+      />,
     );
     expect(item).toMatchSnapshot();
 
@@ -215,7 +215,7 @@ describe("ListItem", () => {
         rightAddon="Pretend Icon"
         rightAddonType="icon"
         rightAddonPosition="bottom"
-      />
+      />,
     );
     expect(item).toMatchSnapshot();
 
@@ -228,7 +228,7 @@ describe("ListItem", () => {
         rightAddonPosition="bottom"
         secondaryText="Secondary Text!"
         multiline
-      />
+      />,
     );
     expect(item).toMatchSnapshot();
   });
@@ -242,7 +242,7 @@ describe("ListItem", () => {
           style: { backgroundColor: "red" },
           className: "custom-class-name",
         }}
-      />
+      />,
     );
 
     const item = screen.getByRole("button", { name: "Item" });
@@ -260,7 +260,7 @@ describe("ListItem", () => {
           style: { backgroundColor: "red" },
           className: "custom-class-name",
         }}
-      />
+      />,
     );
 
     const item = screen.getByRole("button", { name: /Item/ });

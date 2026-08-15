@@ -15,7 +15,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 
 function isStringable(
   j: JSCodeshift,
-  expr: ExpressionKind
+  expr: ExpressionKind,
 ): expr is StringLiteral | NumericLiteral {
   return j.StringLiteral.check(expr) || j.NumericLiteral.check(expr);
 }
@@ -23,7 +23,7 @@ function isStringable(
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -83,8 +83,8 @@ export default function transformer(
               props.push(
                 j.jsxAttribute(
                   j.jsxIdentifier("responsive"),
-                  j.stringLiteral("manual")
-                )
+                  j.stringLiteral("manual"),
+                ),
               );
             } else if (
               j.JSXExpressionContainer.check(attr.value) &&
@@ -97,10 +97,10 @@ export default function transformer(
                     j.conditionalExpression(
                       attr.value.expression,
                       j.stringLiteral("manual"),
-                      j.stringLiteral("auto")
-                    )
-                  )
-                )
+                      j.stringLiteral("auto"),
+                    ),
+                  ),
+                ),
               );
             }
             break;
@@ -115,8 +115,8 @@ export default function transformer(
           props.push(
             j.jsxAttribute(
               j.jsxIdentifier("aspectRatio"),
-              j.stringLiteral(`${width.value}-${height.value}`)
-            )
+              j.stringLiteral(`${width.value}-${height.value}`),
+            ),
           );
         } else {
           props.push(
@@ -129,10 +129,10 @@ export default function transformer(
                     j.templateElement({ raw: "-", cooked: "-" }, false),
                     j.templateElement({ raw: "", cooked: "" }, true),
                   ],
-                  [width, height]
-                )
-              )
-            )
+                  [width, height],
+                ),
+              ),
+            ),
           );
         }
       }

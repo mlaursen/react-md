@@ -1,9 +1,10 @@
-import { debounce } from "@react-md/core/utils/debounce";
-import { watch } from "chokidar";
-import { logComplete, logPending } from "docs-generator/utils/log";
 import { existsSync } from "node:fs";
 import { open, utimes } from "node:fs/promises";
 import { dirname, join } from "node:path";
+
+import { debounce } from "@react-md/core/utils/debounce";
+import { watch } from "chokidar";
+import { logComplete, logPending } from "docs-generator/utils/log";
 
 let pending = false;
 

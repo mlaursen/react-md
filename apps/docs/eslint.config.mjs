@@ -26,5 +26,5 @@ export default defineConfig(
     rules: {
       "@next/next/no-img-element": "off",
     },
-  }
+  },
 );

@@ -7,8 +7,8 @@ import {
 } from "react";
 
 import { ButtonUnstyled } from "../button/ButtonUnstyled.js";
-import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/config.js";
+import { IconRotator, type IconRotatorProps } from "../icon/IconRotator.js";
 import { type PropsWithRef } from "../types.js";
 import { Typography, type TypographyProps } from "../typography/Typography.js";
 import { type TypographyType } from "../typography/typographyStyles.js";
@@ -131,7 +131,7 @@ export interface ExpansionPanelHeaderProps extends ButtonHTMLAttributes<HTMLButt
  * component and rendered as an `<h6>`.
  */
 export function ExpansionPanelHeader(
-  props: ExpansionPanelHeaderProps
+  props: ExpansionPanelHeaderProps,
 ): ReactElement {
   const {
     ref,

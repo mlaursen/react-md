@@ -126,7 +126,7 @@ import {
  * @since 6.0.0
  */
 export function useStorage<T>(
-  options: StorageOptions<T>
+  options: StorageOptions<T>,
 ): StorageImplementation<T> {
   const {
     key,
@@ -144,7 +144,7 @@ export function useStorage<T>(
         deserializer: options.deserializer,
         initialValue,
       }),
-    [initialValue, options.deserializer, options.raw, options.serializer]
+    [initialValue, options.deserializer, options.raw, options.serializer],
   );
 
   const ssr = useSsr();
@@ -244,7 +244,7 @@ export function useStorage<T>(
         storage,
         fallback: defaultValue,
         deserializer,
-      })
+      }),
     );
   }, [key, ssr]);
 
@@ -263,7 +263,7 @@ export function useStorage<T>(
             storage,
             fallback: defaultValue,
             deserializer,
-          })
+          }),
         );
       }
     };

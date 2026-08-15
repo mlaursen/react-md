@@ -32,7 +32,7 @@ export interface LayoutWindowSplitterClassNameOptions {
  * @since 6.0.0
  */
 export function layoutWindowSplitter(
-  options: LayoutWindowSplitterClassNameOptions = {}
+  options: LayoutWindowSplitterClassNameOptions = {},
 ): string {
   const { className, appBarOffset, disableResponsive } = options;
 
@@ -41,6 +41,6 @@ export function layoutWindowSplitter(
       "offset-v": appBarOffset,
       responsive: !disableResponsive,
     }),
-    className
+    className,
   );
 }

@@ -71,7 +71,7 @@ export type TooltipPositionHookReturnValue = [
  * @since 2.8.0
  */
 export function useTooltipPosition(
-  options: TooltipPositionHookOptions
+  options: TooltipPositionHookOptions,
 ): TooltipPositionHookReturnValue {
   const {
     position: determinedPosition,
@@ -87,10 +87,10 @@ export function useTooltipPosition(
           container,
           threshold,
           defaultPosition,
-        })
+        }),
       );
     },
-    [defaultPosition, threshold]
+    [defaultPosition, threshold],
   );
 
   if (determinedPosition !== undefined) {

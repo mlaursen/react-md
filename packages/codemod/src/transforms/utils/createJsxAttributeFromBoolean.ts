@@ -18,7 +18,7 @@ export interface CreateJsxAttributeFromBooleanOptions {
 }
 
 export function createJsxAttributeFromBoolean(
-  options: CreateJsxAttributeFromBooleanOptions
+  options: CreateJsxAttributeFromBooleanOptions,
 ): JSXAttribute | undefined {
   const {
     j,
@@ -39,7 +39,7 @@ export function createJsxAttributeFromBoolean(
       args.reverse();
     }
     jsxValue = j.jsxExpressionContainer(
-      j.conditionalExpression(attr.value.expression, ...args)
+      j.conditionalExpression(attr.value.expression, ...args),
     );
   } else if (isPropEnabled(attr) !== reversed) {
     jsxValue = createExpression({

@@ -145,7 +145,7 @@ export type TreeDefaultIds = UseStateInitializer<
  * render.
  */
 export type TreeItemSorter<T extends TreeItemNode = DefaultTreeItemNode> = (
-  items: readonly T[]
+  items: readonly T[],
 ) => readonly T[];
 
 /**

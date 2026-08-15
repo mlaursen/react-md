@@ -21,7 +21,7 @@ export const DEFAULT_COLLATOR_OPTIONS = {
  */
 export const DEFAULT_COLLATOR = new Intl.Collator(
   "en-US",
-  DEFAULT_COLLATOR_OPTIONS
+  DEFAULT_COLLATOR_OPTIONS,
 );
 
 /** @since 6.0.0 */
@@ -95,7 +95,7 @@ export interface AlphaNumericSortOptions<T> {
  */
 export function alphaNumericSort<T extends AutomaticTextExtraction>(
   list: readonly T[],
-  options?: AlphaNumericSortOptions<T>
+  options?: AlphaNumericSortOptions<T>,
 ): readonly T[];
 /**
  * @example Simple Example
@@ -117,11 +117,11 @@ export function alphaNumericSort<T extends AutomaticTextExtraction>(
  */
 export function alphaNumericSort<T>(
   list: readonly T[],
-  options: AlphaNumericSortOptions<T> & { extractor: TextExtractor<T> }
+  options: AlphaNumericSortOptions<T> & { extractor: TextExtractor<T> },
 ): readonly T[];
 export function alphaNumericSort<T>(
   list: readonly T[],
-  options: AlphaNumericSortOptions<T> = {}
+  options: AlphaNumericSortOptions<T> = {},
 ): readonly T[] {
   const {
     compare = DEFAULT_COLLATOR.compare,

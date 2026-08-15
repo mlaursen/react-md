@@ -27,7 +27,7 @@ export async function getGoogleFontsMetadata(): Promise<FontMetadata> {
   }
 
   const response = await fetch(
-    "http://fonts.google.com/metadata/icons?incomplete=1&key=material_symbols"
+    "http://fonts.google.com/metadata/icons?incomplete=1&key=material_symbols",
   );
   const text = await response.text();
   const jsonString = text.substring(5);

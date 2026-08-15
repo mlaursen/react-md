@@ -75,11 +75,11 @@ export class ResizeObserverMock implements ResizeObserver {
     changesOrGetEntry:
       | GetResizeObserverEntryMock
       | ResizeObserverEntrySize
-      | ResizeObserverEntry = createResizeObserverEntry
+      | ResizeObserverEntry = createResizeObserverEntry,
   ): void => {
     if (!this.elements.has(target)) {
       throw new Error(
-        "The `ResizeObserverMock` is not watching the target element and cannot be resized"
+        "The `ResizeObserverMock` is not watching the target element and cannot be resized",
       );
     }
 
@@ -247,7 +247,7 @@ export interface SetupResizeObserverMockOptions {
  * @since 6.0.0
  */
 export function setupResizeObserverMock(
-  options: SetupResizeObserverMockOptions = {}
+  options: SetupResizeObserverMockOptions = {},
 ): ResizeObserverMock {
   const { raf, manager = resizeObserverManager } = options;
 
@@ -272,7 +272,7 @@ export function setupResizeObserverMock(
  */
 export function cleanupRO(
   afterEach: (callback: () => void) => void,
-  restoreAllMocks: () => void = () => {}
+  restoreAllMocks: () => void = () => {},
 ): void {
   afterEach(() => {
     resizeObserverManager.frame = 0;

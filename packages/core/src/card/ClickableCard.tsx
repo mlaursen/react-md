@@ -58,7 +58,7 @@ export interface ClickableCardProps
  * @since 6.0.0
  */
 export const ClickableCard = function ClickableCard(
-  props: ClickableCardProps
+  props: ClickableCardProps,
 ): ReactElement {
   const {
     ref,

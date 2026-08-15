@@ -26,7 +26,7 @@ type SliderDraggableOptions = Pick<
  * @internal
  */
 export function useSliderDraggable(
-  options: SliderDraggableOptions
+  options: SliderDraggableOptions,
 ): DraggableImplementation {
   const { value, setValue, jump, ...remaining } = options;
   const { min, max } = options;
@@ -49,7 +49,7 @@ export function useSliderDraggable(
               min,
               max,
               value: prevValue + jump,
-            })
+            }),
           );
           break;
         case "PageDown":
@@ -60,7 +60,7 @@ export function useSliderDraggable(
               min,
               max,
               value: prevValue - jump,
-            })
+            }),
           );
           break;
       }

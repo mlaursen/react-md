@@ -17,7 +17,7 @@ const getValue = (element: HTMLElement): number =>
   Number.parseFloat(element.textContent || "");
 
 function MainTest(
-  props: Omit<ElementSizeOptions<HTMLElement>, "ref">
+  props: Omit<ElementSizeOptions<HTMLElement>, "ref">,
 ): ReactElement {
   const { height, width, elementRef } = useElementSize(props);
 

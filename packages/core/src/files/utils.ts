@@ -242,7 +242,7 @@ export interface SplitFileUploads {
  * @since 2.9.0
  */
 export function getSplitFileUploads(
-  stats: readonly FileUploadStats[]
+  stats: readonly FileUploadStats[],
 ): SplitFileUploads {
   const pending: ProcessingFileUploadStats[] = [];
   const uploading: ProcessingFileUploadStats[] = [];

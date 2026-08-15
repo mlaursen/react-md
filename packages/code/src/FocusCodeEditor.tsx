@@ -32,7 +32,7 @@ export function FocusCodeEditor(props: FocusCodeEditorProps): ReactElement {
       className={cnb(
         "code-editor__message",
         cssUtils({ srOnly: "focusable" }),
-        className
+        className,
       )}
     >
       {children}

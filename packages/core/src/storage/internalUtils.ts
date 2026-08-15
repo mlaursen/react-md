@@ -22,7 +22,7 @@ export interface GetStorageSerializers<T> extends StorageSerializers<T> {
  * @internal
  */
 export function getStorageSerializers<T>(
-  options: GetStorageSerializers<T>
+  options: GetStorageSerializers<T>,
 ): Required<StorageSerializers<T>> {
   const { initialValue } = options;
 

@@ -62,5 +62,6 @@ const IMAGES = [
     width: 123,
   },
 ].map(
-  ({ id, height, width }) => `https://picsum.photos/id/${id}/${width}/${height}`
+  ({ id, height, width }) =>
+    `https://picsum.photos/id/${id}/${width}/${height}`,
 );

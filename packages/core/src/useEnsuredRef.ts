@@ -42,7 +42,7 @@ export type EnsuredRefs<E extends HTMLElement> = readonly [
  * @internal
  */
 export function useEnsuredRef<E extends HTMLElement>(
-  propRef?: Ref<E | null>
+  propRef?: Ref<E | null>,
 ): EnsuredRefs<E> {
   const ref = useRef<E | null>(null);
   const refHandler = useCallback(
@@ -50,7 +50,7 @@ export function useEnsuredRef<E extends HTMLElement>(
       applyRef(instance, propRef);
       ref.current = instance;
     },
-    [propRef]
+    [propRef],
   );
 
   return [ref, refHandler];

@@ -2,8 +2,8 @@ import { createRef } from "react";
 import { describe, expect, it } from "vitest";
 
 import { render, screen } from "../../test-utils/index.js";
-import { Legend, type LegendProps } from "../Legend.js";
 import { label } from "../labelStyles.js";
+import { Legend, type LegendProps } from "../Legend.js";
 import { legend } from "../legendStyles.js";
 
 describe("Legend", () => {
@@ -26,7 +26,7 @@ describe("Legend", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(legend).toMatchSnapshot();
 
@@ -38,7 +38,7 @@ describe("Legend", () => {
     render(
       <Legend data-testid="legend" floating>
         I am legend
-      </Legend>
+      </Legend>,
     );
 
     const legend = screen.getByTestId("legend");

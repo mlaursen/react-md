@@ -26,7 +26,7 @@ export interface ListItemHeightOptions extends Pick<
  * @internal
  */
 export function getListItemHeight(
-  options: ListItemHeightOptions = {}
+  options: ListItemHeightOptions = {},
 ): ListItemHeight {
   const {
     height,

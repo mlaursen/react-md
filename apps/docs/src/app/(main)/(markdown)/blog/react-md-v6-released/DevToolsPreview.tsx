@@ -16,9 +16,10 @@ import CloseIcon from "@react-md/material-icons/CloseIcon";
 import Image from "next/image.js";
 import { type ReactElement, useState } from "react";
 
-import styles from "./DevToolsPreview.module.scss";
 import devToolsAfter from "./dev-tools-after.png";
 import devToolsBefore from "./dev-tools-before.png";
+
+import styles from "./DevToolsPreview.module.scss";
 
 const images = [
   {

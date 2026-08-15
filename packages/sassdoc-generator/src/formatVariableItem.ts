@@ -11,7 +11,7 @@ function isCompileable(value: string): boolean {
 export async function formatVariableItem(
   src: string,
   baseItem: FormattedItem,
-  item: VariableItem
+  item: VariableItem,
 ): Promise<FormattedVariableItem> {
   const { type } = item;
   const { scope, value } = item.context;

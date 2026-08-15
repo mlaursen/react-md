@@ -126,7 +126,7 @@ export interface TemporaryLayoutImplementation {
  * @since 6.0.0
  */
 export function useTemporaryLayout(
-  options: TemporaryLayoutOptions
+  options: TemporaryLayoutOptions,
 ): TemporaryLayoutImplementation {
   const {
     pathname,

@@ -34,7 +34,7 @@ export interface AutocompleteListboxChildrenProps<
  * @internal
  */
 export function AutocompleteListboxChildren<Option extends AutocompleteOption>(
-  props: AutocompleteListboxChildrenProps<Option>
+  props: AutocompleteListboxChildrenProps<Option>,
 ): ReactElement {
   const {
     children,

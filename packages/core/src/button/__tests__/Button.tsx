@@ -31,7 +31,7 @@ describe("Button", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(button).toMatchSnapshot();
   });
@@ -48,7 +48,7 @@ describe("Button", () => {
     rerender(
       <Button>
         <strong>Strong Content</strong>
-      </Button>
+      </Button>,
     );
     expect(button).toMatchSnapshot();
 
@@ -81,7 +81,7 @@ describe("Button", () => {
           rerender(
             <Button theme={theme} themeType={themeType} buttonType={buttonType}>
               Content
-            </Button>
+            </Button>,
           );
 
           expect(button).toMatchSnapshot();
@@ -95,7 +95,7 @@ describe("Button", () => {
     render(
       <Button onClick={onClick} theme="disabled">
         Button
-      </Button>
+      </Button>,
     );
     const button = screen.getByRole("button");
 
@@ -106,7 +106,7 @@ describe("Button", () => {
   describe("floating action buttons", () => {
     it("should default to a secondary themed contained icon button if the floating behavior is enabled", () => {
       const { rerender } = render(
-        <Button aria-label="Button" floating="bottom-right" />
+        <Button aria-label="Button" floating="bottom-right" />,
       );
 
       const button = screen.getByRole("button", { name: "Button" });
@@ -125,7 +125,7 @@ describe("Button", () => {
           floating="top-left"
           theme="primary"
           themeType="outline"
-        />
+        />,
       );
       expect(button).toHaveClass("rmd-button--icon");
       expect(button.parentElement).toHaveClass("rmd-fab");
@@ -139,7 +139,7 @@ describe("Button", () => {
           buttonType="text"
         >
           Content
-        </Button>
+        </Button>,
       );
       expect(button).toHaveClass("rmd-button--text");
       expect(button.parentElement).toHaveClass("rmd-fab");
@@ -157,7 +157,7 @@ describe("Button", () => {
             style: { zIndex: 20 },
             className: "custom-class-name",
           }}
-        />
+        />,
       );
 
       const button = screen.getByRole("button", { name: "Button" });
@@ -189,7 +189,7 @@ describe("Button", () => {
         <Button responsive>
           <FontIcon>favorite</FontIcon>
           <SrOnly phoneOnly>Label</SrOnly>
-        </Button>
+        </Button>,
       );
       const button = screen.getByRole("button", { name: "Label" });
 

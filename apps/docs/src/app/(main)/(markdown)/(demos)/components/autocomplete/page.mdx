@@ -400,10 +400,7 @@ const options = [
   { name: "Hello", value: 1 },
   { name: "World", value: 2 },
 ];
-<Autocomplete
-  {...props}
-  options={options}
-/>;
+<Autocomplete {...props} options={options} />;
 
 // ✅ Inferred as `State`
 interface State {
@@ -414,10 +411,7 @@ const options: readonly State[] = [
   { name: "Virginia", abbreviation: "VA" },
   { name: "Whyoming", abbreviation: "WY" },
 ];
-<Autocomplete
-  {...props}
-  options={options}
-/>;
+<Autocomplete {...props} options={options} />;
 ```
 
 The only time it appears to have an issue is when the list of options are

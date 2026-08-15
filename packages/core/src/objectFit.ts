@@ -103,6 +103,6 @@ export function objectFit(options: ObjectFitOptions = {}): string {
       contain: !inline,
       [aspectRatio]: !!aspectRatio,
     }),
-    className
+    className,
   );
 }

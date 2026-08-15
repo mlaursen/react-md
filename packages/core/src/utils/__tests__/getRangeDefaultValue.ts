@@ -5,10 +5,10 @@ import { getRangeDefaultValue } from "../getRangeDefaultValue.js";
 describe("getRangeDefaultValue", () => {
   it("should return the default value if it is defined", () => {
     expect(
-      getRangeDefaultValue({ min: 0, max: 100, step: 1, defaultValue: 10 })
+      getRangeDefaultValue({ min: 0, max: 100, step: 1, defaultValue: 10 }),
     ).toBe(10);
     expect(
-      getRangeDefaultValue({ min: 0, max: 100, step: 1, defaultValue: 50 })
+      getRangeDefaultValue({ min: 0, max: 100, step: 1, defaultValue: 50 }),
     ).toBe(50);
 
     const defaultValueSetter = (): number => 30;
@@ -18,7 +18,7 @@ describe("getRangeDefaultValue", () => {
         max: 30,
         step: 1,
         defaultValue: defaultValueSetter,
-      })
+      }),
     ).toBe(defaultValueSetter);
   });
 

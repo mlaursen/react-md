@@ -12,7 +12,7 @@ hooks: [useCSSVariables]
 ```ts disableTransform
 function useCSSVariables<Name extends CSSVariableName>(
   variables: ReadonlyCSSVariableList<Name>,
-  rootNode?: RefObject<HTMLElement> | HTMLElement
+  rootNode?: RefObject<HTMLElement> | HTMLElement,
 ): CSSVariablesProperties<Name> | undefined;
 ```
 
@@ -42,7 +42,7 @@ function Example() {
           value: contrastColor(purple500),
         },
       ];
-    }, [])
+    }, []),
   );
 
   return null;

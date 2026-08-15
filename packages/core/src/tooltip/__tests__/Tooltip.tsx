@@ -15,11 +15,11 @@ import {
 import { TRANSITION_CONFIG } from "../../transition/config.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
 import { parseCssLengthUnit } from "../../utils/parseCssLengthUnit.js";
-import { Tooltip, type TooltipProps } from "../Tooltip.js";
 import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
   DEFAULT_TOOLTIP_SPACING,
 } from "../constants.js";
+import { Tooltip, type TooltipProps } from "../Tooltip.js";
 import { type TooltipOptions, useTooltip } from "../useTooltip.js";
 
 interface TestProps extends TooltipOptions {
@@ -249,7 +249,7 @@ describe("Tooltip", () => {
     await user.tab();
     await waitFor(() => {
       expect(() =>
-        screen.getByRole("tooltip", { name: "Tooltip" })
+        screen.getByRole("tooltip", { name: "Tooltip" }),
       ).not.toThrow();
     });
   });
@@ -405,7 +405,7 @@ describe("Tooltip", () => {
           getPropertyValue() {
             return spacing;
           },
-        })
+        }),
       );
 
     await user.hover(button);
@@ -430,7 +430,7 @@ describe("Tooltip", () => {
         getPropertyValue() {
           return "";
         },
-      })
+      }),
     );
 
     await user.hover(button);

@@ -95,7 +95,7 @@ export interface SkeletonPlaceholderRandomOptions {
  * @since 6.0.0
  */
 export function randomSkeletonPlaceholder(
-  options: SkeletonPlaceholderRandomOptions = {}
+  options: SkeletonPlaceholderRandomOptions = {},
 ): CSSProperties {
   const {
     minDelay = 0,

@@ -106,7 +106,7 @@ export function TableCellContent(props: TableCellContentProps): ReactElement {
         styles("content", {
           [hAlign]: hAlign !== "left",
         }),
-        className
+        className,
       )}
     >
       {!iconAfter && icon}

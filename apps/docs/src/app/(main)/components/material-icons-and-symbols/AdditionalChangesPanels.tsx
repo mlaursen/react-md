@@ -6,11 +6,12 @@ import { useExpansionPanels } from "@react-md/core/expansion-panel/useExpansionP
 import { Typography } from "@react-md/core/typography/Typography";
 import type { ReactElement } from "react";
 
-import styles from "./AdditionalChangesPanels.module.scss";
 import { CopyCode } from "./CopyCode.js";
 import { MaterialConfigChanges } from "./MaterialConfigChanges.js";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import { type MaterialIconsAndSymbolsContext } from "./types.js";
+
+import styles from "./AdditionalChangesPanels.module.scss";
 
 function getSymbolProps(context: MaterialIconsAndSymbolsContext): string {
   const {

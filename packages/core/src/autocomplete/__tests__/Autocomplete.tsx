@@ -90,7 +90,7 @@ describe("Autocomplete", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(container).toMatchSnapshot();
   });
@@ -263,7 +263,7 @@ describe("Autocomplete", () => {
             className: "custom-class-name",
           }}
         />
-      </>
+      </>,
     );
     const progressbar = screen.getByRole("progressbar", { name: "Wait" });
     expect(progressbar).toMatchSnapshot();
@@ -315,7 +315,7 @@ describe("Autocomplete", () => {
   it("should allot for a default query either as a string or a UseStateInitializer", async () => {
     const user = userEvent.setup();
     const { rerender } = rmdRender(
-      <Autocomplete {...FRUIT_PROPS} defaultQuery="Orange" />
+      <Autocomplete {...FRUIT_PROPS} defaultQuery="Orange" />,
     );
 
     let autocomplete = screen.getByRole("combobox", { name: "Field" });
@@ -330,7 +330,7 @@ describe("Autocomplete", () => {
         key="remount"
         {...FRUIT_PROPS}
         defaultQuery={() => FRUITS[2]}
-      />
+      />,
     );
     expect(autocomplete).not.toBeInTheDocument();
     autocomplete = screen.getByRole("combobox", { name: "Field" });
@@ -348,7 +348,7 @@ describe("Autocomplete", () => {
         {...FRUIT_PROPS}
         options={FRUIT_OBJECTS}
         defaultValue={FRUIT_OBJECTS[1]}
-      />
+      />,
     );
     const autocomplete = screen.getByRole("combobox", { name: "Field" });
     expect(autocomplete).toHaveValue(FRUIT_OBJECTS[1].label);
@@ -369,7 +369,7 @@ describe("Autocomplete", () => {
         {...FRUIT_PROPS}
         filter={noopAutocompleteFilter}
         defaultQuery="Hello, world!"
-      />
+      />,
     );
     const autocomplete = screen.getByRole("combobox", { name: "Field" });
     expect(autocomplete).toHaveValue("Hello, world!");
@@ -393,7 +393,7 @@ describe("Autocomplete", () => {
   it("should default the allowAnyValue to true when the filter is set to noopAutocompleteFilter", async () => {
     const user = userEvent.setup();
     rmdRender(
-      <Autocomplete {...FRUIT_PROPS} filter={noopAutocompleteFilter} />
+      <Autocomplete {...FRUIT_PROPS} filter={noopAutocompleteFilter} />,
     );
     const autocomplete = screen.getByRole("combobox", { name: "Field" });
 
@@ -466,7 +466,7 @@ describe("Autocomplete", () => {
     options = within(listbox).getAllByRole("option");
     expect(options).toHaveLength(FRUIT_OBJECTS.length);
     expect(() =>
-      within(listbox).getByRole("option", { name: 'Add: "A new fruit"' })
+      within(listbox).getByRole("option", { name: 'Add: "A new fruit"' }),
     ).toThrow();
 
     await user.type(autocomplete, "[Backspace]t");
@@ -491,7 +491,7 @@ describe("Autocomplete", () => {
     } satisfies Partial<AutocompleteProps<any>>;
     expect(() => {
       const { unmount } = rmdRender(
-        <Autocomplete {...BASE_PROPS} options={["a", "b", "c"]} />
+        <Autocomplete {...BASE_PROPS} options={["a", "b", "c"]} />,
       );
       unmount();
     }).not.toThrow();
@@ -501,7 +501,7 @@ describe("Autocomplete", () => {
           {...BASE_PROPS}
           options={[{ label: "a" }, { label: "b" }, { label: "c" }]}
           defaultQuery="a"
-        />
+        />,
       );
       unmount();
     }).not.toThrow();
@@ -511,7 +511,7 @@ describe("Autocomplete", () => {
           {...BASE_PROPS}
           options={[{ name: "a" }, { name: "b" }, { name: "c" }]}
           defaultQuery="a"
-        />
+        />,
       );
       unmount();
     }).not.toThrow();
@@ -527,7 +527,7 @@ describe("Autocomplete", () => {
             { first_name: "c" },
           ]}
           defaultQuery="a"
-        />
+        />,
       );
       unmount();
     }).toThrow();
@@ -567,12 +567,12 @@ describe("Autocomplete", () => {
 
       await user.keyboard("[ArrowDown]");
       expect(() =>
-        screen.getByRole("listbox", { name: "Fruits" })
+        screen.getByRole("listbox", { name: "Fruits" }),
       ).not.toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "true");
       expect(autocomplete).toHaveAttribute(
         "aria-activedescendant",
-        screen.getByRole("option", { name: FRUITS.at(0) }).id
+        screen.getByRole("option", { name: FRUITS.at(0) }).id,
       );
     });
 
@@ -591,7 +591,7 @@ describe("Autocomplete", () => {
 
       await user.keyboard("{Alt>}[ArrowDown]{/Alt}");
       expect(() =>
-        screen.getByRole("listbox", { name: "Fruits" })
+        screen.getByRole("listbox", { name: "Fruits" }),
       ).not.toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "true");
       expect(autocomplete).toHaveAttribute("aria-activedescendant", "");
@@ -612,12 +612,12 @@ describe("Autocomplete", () => {
 
       await user.keyboard("[ArrowUp]");
       expect(() =>
-        screen.getByRole("listbox", { name: "Fruits" })
+        screen.getByRole("listbox", { name: "Fruits" }),
       ).not.toThrow();
       expect(autocomplete).toHaveAttribute("aria-expanded", "true");
       expect(autocomplete).toHaveAttribute(
         "aria-activedescendant",
-        screen.getByRole("option", { name: FRUITS.at(-1) }).id
+        screen.getByRole("option", { name: FRUITS.at(-1) }).id,
       );
     });
 
@@ -634,7 +634,7 @@ describe("Autocomplete", () => {
       await user.keyboard("[ArrowDown][ArrowDown]");
       expect(autocomplete).toHaveAttribute(
         "aria-activedescendant",
-        screen.getByRole("option", { name: FRUITS.at(1) }).id
+        screen.getByRole("option", { name: FRUITS.at(1) }).id,
       );
 
       await user.keyboard("{Alt>}[ArrowUp]{/Alt}");
@@ -731,11 +731,11 @@ describe("Autocomplete", () => {
       const error = vi.spyOn(console, "error").mockImplementation(() => {});
       const { rerender } = rmdRender(
         // @ts-expect-error
-        <Autocomplete listboxLabel="Options" options={[0, 1, 2, 3]} />
+        <Autocomplete listboxLabel="Options" options={[0, 1, 2, 3]} />,
       );
 
       await expect(
-        user.click(screen.getByRole("button", { name: "Options" }))
+        user.click(screen.getByRole("button", { name: "Options" })),
       ).rejects.toThrow(ERROR_MESSAGE);
 
       rerender(
@@ -743,20 +743,20 @@ describe("Autocomplete", () => {
         <Autocomplete
           listboxLabel="Options"
           options={[{ children: "A" }, { children: "B" }]}
-        />
+        />,
       );
       await expect(
-        user.click(screen.getByRole("button", { name: "Options" }))
+        user.click(screen.getByRole("button", { name: "Options" })),
       ).rejects.toThrow(ERROR_MESSAGE);
       rerender(
         <Autocomplete
           listboxLabel="Options"
           // @ts-expect-error
           options={["One", "Two", 3, "Four"]}
-        />
+        />,
       );
       await expect(
-        user.click(screen.getByRole("button", { name: "Options" }))
+        user.click(screen.getByRole("button", { name: "Options" })),
       ).rejects.toThrow(ERROR_MESSAGE);
 
       error.mockRestore();
@@ -775,8 +775,8 @@ describe("Autocomplete", () => {
               }
             }}
             listboxLabel="Label"
-          />
-        )
+          />,
+        ),
       ).not.toThrow();
 
       expect(() =>
@@ -800,8 +800,8 @@ describe("Autocomplete", () => {
                 option.value.toFixed(0);
               }
             }}
-          />
-        )
+          />,
+        ),
       ).not.toThrow();
     });
   });
@@ -814,7 +814,7 @@ describe("Autocomplete", () => {
           data-testid="container"
           {...FRUIT_PROPS}
           defaultValue={[]}
-        />
+        />,
       );
 
       const container = screen.getByTestId("container");
@@ -836,7 +836,7 @@ describe("Autocomplete", () => {
       listbox = screen.getByRole("listbox", { name: "Fruits" });
       expect(screen.getByRole("option", { name: firstFruit })).toHaveAttribute(
         "aria-selected",
-        "true"
+        "true",
       );
 
       await user.type(autocomplete, "ki[ArrowDown][Enter]");
@@ -849,11 +849,11 @@ describe("Autocomplete", () => {
       listbox = screen.getByRole("listbox", { name: "Fruits" });
       expect(screen.getByRole("option", { name: firstFruit })).toHaveAttribute(
         "aria-selected",
-        "true"
+        "true",
       );
       expect(screen.getByRole("option", { name: "Kiwi" })).toHaveAttribute(
         "aria-selected",
-        "true"
+        "true",
       );
 
       await user.click(kiwi);
@@ -864,10 +864,10 @@ describe("Autocomplete", () => {
       listbox = screen.getByRole("listbox", { name: "Fruits" });
       expect(screen.getByRole("option", { name: firstFruit })).toHaveAttribute(
         "aria-selected",
-        "true"
+        "true",
       );
       expect(screen.getByRole("option", { name: "Kiwi" })).not.toHaveAttribute(
-        "aria-selected"
+        "aria-selected",
       );
     });
 
@@ -877,29 +877,29 @@ describe("Autocomplete", () => {
         <Autocomplete
           {...FRUIT_PROPS}
           defaultValue={["Apple", "Banana", "Orange"]}
-        />
+        />,
       );
 
       expect(screen.getByRole("button", { name: "Apple" })).toBeInTheDocument();
       expect(
-        screen.getByRole("button", { name: "Banana" })
+        screen.getByRole("button", { name: "Banana" }),
       ).toBeInTheDocument();
       expect(
-        screen.getByRole("button", { name: "Orange" })
+        screen.getByRole("button", { name: "Orange" }),
       ).toBeInTheDocument();
 
       await user.click(screen.getByRole("combobox", { name: "Field" }));
       expect(screen.getByRole("option", { name: "Apple" })).toHaveAttribute(
         "aria-selected",
-        "true"
+        "true",
       );
       expect(screen.getByRole("option", { name: "Banana" })).toHaveAttribute(
         "aria-selected",
-        "true"
+        "true",
       );
       expect(screen.getByRole("option", { name: "Orange" })).toHaveAttribute(
         "aria-selected",
-        "true"
+        "true",
       );
     });
 
@@ -910,7 +910,7 @@ describe("Autocomplete", () => {
           {...FRUIT_PROPS}
           disableInlineChips
           defaultValue={["Apple"]}
-        />
+        />,
       );
 
       const autocomplete = screen.getByRole("combobox", { name: "Field" });
@@ -920,7 +920,7 @@ describe("Autocomplete", () => {
       expect(listbox).toHaveAttribute("aria-multiselectable", "true");
       expect(screen.getByRole("option", { name: "Apple" })).toHaveAttribute(
         "aria-selected",
-        "true"
+        "true",
       );
     });
 
@@ -955,7 +955,7 @@ describe("Autocomplete", () => {
             children: `${index + 1}. ${option}`,
             onClick,
           })}
-        />
+        />,
       );
 
       const apple = screen.getByRole("button", { name: "1. Apple" });
@@ -976,7 +976,7 @@ describe("Autocomplete", () => {
           {...FRUIT_PROPS}
           defaultValue={["Apple", "Orange"]}
           filterSelected
-        />
+        />,
       );
 
       await user.click(screen.getByRole("combobox", { name: "Field" }));
@@ -1002,12 +1002,12 @@ describe("Autocomplete", () => {
       expect(clearButton).toMatchSnapshot();
 
       rerender(
-        <Autocomplete {...FRUIT_PROPS} clearButtonVisibility="always" />
+        <Autocomplete {...FRUIT_PROPS} clearButtonVisibility="always" />,
       );
       expect(clearButton).toMatchSnapshot();
 
       rerender(
-        <Autocomplete {...FRUIT_PROPS} clearButtonVisibility="active" />
+        <Autocomplete {...FRUIT_PROPS} clearButtonVisibility="active" />,
       );
       expect(clearButton).toMatchSnapshot();
 
@@ -1029,7 +1029,7 @@ describe("Autocomplete", () => {
             buttonType: "text",
             children: <kbd>esc</kbd>,
           }}
-        />
+        />,
       );
 
       const clearButton = screen.getByRole("button", { name: "Close" });
@@ -1043,7 +1043,7 @@ describe("Autocomplete", () => {
       const { rerender } = rmdRender(<Autocomplete {...FRUIT_PROPS} />);
 
       expect(() =>
-        screen.getByRole("button", { name: "Fruits" })
+        screen.getByRole("button", { name: "Fruits" }),
       ).not.toThrow();
 
       rerender(<Autocomplete {...FRUIT_PROPS} disableDropdownButton />);
@@ -1061,7 +1061,7 @@ describe("Autocomplete", () => {
             className: "custom-class-name",
             onClick: handleClick,
           }}
-        />
+        />,
       );
 
       const dropdown = screen.getByRole("button", { name: "Show Fruits" });

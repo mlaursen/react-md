@@ -12,6 +12,7 @@ import { cnb } from "cnbuilder";
 import { type ReactElement } from "react";
 
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
+
 import styles from "./SearchAndFilters.module.scss";
 
 export function SearchAndFilters(): ReactElement {

@@ -32,7 +32,7 @@ export interface ResponsiveItemOverlayClassNameOptions {
  * @since 6.0.0
  */
 export function responsiveItemOverlay(
-  options: ResponsiveItemOverlayClassNameOptions = {}
+  options: ResponsiveItemOverlayClassNameOptions = {},
 ): string {
   const { className, position = "bottom" } = options;
 
@@ -42,6 +42,6 @@ export function responsiveItemOverlay(
       horizontal:
         position !== "top" && position !== "bottom" && position !== "middle",
     }),
-    className
+    className,
   );
 }

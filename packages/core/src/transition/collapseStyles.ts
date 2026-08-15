@@ -29,6 +29,6 @@ export function collapse(options: CollapseClassNameOptions = {}): string {
       "no-overflow": disableOverflow,
     }),
     exited && DISPLAY_NONE_CLASS,
-    className
+    className,
   );
 }

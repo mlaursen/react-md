@@ -110,7 +110,7 @@ export interface LayoutWindowSplitterImplementation extends WindowSplitterImplem
  * @since 6.0.0
  */
 export function useLayoutWindowSplitter(
-  options: LayoutWindowSplitterOptions = {}
+  options: LayoutWindowSplitterOptions = {},
 ): LayoutWindowSplitterImplementation {
   const {
     min = 96,

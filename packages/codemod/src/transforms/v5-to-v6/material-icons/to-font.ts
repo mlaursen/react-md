@@ -27,7 +27,7 @@ import { ONLY_SYMBOL_AVAILABLE, RENAMED_ICONS } from "./constants.js";
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -41,7 +41,7 @@ export default function transformer(
       j.ImportDeclaration,
       (path) =>
         path.source.value === "@react-md/material-icons" ||
-        path.source.value === "react-md"
+        path.source.value === "react-md",
     )
     .forEach((importDeclaration) => {
       j(importDeclaration)
@@ -102,7 +102,7 @@ export default function transformer(
           j.importDeclaration.from({
             ...decl.node,
             specifiers,
-          })
+          }),
         );
       });
     }
@@ -115,15 +115,15 @@ export default function transformer(
             type: "Identifier",
           }),
         ],
-        j.stringLiteral("@react-md/core")
-      )
+        j.stringLiteral("@react-md/core"),
+      ),
     );
   }
 
   [...icons].forEach((iconName) => {
     let v6Name = (importRenamed.get(iconName) || iconName).replace(
       /(Font|SVG)Icon/,
-      ""
+      "",
     );
     const renamed = RENAMED_ICONS.get(v6Name);
     if (ONLY_SYMBOL_AVAILABLE.has(renamed || v6Name)) {
@@ -145,14 +145,14 @@ export default function transformer(
               [
                 j.jsxAttribute(
                   j.jsxIdentifier("name"),
-                  j.stringLiteral(v6Name)
+                  j.stringLiteral(v6Name),
                 ),
                 ...(node.node.openingElement.attributes ?? []),
               ],
-              true
+              true,
             ),
             closingElement: null,
-          })
+          }),
         );
       });
   });

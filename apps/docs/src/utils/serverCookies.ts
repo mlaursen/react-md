@@ -28,7 +28,7 @@ export function getCookie<V extends string>(options: GetCookieOptions<V>): V {
 }
 
 export function getThemeCookie(
-  instance: CookiesInstance
+  instance: CookiesInstance,
 ): Partial<ConfigurableThemeColors> | undefined {
   const value = instance.get(CUSTOM_THEME_KEY)?.value ?? "";
   if (!value) {

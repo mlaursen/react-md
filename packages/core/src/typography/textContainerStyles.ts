@@ -46,7 +46,7 @@ export interface TextContainerClassNameOptions {
  * @since 6.0.0
  */
 export function textContainer(
-  options: TextContainerClassNameOptions = {}
+  options: TextContainerClassNameOptions = {},
 ): string {
   const { className } = options;
 

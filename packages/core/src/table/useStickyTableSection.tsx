@@ -20,7 +20,7 @@ import {
  * @since 6.0.0
  */
 export const isTableHeaderStickyActive: IsStickyTableSectionActive = (
-  entry
+  entry,
 ) => {
   return (
     entry.intersectionRatio < 1 &&
@@ -33,7 +33,7 @@ export const isTableHeaderStickyActive: IsStickyTableSectionActive = (
  */
 export const isTableFooterStickyActive: IsStickyTableSectionActive = (
   entry,
-  isInTableContainer
+  isInTableContainer,
 ) => {
   const { intersectionRatio, boundingClientRect, isIntersecting } = entry;
   if (isInTableContainer) {
@@ -62,7 +62,7 @@ export interface TableStickySectionImplementation {
  * @internal
  */
 export function useStickyTableSection(
-  options: TableStickySectionOptions
+  options: TableStickySectionOptions,
 ): TableStickySectionImplementation {
   const { ref, type, disableStickyStyles, stickyOptions } = options;
 
@@ -105,7 +105,7 @@ export function useStickyTableSection(
       ([entry]) => {
         setStickyActive(isStickyActive(entry, exists));
       },
-      [exists, isStickyActive]
+      [exists, isStickyActive],
     ),
     // allow the user defined sticky options to override the default behavior
     ...stickyOptions,

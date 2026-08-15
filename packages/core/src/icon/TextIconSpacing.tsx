@@ -166,7 +166,7 @@ export function TextIconSpacing(props: TextIconSpacingProps): ReactElement {
       [aboveClassName]: stacked && !isAfter,
       [belowClassName]: stacked && isAfter,
     },
-    className
+    className,
   );
 
   let iconEl = propIcon;

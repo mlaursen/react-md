@@ -198,7 +198,7 @@ const applyVar = (options: ApplyOptions): CSSProperties | undefined => {
  * @internal
  */
 export function getFontVariationSettings(
-  options: MaterialSymbolCustomization & { style?: CSSProperties }
+  options: MaterialSymbolCustomization & { style?: CSSProperties },
 ): MaterialSymbolFontVariationSettings {
   const {
     family = MATERIAL_CONFIG.family,

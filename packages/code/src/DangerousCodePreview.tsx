@@ -13,7 +13,7 @@ export interface DangerousCodePreviewProps
   extends ConfigurableCodePreviewProps, DangerouslyRunCodeOptions {}
 
 export function DangerousCodePreview(
-  props: DangerousCodePreviewProps
+  props: DangerousCodePreviewProps,
 ): ReactElement {
   const { code, scope, onRendered, ...remaining } = props;
 

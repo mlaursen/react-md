@@ -40,7 +40,7 @@ function SyncTest(): ReactElement {
 const fakeFetch = vi.fn((search: string) =>
   Promise.resolve({
     json: () => Promise.resolve({ search }),
-  })
+  }),
 );
 
 interface AsyncTestProps {

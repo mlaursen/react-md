@@ -18,7 +18,7 @@ export interface TabIndicatorClassNameOptions {
  * @since 6.0.0
  */
 export function tabIndicator(
-  options: TabIndicatorClassNameOptions = {}
+  options: TabIndicatorClassNameOptions = {},
 ): string {
   const { className, vertical, tablist, animate } = options;
 
@@ -30,6 +30,6 @@ export function tabIndicator(
       "tablist-h": tablist && !vertical,
       "tablist-v": tablist && vertical,
     }),
-    className
+    className,
   );
 }

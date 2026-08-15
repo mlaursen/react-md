@@ -4,6 +4,7 @@ import { type ReactElement } from "react";
 import { Blockquote } from "@/components/Blockquote.js";
 
 import { CopyCode } from "./CopyCode.js";
+
 import styles from "./TwoToneIconWarning.module.scss";
 
 const EXAMPLE_CODE = `@use "everything" as *;

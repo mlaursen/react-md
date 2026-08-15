@@ -43,7 +43,7 @@ export interface SliderValueTooltipProps extends TooltipProps {
  * @since 6.0.0 Renamed from `SliderValue` to `SliderValueTooltip`.
  */
 export function SliderValueTooltip(
-  props: SliderValueTooltipProps
+  props: SliderValueTooltipProps,
 ): ReactElement {
   const {
     index,

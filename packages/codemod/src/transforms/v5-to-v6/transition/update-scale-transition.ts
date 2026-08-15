@@ -16,7 +16,7 @@ import { RENDER_PORTAL_PROPS } from "../portal/constants.js";
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -50,16 +50,16 @@ export default function transformer(
                         type: "JSXIdentifier",
                       },
                       j.jsxExpressionContainer(
-                        j.unaryExpression("!", attr.value.expression)
-                      )
-                    )
+                        j.unaryExpression("!", attr.value.expression),
+                      ),
+                    ),
                   );
                 }
                 wrapInPortal ||= isPropEnabled(attr);
               } else {
                 wrapInPortal = true;
                 comments.add(
-                  `TODO: The \`${propName}\` for the \`${name}\` cannot be converted automatically.`
+                  `TODO: The \`${propName}\` for the \`${name}\` cannot be converted automatically.`,
                 );
               }
 
@@ -84,14 +84,14 @@ export default function transformer(
                       type: "JSXIdentifier",
                       comments: jsxElement.node.comments,
                     },
-                    props
+                    props,
                   ),
                   j.jsxClosingElement({
                     name: "Portal",
                     type: "JSXIdentifier",
                   }),
-                  [jsxElement.node]
-                )
+                  [jsxElement.node],
+                ),
               );
             });
         }

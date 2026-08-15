@@ -21,7 +21,7 @@ async function setup(props?: Partial<MenuItemTextFieldProps>) {
       <MenuItem>Menu Item 1</MenuItem>
       <MenuItemTextField label="Field" {...props} />
       <MenuItem>Menu Item 2</MenuItem>
-    </DropdownMenu>
+    </DropdownMenu>,
   );
 
   await user.click(screen.getByRole("button", { name: "Dropdown" }));
@@ -56,7 +56,7 @@ describe("MenuItemTextField", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(element).toMatchSnapshot();
   });

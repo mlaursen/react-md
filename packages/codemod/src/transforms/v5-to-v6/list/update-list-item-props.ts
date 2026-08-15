@@ -72,7 +72,7 @@ function updateListItemProps(options: UpdateListItemPropsOptions): void {
 
               props.push(
                 j.jsxAttribute(j.jsxIdentifier("leftAddonForceWrap"), value),
-                j.jsxAttribute(j.jsxIdentifier("rightAddonForceWrap"), value)
+                j.jsxAttribute(j.jsxIdentifier("rightAddonForceWrap"), value),
               );
               break;
             }
@@ -92,12 +92,12 @@ function updateListItemProps(options: UpdateListItemPropsOptions): void {
               let value: JSXExpressionContainer | null = null;
               if (!isPropBooleanExpression(attr)) {
                 value = j.jsxExpressionContainer(
-                  negateExpression({ j, expr: attr.value.expression })
+                  negateExpression({ j, expr: attr.value.expression }),
                 );
               }
 
               props.push(
-                j.jsxAttribute(j.jsxIdentifier("disableTextChildren"), value)
+                j.jsxAttribute(j.jsxIdentifier("disableTextChildren"), value),
               );
               break;
             }
@@ -147,7 +147,7 @@ interface ConvertSimpleListItemToListItemChildrenOptions {
 }
 
 function convertSimpleListItemToListItemChildren(
-  options: ConvertSimpleListItemToListItemChildrenOptions
+  options: ConvertSimpleListItemToListItemChildrenOptions,
 ): void {
   const { j, root, imports } = options;
   traverseImportSpecifiers({
@@ -199,7 +199,7 @@ function convertSimpleListItemToListItemChildren(
                 children: jsxElement.node.children,
               }),
             ],
-          })
+          }),
         );
       });
   });
@@ -215,7 +215,7 @@ function convertSimpleListItemToListItemChildren(
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);

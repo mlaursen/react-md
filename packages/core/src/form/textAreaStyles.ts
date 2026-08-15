@@ -59,7 +59,7 @@ export function textArea(options: TextareaClassNameOptions = {}): string {
       mask,
       scrollable: scrollable || resize === "none",
     }),
-    className
+    className,
   );
 }
 
@@ -78,7 +78,7 @@ export interface TextareaContainerClassNameOptions {
  * @since 6.0.0
  */
 export function textAreaContainer(
-  options: TextareaContainerClassNameOptions = {}
+  options: TextareaContainerClassNameOptions = {},
 ): string {
   const { className, height, animate, disabled, underlineLabelled } = options;
 
@@ -89,6 +89,6 @@ export function textAreaContainer(
       cursor: !disabled,
       "underline-labelled": underlineLabelled,
     }),
-    className
+    className,
   );
 }

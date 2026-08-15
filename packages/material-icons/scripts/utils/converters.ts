@@ -17,7 +17,7 @@ export type CategoriesByFamilyTypeMap = Map<string, IconsByCategoryMap>;
 export function printConst(
   name: string,
   value: unknown,
-  type?: string
+  type?: string,
 ): string {
   const t = type ? `: ${type}` : "";
   const cast = type ? "" : " as const";
@@ -27,7 +27,7 @@ export function printConst(
 
 export function printTypeUnion(
   name: string,
-  values: readonly string[]
+  values: readonly string[],
 ): string {
   const union = values.map((value) => `| "${value}"`).join("");
 
@@ -35,7 +35,7 @@ export function printTypeUnion(
 }
 
 export function categoriesMapToObject(
-  categories: CategoriesByFamilyTypeMap
+  categories: CategoriesByFamilyTypeMap,
 ): CategoriesByFamilyType {
   const lookup: Record<string, Record<string, string[]>> = {};
   categories.forEach((categoryLookup, familyType) => {
@@ -49,7 +49,7 @@ export function categoriesMapToObject(
 }
 
 export function getSortedCategories(
-  lookup: CategoriesByFamilyTypeMap
+  lookup: CategoriesByFamilyTypeMap,
 ): readonly string[] {
   const categories = new Set<string>();
   lookup.forEach((value) => {

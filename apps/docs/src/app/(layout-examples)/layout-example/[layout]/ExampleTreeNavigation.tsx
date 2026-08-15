@@ -15,8 +15,8 @@ import { LinkUnstyled } from "@/components/LinkUnstyled.js";
 import { pascalCase } from "@/utils/strings.js";
 
 import { LayoutIcon } from "./LayoutIcon.js";
-import { NavigationTypeIcon } from "./NavigationTypeIcon.js";
 import { LAYOUT_TYPES, type LayoutType } from "./layouts.js";
+import { NavigationTypeIcon } from "./NavigationTypeIcon.js";
 import { NAVIGATION_TYPES } from "./navTypes.js";
 
 const navTypeParam = `?navType=tree`;
@@ -26,7 +26,7 @@ export interface ExampleTreeNavigationProps {
 }
 
 export function ExampleTreeNavigation(
-  props: ExampleTreeNavigationProps
+  props: ExampleTreeNavigationProps,
 ): ReactElement {
   const { layout } = props;
 
@@ -47,7 +47,7 @@ export function ExampleTreeNavigation(
         children: pascalCase(layoutType, " "),
         leftAddon: <LayoutIcon layout={layoutType} />,
         contentClassName: cnb(
-          layout === layoutType && "rmd-tree-item__content--selected"
+          layout === layoutType && "rmd-tree-item__content--selected",
         ),
       };
     }
@@ -60,7 +60,7 @@ export function ExampleTreeNavigation(
         children: pascalCase(type, " "),
         leftAddon: <NavigationTypeIcon navType={type} />,
         contentClassName: cnb(
-          type === "tree" && "rmd-tree-item__content--selected"
+          type === "tree" && "rmd-tree-item__content--selected",
         ),
       };
     }

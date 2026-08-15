@@ -3,15 +3,15 @@ import { describe, expect, it } from "vitest";
 
 import { render, screen } from "../../test-utils/index.js";
 import { TextContainer } from "../TextContainer.js";
-import { Typography } from "../Typography.js";
 import { textContainer } from "../textContainerStyles.js";
+import { Typography } from "../Typography.js";
 
 describe("TextContainer", () => {
   it("should render correctly and apply the correct class names", () => {
     const { rerender } = render(
       <TextContainer data-testid="container">
         <Typography>Content</Typography>
-      </TextContainer>
+      </TextContainer>,
     );
 
     const container = screen.getByTestId("container");
@@ -21,7 +21,7 @@ describe("TextContainer", () => {
     rerender(
       <TextContainer data-testid="container" className="custom-1 custom-2">
         <Typography>Content</Typography>
-      </TextContainer>
+      </TextContainer>,
     );
 
     expect(container).toHaveClass("rmd-text-container");

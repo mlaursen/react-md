@@ -11,7 +11,7 @@ export interface ResizeObserverEntrySize {
  */
 export type GetResizeObserverEntryMock = (
   target: Element,
-  size?: ResizeObserverEntrySize
+  size?: ResizeObserverEntrySize,
 ) => ResizeObserverEntry;
 
 /**
@@ -22,7 +22,7 @@ export type GetResizeObserverEntryMock = (
  */
 export const createResizeObserverEntry: GetResizeObserverEntryMock = (
   target,
-  size
+  size,
 ) => {
   const contentRect = target.getBoundingClientRect();
   if (typeof size?.height === "number") {

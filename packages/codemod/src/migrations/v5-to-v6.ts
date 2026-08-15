@@ -134,6 +134,6 @@ pnpm remove react-md && pnpm add @react-md/core
   }
 
   console.log(
-    "🎉 The v5-to-v6 migration has completed. Please review all the changed files for any TODO comments and the official changelog for things that could not be automigrated."
+    "🎉 The v5-to-v6 migration has completed. Please review all the changed files for any TODO comments and the official changelog for things that could not be automigrated.",
   );
 }

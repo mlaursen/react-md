@@ -56,7 +56,7 @@ export interface WindowSplitterClassNameOptions extends BaseWindowSplitterClassN
  * @since 6.0.0
  */
 export function windowSplitter(
-  options: WindowSplitterClassNameOptions = {}
+  options: WindowSplitterClassNameOptions = {},
 ): string {
   const {
     vertical = false,
@@ -77,6 +77,6 @@ export function windowSplitter(
       dragging,
       "no-inactive-bg": !inactiveBackground,
     }),
-    className
+    className,
   );
 }

@@ -314,10 +314,10 @@ export function box(options: BoxOptions = {}): string {
   }
 
   const isItemSizeEnabled = (
-    value: string | number | undefined
+    value: string | number | undefined,
   ): boolean | undefined => grid && (!!value || value === 0);
   const isColumnsEnabled = (
-    value: BoxGridColumns | BoxGridBreakpointColumns | undefined
+    value: BoxGridColumns | BoxGridBreakpointColumns | undefined,
   ): boolean | undefined => grid && typeof value === "number";
 
   return cnb(
@@ -362,7 +362,7 @@ export function box(options: BoxOptions = {}): string {
       "justify-between": justify === "space-between",
       "justify-evenly": justify === "space-evenly",
     }),
-    className
+    className,
   );
 }
 
@@ -418,7 +418,7 @@ const BREAKPOINTS = ["phone", "tablet", "desktop", "largeDesktop"] as const;
  * @internal
  */
 function applyBoxVarGroup(
-  options: Pick<ApplyOptions, "value" | "style" | "type">
+  options: Pick<ApplyOptions, "value" | "style" | "type">,
 ): CSSProperties | undefined {
   const { style: propStyle, value, type } = options;
   let style = applyBoxVar({

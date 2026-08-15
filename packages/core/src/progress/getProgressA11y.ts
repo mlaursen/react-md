@@ -12,7 +12,7 @@ export interface ProgressA11y {
  */
 export function getProgressA11y(
   progressId: string,
-  progressing: boolean
+  progressing: boolean,
 ): ProgressA11y | undefined {
   if (!progressing) {
     return undefined;

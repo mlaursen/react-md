@@ -236,6 +236,6 @@ export function cssUtils(options: CssUtilsOptions): string {
     textOverflow && textOverflow !== "allow" && "rmd-nowrap",
     textOverflow === "ellipsis" && "rmd-ellipsis",
     surface && "rmd-interaction-surface",
-    className
+    className,
   );
 }

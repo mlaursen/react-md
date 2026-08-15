@@ -1,4 +1,4 @@
-import { format } from "prettier";
+import { format } from "oxfmt";
 import { type ItemExample } from "sassdoc";
 
 import { compileScss } from "./compileScss.js";
@@ -38,7 +38,7 @@ async function compileExampleCode({
       throw new Error("Demo code was not compiled correctly");
     }
 
-    return await format(css, { parser: "css" });
+    return (await format(path, css)).code;
   } catch (e) {
     console.error("Unable to compile an example with the following code:");
     console.error(code);
@@ -61,7 +61,7 @@ function removeUncompilableCode(code: string): string {
     const whitespaceCount = whitespace ? whitespace[0].indexOf("/") : 0;
     // eslint-disable-next-line no-param-reassign
     code = `${code.substring(0, startIndex - whitespaceCount)}${code.substring(
-      endIndex + END_NO_COMPILE.length + 1
+      endIndex + END_NO_COMPILE.length + 1,
     )}`;
     startIndex = code.indexOf(START_NO_COMPILE);
     endIndex = code.indexOf(END_NO_COMPILE);
@@ -112,19 +112,19 @@ export async function formatExamples({
       }
 
       const formattedExampleCode = await format(
+        src,
         `${prefix}
 
 ${demoCode}
 `,
-        { parser: "scss" }
       );
 
       return {
-        code: formattedExampleCode.trim(),
+        code: formattedExampleCode.code.trim(),
         compiled,
         type,
         description: formatDescription(description),
       };
-    })
+    }),
   );
 }

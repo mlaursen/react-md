@@ -45,7 +45,7 @@ export default function SimpleExample(): ReactElement {
           style={{
             backgroundColor: (increasing ? INCREASING : DECREASING).replace(
               "ratio",
-              `${ratio}`
+              `${ratio}`,
             ),
           }}
         >

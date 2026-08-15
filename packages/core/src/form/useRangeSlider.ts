@@ -77,11 +77,11 @@ export interface RangeSliderImplementation
  * functionality. In addition, the hook only accepts a single object argument.
  */
 export function useRangeSlider(
-  options: RangeSliderOptions = {}
+  options: RangeSliderOptions = {},
 ): RangeSliderImplementation {
   const { min = 0, max = 100, step = 1, defaultValue } = options;
   const [rangeValue, setRangeValue] = useState<RangeSliderValue>(
-    defaultValue ?? [min, max]
+    defaultValue ?? [min, max],
   );
 
   return {

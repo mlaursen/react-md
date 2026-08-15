@@ -261,7 +261,7 @@ export function Chip(props: ChipProps): ReactElement {
         {...contentProps}
         className={cnb(
           chipContent({ className: contentClassName }),
-          contentProps?.className
+          contentProps?.className,
         )}
       >
         {propChildren}

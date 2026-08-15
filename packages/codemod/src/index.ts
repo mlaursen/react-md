@@ -21,7 +21,7 @@ const program = new Command().name("npx @react-md/codemod").description(
   `Run a codemod script to update to the latest version of ReactMD.
 
  Running this script without any options or commands will start an interactive wizard.
- `
+ `,
 );
 
 interface ActionOptions extends ProgramOptions {
@@ -52,11 +52,11 @@ program
   .addArgument(
     new Argument("<version>", "The version of react-md to migrate to").choices([
       "v5-to-v6",
-    ])
+    ]),
   )
   .argument(
     "[files...]",
-    'An optional glob or folder path to transform (default: ".")'
+    'An optional glob or folder path to transform (default: ".")',
   )
   .action((version, files, opts: Pick<ProgramOptions, "dry">) => {
     sassMigrator({
@@ -73,16 +73,16 @@ program
   .option(
     "-a, --auto-confirm",
     "Run all the codemods without requiring a confirmation (only for full release migration scripts)",
-    false
+    false,
   )
   .addOption(
     new Option("--parser <parser>", "The file parser to use.")
       .choices([...parsers, ""])
-      .default("")
+      .default(""),
   )
   .argument(
     "[files...]",
-    'An optional glob or folder path to transform (default: ".")'
+    'An optional glob or folder path to transform (default: ".")',
   )
   .action((files, opts: ProgramOptions) => {
     migrate({
@@ -104,16 +104,16 @@ availableTransforms.forEach((transformFile) => {
     .option(
       "-a, --auto-confirm",
       "Run all the codemods without requiring a confirmation (only for full release migration scripts)",
-      false
+      false,
     )
     .addOption(
       new Option("--parser <parser>", "The file parser to use.")
         .choices([...parsers, ""])
-        .default("")
+        .default(""),
     )
     .argument(
       "[files...]",
-      'An optional glob or folder path to transform (default: ".")'
+      'An optional glob or folder path to transform (default: ".")',
     )
     .action((files, opts: ProgramOptions) => {
       handleAction({

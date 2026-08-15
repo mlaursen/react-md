@@ -4,11 +4,11 @@ import { type ReactElement, type Ref, useMemo } from "react";
 
 import { type DefinedCSSVariableName } from "../theme/types.js";
 import { useCSSVariables } from "../theme/useCSSVariables.js";
+import { type WindowSplitterWidgetProps } from "../window-splitter/useWindowSplitter.js";
 import {
   type BaseWindowSplitterProps,
   WindowSplitter,
 } from "../window-splitter/WindowSplitter.js";
-import { type WindowSplitterWidgetProps } from "../window-splitter/useWindowSplitter.js";
 import {
   type LayoutWindowSplitterClassNameOptions,
   layoutWindowSplitter,
@@ -96,7 +96,7 @@ export interface LayoutWindowSplitterProps
  * @since 6.0.0
  */
 export function LayoutWindowSplitter(
-  props: LayoutWindowSplitterProps
+  props: LayoutWindowSplitterProps,
 ): ReactElement {
   const {
     ref,
@@ -112,8 +112,8 @@ export function LayoutWindowSplitter(
   useCSSVariables<DefinedCSSVariableName>(
     useMemo(
       () => [{ name: "--rmd-layout-size", value: `${navWidth}px` }],
-      [navWidth]
-    )
+      [navWidth],
+    ),
   );
 
   return (

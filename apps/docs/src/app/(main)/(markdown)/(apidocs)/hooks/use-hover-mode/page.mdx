@@ -11,7 +11,7 @@ hooks: [useHoverMode]
 
 ```ts disableTransform
 function useHoverMode(
-  options: ControlledHoverModeOptions | UncontrolledHoverModeOptions
+  options: ControlledHoverModeOptions | UncontrolledHoverModeOptions,
 ): HoverModeImplementation;
 ```
 
@@ -86,8 +86,7 @@ function useCustomHoverMode(): CustomHoverModeImplementation {
 
 ````ts disableTransform
 export type HoverModeOptions =
-  | ControlledHoverModeOptions
-  | UncontrolledHoverModeOptions;
+  ControlledHoverModeOptions | UncontrolledHoverModeOptions;
 
 export interface ControlledHoverModeOptions extends HoverModeConfigurationOptions {
   setVisible: UseStateSetter<boolean>;

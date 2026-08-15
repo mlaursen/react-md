@@ -113,7 +113,7 @@ const { Provider } = context;
  * @since 5.0.0
  */
 export function useMenuConfiguration(
-  overrides: MenuConfiguration = {}
+  overrides: MenuConfiguration = {},
 ): Readonly<MenuConfigurationContext> {
   const {
     horizontal,
@@ -151,7 +151,7 @@ export interface MenuConfigurationProviderProps extends MenuConfiguration {
  * @since 5.0.0
  */
 export function MenuConfigurationProvider(
-  props: MenuConfigurationProviderProps
+  props: MenuConfigurationProviderProps,
 ): ReactElement {
   const { children, ...configuration } = props;
   const {
@@ -179,7 +179,7 @@ export function MenuConfigurationProvider(
       sheetHeader,
       sheetPosition,
       sheetVerticalSize,
-    ]
+    ],
   );
 
   return <Provider value={value}>{children}</Provider>;

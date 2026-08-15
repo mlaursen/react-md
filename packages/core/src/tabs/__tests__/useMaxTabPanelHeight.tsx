@@ -121,7 +121,7 @@ describe("useMaxTabPanelHeight", () => {
         style={{ color: "red" }}
         extraStyle={{ background: "blue" }}
         defaultHeight="10rem"
-      />
+      />,
     );
 
     const panels = screen.getByTestId("panels");
@@ -137,7 +137,7 @@ describe("useMaxTabPanelHeight", () => {
         style={{ color: "red" }}
         extraStyle={{ color: "blue" }}
         defaultHeight="10rem"
-      />
+      />,
     );
     expect(panels).toHaveStyle({
       height: "10rem",
@@ -146,7 +146,7 @@ describe("useMaxTabPanelHeight", () => {
 
     // style can override the height if you really want..
     rerender(
-      <Test style={{ color: "red", height: "12rem" }} defaultHeight="10rem" />
+      <Test style={{ color: "red", height: "12rem" }} defaultHeight="10rem" />,
     );
     expect(panels).toHaveStyle({
       height: "12rem",

@@ -24,6 +24,6 @@ export function tableRow(options: TableRowClassNameOptions = {}): string {
       clickable,
       selected,
     }),
-    className
+    className,
   );
 }

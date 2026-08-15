@@ -2,8 +2,8 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
-import { AppSizeProvider, useAppSize } from "../AppSizeProvider.js";
 import { type AppSize } from "../appSize.js";
+import { AppSizeProvider, useAppSize } from "../AppSizeProvider.js";
 
 describe("AppSizeProvider.node", () => {
   it("should use the ssr size in node environments", () => {
@@ -24,7 +24,7 @@ describe("AppSizeProvider.node", () => {
     renderToStaticMarkup(
       <AppSizeProvider ssrSize={ssrSize}>
         <Test />
-      </AppSizeProvider>
+      </AppSizeProvider>,
     );
     expect(appSize).toEqual({
       isDesktop: false,

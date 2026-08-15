@@ -18,7 +18,7 @@ describe("AppBarTitle", () => {
     rerender(
       <AppBarTitle style={{ color: "aqua" }} className="custom-class-name">
         Title
-      </AppBarTitle>
+      </AppBarTitle>,
     );
     expect(title).toMatchSnapshot();
 

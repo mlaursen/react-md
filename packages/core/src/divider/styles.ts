@@ -57,6 +57,6 @@ export function divider(options: DividerClassNameOptions = {}): string {
       inset: inset && !vertical,
       vertical,
     }),
-    className
+    className,
   );
 }

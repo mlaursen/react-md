@@ -195,7 +195,7 @@ export class ToastManager {
    */
   #updateToast = (
     toastIdOrIndex: string | number,
-    patch: Partial<QueuedToast>
+    patch: Partial<QueuedToast>,
   ): void => {
     const index =
       typeof toastIdOrIndex === "number"
@@ -551,7 +551,7 @@ export const addToast: ToastManager["addToast"] = (toast) => {
  * @since 6.0.0
  */
 export const startRemoveToastTimeout: ToastManager["startRemoveTimeout"] = (
-  toastId
+  toastId,
 ) => {
   toastManager.startRemoveTimeout(toastId);
 };
@@ -570,7 +570,7 @@ export const popToast: ToastManager["popToast"] = () => {
  */
 export const removeToast: ToastManager["removeToast"] = (
   toastId,
-  transition
+  transition,
 ) => {
   toastManager.removeToast(toastId, transition);
 };

@@ -28,7 +28,7 @@ export interface FocusCodeEditorImplementation {
 }
 
 export function useFocusCodeEditor(
-  options: FocusCodeEditorOptions
+  options: FocusCodeEditorOptions,
 ): FocusCodeEditorImplementation {
   const {
     editorRef,

@@ -25,7 +25,7 @@ describe("LinearProgress", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(element).toMatchSnapshot();
 
@@ -34,7 +34,7 @@ describe("LinearProgress", () => {
         {...props}
         barStyle={{ color: "orange" }}
         barClassName="custom-bar-class-name"
-      />
+      />,
     );
     expect(element).toMatchSnapshot();
   });
@@ -47,25 +47,29 @@ describe("LinearProgress", () => {
 
   it("should be able to render vertically", () => {
     const { rerender } = render(
-      <LinearProgress aria-label="Progressbar" vertical />
+      <LinearProgress aria-label="Progressbar" vertical />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
 
     rerender(
-      <LinearProgress aria-label="Progressbar" vertical verticalHeight={null} />
+      <LinearProgress
+        aria-label="Progressbar"
+        vertical
+        verticalHeight={null}
+      />,
     );
     expect(progress).toMatchSnapshot();
 
     rerender(
-      <LinearProgress aria-label="Progressbar" vertical verticalHeight={500} />
+      <LinearProgress aria-label="Progressbar" vertical verticalHeight={500} />,
     );
     expect(progress).toMatchSnapshot();
   });
 
   it("should be able to reverse the animation by enabling the reverse prop", () => {
     const { rerender } = render(
-      <LinearProgress aria-label="Progressbar" reverse />
+      <LinearProgress aria-label="Progressbar" reverse />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
@@ -77,14 +81,14 @@ describe("LinearProgress", () => {
     expect(progress).toMatchSnapshot();
 
     rerender(
-      <LinearProgress aria-label="Progressbar" reverse value={50} vertical />
+      <LinearProgress aria-label="Progressbar" reverse value={50} vertical />,
     );
     expect(progress).toMatchSnapshot();
   });
 
   it("should render as a determinate progress bar when the value is provided", () => {
     const { rerender } = render(
-      <LinearProgress aria-label="Progressbar" value={30} />
+      <LinearProgress aria-label="Progressbar" value={30} />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toHaveAttribute("aria-valuenow", "30");
@@ -97,7 +101,7 @@ describe("LinearProgress", () => {
 
   it("should allow the transition to be disabled for determinate progress bars", () => {
     const { rerender } = render(
-      <LinearProgress aria-label="Progressbar" value={30} disableTransition />
+      <LinearProgress aria-label="Progressbar" value={30} disableTransition />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();
@@ -108,7 +112,7 @@ describe("LinearProgress", () => {
 
   it("should be able to render as any of the theme colors", () => {
     const { rerender } = render(
-      <LinearProgress aria-label="Progressbar" theme="primary" />
+      <LinearProgress aria-label="Progressbar" theme="primary" />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
     expect(progress).toMatchSnapshot();

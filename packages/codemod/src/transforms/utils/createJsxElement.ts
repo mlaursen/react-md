@@ -17,6 +17,6 @@ export function createJsxElement(options: CreateJsxElementOptions): JSXElement {
   return j.jsxElement(
     j.jsxOpeningElement(component, props, selfClosing),
     !selfClosing ? j.jsxClosingElement(component) : null,
-    children
+    children,
   );
 }

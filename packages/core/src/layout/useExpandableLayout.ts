@@ -2,12 +2,12 @@
 
 import { cnb } from "cnbuilder";
 
-import { useSsr } from "../SsrProvider.js";
-import { useAppSize } from "../media-queries/AppSizeProvider.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type AppSize } from "../media-queries/appSize.js";
+import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { MEDIA_QUERY_CONFIG } from "../media-queries/config.js";
 import { useMediaQuery } from "../media-queries/useMediaQuery.js";
+import { useSsr } from "../SsrProvider.js";
 import { type CSSTransitionElementProps } from "../transition/types.js";
 import {
   type CssPosition,
@@ -232,7 +232,7 @@ export interface ExpandableLayoutImplementation extends TemporaryLayoutImplement
  * @see {@link useResizableLayout}
  */
 export function useExpandableLayout(
-  options: ExpandableLayoutOptions
+  options: ExpandableLayoutOptions,
 ): ExpandableLayoutImplementation {
   const {
     fullHeightNav = false,
@@ -315,7 +315,7 @@ export function useExpandableLayout(
           `The react-md expandable layout has set \`temporaryUntil: "${temporaryUntil}"\` but the corresponding styles have not been found.` +
             " This usually  means the `$layout-navigation-breakpoint` or `temporaryUntil` value should be updated match.\n\n" +
             "See https://react-md.dev/getting-started/layout#updating-the-layout-to-be-temporary-until-a-specific-breakpoint-optional " +
-            "for more information."
+            "for more information.",
         );
       }
     }, 3000);

@@ -10,11 +10,11 @@ import {
 } from "react";
 
 import { KeyboardMovementProvider } from "../movement/useKeyboardMovementProvider.js";
+import { type GetTabListScrollToOptions } from "./getTabListScrollToOptions.js";
 import {
   type BaseTabListScrollButtonProps,
   TabListScrollButton,
 } from "./TabListScrollButton.js";
-import { type GetTabListScrollToOptions } from "./getTabListScrollToOptions.js";
 import { type TabListClassNameOptions, tabList } from "./tabListStyles.js";
 import {
   type TabListActivationMode,

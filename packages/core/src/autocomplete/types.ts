@@ -85,7 +85,7 @@ export type AutocompleteFilterOptions<Option extends AutocompleteOption> = Pick<
  * @since 6.0.0
  */
 export type AutocompleteFilterFunction<Option extends AutocompleteOption> = (
-  options: AutocompleteFilterOptions<Option>
+  options: AutocompleteFilterOptions<Option>,
 ) => readonly Option[];
 
 /**
@@ -108,7 +108,7 @@ export interface AutocompleteGetOptionPropsOptions<
 export type AutocompleteGetOptionPropsCallback<
   Option extends AutocompleteOption,
 > = (
-  options: AutocompleteGetOptionPropsOptions<Option>
+  options: AutocompleteGetOptionPropsOptions<Option>,
 ) => ConfigurableAutocompleteOptionProps | undefined;
 
 /**
@@ -141,7 +141,7 @@ export interface AutocompleteGetOptionProps<Option extends AutocompleteOption> {
  * @since 6.0.0
  */
 export type AutocompleteGetChipProps<Option extends AutocompleteOption> = (
-  options: Omit<AutocompleteGetOptionPropsOptions<Option>, "selected">
+  options: Omit<AutocompleteGetOptionPropsOptions<Option>, "selected">,
 ) => Partial<AutocompleteChipProps> | undefined;
 
 /**
@@ -648,21 +648,21 @@ export interface AutocompleteWithQueryImplementation<
    * settings.
    */
   getListboxProps: (
-    overrides?: ConfigurableAutocompleteListboxProps
+    overrides?: ConfigurableAutocompleteListboxProps,
   ) => AutocompleteListboxProps<Option, PopupEl>;
 
   /**
    * Generates the props required for the `AutocompleteClearButton`.
    */
   getClearButtonProps: (
-    overrides?: ConfigurableAutocompleteClearButtonProps
+    overrides?: ConfigurableAutocompleteClearButtonProps,
   ) => AutocompleteClearButtonProps;
 
   /**
    * Generates the props required for the `AutocompleteDropdownButton`.
    */
   getDropdownButtonProps: (
-    overrides?: ConfigurableAutocompleteDropdownButtonProps
+    overrides?: ConfigurableAutocompleteDropdownButtonProps,
   ) => AutocompleteDropdownButtonProps;
 }
 

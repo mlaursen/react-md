@@ -4,7 +4,7 @@ import { getImportedName } from "./getImportedName.js";
 import { isTypeImport } from "./isTypeImport.js";
 
 export const sortImportSpecifiers = (
-  specifiers: readonly AnyImportSpecifier[]
+  specifiers: readonly AnyImportSpecifier[],
 ): AnyImportSpecifier[] => {
   const sorted = [...specifiers].filter(
     (spec, index, array) =>
@@ -13,8 +13,8 @@ export const sortImportSpecifiers = (
         array.findIndex(
           (s) =>
             s.type === "ImportSpecifier" &&
-            getImportedName(s) === getImportedName(spec)
-        )
+            getImportedName(s) === getImportedName(spec),
+        ),
   );
   sorted.sort((a, b) => {
     if (a.type === "ImportSpecifier" && b.type === "ImportSpecifier") {

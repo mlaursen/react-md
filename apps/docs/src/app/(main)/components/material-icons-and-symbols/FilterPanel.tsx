@@ -26,7 +26,7 @@ export function FilterPanel(props: FilterPanelProps): ReactElement {
       {...remaining}
       className={cnb(
         styles.panel,
-        !isDesktop && currentColor === "dark" && styles.elevationFix
+        !isDesktop && currentColor === "dark" && styles.elevationFix,
       )}
       headerChildren={
         <span className={box({ disablePadding: true })}>

@@ -80,7 +80,7 @@ function updateHookProps(options: PatchOptions): void {
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -146,7 +146,7 @@ export default function transformer(
           const properties: ObjectProperty[] = [
             j.objectProperty(
               j.identifier("getPanelProps"),
-              j.identifier("getPanelProps")
+              j.identifier("getPanelProps"),
             ),
           ];
 
@@ -157,8 +157,8 @@ export default function transformer(
             properties.push(
               j.objectProperty(
                 j.identifier("expandedIds"),
-                j.identifier(tempName)
-              )
+                j.identifier(tempName),
+              ),
             );
 
             path.closest(j.VariableDeclaration).insertAfter(
@@ -168,7 +168,7 @@ export default function transformer(
                 value: j.arrayExpression([
                   j.spreadElement(j.identifier(tempName)),
                 ]),
-              })
+              }),
             );
           }
 
@@ -185,8 +185,8 @@ export default function transformer(
             properties.push(
               j.objectProperty(
                 j.identifier("setExpandedIds"),
-                j.identifier(tempName)
-              )
+                j.identifier(tempName),
+              ),
             );
 
             // Makes code: `return new Set(value([...prevSet]))`
@@ -198,19 +198,19 @@ export default function transformer(
                       j.spreadElement(j.identifier("prevSet")),
                     ]),
                   ]),
-                ])
+                ]),
               ),
             ]);
             const ifInstanceOf = j.ifStatement(
               j.binaryExpression(
                 "instanceof",
                 j.identifier("value"),
-                j.identifier("Function")
+                j.identifier("Function"),
               ),
-              returnNewSet
+              returnNewSet,
             );
             const returnNewSetCalledValue = j.returnStatement(
-              j.newExpression(j.identifier("Set"), [j.identifier("value")])
+              j.newExpression(j.identifier("Set"), [j.identifier("value")]),
             );
 
             path.closest(j.VariableDeclaration).insertAfter(
@@ -223,7 +223,7 @@ export default function transformer(
                     j.identifier("UseStateSetter"),
                     j.tsTypeParameterInstantiation([
                       j.tsArrayType(j.tsStringKeyword()),
-                    ])
+                    ]),
                   ),
                   isTypescript,
                 }),
@@ -237,13 +237,13 @@ export default function transformer(
                           j.blockStatement([
                             ifInstanceOf,
                             returnNewSetCalledValue,
-                          ])
+                          ]),
                         ),
-                      ])
+                      ]),
                     ),
-                  ])
+                  ]),
                 ),
-              })
+              }),
             );
           }
           // don't care about supporting since it wasn't really documented
@@ -297,7 +297,7 @@ export default function transformer(
                 j(identifier).replaceWith(
                   j.callExpression(j.identifier("getPanelProps"), [
                     j.numericLiteral(index),
-                  ])
+                  ]),
                 );
               });
             });
@@ -309,7 +309,7 @@ export default function transformer(
           .forEach((memberExpression) => {
             const index = memberExpression.node.property;
             j(memberExpression).replaceWith(
-              j.callExpression(j.identifier("getPanelProps"), [index])
+              j.callExpression(j.identifier("getPanelProps"), [index]),
             );
           });
       });

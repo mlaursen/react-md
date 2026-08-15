@@ -28,7 +28,7 @@ export interface PasswordInputClassNameOptions {
 }
 
 export function passwordInput(
-  options: PasswordInputClassNameOptions = {}
+  options: PasswordInputClassNameOptions = {},
 ): string {
   const { className } = options;
 
@@ -43,7 +43,7 @@ export interface PasswordInputToggleClassNameOptions {
 }
 
 export function passwordInputToggle(
-  options: PasswordInputToggleClassNameOptions = {}
+  options: PasswordInputToggleClassNameOptions = {},
 ): string {
   const { className } = options;
 

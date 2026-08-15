@@ -22,7 +22,7 @@ const noop = (): void => {
  */
 const getParentIds = (
   itemId: string,
-  navItems: TreeData<TreeItemNode>
+  navItems: TreeData<TreeItemNode>,
 ): readonly string[] =>
   getTreeItemsFrom(navItems, itemId).map(({ itemId }) => itemId);
 
@@ -174,14 +174,14 @@ export interface LayoutTreeImplementation<
  * @since 6.0.0 Renamed from `useLayoutNavigation`.
  */
 export function useLayoutTree(
-  options: LayoutTreeOptions
+  options: LayoutTreeOptions,
 ): LayoutTreeImplementation {
   const { defaultExpandedIds, navItems, pathname } = options;
 
   const selectedIds = useMemo(() => new Set([pathname]), [pathname]);
   const { expandedIds, expandMultipleTreeItems, toggleTreeItemExpansion } =
     useTreeExpansion(
-      defaultExpandedIds ?? (() => getParentIds(pathname, navItems))
+      defaultExpandedIds ?? (() => getParentIds(pathname, navItems)),
     );
 
   useEffect(() => {

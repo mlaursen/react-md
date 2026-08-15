@@ -5,6 +5,7 @@ import { type ReactElement } from "react";
 import { MAJOR_VERSION } from "@/constants/version.js";
 
 import { Blockquote } from "../Blockquote.js";
+
 import styles from "./VersionBanner.module.scss";
 
 export interface VersionBannerProps {

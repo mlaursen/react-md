@@ -162,7 +162,7 @@ import { getTransitionClassNames } from "./utils.js";
  * @since 4.0.0
  */
 export function useCSSTransition<E extends HTMLElement>(
-  options: CSSTransitionHookOptions<E>
+  options: CSSTransitionHookOptions<E>,
 ): CSSTransitionHookReturnValue<E> {
   const {
     className,
@@ -216,7 +216,7 @@ export function useCSSTransition<E extends HTMLElement>(
         !appearing && isEntered && transitionClassNames.enterDone,
         isExit && transitionClassNames.exit,
         isExiting && transitionClassNames.exitActive,
-        isExited && transitionClassNames.exitDone
+        isExited && transitionClassNames.exitDone,
       ) || undefined,
   };
 

@@ -7,8 +7,9 @@ import { RenderRecursively } from "@react-md/core/utils/RenderRecursively";
 import { type ReactElement, type ReactNode, useId } from "react";
 
 import { RenderTableOfContentsItem } from "./RenderTableOfContentsItem.js";
-import styles from "./TableOfContents.module.scss";
 import { TableOfContentsGroup } from "./TableOfContentsGroup.js";
+
+import styles from "./TableOfContents.module.scss";
 
 export interface TableOfContentsProps {
   toc: Readonly<TableOfContentsHeadings>;

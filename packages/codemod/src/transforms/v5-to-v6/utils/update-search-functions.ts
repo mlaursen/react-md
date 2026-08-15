@@ -23,7 +23,7 @@ const REPLACEMENTS = [
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -39,7 +39,7 @@ export default function transformer(
       returnOriginalName: true,
     }).forEach((name) => {
       comments.add(
-        `TODO: Check if \`${to}\` is using a list of objects and requires an \`extractor\` option`
+        `TODO: Check if \`${to}\` is using a list of objects and requires an \`extractor\` option`,
       );
 
       root
@@ -56,7 +56,7 @@ export default function transformer(
             (!j.ArrayExpression.check(list) && !j.Identifier.check(list))
           ) {
             comments.add(
-              "TOOD: Unable to automatically convert `caseInsensitiveSearch`"
+              "TOOD: Unable to automatically convert `caseInsensitiveSearch`",
             );
             return;
           }
@@ -72,7 +72,7 @@ export default function transformer(
           ];
           if (name === "findIgnoreCase") {
             properties.push(
-              j.objectProperty(j.identifier("type"), j.literal("search"))
+              j.objectProperty(j.identifier("type"), j.literal("search")),
             );
           }
 
@@ -116,7 +116,7 @@ export default function transformer(
                   prop.value = j.conditionalExpression(
                     prop.value,
                     whitespaceValue,
-                    j.literal("undefined")
+                    j.literal("undefined"),
                   );
                   properties.push(prop);
                 } else if (
@@ -131,7 +131,7 @@ export default function transformer(
             });
           } else if (j.Identifier.check(options)) {
             comments.add(
-              "TOOD: Unable to automatically convert `caseInsensitiveSearch`"
+              "TOOD: Unable to automatically convert `caseInsensitiveSearch`",
             );
           }
 

@@ -137,7 +137,7 @@ export interface ScaleTransitionHookOptions<
  * @since 4.0.0
  */
 export function useScaleTransition<E extends HTMLElement>(
-  options: ScaleTransitionHookOptions<E>
+  options: ScaleTransitionHookOptions<E>,
 ): CSSTransitionHookReturnValue<E> {
   const {
     timeout = DEFAULT_SCALE_TIMEOUT,

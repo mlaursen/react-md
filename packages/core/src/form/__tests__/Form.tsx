@@ -16,7 +16,7 @@ let consoleErrorSpy: Mock<typeof console.error>;
 beforeEach(() => {
   consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
   vi.spyOn(HTMLFormElement.prototype, "requestSubmit").mockImplementation(
-    () => {}
+    () => {},
   );
 });
 
@@ -41,7 +41,7 @@ describe("Form", () => {
         name="form"
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(form).toMatchSnapshot();
   });
@@ -54,7 +54,7 @@ describe("Form", () => {
     const { rerender } = render(
       <Form name="name">
         <button>Submit</button>
-      </Form>
+      </Form>,
     );
 
     const button = screen.getByRole("button", { name: "Submit" });
@@ -64,7 +64,7 @@ describe("Form", () => {
     rerender(
       <Form onSubmit={onSubmit} name="name">
         <button>Submit</button>
-      </Form>
+      </Form>,
     );
     fireEvent.click(button);
     expect(onSubmit).toHaveBeenCalledTimes(1);
@@ -74,7 +74,7 @@ describe("Form", () => {
     rerender(
       <Form onSubmit={onSubmit} name="name" disablePreventDefault>
         <button>Submit</button>
-      </Form>
+      </Form>,
     );
     fireEvent.click(button);
     expect(onSubmit).toHaveBeenCalledTimes(2);

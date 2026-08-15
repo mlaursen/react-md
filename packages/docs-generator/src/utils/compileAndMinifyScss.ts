@@ -6,7 +6,7 @@ import postcss from "postcss";
 import { type CompileScssOptions, compileScss } from "./compileScssModule.js";
 
 export async function compileAndMinifyScss(
-  options: CompileScssOptions
+  options: CompileScssOptions,
 ): Promise<string> {
   const compiled = compileScss(options);
   const result = await postcss([

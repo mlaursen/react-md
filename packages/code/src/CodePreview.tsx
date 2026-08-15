@@ -47,7 +47,7 @@ export function CodePreview(props: CodePreviewProps): ReactElement {
           "no-bb": !borderBottom,
           transparent,
         }),
-        className
+        className,
       )}
     >
       {children}

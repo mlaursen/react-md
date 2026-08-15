@@ -21,7 +21,7 @@ export interface ResizableLayoutExampleProps
   extends ExampleLayoutProps, Omit<ResizableLayoutOptions, "pathname"> {}
 
 export function ResizableLayoutExample(
-  props: ResizableLayoutExampleProps
+  props: ResizableLayoutExampleProps,
 ): ReactElement {
   const { layout, children, ...options } = props;
 

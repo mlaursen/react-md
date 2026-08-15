@@ -7,7 +7,7 @@ const transformers = [updateLinkProps];
 export default function all(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   transformers.forEach((transform) => {
     file.source = transform(file, api, options);

@@ -17,8 +17,8 @@ import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { InputToggleIcon } from "./InputToggleIcon.js";
-import { Label } from "./Label.js";
 import { type InputToggleSize } from "./inputToggleStyles.js";
+import { Label } from "./Label.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type LabelClassNameOptions } from "./types.js";
 import {

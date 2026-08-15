@@ -31,13 +31,13 @@ export const BUILT_IN_PARSERS = [
 ] satisfies readonly BuiltInParserName[];
 
 export function isBuiltInParser(
-  lang: string | undefined
+  lang: string | undefined,
 ): lang is BuiltInParserName {
   return !!lang && BUILT_IN_PARSERS.includes(lang as BuiltInParserName);
 }
 
 export function getParser(
-  lang: SupportedCodeLanguage
+  lang: SupportedCodeLanguage,
 ): BuiltInParserName | undefined {
   if (isBuiltInParser(lang)) {
     return lang;
@@ -57,7 +57,7 @@ export function getParser(
 }
 
 export function getParserOrThrow(
-  lang: SupportedCodeLanguage
+  lang: SupportedCodeLanguage,
 ): BuiltInParserName {
   const parser = getParser(lang);
   if (!parser) {

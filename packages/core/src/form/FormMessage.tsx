@@ -1,8 +1,8 @@
 import { type ReactElement } from "react";
 
 import { useEnsuredId } from "../useEnsuredId.js";
-import { FormMessageCounter } from "./FormMessageCounter.js";
 import { getFormConfig } from "./formConfig.js";
+import { FormMessageCounter } from "./FormMessageCounter.js";
 import { formMessage, formMessageText } from "./formMessageStyles.js";
 import {
   type ConfigurableFormMessageProps,

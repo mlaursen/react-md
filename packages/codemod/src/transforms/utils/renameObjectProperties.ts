@@ -15,7 +15,7 @@ export interface RenameObjectPropertiesOptions {
 }
 
 export function renameObjectProperties(
-  options: RenameObjectPropertiesOptions
+  options: RenameObjectPropertiesOptions,
 ): void {
   const { j, props, object } = options;
   object.find(j.ObjectProperty).forEach((prop) => {

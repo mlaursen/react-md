@@ -4,8 +4,9 @@ import { Typography } from "@react-md/core/typography/Typography";
 import Link from "next/link.js";
 import { type ReactElement } from "react";
 
-import styles from "./MainTitle.module.scss";
 import { VersionDropdown } from "./VersionDropdown.js";
+
+import styles from "./MainTitle.module.scss";
 
 export function MainTitle(): ReactElement {
   return (

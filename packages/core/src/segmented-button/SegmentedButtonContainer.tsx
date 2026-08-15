@@ -49,7 +49,7 @@ export interface SegmentedButtonContainerProps
  * @since 6.0.0
  */
 export function SegmentedButtonContainer(
-  props: SegmentedButtonContainerProps
+  props: SegmentedButtonContainerProps,
 ): ReactElement {
   const { ref, className, disableFullWidth, children, ...remaining } = props;
 

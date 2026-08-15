@@ -8,7 +8,7 @@ const test = (fixture: string): void => {
     fixture,
     {
       parser: "tsx",
-    }
+    },
   );
 };
 

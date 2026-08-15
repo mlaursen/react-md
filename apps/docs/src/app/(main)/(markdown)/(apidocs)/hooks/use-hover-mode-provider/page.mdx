@@ -11,7 +11,7 @@ hooks: [useHoverModeProvider]
 
 ```ts disableTransform
 function useHoverModeProvider(
-  options: HoverModeConfiguration
+  options: HoverModeConfiguration,
 ): Readonly<HoverModeContext>;
 ```
 
@@ -39,7 +39,7 @@ export interface CustomHoverContext extends HoverModeContext {
 }
 
 const context = createContext<CustomHoverContext>(
-  createHoverModeContext()
+  createHoverModeContext(),
   // you can also provide default values if needed when the context provider
   // isn't a parent component. the following are the defaults
   // createHoverModeContext({

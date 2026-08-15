@@ -4,6 +4,7 @@ import { type ReactElement } from "react";
 import { ComponentsAndHooks } from "./ComponentsAndHooks.js";
 import { HomePageBanner } from "./HomePageBanner.js";
 import { Styling } from "./Styling.js";
+
 import styles from "./page.module.scss";
 
 export default function HomePage(): ReactElement {

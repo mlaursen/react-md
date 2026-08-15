@@ -84,7 +84,7 @@ import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
  */
 export function useThrottledFunction<F extends AnyFunction>(
   func: F,
-  wait: number
+  wait: number,
 ): ThrottledFunction<F> {
   const args = useRef<Parameters<F>>(undefined);
   const result = useRef<ReturnType<F>>(undefined);

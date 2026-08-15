@@ -12,7 +12,7 @@ components: [Tab, TabList, Slide, SlideContainer]
 
 ```ts disableTransform
 function useMaxTabPanelHeight<E extends HTMLElement = HTMLDivElement>(
-  options: MaxTabPanelHeightOptions<E>
+  options: MaxTabPanelHeightOptions<E>,
 ): MaxTabPanelHeightImplementation<E>;
 ```
 
@@ -91,7 +91,7 @@ An object with the following definition:
 ```ts disableTransform
 export interface MaxTabPanelHeightImplementation<E extends HTMLElement> {
   getMaxTabPanelHeightProps: (
-    style?: CSSProperties
+    style?: CSSProperties,
   ) => ProvidedMaxTabPanelsHeightProps<E>;
 }
 

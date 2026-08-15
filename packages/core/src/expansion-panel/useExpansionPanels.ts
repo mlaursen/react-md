@@ -86,7 +86,7 @@ export type ProvidedExpansionPanelProps = Pick<
  * @since 6.0.0
  */
 export type GetExpansionPanelProps = (
-  indexOrPanelId: string | number
+  indexOrPanelId: string | number,
 ) => ProvidedExpansionPanelProps;
 
 /** @since 6.0.0 */
@@ -194,7 +194,7 @@ export interface ExpansionPanelImplementation {
  * having all panels expanded by default.
  */
 export function useExpansionPanels(
-  options: ExpansionPanelHookOptions = {}
+  options: ExpansionPanelHookOptions = {},
 ): ExpansionPanelImplementation {
   const {
     baseId: propBaseId,

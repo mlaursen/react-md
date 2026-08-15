@@ -32,7 +32,7 @@ export function useSelectCombobox<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 >(
-  options: SelectComboboxOptions<ComboboxEl, PopupEl>
+  options: SelectComboboxOptions<ComboboxEl, PopupEl>,
 ): SelectComboboxImplementation<ComboboxEl, PopupEl> {
   const { value, values, ...comboboxOptions } = options;
 

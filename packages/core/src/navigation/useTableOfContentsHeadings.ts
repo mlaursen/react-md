@@ -57,7 +57,7 @@ export const DEFAULT_GET_HEADING_TEXT = (element: Element): string =>
  * @since 6.0.0
  */
 export function useTableOfContentsHeadings(
-  options: TableOfContentsHeadingsOptions = {}
+  options: TableOfContentsHeadingsOptions = {},
 ): TableOfContentsHeadings {
   const {
     selector = DEFAULT_HEADING_SELECTOR,
@@ -71,11 +71,11 @@ export function useTableOfContentsHeadings(
       selector,
       getDepth,
       getHeadingText,
-    })
+    }),
   );
   useEffect(() => {
     setHeadings(
-      getTableOfContentsHeadings({ ssr, selector, getDepth, getHeadingText })
+      getTableOfContentsHeadings({ ssr, selector, getDepth, getHeadingText }),
     );
   }, [getDepth, getHeadingText, selector, ssr]);
 

@@ -58,7 +58,7 @@ export interface OverlayClassNameOptions extends BaseOverlayClassNameOptions {
  * @since 6.0.0
  */
 export function overlay(
-  options: OverlayClassNameOptions & { active?: boolean }
+  options: OverlayClassNameOptions & { active?: boolean },
 ): string {
   const {
     visible,
@@ -82,7 +82,7 @@ export function overlay(
       justify,
       disablePadding: true,
     }),
-    className
+    className,
   );
 }
 

@@ -30,13 +30,13 @@ describe("loop", () => {
   it("should only keep the number between 0 and the max value if the minmax arg is enabled", () => {
     expect(loop({ value: -1, max: 20, increment: true, minmax: true })).toBe(0);
     expect(loop({ value: -1, max: 20, increment: false, minmax: true })).toBe(
-      0
+      0,
     );
     expect(loop({ value: 100, max: 20, increment: true, minmax: true })).toBe(
-      20
+      20,
     );
     expect(loop({ value: 100, max: 20, increment: false, minmax: true })).toBe(
-      20
+      20,
     );
   });
 

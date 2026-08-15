@@ -88,7 +88,7 @@ export interface ProvidedRadioGroupProps<V extends string | number> {
 
 /** @since 6.0.0 */
 export type GetRadioGroupProps<V extends string | number> = (
-  value: V
+  value: V,
 ) => Readonly<ProvidedRadioGroupProps<V>>;
 
 /** @since 6.0.0 */
@@ -100,7 +100,7 @@ export interface RadioGroupImplementation<V extends string | number> {
 }
 
 export type GetMenuItemRadioGroupProps<V extends string | number> = (
-  value: V
+  value: V,
 ) => Readonly<{ checked: boolean; onCheckedChange: () => void }>;
 
 /** @since 6.0.0 */
@@ -158,7 +158,7 @@ export function useRadioGroup<V extends number>(
     menu?: false;
     name: string;
     defaultValue: UseStateInitializer<V>;
-  }
+  },
 ): RadioGroupImplementation<V>;
 export function useRadioGroup<V extends number>(
   options: RadioGroupOptions<V> & {
@@ -168,7 +168,7 @@ export function useRadioGroup<V extends number>(
     onChange?: never;
     onInvalid?: never;
     defaultValue: UseStateInitializer<V>;
-  }
+  },
 ): MenuItemRadioGroupImplementation<V>;
 /**
  * @example Generic String Example
@@ -219,7 +219,7 @@ export function useRadioGroup<V extends string>(
     menu?: false;
     name: string;
     defaultValue?: UseStateInitializer<V>;
-  }
+  },
 ): RadioGroupImplementation<V>;
 export function useRadioGroup<V extends string>(
   options: RadioGroupOptions<V> & {
@@ -229,7 +229,7 @@ export function useRadioGroup<V extends string>(
     onChange?: never;
     onInvalid?: never;
     defaultValue?: UseStateInitializer<V>;
-  }
+  },
 ): MenuItemRadioGroupImplementation<V>;
 /**
  * @example Strict Union Example
@@ -260,7 +260,7 @@ export function useRadioGroup<V extends string>(
  * @since 6.0.0
  */
 export function useRadioGroup<V extends string | number>(
-  options: RadioGroupOptions<V>
+  options: RadioGroupOptions<V>,
 ): CombinedRadioGroupReturnValue<V> {
   const {
     name,

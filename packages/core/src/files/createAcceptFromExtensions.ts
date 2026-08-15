@@ -3,7 +3,7 @@
  * @internal
  */
 export function createAcceptFromExtensions(
-  extensions: readonly string[]
+  extensions: readonly string[],
 ): string {
   let accept = "";
   for (const extension of extensions) {

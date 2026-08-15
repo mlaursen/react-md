@@ -25,10 +25,8 @@ $line-size: 2px;
 
   &::before {
     height: calc(
-      list-get-var(item-height) - calc(
-          list-get-var(item-vertical-padding) * 2
-        ) -
-        0.5rem
+      list-get-var(item-height) -
+        calc(list-get-var(item-vertical-padding) * 2) - 0.5rem
     );
     width: $line-size;
   }

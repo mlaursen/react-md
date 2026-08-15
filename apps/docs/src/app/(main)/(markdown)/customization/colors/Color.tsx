@@ -3,8 +3,9 @@ import { contrastColor } from "@react-md/core/theme/utils";
 import { cnb } from "cnbuilder";
 import { type ReactElement, type ReactNode } from "react";
 
-import styles from "./Color.module.scss";
 import { ColorHeadingWrapper } from "./ColorHeadingWrapper.js";
+
+import styles from "./Color.module.scss";
 
 const ACCENTS = [100, 200, 400, 700];
 
@@ -44,7 +45,7 @@ export function Color(props: ColorProps): ReactElement {
       className={cnb(
         !heading && box({ justify: "space-between" }),
         !!heading && box({ align: "start", stacked: true }),
-        i === 10 && styles.accents
+        i === 10 && styles.accents,
       )}
     >
       <ColorHeadingWrapper heading={heading}>

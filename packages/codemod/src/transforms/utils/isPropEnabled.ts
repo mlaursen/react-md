@@ -4,7 +4,7 @@ import { isPropBooleanExpression } from "./isPropBooleanExpression.js";
 import { isPropBooleanUnvalued } from "./isPropBooleanUnvalued.js";
 
 export function isPropEnabled(
-  attr: JSXAttribute | ASTPath<JSXAttribute>
+  attr: JSXAttribute | ASTPath<JSXAttribute>,
 ): boolean {
   const node = "node" in attr ? attr.node : attr;
   return (

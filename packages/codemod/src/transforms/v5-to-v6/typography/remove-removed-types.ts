@@ -7,7 +7,7 @@ import { removeEmptyImportDeclaration } from "../../utils/removeEmptyImportDecla
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -23,12 +23,12 @@ export default function transformer(
             "TextContainerSize",
             "TextContainerRenderFunction",
             "TypographyRenderFunction",
-          ].includes(getImportedName(path))
+          ].includes(getImportedName(path)),
         )
         .forEach((importSpecifier) => {
           const { name } = importSpecifier.node.imported;
           comments.add(
-            `TODO: Remove the \`${name}\` usage since it no longer exists.`
+            `TODO: Remove the \`${name}\` usage since it no longer exists.`,
           );
 
           j(importSpecifier).remove();

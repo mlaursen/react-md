@@ -31,7 +31,7 @@ export interface TextFieldContainerClassNameOptions
  * @since 6.0.0
  */
 export function textFieldContainer(
-  options: TextFieldContainerClassNameOptions = {}
+  options: TextFieldContainerClassNameOptions = {},
 ): string {
   const {
     className,
@@ -87,6 +87,6 @@ export function textFieldContainer(
       "underline-right-addon": isUnderlined && rightAddon,
     }),
     cssUtils({ textColor }),
-    className
+    className,
   );
 }

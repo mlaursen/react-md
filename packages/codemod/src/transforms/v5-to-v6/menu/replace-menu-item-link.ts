@@ -7,7 +7,7 @@ import updateListItemProps from "../list/update-list-item-props.js";
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -29,7 +29,7 @@ export default function transformer(
 
       jsxElement.node.openingElement.attributes ??= [];
       jsxElement.node.openingElement.attributes.push(
-        j.jsxAttribute(j.jsxIdentifier("role"), j.stringLiteral("menuitem"))
+        j.jsxAttribute(j.jsxIdentifier("role"), j.stringLiteral("menuitem")),
       );
     });
   });

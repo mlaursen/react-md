@@ -75,7 +75,7 @@ export interface MaterialSymbolsUrlOptions extends MaterialSymbolsGoogleFontUrlO
  * @since 7.1.0
  */
 export function getMaterialSymbolsUrl(
-  options: MaterialSymbolsUrlOptions = {}
+  options: MaterialSymbolsUrlOptions = {},
 ): string {
   // the names have to be sorted for the google fonts api
   const names = alphaNumericSort([
@@ -85,11 +85,11 @@ export function getMaterialSymbolsUrl(
   const grade = getMaterialSymbolOption(options.grade, MATERIAL_CONFIG.grade);
   const weight = getMaterialSymbolOption(
     options.weight,
-    MATERIAL_CONFIG.weight
+    MATERIAL_CONFIG.weight,
   );
   const opticalSize = getMaterialSymbolOption(
     options.opticalSize,
-    MATERIAL_CONFIG.opticalSize
+    MATERIAL_CONFIG.opticalSize,
   );
   const specs = `:opsz,wght,FILL,GRAD@${opticalSize},${weight},${fill},${grade}`;
 

@@ -796,8 +796,7 @@ $variables: (
           }
 
           &--animate {
-            transition: transform
-              $transition-duration
+            transition: transform $transition-duration
               $transition-timing-function;
           }
 

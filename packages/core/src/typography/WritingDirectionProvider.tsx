@@ -50,7 +50,7 @@ const context = createContext<InheritableContext>({
   toggleDir: () => {
     if (process.env.NODE_ENV !== "production") {
       throw new Error(
-        "Tried to toggle the current writing direction without initializing the `Dir` component."
+        "Tried to toggle the current writing direction without initializing the `Dir` component.",
       );
     }
   },
@@ -199,7 +199,7 @@ export const DEFAULT_WRITING_DIRECTION = (): Dir => {
  * @since 6.0.0 Renamed from `Dir`
  */
 export function WritingDirectionProvider(
-  props: WritingDirectionProviderProps
+  props: WritingDirectionProviderProps,
 ): ReactElement {
   const { children, defaultDir = DEFAULT_WRITING_DIRECTION } = props;
   const { root } = useContext(context);
@@ -222,7 +222,7 @@ export function WritingDirectionProvider(
 
   const value = useMemo<InheritableContext>(
     () => ({ root: false, dir, toggleDir }),
-    [dir, toggleDir]
+    [dir, toggleDir],
   );
   let child = Children.only(children);
   if (!root && isValidElement<{ dir: Dir }>(child)) {

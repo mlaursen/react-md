@@ -86,7 +86,7 @@ describe("FixedDialog", () => {
         defaultVisible
         style={{ color: "orange" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(dialog).toHaveStyle("color: rgb(255, 165, 0)");
     expect(dialog).toHaveClass("custom-class-name");
@@ -96,7 +96,7 @@ describe("FixedDialog", () => {
   it("should default to hiding the overlay", async () => {
     const user = userEvent.setup();
     const { rerender } = rmdRender(
-      <Test overlayProps={{ "data-testid": "overlay" }} />
+      <Test overlayProps={{ "data-testid": "overlay" }} />,
     );
 
     expect(() => screen.getByRole("dialog")).toThrow();
@@ -108,7 +108,10 @@ describe("FixedDialog", () => {
     expect(overlay).not.toHaveClass("rmd-overlay--active");
 
     rerender(
-      <Test overlayProps={{ "data-testid": "overlay" }} overlayHidden={false} />
+      <Test
+        overlayProps={{ "data-testid": "overlay" }}
+        overlayHidden={false}
+      />,
     );
     expect(overlay).toHaveClass("rmd-overlay--active");
   });

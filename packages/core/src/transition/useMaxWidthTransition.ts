@@ -45,7 +45,7 @@ export interface MaxWidthTransitionOptions extends BaseMaxWidthTransitionOptions
  * @since 6.0.0
  */
 export function useMaxWidthTransition(
-  options: MaxWidthTransitionOptions
+  options: MaxWidthTransitionOptions,
 ): ReactNode {
   const { element, disabled, disableTransition, transitionIn, className } =
     options;

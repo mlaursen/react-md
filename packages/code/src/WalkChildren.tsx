@@ -17,7 +17,7 @@ export interface WalkChildrenProps {
 }
 
 export const WalkChildren = memo(function WalkChildren(
-  props: WalkChildrenProps
+  props: WalkChildrenProps,
 ) {
   const { regex, children, renderer: Replacement } = props;
 

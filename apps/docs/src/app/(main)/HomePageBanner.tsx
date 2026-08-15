@@ -7,8 +7,9 @@ import { ButtonStyledLink } from "@/components/ButtonStyledLink.js";
 import { ReactMDLogo } from "@/components/ReactMDLogo.js";
 import { DEFAULT_TITLE } from "@/constants/metadata.js";
 
-import styles from "./HomePageBanner.module.scss";
 import { HomePageBannerContainer } from "./HomePageBannerContainer.js";
+
+import styles from "./HomePageBanner.module.scss";
 
 export function HomePageBanner(): ReactElement {
   return (

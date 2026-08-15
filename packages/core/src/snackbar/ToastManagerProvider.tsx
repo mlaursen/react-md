@@ -62,7 +62,7 @@ export function useToastQueue(limit?: number): ToastQueue {
   const queue = useSyncExternalStore(
     toastManager.subscribe,
     toastManager.getQueue,
-    toastManager.getQueue
+    toastManager.getQueue,
   );
 
   return useMemo(() => {
@@ -99,7 +99,7 @@ export interface ToastManagerProviderProps {
  * @since 6.0.0
  */
 export function ToastManagerProvider(
-  props: ToastManagerProviderProps
+  props: ToastManagerProviderProps,
 ): ReactElement {
   const { children, manager = toastManager } = props;
 

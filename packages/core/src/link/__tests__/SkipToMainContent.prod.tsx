@@ -23,7 +23,7 @@ describe("SkipToMainContent", () => {
     const { SkipToMainContent } = await import("../SkipToMainContent.js");
 
     expect(() =>
-      render(<SkipToMainContent mainId="not-found" />)
+      render(<SkipToMainContent mainId="not-found" />),
     ).not.toThrow();
   });
 

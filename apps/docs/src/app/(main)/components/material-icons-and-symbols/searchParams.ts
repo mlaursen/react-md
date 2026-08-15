@@ -33,7 +33,7 @@ export const SYMBOL_STYLESHEET = "icon.stylesheet";
 type NumberToString<N> = N extends number ? `${N}` : never;
 
 export function isMaterialIconType(
-  iconType: unknown
+  iconType: unknown,
 ): iconType is "icon" | "icon-font" {
   return iconType === "icon" || iconType === "icon-font";
 }
@@ -44,7 +44,7 @@ export function isValidIconType(iconType: unknown): iconType is IconType {
 
 export function isValidIconFamily(
   iconFamily: unknown,
-  iconType: IconType
+  iconType: IconType,
 ): iconFamily is MaterialIconFamily {
   return (
     typeof iconFamily === "string" &&
@@ -57,7 +57,7 @@ export function isValidIconFamily(
 export function isValidIconCategory(
   iconCategory: unknown,
   iconType: IconType,
-  iconFamily: MaterialIconFamily
+  iconFamily: MaterialIconFamily,
 ): iconCategory is IconCategoryFilter {
   if (typeof iconCategory !== "string" || !iconCategory) {
     return false;
@@ -72,7 +72,7 @@ export function isValidIconCategory(
 
 export function isValidSelectedIconName(
   name: unknown,
-  iconType: IconType
+  iconType: IconType,
 ): name is MaterialIconAndSymbolName {
   if (typeof name !== "string" || !name) {
     return false;
@@ -97,7 +97,7 @@ export function isValidSelectedIconName(
 }
 
 export function isValidSymbolGrade(
-  grade: unknown
+  grade: unknown,
 ): grade is NumberToString<MaterialSymbolGrade> {
   return (
     typeof grade === "string" && !grade && ["-25", "0", "200"].includes(grade)
@@ -105,25 +105,25 @@ export function isValidSymbolGrade(
 }
 
 export function isValidSymbolFill(
-  fill: unknown
+  fill: unknown,
 ): fill is NumberToString<MaterialSymbolFill> {
   return fill === "0" || fill === "1";
 }
 
 export function isValidSymbolWeight(
-  weight: unknown
+  weight: unknown,
 ): weight is NumberToString<MaterialSymbolWeight> {
   return (
     typeof weight === "string" &&
     !!weight &&
     ["100", "200", "300", "400", "500", "600", "700", "800", "900"].includes(
-      weight
+      weight,
     )
   );
 }
 
 export function isValidSymbolOpticalSize(
-  opticalSize: unknown
+  opticalSize: unknown,
 ): opticalSize is NumberToString<MaterialSymbolOpticalSize> {
   return (
     typeof opticalSize === "string" &&
@@ -134,7 +134,7 @@ export function isValidSymbolOpticalSize(
 
 export function getInitialState(
   state: MaterialIconsAndSymbolsState,
-  searchParams: URLSearchParams
+  searchParams: URLSearchParams,
 ): MaterialIconsAndSymbolsState {
   const searchQuery = searchParams.get(ICON_QUERY);
   const searchIconType = searchParams.get(ICON_TYPE);

@@ -140,7 +140,7 @@ export type NullableTypographyClassNameOptions = Omit<
  * @since 6.0.0
  */
 export function typography(
-  options: NullableTypographyClassNameOptions = {}
+  options: NullableTypographyClassNameOptions = {},
 ): string {
   const { type = "body-1" } = options;
 
@@ -149,6 +149,6 @@ export function typography(
   return cnb(
     "rmd-typography",
     type && `rmd-typography--${type}`,
-    cssUtils(options)
+    cssUtils(options),
   );
 }

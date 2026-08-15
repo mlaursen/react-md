@@ -29,7 +29,7 @@ export interface ResizingTextAreaWrapperProps extends HTMLAttributes<HTMLDivElem
  * @internal
  */
 export const ResizingTextAreaWrapper = function ResizingTextAreaWrapper(
-  props: ResizingTextAreaWrapperProps
+  props: ResizingTextAreaWrapperProps,
 ): ReactElement {
   const {
     ref,
@@ -52,7 +52,7 @@ export const ResizingTextAreaWrapper = function ResizingTextAreaWrapper(
       className={cnb(
         "rmd-textarea-container__inner",
         !disableTransition && "rmd-textarea-container__inner--animate",
-        className
+        className,
       )}
     >
       {children}

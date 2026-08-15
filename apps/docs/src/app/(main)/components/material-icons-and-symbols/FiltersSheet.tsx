@@ -12,9 +12,10 @@ import RefreshOutlinedIcon from "@react-md/material-icons/RefreshOutlinedIcon";
 import { cnb } from "cnbuilder";
 import { type ReactElement, useEffect, useId, useState } from "react";
 
-import styles from "./FiltersSheet.module.scss";
 import { FiltersSheetContent } from "./FiltersSheetContent.js";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
+
+import styles from "./FiltersSheet.module.scss";
 
 export interface FiltersSheetProps {
   className: string;

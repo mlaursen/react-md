@@ -154,7 +154,7 @@ export interface CreateHoverModeContextOptions {
  * @since 6.0.0
  */
 export function createHoverModeContext(
-  options: CreateHoverModeContextOptions = {}
+  options: CreateHoverModeContextOptions = {},
 ): Readonly<HoverModeContext> {
   const { defaultActiveId = "", hoverTimeout, leaveTimeout = 0 } = options;
 
@@ -251,7 +251,7 @@ export interface HoverModeConfiguration extends CreateHoverModeContextOptions {
  * top-level catch all.
  */
 export function useHoverModeProvider(
-  options: HoverModeConfiguration
+  options: HoverModeConfiguration,
 ): Readonly<HoverModeContext> {
   const {
     hoverTimeout,
@@ -280,7 +280,7 @@ export function useHoverModeProvider(
         setActiveId(activeId);
       }
     },
-    [clearDisableTimer, forceRerender]
+    [clearDisableTimer, forceRerender],
   );
   const disableHoverMode = useCallback(() => {
     clearDisableTimer();
@@ -327,6 +327,6 @@ export function useHoverModeProvider(
       disableHoverMode,
       startDisableTimer,
       clearDisableTimer,
-    ]
+    ],
   );
 }

@@ -193,7 +193,7 @@ describe("useFixedPositioning", () => {
 
   it("should allow for configuring the fixed position", () => {
     const { container } = render(
-      <Test transformOrigin anchor={TOP_INNER_RIGHT_ANCHOR} />
+      <Test transformOrigin anchor={TOP_INNER_RIGHT_ANCHOR} />,
     );
     const toggle = screen.getByRole("button");
 

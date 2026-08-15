@@ -1,7 +1,8 @@
-import { type Element } from "hast";
-import { type MdxJsxFlowElementHast } from "mdast-util-mdx-jsx";
 import { readFile } from "node:fs/promises";
 import { join, parse } from "node:path";
+
+import { type Element } from "hast";
+import { type MdxJsxFlowElementHast } from "mdast-util-mdx-jsx";
 
 import { assertString } from "./assertions.js";
 import { createJsxNode } from "./createJsxNode.js";
@@ -59,7 +60,7 @@ export async function importCode(options: ImportCodeOptions): Promise<void> {
   if (errors.size > 0) {
     const message = [...errors].map((error) => `- ${error}`).join("\n");
     throw new Error(
-      `Unable to import code due to the following errors:\n${message}`
+      `Unable to import code due to the following errors:\n${message}`,
     );
   }
 

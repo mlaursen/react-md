@@ -134,7 +134,7 @@ export function chip(options: ChipClassNameOptions = {}): string {
       textColor: disabled ? "text-disabled" : undefined,
       backgroundColor,
     }),
-    className
+    className,
   );
 }
 

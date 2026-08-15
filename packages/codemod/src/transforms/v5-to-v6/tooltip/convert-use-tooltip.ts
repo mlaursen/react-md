@@ -39,7 +39,7 @@ const DISABLE_HOVER_MODE_COMMENT =
   "TODO: `useTooltip` no longer supports the `disableHoverMode` option and was removed. See the new hover mode API docs or define the `hoverTimeout` to option.";
 
 const isNumberOrIdentifier = (
-  o: ObjectProperty
+  o: ObjectProperty,
 ): o is ObjectProperty & { value: NumericLiteral | Identifier } => {
   return o.value.type === "NumericLiteral" || o.value.type === "Identifier";
 };
@@ -47,7 +47,7 @@ const isNumberOrIdentifier = (
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -111,8 +111,8 @@ export default function transformer(
                   name: "hoverTimeout",
                   type: "JSXIdentifier",
                 },
-                value
-              )
+                value,
+              ),
             );
           });
         }
@@ -162,7 +162,7 @@ export default function transformer(
                   case "disableHoverMode":
                   case "startDisableTimer":
                     useTooltipHoverModeProperties.add(
-                      j.objectProperty.from(objectProperty.node)
+                      j.objectProperty.from(objectProperty.node),
                     );
                     j(objectProperty).remove();
                     break;

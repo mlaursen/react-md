@@ -1,9 +1,10 @@
-import { wait } from "@react-md/core/utils/wait";
-import { glob } from "glob";
-import lodash from "lodash";
 import { execSync } from "node:child_process";
 import { rm } from "node:fs/promises";
 import { join } from "node:path";
+
+import { wait } from "@react-md/core/utils/wait";
+import { glob } from "glob";
+import lodash from "lodash";
 import prettyMilliseconds from "pretty-ms";
 
 import { createCoreMetadataFIle } from "./utils/createCoreMetadataFile.js";
@@ -40,8 +41,8 @@ for (const requests of chunks) {
         created,
         iconNameFixes: metadata.iconNameFixes,
         materialIconsSrc,
-      })
-    )
+      }),
+    ),
   );
   remaining -= requests.length;
   console.log(`${remaining} icons remaining ... `);
@@ -51,7 +52,7 @@ for (const requests of chunks) {
 
 const toRemove = lodash.difference(existingComponents, [...created]);
 await Promise.all(
-  toRemove.map((fileName) => rm(join(materialIconsSrc, fileName)))
+  toRemove.map((fileName) => rm(join(materialIconsSrc, fileName))),
 );
 
 const totalDuration = Date.now() - startTime;

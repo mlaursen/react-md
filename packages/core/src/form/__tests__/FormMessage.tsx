@@ -25,7 +25,7 @@ describe("FormMessage", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(container).toMatchSnapshot();
 
@@ -35,7 +35,7 @@ describe("FormMessage", () => {
         error
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(container).toMatchSnapshot();
 
@@ -46,14 +46,14 @@ describe("FormMessage", () => {
         theme="filled"
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(container).toMatchSnapshot();
   });
 
   it("should wrap the children in a p tag unless disableMessage is provided", () => {
     const { rerender } = render(
-      <FormMessage data-testid="container">Hello, world!</FormMessage>
+      <FormMessage data-testid="container">Hello, world!</FormMessage>,
     );
     const container = screen.getByTestId("container");
 
@@ -62,7 +62,7 @@ describe("FormMessage", () => {
     rerender(
       <FormMessage data-testid="container" disableWrap>
         Hello, world!
-      </FormMessage>
+      </FormMessage>,
     );
     expect(container.firstChild).not.toBeInstanceOf(HTMLParagraphElement);
     expect(container.firstChild).toBeInstanceOf(Text);
@@ -77,7 +77,7 @@ describe("FormMessage", () => {
         messageClassName="message-class-name"
       >
         <span>Help text</span>
-      </FormMessage>
+      </FormMessage>,
     );
     const container = screen.getByTestId("container");
     expect(container).toMatchSnapshot();

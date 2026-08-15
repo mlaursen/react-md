@@ -22,7 +22,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 
 function isPropExpressionKind(
   j: JSCodeshift,
-  attr: JSXAttribute
+  attr: JSXAttribute,
 ): attr is JSXAttribute & {
   value: JSXExpressionContainer & {
     expression: ExpressionKind;
@@ -38,14 +38,14 @@ function isPropExpressionKind(
 
 const toExpression = (
   j: JSCodeshift,
-  value: ExpressionKind | true | undefined
+  value: ExpressionKind | true | undefined,
 ): ExpressionKind =>
   value === true || value === undefined ? j.literal(value === true) : value;
 
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -94,18 +94,18 @@ export default function transformer(
             let value: JSXExpressionContainer | null = null;
             if (!isPropBooleanExpression(attr)) {
               value = j.jsxExpressionContainer(
-                negateExpression({ j, expr: attr.value.expression })
+                negateExpression({ j, expr: attr.value.expression }),
               );
             }
 
             props.push(
-              j.jsxAttribute(j.jsxIdentifier("disableOverlay"), value)
+              j.jsxAttribute(j.jsxIdentifier("disableOverlay"), value),
             );
             break;
           }
           case "defaultFocus":
             comments.add(
-              "TODO: A `Dialog` set the `defaultFocus` but that is no longer supported. Enable the `autoFocus` prop on the target element instead."
+              "TODO: A `Dialog` set the `defaultFocus` but that is no longer supported. Enable the `autoFocus` prop on the target element instead.",
             );
             break;
 
@@ -212,28 +212,28 @@ export default function transformer(
           resolved.properties.push(
             j.objectProperty(
               j.identifier("noOpacity"),
-              toExpression(j, overlayHidden)
-            )
+              toExpression(j, overlayHidden),
+            ),
           );
         }
 
         if (overlayStyle) {
           resolved.properties.push(
-            j.objectProperty(j.identifier("style"), overlayStyle)
+            j.objectProperty(j.identifier("style"), overlayStyle),
           );
         }
 
         if (overlayClassName) {
           resolved.properties.push(
-            j.objectProperty(j.identifier("className"), overlayClassName)
+            j.objectProperty(j.identifier("className"), overlayClassName),
           );
         }
 
         props.push(
           j.jsxAttribute(
             j.jsxIdentifier("overlayProps"),
-            j.jsxExpressionContainer(resolved)
-          )
+            j.jsxExpressionContainer(resolved),
+          ),
         );
       }
 
@@ -244,15 +244,15 @@ export default function transformer(
         }
         if (containerClassName) {
           attrs.push(
-            j.objectProperty(j.identifier("className"), containerClassName)
+            j.objectProperty(j.identifier("className"), containerClassName),
           );
         }
 
         props.push(
           j.jsxAttribute(
             j.jsxIdentifier("containerProps"),
-            j.jsxExpressionContainer(j.objectExpression(attrs))
-          )
+            j.jsxExpressionContainer(j.objectExpression(attrs)),
+          ),
         );
       }
 
@@ -268,10 +268,10 @@ export default function transformer(
             j.jsxExpressionContainer(
               j.arrowFunctionExpression(
                 [],
-                toExpression(j, disableFocusContainer || true)
-              )
-            )
-          )
+                toExpression(j, disableFocusContainer || true),
+              ),
+            ),
+          ),
         );
       } else if (
         disableFocusOnMount ||
@@ -289,28 +289,28 @@ export default function transformer(
                     j.binaryExpression(
                       "===",
                       j.identifier("focusType"),
-                      j.literal("mount")
+                      j.literal("mount"),
                     ),
                     j.blockStatement([
                       j.returnStatement(toExpression(j, disableFocusOnMount)),
-                    ])
+                    ]),
                   ),
                   j.ifStatement(
                     j.binaryExpression(
                       "===",
                       j.identifier("focusType"),
-                      j.literal("mount")
+                      j.literal("mount"),
                     ),
                     j.blockStatement([
                       j.returnStatement(toExpression(j, disableFocusOnMount)),
-                    ])
+                    ]),
                   ),
 
                   j.returnStatement(toExpression(j, disableTabFocusWrap)),
-                ])
-              )
-            )
-          )
+                ]),
+              ),
+            ),
+          ),
         );
       }
 

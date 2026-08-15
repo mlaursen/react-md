@@ -42,7 +42,7 @@ export function declarations(root: Root): boolean {
         changed = true;
         addTodo(
           decl,
-          `The ${name} ${isVariable ? "variable" : "function"} has been removed.`
+          `The ${name} ${isVariable ? "variable" : "function"} has been removed.`,
         );
 
         return;
@@ -108,7 +108,7 @@ export function declarations(root: Root): boolean {
     const parser = postcssValueParser(forward.toString());
     const overrides = parser.nodes.find(
       (node): node is FunctionNode =>
-        node.type === "function" && node.value === ""
+        node.type === "function" && node.value === "",
     );
     if (!overrides) {
       return;
@@ -142,8 +142,8 @@ export function declarations(root: Root): boolean {
       root.insertBefore(
         0,
         createTodoComment(
-          `The following variables have been removed: ${[...removedVariables].join(", ")}`
-        )
+          `The following variables have been removed: ${[...removedVariables].join(", ")}`,
+        ),
       );
     }
 

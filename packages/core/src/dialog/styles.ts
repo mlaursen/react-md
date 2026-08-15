@@ -59,14 +59,14 @@ export interface DialogContainerClassNameOptions {
  * @since 6.0.0
  */
 export function dialogContainer(
-  options: DialogContainerClassNameOptions = {}
+  options: DialogContainerClassNameOptions = {},
 ): string {
   const { className, centered, displayNone } = options;
 
   return cnb(
     containerStyles({ centered }),
     displayNone && DISPLAY_NONE_CLASS,
-    className
+    className,
   );
 }
 
@@ -126,7 +126,7 @@ export function dialog(options: DialogClassNameOptions = {}): string {
       "l-width": width === "large",
       "xl-width": width === "extra-large",
     }),
-    className
+    className,
   );
 }
 
@@ -143,7 +143,7 @@ export interface DialogHeaderClassNameOptions {
  * @since 6.0.0
  */
 export function dialogHeader(
-  options: DialogHeaderClassNameOptions = {}
+  options: DialogHeaderClassNameOptions = {},
 ): string {
   const { className } = options;
 
@@ -160,7 +160,7 @@ export interface DialogContentClassNameOptions {
 
 /** @since 6.0.0 */
 export function dialogContent(
-  options: DialogContentClassNameOptions = {}
+  options: DialogContentClassNameOptions = {},
 ): string {
   const { className, disablePadding = false } = options;
 
@@ -192,7 +192,7 @@ export interface DialogFooterClassNameOptions {
 
 /** @since 6.0.0 */
 export function dialogFooter(
-  options: DialogFooterClassNameOptions = {}
+  options: DialogFooterClassNameOptions = {},
 ): string {
   const { align = "end", className } = options;
 
@@ -204,7 +204,7 @@ export function dialogFooter(
       between: align === "between",
       end: align === "end" || align === "stacked-end",
     }),
-    className
+    className,
   );
 }
 

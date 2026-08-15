@@ -46,7 +46,7 @@ export interface BuildTreeOptions<T extends TreeItemNode> {
  * @since 6.0.0 Updated to include the {@link TreeItemChildIds}
  */
 export function buildTree<T extends TreeItemNode>(
-  options: BuildTreeOptions<T>
+  options: BuildTreeOptions<T>,
 ): readonly RenderableTreeItemNode<T>[] | undefined {
   const { sort, nodes, parentId, treeItemChildIds } = options;
   const childIds = treeItemChildIds.get(parentId) || new Set();
@@ -111,7 +111,7 @@ export interface TreeItems<T extends TreeItemNode> {
  * multiple arguments. Also logs any orphaned items that do not have a parent
  */
 export function useTreeItems<T extends TreeItemNode>(
-  options: TreeItemOptions<T>
+  options: TreeItemOptions<T>,
 ): TreeItems<T> {
   const { data, sort, rootId } = options;
 

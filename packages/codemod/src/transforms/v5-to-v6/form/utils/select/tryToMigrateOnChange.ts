@@ -24,15 +24,15 @@ export function tryToMigrateOnChange({ j, prop, comments }: Options): void {
 
   const eventCurrentTargetValue = j.memberExpression(
     j.memberExpression(j.identifier("event"), j.identifier("currentTarget")),
-    j.identifier("value")
+    j.identifier("value"),
   );
 
   const statements: StatementKind[] = [];
   if (j.Identifier.check(value.expression)) {
     statements.push(
       j.expressionStatement(
-        j.callExpression(value.expression, [eventCurrentTargetValue])
-      )
+        j.callExpression(value.expression, [eventCurrentTargetValue]),
+      ),
     );
   } else {
     const [arg] = value.expression.params;
@@ -40,7 +40,7 @@ export function tryToMigrateOnChange({ j, prop, comments }: Options): void {
     // `onChange={({ ...destructured... }) => {...}}`.
     if (!j.Identifier.check(arg) && !j.ObjectPattern.check(arg)) {
       comments.add(
-        "TODO: Unable to automatically convert the `Select`'s `onChange` handler"
+        "TODO: Unable to automatically convert the `Select`'s `onChange` handler",
       );
       return;
     }
@@ -56,17 +56,17 @@ export function tryToMigrateOnChange({ j, prop, comments }: Options): void {
       j.variableDeclaration("const", [
         j.variableDeclarator(
           value.expression.params[0],
-          eventCurrentTargetValue
+          eventCurrentTargetValue,
         ),
       ]),
-      ...prevBody
+      ...prevBody,
     );
   }
 
   prop.node.value = j.jsxExpressionContainer(
     j.arrowFunctionExpression(
       [j.identifier("event")],
-      j.blockStatement(statements)
-    )
+      j.blockStatement(statements),
+    ),
   );
 }

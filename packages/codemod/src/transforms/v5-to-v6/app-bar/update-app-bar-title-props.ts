@@ -12,7 +12,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -42,8 +42,8 @@ export default function transformer(
                   name: "textOverflow",
                   type: "JSXIdentifier",
                 },
-                j.stringLiteral("nowrap")
-              )
+                j.stringLiteral("nowrap"),
+              ),
             );
           }
         } else if (name === "keyline") {
@@ -54,8 +54,8 @@ export default function transformer(
                   name: "keyline",
                   type: "JSXIdentifier",
                 },
-                j.stringLiteral("nav")
-              )
+                j.stringLiteral("nav"),
+              ),
             );
           }
         }

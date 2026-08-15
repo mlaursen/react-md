@@ -48,7 +48,7 @@ const V5_PACKAGES = [
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -60,7 +60,7 @@ export default function transformer(
       j.ImportDeclaration,
       (path) =>
         typeof path.source.value === "string" &&
-        V5_PACKAGES.includes(path.source.value)
+        V5_PACKAGES.includes(path.source.value),
     )
     .forEach((importDeclaration) => {
       const decl = j(importDeclaration);
@@ -82,7 +82,7 @@ export default function transformer(
   if (specifiers.size) {
     let reactMdImport = root.find(
       j.ImportDeclaration,
-      (path) => path.source.value === "react-md"
+      (path) => path.source.value === "react-md",
     );
 
     if (!reactMdImport.length) {
@@ -90,7 +90,7 @@ export default function transformer(
       root.get().node.program.body.unshift(newImport);
       reactMdImport = root.find(
         j.ImportDeclaration,
-        (path) => path.source.value === "react-md"
+        (path) => path.source.value === "react-md",
       );
     } else if (reactMdImport.length > 1) {
       // TODO
@@ -110,7 +110,7 @@ export default function transformer(
         j.importDeclaration.from({
           ...importDeclaration.node,
           specifiers: sortImportSpecifiers([...merged.values()]),
-        })
+        }),
       );
     });
   }

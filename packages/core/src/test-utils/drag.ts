@@ -37,7 +37,7 @@ const getCoords = (elementOrCoords: Element | Point): Point =>
  */
 export async function drag(
   element: Element,
-  options: DragOptions
+  options: DragOptions,
 ): Promise<void> {
   const {
     delta,

@@ -8,11 +8,11 @@ import { useEnsuredRef } from "../useEnsuredRef.js";
 import { useEnsuredState } from "../useEnsuredState.js";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect.js";
 import { withinRange } from "../utils/withinRange.js";
-import { useSpinButtonGroup } from "./SpinButtonGroupProvider.js";
 import {
   defaultGetSpinButtonTextContent,
   defaultSpinButtonGetValueText,
 } from "./defaults.js";
+import { useSpinButtonGroup } from "./SpinButtonGroupProvider.js";
 import {
   type SpinButtonChangeEvent,
   type SpinButtonChangeEventOptions,
@@ -35,7 +35,7 @@ const noop = (): void => {
  * @since 6.4.0
  */
 export function useSpinButton<E extends HTMLElement = HTMLDivElement>(
-  options: SpinButtonOptions<E>
+  options: SpinButtonOptions<E>,
 ): SpinButtonImplementation<E> {
   const {
     id: propId,
@@ -108,7 +108,7 @@ export function useSpinButton<E extends HTMLElement = HTMLDivElement>(
         focusNext();
       }
     },
-    [focusNext, onValueChange, setValue]
+    [focusNext, onValueChange, setValue],
   );
   const increment = useCallback(
     (event: SpinButtonChangeEvent<E>) => {
@@ -127,7 +127,7 @@ export function useSpinButton<E extends HTMLElement = HTMLDivElement>(
         value: nextValue,
       });
     },
-    [keyboardValue, max, min, step, updateValue, value]
+    [keyboardValue, max, min, step, updateValue, value],
   );
   const decrement = useCallback(
     (event: SpinButtonChangeEvent<E>) => {
@@ -146,7 +146,7 @@ export function useSpinButton<E extends HTMLElement = HTMLDivElement>(
         value: nextValue,
       });
     },
-    [keyboardValue, max, min, step, updateValue, value]
+    [keyboardValue, max, min, step, updateValue, value],
   );
 
   return {

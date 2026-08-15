@@ -42,7 +42,7 @@ export function useVirtualizedColumns(): VirtualizedColumns {
   });
   const columns = Math.floor(containerWidth / MIN_CELL_WIDTH);
   const containerStyle = useInlineCSSVariables(
-    useMemo(() => [{ name: "--rmd-box-columns", value: columns }], [columns])
+    useMemo(() => [{ name: "--rmd-box-columns", value: columns }], [columns]),
   );
 
   return {

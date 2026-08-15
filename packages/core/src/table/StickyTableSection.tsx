@@ -43,7 +43,7 @@ export interface StickyTableSectionProps
  * @since 6.0.0
  */
 export function StickyTableSection(
-  props: StickyTableSectionProps
+  props: StickyTableSectionProps,
 ): ReactElement {
   const {
     ref,

@@ -160,7 +160,7 @@ export function appBar(options: AppBarClassNameOptions = {}): string {
       backgroundColor: !surface && !clear ? theme : undefined,
       surfaceColor,
     }),
-    className
+    className,
   );
 }
 
@@ -200,6 +200,6 @@ export function appBarTitle(options: AppBarTitleClassNameOptions = {}): string {
       keyline: keyline === "list",
       "nav-keyline": keyline === "nav",
     }),
-    className
+    className,
   );
 }

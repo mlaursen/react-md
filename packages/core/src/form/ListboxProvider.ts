@@ -58,7 +58,7 @@ export interface ListboxProviderOptions<
  * @since 6.3.0
  */
 export function useListboxProvider<Value extends ListboxValue>(
-  options: ListboxProviderOptions<Value>
+  options: ListboxProviderOptions<Value>,
 ): ListboxContext {
   const {
     value,
@@ -95,6 +95,6 @@ export function useListboxProvider<Value extends ListboxValue>(
       setValue,
       unselectedIcon,
       values,
-    ]
+    ],
   );
 }

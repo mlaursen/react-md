@@ -35,7 +35,7 @@ export function getCategoryName(category: string): string {
 
 export function isMaterialSymbol(
   iconName: MaterialIconAndSymbolName,
-  iconType: IconType
+  iconType: IconType,
 ): iconName is MaterialSymbolName {
   return iconType === "symbol";
 }
@@ -47,7 +47,7 @@ export interface IconsByCategoryOptions {
 }
 
 export function getIconsByCategory(
-  options: IconsByCategoryOptions
+  options: IconsByCategoryOptions,
 ): IconsByCategory {
   const { iconType, iconFamily, iconCategory } = options;
 
@@ -90,7 +90,7 @@ export interface MaterialIconComponentNameOptions {
 }
 
 export function getMaterialIconComponentName(
-  options: MaterialIconComponentNameOptions
+  options: MaterialIconComponentNameOptions,
 ): string {
   const { iconFamily } = options;
 

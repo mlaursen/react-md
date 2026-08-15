@@ -19,13 +19,13 @@ export interface MaxWidthTransitionClassNameOptions {
  * @since 6.0.0
  */
 export function maxWidthTransition(
-  options: MaxWidthTransitionClassNameOptions
+  options: MaxWidthTransitionClassNameOptions,
 ): string {
   const { disabled, className, transitionIn } = options;
 
   return cnb(
     !disabled && styles({ visible: transitionIn }),
     disabled && !transitionIn && DISPLAY_NONE_CLASS,
-    className
+    className,
   );
 }

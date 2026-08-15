@@ -9,7 +9,7 @@ export interface NegateExpressionOptions {
 }
 
 export function negateExpression(
-  options: NegateExpressionOptions
+  options: NegateExpressionOptions,
 ): UnaryExpression {
   const { j, expr } = options;
 

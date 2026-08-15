@@ -19,7 +19,7 @@ export interface CreateRemarkPluginsOptions {
 
 export default function createRemarkPlugins(
   this: Processor,
-  options: CreateRemarkPluginsOptions = {}
+  options: CreateRemarkPluginsOptions = {},
 ) {
   const { gfmOptions, frontmatterOptions, mdxFrontmatterOptions } = options;
 

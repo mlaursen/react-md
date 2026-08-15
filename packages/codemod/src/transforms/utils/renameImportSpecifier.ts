@@ -9,7 +9,7 @@ export interface RenameImportSpecifierOptions extends RenameIdentifierOptions {
 }
 
 export function renameImportSpecifier(
-  options: RenameImportSpecifierOptions
+  options: RenameImportSpecifierOptions,
 ): void {
   const { j, to, from, root, packages } = options;
 

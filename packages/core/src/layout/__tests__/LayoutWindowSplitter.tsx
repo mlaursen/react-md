@@ -49,7 +49,7 @@ describe("LayoutWindowSplitter", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(windowSplitter).toMatchSnapshot();
 

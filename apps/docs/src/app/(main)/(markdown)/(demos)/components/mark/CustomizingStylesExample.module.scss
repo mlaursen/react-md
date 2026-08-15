@@ -4,12 +4,12 @@
   // like the typography styles, this would be merged with the
   // `$mark-recommended-styles` if you want to just add some changes
   $mark-custom-styles: (
-      background: colors.$blue-700,
-      color: a11y.contrast-color(colors.$blue-700)
-    ),
+    background: colors.$blue-700,
+    color: a11y.contrast-color(colors.$blue-700),
+  )
   // or manually set all mark styles using this variable. this would reset
   // it back to the browser default
-   // $mark-styles: (background: Mark, color: MarkText, font-weight: 700)
+  // $mark-styles: (background: Mark, color: MarkText, font-weight: 700)
 );
 
 // this is only required for this demo. In your application, this should just be the normal:

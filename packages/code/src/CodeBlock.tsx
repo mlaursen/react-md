@@ -86,14 +86,14 @@ export function CodeBlock(props: CodeBlockProps): ReactElement {
           textColor: "text-primary",
           surfaceColor: "dark",
         }),
-        containerProps?.className
+        containerProps?.className,
       )}
     >
       <div
         {...scrollContainerProps}
         className={cnb(
           styles("scroll-container"),
-          scrollContainerProps?.className
+          scrollContainerProps?.className,
         )}
       >
         <div
@@ -105,7 +105,7 @@ export function CodeBlock(props: CodeBlockProps): ReactElement {
             className={cnb(
               className,
               styles("pre", { wrap: lineWrap }),
-              preProps?.className
+              preProps?.className,
             )}
           >
             {children}

@@ -12,7 +12,7 @@ export default function ThrottledSearchExample(): ReactElement {
   const query = useRef("");
   const unmounted = useUnmounted();
   const search = useThrottledFunction(async function load(
-    value: string
+    value: string,
   ): Promise<void> {
     query.current = value;
     await wait(1000);
@@ -21,7 +21,7 @@ export default function ThrottledSearchExample(): ReactElement {
       setOptions(
         value.trim()
           ? Array.from({ length: 10 }, (_, i) => `${value} ${i + 1}`)
-          : []
+          : [],
       );
     }
   }, 300);

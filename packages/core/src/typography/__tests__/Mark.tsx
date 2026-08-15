@@ -24,7 +24,7 @@ describe("Mark", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(mark).toMatchSnapshot();
   });

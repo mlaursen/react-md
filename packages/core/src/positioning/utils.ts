@@ -270,7 +270,7 @@ export function getTransformOrigin(options: TransformOriginOptions): string {
  * @internal
  */
 export function findSizingContainer(
-  el: HTMLElement | null
+  el: HTMLElement | null,
 ): HTMLElement | null {
   if (!el) {
     return null;
@@ -278,7 +278,7 @@ export function findSizingContainer(
 
   if (/(tree|list)item/.test(el.getAttribute("role") || "")) {
     const content = el.querySelector(
-      ".rmd-tree-item__content, .rmd-item-text"
+      ".rmd-tree-item__content, .rmd-item-text",
     ) as HTMLElement;
     if (content) {
       return content;
@@ -299,7 +299,7 @@ export function findSizingContainer(
 
     if (process.env.NODE_ENV !== "production") {
       throw new Error(
-        "Unable to find a child element using the `data-sizing-selector`"
+        "Unable to find a child element using the `data-sizing-selector`",
       );
     }
   }

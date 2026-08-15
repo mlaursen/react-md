@@ -8,8 +8,8 @@ import {
 
 import { Button, type ButtonProps } from "../button/Button.js";
 import { cssUtils } from "../cssUtils.js";
-import { IconRotator, type IconRotatorBaseProps } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/config.js";
+import { IconRotator, type IconRotatorBaseProps } from "../icon/IconRotator.js";
 import { Tooltip } from "../tooltip/Tooltip.js";
 import { useTooltip } from "../tooltip/useTooltip.js";
 import { navItemContent } from "./navItemStyles.js";

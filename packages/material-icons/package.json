@@ -2,42 +2,43 @@
   "name": "@react-md/material-icons",
   "version": "7.0.8",
   "description": "Material Design Icon components for react-md",
+  "keywords": [
+    "component",
+    "icon",
+    "material design",
+    "react",
+    "react-md"
+  ],
+  "homepage": "https://react-md.dev",
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git",
+    "directory": "packages/material-icons"
+  },
   "type": "module",
+  "sideEffects": false,
   "exports": {
     "./*": {
       "types": "./types.d.ts",
       "default": "./dist/*.js"
     }
   },
-  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "update-icons": "node scripts/updateMaterialIcons.ts",
     "typecheck": "tsgo --noEmit",
     "lint": "eslint -c scripts/eslint.config.mjs \"scripts/**/*.ts\"",
     "lint-fix": "pnpm lint --fix",
-    "check-format": "prettier --check .",
-    "format": "prettier --write .",
     "build": "node scripts/build.ts",
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo node_modules dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mlaursen/react-md.git",
-    "directory": "packages/material-icons"
-  },
-  "bugs": {
-    "url": "https://github.com/mlaursen/react-md/issues"
-  },
-  "homepage": "https://react-md.dev",
-  "keywords": [
-    "icon",
-    "react",
-    "component",
-    "react-md",
-    "material design"
-  ],
-  "license": "MIT",
   "dependencies": {
     "@react-md/core": "workspace:*",
     "cnbuilder": "^3.1.0"
@@ -52,7 +53,6 @@
     "eslint": "^9.39.4",
     "glob": "^13.0.6",
     "lodash": "^4.18.1",
-    "prettier": "^3.8.3",
     "pretty-ms": "^9.3.0",
     "react": "^19.2.6",
     "svgo": "^4.0.1",
@@ -69,8 +69,5 @@
     "react-dom": {
       "optional": true
     }
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

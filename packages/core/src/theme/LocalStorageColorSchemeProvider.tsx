@@ -105,7 +105,7 @@ export interface LocalStorageColorSchemeProviderProps {
  * @since 6.0.0
  */
 export function LocalStorageColorSchemeProvider(
-  props: LocalStorageColorSchemeProviderProps
+  props: LocalStorageColorSchemeProviderProps,
 ): ReactElement {
   const {
     localStorageKey = "colorScheme",

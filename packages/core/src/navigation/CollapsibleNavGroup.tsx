@@ -57,7 +57,7 @@ export interface CollapsibleNavGroupProps
  * @since 6.0.0
  */
 export function CollapsibleNavGroup(
-  props: CollapsibleNavGroupProps
+  props: CollapsibleNavGroupProps,
 ): ReactElement {
   const {
     ref,

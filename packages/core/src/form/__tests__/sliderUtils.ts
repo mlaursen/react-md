@@ -10,7 +10,7 @@ describe("getJumpValue", () => {
         max: 100,
         step: 1,
         jump: undefined,
-      })
+      }),
     ).toBe(10);
     expect(
       getJumpValue({
@@ -18,7 +18,7 @@ describe("getJumpValue", () => {
         max: 100,
         step: 10,
         jump: undefined,
-      })
+      }),
     ).toBe(10);
     expect(
       getJumpValue({
@@ -26,7 +26,7 @@ describe("getJumpValue", () => {
         max: 50,
         step: 10,
         jump: undefined,
-      })
+      }),
     ).toBe(10);
   });
 
@@ -37,7 +37,7 @@ describe("getJumpValue", () => {
         max: 50,
         step: 10,
         jump: undefined,
-      })
+      }),
     ).toBe(10);
   });
 
@@ -48,7 +48,7 @@ describe("getJumpValue", () => {
         max: 100,
         step: 1,
         jump: 12.3,
-      })
+      }),
     ).toBe(13);
     expect(
       getJumpValue({
@@ -56,7 +56,7 @@ describe("getJumpValue", () => {
         max: 100,
         step: 1,
         jump: 15,
-      })
+      }),
     ).toBe(15);
     expect(
       getJumpValue({
@@ -64,7 +64,7 @@ describe("getJumpValue", () => {
         max: 10,
         step: 0.25,
         jump: 0.125,
-      })
+      }),
     ).toBe(0.125);
     expect(
       getJumpValue({
@@ -72,7 +72,7 @@ describe("getJumpValue", () => {
         max: 10,
         step: 0.25,
         jump: undefined,
-      })
+      }),
     ).toBe(1);
   });
 
@@ -89,7 +89,7 @@ describe("getJumpValue", () => {
           thumb2Dragging: false,
           thumb2Value: 100,
           thumb2DragPercentage: 100,
-        })
+        }),
       ).toEqual({
         "--rmd-slider-offset-1": "30%",
       });
@@ -105,7 +105,7 @@ describe("getJumpValue", () => {
           thumb2Dragging: false,
           thumb2Value: 100,
           thumb2DragPercentage: 100,
-        })
+        }),
       ).toEqual({
         "--rmd-slider-offset-1": "36%",
       });
@@ -123,7 +123,7 @@ describe("getJumpValue", () => {
           thumb2Dragging: false,
           thumb2Value: 100,
           thumb2DragPercentage: 0.88,
-        })
+        }),
       ).toEqual({
         "--rmd-slider-offset-1": "30%",
         "--rmd-slider-offset-2": "100%",
@@ -140,7 +140,7 @@ describe("getJumpValue", () => {
           thumb2Dragging: false,
           thumb2Value: 100,
           thumb2DragPercentage: 0.88,
-        })
+        }),
       ).toEqual({
         "--rmd-slider-offset-1": "36%",
         "--rmd-slider-offset-2": "100%",
@@ -157,7 +157,7 @@ describe("getJumpValue", () => {
           thumb2Dragging: true,
           thumb2Value: 100,
           thumb2DragPercentage: 0.88,
-        })
+        }),
       ).toEqual({
         "--rmd-slider-offset-1": "30%",
         "--rmd-slider-offset-2": "88%",

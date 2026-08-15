@@ -13,7 +13,7 @@ import { sortImportSpecifiers } from "../../utils/sortImportSpecifiers.js";
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -65,7 +65,7 @@ export default function transformer(
           j.importSpecifier({
             name: "Button",
             type: "Identifier",
-          })
+          }),
         );
       }
 
@@ -77,7 +77,7 @@ export default function transformer(
           j.importSpecifier({
             name: "ButtonProps",
             type: "Identifier",
-          })
+          }),
         );
       }
 
@@ -85,7 +85,7 @@ export default function transformer(
         j.importDeclaration.from({
           ...importDeclaration.node,
           specifiers: sortImportSpecifiers(specifiers),
-        })
+        }),
       );
     });
 

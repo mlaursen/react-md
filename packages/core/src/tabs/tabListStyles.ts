@@ -67,6 +67,6 @@ export function tabList(options: TabListClassNameOptions = {}): string {
       "no-scrollbar": !scrollbar,
     }),
     indicator && tabIndicator({ tablist: true, animate, vertical }),
-    className
+    className,
   );
 }

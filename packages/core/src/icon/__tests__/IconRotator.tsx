@@ -15,23 +15,23 @@ describe("IconRotator", () => {
     const { container, rerender } = render(
       <IconRotator data-testid="rotator" rotated={false}>
         <Icon />
-      </IconRotator>
+      </IconRotator>,
     );
     const icon = screen.getByTestId("icon");
     expect(icon).toHaveClass(
       "custom-icon rmd-icon-rotator rmd-icon-rotator--animate",
-      { exact: true }
+      { exact: true },
     );
     expect(container).toMatchSnapshot();
 
     rerender(
       <IconRotator data-testid="rotator" rotated>
         <Icon />
-      </IconRotator>
+      </IconRotator>,
     );
     expect(icon).toHaveClass(
       "custom-icon rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated",
-      { exact: true }
+      { exact: true },
     );
     expect(container).toMatchSnapshot();
   });
@@ -40,14 +40,14 @@ describe("IconRotator", () => {
     const { container, rerender } = render(
       <IconRotator rotated={false}>
         <FontIcon>home</FontIcon>
-      </IconRotator>
+      </IconRotator>,
     );
     expect(container).toMatchSnapshot();
 
     rerender(
       <IconRotator rotated>
         <FontIcon>home</FontIcon>
-      </IconRotator>
+      </IconRotator>,
     );
     expect(container).toMatchSnapshot();
   });
@@ -58,7 +58,7 @@ describe("IconRotator", () => {
         <SVGIcon>
           <path d="0i3odksf" />
         </SVGIcon>
-      </IconRotator>
+      </IconRotator>,
     );
     expect(container).toMatchSnapshot();
 
@@ -67,7 +67,7 @@ describe("IconRotator", () => {
         <SVGIcon>
           <path d="0i3odksf" />
         </SVGIcon>
-      </IconRotator>
+      </IconRotator>,
     );
     expect(container).toMatchSnapshot();
   });
@@ -76,28 +76,28 @@ describe("IconRotator", () => {
     const { container, rerender } = render(
       <IconRotator rotated={false} forceIconWrap>
         <Icon />
-      </IconRotator>
+      </IconRotator>,
     );
     expect(container).toMatchSnapshot();
 
     rerender(
       <IconRotator rotated forceIconWrap>
         <Icon />
-      </IconRotator>
+      </IconRotator>,
     );
     expect(container).toMatchSnapshot();
 
     rerender(
       <IconRotator rotated={false} forceIconWrap>
         <FontIcon>home</FontIcon>
-      </IconRotator>
+      </IconRotator>,
     );
     expect(container).toMatchSnapshot();
 
     rerender(
       <IconRotator rotated forceIconWrap>
         <FontIcon>home</FontIcon>
-      </IconRotator>
+      </IconRotator>,
     );
     expect(container).toMatchSnapshot();
 
@@ -106,7 +106,7 @@ describe("IconRotator", () => {
         <SVGIcon>
           <path d="0i3odksf" />
         </SVGIcon>
-      </IconRotator>
+      </IconRotator>,
     );
     expect(container).toMatchSnapshot();
 
@@ -115,7 +115,7 @@ describe("IconRotator", () => {
         <SVGIcon>
           <path d="0i3odksf" />
         </SVGIcon>
-      </IconRotator>
+      </IconRotator>,
     );
     expect(container).toMatchSnapshot();
   });

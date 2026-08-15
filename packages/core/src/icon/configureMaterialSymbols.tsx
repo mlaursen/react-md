@@ -1,6 +1,6 @@
+import { configureIcons } from "./config.js";
 /** @since 7.1.0 */
 import { MaterialSymbol } from "./MaterialSymbol.js";
-import { configureIcons } from "./config.js";
 
 configureIcons({
   back: <MaterialSymbol name="keyboard_arrow_left" />,

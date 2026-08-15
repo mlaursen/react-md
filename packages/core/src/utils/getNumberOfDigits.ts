@@ -5,10 +5,10 @@
 export function getNumberOfDigits(value: number): number;
 export function getNumberOfDigits(value: undefined): undefined;
 export function getNumberOfDigits(
-  value: number | undefined
+  value: number | undefined,
 ): number | undefined;
 export function getNumberOfDigits(
-  value: number | undefined
+  value: number | undefined,
 ): number | undefined {
   if (typeof value !== "number") {
     return;

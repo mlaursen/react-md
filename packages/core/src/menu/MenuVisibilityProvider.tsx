@@ -91,7 +91,7 @@ export function MenuVisibilityProvider({
       setVisible,
       defaultFocusIndex,
     }),
-    [visible, setVisible, defaultFocusIndex]
+    [visible, setVisible, defaultFocusIndex],
   );
 
   return <Provider value={value}>{children}</Provider>;

@@ -19,7 +19,7 @@ export interface CopyToClipboardProps extends TooltippedButtonProps {
 }
 
 export function CopyToClipboard(
-  props: RequireAtLeastOne<CopyToClipboardProps>
+  props: RequireAtLeastOne<CopyToClipboardProps>,
 ): ReactElement {
   const {
     "aria-label": ariaLabel = "Copy",

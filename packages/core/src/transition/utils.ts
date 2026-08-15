@@ -19,7 +19,7 @@ export interface TransitionTimeoutOptions extends Required<TransitionActions> {
  * @internal
  */
 export function getTransitionTimeout(
-  options: Readonly<TransitionTimeoutOptions>
+  options: Readonly<TransitionTimeoutOptions>,
 ): Readonly<Required<TransitionTimeoutObject>> {
   const { timeout, appear, enter, exit } = options;
   if (typeof timeout === "number") {
@@ -107,7 +107,7 @@ export interface TransitionClassNamesOptions extends TransitionTimeoutOptions {
  * @internal
  */
 export function getTransitionClassNames(
-  options: TransitionClassNamesOptions
+  options: TransitionClassNamesOptions,
 ): Readonly<Required<CSSTransitionClassNamesObject>> {
   const { classNames, ...timeoutOptions } = options;
   const timeout = getTransitionTimeout(timeoutOptions);

@@ -112,7 +112,7 @@ export function bem(base: string): BEMResult {
 
   function block(
     elementOrModifier?: BEMModifier | string,
-    modifier?: BEMModifier
+    modifier?: BEMModifier,
   ): string {
     if (
       process.env.NODE_ENV !== "production" &&
@@ -120,7 +120,7 @@ export function bem(base: string): BEMResult {
       modifier
     ) {
       throw new TypeError(
-        "bem does not support having two modifier arguments."
+        "bem does not support having two modifier arguments.",
       );
     }
 

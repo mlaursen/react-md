@@ -24,7 +24,7 @@ export interface ListSubheaderClassNameOptions {
  * @since 6.0.0
  */
 export function listSubheader(
-  options: ListSubheaderClassNameOptions = {}
+  options: ListSubheaderClassNameOptions = {},
 ): string {
   const { inset = false, className } = options;
 

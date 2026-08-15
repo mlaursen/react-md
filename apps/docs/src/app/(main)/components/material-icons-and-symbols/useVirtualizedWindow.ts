@@ -7,8 +7,8 @@ import { type ListProps, useListRef } from "react-window";
 
 import { chunk } from "@/utils/lists.js";
 
-import { type VirtualizedData } from "./RenderVirtualizedRow.js";
 import { type MaterialIconAndSymbolName } from "./metadata.js";
+import { type VirtualizedData } from "./RenderVirtualizedRow.js";
 import { type IconsByCategoryOptions, getIconsByCategory } from "./utils.js";
 
 const getRowHeight = (row: CategoryOrIconNames, isFirst: boolean): number => {
@@ -102,7 +102,7 @@ export function useVirtualizedWindow(options: Options): Result {
       list,
       columns,
     }),
-    [columns, list]
+    [columns, list],
   );
 
   useEffect(() => {

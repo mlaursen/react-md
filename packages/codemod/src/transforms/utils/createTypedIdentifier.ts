@@ -12,7 +12,7 @@ export interface CreateTypedIdentifierOptions {
 }
 
 export function createTypedIdentifier(
-  options: CreateTypedIdentifierOptions
+  options: CreateTypedIdentifierOptions,
 ): Identifier {
   const { j, name, type, isTypescript } = options;
 

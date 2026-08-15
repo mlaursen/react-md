@@ -5,7 +5,7 @@ import { type OptionsMapFunction } from "./types.js";
 
 export function isOptionsDotMap(
   j: JSCodeshift,
-  value: JSXExpression
+  value: JSXExpression,
 ): value is OptionsMapFunction {
   return (
     j.CallExpression.check(value) &&

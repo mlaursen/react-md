@@ -181,7 +181,7 @@ describe("useExpandableLayout", () => {
     expect(temporaryNav).not.toHaveClass(OFFSCREEN_CLASS);
 
     await user.click(
-      within(temporaryNav).getByRole("radio", { name: "Route 2" })
+      within(temporaryNav).getByRole("radio", { name: "Route 2" }),
     );
     await waitFor(() => {
       expect(temporaryNav).not.toBeInTheDocument();
@@ -220,10 +220,10 @@ describe("useExpandableLayout", () => {
     const navToggle = screen.getByRole("button", { name: "Navigation" });
 
     expect(appBar).not.toHaveClass(
-      DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES.enter
+      DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES.enter,
     );
     expect(main).not.toHaveClass(
-      DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES.enter
+      DEFAULT_HORIZONTAL_LAYOUT_TRANSITION_CLASSNAMES.enter,
     );
 
     await user.click(navToggle);
@@ -289,7 +289,7 @@ describe("useExpandableLayout", () => {
     };
     const matchMediaSpy = spyOnMatchMedia(matchPhone);
     rmdRender(
-      <Layout temporaryUntil="screen and (min-width: 1201px)" defaultVisible />
+      <Layout temporaryUntil="screen and (min-width: 1201px)" defaultVisible />,
     );
 
     const layout = screen.getByTestId("layout");

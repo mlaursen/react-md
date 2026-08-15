@@ -18,7 +18,7 @@ export interface SegmentedButtonContainerClassNameOptions {
  * @since 6.0.0
  */
 export function segmentedButtonContainer(
-  options: SegmentedButtonContainerClassNameOptions = {}
+  options: SegmentedButtonContainerClassNameOptions = {},
 ): string {
   const { className, disableFullWidth } = options;
 

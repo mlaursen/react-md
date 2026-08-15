@@ -28,7 +28,7 @@ export function PrimaryOrSecondaryPicker({
   const [shade, setShade] = useState<MaterialColorShade>(() => {
     const shade = getMaterialColorName(value)?.replace(
       /.*?(Accent)?(\d+)/,
-      (_, accent, number) => `${accent ? "A" : ""}${number}`
+      (_, accent, number) => `${accent ? "A" : ""}${number}`,
     ) as MaterialColorShade;
     if (shade && MATERIAL_COLOR_SHADES.includes(shade)) {
       return shade;
@@ -43,7 +43,7 @@ export function PrimaryOrSecondaryPicker({
         (name === "primaryColor" ? "teal500" : "pinkAccent200");
 
       return fullColor.replace(/(Accent)?\d+$/, "") as MaterialColorWithShade;
-    }
+    },
   );
 
   return (

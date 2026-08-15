@@ -121,7 +121,7 @@ export interface NavigationExpansionImplementation extends NavigationExpansion {
  * @since 6.0.0
  */
 export function useNavigationExpansion(
-  options: NavigationExpansionOptions
+  options: NavigationExpansionOptions,
 ): NavigationExpansionImplementation {
   const {
     pathname,
@@ -162,7 +162,7 @@ export function useNavigationExpansion(
       expandedItems,
       toggleExpandedItem,
     }),
-    [expandedItems, linkComponent, pathname, toggleExpandedItem]
+    [expandedItems, linkComponent, pathname, toggleExpandedItem],
   );
 
   return {

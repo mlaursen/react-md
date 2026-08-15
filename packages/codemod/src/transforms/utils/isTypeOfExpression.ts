@@ -13,13 +13,13 @@ export interface IsTypeOfExpressionOptions {
 }
 
 export function isTypeOfExpression(
-  options: IsTypeOfExpressionOptions
+  options: IsTypeOfExpressionOptions,
 ): BinaryExpression {
   const { j, eq = true, type = "string", value } = options;
 
   return j.binaryExpression(
     eq ? "===" : "!==",
     j.unaryExpression("typeof", value),
-    j.stringLiteral(type)
+    j.stringLiteral(type),
   );
 }

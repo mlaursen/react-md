@@ -25,14 +25,14 @@ describe("DialogContent", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(content).toMatchSnapshot();
   });
 
   it("should support disabling padding", () => {
     const { rerender } = render(
-      <DialogContent data-testid="content">Content</DialogContent>
+      <DialogContent data-testid="content">Content</DialogContent>,
     );
 
     const content = screen.getByTestId("content");
@@ -41,7 +41,7 @@ describe("DialogContent", () => {
     rerender(
       <DialogContent data-testid="content" disablePadding>
         Content
-      </DialogContent>
+      </DialogContent>,
     );
     expect(content).toMatchSnapshot();
   });

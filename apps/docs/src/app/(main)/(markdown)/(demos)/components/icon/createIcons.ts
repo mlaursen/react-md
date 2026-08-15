@@ -1,7 +1,8 @@
-import lodash from "lodash";
 import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { format } from "prettier";
+
+import lodash from "lodash";
+import { format } from "oxfmt";
 import { optimize } from "svgo";
 
 const { camelCase, upperFirst } = lodash;
@@ -20,7 +21,7 @@ async function run(): Promise<void> {
     svgs.map(async (svgPath) => {
       const iconName = svgPath.replace(".svg", "");
       const componentName = upperFirst(
-        camelCase(svgPath.replace(".svg", "Icon"))
+        camelCase(svgPath.replace(".svg", "Icon")),
       );
       const outputPath = join(ICONS_PATH, `${componentName}.tsx`);
 
@@ -63,14 +64,14 @@ async function run(): Promise<void> {
         // convert _some_ inline styles for React
         .replaceAll(
           /style="mix-blend-mode:([a-z]+)"/g,
-          "style={{ mixBlendMode: '$1' }}"
+          "style={{ mixBlendMode: '$1' }}",
         )
         // converts kebab-cased properties and colon:cased poverties to
         // camelCase for react
         .replaceAll(
           /([a-z]+)[-:]([-:a-z]+)=/g,
           (_match, prefix, suffix: string) =>
-            `${prefix}${upperFirst(camelCase(suffix))}`
+            `${prefix}${upperFirst(camelCase(suffix))}`,
         );
 
       const iconCode = `import { SVGIcon, type SVGIcon } from "react-md";
@@ -89,12 +90,10 @@ export const ${componentName} = forwardRef<SVGSVGElement, SVGIconProps>(function
   );
 })
 `;
-      const formattedIconCode = await format(iconCode, {
-        parser: "typescript",
-      });
+      const formattedIconCode = await format(outputPath, iconCode);
 
-      await writeFile(outputPath, formattedIconCode);
-    })
+      await writeFile(outputPath, formattedIconCode.code);
+    }),
   );
 }
 

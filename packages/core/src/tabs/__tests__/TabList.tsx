@@ -16,14 +16,14 @@ import { cleanupResizeObserverAfterEach } from "../../test-utils/vitest/resize-o
 import { Tooltip } from "../../tooltip/Tooltip.js";
 import { useTooltip } from "../../tooltip/useTooltip.js";
 import { WritingDirectionProvider } from "../../typography/WritingDirectionProvider.js";
+import { type GetTabListScrollToOptions } from "../getTabListScrollToOptions.js";
 import { Tab } from "../Tab.js";
 import { TabList, type TabListProps } from "../TabList.js";
-import { type GetTabListScrollToOptions } from "../getTabListScrollToOptions.js";
 import { type ProvidedTabListProps, useTabs } from "../useTabs.js";
 
 // make it so the back button defaults to intersecting
 const getIntersectionRatio = vi.fn((target: Element): number =>
-  target.nextElementSibling ? 1 : 0
+  target.nextElementSibling ? 1 : 0,
 );
 
 function Test({
@@ -65,7 +65,7 @@ class MockedObserver implements globalThis.IntersectionObserver {
 
   constructor(
     public callback: IntersectionObserverCallback,
-    options: IntersectionObserverInit = {}
+    options: IntersectionObserverInit = {},
   ) {
     this.root = options.root || null;
     this.rootMargin = options.rootMargin || "";
@@ -117,7 +117,7 @@ cleanupResizeObserverAfterEach();
 describe("TabList", () => {
   beforeEach(() => {
     getIntersectionRatio.mockImplementation((element) =>
-      element.nextElementSibling ? 1 : 0
+      element.nextElementSibling ? 1 : 0,
     );
   });
 
@@ -135,7 +135,7 @@ describe("TabList", () => {
         nodeRef={ref}
         style={{ background: "orange" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(tablist).toHaveStyle("background: orange");
     expect(tablist).toHaveClass("custom-class-name");
@@ -159,7 +159,7 @@ describe("TabList", () => {
     // it should always start to 33.33% and then calculate the correct width
     // based on the number of tabs
     expect(tablist.style.getPropertyValue("--rmd-tab-size")).toBe(
-      `${100 / 3}%`
+      `${100 / 3}%`,
     );
     expect(tablist.style.getPropertyValue("--rmd-tab-offset")).toBe("0px");
 
@@ -222,7 +222,7 @@ describe("TabList", () => {
           }
 
           throw new Error("Invalid IntersectionObserver call");
-        }
+        },
       );
 
       const user = userEvent.setup();
@@ -281,7 +281,7 @@ describe("TabList", () => {
 
       scrollLeft.mockReturnValue(20);
       getIntersectionRatio.mockImplementation((target) =>
-        target.nextElementSibling ? 0 : 1
+        target.nextElementSibling ? 0 : 1,
       );
       await user.click(forward);
       expect(scrollTo).toHaveBeenCalledWith({
@@ -319,7 +319,7 @@ describe("TabList", () => {
           }
 
           throw new Error("Invalid IntersectionObserver call");
-        }
+        },
       );
 
       const user = userEvent.setup();
@@ -379,7 +379,7 @@ describe("TabList", () => {
 
       scrollTop.mockReturnValue(20);
       getIntersectionRatio.mockImplementation((target) =>
-        target.nextElementSibling ? 0 : 1
+        target.nextElementSibling ? 0 : 1,
       );
       await user.click(forward);
       expect(scrollTo).toHaveBeenCalledWith({
@@ -411,7 +411,7 @@ describe("TabList", () => {
           forwardScrollButtonProps={{
             "aria-label": "Scroll right",
           }}
-        />
+        />,
       );
 
       const back = screen.getByRole("button", { name: "Scroll left" });
@@ -438,7 +438,7 @@ describe("TabList", () => {
       rerender(<Test scrollButtons />);
       expect(screen.getByRole("button", { name: "back" })).toBeInTheDocument();
       expect(
-        screen.getByRole("button", { name: "forward" })
+        screen.getByRole("button", { name: "forward" }),
       ).toBeInTheDocument();
     });
 
@@ -458,7 +458,7 @@ describe("TabList", () => {
           }
 
           throw new Error("Invalid IntersectionObserver call");
-        }
+        },
       );
 
       const user = userEvent.setup();
@@ -523,7 +523,7 @@ describe("TabList", () => {
 
       scrollLeft.mockReturnValue(-20);
       getIntersectionRatio.mockImplementation((target) =>
-        target.nextElementSibling ? 0 : 1
+        target.nextElementSibling ? 0 : 1,
       );
       await user.click(forward);
       expect(scrollTo).toHaveBeenCalledWith({
@@ -635,7 +635,7 @@ describe("TabList", () => {
       fireEvent.mouseEnter(back);
       await waitFor(() => {
         expect(
-          screen.getByRole("tooltip", { name: "Scroll left" })
+          screen.getByRole("tooltip", { name: "Scroll left" }),
         ).toBeInTheDocument();
       });
 
@@ -647,7 +647,7 @@ describe("TabList", () => {
       fireEvent.mouseEnter(forward);
       await waitFor(() => {
         expect(
-          screen.getByRole("tooltip", { name: "Scroll right" })
+          screen.getByRole("tooltip", { name: "Scroll right" }),
         ).toBeInTheDocument();
       });
 
@@ -682,7 +682,7 @@ describe("TabList", () => {
       });
       expect(() => screen.getByRole("button", { name: "back" })).not.toThrow();
       expect(() =>
-        screen.getByRole("button", { name: "forward" })
+        screen.getByRole("button", { name: "forward" }),
       ).not.toThrow();
     });
 

@@ -10,7 +10,7 @@ import { CopyCode } from "./CopyCode.js";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 
 function assertSymbol(
-  iconFamily: MaterialIconFamily
+  iconFamily: MaterialIconFamily,
 ): asserts iconFamily is MaterialSymbolFamily {
   if (iconFamily === "filled" || iconFamily === "two-tone") {
     throw new Error("Invalid MaterialSymbol family");

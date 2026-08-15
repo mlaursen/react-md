@@ -31,7 +31,7 @@ export default function MaterialGridCustomizationExample(): ReactElement {
 }
 
 function MaterialGrid(
-  props: Omit<BoxProps, "grid" | "gridColumns">
+  props: Omit<BoxProps, "grid" | "gridColumns">,
 ): ReactElement {
   return (
     <Box {...props} grid gridColumns={{ phone: 4, tablet: 8, desktop: 12 }} />
@@ -61,7 +61,7 @@ const applyVar = (
   type: "span" | "order" | "offset",
   breakpoint: Breakpoint | "",
   value?: ValueOrBreakpoints,
-  style?: CSSProperties
+  style?: CSSProperties,
 ): CSSProperties | undefined => {
   if (typeof value !== "string" && typeof value !== "number") {
     return style;
@@ -81,7 +81,7 @@ const BREAKPOINTS = ["phone", "tablet", "desktop"] as const;
 const applyVarGroup = (
   type: "span" | "order" | "offset",
   value?: ValueOrBreakpoints,
-  style?: CSSProperties
+  style?: CSSProperties,
 ): CSSProperties | undefined => {
   let combinedStyle = applyVar(type, "", value, style);
   if (value && typeof value === "object") {
@@ -90,7 +90,7 @@ const applyVarGroup = (
         type,
         breakpoint,
         value[breakpoint],
-        combinedStyle
+        combinedStyle,
       );
     }
   }
@@ -152,7 +152,7 @@ function gridCell(options: GridCellOptions): GridCellStyles {
       typeof desktopSpan === "number" && styles.desktopSpan,
       typeof desktopOrder === "number" && styles.desktopOrder,
       typeof desktopOffset === "number" && styles.desktopOffset,
-      className
+      className,
     ),
   };
 }

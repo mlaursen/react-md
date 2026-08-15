@@ -23,7 +23,7 @@ describe("Password", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(field).toMatchSnapshot();
 
@@ -33,7 +33,7 @@ describe("Password", () => {
         style={{ color: "white" }}
         className="custom-class-name"
         inputClassName="input-class-name"
-      />
+      />,
     );
     expect(field).toMatchSnapshot();
   });
@@ -77,7 +77,7 @@ describe("Password", () => {
           }
           return <span data-testid="invisible" />;
         }}
-      />
+      />,
     );
 
     expect(() => screen.getByTestId("visible")).toThrow();
@@ -97,7 +97,7 @@ describe("Password", () => {
           visible: <span data-testid="visible" />,
           invisible: <span data-testid="invisible" />,
         }}
-      />
+      />,
     );
 
     expect(() => screen.getByTestId("visible")).toThrow();
@@ -126,7 +126,7 @@ describe("Password", () => {
           onClick,
           children: <span>Toggle</span>,
         }}
-      />
+      />,
     );
     expect(toggle).toMatchSnapshot();
 
@@ -145,7 +145,7 @@ describe("Password", () => {
 
   it("should allow the visibility button label to be customized", () => {
     const { rerender } = render(
-      <Password visibilityLabel="Passwort anzeigen" />
+      <Password visibilityLabel="Passwort anzeigen" />,
     );
     const toggle = screen.getByRole("button");
     expect(toggle).toHaveAttribute("aria-label", "Passwort anzeigen");
@@ -157,7 +157,7 @@ describe("Password", () => {
           "aria-label": undefined,
           "aria-labelledby": "some-id",
         }}
-      />
+      />,
     );
     expect(toggle).not.toHaveAttribute("aria-label");
     expect(toggle).toHaveAttribute("aria-labelledby", "some-id");

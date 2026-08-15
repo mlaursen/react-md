@@ -1,7 +1,8 @@
-import { type ScssCodeFile } from "@react-md/code/types";
 import { readFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
+
+import { type ScssCodeFile } from "@react-md/code/types";
 
 import { FILE_URL, compileScssModule } from "./compileScssModule.js";
 import { getProjectRootDir } from "./getProjectRootDir.js";
@@ -38,7 +39,7 @@ export interface GetScssCodeFileOptions {
 }
 
 export async function getScssCodeFile(
-  options: GetScssCodeFileOptions
+  options: GetScssCodeFileOptions,
 ): Promise<ScssCodeFile | undefined> {
   const { create, demoName, scssPath } = options;
 

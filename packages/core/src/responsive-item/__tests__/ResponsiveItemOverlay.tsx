@@ -25,7 +25,7 @@ describe("ResponsiveItemOverlay", () => {
       ),
     };
     const { container, rerender } = render(
-      <ResponsiveItemOverlay {...props} />
+      <ResponsiveItemOverlay {...props} />,
     );
 
     expect(ref.current).toBeInstanceOf(HTMLSpanElement);
@@ -40,7 +40,7 @@ describe("ResponsiveItemOverlay", () => {
         {...props}
         style={{ backgroundColor: "orange" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(container).toMatchSnapshot();
 

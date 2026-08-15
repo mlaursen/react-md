@@ -107,16 +107,16 @@ export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
 
   const ssr = useSsr();
   const matchesDesktop = useMediaQuery(
-    `screen and (min-width: ${desktopMinWidth})`
+    `screen and (min-width: ${desktopMinWidth})`,
   );
   const matchesLargeDesktop = useMediaQuery(
-    `screen and (min-width: ${desktopLargeMinWidth})`
+    `screen and (min-width: ${desktopLargeMinWidth})`,
   );
   const matchesTablet = useMediaQuery(
-    `screen and (min-width: ${tabletMinWidth}) and (max-width: ${tabletMaxWidth})`
+    `screen and (min-width: ${tabletMinWidth}) and (max-width: ${tabletMaxWidth})`,
   );
   const matchesPhone = useMediaQuery(
-    `screen and (max-width: ${phoneMaxWidth})`
+    `screen and (max-width: ${phoneMaxWidth})`,
   );
   const isDesktop = matchesDesktop;
   const isTablet = !matchesDesktop && matchesTablet;
@@ -133,7 +133,7 @@ export function AppSizeProvider(props: AppSizeProviderProps): ReactElement {
       isLargeDesktop,
       isLandscape,
     }),
-    [isDesktop, isLandscape, isLargeDesktop, isPhone, isTablet]
+    [isDesktop, isLandscape, isLargeDesktop, isPhone, isTablet],
   );
 
   let value = appSize;

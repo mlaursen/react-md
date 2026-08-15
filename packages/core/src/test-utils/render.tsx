@@ -29,7 +29,7 @@ export function rmdRender<
   BaseElement extends Element | DocumentFragment = Container,
 >(
   ui: ReactElement,
-  options: ReactMDRenderOptions<Q, Container, BaseElement> = {}
+  options: ReactMDRenderOptions<Q, Container, BaseElement> = {},
 ): RenderResult<Q, Container, BaseElement> {
   const { wrapper: Wrapper = Fragment, rmdConfig, ...renderOptions } = options;
 

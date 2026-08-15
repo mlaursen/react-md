@@ -241,7 +241,7 @@ const RENAMED_VARIABLES: Record<
 };
 
 function isRenameEntries(
-  renames: Readonly<Record<string, string>> | RenameEntries
+  renames: Readonly<Record<string, string>> | RenameEntries,
 ): renames is RenameEntries {
   return "length" in renames;
 }
@@ -258,7 +258,7 @@ interface ThemeMigration {
 }
 
 export function getThemeMigration(
-  options: ThemeMigrationOptions
+  options: ThemeMigrationOptions,
 ): ThemeMigration {
   const { group, name, type } = options;
   const removedVariables = REMOVED_VARIABLES[group];

@@ -33,7 +33,7 @@ describe("Chip", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(chip).toMatchSnapshot();
 
@@ -105,7 +105,7 @@ describe("Chip", () => {
         rightAddon={<FontIcon>close</FontIcon>}
       >
         Content
-      </Chip>
+      </Chip>,
     );
 
     const chip = screen.getByRole("button", { name: "Content" });
@@ -143,7 +143,7 @@ describe("Chip", () => {
       const { rerender } = render(
         <Chip data-testid="chip" selected={false}>
           Chip
-        </Chip>
+        </Chip>,
       );
       const buttonChip = screen.getByTestId("chip");
       expect(buttonChip).not.toHaveAttribute("aria-pressed");
@@ -151,14 +151,14 @@ describe("Chip", () => {
       rerender(
         <Chip data-testid="chip" selected>
           Chip
-        </Chip>
+        </Chip>,
       );
       expect(buttonChip).toHaveAttribute("aria-pressed", "true");
 
       rerender(
         <Chip data-testid="chip" selected noninteractive>
           Chip
-        </Chip>
+        </Chip>,
       );
 
       const spanChip = screen.getByTestId("chip");
@@ -182,7 +182,7 @@ describe("Chip", () => {
       expect(chip).toMatchSnapshot();
 
       rerender(
-        <Chip {...props} selected leftAddon={<FontIcon>favorite</FontIcon>} />
+        <Chip {...props} selected leftAddon={<FontIcon>favorite</FontIcon>} />,
       );
       expect(chip).toMatchSnapshot();
 
@@ -191,7 +191,7 @@ describe("Chip", () => {
           {...props}
           leftAddon={<FontIcon>favorite</FontIcon>}
           selectedIconAfter
-        />
+        />,
       );
       expect(chip).toMatchSnapshot();
 
@@ -201,7 +201,7 @@ describe("Chip", () => {
           selected
           leftAddon={<FontIcon>favorite</FontIcon>}
           selectedIconAfter
-        />
+        />,
       );
       expect(chip).toMatchSnapshot();
 
@@ -209,7 +209,7 @@ describe("Chip", () => {
       expect(chip).toMatchSnapshot();
 
       rerender(
-        <Chip {...props} selected rightAddon={<FontIcon>favorite</FontIcon>} />
+        <Chip {...props} selected rightAddon={<FontIcon>favorite</FontIcon>} />,
       );
       expect(chip).toMatchSnapshot();
 
@@ -218,7 +218,7 @@ describe("Chip", () => {
           {...props}
           rightAddon={<FontIcon>favorite</FontIcon>}
           selectedIconAfter
-        />
+        />,
       );
       expect(chip).toMatchSnapshot();
 
@@ -228,7 +228,7 @@ describe("Chip", () => {
           selected
           rightAddon={<FontIcon>favorite</FontIcon>}
           selectedIconAfter
-        />
+        />,
       );
       expect(chip).toMatchSnapshot();
     });
@@ -237,7 +237,7 @@ describe("Chip", () => {
       const { rerender } = render(
         <Chip selected={false} selectedIcon={<FontIcon>favorite</FontIcon>}>
           Chip
-        </Chip>
+        </Chip>,
       );
 
       const chip = screen.getByRole("button");
@@ -246,35 +246,35 @@ describe("Chip", () => {
       rerender(
         <Chip selected selectedIcon={<FontIcon>favorite</FontIcon>}>
           Chip
-        </Chip>
+        </Chip>,
       );
       expect(chip).toMatchSnapshot();
 
       rerender(
         <Chip selected={false} selectedIcon="Text">
           Chip
-        </Chip>
+        </Chip>,
       );
       expect(chip).toMatchSnapshot();
 
       rerender(
         <Chip selected selectedIcon="Text">
           Chip
-        </Chip>
+        </Chip>,
       );
       expect(chip).toMatchSnapshot();
 
       rerender(
         <Chip selected={false} selectedIcon="Text" selectedIconAfter>
           Chip
-        </Chip>
+        </Chip>,
       );
       expect(chip).toMatchSnapshot();
 
       rerender(
         <Chip selected selectedIcon="Text" selectedIconAfter>
           Chip
-        </Chip>
+        </Chip>,
       );
       expect(chip).toMatchSnapshot();
     });

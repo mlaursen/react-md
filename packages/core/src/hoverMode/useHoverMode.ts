@@ -141,13 +141,13 @@ export interface HoverModeImplementation extends ControlledHoverModeImplementati
  * work.
  */
 export function useHoverMode(
-  options: ControlledHoverModeOptions
+  options: ControlledHoverModeOptions,
 ): ControlledHoverModeImplementation;
 export function useHoverMode(
-  options: UncontrolledHoverModeOptions
+  options: UncontrolledHoverModeOptions,
 ): UncontrolledHoverModeImplementation;
 export function useHoverMode(
-  options: ControlledHoverModeOptions | UncontrolledHoverModeOptions
+  options: ControlledHoverModeOptions | UncontrolledHoverModeOptions,
 ): HoverModeImplementation {
   const {
     disabled,
@@ -239,7 +239,7 @@ export function useHoverMode(
         hoverTime,
         hoverTimeoutRef,
         setVisible,
-      ]
+      ],
     ),
     startHideFlow: useCallback(() => {
       if (disabled) {

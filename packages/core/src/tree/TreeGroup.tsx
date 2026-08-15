@@ -4,8 +4,8 @@ import { type CSSProperties, type ReactElement, type ReactNode } from "react";
 
 import { List, type ListProps } from "../list/List.js";
 import { useCollapseTransition } from "../transition/useCollapseTransition.js";
-import { useTreeContext } from "./TreeProvider.js";
 import { treeGroup } from "./styles.js";
+import { useTreeContext } from "./TreeProvider.js";
 
 /**
  * @since 6.0.0

@@ -93,7 +93,7 @@ describe("MenuBar", () => {
     });
     await waitFor(() => {
       expect(() =>
-        screen.getByRole("menu", { name: "Text Align" })
+        screen.getByRole("menu", { name: "Text Align" }),
       ).not.toThrow();
     });
 
@@ -116,11 +116,11 @@ describe("MenuBar", () => {
       () => {
         expect(() => screen.getByRole("menu", { name: "Font" })).not.toThrow();
       },
-      { timeout: 10 }
+      { timeout: 10 },
     );
     await waitFor(() => {
       expect(screen.getByRole("menu", { name: "Font" })).not.toHaveClass(
-        "rmd-scale-transition--enter"
+        "rmd-scale-transition--enter",
       );
     });
 
@@ -129,7 +129,7 @@ describe("MenuBar", () => {
       () => {
         expect(() => screen.getByRole("menu", { name: "Size" })).not.toThrow();
       },
-      { timeout: 10 }
+      { timeout: 10 },
     );
     await user.click(document.body);
     await waitFor(() => {
@@ -192,7 +192,7 @@ describe("MenuBar", () => {
     await user.hover(screen.getByRole("menuitem", { name: "Submenu" }));
     await waitFor(() => {
       expect(
-        screen.getByRole("menuitem", { name: "Item 1" })
+        screen.getByRole("menuitem", { name: "Item 1" }),
       ).toBeInTheDocument();
     });
   });
@@ -204,7 +204,7 @@ describe("MenuBar", () => {
         <button>before</button>
         <Test />
         <button>after</button>
-      </>
+      </>,
     );
 
     const menubar = screen.getByRole("menubar", { name: "Example" });

@@ -14,7 +14,7 @@ const isItemRequire = (item: ReferenceLink): item is ItemRequire =>
 
 export function getItemReferenceLinks(
   items: readonly ReferenceLink[] | undefined,
-  referenceLinks: ReadonlyMap<string, FullItemReferenceLink>
+  referenceLinks: ReadonlyMap<string, FullItemReferenceLink>,
 ): ItemReferenceLink[] | undefined {
   if (!items) {
     return undefined;

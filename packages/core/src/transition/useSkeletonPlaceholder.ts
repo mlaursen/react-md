@@ -222,7 +222,7 @@ export interface SkeletonPlaceholderStylingProps {
  * @since 6.0.0
  */
 export function useSkeletonPlaceholder(
-  options: SkeletonPlaceholderOptions = {}
+  options: SkeletonPlaceholderOptions = {},
 ): SkeletonPlaceholderStylingProps {
   const {
     style: propStyle,
@@ -264,7 +264,7 @@ export function useSkeletonPlaceholder(
         maxDelay,
         minPercentage,
         maxPercentage,
-      })
+      }),
     );
   }, [
     disabled,

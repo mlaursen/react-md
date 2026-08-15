@@ -14,7 +14,7 @@ import {
  */
 export const defaultAutocompleteExtractor = defaultExtractor(
   "Autocomplete",
-  "getOptionLabel"
+  "getOptionLabel",
 );
 
 /**
@@ -22,14 +22,14 @@ export const defaultAutocompleteExtractor = defaultExtractor(
  * @internal
  */
 export const defaultAutocompleteFilter = <Option extends AutocompleteOption>(
-  options: AutocompleteFilterOptions<Option>
+  options: AutocompleteFilterOptions<Option>,
 ): readonly Option[] => caseInsensitiveSearch({ ...options, startsWith: true });
 
 /**
  * @since 6.0.0
  */
 export const noopAutocompleteFilter = <Option extends AutocompleteOption>(
-  options: AutocompleteFilterOptions<Option>
+  options: AutocompleteFilterOptions<Option>,
 ): readonly Option[] => options.list;
 
 /**
@@ -37,7 +37,7 @@ export const noopAutocompleteFilter = <Option extends AutocompleteOption>(
  * @internal
  */
 const isProbablyMenuItemProps = (
-  item: unknown
+  item: unknown,
 ): item is Partial<MenuItemProps> => !!item && typeof item === "object";
 
 /**
@@ -45,7 +45,7 @@ const isProbablyMenuItemProps = (
  * @internal
  */
 export const defaultAutocompleteGetOptionProps = <T extends AutocompleteOption>(
-  options: AutocompleteGetOptionPropsOptions<T>
+  options: AutocompleteGetOptionPropsOptions<T>,
 ): Partial<MenuItemProps> | undefined => {
   const { option } = options;
   if (isProbablyMenuItemProps(option)) {

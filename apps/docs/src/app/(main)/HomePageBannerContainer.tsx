@@ -20,7 +20,7 @@ export interface HomePageBannerContainerProps {
 }
 
 export function HomePageBannerContainer(
-  props: HomePageBannerContainerProps
+  props: HomePageBannerContainerProps,
 ): ReactElement {
   const { children } = props;
 

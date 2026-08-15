@@ -9,7 +9,7 @@ const ACTION_KEYS = "Enter|Space|Escape|Tab";
 const ACTION = `${ARROW_KEYS}|${JUMP_KEYS}|${ACTION_KEYS}`;
 
 const KEYBOARD_CODE_REGEX = new RegExp(
-  String.raw`^(?:((${MODIFIERS})\+)?(${ACTION}))$`
+  String.raw`^(?:((${MODIFIERS})\+)?(${ACTION}))$`,
 );
 
 export interface RehypeKeyboardCodeOptions {

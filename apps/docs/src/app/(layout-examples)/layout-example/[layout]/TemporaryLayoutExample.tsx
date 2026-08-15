@@ -13,7 +13,7 @@ import { ExampleNavigation } from "./ExampleNavigation.js";
 import { type ExampleLayoutProps } from "./layouts.js";
 
 export function TemporaryLayoutExample(
-  props: ExampleLayoutProps
+  props: ExampleLayoutProps,
 ): ReactElement {
   const { layout, children } = props;
   const pathname = usePathname();

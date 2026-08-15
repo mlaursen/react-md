@@ -70,10 +70,10 @@ function useIncrementingValue(): {
             min: 0,
             max: 100,
             increment: true,
-          })
+          }),
         );
       },
-      value === 100 ? 5000 : 300
+      value === 100 ? 5000 : 300,
     );
     return () => {
       globalThis.clearTimeout(timeout);

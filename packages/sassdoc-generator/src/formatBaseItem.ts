@@ -20,7 +20,7 @@ export function getItemGroup(item: Item): string {
   const [group] = item.group;
   if (!group) {
     throw new Error(
-      `${item.context.name} in ${item.file.path} does not have a \`@group\` annotation`
+      `${item.context.name} in ${item.file.path} does not have a \`@group\` annotation`,
     );
   }
   return group;
@@ -39,7 +39,7 @@ export interface FormatBaseItemOptions {
 }
 
 export async function formatBaseItem(
-  options: FormatBaseItemOptions
+  options: FormatBaseItemOptions,
 ): Promise<FormattedItem> {
   const { src, item } = options;
   const {

@@ -166,7 +166,7 @@ export function ReactMDLogo(props: ReactMDLogoProps): ReactElement {
             className={cnb(
               typography({ type: "headline-6", fontWeight: "bold" }),
               styles.text,
-              styles.secondary
+              styles.secondary,
             )}
           >
             MD

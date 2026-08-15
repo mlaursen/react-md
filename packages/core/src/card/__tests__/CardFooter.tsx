@@ -24,7 +24,7 @@ describe("CardFooter", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(footer).toMatchSnapshot();
 

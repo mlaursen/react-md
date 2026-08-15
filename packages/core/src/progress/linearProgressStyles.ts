@@ -45,7 +45,7 @@ export interface LinearProgressClassNameOptions extends BaseLinearProgressClassN
  * @since 6.2.0
  */
 export function linearProgress(
-  options: LinearProgressClassNameOptions = {}
+  options: LinearProgressClassNameOptions = {},
 ): string {
   const { className, theme = "primary", vertical, indeterminate } = options;
 
@@ -57,7 +57,7 @@ export function linearProgress(
       indeterminate,
     }),
     theme !== "current-color" && cssUtils({ textColor: theme }),
-    className
+    className,
   );
 }
 
@@ -81,7 +81,7 @@ export interface LinearProgressBarClassNameOptions {
  * @since 6.2.0
  */
 export function linearProgressBar(
-  options: LinearProgressBarClassNameOptions = {}
+  options: LinearProgressBarClassNameOptions = {},
 ): string {
   const { className, reverse, vertical, indeterminate, disableTransition } =
     options;
@@ -101,6 +101,6 @@ export function linearProgressBar(
       "indeterminate-vertical": indeterminate && vertical,
       "indeterminate-vertical-reverse": indeterminate && reverse && vertical,
     }),
-    className
+    className,
   );
 }

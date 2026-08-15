@@ -4,18 +4,19 @@ import type { ReactElement } from "react";
 
 import { Blockquote } from "@/components/Blockquote.js";
 
-import styles from "./AdditionalChanges.module.scss";
 import { AdditionalChangesPanels } from "./AdditionalChangesPanels.js";
 import { MaterialConfigChanges } from "./MaterialConfigChanges.js";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
 import { isMaterialIconType } from "./searchParams.js";
+
+import styles from "./AdditionalChanges.module.scss";
 
 export interface AdditionalChangesProps {
   isSvg?: boolean;
 }
 
 export function AdditionalChanges(
-  props: AdditionalChangesProps
+  props: AdditionalChangesProps,
 ): ReactElement | null {
   const { isSvg } = props;
 

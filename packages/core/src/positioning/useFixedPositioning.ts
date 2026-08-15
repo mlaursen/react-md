@@ -84,7 +84,7 @@ export type TransitionScrollCallback<
   FixedElement extends HTMLElement,
 > = (
   event: Event,
-  data: Readonly<FixedPositioningScrollData<FixedToElement, FixedElement>>
+  data: Readonly<FixedPositioningScrollData<FixedToElement, FixedElement>>,
 ) => void;
 
 /**
@@ -240,7 +240,7 @@ export function useFixedPositioning<
   FixedToElement extends HTMLElement,
   FixedElement extends HTMLElement,
 >(
-  options: FixedPositioningOptions<FixedToElement, FixedElement>
+  options: FixedPositioningOptions<FixedToElement, FixedElement>,
 ): FixedPositioningImplementation<FixedElement> {
   const {
     style: propStyle,
@@ -334,7 +334,7 @@ export function useFixedPositioning<
         xMargin,
         yMargin,
         ...getFixedPositionOptions(),
-      }).style
+      }).style,
   );
 
   const updateStyle = useCallback(() => {

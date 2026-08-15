@@ -27,7 +27,7 @@ describe("TooltippedButton", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(button).toMatchSnapshot();
   });

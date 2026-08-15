@@ -13,7 +13,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 
 function isChildrenExpression(
   j: JSCodeshift,
-  jsxElement: ASTPath<JSXElement>
+  jsxElement: ASTPath<JSXElement>,
 ): boolean {
   return (
     j(jsxElement).find(j.JSXAttribute, {
@@ -24,8 +24,8 @@ function isChildrenExpression(
       (child) =>
         child.type === "JSXExpressionContainer" &&
         ["FunctionExpression", "ArrowFunctionExpression"].includes(
-          child.expression.type
-        )
+          child.expression.type,
+        ),
     )
   );
 }
@@ -33,7 +33,7 @@ function isChildrenExpression(
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -57,7 +57,7 @@ export default function transformer(
       root.findJSXElements(name).forEach((jsxElement) => {
         if (!comments.size && isChildrenExpression(j, jsxElement)) {
           comments.add(
-            `TODO: Check the \`${component}\` usage to see if using the removed children function renderer behavior for getting the class name.`
+            `TODO: Check the \`${component}\` usage to see if using the removed children function renderer behavior for getting the class name.`,
           );
         }
       });

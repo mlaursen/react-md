@@ -20,7 +20,7 @@ export interface ExpandableLayoutExampleProps
   extends ExampleLayoutProps, Omit<ExpandableLayoutOptions, "pathname"> {}
 
 export function ExpandableLayoutExample(
-  props: ExpandableLayoutExampleProps
+  props: ExpandableLayoutExampleProps,
 ): ReactElement {
   const { layout, children, ...options } = props;
 

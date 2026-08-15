@@ -32,7 +32,7 @@ describe("AsyncButton", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(element).toMatchSnapshot();
   });
@@ -51,7 +51,7 @@ describe("AsyncButton", () => {
     });
 
     const { unmount } = rmdRender(
-      <AsyncButton onClick={onClick}>Button</AsyncButton>
+      <AsyncButton onClick={onClick}>Button</AsyncButton>,
     );
     const button = screen.getByRole("button", { name: "Button" });
     expect(button).not.toHaveAttribute("aria-disabled");
@@ -124,7 +124,7 @@ describe("AsyncButton", () => {
     const { rerender } = rmdRender(
       <AsyncButton loading loadingType="linear-above">
         Button
-      </AsyncButton>
+      </AsyncButton>,
     );
 
     const button = screen.getByRole("button", { name: "Button" });
@@ -133,7 +133,7 @@ describe("AsyncButton", () => {
     rerender(
       <AsyncButton loading loadingType="linear-below">
         Button
-      </AsyncButton>
+      </AsyncButton>,
     );
     expect(button).toMatchSnapshot();
   });
@@ -199,7 +199,7 @@ describe("AsyncButton", () => {
 
   it("should default to using the same theme while loading but can use the disabled theme by enabling the loadingDisabledTheme prop", () => {
     const { rerender } = rmdRender(
-      <AsyncButton loadingDisabledTheme>Button</AsyncButton>
+      <AsyncButton loadingDisabledTheme>Button</AsyncButton>,
     );
     const button = screen.getByRole("button", { name: "Button" });
     expect(button).toMatchSnapshot();
@@ -207,7 +207,7 @@ describe("AsyncButton", () => {
     rerender(
       <AsyncButton loading loadingDisabledTheme>
         Button
-      </AsyncButton>
+      </AsyncButton>,
     );
     expect(button).toMatchSnapshot();
   });

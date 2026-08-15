@@ -63,7 +63,7 @@ export function useEditableCombobox<
   ComboboxEl extends EditableHTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 >(
-  options: EditableComboboxOptions<ComboboxEl, PopupEl> = {}
+  options: EditableComboboxOptions<ComboboxEl, PopupEl> = {},
 ): EditableComboboxImplementation<ComboboxEl, PopupEl> {
   const focusFirst = useRef(false);
   const { getMenuProps, ...combobox } = useCombobox({

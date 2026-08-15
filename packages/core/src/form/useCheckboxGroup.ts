@@ -156,7 +156,7 @@ export function useCheckboxGroup<V extends string>(
     menu?: false;
     name: string;
     values?: never;
-  }
+  },
 ): CheckboxGroupImplementation<V>;
 /**
  * @example Indeterminate Checkbox Group
@@ -196,7 +196,7 @@ export function useCheckboxGroup<V extends string>(
     menu?: false;
     name: string;
     values: readonly V[];
-  }
+  },
 ): IndeterminateCheckboxGroupImplementation<V>;
 /**
  * @example MenuItemCheckbox Group
@@ -227,7 +227,7 @@ export function useCheckboxGroup<V extends string>(
     menu: true;
     name?: never;
     values?: never;
-  }
+  },
 ): MenuItemCheckboxGroupImplementation<V>;
 /**
  * @example Indeterminate MenuItemCheckbox Group
@@ -267,7 +267,7 @@ export function useCheckboxGroup<V extends string>(
     menu: true;
     name?: never;
     values: readonly V[];
-  }
+  },
 ): IndeterminateMenuItemCheckboxGroupImplementation<V>;
 /**
  * @see {@link https://react-md.dev/components/Checkbox | Checkbox Demos}
@@ -276,7 +276,7 @@ export function useCheckboxGroup<V extends string>(
  * @internal
  */
 export function useCheckboxGroup<V extends string>(
-  options: CheckboxGroupOptions<V>
+  options: CheckboxGroupOptions<V>,
 ): CombinedCheckboxGroupReturnValue<V> {
   const {
     name,

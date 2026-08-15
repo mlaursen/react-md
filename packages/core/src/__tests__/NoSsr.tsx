@@ -18,7 +18,7 @@ describe("NoSsr", () => {
     render(
       <NoSsr>
         <Content />
-      </NoSsr>
+      </NoSsr>,
     );
 
     expect(() => screen.getByText("Some Text")).not.toThrow();
@@ -30,7 +30,7 @@ describe("NoSsr", () => {
         <NoSsr>
           <Content />
         </NoSsr>
-      </SsrProvider>
+      </SsrProvider>,
     );
 
     expect(() => screen.getByText("Some Text")).not.toThrow();
@@ -79,7 +79,7 @@ describe("NoSsr", () => {
     render(
       <SsrProvider ssr>
         <Test />
-      </SsrProvider>
+      </SsrProvider>,
     );
 
     expect(parentRenderCount.current).toBe(2);

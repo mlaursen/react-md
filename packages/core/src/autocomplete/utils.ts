@@ -34,7 +34,7 @@ export interface GetDefaultValueOptions<
  * @internal
  */
 export function getDefaultValue<Option extends AutocompleteOption>(
-  options: GetDefaultValueOptions<Option>
+  options: GetDefaultValueOptions<Option>,
 ): UseStateInitializer<Option | null | readonly Option[]> {
   const {
     query,
@@ -99,7 +99,7 @@ interface GetDefaultQueryOptions<
  * @internal
  */
 export function getDefaultQuery<Option extends AutocompleteOption>(
-  options: GetDefaultQueryOptions<Option>
+  options: GetDefaultQueryOptions<Option>,
 ): UseStateInitializer<string> {
   const { value, getOptionLabel, defaultQuery } = options;
 
@@ -161,7 +161,7 @@ export interface EnforceSelectedValueOptions<
  * @internal
  */
 export function enforceSelectedValue<Option extends AutocompleteOption>(
-  options: EnforceSelectedValueOptions<Option>
+  options: EnforceSelectedValueOptions<Option>,
 ): void {
   const {
     value,
@@ -207,7 +207,7 @@ export function enforceSelectedValue<Option extends AutocompleteOption>(
  * @internal
  */
 export function isMultipleValues<Option extends AutocompleteOption>(
-  value: Option | null | readonly Option[]
+  value: Option | null | readonly Option[],
 ): value is readonly Option[] {
   return !!value && typeof value === "object" && "length" in value;
 }

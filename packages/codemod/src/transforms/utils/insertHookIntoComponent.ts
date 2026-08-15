@@ -18,7 +18,7 @@ export interface InsertHookIntoComponentOptions {
 }
 
 export function insertHookIntoComponent(
-  options: InsertHookIntoComponentOptions
+  options: InsertHookIntoComponentOptions,
 ): void {
   const { j, name, args = [], from, result } = options;
 

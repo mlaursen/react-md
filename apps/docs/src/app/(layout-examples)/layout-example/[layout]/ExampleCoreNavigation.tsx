@@ -14,8 +14,8 @@ import { LinkUnstyled } from "@/components/LinkUnstyled.js";
 import { pascalCase } from "@/utils/strings.js";
 
 import { LayoutIcon } from "./LayoutIcon.js";
-import { NavigationTypeIcon } from "./NavigationTypeIcon.js";
 import { LAYOUT_TYPES, type LayoutType } from "./layouts.js";
+import { NavigationTypeIcon } from "./NavigationTypeIcon.js";
 import { NAVIGATION_TYPES } from "./navTypes.js";
 
 const navTypeParam = "?navType=core";
@@ -25,7 +25,7 @@ export interface ExampleCoreNavigationProps {
 }
 
 export function ExampleCoreNavigation(
-  props: ExampleCoreNavigationProps
+  props: ExampleCoreNavigationProps,
 ): ReactElement {
   const { layout } = props;
 
@@ -90,7 +90,7 @@ export function ExampleCoreNavigation(
         beforeAddon: <ExitToAppIcon />,
       },
     ],
-    [layout, pathname]
+    [layout, pathname],
   );
   const { data } = useNavigationExpansion({
     pathname: `${pathname}${navTypeParam}`,

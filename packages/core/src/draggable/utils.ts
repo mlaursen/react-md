@@ -81,7 +81,7 @@ interface RelativeDragPosition {
  * @internal
  */
 export const getRelativeDragPosition = (
-  options: RelativeDragPositionOptions
+  options: RelativeDragPositionOptions,
 ): RelativeDragPosition => {
   const { min, max, rangeMin, rangeMax, step, isRTL, vertical, container } =
     options;
@@ -138,7 +138,7 @@ interface UpdateDragPositionOptions extends Omit<
  * @internal
  */
 export const updateDragPosition = (
-  options: UpdateDragPositionOptions
+  options: UpdateDragPositionOptions,
 ): void => {
   const {
     event,
@@ -228,7 +228,7 @@ export interface DeserializeDraggableValueOptions extends MinMaxRange {
  * @since 6.0.0
  */
 export function deserializeDraggableValue(
-  options: DeserializeDraggableValueOptions
+  options: DeserializeDraggableValueOptions,
 ): number {
   const { item, min, max } = options;
 

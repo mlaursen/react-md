@@ -16,7 +16,7 @@ import { type AutocompleteClearButtonProps } from "./types.js";
  * @since 6.0.0
  */
 export function AutocompleteClearButton(
-  props: AutocompleteClearButtonProps
+  props: AutocompleteClearButtonProps,
 ): ReactElement {
   const {
     id: propId,

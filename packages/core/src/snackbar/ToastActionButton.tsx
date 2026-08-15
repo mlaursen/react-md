@@ -40,7 +40,7 @@ export interface ToastActionButtonProps extends ButtonProps {
  * @since 6.0.0
  */
 export const ToastActionButton = function ToastActionButton(
-  props: ToastActionButtonProps
+  props: ToastActionButtonProps,
 ): ReactElement {
   const {
     ref,

@@ -1,11 +1,12 @@
+import { readFileSync, readdirSync, statSync } from "node:fs";
+import { basename, join } from "node:path";
+
 import { getProjectRootDir } from "docs-generator/utils/getProjectRootDir";
 import { log } from "docs-generator/utils/log";
 import {
   getAliasedFileName,
   writeGeneratedFile,
 } from "docs-generator/utils/writeGeneratedFile";
-import { readFileSync, readdirSync, statSync } from "node:fs";
-import { basename, join } from "node:path";
 
 import packageJson from "../package.json" with { type: "json" };
 import { GENERATED_STACKBLITZ_FILE } from "./constants.js";
@@ -17,7 +18,7 @@ function getAllFiles(dir: string): readonly string[] {
   for (const file of dirFiles) {
     if (
       /node_modules|(\.git$)|RootLayout|MainNavigation|README|CHANGELOG|(\.(ico|png))/.test(
-        file
+        file,
       )
     ) {
       continue;
@@ -40,7 +41,7 @@ interface TemplateHiddenInputProps {
 }
 
 function toTemplateHiddenInputProps(
-  fullFilePath: string
+  fullFilePath: string,
 ): TemplateHiddenInputProps {
   const srcPath = fullFilePath.replace(/^.+vite-(t|j)s\//, "");
   const name = basename(srcPath);
@@ -56,7 +57,7 @@ function toTemplateHiddenInputProps(
   } else if (name === "index.html") {
     contents = contents.replace(
       /id="root"/,
-      `id="root" class="{{CLASS_NAME}}"`
+      `id="root" class="{{CLASS_NAME}}"`,
     );
   }
 
@@ -83,7 +84,7 @@ export const STACKBLITZ_DEPENDENCIES: Record<string, string> = ${JSON.stringify(
       {
         ...packageJson.dependencies,
         ...packageJson.devDependencies,
-      }
+      },
     )}
 `,
   });
@@ -93,5 +94,5 @@ await log(
   // eslint-disable-next-line unicorn/prefer-top-level-await
   run(),
   "",
-  `Created ${getAliasedFileName(GENERATED_STACKBLITZ_FILE)}`
+  `Created ${getAliasedFileName(GENERATED_STACKBLITZ_FILE)}`,
 );

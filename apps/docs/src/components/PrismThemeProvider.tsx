@@ -39,7 +39,7 @@ export interface PrismThemeProviderProps {
 }
 
 export function PrismThemeProvider(
-  props: PrismThemeProviderProps
+  props: PrismThemeProviderProps,
 ): ReactElement {
   const { defaultPrismTheme: defaultTheme, children } = props;
   const [prismTheme, setPrismTheme] = useState(defaultTheme);
@@ -51,7 +51,7 @@ export function PrismThemeProvider(
         setPrismTheme(nextTheme);
       },
     }),
-    [prismTheme]
+    [prismTheme],
   );
   useEffect(() => {
     const stylesheet = document.querySelector(`#${PRISM_THEMES_ID}`);

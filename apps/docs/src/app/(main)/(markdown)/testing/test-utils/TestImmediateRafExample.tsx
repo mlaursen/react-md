@@ -31,7 +31,7 @@ export default function TestImmediateRafExample(): ReactElement {
         jest: BASE_CODE,
         vitest: BASE_CODE.replaceAll("jest-globals", "vitest").replaceAll(
           "jest",
-          "vi"
+          "vi",
         ),
       }}
     />

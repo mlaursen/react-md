@@ -28,7 +28,7 @@ interface AddonPaddingOptions {
  * @internal
  */
 function useAddonPadding(
-  options: AddonPaddingOptions
+  options: AddonPaddingOptions,
 ): [padding: string | undefined, addonRef: RefCallback<HTMLSpanElement>] {
   const { ref, addon, theme, extra } = options;
   const [padding, setPadding] = useState<string | undefined>();
@@ -43,10 +43,10 @@ function useAddonPadding(
 
         // the leading space for the extra calc is required
         setPadding(
-          `calc(var(--rmd-text-field-${theme}d-padding) + ${inlineSize}px${extra ? ` ${extra}` : ""})`
+          `calc(var(--rmd-text-field-${theme}d-padding) + ${inlineSize}px${extra ? ` ${extra}` : ""})`,
         );
       },
-      [extra, theme]
+      [extra, theme],
     ),
     disabled: !addon,
     disableHeight: true,
@@ -150,7 +150,7 @@ export interface TextFieldContainerAddonsImplementation {
  * @since 6.0.0
  */
 export function useTextFieldContainerAddons(
-  options: TextFieldContainerAddonsOptions
+  options: TextFieldContainerAddonsOptions,
 ): TextFieldContainerAddonsImplementation {
   const {
     style: propStyle,

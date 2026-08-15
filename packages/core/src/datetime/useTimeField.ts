@@ -127,7 +127,7 @@ export interface ValidatedTimeFieldImplementation extends TimeFieldImplementatio
  * @see {@link https://react-md.dev/hooks/use-time-field | useTimeField Demos}
  */
 export function useTimeField(
-  options: TimeFieldOptions & { disableMessage: true }
+  options: TimeFieldOptions & { disableMessage: true },
 ): TimeFieldImplementation;
 
 /**
@@ -162,7 +162,7 @@ export function useTimeField(
  * @see {@link https://react-md.dev/hooks/use-time-field | useTimeField Demos}
  */
 export function useTimeField(
-  options: TimeFieldOptions
+  options: TimeFieldOptions,
 ): TimeFieldWithMessageImplementation;
 
 /**
@@ -196,7 +196,7 @@ export function useTimeField(
  * @see {@link https://react-md.dev/hooks/use-time-field | useTimeField Demos}
  */
 export function useTimeField(
-  options: TimeFieldOptions
+  options: TimeFieldOptions,
 ): ValidatedTimeFieldImplementation {
   const { min, max, step, ...fieldOptions } = options;
   if (
@@ -205,7 +205,7 @@ export function useTimeField(
     (!min || !max)
   ) {
     throw new Error(
-      "A `step` was provided to a time field without the `min` or `max` props."
+      "A `step` was provided to a time field without the `min` or `max` props.",
     );
   }
 

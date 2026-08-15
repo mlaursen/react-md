@@ -26,7 +26,7 @@ import typography from "./typography/all.js";
 import utils from "./utils/all.js";
 
 export function preset(
-  icons: typeof prerequisites
+  icons: typeof prerequisites,
 ): readonly (typeof prerequisites)[] {
   return [
     prerequisites,

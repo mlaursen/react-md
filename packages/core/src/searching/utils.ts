@@ -25,7 +25,7 @@ export const defaultExtractor =
     }
 
     throw new Error(
-      `\`${usageName}\` requires the \`${propName}\` prop for lists that do not contain strings or known object types.`
+      `\`${usageName}\` requires the \`${propName}\` prop for lists that do not contain strings or known object types.`,
     );
   };
 
@@ -44,7 +44,7 @@ export interface SearchOptions<T> extends BaseSearchOptions<T> {
  * @since 6.0.0
  */
 export function search<T>(
-  options: SearchOptions<T>
+  options: SearchOptions<T>,
 ): readonly T[] | T | undefined {
   const { list, type, query, filter, extractor, whitespace = "keep" } = options;
   const fallback = type === "search" ? undefined : list;
@@ -59,6 +59,6 @@ export function search<T>(
 
   const fn = type === "search" ? "find" : "filter";
   return list[fn]((item) =>
-    filter(q, toSearchQuery(extractor(item), whitespace))
+    filter(q, toSearchQuery(extractor(item), whitespace)),
   );
 }

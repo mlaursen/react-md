@@ -94,7 +94,7 @@ describe("useDraggable", () => {
         onMouseUp={onMouseUp}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
-      />
+      />,
     );
 
     const button = screen.getByRole("button");
@@ -535,6 +535,6 @@ describe("useDraggable", () => {
   });
 
   it.todo(
-    "should allow for dragging relative to the offsetParent instead of the entire viewport"
+    "should allow for dragging relative to the offsetParent instead of the entire viewport",
   );
 });

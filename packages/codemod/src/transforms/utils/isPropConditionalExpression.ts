@@ -7,7 +7,7 @@ import {
 import { type NonEmptyJSXExpresson } from "../../types.js";
 
 export function isPropConditionalExpression(
-  attr: JSXAttribute
+  attr: JSXAttribute,
 ): attr is JSXAttribute & {
   value: JSXExpressionContainer & {
     expression: Exclude<NonEmptyJSXExpresson, BooleanLiteral>;

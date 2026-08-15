@@ -29,7 +29,7 @@ describe("ToastCloseButton", () => {
     const { rerender } = render(
       <CurrentToastActionsProvider value={actions}>
         <ToastCloseButton {...props} />
-      </CurrentToastActionsProvider>
+      </CurrentToastActionsProvider>,
     );
 
     const button = screen.getByRole("button", { name: "Close" });
@@ -44,14 +44,14 @@ describe("ToastCloseButton", () => {
           style={{ color: "white" }}
           className="custom-class-name"
         />
-      </CurrentToastActionsProvider>
+      </CurrentToastActionsProvider>,
     );
     expect(button).toMatchSnapshot();
 
     rerender(
       <CurrentToastActionsProvider value={actions}>
         <ToastCloseButton {...props} reordered />
-      </CurrentToastActionsProvider>
+      </CurrentToastActionsProvider>,
     );
     expect(button).toMatchSnapshot();
   });
@@ -72,7 +72,7 @@ describe("ToastCloseButton", () => {
     rmdRender(
       <CurrentToastActionsProvider value={actions}>
         <ToastCloseButton onClick={handleClick} />
-      </CurrentToastActionsProvider>
+      </CurrentToastActionsProvider>,
     );
 
     const button = screen.getByRole("button", { name: "Close" });
@@ -132,7 +132,7 @@ describe("ToastCloseButton", () => {
       // do nothing
     });
     expect(() => render(<ToastCloseButton />)).toThrow(
-      "The `CurrentToastActionsProvider` has not been initialized"
+      "The `CurrentToastActionsProvider` has not been initialized",
     );
 
     error.mockRestore();

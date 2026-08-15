@@ -41,7 +41,7 @@ export function useCurrentToastActions(): CurrentToastActions {
   const actions = useContext(context);
   if (!actions) {
     throw new Error(
-      "The `CurrentToastActionsProvider` has not been initialized"
+      "The `CurrentToastActionsProvider` has not been initialized",
     );
   }
 

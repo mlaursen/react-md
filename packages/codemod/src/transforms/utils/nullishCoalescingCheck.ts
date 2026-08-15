@@ -8,13 +8,13 @@ export interface NullishCoalescingCheckOptions {
 }
 
 export function nullishCoalescingCheck(
-  options: NullishCoalescingCheckOptions
+  options: NullishCoalescingCheckOptions,
 ): LogicalExpression {
   const { j, expr } = options;
 
   return j.logicalExpression(
     "||",
     j.binaryExpression("===", expr, j.literal("undefined")),
-    j.binaryExpression("===", expr, j.nullLiteral())
+    j.binaryExpression("===", expr, j.nullLiteral()),
   );
 }

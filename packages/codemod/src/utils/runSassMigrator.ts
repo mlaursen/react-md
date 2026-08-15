@@ -1,4 +1,5 @@
 import { readFile, writeFile } from "node:fs/promises";
+
 import postcssScss from "postcss-scss";
 
 import { getSassFilesToTransform } from "./getSassFilesToTransform.js";
@@ -11,7 +12,7 @@ export interface RunSassMigratorOptions {
 }
 
 export async function runSassMigrator(
-  options: RunSassMigratorOptions
+  options: RunSassMigratorOptions,
 ): Promise<void> {
   const { dry, migration } = options;
   const files = await getSassFilesToTransform(options.files);

@@ -6,7 +6,7 @@ import { getPercentage } from "../getPercentage.js";
 describe("getPercentage", () => {
   it("should throw a RangeError if the min is greater than the max", () => {
     const expected = new RangeError(
-      "A range must have the min value less than the max value"
+      "A range must have the min value less than the max value",
     );
     const options1: GetPercentageOptions = {
       min: 0,
@@ -37,22 +37,22 @@ describe("getPercentage", () => {
     expect(() => getPercentage(options3)).toThrow(expected);
     expect(() => getPercentage(options4)).toThrow(expected);
     expect(() => getPercentage({ ...options1, validate: false })).not.toThrow(
-      expected
+      expected,
     );
     expect(() => getPercentage({ ...options2, validate: false })).not.toThrow(
-      expected
+      expected,
     );
     expect(() => getPercentage({ ...options3, validate: false })).not.toThrow(
-      expected
+      expected,
     );
     expect(() => getPercentage({ ...options4, validate: false })).not.toThrow(
-      expected
+      expected,
     );
   });
 
   it("should throw a RangeError if the value is not between the min anx max", () => {
     const expected = new RangeError(
-      "A value must be between the min and max values"
+      "A value must be between the min and max values",
     );
     const options1: GetPercentageOptions = {
       min: 0,
@@ -77,13 +77,13 @@ describe("getPercentage", () => {
     expect(() => getPercentage(options2)).toThrow(expected);
     expect(() => getPercentage(options3)).toThrow(expected);
     expect(() => getPercentage({ ...options1, validate: false })).not.toThrow(
-      expected
+      expected,
     );
     expect(() => getPercentage({ ...options2, validate: false })).not.toThrow(
-      expected
+      expected,
     );
     expect(() => getPercentage({ ...options3, validate: false })).not.toThrow(
-      expected
+      expected,
     );
   });
 

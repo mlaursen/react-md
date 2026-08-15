@@ -24,7 +24,7 @@ describe("TableContainer", () => {
         {...props}
         style={{ backgroundColor: "red" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(container).toMatchSnapshot();
   });

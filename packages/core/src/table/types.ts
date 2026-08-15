@@ -114,7 +114,7 @@ export type TableStickySectionIntersectionObserverOptions = Pick<
  */
 export type IsStickyTableSectionActive = (
   entry: IntersectionObserverEntry,
-  isInTableContainer: boolean
+  isInTableContainer: boolean,
 ) => boolean;
 
 /** @since 6.0.0 */

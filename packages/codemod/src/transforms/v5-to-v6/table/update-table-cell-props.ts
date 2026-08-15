@@ -8,7 +8,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -32,7 +32,7 @@ export default function transformer(
               jsxAttribute.node.value?.type === "StringLiteral"
             ) {
               comments.add(
-                "TODO: Update the `TableCell` to have a `colSpan` number equal to the total number of columns in the table"
+                "TODO: Update the `TableCell` to have a `colSpan` number equal to the total number of columns in the table",
               );
               j(jsxAttribute).remove();
             }
@@ -43,8 +43,8 @@ export default function transformer(
                     name: "padding",
                     type: "JSXIdentifier",
                   },
-                  j.stringLiteral("none")
-                )
+                  j.stringLiteral("none"),
+                ),
               );
             }
           });

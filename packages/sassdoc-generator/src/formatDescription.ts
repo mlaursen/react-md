@@ -5,7 +5,7 @@ import { NO_COMPILE_TOKEN } from "./constants.js";
  * replace all inline newlines with spaces
  */
 export function formatDescription(
-  description: string | undefined = ""
+  description: string | undefined = "",
 ): string {
   return description
     .replace(NO_COMPILE_TOKEN, "")

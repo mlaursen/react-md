@@ -15,10 +15,10 @@ import { ListItemChildren } from "../list/ListItemChildren.js";
 import { useKeyboardMovementContext } from "../movement/useKeyboardMovementProvider.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import { treeItem, treeItemContent, treeItemMedia } from "./styles.js";
 import { type OverridableTreeGroupProps, TreeGroup } from "./TreeGroup.js";
 import { TreeItemExpander } from "./TreeItemExpander.js";
 import { useTreeContext } from "./TreeProvider.js";
-import { treeItem, treeItemContent, treeItemMedia } from "./styles.js";
 import { type DefaultTreeItemNode } from "./types.js";
 
 /**

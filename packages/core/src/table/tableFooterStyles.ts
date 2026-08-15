@@ -23,6 +23,6 @@ export function tableFooter(options: TableFooterClassNameOptions = {}): string {
       "sticky-active": stickyActive,
     }),
     stickyActive && stickyActiveClassName,
-    className
+    className,
   );
 }

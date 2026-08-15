@@ -207,7 +207,7 @@ export interface CodeEditHistoryImplementation {
 }
 
 export function useCodeEditHistory(
-  options: CodeEditHistoryOptions
+  options: CodeEditHistoryOptions,
 ): CodeEditHistoryImplementation {
   const { ref, onChange = noop, onKeyDown = noop, defaultCode } = options;
 
@@ -240,7 +240,7 @@ export function useCodeEditHistory(
       editor.setSelectionRange(selectionStart, selectionEnd);
       setCode(action.value);
     },
-    [editorRef]
+    [editorRef],
   );
   const editCode = useCallback(
     (action: CodeEditAction) => {
@@ -257,7 +257,7 @@ export function useCodeEditHistory(
         if (nextAction) {
           editHistory.offset = Math.min(
             Math.max(nextOffset, 0),
-            stack.length - 1
+            stack.length - 1,
           );
           updateTextArea(nextAction);
         }
@@ -274,7 +274,7 @@ export function useCodeEditHistory(
         updateTextArea(action);
       }
     },
-    [updateTextArea]
+    [updateTextArea],
   );
 
   return {
@@ -319,7 +319,7 @@ export function useCodeEditHistory(
       (nextCode) => {
         editCode({ value: nextCode });
       },
-      [editCode]
+      [editCode],
     ),
     editCode,
     updateTextArea,

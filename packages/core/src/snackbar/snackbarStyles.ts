@@ -40,6 +40,6 @@ export function snackbar(options: SnackbarClassNameOptions): string {
       start: position === "top-left" || position === "bottom-left",
       end: position === "top-right" || position === "bottom-right",
     }),
-    className
+    className,
   );
 }

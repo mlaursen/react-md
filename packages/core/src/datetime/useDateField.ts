@@ -125,7 +125,7 @@ export interface ValidatedDateFieldImplementation extends DateFieldImplementatio
  * @see {@link https://react-md.dev/hooks/use-date-field | useDateField Demos}
  */
 export function useDateField(
-  options: DateFieldOptions & { disableMessage: true }
+  options: DateFieldOptions & { disableMessage: true },
 ): DateFieldImplementation;
 
 /**
@@ -158,7 +158,7 @@ export function useDateField(
  * @see {@link https://react-md.dev/hooks/use-date-field | useDateField Demos}
  */
 export function useDateField(
-  options: DateFieldOptions
+  options: DateFieldOptions,
 ): DateFieldWithMessageImplementation;
 
 /**
@@ -167,7 +167,7 @@ export function useDateField(
  * @see {@link https://react-md.dev/hooks/use-date-field | useTimeField Demos}
  */
 export function useDateField(
-  options: DateFieldOptions
+  options: DateFieldOptions,
 ): ValidatedDateFieldImplementation {
   const { min, max, step, ...fieldOptions } = options;
   const { fieldProps, ...impl } = useTextField(fieldOptions);

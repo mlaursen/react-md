@@ -1,9 +1,19 @@
 {
   "name": "docs",
-  "type": "module",
-  "private": true,
   "version": "0.0.25",
+  "private": true,
   "description": "The documentation site for react-md",
+  "homepage": "https://react-md.dev",
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "license": "MIT",
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git"
+  },
+  "type": "module",
   "scripts": {
     "run-script": "tsx --tsconfig scripts/tsconfig.json",
     "create-env": "node scripts/createEnv.ts",
@@ -13,8 +23,6 @@
     "typecheck-src": "tsgo --noEmit",
     "typecheck-scripts": "tsgo --noEmit -P scripts/tsconfig.json",
     "typecheck": "npm-run-all typecheck-src typecheck-scripts",
-    "check-format": "prettier --check .",
-    "format": "prettier --write .",
     "lint-scripts": "eslint \"**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "lint-styles": "stylelint \"src/**/*.{css,scss}\"",
     "lint": "npm-run-all lint-scripts lint-styles",
@@ -36,16 +44,6 @@
     "dev-tasks": "npm-run-all --parallel watch-demos \"sassdoc --touch\" watch-scss-lookup generator-dev",
     "start": "next start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mlaursen/react-md.git"
-  },
-  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mlaursen/react-md/issues"
-  },
-  "homepage": "https://react-md.dev",
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/mdx": "^3.1.1",
@@ -89,7 +87,6 @@
     "glob": "^13.0.6",
     "nodemon": "^3.1.14",
     "npm-run-all2": "^8.0.2",
-    "prettier": "^3.8.3",
     "sass": "^1.99.0",
     "sassdoc-generator": "workspace:*",
     "stylelint": "^17.11.1",

@@ -28,7 +28,7 @@ describe("FontIcon", () => {
     rerender(<FontIcon data-testid="icon" className="test-thing" dense />);
     expect(icon).toHaveClass(
       "rmd-icon rmd-icon--font rmd-icon--dense material-icons test-thing",
-      { exact: true }
+      { exact: true },
     );
     expect(icon).toMatchSnapshot();
 
@@ -38,11 +38,11 @@ describe("FontIcon", () => {
         className="test-thing"
         dense
         iconClassName="fa fa-github"
-      />
+      />,
     );
     expect(icon).toHaveClass(
       "rmd-icon rmd-icon--font rmd-icon--dense fa fa-github test-thing",
-      { exact: true }
+      { exact: true },
     );
     expect(icon).toMatchSnapshot();
   });

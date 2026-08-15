@@ -45,7 +45,7 @@ const toSassVar = (colorName: string): string =>
   `colors.$${kebabCase(colorName.replace("Accent", "A")).replace(/([a-z])(\d)/, "$1-$2")}`;
 
 const isOverridableColor = (
-  key: string
+  key: string,
 ): key is keyof ConfigurableThemeColors => key in DEFAULT_WEBSITE_THEME_COLORS;
 
 export function usePlaygroundColors(): PlaygroundColorsImplementation {
@@ -55,7 +55,7 @@ export function usePlaygroundColors(): PlaygroundColorsImplementation {
   const [state, dispatch] = useReducer(
     function reducer(
       state: PlaygroundColors,
-      action: PlaygroundColorsAction | { type: "reset" }
+      action: PlaygroundColorsAction | { type: "reset" },
     ): PlaygroundColors {
       switch (action.type) {
         case "reset":
@@ -110,7 +110,7 @@ export function usePlaygroundColors(): PlaygroundColorsImplementation {
           ? toSassVar(secondaryColorVar)
           : init.secondaryColorVar,
       };
-    }
+    },
   );
 
   const reset = useCallback(() => {
@@ -141,7 +141,7 @@ export function usePlaygroundColors(): PlaygroundColorsImplementation {
         variables.push({ name, value });
       }
       return variables;
-    }, [state])
+    }, [state]),
   );
 
   return {

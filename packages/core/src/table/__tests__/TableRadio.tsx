@@ -33,7 +33,7 @@ describe("TableRadio", () => {
         ref={ref}
         style={{ pointerEvents: "none" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(cell).toMatchSnapshot();
   });

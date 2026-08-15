@@ -24,7 +24,7 @@ describe("DialogTitle", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(title).toMatchSnapshot();
   });
@@ -33,7 +33,7 @@ describe("DialogTitle", () => {
     render(
       <DialogTitle as="h3" type="caption" margin="top">
         Title
-      </DialogTitle>
+      </DialogTitle>,
     );
 
     const title = screen.getByRole("heading", { name: "Title" });

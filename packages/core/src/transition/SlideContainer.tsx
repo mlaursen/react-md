@@ -63,7 +63,7 @@ export interface SlideContainerClassNameOptions {
  * @since 6.0.0
  */
 export function slideContainer(
-  options: SlideContainerClassNameOptions
+  options: SlideContainerClassNameOptions,
 ): string {
   const { className, direction, vertical } = options;
 

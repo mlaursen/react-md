@@ -177,7 +177,7 @@ export function LayoutNav(props: LayoutNavProps): ReactElement {
         className,
         raised: false,
         horizontalSize: "none",
-      })
+      }),
     ),
     classNames,
     enter,

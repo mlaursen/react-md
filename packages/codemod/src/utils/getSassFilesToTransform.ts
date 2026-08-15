@@ -4,7 +4,7 @@ import { globSync } from "glob";
 
 export async function getSassFilesToTransform(
   files: readonly string[],
-  requireConfirm = false
+  requireConfirm = false,
 ): Promise<readonly string[]> {
   let filePatterns = files;
   if (!files.length) {
@@ -27,7 +27,7 @@ export async function getSassFilesToTransform(
     matchedFiles.push(
       ...globSync(pattern, {
         ignore: ["**/node_modules/**"],
-      })
+      }),
     );
   }
 

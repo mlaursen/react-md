@@ -77,7 +77,7 @@ export interface CrossFadeTransitionHookOptions<
  * @since 4.0.0
  */
 export function useCrossFadeTransition<E extends HTMLElement>(
-  options: CrossFadeTransitionHookOptions<E> = {}
+  options: CrossFadeTransitionHookOptions<E> = {},
 ): CSSTransitionHookReturnValue<E> {
   const {
     appear = false,

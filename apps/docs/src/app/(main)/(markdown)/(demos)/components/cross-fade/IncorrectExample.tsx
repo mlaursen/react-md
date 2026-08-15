@@ -77,5 +77,5 @@ const CustomCardFixed = forwardRef<HTMLDivElement, CustomCardFixedProps>(
         <CardContent>{`Item ${index + 1}`}</CardContent>
       </Card>
     );
-  }
+  },
 );

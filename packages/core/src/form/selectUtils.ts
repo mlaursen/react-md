@@ -65,7 +65,7 @@ interface ExtractedOptions<Value extends string | number> {
  */
 export function extractOptionsFromChildren<Value extends string | number>(
   children: ReactNode,
-  currentValue: Value | undefined
+  currentValue: Value | undefined,
 ): ExtractedOptions<Value> {
   let currentOption: SelectOption<Value> | undefined;
 

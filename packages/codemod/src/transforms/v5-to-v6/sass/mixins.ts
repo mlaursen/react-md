@@ -18,7 +18,7 @@ export function mixins(root: Root): boolean {
       changed = true;
       addTodo(
         node,
-        "This mixin has been removed and must manually be updated."
+        "This mixin has been removed and must manually be updated.",
       );
     } else {
       const renamed = renameItem(options);
@@ -32,7 +32,7 @@ export function mixins(root: Root): boolean {
     if (/-(set|use)-var/.test(mixinName)) {
       const group = mixinName.replace(
         /[\s\S]*?([^\s-]+)-(get|set|use)-var[\s\S]*/m,
-        "$1"
+        "$1",
       );
 
       let icon: boolean | undefined;

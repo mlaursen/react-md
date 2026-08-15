@@ -24,7 +24,7 @@ describe("Label", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(label).toMatchSnapshot();
 
@@ -38,7 +38,7 @@ describe("Label", () => {
     expect(label).toMatchSnapshot();
 
     rerender(
-      <Label {...props} floating active inactive floatingActive={false} />
+      <Label {...props} floating active inactive floatingActive={false} />,
     );
     expect(label).toMatchSnapshot();
 

@@ -12,7 +12,6 @@ import "server-only";
 
 import { DISABLE_DEFAULT_SYSTEM_THEME } from "@/constants/rmdConfig.js";
 
-import fallbackThemeStyles from "@/components/LoadThemeStyles/SystemTheme.module.scss";
 import { type CodeLanguage } from "@/components/MainLayout/ConfigureTypescriptEnabled.js";
 import {
   CODE_LANGUAGE_KEY,
@@ -24,6 +23,8 @@ import { PRISM_THEMES, type PrismTheme } from "@/constants/prismThemes.js";
 import { getCookie, getThemeCookie } from "@/utils/serverCookies.js";
 
 import { kebabCase, pascalCase } from "./strings.js";
+
+import fallbackThemeStyles from "@/components/LoadThemeStyles/SystemTheme.module.scss";
 
 export interface AppCookies {
   defaultPrismTheme: PrismTheme;
@@ -76,7 +77,7 @@ export type CSSModulesImport = typeof fallbackThemeStyles;
 
 async function loadStyles(
   load: Promise<{ default: CSSModulesImport }>,
-  fallback: CSSModulesImport
+  fallback: CSSModulesImport,
 ): Promise<CSSModulesImport> {
   return await load
     .then((mod) => mod.default)
@@ -108,7 +109,7 @@ export async function getInitialState(): Promise<InitialAppState> {
     const themeName = pascalCase(defaultColorScheme);
     themeStyles = await loadStyles(
       import(`@/components/LoadThemeStyles/${themeName}Theme.module.scss`),
-      fallbackThemeStyles
+      fallbackThemeStyles,
     );
   }
 

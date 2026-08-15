@@ -7,7 +7,7 @@ import { type ColorScheme, type LightDarkColorScheme } from "./types.js";
  * @since 6.0.0
  */
 export function isLightDarkColorScheme(
-  value: unknown
+  value: unknown,
 ): value is LightDarkColorScheme {
   return value === "light" || value === "dark";
 }

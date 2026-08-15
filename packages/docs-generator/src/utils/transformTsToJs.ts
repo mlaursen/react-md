@@ -10,7 +10,7 @@ import { transform } from "sucrase";
 export async function transformTsToJs(
   code: string,
   filepath: string,
-  printWidth = 80
+  printWidth = 80,
 ): Promise<string> {
   const transformedCode = transform(code, {
     transforms: ["typescript", "jsx"],
@@ -33,7 +33,7 @@ export async function transformTsToJs(
       // It looks like the .prettierrc.yaml aren't always picked up
       printWidth,
       trailingComma: "es5",
-    }
+    },
   );
   return formatted.trim();
 }

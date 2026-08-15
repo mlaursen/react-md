@@ -1,6 +1,7 @@
+import { existsSync } from "node:fs";
+
 import { log, logComplete } from "docs-generator/utils/log";
 import { getAliasedFileName } from "docs-generator/utils/writeGeneratedFile";
-import { existsSync } from "node:fs";
 import { type GeneratedSassDocWithOrder } from "sassdoc-generator";
 
 import {
@@ -22,7 +23,7 @@ const empty: GeneratedSassDocWithOrder = {
 
 const runIfNotExists = async (
   fn: (generated: GeneratedSassDocWithOrder) => Promise<void>,
-  fileNames: readonly string[]
+  fileNames: readonly string[],
 ): Promise<boolean> => {
   if (fileNames.some((fileName) => !existsSync(fileName))) {
     await fn(empty);
@@ -47,12 +48,12 @@ export const touch = async (): Promise<void> => {
             logComplete(`Created an empty "${getAliasedFileName(fileName)}`);
           }
         }
-      })
+      }),
     );
   };
   await log(
     task(),
     "",
-    "Run `pnpm --filter docs sassdoc` to update these files."
+    "Run `pnpm --filter docs sassdoc` to update these files.",
   );
 };

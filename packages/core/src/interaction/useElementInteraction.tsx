@@ -11,9 +11,8 @@ import {
   useRef,
 } from "react";
 
-import { RippleContainer } from "./RippleContainer.js";
-import { useUserInteractionMode } from "./UserInteractionModeProvider.js";
 import { INTERACTION_CONFIG } from "./config.js";
+import { RippleContainer } from "./RippleContainer.js";
 import {
   type ElementInteractionHandlers,
   type ElementInteractionMode,
@@ -21,6 +20,7 @@ import {
   type RippleState,
   type RippleStyle,
 } from "./types.js";
+import { useUserInteractionMode } from "./UserInteractionModeProvider.js";
 import { getRippleStyle, releaseRipple, updateRipplesState } from "./utils.js";
 
 declare module "react" {
@@ -163,7 +163,7 @@ const noop = (): void => {
  * ripple effect will only be fired on click now for touch devices.
  */
 export function useElementInteraction<E extends HTMLElement>(
-  options: ElementInteractionOptions<E> = {}
+  options: ElementInteractionOptions<E> = {},
 ): ElementInteractionImplementation<E> {
   const {
     onBlur = noop,
@@ -188,7 +188,7 @@ export function useElementInteraction<E extends HTMLElement>(
   const [state, dispatch] = useReducer(
     function reducer(
       state: ElementInteractionState,
-      action: ElementInteractionAction
+      action: ElementInteractionAction,
     ): ElementInteractionState {
       switch (action.type) {
         case "press": {
@@ -245,7 +245,7 @@ export function useElementInteraction<E extends HTMLElement>(
           return state;
       }
     },
-    { pressed: false, ripples: [] }
+    { pressed: false, ripples: [] },
   );
   const { pressed } = state;
 
@@ -278,7 +278,7 @@ export function useElementInteraction<E extends HTMLElement>(
             dispatch({ type: "release" });
           }
         },
-        [onBlur]
+        [onBlur],
       ),
       onClick: useCallback(
         (event: MouseEvent<E>) => {
@@ -304,7 +304,7 @@ export function useElementInteraction<E extends HTMLElement>(
             style: getRippleStyle(event, true),
           });
         },
-        [disabled, mode, onClick, userMode]
+        [disabled, mode, onClick, userMode],
       ),
       onMouseDown: useCallback(
         (event: MouseEvent<E>) => {
@@ -337,7 +337,7 @@ export function useElementInteraction<E extends HTMLElement>(
 
           dispatch({ type: "press", style });
         },
-        [onMouseDown, isInteractionDisabled, userMode, mode]
+        [onMouseDown, isInteractionDisabled, userMode, mode],
       ),
       onMouseUp: useCallback(
         (event: MouseEvent<E>) => {
@@ -349,7 +349,7 @@ export function useElementInteraction<E extends HTMLElement>(
           holding.current = false;
           dispatch({ type: "release" });
         },
-        [isInteractionDisabled, onMouseUp]
+        [isInteractionDisabled, onMouseUp],
       ),
       onMouseLeave: useCallback(
         (event: MouseEvent<E>) => {
@@ -366,7 +366,7 @@ export function useElementInteraction<E extends HTMLElement>(
           holding.current = false;
           dispatch({ type: "cancel" });
         },
-        [isInteractionDisabled, onMouseLeave, userMode]
+        [isInteractionDisabled, onMouseLeave, userMode],
       ),
       onDragStart(event) {
         onDragStart(event);
@@ -421,7 +421,7 @@ export function useElementInteraction<E extends HTMLElement>(
           holding.current = true;
           dispatch({ type: "press", style: getRippleStyle(event, false) });
         },
-        [disabled, isInteractionDisabled, onKeyDown, userMode]
+        [disabled, isInteractionDisabled, onKeyDown, userMode],
       ),
       onKeyUp: useCallback(
         (event: KeyboardEvent<E>) => {
@@ -438,7 +438,7 @@ export function useElementInteraction<E extends HTMLElement>(
           holding.current = false;
           dispatch({ type: "release" });
         },
-        [isInteractionDisabled, onKeyUp, userMode]
+        [isInteractionDisabled, onKeyUp, userMode],
       ),
       onTouchStart: useCallback(
         (event: TouchEvent<E>) => {
@@ -455,7 +455,7 @@ export function useElementInteraction<E extends HTMLElement>(
 
           dispatch({ type: "press", style });
         },
-        [mode, isInteractionDisabled, onTouchStart]
+        [mode, isInteractionDisabled, onTouchStart],
       ),
       onTouchEnd: useCallback(
         (event: TouchEvent<E>) => {
@@ -467,7 +467,7 @@ export function useElementInteraction<E extends HTMLElement>(
           holding.current = false;
           dispatch({ type: "release" });
         },
-        [isInteractionDisabled, onTouchEnd]
+        [isInteractionDisabled, onTouchEnd],
       ),
       onTouchMove: useCallback(
         (event: TouchEvent<E>) => {
@@ -479,7 +479,7 @@ export function useElementInteraction<E extends HTMLElement>(
           holding.current = false;
           dispatch({ type: "cancel" });
         },
-        [isInteractionDisabled, onTouchMove]
+        [isInteractionDisabled, onTouchMove],
       ),
     },
   };

@@ -1,12 +1,14 @@
 {
   "name": "mlaursen-nextjs",
-  "type": "module",
   "version": "1.0.0",
-  "license": "MIT",
   "private": true,
+  "license": "MIT",
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "type": "module",
   "scripts": {
     "prepare": "husky",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,scss,md,yml,json}\"",
+    "check-format": "oxfmt --check",
+    "format": "oxfmt",
     "typecheck": "tsc --noEmit",
     "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
@@ -15,7 +17,6 @@
     "start": "next start",
     "start-static": "serve -p 3000 ./out"
   },
-  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "dependencies": {
     "@react-md/core": "^7.0.5",
     "@react-md/material-icons": "^7.0.6",
@@ -35,7 +36,6 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.12.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -46,16 +46,14 @@
     "jest-environment-jsdom": "^30.4.1",
     "jest-watch-typeahead": "^3.0.1",
     "lint-staged": "^17.0.4",
-    "prettier": "^3.8.3",
+    "oxfmt": "^0.63.0",
     "sass-embedded": "^1.99.0",
     "serve": "^14.2.6",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   },
   "lint-staged": {
-    "**/*.{ts,tsx,scss,js,jsx,md,yml,json}": [
-      "prettier --write"
-    ]
+    "*": "oxfmt --no-error-on-unmatched-pattern"
   },
   "engines": {
     "node": "24.18.0",

@@ -7,12 +7,12 @@ import { getIcon } from "../icon/config.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useToggle } from "../useToggle.js";
-import { TextField, type TextFieldProps } from "./TextField.js";
 import {
   password,
   passwordInput,
   passwordInputToggle,
 } from "./passwordStyles.js";
+import { TextField, type TextFieldProps } from "./TextField.js";
 
 /**
  * @example Simple Example
@@ -31,7 +31,7 @@ import {
  * @returns a custom icon to use for the password visibility toggle.
  */
 export type GetPasswordVisibilityIcon = (
-  isPasswordVisible: boolean
+  isPasswordVisible: boolean,
 ) => ReactNode;
 
 /**

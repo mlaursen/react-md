@@ -6,7 +6,7 @@ import { preset } from "./preset.js";
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   preset(toFont).forEach((transform) => {
     file.source = transform(file, api, options);

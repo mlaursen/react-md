@@ -10,13 +10,13 @@ describe("toSearchQuery", () => {
 
   it("should support ignoring whitespace by removing it all", () => {
     expect(toSearchQuery("   Hell  o, Wor ld!    ", "ignore")).toBe(
-      "hello,world!"
+      "hello,world!",
     );
   });
 
   it("should support removing leading and trailing whitespace by setting the whitespace to trim", () => {
     expect(toSearchQuery("   Hell  o, Wor ld!    ", "trim")).toBe(
-      "hell  o, wor ld!"
+      "hell  o, wor ld!",
     );
   });
 });

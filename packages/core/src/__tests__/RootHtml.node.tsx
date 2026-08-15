@@ -12,19 +12,19 @@ describe("RootHtml", () => {
 
   it("should allow a custom bodyClassName", () => {
     expect(
-      renderToString(<RootHtml bodyClassName="body-class-name" />)
+      renderToString(<RootHtml bodyClassName="body-class-name" />),
     ).toMatchSnapshot();
   });
 
   it("should allow the body className to be set through bodyProps when the bodyClassName prop is not provided", () => {
     const html1 = renderToString(
-      <RootHtml bodyProps={{ className: "custom-body-class" }} />
+      <RootHtml bodyProps={{ className: "custom-body-class" }} />,
     );
     const html2 = renderToString(
       <RootHtml
         bodyProps={{ className: "custom-body-name" }}
         bodyClassName="body-class"
-      />
+      />,
     );
 
     expect(html1).toContain("custom-body-class");

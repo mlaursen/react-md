@@ -16,7 +16,7 @@ export interface ScssCodeEditorOptions {
 }
 
 export function useScssCodeEditor(
-  options: ScssCodeEditorOptions
+  options: ScssCodeEditorOptions,
 ): ScssCodeEditorState {
   const { code, demoName, defaultCode, defaultCompiledCode } = options;
 
@@ -48,7 +48,7 @@ export function useScssCodeEditor(
       try {
         const [compile, SCSS_LOOKUP] = await Promise.all([
           import("docs-generator/utils/compileScssModule").then(
-            (mod) => mod.compileScssModule
+            (mod) => mod.compileScssModule,
           ),
           import("@/generated/rmdScssLookup.js").then((mod) => mod.SCSS_LOOKUP),
         ]);

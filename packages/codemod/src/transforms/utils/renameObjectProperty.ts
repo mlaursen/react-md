@@ -6,7 +6,7 @@ export interface RenameObjectPropertyOptions {
 }
 
 export function renameObjectProperty(
-  options: RenameObjectPropertyOptions
+  options: RenameObjectPropertyOptions,
 ): void {
   const { name, prop } = options;
   const node = "node" in prop ? prop.node : prop;

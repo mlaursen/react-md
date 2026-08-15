@@ -37,7 +37,7 @@ export interface ColorSchemeMetaTagOptions {
  * @since 6.0.0
  */
 export function useColorSchemeMetaTag(
-  options: ColorSchemeMetaTagOptions
+  options: ColorSchemeMetaTagOptions,
 ): void {
   const { disabled, colorScheme } = options;
 

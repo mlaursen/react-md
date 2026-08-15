@@ -89,7 +89,7 @@ function Test(props: TestProps): ReactElement {
         props: AnchorHTMLAttributes<HTMLAnchorElement> & {
           href: string;
           ref?: Ref<HTMLAnchorElement>;
-        }
+        },
       ) {
         const { ref, ...remaining } = props;
         return (
@@ -102,7 +102,7 @@ function Test(props: TestProps): ReactElement {
           />
         );
       },
-    []
+    [],
   );
 
   const { data } = useNavigationExpansion({
@@ -138,16 +138,16 @@ describe("useNavigationExpansion", () => {
     const { unmount } = render(<Test />);
     let nav = screen.getByTestId("nav");
     expect(() =>
-      screen.getByRole("link", { name: "Path 1 Route 1" })
+      screen.getByRole("link", { name: "Path 1 Route 1" }),
     ).toThrow();
     expect(() =>
-      screen.getByRole("link", { name: "Path 1 Route 2" })
+      screen.getByRole("link", { name: "Path 1 Route 2" }),
     ).toThrow();
     expect(() =>
-      screen.getByRole("link", { name: "Path 2 Route 1" })
+      screen.getByRole("link", { name: "Path 2 Route 1" }),
     ).toThrow();
     expect(() =>
-      screen.getByRole("link", { name: "Path 2 Route 2" })
+      screen.getByRole("link", { name: "Path 2 Route 2" }),
     ).toThrow();
     expect(nav).toMatchSnapshot();
 
@@ -155,16 +155,16 @@ describe("useNavigationExpansion", () => {
     render(<Test defaultPathname="/path-2/route-2" />);
     nav = screen.getByTestId("nav");
     expect(() =>
-      screen.getByRole("link", { name: "Path 1 Route 1" })
+      screen.getByRole("link", { name: "Path 1 Route 1" }),
     ).toThrow();
     expect(() =>
-      screen.getByRole("link", { name: "Path 1 Route 2" })
+      screen.getByRole("link", { name: "Path 1 Route 2" }),
     ).toThrow();
     expect(() =>
-      screen.getByRole("link", { name: "Path 2 Route 1" })
+      screen.getByRole("link", { name: "Path 2 Route 1" }),
     ).not.toThrow();
     expect(() =>
-      screen.getByRole("link", { name: "Path 2 Route 2" })
+      screen.getByRole("link", { name: "Path 2 Route 2" }),
     ).not.toThrow();
     expect(nav).toMatchSnapshot();
   });
@@ -172,19 +172,19 @@ describe("useNavigationExpansion", () => {
   it("should allow for default expanded items", () => {
     const { unmount } = render(<Test defaultExpandedItems={["/path-1"]} />);
     expect(() =>
-      screen.getByRole("link", { name: "Path 1 Route 1" })
+      screen.getByRole("link", { name: "Path 1 Route 1" }),
     ).not.toThrow();
     expect(() =>
-      screen.getByRole("link", { name: "Path 2 Route 1" })
+      screen.getByRole("link", { name: "Path 2 Route 1" }),
     ).toThrow();
     unmount();
 
     render(<Test defaultExpandedItems={() => new Set(["/path-2"])} />);
     expect(() =>
-      screen.getByRole("link", { name: "Path 1 Route 1" })
+      screen.getByRole("link", { name: "Path 1 Route 1" }),
     ).toThrow();
     expect(() =>
-      screen.getByRole("link", { name: "Path 2 Route 1" })
+      screen.getByRole("link", { name: "Path 2 Route 1" }),
     ).not.toThrow();
   });
 

@@ -114,15 +114,13 @@ $variables: (height, padding);
       @if not $disable-resizing-rows {
         &--height {
           height: calc(
-            #{text-field.get-var(padding-top)} +
-              #{get-var(padding)} +
+            #{text-field.get-var(padding-top)} + #{get-var(padding)} +
               #{get-var(height)}
           );
         }
 
         &--animate {
-          transition: height
-            transition.$linear-duration
+          transition: height transition.$linear-duration
             transition.$linear-timing-function;
         }
 
@@ -132,8 +130,7 @@ $variables: (height, padding);
           width: 100%;
 
           &--animate {
-            transition: height
-              transition.$linear-duration
+            transition: height transition.$linear-duration
               transition.$linear-timing-function;
           }
         }

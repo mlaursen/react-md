@@ -27,7 +27,7 @@ describe("MenuItemSwitch", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(element).toMatchSnapshot();
   });

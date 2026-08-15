@@ -21,7 +21,7 @@ describe("TableRow", () => {
         <TableBody>
           <TableRow {...props} />
         </TableBody>
-      </Table>
+      </Table>,
     );
 
     const row = screen.getByTestId("row");
@@ -38,7 +38,7 @@ describe("TableRow", () => {
             className="custom-class-name"
           />
         </TableBody>
-      </Table>
+      </Table>,
     );
     expect(row).toMatchSnapshot();
 
@@ -47,7 +47,7 @@ describe("TableRow", () => {
         <TableBody>
           <TableRow {...props} disableHover={false} disableBorders={false} />
         </TableBody>
-      </Table>
+      </Table>,
     );
     expect(row).toMatchSnapshot();
 
@@ -56,7 +56,7 @@ describe("TableRow", () => {
         <TableBody>
           <TableRow {...props} disableHover disableBorders />
         </TableBody>
-      </Table>
+      </Table>,
     );
     expect(row).toMatchSnapshot();
   });

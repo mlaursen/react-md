@@ -4,9 +4,9 @@ import { Button } from "@react-md/core/button/Button";
 import { Option } from "@react-md/core/form/Option";
 import { Select } from "@react-md/core/form/Select";
 import { Snackbar } from "@react-md/core/snackbar/Snackbar";
+import { type SnackbarPosition } from "@react-md/core/snackbar/snackbarStyles";
 import { ToastManager } from "@react-md/core/snackbar/ToastManager";
 import { ToastManagerProvider } from "@react-md/core/snackbar/ToastManagerProvider";
-import { type SnackbarPosition } from "@react-md/core/snackbar/snackbarStyles";
 import { type ReactElement, useState } from "react";
 
 export default function SnackbarPositionExample(): ReactElement {

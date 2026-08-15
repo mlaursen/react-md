@@ -21,7 +21,7 @@ export interface TableSectionConfigOptions extends TableSectionConfiguration {
  * @internal
  */
 export function useTableSectionConfig(
-  options: TableSectionConfigOptions
+  options: TableSectionConfigOptions,
 ): Readonly<TableConfigContext> {
   const { type, lineWrap: propLineWrap, hoverable } = options;
 
@@ -42,6 +42,6 @@ export function useTableSectionConfig(
       disableBorders,
       disableHover,
     }),
-    [dense, type, hAlign, vAlign, lineWrap, disableBorders, disableHover]
+    [dense, type, hAlign, vAlign, lineWrap, disableBorders, disableHover],
   );
 }

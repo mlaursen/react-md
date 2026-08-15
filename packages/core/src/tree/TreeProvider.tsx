@@ -136,7 +136,7 @@ export interface TreeProviderProps<
  * @since 6.0.0
  */
 export function TreeProvider<T extends TreeItemNode = DefaultTreeItemNode>(
-  props: TreeProviderProps<T>
+  props: TreeProviderProps<T>,
 ): ReactElement {
   const {
     children,
@@ -193,7 +193,7 @@ export function TreeProvider<T extends TreeItemNode = DefaultTreeItemNode>(
       temporaryChildItems,
       toggleTreeItemExpansion,
       toggleTreeItemSelection,
-    ]
+    ],
   );
 
   return <Provider value={value}>{children}</Provider>;

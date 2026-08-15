@@ -17,7 +17,7 @@ export const isElementDisabled = (element: HTMLElement): boolean =>
  */
 export const isNotFocusable = (
   element: HTMLElement | undefined,
-  includeDisabled: boolean
+  includeDisabled: boolean,
 ): boolean => {
   if (!element) {
     return true;
@@ -45,7 +45,7 @@ export interface VirtualFocusableIndexOptions {
  * @internal
  */
 export const getVirtualFocusDefaultIndex = (
-  options: VirtualFocusableIndexOptions
+  options: VirtualFocusableIndexOptions,
 ): number => {
   const { focusables, includeDisabled, activeDescendantId } = options;
   if (focusables.length === 0 || (!activeDescendantId && includeDisabled)) {
@@ -67,7 +67,7 @@ export const getVirtualFocusDefaultIndex = (
  * @internal
  */
 export const getFirstFocusableIndex = (
-  options: FocusableIndexOptions
+  options: FocusableIndexOptions,
 ): number => {
   const { focusables, includeDisabled } = options;
 
@@ -95,7 +95,7 @@ export const getFirstFocusableIndex = (
  * @internal
  */
 export const getLastFocusableIndex = (
-  options: FocusableIndexOptions
+  options: FocusableIndexOptions,
 ): number => {
   const { focusables, includeDisabled } = options;
 
@@ -133,7 +133,7 @@ interface NextFocusableIndexOptions extends FocusableIndexOptions {
  * @internal
  */
 export const getNextFocusableIndex = (
-  options: NextFocusableIndexOptions
+  options: NextFocusableIndexOptions,
 ): number => {
   const {
     loopable,
@@ -179,7 +179,7 @@ export const getNextFocusableIndex = (
  */
 export function getSearchText(
   element: HTMLElement,
-  searchable: boolean
+  searchable: boolean,
 ): string {
   if (!searchable) {
     return "";
@@ -189,7 +189,7 @@ export function getSearchText(
 
   const invisibleElements = cloned.querySelectorAll(
     // Note: do not include DISPLAY_NONE_CLASS since it is presentational only
-    ".rmd-icon--font,[aria-hidden=true],[hidden],[role=presentation]"
+    ".rmd-icon--font,[aria-hidden=true],[hidden],[role=presentation]",
   );
   for (const element of invisibleElements) {
     element.remove();

@@ -88,7 +88,7 @@ export function InputToggleIcon(props: InputToggleIconProps): ReactElement {
   const checkedIcon = getIcon(`${type}Checked`, propCheckedIcon);
   const indeterminateIcon = getIcon(
     "checkboxIndeterminate",
-    propIndeterminateIcon
+    propIndeterminateIcon,
   );
 
   let icon: ReactNode;
@@ -124,7 +124,7 @@ export function InputToggleIcon(props: InputToggleIconProps): ReactElement {
           disabled,
           uncontrolled,
           className,
-        })
+        }),
       )}
     >
       {children}

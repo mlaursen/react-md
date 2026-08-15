@@ -16,7 +16,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -103,7 +103,7 @@ export default function transformer(
                 j,
                 name: "value",
                 local: value.name,
-              })
+              }),
             );
           }
 
@@ -113,7 +113,7 @@ export default function transformer(
                 j,
                 name: "fieldProps",
                 local: fieldProps.name,
-              })
+              }),
             );
           } else {
             // I don't support `const [, { ...whatever }] = useTextField(...whatever...)`
@@ -211,7 +211,7 @@ export default function transformer(
                     j,
                     name: "error",
                     local: error.name,
-                  })
+                  }),
                 );
               }
 
@@ -221,7 +221,7 @@ export default function transformer(
                     j,
                     name: "errorIcon",
                     local: errorIcon.name,
-                  })
+                  }),
                 );
               }
 
@@ -231,7 +231,7 @@ export default function transformer(
                     j,
                     name: "errorMessage",
                     local: errorMessage.name,
-                  })
+                  }),
                 );
               }
 
@@ -244,13 +244,13 @@ export default function transformer(
                       j.variableDeclaration("const", [
                         j.variableDeclarator(
                           j.objectPattern(properties),
-                          j.identifier("options")
+                          j.identifier("options"),
                         ),
                       ]),
                       ...body,
-                    ])
-                  )
-                )
+                    ]),
+                  ),
+                ),
               );
               return;
             }

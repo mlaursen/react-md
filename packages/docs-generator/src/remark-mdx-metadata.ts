@@ -11,7 +11,7 @@ import { assertString, assertStringArray } from "./utils/assertions.js";
 function addKeywords(
   metadata: Metadata,
   keywords: unknown,
-  type: string
+  type: string,
 ): void {
   if (!keywords) {
     return;
@@ -47,7 +47,7 @@ export function remarkMdxMetadata(options: RemarkMdxMetadataOptions = {}) {
     const node = ast.children.find((child) => child.type === "yaml");
     if (!node) {
       throw new Error(
-        "All markdown pages must have frontmatter for metadata generation."
+        "All markdown pages must have frontmatter for metadata generation.",
       );
     }
     const pathname = getFilePathname(file);
@@ -106,7 +106,7 @@ export function remarkMdxMetadata(options: RemarkMdxMetadataOptions = {}) {
       ast,
       file,
       { [name]: valueToEstree(metadata, { preserveReferences: true }) },
-      defineOptions
+      defineOptions,
     );
   };
 }

@@ -157,7 +157,7 @@ export function MenuWidget(props: MenuWidgetProps): ReactElement {
               // somewhere else
               if (event.target instanceof HTMLElement) {
                 cancelUnmountFocus.current = event.currentTarget.contains(
-                  event.target.closest("a")
+                  event.target.closest("a"),
                 );
               }
             }}

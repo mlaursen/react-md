@@ -25,6 +25,6 @@ export function tableHeader(options: TableHeaderClassNameOptions = {}): string {
       "sticky-active": stickyActive,
     }),
     stickyActive && stickyActiveClassName,
-    className
+    className,
   );
 }

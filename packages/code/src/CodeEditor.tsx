@@ -61,7 +61,7 @@ export function CodeEditor(props: CodeEditorProps): ReactElement {
           styles("scroll-container", {
             hoverable: !editorProps?.readOnly && !editorProps?.disabled,
           }),
-          scrollContainerProps?.className
+          scrollContainerProps?.className,
         ),
       }}
       afterPreElement={

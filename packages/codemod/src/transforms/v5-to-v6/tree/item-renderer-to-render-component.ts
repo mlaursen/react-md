@@ -7,7 +7,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -22,7 +22,7 @@ export default function transformer(
     returnOriginalName: true,
   }).forEach((name) => {
     comments.add(
-      `TODO: The \`${name}\` type has been replaced by the \`TreeItemRendererProps\` type and cannot automatically be converted`
+      `TODO: The \`${name}\` type has been replaced by the \`TreeItemRendererProps\` type and cannot automatically be converted`,
     );
   });
   traverseImportSpecifiers({
@@ -33,7 +33,7 @@ export default function transformer(
     returnOriginalName: true,
   }).forEach((name) => {
     comments.add(
-      `TODO: The \`${name}\` has been replaced by the \`DefaultTreeItemRenderer\` component and cannot automatically be converted`
+      `TODO: The \`${name}\` has been replaced by the \`DefaultTreeItemRenderer\` component and cannot automatically be converted`,
     );
   });
   addFileComments({

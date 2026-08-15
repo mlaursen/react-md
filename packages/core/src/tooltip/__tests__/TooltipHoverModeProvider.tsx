@@ -67,7 +67,7 @@ describe("TooltipHoverModeProvider", () => {
     await user.hover(button2);
     await waitFor(() => {
       expect(
-        screen.getByRole("tooltip", { name: "Tooltip 2" })
+        screen.getByRole("tooltip", { name: "Tooltip 2" }),
       ).toBeInTheDocument();
     });
     const tooltip2 = screen.getByRole("tooltip", { name: "Tooltip 2" });

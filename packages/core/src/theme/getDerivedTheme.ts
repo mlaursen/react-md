@@ -19,7 +19,7 @@ import { type ConfigurableThemeColors } from "./types.js";
 
 /** @since 6.0.0 */
 export const getDerivedTheme = (
-  container: Element = document.documentElement
+  container: Element = document.documentElement,
 ): Readonly<ConfigurableThemeColors> => {
   const rootStyles = globalThis.getComputedStyle(container);
   const backgroundColor = rootStyles.getPropertyValue(backgroundColorVar);

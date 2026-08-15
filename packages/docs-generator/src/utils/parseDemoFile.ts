@@ -1,8 +1,9 @@
+import { join } from "node:path";
+
 import {
   type ScssCodeFile,
   type TypescriptCodeFile,
 } from "@react-md/code/types";
-import { join } from "node:path";
 
 import { getScssCodeFile } from "./getScssCodeFile.js";
 import {
@@ -23,7 +24,7 @@ export interface ParseCompleteDemoFileResult {
 }
 
 export async function parseCompleteDemoFile(
-  options: ParseCompleteDemoFileOptions
+  options: ParseCompleteDemoFileOptions,
 ): Promise<ParseCompleteDemoFileResult> {
   const {
     project,

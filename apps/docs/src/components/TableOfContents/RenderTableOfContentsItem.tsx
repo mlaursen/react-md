@@ -2,11 +2,12 @@ import { type TableOfContentsHeadingItem } from "@react-md/core/navigation/types
 import { type RenderRecursiveItemsProps } from "@react-md/core/utils/RenderRecursively";
 import { type ReactElement, useEffect, useRef } from "react";
 
-import styles from "./RenderTableOfContentsItem.module.scss";
 import { TableOfContentsGroup } from "./TableOfContentsGroup.js";
 
+import styles from "./RenderTableOfContentsItem.module.scss";
+
 export function RenderTableOfContentsItem(
-  props: RenderRecursiveItemsProps<TableOfContentsHeadingItem, string>
+  props: RenderRecursiveItemsProps<TableOfContentsHeadingItem, string>,
 ): ReactElement {
   const { item, data: activeHeadingId, children } = props;
   const { id, children: linkChildren, depth } = item;

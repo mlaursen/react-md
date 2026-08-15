@@ -2,8 +2,30 @@
   "name": "react-md",
   "version": "7.0.8",
   "description": "This is the full react-md library bundled together for convenience.",
+  "keywords": [
+    "component",
+    "components",
+    "material design",
+    "react",
+    "react-md"
+  ],
+  "homepage": "https://react-md.dev",
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "license": "MIT",
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/react-md"
+  },
   "type": "module",
-  "sass": "./dist/_react-md.scss",
+  "sideEffects": [
+    "dist/**/*.scss",
+    "dist/test-utils/polyfills/**/*.js",
+    "dist/configureMaterialSymbols.js"
+  ],
   "exports": {
     "./a11y": {
       "sass": "./dist/_a11y.scss"
@@ -21,11 +43,9 @@
     },
     "./package.json": "./package.json"
   },
-  "sideEffects": [
-    "dist/**/*.scss",
-    "dist/test-utils/polyfills/**/*.js",
-    "dist/configureMaterialSymbols.js"
-  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "npm-run-all --parallel build-esm-watch build-scss-watch build-types-watch",
     "prepare-release": "npm-run-all clean-dist build",
@@ -38,28 +58,8 @@
     "build-scss-watch": "pnpm build-scss --watch",
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
-    "check-format": "prettier --check .",
-    "format": "prettier --write .",
     "typecheck": "tsgo --noEmit"
   },
-  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mlaursen/react-md.git",
-    "directory": "packages/react-md"
-  },
-  "bugs": {
-    "url": "https://github.com/mlaursen/react-md/issues"
-  },
-  "homepage": "https://react-md.dev",
-  "keywords": [
-    "react-md",
-    "material design",
-    "react",
-    "component",
-    "components"
-  ],
-  "license": "MIT",
   "dependencies": {
     "@react-md/core": "workspace:*"
   },
@@ -67,10 +67,8 @@
     "@mlaursen/cli": "^0.1.2",
     "@swc/cli": "^0.8.1",
     "@swc/core": "^1.15.33",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.12.2",
     "npm-run-all2": "^8.0.2",
-    "prettier": "^3.8.3",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
@@ -115,7 +113,5 @@
       "optional": true
     }
   },
-  "publishConfig": {
-    "access": "public"
-  }
+  "sass": "./dist/_react-md.scss"
 }

@@ -42,7 +42,7 @@ export class GenericFileError extends Error {
    */
   constructor(
     public files: readonly File[],
-    public reason?: string
+    public reason?: string,
   ) {
     super("Invalid files");
     this.key = nanoid();
@@ -65,7 +65,7 @@ export class TooManyFilesError extends GenericFileError {
    */
   constructor(
     files: readonly File[],
-    public limit: number
+    public limit: number,
   ) {
     super(files, "file limit");
     this.name = "TooManyFilesError";
@@ -91,7 +91,7 @@ export class FileSizeError extends GenericFileError {
   constructor(
     files: readonly File[],
     public type: "min" | "max" | "total",
-    public limit: number
+    public limit: number,
   ) {
     super(files, "file size");
     this.name = "FileSizeError";
@@ -112,7 +112,7 @@ export class FileExtensionError extends GenericFileError {
    */
   constructor(
     files: readonly File[],
-    public extensions: readonly string[]
+    public extensions: readonly string[],
   ) {
     super(files, "extension");
     this.name = "FileExtensionError";
@@ -140,7 +140,7 @@ export type FileValidationError<E = GenericFileError> =
  * @returns true if the error is a {@link FileAccessError}
  */
 export function isGenericFileError<CustomError extends object>(
-  error: FileValidationError<CustomError>
+  error: FileValidationError<CustomError>,
 ): error is GenericFileError {
   return "name" in error && error.name === "GenericFileError";
 }
@@ -154,7 +154,7 @@ export function isGenericFileError<CustomError extends object>(
  * @returns true if the error is a {@link FileAccessError}
  */
 export function isFileAccessError<CustomError extends object>(
-  error: FileValidationError<CustomError>
+  error: FileValidationError<CustomError>,
 ): error is FileAccessError {
   return "name" in error && error.name === "FileAccessError";
 }
@@ -168,7 +168,7 @@ export function isFileAccessError<CustomError extends object>(
  * @returns true if the error is a {@link TooManyFilesError}
  */
 export function isTooManyFilesError<CustomError extends object>(
-  error: FileValidationError<CustomError>
+  error: FileValidationError<CustomError>,
 ): error is TooManyFilesError {
   return "name" in error && error.name === "TooManyFilesError";
 }
@@ -182,7 +182,7 @@ export function isTooManyFilesError<CustomError extends object>(
  * @returns true if the error is a {@link FileSizeError}
  */
 export function isFileSizeError<CustomError extends object>(
-  error: FileValidationError<CustomError>
+  error: FileValidationError<CustomError>,
 ): error is FileSizeError {
   return "name" in error && error.name === "FileSizeError";
 }
@@ -196,7 +196,7 @@ export function isFileSizeError<CustomError extends object>(
  * @returns true if the error is a {@link FileExtensionError}
  */
 export function isFileExtensionError<CustomError extends object>(
-  error: FileValidationError<CustomError>
+  error: FileValidationError<CustomError>,
 ): error is FileExtensionError {
   return "name" in error && error.name === "FileExtensionError";
 }
@@ -217,7 +217,7 @@ export function isFileExtensionError<CustomError extends object>(
 export type IsValidFileName = (
   file: File,
   extensionRegExp: RegExp | undefined,
-  extensions: readonly string[]
+  extensions: readonly string[],
 ) => boolean;
 
 /**
@@ -355,7 +355,7 @@ export interface ValidatedFilesResult<CustomError> {
  */
 export type FilesValidator<CustomError = never> = (
   files: readonly File[],
-  options: FilesValidationOptions
+  options: FilesValidationOptions,
 ) => ValidatedFilesResult<CustomError>;
 
 /**
@@ -371,7 +371,7 @@ export type FilesValidator<CustomError = never> = (
  */
 export function validateFiles<CustomError>(
   files: readonly File[],
-  options: FilesValidationOptions
+  options: FilesValidationOptions,
 ): ValidatedFilesResult<CustomError> {
   const {
     maxFiles,

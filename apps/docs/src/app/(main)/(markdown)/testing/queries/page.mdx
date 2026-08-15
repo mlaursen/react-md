@@ -14,7 +14,7 @@ group: Polyfills
 
 ```ts disableTransform
 function getSelectTestElements(
-  options: GetPartsByRoleOptions
+  options: GetPartsByRoleOptions,
 ): SelectTestElements;
 ```
 
@@ -26,7 +26,7 @@ testing recipes](/testing/recipes#select) for more examples.
 
 ```ts disableTransform
 async function findSelectTestElements(
-  options: GetPartsByRoleOptions
+  options: GetPartsByRoleOptions,
 ): Promise<SelectTestElements>;
 ```
 
@@ -133,7 +133,7 @@ examples.
 
 ```ts disableTransform
 async function findSliderTestElements(
-  options: GetPartsByRoleOptions
+  options: GetPartsByRoleOptions,
 ): Promise<SliderTestElements>;
 ```
 
@@ -218,7 +218,7 @@ export interface SliderTestElements {
 
 ```ts disableTransform
 function getRangeSliderTestElements(
-  options: GetRangetSliderTestElementsOptions = {}
+  options: GetRangetSliderTestElementsOptions = {},
 ): RangeSliderTestElements;
 ```
 
@@ -231,7 +231,7 @@ testing recipes](/testing/recipes#find-and-change-value-range-slider) for more e
 
 ```ts disableTransform
 async function findRangeSliderTestElements(
-  options: GetRangetSliderTestElementsOptions = {}
+  options: GetRangetSliderTestElementsOptions = {},
 ): Promise<RangeSliderTestElements>;
 ```
 

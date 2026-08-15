@@ -25,5 +25,5 @@ export const FakeLink = forwardRef<HTMLAnchorElement, FakeLinkProps>(
         <Tooltip {...tooltipProps}>href: {href}</Tooltip>
       </>
     );
-  }
+  },
 );

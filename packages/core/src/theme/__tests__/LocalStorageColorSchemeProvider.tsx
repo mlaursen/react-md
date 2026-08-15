@@ -61,7 +61,7 @@ describe("LocalStorageColorSchemeProvider", () => {
     render(
       <LocalStorageColorSchemeProvider>
         <ControllableTest />
-      </LocalStorageColorSchemeProvider>
+      </LocalStorageColorSchemeProvider>,
     );
 
     const lightTheme = screen.getByRole("checkbox", { name: "Light" });
@@ -83,7 +83,7 @@ describe("LocalStorageColorSchemeProvider", () => {
     render(<Test />);
 
     expect(() => setColorScheme?.("dark")).toThrow(
-      "The `ColorSchemeProvider` has not been initialized."
+      "The `ColorSchemeProvider` has not been initialized.",
     );
   });
 
@@ -100,7 +100,7 @@ describe("LocalStorageColorSchemeProvider", () => {
     render(
       <LocalStorageColorSchemeProvider defaultColorScheme="system">
         <Test />
-      </LocalStorageColorSchemeProvider>
+      </LocalStorageColorSchemeProvider>,
     );
 
     expect(currentColor).toBe("dark");
@@ -117,7 +117,7 @@ describe("LocalStorageColorSchemeProvider", () => {
         defaultColorScheme="system"
       >
         <ControllableTest />
-      </LocalStorageColorSchemeProvider>
+      </LocalStorageColorSchemeProvider>,
     );
 
     expect(screen.getByRole("checkbox", { name: "Light" })).toBeChecked();
@@ -133,7 +133,7 @@ describe("LocalStorageColorSchemeProvider", () => {
         defaultColorScheme="system"
       >
         <ControllableTest />
-      </LocalStorageColorSchemeProvider>
+      </LocalStorageColorSchemeProvider>,
     );
 
     expect(screen.getByRole("checkbox", { name: "System" })).toBeChecked();

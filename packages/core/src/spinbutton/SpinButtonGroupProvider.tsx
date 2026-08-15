@@ -11,7 +11,7 @@ import { DEFAULT_KEYBOARD_MOVEMENT_CONTEXT } from "../movement/useKeyboardMoveme
 export type SpinButtonGroupContext = KeyboardMovementContext;
 
 const context = createContext<SpinButtonGroupContext>(
-  DEFAULT_KEYBOARD_MOVEMENT_CONTEXT
+  DEFAULT_KEYBOARD_MOVEMENT_CONTEXT,
 );
 context.displayName = "SpinButtonGroup";
 

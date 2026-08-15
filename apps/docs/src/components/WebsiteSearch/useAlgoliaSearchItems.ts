@@ -19,7 +19,7 @@ interface ResolvedHighlights {
 }
 
 const resolveHighlights = (
-  result: HighlightResult | undefined
+  result: HighlightResult | undefined,
 ): ResolvedHighlights => {
   const highlight = result as {
     name?: HighlightResultOption;
@@ -65,7 +65,7 @@ export type AlgoliaSearchHitGroup = readonly [
 ];
 
 export function useAlgoliaSearchOptions(
-  hits: readonly Hit<IndexedItem>[]
+  hits: readonly Hit<IndexedItem>[],
 ): readonly AlgoliaSearchHitGroup[] {
   return useMemo(() => {
     if (hits.length === 0) {
@@ -84,7 +84,7 @@ export function useAlgoliaSearchOptions(
         _highlightResult,
       } = hit;
       const highlights = resolveHighlights(
-        _highlightResult as HighlightResultOption | undefined
+        _highlightResult as HighlightResultOption | undefined,
       );
       if (
         !highlights.title &&
@@ -141,7 +141,7 @@ export function useAlgoliaSearchOptions(
 
             return result;
           },
-          []
+          [],
         ),
         highlightName: highlights.name,
         highlightDescription: highlights.description,

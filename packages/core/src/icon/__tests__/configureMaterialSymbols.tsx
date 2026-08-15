@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { MaterialSymbol } from "../MaterialSymbol.js";
 import { configureIcons } from "../config.js";
+import { MaterialSymbol } from "../MaterialSymbol.js";
 
 vi.mock("../config.js");
 

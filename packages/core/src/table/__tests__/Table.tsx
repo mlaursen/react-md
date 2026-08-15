@@ -66,7 +66,7 @@ describe("Table", () => {
         disableBorders
         style={{ backgroundColor: "orange" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(table).toMatchSnapshot();
 
@@ -90,7 +90,7 @@ describe("Table", () => {
 
       constructor(
         callback: IntersectionObserverCallback,
-        options: IntersectionObserverInit = {}
+        options: IntersectionObserverInit = {},
       ) {
         const { root = null, rootMargin = "", threshold = [] } = options;
         this.callback = callback;
@@ -144,7 +144,7 @@ describe("Table", () => {
                 </TableRow>
               ))}
             </TableBody>
-          </Table>
+          </Table>,
         );
 
         if (!_observer) {
@@ -185,7 +185,7 @@ describe("Table", () => {
                 ))}
               </TableBody>
             </Table>
-          </TableContainer>
+          </TableContainer>,
         );
 
         if (!_observer) {
@@ -226,7 +226,7 @@ describe("Table", () => {
                 <TableCell>Footer Cell</TableCell>
               </TableRow>
             </StickyTableSection>
-          </Table>
+          </Table>,
         );
 
         if (!_observer) {
@@ -281,7 +281,7 @@ describe("Table", () => {
                 </TableRow>
               </StickyTableSection>
             </Table>
-          </TableContainer>
+          </TableContainer>,
         );
 
         if (!_observer) {

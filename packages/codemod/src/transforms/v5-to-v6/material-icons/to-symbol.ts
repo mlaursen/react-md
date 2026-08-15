@@ -23,7 +23,7 @@ import { RENAMED_ICONS } from "./constants.js";
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -36,7 +36,7 @@ export default function transformer(
       j.ImportDeclaration,
       (path) =>
         path.source.value === "@react-md/material-icons" ||
-        path.source.value === "react-md"
+        path.source.value === "react-md",
     )
     .forEach((importDeclaration) => {
       j(importDeclaration)
@@ -92,14 +92,14 @@ export default function transformer(
               [
                 j.jsxAttribute(
                   j.jsxIdentifier("name"),
-                  j.stringLiteral(v6Name)
+                  j.stringLiteral(v6Name),
                 ),
                 ...(node.node.openingElement.attributes ?? []),
               ],
-              true
+              true,
             ),
             closingElement: null,
-          })
+          }),
         );
       });
   });

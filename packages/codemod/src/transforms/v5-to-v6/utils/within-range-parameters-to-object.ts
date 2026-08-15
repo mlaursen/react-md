@@ -14,14 +14,14 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
   const printOptions = options.printOptions;
 
   const isValid = (
-    arg: SpreadElement | ExpressionKind
+    arg: SpreadElement | ExpressionKind,
   ): arg is Identifier | NumericLiteral =>
     j.Identifier.check(arg) || isNumericExpression(j, arg);
 

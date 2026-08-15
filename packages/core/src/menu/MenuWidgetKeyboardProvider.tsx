@@ -22,7 +22,7 @@ export interface MenuWidgetKeyboardProviderProps {
  * @internal
  */
 export function MenuWidgetKeyboardProvider(
-  props: MenuWidgetKeyboardProviderProps
+  props: MenuWidgetKeyboardProviderProps,
 ): ReactElement {
   const { value, disabled, children } = props;
   if (disabled) {

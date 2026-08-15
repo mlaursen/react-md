@@ -24,7 +24,7 @@ describe("CardContent", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(card).toMatchSnapshot();
 

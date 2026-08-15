@@ -15,13 +15,13 @@ import { type SpinButtonOptions, type SpinButtonValue } from "../types.js";
 
 const setup = (
   props?: Partial<Omit<SpinButtonProps, "value" | "setValue">>,
-  options?: ReactMDRenderOptions
+  options?: ReactMDRenderOptions,
 ) => {
   const label = props?.["aria-label"] ?? "Label";
   const user = userEvent.setup();
   const { rerender } = render(
     <SpinButton {...props} aria-label={label} />,
-    options
+    options,
   );
   const spinbutton = screen.getByRole("spinbutton", { name: label });
 
@@ -30,7 +30,7 @@ const setup = (
     spinbutton,
     rerender: (props?: Partial<Omit<SpinButtonProps, "value" | "setValue">>) =>
       rerender(
-        <SpinButton {...props} aria-label={props?.["aria-label"] ?? label} />
+        <SpinButton {...props} aria-label={props?.["aria-label"] ?? label} />,
       ),
   };
 };
@@ -56,7 +56,7 @@ describe("SpinButton", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(spinbutton).toMatchSnapshot();
   });
@@ -268,7 +268,7 @@ describe("SpinButton", () => {
               <Button type="submit">Submit</Button>
             </Form>
           ),
-        }
+        },
       );
 
       await user.type(spinbutton, "3{Enter}");

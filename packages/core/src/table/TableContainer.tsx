@@ -37,7 +37,7 @@ export function TableContainer(props: TableContainerProps): ReactElement {
       exists: true,
       containerRef: nodeRef,
     }),
-    [nodeRef]
+    [nodeRef],
   );
 
   return (

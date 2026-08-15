@@ -13,7 +13,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -31,7 +31,7 @@ export default function transformer(
       ref.node.name = "GetPasswordVisibilityIcon";
     });
     comments.add(
-      'TOOD: Update `GetPasswordVisibilityIcon` references since it provides the `type === "password"` flag instead of the `type` now'
+      'TOOD: Update `GetPasswordVisibilityIcon` references since it provides the `type === "password"` flag instead of the `type` now',
     );
   });
 
@@ -63,14 +63,14 @@ export default function transformer(
               return;
             }
             visibilityProps.push(
-              j.objectProperty(j.identifier("style"), attr.value.expression)
+              j.objectProperty(j.identifier("style"), attr.value.expression),
             );
 
             break;
           case "visibilityClassName":
             if (j.StringLiteral.check(attr.value)) {
               visibilityProps.push(
-                j.objectProperty(j.identifier("className"), attr.value)
+                j.objectProperty(j.identifier("className"), attr.value),
               );
             } else if (
               j.JSXExpressionContainer.check(attr.value) &&
@@ -79,8 +79,8 @@ export default function transformer(
               visibilityProps.push(
                 j.objectProperty(
                   j.identifier("className"),
-                  attr.value.expression
-                )
+                  attr.value.expression,
+                ),
               );
             }
 
@@ -97,7 +97,7 @@ export default function transformer(
             }
 
             visibilityProps.push(
-              j.objectProperty(j.identifier("onClick"), attr.value.expression)
+              j.objectProperty(j.identifier("onClick"), attr.value.expression),
             );
             break;
           case "getVisibilityIcon":
@@ -106,7 +106,7 @@ export default function transformer(
             }
 
             props.push(
-              j.jsxAttribute(j.jsxIdentifier("visibilityIcon"), attr.value)
+              j.jsxAttribute(j.jsxIdentifier("visibilityIcon"), attr.value),
             );
             break;
           default:
@@ -118,8 +118,8 @@ export default function transformer(
         props.push(
           j.jsxAttribute(
             j.jsxIdentifier("visibilityProps"),
-            j.jsxExpressionContainer(j.objectExpression(visibilityProps))
-          )
+            j.jsxExpressionContainer(j.objectExpression(visibilityProps)),
+          ),
         );
       }
 

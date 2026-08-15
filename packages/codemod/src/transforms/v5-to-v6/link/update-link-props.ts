@@ -8,7 +8,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -42,7 +42,7 @@ export default function transformer(
         comments.add(
           "TODO: The `" +
             name +
-            "` component from react-md is using the `component` prop which is no longer supported. Use the `link` class name function to apply link styles to a custom component instead."
+            "` component from react-md is using the `component` prop which is no longer supported. Use the `link` class name function to apply link styles to a custom component instead.",
         );
       }
     });

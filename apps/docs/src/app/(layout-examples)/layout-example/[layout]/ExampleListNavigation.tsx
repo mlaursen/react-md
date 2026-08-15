@@ -12,12 +12,13 @@ import { type ReactElement } from "react";
 
 import { pascalCase } from "@/utils/strings.js";
 
-import styles from "./ExampleListNavigation.module.scss";
 import { LayoutIcon } from "./LayoutIcon.js";
-import { NavigationTypeIcon } from "./NavigationTypeIcon.js";
-import { SimpleNavItem } from "./SimpleNavItem.js";
 import { LAYOUT_TYPES, type LayoutType } from "./layouts.js";
+import { NavigationTypeIcon } from "./NavigationTypeIcon.js";
 import { NAVIGATION_TYPES } from "./navTypes.js";
+import { SimpleNavItem } from "./SimpleNavItem.js";
+
+import styles from "./ExampleListNavigation.module.scss";
 
 const navTypeParam = `?navType=list`;
 
@@ -26,7 +27,7 @@ export interface ExampleListNavigationProps {
 }
 
 export function ExampleListNavigation(
-  props: ExampleListNavigationProps
+  props: ExampleListNavigationProps,
 ): ReactElement {
   const { layout } = props;
 

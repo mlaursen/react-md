@@ -58,7 +58,7 @@ export interface MutationObserverHookOptions<
  * @since 6.0.0
  */
 export function useMutationObserver<E extends HTMLElement>(
-  options: MutationObserverHookOptions<E>
+  options: MutationObserverHookOptions<E>,
 ): RefCallback<E> {
   const {
     ref,

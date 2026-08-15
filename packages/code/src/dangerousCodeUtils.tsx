@@ -28,10 +28,9 @@ function transformCode(code: string): string {
 }
 
 function dangerouslyEvalCode(
-  options: Required<DangerouslyEvalCodeOptions>
+  options: Required<DangerouslyEvalCodeOptions>,
 ): void {
   const { default: _, import: imports = {}, ...scope } = options.scope;
-  // prettier-ignore
   const allImports: LocalCodeScope = {
     ...imports,
     react: React,
@@ -51,7 +50,7 @@ function dangerouslyEvalCode(
     require: (moduleName: string): unknown => {
       if (moduleName.endsWith(".module.scss")) {
         return createFakeCssModules(
-          moduleName.replace("./", "").replace(".module.scss", "")
+          moduleName.replace("./", "").replace(".module.scss", ""),
         );
       }
 
@@ -78,7 +77,7 @@ function dangerouslyEvalCode(
 }
 
 export function dangerouslyCreateElement(
-  options: DangerouslyEvalCodeOptions
+  options: DangerouslyEvalCodeOptions,
 ): ReactElement | null {
   const { code, scope } = options;
   if (!code.trim()) {
@@ -113,7 +112,7 @@ export function dangerouslyCreateElement(
 
 export function importCode(
   code: string,
-  scope?: RunnableCodeScope
+  scope?: RunnableCodeScope,
 ): RunnableCodeScope {
   const exports: RunnableCodeScope = {};
   dangerouslyEvalCode({

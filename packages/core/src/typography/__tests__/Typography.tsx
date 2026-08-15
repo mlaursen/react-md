@@ -43,7 +43,7 @@ describe("Typography", () => {
     rerender(
       <table>
         <Typography type="caption" data-testid="text" />
-      </table>
+      </table>,
     );
     const text = screen.getByTestId("text");
     expect(text.tagName).toBe("CAPTION");
@@ -72,7 +72,7 @@ describe("Typography", () => {
         fontStyle="italic"
         fontWeight="semi-bold"
         textTransform="capitalize"
-      />
+      />,
     );
 
     expect(screen.getByTestId("text")).toMatchSnapshot();

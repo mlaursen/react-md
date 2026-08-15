@@ -1,16 +1,15 @@
 {
   "name": "@react-md/stylelint-config",
-  "type": "module",
-  "private": true,
   "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "type": "module",
   "exports": {
     ".": "./index.js",
     "./package.json": "./package.json"
   },
-  "scripts": {
-    "check-format": "prettier --check .",
-    "format": "prettier --write ."
-  },
+  "scripts": {},
   "dependencies": {
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-recommended-scss": "^17.0.1",
@@ -18,9 +17,7 @@
     "stylelint-scss": "^7.1.1"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.12.2",
-    "prettier": "^3.8.3",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "peerDependencies": {
@@ -30,7 +27,5 @@
     "stylelint": {
       "optional": false
     }
-  },
-  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
-  "license": "MIT"
+  }
 }

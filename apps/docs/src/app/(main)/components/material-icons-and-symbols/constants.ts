@@ -27,7 +27,7 @@ export const indexToMaterialGrade = (index: number): MaterialSymbolGrade =>
 export const indexToMaterialWeight = (index: number): MaterialSymbolWeight =>
   WEIGHTS[index];
 export const indexToMaterialOpticalSize = (
-  index: number
+  index: number,
 ): MaterialSymbolOpticalSize => OPTICAL_SIZES[index];
 
 export const INITIAL_STATE: MaterialIconsAndSymbolsState = {

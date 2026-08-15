@@ -14,7 +14,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -50,12 +50,12 @@ export default function transformer(
               break;
             case "label":
               comments.add(
-                "TODO: Unable to automatically convert the `Slider` label prop"
+                "TODO: Unable to automatically convert the `Slider` label prop",
               );
               break;
             case "labelProps":
               comments.add(
-                "TODO: Unable to automatically convert the `Slider` labelProps prop"
+                "TODO: Unable to automatically convert the `Slider` labelProps prop",
               );
               break;
             case "beforeAddon":
@@ -98,7 +98,7 @@ export default function transformer(
             j.Literal.check(defaultValue)
           ) {
             properties.push(
-              j.objectProperty(j.identifier("defaultValue"), defaultValue)
+              j.objectProperty(j.identifier("defaultValue"), defaultValue),
             );
           }
 
@@ -111,7 +111,7 @@ export default function transformer(
         const [value, controls] = id.elements;
         if (!j.Identifier.check(controls)) {
           comments.add(
-            "TODO: Unable to convert the useRangeSlider hook controls"
+            "TODO: Unable to convert the useRangeSlider hook controls",
           );
           return;
         }
@@ -124,9 +124,9 @@ export default function transformer(
               j.variableDeclaration("const", [
                 j.variableDeclarator(
                   value,
-                  j.memberExpression(controls, j.identifier("value"))
+                  j.memberExpression(controls, j.identifier("value")),
                 ),
-              ])
+              ]),
             );
         }
       });
@@ -155,7 +155,7 @@ export default function transformer(
             j.ArrayExpression.check(defaultValue)
           ) {
             properties.push(
-              j.objectProperty(j.identifier("defaultValue"), defaultValue)
+              j.objectProperty(j.identifier("defaultValue"), defaultValue),
             );
           }
 
@@ -168,7 +168,7 @@ export default function transformer(
         const [value, controls] = id.elements;
         if (!j.Identifier.check(controls)) {
           comments.add(
-            "TODO: Unable to convert the useRangeSlider hook controls"
+            "TODO: Unable to convert the useRangeSlider hook controls",
           );
           return;
         }
@@ -181,9 +181,9 @@ export default function transformer(
               j.variableDeclaration("const", [
                 j.variableDeclarator(
                   value,
-                  j.memberExpression(controls, j.identifier("rangeValue"))
+                  j.memberExpression(controls, j.identifier("rangeValue")),
                 ),
-              ])
+              ]),
             );
         } else {
           addRelativeComment({

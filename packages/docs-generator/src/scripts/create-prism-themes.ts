@@ -1,13 +1,14 @@
-import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
-import { globSync } from "glob";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
+
+import { alphaNumericSort } from "@react-md/core/utils/alphaNumericSort";
+import { globSync } from "glob";
+import { format } from "oxfmt";
 import postcss from "postcss";
 import postcssCombineDuplicatedSelectors from "postcss-combine-duplicated-selectors";
 import postcssRemovePrefixes from "postcss-remove-prefixes";
 import postcssSorting from "postcss-sorting";
-import { format } from "prettier";
 
 import { compileAndMinifyScss } from "../utils/compileAndMinifyScss.js";
 import { getProjectRootDir } from "../utils/getProjectRootDir.js";
@@ -25,7 +26,7 @@ const VIM_SOLARIZED_DARK_SCSS = resolve(
   process.cwd(),
   "src",
   "scripts",
-  `${VIM_SOLARIZED_DARK}.scss`
+  `${VIM_SOLARIZED_DARK}.scss`,
 );
 
 const files = globSync("node_modules/prism@(js|-themes)/themes/*.css", {
@@ -104,7 +105,7 @@ async function writeCss(themeName: string, contents: string): Promise<void> {
 
   await writeFile(
     join(prismThemesOutFolder, `${contentHashName}.min.css`),
-    contents
+    contents,
   );
 }
 
@@ -118,7 +119,7 @@ async function transformCss(css: string): Promise<string> {
       "properties-order": "alphabetical",
     }),
 
-    postcssCombineDuplicatedSelectors()
+    postcssCombineDuplicatedSelectors(),
   )
     .process(css)
     .async();
@@ -168,7 +169,7 @@ await Promise.all(
   files.map(async (filePath) => {
     const themeName = filePath.replace(
       /^.*prism(-([A-Za-z0-9.-]+))?\.css$/,
-      "$2"
+      "$2",
     );
     if (filePath.includes("prismjs")) {
       if (themeName) {
@@ -281,7 +282,7 @@ await Promise.all(
     });
 
     await writeCss(name, css);
-  })
+  }),
 );
 
 await writeCss(
@@ -289,7 +290,7 @@ await writeCss(
   await compileAndMinifyScss({
     scss: await readFile(VIM_SOLARIZED_DARK_SCSS, "utf8"),
     load: loadDemoScssInNode,
-  })
+  }),
 );
 
 const allThemes = [
@@ -300,7 +301,8 @@ const allThemes = [
 const sortedPrismCssMap = alphaNumericSort([...cssNameLookup.entries()], {
   extractor: ([name]) => name,
 });
-const themesContent = await format(
+const formattedThemesContent = await format(
+  themesPath,
   `${GENERATED_FILE_BANNER}
 
 export const PRISM_THEMES = ${JSON.stringify(allThemes)} as const;
@@ -309,15 +311,12 @@ export const PRISM_CSS_MAP = new Map(${JSON.stringify(sortedPrismCssMap)})
 
 export type PrismTheme = typeof PRISM_THEMES[number];
 `,
-  {
-    parser: "typescript",
-  }
 );
 
-await writeFile(themesPath, themesContent);
+await writeFile(themesPath, formattedThemesContent.code);
 
 if (unknownTheme.size > 0) {
   throw new Error(
-    `Unknown themes: ${[...unknownTheme].map((name) => `- ${name}`).join("\n")}`
+    `Unknown themes: ${[...unknownTheme].map((name) => `- ${name}`).join("\n")}`,
   );
 }

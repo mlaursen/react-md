@@ -36,10 +36,10 @@ import { createMatchMediaSpy } from "../utils/createMatchMediaSpy.js";
  * @since 6.0.0
  */
 export function spyOnMatchMedia(
-  defaultMatch: MatchMediaMatcher = matchDesktop
+  defaultMatch: MatchMediaMatcher = matchDesktop,
 ): jest.SpiedFunction<typeof globalThis.matchMedia> & MatchMediaChangeViewport {
   return createMatchMediaSpy(
     jest.spyOn(globalThis, "matchMedia"),
-    defaultMatch
+    defaultMatch,
   );
 }

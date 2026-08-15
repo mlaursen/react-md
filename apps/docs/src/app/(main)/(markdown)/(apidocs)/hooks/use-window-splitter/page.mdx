@@ -11,7 +11,7 @@ hooks: [useWindowSplitter]
 
 ```ts disableTransform
 function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
-  options: WindowSplitterOptions<E>
+  options: WindowSplitterOptions<E>,
 ): WindowSplitterImplementation<E>;
 ```
 
@@ -36,7 +36,7 @@ function Example() {
   useCSSVariables(
     useMemo(() => [
       { name: "--rmd-window-splitter-position", value: `${value}px` },
-    ])
+    ]),
   );
 
   return (

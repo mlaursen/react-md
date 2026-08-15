@@ -62,7 +62,7 @@ export type SpinButtonValue = number | null;
  * @since 6.4.0
  */
 export type SpinButtonGetValueText = (
-  value: SpinButtonValue
+  value: SpinButtonValue,
 ) => string | undefined;
 
 /**
@@ -116,7 +116,7 @@ export interface SpinButtonChangeEventOptions<
  * @since 6.4.0
  */
 export type SpinButtonValueChange<E extends HTMLElement = HTMLDivElement> = (
-  options: SpinButtonChangeEventOptions<E>
+  options: SpinButtonChangeEventOptions<E>,
 ) => void;
 
 /**
@@ -316,14 +316,14 @@ export interface GetSpinButtonTextContentOptions extends SpinButtonTextPlacehold
  * @since 6.4.0
  */
 export type GetSpinButtonTextContent = (
-  options: GetSpinButtonTextContentOptions
+  options: GetSpinButtonTextContentOptions,
 ) => string;
 
 /**
  * @since 6.4.0
  */
 export type GetSpinButtonValueText = (
-  value: SpinButtonValue
+  value: SpinButtonValue,
 ) => string | undefined;
 
 /**

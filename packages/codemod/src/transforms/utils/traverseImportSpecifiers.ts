@@ -14,7 +14,7 @@ export interface TraverseImportSpecifiersOptions {
 }
 
 export function traverseImportSpecifiers(
-  options: TraverseImportSpecifiersOptions
+  options: TraverseImportSpecifiersOptions,
 ): ReadonlySet<string> {
   const {
     j,
@@ -27,7 +27,7 @@ export function traverseImportSpecifiers(
   } = options;
 
   const validPackages = new Set(
-    typeof packages === "string" ? [packages] : packages
+    typeof packages === "string" ? [packages] : packages,
   );
   const validSpecifiers = new Set(typeof name === "string" ? [name] : name);
 
@@ -37,12 +37,12 @@ export function traverseImportSpecifiers(
       j.ImportDeclaration,
       (path) =>
         typeof path.source.value === "string" &&
-        validPackages.has(path.source.value)
+        validPackages.has(path.source.value),
     )
     .forEach((importDeclaration) => {
       j(importDeclaration)
         .find(j.ImportSpecifier, (path) =>
-          validSpecifiers.has(getIdentifierName(path.imported))
+          validSpecifiers.has(getIdentifierName(path.imported)),
         )
         .forEach((importSpecifier) => {
           const importName = returnOriginalName
@@ -61,7 +61,7 @@ export function traverseImportSpecifiers(
                 name: replacedName,
                 type: "Identifier",
                 comments: importSpecifier.node.comments,
-              })
+              }),
             );
           } else if (remove) {
             j(importSpecifier).remove();

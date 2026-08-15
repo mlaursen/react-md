@@ -5,7 +5,7 @@ import { type AnyFunction, type DebouncedFunction } from "../types.js";
  */
 export function debounce<F extends AnyFunction>(
   fn: F,
-  duration: number
+  duration: number,
 ): DebouncedFunction<F> {
   let timeout: NodeJS.Timeout | undefined;
   const debounced: DebouncedFunction<F> = (...args) => {

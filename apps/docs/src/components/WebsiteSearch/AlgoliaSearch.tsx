@@ -16,10 +16,11 @@ import {
   useRef,
 } from "react";
 
-import styles from "./AlgoliaSearch.module.scss";
 import { LinkOption } from "./LinkOption.js";
 import { NoSearchResults } from "./NoSearchResults.js";
 import { useAlgoliaSearch } from "./useAlgoliaSearch.js";
+
+import styles from "./AlgoliaSearch.module.scss";
 
 const EMPTY_LIST: readonly string[] = [];
 
@@ -81,7 +82,7 @@ export function AlgoliaSearch({
           listboxProps={{
             className: cnb(
               (!query || (options.length === 0 && !loading)) &&
-                DISPLAY_NONE_CLASS
+                DISPLAY_NONE_CLASS,
             ),
             disablePortal: true,
             disableSwapping: true,

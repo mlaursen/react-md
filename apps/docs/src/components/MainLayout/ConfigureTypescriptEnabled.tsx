@@ -18,7 +18,7 @@ export interface ConfigureTypescriptEnabledProps {
 }
 
 export function ConfigureTypescriptEnabled(
-  props: ConfigureTypescriptEnabledProps
+  props: ConfigureTypescriptEnabledProps,
 ): ReactElement {
   const { disableLabel } = props;
   const { isTypescriptEnabled, setTypescriptEnabled } =

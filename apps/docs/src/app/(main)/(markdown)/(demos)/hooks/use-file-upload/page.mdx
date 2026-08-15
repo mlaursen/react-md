@@ -13,7 +13,7 @@ keywords: [file upload, preview, img, video]
 
 ```ts disableTransform
 function useFileUpload<E extends HTMLElement, CustomError = never>(
-  options: FileUploadOptions<E, CustomError> = {}
+  options: FileUploadOptions<E, CustomError> = {},
 ): Readonly<FileUploadHookReturnValue<E, CustomError>>;
 ```
 
@@ -276,7 +276,7 @@ that they do not have access to. This error is very uncommon.
 ```ts disableTransform
 function validateFiles<CustomError>(
   files: readonly File[],
-  options: FilesValidationOptions
+  options: FilesValidationOptions,
 ): ValidatedFilesResult<CustomError>;
 ```
 
@@ -287,7 +287,7 @@ This is the default implementation for validating files with the
 
 ```ts disableTransform
 function getSplitFileUploads(
-  stats: readonly FileUploadStats[]
+  stats: readonly FileUploadStats[],
 ): SplitFileUploads;
 ```
 
@@ -332,8 +332,7 @@ function Example() {
 
 ```ts disableTransform
 export type FileUploadStats =
-  | ProcessingFileUploadStats
-  | CompletedFileUploadStats;
+  ProcessingFileUploadStats | CompletedFileUploadStats;
 
 export interface ProcessingFileUploadStats extends BaseFileUploadStats {
   status: "pending" | "uploading";
@@ -369,7 +368,7 @@ export interface SplitFileUploads {
 export type IsValidFileName = (
   file: File,
   extensionRegExp: RegExp | undefined,
-  extensions: readonly string[]
+  extensions: readonly string[],
 ) => boolean;
 
 export const isValidFileName: IsValidFileName;

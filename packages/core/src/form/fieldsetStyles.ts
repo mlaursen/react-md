@@ -45,6 +45,6 @@ export function fieldset(options: FieldsetClassNameOptions = {}): string {
       "full-width": fullWidth,
       "floating-legend": floatingLegend,
     }),
-    className
+    className,
   );
 }

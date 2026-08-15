@@ -191,7 +191,7 @@ export function useNumberField(
   options: NumberFieldHookOptions & {
     disableMessage: true;
     defaultValue: UseStateInitializer<number>;
-  }
+  },
 ): NumberFieldImplementation & {
   value: number;
   setState: UseStateSetter<NumberFieldHookState & { value: number }>;
@@ -226,7 +226,7 @@ export function useNumberField(
  * @see {@link useNumberField} overrides for other examples.
  */
 export function useNumberField(
-  options: NumberFieldHookOptions & { disableMessage: true }
+  options: NumberFieldHookOptions & { disableMessage: true },
 ): NumberFieldImplementation;
 
 /**
@@ -283,7 +283,7 @@ export function useNumberField(
 export function useNumberField(
   options: NumberFieldHookOptions & {
     defaultValue: UseStateInitializer<number>;
-  }
+  },
 ): NumberFieldWithMessageImplementation & {
   value: number;
   setState: UseStateSetter<NumberFieldHookState & { value: number }>;
@@ -341,7 +341,7 @@ export function useNumberField(
  * @see {@link useTextField}
  */
 export function useNumberField(
-  options: NumberFieldHookOptions
+  options: NumberFieldHookOptions,
 ): NumberFieldWithMessageImplementation;
 
 /**
@@ -352,7 +352,7 @@ export function useNumberField(
  * @see {@link useNumberField} overrides for other examples.
  */
 export function useNumberField(
-  options: NumberFieldHookOptions
+  options: NumberFieldHookOptions,
 ): ValidatedNumberFieldImplementation {
   const {
     min,
@@ -476,7 +476,7 @@ export function useNumberField(
         errorMessage,
       });
     },
-    [setTextFieldState]
+    [setTextFieldState],
   );
 
   useFormReset({

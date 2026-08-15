@@ -26,7 +26,7 @@ describe("ResponsiveItem", () => {
         {...props}
         style={{ backgroundColor: "orange" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(container).toMatchSnapshot();
 

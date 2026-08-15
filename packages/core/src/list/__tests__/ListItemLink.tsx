@@ -16,7 +16,7 @@ describe("ListItemLink", () => {
     const { container } = render(
       <List>
         <ListItemLink href="/link">Hello</ListItemLink>
-      </List>
+      </List>,
     );
     const link = screen.getByRole("link", { name: "Hello" });
     expect(link).toBeInstanceOf(HTMLAnchorElement);
@@ -31,7 +31,7 @@ describe("ListItemLink", () => {
         <ListItemLink as={Link} href="/link">
           Hello
         </ListItemLink>
-      </List>
+      </List>,
     );
     const link = screen.getByRole("link", { name: "Hello" });
     expect(link).toBeInstanceOf(HTMLAnchorElement);
@@ -55,7 +55,7 @@ describe("ListItemLink", () => {
     }
 
     function NonForwardedLinkWithRef(
-      props: Props & { ref?: Ref<HTMLAnchorElement> }
+      props: Props & { ref?: Ref<HTMLAnchorElement> },
     ): ReactElement {
       const { to, ref, children, ...remaining } = props;
       return (
@@ -73,7 +73,7 @@ describe("ListItemLink", () => {
             {children}
           </a>
         );
-      }
+      },
     );
 
     const { container, rerender } = render(
@@ -81,7 +81,7 @@ describe("ListItemLink", () => {
         <ListItemLink as={NonForwardedLink} href="/link">
           Hello
         </ListItemLink>
-      </List>
+      </List>,
     );
 
     rerender(
@@ -89,7 +89,7 @@ describe("ListItemLink", () => {
         <ListItemLink as={Link} href="/link">
           Hello
         </ListItemLink>
-      </List>
+      </List>,
     );
 
     let link = screen.getByRole("link", { name: "Hello" });
@@ -103,7 +103,7 @@ describe("ListItemLink", () => {
         <ListItemLink as={NonForwardedLinkWithRef} href="/link">
           Hello
         </ListItemLink>
-      </List>
+      </List>,
     );
     link = screen.getByRole("link", { name: "Hello" });
     expect(link).toBeInstanceOf(HTMLAnchorElement);

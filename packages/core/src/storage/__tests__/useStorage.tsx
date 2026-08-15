@@ -2,8 +2,8 @@ import lzString from "lz-string";
 import { type ReactElement, useEffect } from "react";
 import { afterEach, describe, expect, it } from "vitest";
 
-import { SsrProvider } from "../../SsrProvider.js";
 import { Button } from "../../button/Button.js";
+import { SsrProvider } from "../../SsrProvider.js";
 import {
   act,
   fireEvent,
@@ -105,7 +105,7 @@ describe("useStorage", () => {
     expect(d).toHaveTextContent(JSON.stringify([{ label: "Label", value: 3 }]));
     expect(e).toHaveTextContent("true");
     expect(localStorage.getItem(TEST_KEY)).toBe(
-      JSON.stringify({ ...defaultValue, b: 0 })
+      JSON.stringify({ ...defaultValue, b: 0 }),
     );
 
     unmount();
@@ -189,14 +189,14 @@ describe("useStorage", () => {
     const button = screen.getByRole("button", { name: "Button" });
     expect(value).toHaveTextContent(JSON.stringify(defaultValue));
     expect(localStorage.getItem(TEST_KEY)).toBe(
-      lzString.compress(JSON.stringify(defaultValue))
+      lzString.compress(JSON.stringify(defaultValue)),
     );
 
     fireEvent.click(button);
     const nextValue: Value = { value: "next value!" };
     expect(value).toHaveTextContent(JSON.stringify(nextValue));
     expect(localStorage.getItem(TEST_KEY)).toBe(
-      lzString.compress(JSON.stringify(nextValue))
+      lzString.compress(JSON.stringify(nextValue)),
     );
   });
 
@@ -258,7 +258,7 @@ describe("useStorage", () => {
         username: "existing username",
         birth_year: "1980",
         email: -1,
-      })
+      }),
     );
 
     function Test(): ReactElement {
@@ -278,14 +278,14 @@ describe("useStorage", () => {
         username: "existing username",
         birth_year: 1980,
         email: "hello@example.com",
-      })
+      }),
     );
     expect(localStorage.getItem(TEST_KEY)).toBe(
       JSON.stringify({
         username: "existing username",
         birth_year: 1980,
         email: "hello@example.com",
-      })
+      }),
     );
   });
 
@@ -356,7 +356,7 @@ describe("useStorage", () => {
           oldValue: "",
           newValue: "storage event value",
           storageArea: localStorage,
-        })
+        }),
       );
     });
     expect(value).toHaveTextContent("storage event value");
@@ -384,7 +384,7 @@ describe("useStorage", () => {
           oldValue: "",
           newValue: "storage event value",
           storageArea: sessionStorage,
-        })
+        }),
       );
     });
     expect(value).toBeEmptyDOMElement();
@@ -398,7 +398,7 @@ describe("useStorage", () => {
           oldValue: "",
           newValue: "storage event value",
           storageArea: localStorage,
-        })
+        }),
       );
     });
     expect(value).toBeEmptyDOMElement();
@@ -423,7 +423,7 @@ describe("useStorage", () => {
     render(
       <SsrProvider ssr>
         <Test />
-      </SsrProvider>
+      </SsrProvider>,
     );
 
     const value = screen.getByTestId("value");
@@ -495,7 +495,7 @@ describe("useStorage", () => {
           oldValue: "",
           newValue: "storage event value",
           storageArea: localStorage,
-        })
+        }),
       );
     });
     expect(value).toBeEmptyDOMElement();

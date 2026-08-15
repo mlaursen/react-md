@@ -22,32 +22,32 @@ describe("defaultGetSpinButtonTextContent", () => {
   describe("no value", () => {
     it("should return the fallback string when defined", () => {
       expect(
-        defaultGetSpinButtonTextContent({ value: null, fallback: "" })
+        defaultGetSpinButtonTextContent({ value: null, fallback: "" }),
       ).toBe("");
     });
 
     it("should return an empty string if the fallback is not defined and there are no min digits", () => {
       expect(defaultGetSpinButtonTextContent({ value: null })).toBe("");
       expect(
-        defaultGetSpinButtonTextContent({ value: null, fallback: "fallback" })
+        defaultGetSpinButtonTextContent({ value: null, fallback: "fallback" }),
       ).toBe("fallback");
     });
 
     it("should return hyphens for the number of digits", () => {
       expect(defaultGetSpinButtonTextContent({ value: null, min: 0 })).toBe(
-        "-"
+        "-",
       );
       expect(defaultGetSpinButtonTextContent({ value: null, min: 1 })).toBe(
-        "-"
+        "-",
       );
       expect(defaultGetSpinButtonTextContent({ value: null, min: 10 })).toBe(
-        "--"
+        "--",
       );
       expect(
-        defaultGetSpinButtonTextContent({ value: null, minDigits: 1 })
+        defaultGetSpinButtonTextContent({ value: null, minDigits: 1 }),
       ).toBe("-");
       expect(
-        defaultGetSpinButtonTextContent({ value: null, minDigits: 4 })
+        defaultGetSpinButtonTextContent({ value: null, minDigits: 4 }),
       ).toBe("----");
     });
   });
@@ -63,13 +63,13 @@ describe("defaultGetSpinButtonTextContent", () => {
       expect(defaultGetSpinButtonTextContent({ value: 0, min: 0 })).toBe("0");
       expect(defaultGetSpinButtonTextContent({ value: 0, min: 10 })).toBe("00");
       expect(defaultGetSpinButtonTextContent({ value: 0, minDigits: 4 })).toBe(
-        "0000"
+        "0000",
       );
 
       expect(defaultGetSpinButtonTextContent({ value: 1, min: 0 })).toBe("1");
       expect(defaultGetSpinButtonTextContent({ value: 1, min: 10 })).toBe("01");
       expect(defaultGetSpinButtonTextContent({ value: 1, minDigits: 4 })).toBe(
-        "0001"
+        "0001",
       );
     });
 
@@ -79,7 +79,7 @@ describe("defaultGetSpinButtonTextContent", () => {
           value: 1,
           minDigits: 4,
           placeholderChar: "y",
-        })
+        }),
       ).toBe("yyy1");
     });
   });

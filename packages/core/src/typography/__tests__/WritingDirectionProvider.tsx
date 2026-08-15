@@ -23,7 +23,7 @@ describe("WritingDirectionProvider", () => {
     let { unmount } = render(
       <WritingDirectionProvider>
         <span />
-      </WritingDirectionProvider>
+      </WritingDirectionProvider>,
     );
     expect(document.documentElement).toHaveAttribute("dir", "rtl");
     unmount();
@@ -32,7 +32,7 @@ describe("WritingDirectionProvider", () => {
     ({ unmount } = render(
       <WritingDirectionProvider>
         <span />
-      </WritingDirectionProvider>
+      </WritingDirectionProvider>,
     ));
     expect(document.documentElement).toHaveAttribute("dir", "ltr");
     unmount();
@@ -45,7 +45,7 @@ describe("WritingDirectionProvider", () => {
     const { unmount } = render(
       <WritingDirectionProvider defaultDir="ltr">
         <span />
-      </WritingDirectionProvider>
+      </WritingDirectionProvider>,
     );
 
     expect(document.documentElement).toHaveAttribute("dir", "ltr");
@@ -59,7 +59,7 @@ describe("WritingDirectionProvider", () => {
         <WritingDirectionProvider defaultDir="rtl">
           <span data-testid="span" />
         </WritingDirectionProvider>
-      </WritingDirectionProvider>
+      </WritingDirectionProvider>,
     );
 
     const span = screen.getByTestId("span");
@@ -70,7 +70,7 @@ describe("WritingDirectionProvider", () => {
     render(
       <WritingDirectionProvider>
         <Child />
-      </WritingDirectionProvider>
+      </WritingDirectionProvider>,
     );
 
     const button = screen.getByRole("button");
@@ -87,7 +87,7 @@ describe("WritingDirectionProvider", () => {
         <WritingDirectionProvider defaultDir="rtl">
           <Child />
         </WritingDirectionProvider>
-      </WritingDirectionProvider>
+      </WritingDirectionProvider>,
     );
 
     const button = screen.getByRole("button");
@@ -113,7 +113,7 @@ describe("WritingDirectionProvider", () => {
     }
 
     expect(toggleDir).toThrow(
-      "Tried to toggle the current writing direction without initializing the `Dir` component."
+      "Tried to toggle the current writing direction without initializing the `Dir` component.",
     );
   });
 });

@@ -1,6 +1,6 @@
 import { type ReactMDCoreConfiguration } from "@react-md/core/CoreProviders";
-import { MaterialSymbol } from "@react-md/core/icon/MaterialSymbol";
 import { configureIcons } from "@react-md/core/icon/config";
+import { MaterialSymbol } from "@react-md/core/icon/MaterialSymbol";
 
 configureIcons({
   back: <MaterialSymbol name="keyboard_arrow_left" />,

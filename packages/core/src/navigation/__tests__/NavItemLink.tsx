@@ -42,7 +42,7 @@ describe("NavItemLink", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(navItem).toMatchSnapshot();
 
@@ -50,7 +50,7 @@ describe("NavItemLink", () => {
     expect(navItem).toMatchSnapshot();
 
     rerender(
-      <NavItemLink {...props} active activeClassName="custom-active-class" />
+      <NavItemLink {...props} active activeClassName="custom-active-class" />,
     );
     expect(navItem).toMatchSnapshot();
 
@@ -63,7 +63,7 @@ describe("NavItemLink", () => {
     render(
       <NavItemLink href="/" active spanProps={{ "data-testid": "content" }}>
         Home
-      </NavItemLink>
+      </NavItemLink>,
     );
     const link = screen.getByRole("link", { name: "Home" });
 
@@ -97,7 +97,7 @@ describe("NavItemLink", () => {
         afterAddon={<span>After</span>}
       >
         Home
-      </NavItemLink>
+      </NavItemLink>,
     );
 
     const navItem = screen.getByRole("listitem");

@@ -1,8 +1,9 @@
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
+
 import { describe, expect, it } from "@jest/globals";
 import { compile } from "@mdx-js/mdx";
 import { type TableOfContentsHeadings } from "@react-md/core/navigation/types";
-import { readFile } from "node:fs/promises";
-import { resolve } from "node:path";
 import rehypeSlug from "rehype-slug";
 
 import { rehypeToc } from "../rehype-toc.js";
@@ -69,11 +70,11 @@ describe("rehypeToc", () => {
   it("should throw an error if the rehype-slug pluginw as not used before", async () => {
     const markdown = await getFixture("LargeMarkdown.mdx");
     await expect(
-      compile(markdown, { rehypePlugins: [rehypeToc] })
+      compile(markdown, { rehypePlugins: [rehypeToc] }),
     ).rejects.toEqual(
       new Error(
-        "The rehype-slug plugin must be included before the rehype-toc plugin"
-      )
+        "The rehype-slug plugin must be included before the rehype-toc plugin",
+      ),
     );
   });
 

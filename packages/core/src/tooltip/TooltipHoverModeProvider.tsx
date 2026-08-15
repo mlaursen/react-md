@@ -22,7 +22,7 @@ const context = createContext<TooltipHoverModeContext>(
   createHoverModeContext({
     hoverTimeout: DEFAULT_TOOLTIP_DELAY,
     leaveTimeout: 0,
-  })
+  }),
 );
 context.displayName = "TooltipHoverMode";
 const { Provider } = context;
@@ -89,7 +89,7 @@ export interface TooltipHoverModeProviderProps extends Partial<HoverModeConfigur
  * @since 6.0.0
  */
 export function TooltipHoverModeProvider(
-  props: TooltipHoverModeProviderProps
+  props: TooltipHoverModeProviderProps,
 ): ReactElement {
   const {
     hoverTimeout = DEFAULT_TOOLTIP_DELAY,

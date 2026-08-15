@@ -1,8 +1,9 @@
-import { transformFile } from "@swc/core";
-import { glob } from "glob";
 import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+
+import { transformFile } from "@swc/core";
+import { glob } from "glob";
 
 const SRC_DIR = "src";
 

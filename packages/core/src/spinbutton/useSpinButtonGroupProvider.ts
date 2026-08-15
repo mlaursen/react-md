@@ -57,7 +57,7 @@ export interface SpinButtonGroupProviderImplementation<
  * @since 6.4.0
  */
 export function useSpinButtonGroupProvider<E extends HTMLElement = HTMLElement>(
-  options: SpinButtonGroupProviderOptions<E> = {}
+  options: SpinButtonGroupProviderOptions<E> = {},
 ): SpinButtonGroupProviderImplementation<E> {
   const { disabled, forceFocusWithin } = options;
 

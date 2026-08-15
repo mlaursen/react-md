@@ -41,7 +41,7 @@ export interface NavItemContentClassNameOptions {
  * @since 6.0.0
  */
 export function navItemContent(
-  options: NavItemContentClassNameOptions = {}
+  options: NavItemContentClassNameOptions = {},
 ): string {
   const { className } = options;
 
@@ -75,6 +75,6 @@ export function navItemLink(options: NavItemLinkClassNameOptions = {}): string {
     button(),
     cssUtils({ textDecoration: "none" }),
     active && activeClassName,
-    className
+    className,
   );
 }

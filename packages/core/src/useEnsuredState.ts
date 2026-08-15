@@ -29,7 +29,7 @@ export function useEnsuredState<
   V,
   Setter extends Dispatch<V> | UseStateSetter<V>,
 >(
-  options: EnsuredStateOptions<V, Setter>
+  options: EnsuredStateOptions<V, Setter>,
 ): readonly [value: V, setValue: Setter] {
   const { name = "value", value, setValue, defaultValue } = options;
   if (value !== undefined && setValue !== undefined) {
@@ -39,14 +39,14 @@ export function useEnsuredState<
   if (value !== undefined || setValue !== undefined) {
     const pascalName = name.charAt(0).toUpperCase() + name.slice(1);
     throw new Error(
-      `Both a \`${name}\` and \`set${pascalName}\` must be defined for controlled components.`
+      `Both a \`${name}\` and \`set${pascalName}\` must be defined for controlled components.`,
     );
   }
 
   if (defaultValue === undefined) {
     const pascalName = name.charAt(0).toUpperCase() + name.slice(1);
     throw new Error(
-      `A \`default${pascalName}\` must be defined for uncontrolled components.`
+      `A \`default${pascalName}\` must be defined for uncontrolled components.`,
     );
   }
 

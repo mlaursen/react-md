@@ -309,7 +309,7 @@ export function AsyncButton(props: AsyncButtonProps): ReactElement {
       className={cnb(
         "rmd-button--async",
         loading && isOverlayCover && "rmd-button--async-overlay",
-        className
+        className,
       )}
       theme={loading && loadingDisabledTheme ? "disabled" : theme}
       themeType={themeType}

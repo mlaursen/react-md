@@ -5,8 +5,8 @@ import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 import { type ComponentWithRippleProps } from "../interaction/types.js";
 import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
-import { ListItemChildren } from "./ListItemChildren.js";
 import { getListItemHeight } from "./getListItemHeight.js";
+import { ListItemChildren } from "./ListItemChildren.js";
 import {
   type BaseListItemClassNameOptions,
   listItem,
@@ -182,7 +182,7 @@ export function ListItem(props: ListItemProps): ReactElement {
   });
   const children = useHigherContrastChildren(
     propChildren,
-    !disableTextChildren
+    !disableTextChildren,
   );
 
   const height = getListItemHeight({

@@ -33,13 +33,13 @@ export interface MenuItemInputToggleClassNameOptions {
  * @since 6.0.0
  */
 export function menuItemInputToggle(
-  options: MenuItemInputToggleClassNameOptions
+  options: MenuItemInputToggleClassNameOptions,
 ): string {
   const { className, type } = options;
   return cnb(
     `rmd-${type}-menu-item`,
     menuItemInputToggleStyles({ switch: type === "switch" }),
-    className
+    className,
   );
 }
 
@@ -54,7 +54,7 @@ export interface MenuItemInputToggleTrackClassNameOptions {
  * @since 6.0.0
  */
 export function menuItemInputToggleTrack(
-  options: MenuItemInputToggleTrackClassNameOptions = {}
+  options: MenuItemInputToggleTrackClassNameOptions = {},
 ): string {
   const { className } = options;
 
@@ -72,7 +72,7 @@ export interface MenuItemInputToggleBallClassNameOptions {
  * @since 6.0.0
  */
 export function menuItemInputToggleBall(
-  options: MenuItemInputToggleBallClassNameOptions = {}
+  options: MenuItemInputToggleBallClassNameOptions = {},
 ): string {
   const { className } = options;
 
@@ -90,7 +90,7 @@ export interface MenuItemInputToggleIconClassNameOptions {
  * @since 6.0.0
  */
 export function menuItemInputToggleIcon(
-  options: MenuItemInputToggleIconClassNameOptions = {}
+  options: MenuItemInputToggleIconClassNameOptions = {},
 ): string {
   const { className } = options;
 

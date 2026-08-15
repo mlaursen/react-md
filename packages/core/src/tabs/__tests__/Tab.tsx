@@ -34,7 +34,7 @@ describe("Tab", () => {
     rerender(
       <Tab as="button" active={false}>
         Tab
-      </Tab>
+      </Tab>,
     );
     tab = screen.getByRole("tab", { name: "Tab" });
     expect(tab).toBeInstanceOf(HTMLButtonElement);
@@ -44,7 +44,7 @@ describe("Tab", () => {
     render(
       <Tab as="a" href="#tab" active={false}>
         Tab
-      </Tab>
+      </Tab>,
     );
     const tab = screen.getByRole("tab", { name: "Tab" });
     expect(tab).toBeInstanceOf(HTMLAnchorElement);

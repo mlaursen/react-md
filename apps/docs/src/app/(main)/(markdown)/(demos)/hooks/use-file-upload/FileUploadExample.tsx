@@ -38,7 +38,7 @@ export const MAX_FILES = 10;
 export type FileUploadExampleProps = Partial<FileUploadOptions<HTMLElement>>;
 
 export default function FileUploadExample(
-  props: FileUploadExampleProps
+  props: FileUploadExampleProps,
 ): ReactElement {
   const {
     maxFiles = MAX_FILES,

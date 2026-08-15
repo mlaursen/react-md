@@ -3,8 +3,8 @@
 import { type ReactElement, useEffect } from "react";
 
 import { useHoverMode } from "../hoverMode/useHoverMode.js";
-import { IconRotator } from "../icon/IconRotator.js";
 import { getIcon } from "../icon/config.js";
+import { IconRotator } from "../icon/IconRotator.js";
 import { useUserInteractionMode } from "../interaction/UserInteractionModeProvider.js";
 import { useAppSize } from "../media-queries/AppSizeProvider.js";
 import { useEnsuredId } from "../useEnsuredId.js";

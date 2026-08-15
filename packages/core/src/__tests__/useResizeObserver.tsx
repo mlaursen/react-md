@@ -167,15 +167,15 @@ describe("useResizeObserver", () => {
 
     expect(allowBothUpdate).toHaveBeenCalledTimes(1);
     expect(allowBothUpdate).toHaveBeenCalledWith(
-      createResizeObserverEntry(allowBoth)
+      createResizeObserverEntry(allowBoth),
     );
     expect(allowHeightUpdate).toHaveBeenCalledTimes(1);
     expect(allowHeightUpdate).toHaveBeenCalledWith(
-      createResizeObserverEntry(allowHeight)
+      createResizeObserverEntry(allowHeight),
     );
     expect(allowWidthUpdate).toHaveBeenCalledTimes(1);
     expect(allowWidthUpdate).toHaveBeenCalledWith(
-      createResizeObserverEntry(allowWidth)
+      createResizeObserverEntry(allowWidth),
     );
 
     const allowBothHeightEntry = createResizeObserverEntry(allowBoth, {

@@ -22,7 +22,7 @@ export interface TreeExpansion {
  * instead of a list to increase performance.
  */
 export function useTreeExpansion(
-  defaultExpandedIds?: TreeDefaultIds
+  defaultExpandedIds?: TreeDefaultIds,
 ): TreeExpansion {
   const { value, setValue, toggleValue } = useReadonlySet({
     defaultValue: defaultExpandedIds,

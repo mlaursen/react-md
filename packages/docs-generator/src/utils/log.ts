@@ -18,7 +18,7 @@ export function logFailure(message: string): void {
 export async function log<Result>(
   task: Promise<Result>,
   startMessage: string,
-  endMessage: string
+  endMessage: string,
 ): Promise<Result> {
   if (process.env.NODE_ENV === "production" || (!startMessage && !endMessage)) {
     return task;

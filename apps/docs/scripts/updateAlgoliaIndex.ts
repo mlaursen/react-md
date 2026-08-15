@@ -1,3 +1,5 @@
+import { join, resolve } from "node:path";
+
 import { searchClient } from "@algolia/client-search";
 import confirm from "@inquirer/confirm";
 import { parseMdx } from "docs-generator/scripts/algolia/parseMdx";
@@ -8,7 +10,6 @@ import {
 import { log } from "docs-generator/utils/log";
 import { config } from "dotenv";
 import { glob } from "glob";
-import { join, resolve } from "node:path";
 import { generate } from "sassdoc-generator";
 import {
   type FormattedFunctionItem,
@@ -34,7 +35,7 @@ async function indexMdxPages(baseUrl: string): Promise<readonly IndexedItem[]> {
         console.error(`Error parsing: ${mdxFilePath}`);
         throw error;
       }
-    })
+    }),
   );
 }
 
@@ -65,7 +66,7 @@ const getSassDocLink = (item: FormattedSassDocItem): string => {
 };
 
 async function indexSassDocPages(
-  baseUrl: string
+  baseUrl: string,
 ): Promise<readonly IndexedItem[]> {
   const { mixins, functions, variables } = await generate({ src: CORE_SRC });
 
@@ -215,7 +216,7 @@ async function getEnvVars(): Promise<RequiredEnvVars> {
 ${missing.map((name) => `- ${name}`).join("\n")}
 
 Update the \`.env.algolia\` with the correct values.
-`
+`,
     );
   }
 
@@ -253,17 +254,17 @@ async function run({
     ...(await log(
       indexMdxPages(baseUrl),
       "Indexing MDX pages",
-      "MDX pages indexed"
+      "MDX pages indexed",
     )),
     ...(await log(
       indexSassDocPages(baseUrl),
       "Indexing SassDoc pages",
-      "SassDoc pages indexed"
+      "SassDoc pages indexed",
     )),
     ...(await log(
       indexBlogs(baseUrl),
       "Indexing Blog pages",
-      "Blog pages indexed"
+      "Blog pages indexed",
     )),
     {
       type: "page",
@@ -296,5 +297,5 @@ await log(
   // eslint-disable-next-line unicorn/prefer-top-level-await
   run(envVars),
   "Indexing the documentation site",
-  "Documentation site indexed!"
+  "Documentation site indexed!",
 );

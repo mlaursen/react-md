@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { type ProgramOptions } from "./types.js";
 
 const jscodeshiftExecutable = fileURLToPath(
-  import.meta.resolve("jscodeshift/bin/jscodeshift", import.meta.url)
+  import.meta.resolve("jscodeshift/bin/jscodeshift", import.meta.url),
 );
 
 export interface RunJSCodeshiftOptions extends Omit<

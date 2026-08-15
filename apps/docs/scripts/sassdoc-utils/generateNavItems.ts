@@ -9,7 +9,7 @@ import { titleCase } from "../../src/utils/strings.js";
 import { GENERATED_SASSDOC_NAV_ITEMS_FILE } from "../constants.js";
 
 export async function generateNavItems(
-  options: GeneratedSassDoc
+  options: GeneratedSassDoc,
 ): Promise<void> {
   const { mixins, functions, variables } = options;
   const groups = new Set<string>();

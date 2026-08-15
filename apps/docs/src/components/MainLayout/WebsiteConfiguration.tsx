@@ -22,6 +22,7 @@ import { ConfigureColorScheme } from "./ConfigureColorScheme.js";
 import { ConfigureOrientation } from "./ConfigureOrientation.js";
 import { ConfigurePackageManager } from "./ConfigurePackageManager.js";
 import { ConfigureTypescriptEnabled } from "./ConfigureTypescriptEnabled.js";
+
 import styles from "./WebsiteConfiguration.module.scss";
 
 export function WebsiteConfiguration(): ReactElement {

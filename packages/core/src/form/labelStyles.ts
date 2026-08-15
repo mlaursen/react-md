@@ -50,6 +50,6 @@ export function label(options: LabelClassNameOptions = {}): string {
     cssUtils({
       textColor,
     }),
-    className
+    className,
   );
 }

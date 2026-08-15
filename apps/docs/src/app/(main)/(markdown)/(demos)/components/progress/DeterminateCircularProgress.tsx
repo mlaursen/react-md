@@ -25,7 +25,7 @@ function useProgress(): number {
             max: 10,
             value: prev / 10,
             increment: true,
-          }) * 10
+          }) * 10,
       );
     }, 1000);
 

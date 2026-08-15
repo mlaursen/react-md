@@ -12,7 +12,7 @@ export type TypescriptCodeEditorProps = Pick<
 >;
 
 export function TypescriptCodeEditor(
-  props: TypescriptCodeEditorProps
+  props: TypescriptCodeEditorProps,
 ): ReactElement {
   const { code, editorRef, editorProps } = props;
 

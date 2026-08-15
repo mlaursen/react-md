@@ -77,7 +77,7 @@ export interface MenuItemCircularProgressProps extends CircularProgressProps {
  * @since 6.0.0
  */
 export function MenuItemCircularProgress(
-  props: MenuItemCircularProgressProps
+  props: MenuItemCircularProgressProps,
 ): ReactElement {
   const {
     ref,

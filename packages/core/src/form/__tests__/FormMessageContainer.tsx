@@ -44,7 +44,7 @@ describe("FormMessageContainer", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(container).toMatchSnapshot();
 
@@ -54,7 +54,7 @@ describe("FormMessageContainer", () => {
         inline
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(container).toMatchSnapshot();
   });

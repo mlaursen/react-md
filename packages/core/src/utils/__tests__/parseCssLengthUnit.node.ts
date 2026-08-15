@@ -20,10 +20,10 @@ describe("parseCssLengthUnit", () => {
     expect(parseCssLengthUnit({ value: "1.em" })).toBe(16);
     expect(parseCssLengthUnit({ value: ".5em" })).toBe(8);
     expect(parseCssLengthUnit({ value: "1rem", fallbackFontSize: 12 })).toBe(
-      12
+      12,
     );
     expect(parseCssLengthUnit({ value: ".5rem", fallbackFontSize: 12 })).toBe(
-      6
+      6,
     );
   });
 });

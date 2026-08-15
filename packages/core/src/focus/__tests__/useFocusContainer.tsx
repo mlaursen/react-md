@@ -20,7 +20,7 @@ function Test(
   props: Omit<FocusContainerOptions<HTMLDivElement>, "activate"> & {
     autoFocus?: boolean;
     disableChildren?: boolean;
-  }
+  },
 ): ReactElement {
   const { autoFocus, disableChildren, ...options } = props;
   const { disableTransition } = options;
@@ -84,7 +84,7 @@ describe("useFocusContainer", () => {
         onExit={onExit}
         onExiting={onExiting}
         onExited={onExited}
-      />
+      />,
     );
 
     expect(onEnter).not.toHaveBeenCalled();
@@ -135,7 +135,7 @@ describe("useFocusContainer", () => {
         onEntered={onEntered}
         onExiting={onExiting}
         onExited={onExited}
-      />
+      />,
     );
     const showButton = screen.getByRole("button", { name: "Show" });
 
@@ -185,7 +185,7 @@ describe("useFocusContainer", () => {
         onExiting={onExiting}
         onExited={onExited}
         disableTransition
-      />
+      />,
     );
     const showButton = screen.getByRole("button", { name: "Show" });
 
@@ -217,7 +217,7 @@ describe("useFocusContainer", () => {
         onEntered={onEntered}
         onExiting={onExiting}
         onExited={onExited}
-      />
+      />,
     );
     const showButton = screen.getByRole("button", { name: "Show" });
 

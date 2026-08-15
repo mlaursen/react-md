@@ -4,7 +4,7 @@ import { type NonEmptyJSXExpresson } from "../../types.js";
 
 export function isJsxExpressionContainer(
   j: JSCodeshift,
-  value: unknown
+  value: unknown,
 ): value is JSXExpressionContainer & {
   expression: NonEmptyJSXExpresson;
 } {

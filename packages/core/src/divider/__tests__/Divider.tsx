@@ -20,7 +20,7 @@ describe("Divider", () => {
         ref={ref}
         style={{ color: "blue" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(divider).toMatchSnapshot();
 
@@ -46,7 +46,7 @@ describe("Divider", () => {
         {...props}
         style={{ color: "blue" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(divider).toMatchSnapshot();
 

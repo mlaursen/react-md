@@ -6,7 +6,7 @@ import { type MaterialComponentMetadata } from "./converters.js";
 const END_SVG = "</svg>";
 
 async function getSvgFromGoogleFontsApi(
-  metadata: MaterialComponentMetadata
+  metadata: MaterialComponentMetadata,
 ): Promise<string> {
   const { host, family, name, version } = metadata;
   const group = family.toLowerCase().replace(/ /g, "");
@@ -57,11 +57,11 @@ const fixStyle = (children: string): string =>
 
 const camelCaseProps = (children: string): string =>
   children.replace(/(-|:)([a-z])/g, (_, __, letter: string) =>
-    letter.toUpperCase()
+    letter.toUpperCase(),
   );
 
 export async function getSvgIconChildren(
-  metadata: MaterialComponentMetadata
+  metadata: MaterialComponentMetadata,
 ): Promise<string> {
   const rawSvg = await getSvgFromGoogleFontsApi(metadata);
   const contents = optimizeSvg(rawSvg);

@@ -21,7 +21,7 @@ export interface SegmentedButtonsProps<V extends string> extends Omit<
 }
 
 export function SegmentedButtons<V extends string>(
-  props: SegmentedButtonsProps<V>
+  props: SegmentedButtonsProps<V>,
 ): ReactElement {
   const {
     items,

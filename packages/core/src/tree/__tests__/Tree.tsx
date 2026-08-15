@@ -16,9 +16,9 @@ import {
   waitFor,
 } from "../../test-utils/index.js";
 import { TRANSITION_CONFIG } from "../../transition/config.js";
-import { type RenderRecursiveItemsProps } from "../../utils/RenderRecursively.js";
 import { alphaNumericSort } from "../../utils/alphaNumericSort.js";
 import { isElementVisible } from "../../utils/isElementVisible.js";
+import { type RenderRecursiveItemsProps } from "../../utils/RenderRecursively.js";
 import { DefaultTreeItemRenderer } from "../DefaultTreeItemRenderer.js";
 import { Tree, type TreeProps } from "../Tree.js";
 import { TreeItem } from "../TreeItem.js";
@@ -171,7 +171,7 @@ describe("Tree", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(tree).toMatchSnapshot();
   });
@@ -278,13 +278,13 @@ describe("Tree", () => {
           defaultSelectedIds: [FOLDERS["folder-2-1"].itemId],
           defaultExpandedIds: [FOLDERS["folder-2"].itemId],
         }}
-      />
+      />,
     );
 
     const tree = screen.getByRole("tree", { name: "Tree" });
     expect(screen.getByRole("treeitem", { name: "Folder 2" })).toHaveAttribute(
       "aria-expanded",
-      "true"
+      "true",
     );
     const folder21 = screen.getByRole("treeitem", {
       name: FOLDERS["folder-2-1"].name,
@@ -299,14 +299,14 @@ describe("Tree", () => {
           defaultSelectedIds: () => [FOLDERS["folder-2-1"].itemId],
           defaultExpandedIds: () => [FOLDERS["folder-2"].itemId],
         }}
-      />
+      />,
     );
     expect(tree).not.toBeInTheDocument();
 
     const rerenderedTree = screen.getByRole("tree", { name: "Tree" });
     expect(screen.getByRole("treeitem", { name: "Folder 2" })).toHaveAttribute(
       "aria-expanded",
-      "true"
+      "true",
     );
     const rerenderedFolder21 = screen.getByRole("treeitem", {
       name: FOLDERS["folder-2-1"].name,
@@ -475,7 +475,7 @@ describe("Tree", () => {
     const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
     const { rerender } = rmdRender(<Test data={data} />);
     expect(warn).toHaveBeenCalledWith(
-      "The following tree items are orphaned without a parent:"
+      "The following tree items are orphaned without a parent:",
     );
     expect(warn).toHaveBeenCalledWith(
       Object.values({
@@ -489,7 +489,7 @@ describe("Tree", () => {
           parentId: "does-not-exist-2",
           name: "Item 3",
         },
-      })
+      }),
     );
 
     warn.mockReset();
@@ -527,7 +527,7 @@ describe("Tree", () => {
           alphaNumericSort(items, { extractor: (item) => item.name })
         }
         data={FRUITS_FOLDERS}
-      />
+      />,
     );
 
     const oranges = screen.getByRole("treeitem", { name: "Oranges" });
@@ -546,7 +546,7 @@ describe("Tree", () => {
       props: AnchorHTMLAttributes<HTMLAnchorElement> & {
         to: string;
         ref?: Ref<HTMLAnchorElement>;
-      }
+      },
     ): ReactElement {
       const { to, href, ref, ...remaining } = props;
       return <a href={to || href} {...remaining} ref={ref} />;
@@ -631,7 +631,7 @@ describe("Tree", () => {
       },
     } satisfies TreeData<CustomNode>;
     function CustomRenderer(
-      props: RenderRecursiveItemsProps<CustomNode, TreeData<CustomNode>>
+      props: RenderRecursiveItemsProps<CustomNode, TreeData<CustomNode>>,
     ): ReactElement {
       const { item } = props;
       if (item.divider) {
@@ -678,7 +678,7 @@ describe("Tree", () => {
     const onTouchEnd = vi.fn();
     const onTouchMove = vi.fn();
     function CustomRenderer(
-      props: RenderRecursiveItemsProps<Folder>
+      props: RenderRecursiveItemsProps<Folder>,
     ): ReactElement {
       const { item, parents, children } = props;
       return (
@@ -744,7 +744,7 @@ describe("Tree", () => {
             parentId: "folder-1",
           },
         }}
-      />
+      />,
     );
 
     const tree = screen.getByRole("tree", { name: "Tree" });

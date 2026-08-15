@@ -27,7 +27,7 @@ describe("CardHeader", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(header).toMatchSnapshot();
 
@@ -40,7 +40,7 @@ describe("CardHeader", () => {
           style: { color: "orange" },
           className: "custom-class-name",
         }}
-      />
+      />,
     );
     expect(contentRef.current).toBeInstanceOf(HTMLDivElement);
     expect(header).toMatchSnapshot();
@@ -57,7 +57,7 @@ describe("CardHeader", () => {
       >
         <CardTitle>Elizabeth Park</CardTitle>
         <CardSubtitle>Work contact</CardSubtitle>
-      </CardHeader>
+      </CardHeader>,
     );
 
     const header = screen.getByTestId("header");

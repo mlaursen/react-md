@@ -15,8 +15,8 @@ import {
   type IndeterminateCheckboxProps,
 } from "../form/InputToggle.js";
 import { InputToggleIcon } from "../form/InputToggleIcon.js";
-import { SwitchTrack } from "../form/SwitchTrack.js";
 import { type InputToggleSize } from "../form/inputToggleStyles.js";
+import { SwitchTrack } from "../form/SwitchTrack.js";
 import { ListItem } from "../list/ListItem.js";
 import {
   type ListItemAddonPosition,
@@ -42,7 +42,7 @@ const noop = (): void => {
  */
 export type MenuItemInputToggleCheckedCallback = (
   checked: boolean,
-  event: MouseEvent<HTMLLIElement>
+  event: MouseEvent<HTMLLIElement>,
 ) => void;
 
 /** @since 2.8.0 */
@@ -142,7 +142,7 @@ export type MenuItemInputToggleProps =
  * @since 2.8.0
  */
 export function MenuItemInputToggle(
-  props: MenuItemInputToggleProps
+  props: MenuItemInputToggleProps,
 ): ReactElement {
   const {
     ref,
@@ -190,7 +190,7 @@ export function MenuItemInputToggle(
         className={cnb(
           menuItemInputToggleTrack(),
           trackClassName,
-          trackProps?.className
+          trackProps?.className,
         )}
         active={checked}
         ballProps={ballProps}
@@ -207,7 +207,7 @@ export function MenuItemInputToggle(
         className={cnb(
           menuItemInputToggleIcon(),
           iconClassName,
-          iconProps?.className
+          iconProps?.className,
         )}
         size={size}
         type={type}

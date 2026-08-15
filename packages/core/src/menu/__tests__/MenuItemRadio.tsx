@@ -27,7 +27,7 @@ describe("MenuItemRadio", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(element).toMatchSnapshot();
   });

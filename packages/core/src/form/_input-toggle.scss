@@ -99,8 +99,8 @@ $large-size: 2rem !default;
         @include icon.set-var(color, currentcolor);
         @include interaction.surface(
           $focus-selector: $focus-selector,
-          $keyboard-only-focus: utils.$disable-has-selectors or
-            utils.$disable-focus-visible,
+          $keyboard-only-focus:
+            utils.$disable-has-selectors or utils.$disable-focus-visible,
           $disabled-selector: "&--disabled",
           $higher-contrast: false
         );

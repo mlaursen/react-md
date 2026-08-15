@@ -20,7 +20,7 @@ export interface CreateJsxNodeOptions {
 }
 
 export function createJsxNode(
-  options: CreateJsxNodeOptions
+  options: CreateJsxNodeOptions,
 ): MdxJsxFlowElementHast {
   const { as, meta, props } = options;
 
@@ -38,6 +38,6 @@ export function createJsxNode(
   }
 
   return createJsxElementContent<MdxJsxFlowElementHast>(
-    `<${as} ${jsxProps} />`
+    `<${as} ${jsxProps} />`,
   )[0];
 }

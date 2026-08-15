@@ -25,7 +25,7 @@ export const MEDIA_QUERY_CONFIG: MediaQueryConfig = {
  * @since 6.4.0
  */
 export function configureMediaQueries(
-  queries: Readonly<Partial<MediaQueryConfig>>
+  queries: Readonly<Partial<MediaQueryConfig>>,
 ): void {
   if (process.env.NODE_ENV !== "production") {
     for (const [name, value] of Object.entries(queries)) {

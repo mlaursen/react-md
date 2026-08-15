@@ -51,7 +51,7 @@ export function migrateOptionsToChildren({
 
     children = j.callExpression(
       j.memberExpression(options, j.identifier("map")),
-      [createOptionsDotMap({ j, isTypescript })]
+      [createOptionsDotMap({ j, isTypescript })],
     );
   } else {
     const [arrowFunction] = options.arguments;
@@ -61,14 +61,14 @@ export function migrateOptionsToChildren({
       !j.ObjectPattern.check(optionOrDestructure)
     ) {
       comments.add(
-        "TODO: Unable to automatically convert the `Select` options."
+        "TODO: Unable to automatically convert the `Select` options.",
       );
       return;
     }
 
     if (j.BlockStatement.check(arrowFunction.body)) {
       comments.add(
-        "TODO: Unable to automatically convert the `Select` options."
+        "TODO: Unable to automatically convert the `Select` options.",
       );
       return;
     } else if (j.ObjectExpression.check(arrowFunction.body)) {
@@ -92,7 +92,7 @@ export function migrateOptionsToChildren({
 
       if (!label || !value) {
         comments.add(
-          "TODO: Unable to automatically convert the `Select` options."
+          "TODO: Unable to automatically convert the `Select` options.",
         );
         return;
       }
@@ -119,10 +119,10 @@ export function migrateOptionsToChildren({
       j.jsxOpeningElement(
         openingElement.name,
         openingElement.attributes,
-        false
+        false,
       ),
       j.jsxClosingElement(openingElement.name),
-      [j.jsxExpressionContainer(children)]
-    )
+      [j.jsxExpressionContainer(children)],
+    ),
   );
 }

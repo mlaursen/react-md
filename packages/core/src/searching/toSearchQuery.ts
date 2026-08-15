@@ -7,7 +7,7 @@ import { type WhitespaceFilter } from "./types.js";
  */
 export function toSearchQuery(
   s: string,
-  whitespace: WhitespaceFilter = "keep"
+  whitespace: WhitespaceFilter = "keep",
 ): string {
   let q = s.toLowerCase();
   if (whitespace === "ignore") {

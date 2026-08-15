@@ -79,7 +79,7 @@ const noop = (): undefined => undefined;
  * @since 6.0.0
  */
 export function Autocomplete<Option extends AutocompleteOption>(
-  props: AutocompleteSingleSelectProps<Option>
+  props: AutocompleteSingleSelectProps<Option>,
 ): ReactElement;
 /**
  * To create an `Autocomplete` that can have multiple values selected at once,
@@ -121,7 +121,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
  * @since 6.0.0
  */
 export function Autocomplete<Option extends AutocompleteOption>(
-  props: AutocompleteMultiSelectProps<Option>
+  props: AutocompleteMultiSelectProps<Option>,
 ): ReactElement;
 /**
  * @see {@link https://react-md.dev/components/autocomplete | Autocomplete Demos}
@@ -129,7 +129,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
  * @internal
  */
 export function Autocomplete<Option extends AutocompleteOption>(
-  props: AutocompleteProps<Option>
+  props: AutocompleteProps<Option>,
 ): ReactElement {
   const {
     id: propId,
@@ -245,7 +245,7 @@ export function Autocomplete<Option extends AutocompleteOption>(
     disableCloseOnSelect,
   });
   const [containerRef, containerRefCallback] = useEnsuredRef(
-    containerProps?.ref
+    containerProps?.ref,
   );
 
   let leftAddon = propLeftAddon;

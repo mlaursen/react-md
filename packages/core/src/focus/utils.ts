@@ -63,12 +63,12 @@ export const TAB_FOCUSABLE = queries.reduce((fullQuery, query) => {
  */
 export function getFocusableElements(
   container: HTMLElement | Document,
-  programmatic = false
+  programmatic = false,
 ): readonly HTMLElement[] {
   // spread operator is faster than Array.from
   return [
     ...container.querySelectorAll<HTMLElement>(
-      programmatic ? PROGRAMMATICALLY_FOCUSABLE : TAB_FOCUSABLE
+      programmatic ? PROGRAMMATICALLY_FOCUSABLE : TAB_FOCUSABLE,
     ),
   ];
 }
@@ -85,10 +85,10 @@ export function getFocusableElements(
  */
 export function getFocusableElement(
   container: HTMLElement | Document,
-  programmatic = false
+  programmatic = false,
 ): HTMLElement | null {
   return container.querySelector<HTMLElement>(
-    programmatic ? PROGRAMMATICALLY_FOCUSABLE : TAB_FOCUSABLE
+    programmatic ? PROGRAMMATICALLY_FOCUSABLE : TAB_FOCUSABLE,
   );
 }
 
@@ -108,7 +108,7 @@ export type ElementFocusType = "tab" | "programmatic";
 
 export function isFocusable(
   element: HTMLElement | Document | Window,
-  type: ElementFocusType = "programmatic"
+  type: ElementFocusType = "programmatic",
 ): element is HTMLElement {
   const selector = type === "tab" ? TAB_FOCUSABLE : PROGRAMMATICALLY_FOCUSABLE;
 

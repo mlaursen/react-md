@@ -19,7 +19,7 @@ export interface CompiledScssCodeBlockContainerProps {
 }
 
 export function CompiledScssCodeBlockContainer(
-  props: Readonly<CompiledScssCodeBlockContainerProps>
+  props: Readonly<CompiledScssCodeBlockContainerProps>,
 ): ReactElement {
   const { css, scss, appBarProps, appBarChildren, fileName } = props;
   const { toggle, toggled } = useToggle();

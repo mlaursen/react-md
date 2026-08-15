@@ -8,7 +8,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -65,10 +65,10 @@ export default function transformer(
                       negateExpression({
                         j,
                         expr,
-                      })
+                      }),
                     )
-                  : null
-              )
+                  : null,
+              ),
             );
 
             break;

@@ -26,7 +26,7 @@ describe("DialogFooter", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(footer).toMatchSnapshot();
   });
@@ -36,7 +36,7 @@ describe("DialogFooter", () => {
       <DialogFooter data-testid="footer">
         <Button>Button 1</Button>
         <Button>Button 2</Button>
-      </DialogFooter>
+      </DialogFooter>,
     );
 
     const footer = screen.getByTestId("footer");
@@ -56,7 +56,7 @@ describe("DialogFooter", () => {
         <DialogFooter data-testid="footer" align={align}>
           <Button>Button 1</Button>
           <Button>Button 2</Button>
-        </DialogFooter>
+        </DialogFooter>,
       );
 
       expect(footer).toMatchSnapshot();

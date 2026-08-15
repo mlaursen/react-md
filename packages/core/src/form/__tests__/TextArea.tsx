@@ -31,14 +31,14 @@ describe("TextArea", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(textarea).toMatchSnapshot();
   });
 
   it("should support the readOnly state", () => {
     render(
-      <TextArea readOnly containerProps={{ "data-testid": "container" }} />
+      <TextArea readOnly containerProps={{ "data-testid": "container" }} />,
     );
 
     const container = screen.getByTestId("container");
@@ -53,7 +53,7 @@ describe("TextArea", () => {
         label="Label"
         disabled
         containerProps={{ "data-testid": "container" }}
-      />
+      />,
     );
 
     const container = screen.getByTestId("container");
@@ -68,7 +68,7 @@ describe("TextArea", () => {
         label="Label"
         error
         containerProps={{ "data-testid": "container" }}
-      />
+      />,
     );
 
     const container = screen.getByTestId("container");
@@ -99,7 +99,7 @@ describe("TextArea", () => {
       <TextArea
         label="Area"
         messageContainerProps={{ "data-testid": "message-container" }}
-      />
+      />,
     );
     expect(() => screen.getByTestId("message-container")).toThrow();
 
@@ -108,7 +108,7 @@ describe("TextArea", () => {
         label="Area"
         messageContainerProps={{ "data-testid": "message-container" }}
         messageProps={{ children: "Help text" }}
-      />
+      />,
     );
 
     const messageContainer = screen.getByTestId("message-container");
@@ -120,7 +120,7 @@ describe("TextArea", () => {
         inline
         messageContainerProps={{ "data-testid": "message-container" }}
         messageProps={{ children: "Help text" }}
-      />
+      />,
     );
     expect(messageContainer).toMatchSnapshot();
   });
@@ -133,7 +133,7 @@ describe("TextArea", () => {
         theme="filled"
         messageContainerProps={{ "data-testid": "message-container" }}
         messageProps={{ children: "Help Text" }}
-      />
+      />,
     );
 
     const messageContainer = screen.getByTestId("message-container");
@@ -163,7 +163,7 @@ describe("TextArea", () => {
         label="Area"
         leftAddon={<FontIcon data-testid="favorite">favorite</FontIcon>}
         rightAddon={<FontIcon data-testid="close">close</FontIcon>}
-      />
+      />,
     );
 
     const container = screen.getByTestId("container");
@@ -183,7 +183,7 @@ describe("TextArea", () => {
           style: { background: "orange" },
           className: "label-props-class-name",
         }}
-      />
+      />,
     );
 
     const label = screen.getByTestId("label");
@@ -201,7 +201,7 @@ describe("TextArea", () => {
         labelProps={{
           "data-testid": "label",
         }}
-      />
+      />,
     );
 
     expect(label).not.toHaveStyle("background: orange");
@@ -247,7 +247,7 @@ describe("TextArea", () => {
         label="Label"
         containerProps={{ "data-testid": "container" }}
         resize="none"
-      />
+      />,
     );
 
     const container = screen.getByTestId("container");
@@ -288,7 +288,7 @@ describe("TextArea", () => {
           label="Label"
           containerProps={{ "data-testid": "container" }}
           maxRows={maxRows}
-        />
+        />,
       );
 
       const container = screen.getByTestId("container");
@@ -430,7 +430,7 @@ describe("TextArea", () => {
           label="Label"
           resize="none"
           containerProps={{ "data-testid": "container" }}
-        />
+        />,
       );
       const container = screen.getByTestId("container");
       const textarea = screen.getByRole("textbox", { name: "Label" });

@@ -129,7 +129,7 @@ export interface HighlightTextProps {
  * @since 6.0.0
  */
 export function HighlightText(
-  props: Readonly<HighlightTextProps>
+  props: Readonly<HighlightTextProps>,
 ): ReactElement {
   const {
     query,
@@ -156,7 +156,7 @@ export function HighlightText(
             const text = removeAccents(child).trim();
             const escapedQuery = cleanQuery.replaceAll(
               SPECIAL_CHARACTERS_REGEXP,
-              String.raw`\$&`
+              String.raw`\$&`,
             );
             const regex = new RegExp(`(${escapedQuery})`, "gi");
 
@@ -181,7 +181,7 @@ export function HighlightText(
                   }}
                 >
                   {child.slice(index, lastIndex)}
-                </Highlight>
+                </Highlight>,
               );
 
               if (firstMatchOnly) {
@@ -195,7 +195,7 @@ export function HighlightText(
 
             return parts;
           }),
-        [Highlight, children, firstMatchOnly, query]
+        [Highlight, children, firstMatchOnly, query],
       )}
     </>
   );

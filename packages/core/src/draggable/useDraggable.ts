@@ -350,7 +350,7 @@ export interface DraggableImplementation<
  * @since 6.0.0
  */
 export function useDraggable<E extends HTMLElement>(
-  options: DraggableOptions<E>
+  options: DraggableOptions<E>,
 ): DraggableImplementation<E> {
   const {
     ref: propRef,
@@ -422,8 +422,8 @@ export function useDraggable<E extends HTMLElement>(
     cnb(
       !disableDraggingCursorClassName &&
         draggingClassName &&
-        `rmd-dragging--${vertical ? "v" : "h"}`
-    )
+        `rmd-dragging--${vertical ? "v" : "h"}`,
+    ),
   );
 
   const draggedOnce = useRef(false);
@@ -514,7 +514,7 @@ export function useDraggable<E extends HTMLElement>(
         max,
         steps: getRangeSteps({ min, max, step }),
         value: prevValue,
-      })
+      }),
     );
   }, [max, min, setValue, step]);
 
@@ -565,7 +565,7 @@ export function useDraggable<E extends HTMLElement>(
         step,
         vertical,
         withinOffsetParent,
-      ]
+      ],
     ),
     onMouseMove: useCallback(
       (event) => {
@@ -610,7 +610,7 @@ export function useDraggable<E extends HTMLElement>(
         step,
         vertical,
         withinOffsetParent,
-      ]
+      ],
     ),
     onMouseUp: useCallback(
       (event) => {
@@ -621,7 +621,7 @@ export function useDraggable<E extends HTMLElement>(
 
         draggingRef.current = false;
       },
-      [disabled, isTouch, onMouseUp]
+      [disabled, isTouch, onMouseUp],
     ),
   };
   const keyboardEventHandlers: Required<DraggableKeyboardEventHandlers<E>> = {
@@ -654,7 +654,7 @@ export function useDraggable<E extends HTMLElement>(
             break;
         }
       },
-      [decrement, disabled, increment, maximum, minimum, onKeyDown, vertical]
+      [decrement, disabled, increment, maximum, minimum, onKeyDown, vertical],
     ),
   };
 
@@ -710,7 +710,7 @@ export function useDraggable<E extends HTMLElement>(
         step,
         vertical,
         withinOffsetParent,
-      ]
+      ],
     ),
     onTouchMove: useCallback(
       (event) => {
@@ -754,7 +754,7 @@ export function useDraggable<E extends HTMLElement>(
         step,
         vertical,
         withinOffsetParent,
-      ]
+      ],
     ),
   };
 

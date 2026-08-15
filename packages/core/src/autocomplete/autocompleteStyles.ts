@@ -22,7 +22,7 @@ export interface AutocompleteClassNameOptions {
  * @since 6.0.0
  */
 export function autocomplete(
-  options: AutocompleteClassNameOptions = {}
+  options: AutocompleteClassNameOptions = {},
 ): string {
   const {
     className,
@@ -39,7 +39,7 @@ export function autocomplete(
       cp: loading,
       "inline-chips": inlineChips,
     }),
-    className
+    className,
   );
 }
 
@@ -54,14 +54,14 @@ export interface AutocompleteRightAddonClassNameOptions {
  * @since 6.0.0
  */
 export function autocompleteRightAddon(
-  options: AutocompleteRightAddonClassNameOptions = {}
+  options: AutocompleteRightAddonClassNameOptions = {},
 ): string {
   const { className } = options;
 
   return cnb(
     styles("right-addon"),
     cssUtils({ backgroundColor: "current-color" }),
-    className
+    className,
   );
 }
 /**
@@ -75,7 +75,7 @@ export interface AutocompleteDropdownButtonClassNameOptions {
  * @since 6.0.0
  */
 export function autocompleteDropdownButton(
-  options: AutocompleteDropdownButtonClassNameOptions = {}
+  options: AutocompleteDropdownButtonClassNameOptions = {},
 ): string {
   const { className } = options;
 
@@ -95,7 +95,7 @@ export interface AutocompleteClearButtonClassNameOptions {
  * @since 6.0.0
  */
 export function autocompleteClearButton(
-  options: AutocompleteClearButtonClassNameOptions = {}
+  options: AutocompleteClearButtonClassNameOptions = {},
 ): string {
   const { className, visibility = "always" } = options;
 
@@ -104,7 +104,7 @@ export function autocompleteClearButton(
       hover: visibility === "active" || visibility === "query",
       query: visibility === "query",
     }),
-    className
+    className,
   );
 }
 
@@ -119,7 +119,7 @@ export interface AutocompleteChipClassNameOptions {
  * @since 6.0.0
  */
 export function autocompleteChip(
-  options: AutocompleteChipClassNameOptions = {}
+  options: AutocompleteChipClassNameOptions = {},
 ): string {
   const { className } = options;
 

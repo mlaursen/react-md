@@ -13,7 +13,7 @@ keywords: [layout, navigation]
 
 ```ts disableTransform
 function useTemporaryLayout(
-  options: TemporaryLayoutOptions
+  options: TemporaryLayoutOptions,
 ): TemporaryLayoutImplementation;
 ```
 
@@ -52,11 +52,9 @@ export function Layout(props: LayoutProps): ReactElement {
   // react router
   const { pathname } = useHistory();
 
-  const {
-    mainProps,
-    navToggleProps,
-    temporaryNavProps,
-  } = useTemporaryLayout({ pathname });
+  const { mainProps, navToggleProps, temporaryNavProps } = useTemporaryLayout({
+    pathname,
+  });
 
   return (
     <>

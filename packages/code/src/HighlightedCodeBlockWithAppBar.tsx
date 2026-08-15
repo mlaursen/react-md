@@ -25,19 +25,19 @@ export interface HighlightedCodeBlockWithAppBarProps
 export function HighlightedCodeBlockWithAppBar(
   props: HighlightedCodeBlockWithAppBarProps & {
     language: SupportedCodeLanguage;
-  }
+  },
 ): ReactElement;
 export function HighlightedCodeBlockWithAppBar(
-  props: HighlightedCodeBlockWithAppBarProps & { className: string }
+  props: HighlightedCodeBlockWithAppBarProps & { className: string },
 ): ReactElement;
 export function HighlightedCodeBlockWithAppBar(
   props: HighlightedCodeBlockWithAppBarProps & {
     language: SupportedCodeLanguage;
     className: string;
-  }
+  },
 ): ReactElement;
 export function HighlightedCodeBlockWithAppBar(
-  props: HighlightedCodeBlockWithAppBarProps
+  props: HighlightedCodeBlockWithAppBarProps,
 ): ReactElement {
   const { fileName, appBarProps, appBarChildren, ...remaining } = props;
   return (

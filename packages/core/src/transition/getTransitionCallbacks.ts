@@ -89,7 +89,7 @@ export interface GetTransitionCallbacksOptions extends TransitionCallbacks {
  * @since 6.0.0
  */
 export function getTransitionCallbacks(
-  options: GetTransitionCallbacksOptions
+  options: GetTransitionCallbacksOptions,
 ): Required<TransitionCallbacks> {
   const {
     disableTransition,
@@ -128,13 +128,13 @@ export function getTransitionCallbacks(
     onEntering: handleEnter(onEntering, enter),
     onEntered: handleEnter(
       onEntered,
-      !disableTransition && !TRANSITION_CONFIG.disabled
+      !disableTransition && !TRANSITION_CONFIG.disabled,
     ),
     onExit: handleExit(onExit, !exit),
     onExiting: handleExit(onExiting, exit),
     onExited: handleExit(
       onExited,
-      !disableTransition && !TRANSITION_CONFIG.disabled
+      !disableTransition && !TRANSITION_CONFIG.disabled,
     ),
   };
 }

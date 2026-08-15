@@ -91,7 +91,7 @@ export function DefaultToastRenderer(props: ToastRendererProps): ReactElement {
         toastManager.resumeRemoveTimeout(toastId);
       },
     }),
-    [toastId, toastManager]
+    [toastId, toastManager],
   );
   useEffect(() => {
     return () => {

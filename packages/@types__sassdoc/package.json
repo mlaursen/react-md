@@ -1,35 +1,25 @@
 {
   "name": "@types/sassdoc",
   "version": "0.0.1",
-  "description": "A custom types definition for the sassdoc package",
-  "type": "module",
   "private": true,
-  "exports": {
-    ".": {
-      "types": "./index.d.ts"
-    },
-    "./package.json": "./package.json"
-  },
-  "scripts": {
-    "check-format": "prettier --check .",
-    "format": "prettier --write ."
-  },
-  "engines": {
-    "pnpm": ">=9",
-    "node": ">=20"
-  },
-  "engineStrict": true,
+  "description": "A custom types definition for the sassdoc package",
+  "license": "MIT",
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/mlaursen/react-md.git",
     "directory": "packages/@types__sassdoc"
   },
-  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {},
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.12.2",
-    "prettier": "^3.8.3",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "peerDependencies": {
@@ -39,5 +29,10 @@
     "sassdoc": {
       "optional": false
     }
-  }
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "engineStrict": true
 }

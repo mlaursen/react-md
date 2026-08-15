@@ -31,7 +31,7 @@ describe("Switch", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(label).toMatchSnapshot();
 
@@ -49,7 +49,7 @@ describe("Switch", () => {
           style: { fontSize: "3rem" },
           className: "container-class-name",
         }}
-      />
+      />,
     );
     expect(label).toMatchSnapshot();
 
@@ -59,7 +59,7 @@ describe("Switch", () => {
 
   it("should allow the switch to gain the error and active colors by enabling the current-color class", () => {
     const { rerender } = rmdRender(
-      <Switch label="Switch" active labelProps={labelProps} />
+      <Switch label="Switch" active labelProps={labelProps} />,
     );
     const label = screen.getByTestId("label");
     expect(label).toMatchSnapshot();
@@ -79,7 +79,7 @@ describe("Switch", () => {
           className: "test-class-name",
         }}
         className="root-class-name"
-      />
+      />,
     );
 
     const label = screen.getByTestId("label");
@@ -95,7 +95,7 @@ describe("Switch", () => {
 
   it("should support rendering the label before and after as well as stacked", () => {
     const { rerender } = rmdRender(
-      <Switch label="Switch" labelProps={labelProps} iconAfter />
+      <Switch label="Switch" labelProps={labelProps} iconAfter />,
     );
 
     const label = screen.getByTestId("label");
@@ -105,7 +105,7 @@ describe("Switch", () => {
     expect(label).toMatchSnapshot();
 
     rerender(
-      <Switch label="Switch" labelProps={labelProps} stacked iconAfter />
+      <Switch label="Switch" labelProps={labelProps} stacked iconAfter />,
     );
     expect(label).toMatchSnapshot();
   });
@@ -132,7 +132,7 @@ describe("Switch", () => {
         {...props}
         error
         messageProps={{ error: true, children: "Error Text" }}
-      />
+      />,
     );
     expect(container).toMatchSnapshot();
   });
@@ -143,7 +143,7 @@ describe("Switch", () => {
         label="Switch"
         labelProps={labelProps}
         ballAddon={<CircularProgress aria-label="Loading" />}
-      />
+      />,
     );
 
     expect(() => screen.getByRole("progressbar")).not.toThrow();

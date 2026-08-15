@@ -23,7 +23,7 @@ export interface FormMessageContainerClassNameOptions {
  * @since 6.0.0
  */
 export function formMessageContainer(
-  options: FormMessageContainerClassNameOptions = {}
+  options: FormMessageContainerClassNameOptions = {},
 ): string {
   const { className, inline } = options;
 

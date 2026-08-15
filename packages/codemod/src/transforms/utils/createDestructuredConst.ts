@@ -21,7 +21,7 @@ export interface CreateDestructuredConstOptions {
 }
 
 export function createDestructuredConst(
-  options: CreateDestructuredConstOptions
+  options: CreateDestructuredConstOptions,
 ): VariableDeclaration {
   const { j, props, value } = options;
 
@@ -34,7 +34,7 @@ export function createDestructuredConst(
 
     if (prop instanceof Array) {
       properties.push(
-        createObjectProperty({ j, name: prop[0], local: prop[1] })
+        createObjectProperty({ j, name: prop[0], local: prop[1] }),
       );
       return;
     }

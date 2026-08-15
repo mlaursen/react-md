@@ -20,7 +20,7 @@ function getHeadings(ast: Root): TableOfContentsHeadings {
       const { id } = node.properties;
       if (!id || typeof id !== "string") {
         throw new Error(
-          "The rehype-slug plugin must be included before the rehype-toc plugin"
+          "The rehype-slug plugin must be included before the rehype-toc plugin",
         );
       }
 
@@ -110,7 +110,7 @@ export function rehypeToc(options: RehypeTocOptions = {}) {
         createJsxNode({
           as,
           props: { [propName]: toc },
-        })
+        }),
       );
     }
 

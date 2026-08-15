@@ -23,7 +23,7 @@ import { Option } from "../Option.js";
 import { Select, type SelectProps } from "../Select.js";
 
 function Test<Value extends string = string>(
-  props: Partial<SelectProps<Value>>
+  props: Partial<SelectProps<Value>>,
 ): ReactElement {
   return (
     <Select label="Select" {...props}>
@@ -36,7 +36,7 @@ function Test<Value extends string = string>(
 }
 
 function render<Value extends string = string>(
-  props: Partial<SelectProps<Value>> = {}
+  props: Partial<SelectProps<Value>> = {},
 ) {
   const user = userEvent.setup();
   const { rerender } = rmdRender(<Test {...props} />);
@@ -90,7 +90,7 @@ describe("Select", () => {
     await user.click(select);
     listbox = screen.getByRole("listbox", { name: "Select" });
     expect(() =>
-      screen.getByRole("option", { name: "Option 1", selected: true })
+      screen.getByRole("option", { name: "Option 1", selected: true }),
     ).not.toThrow();
     expect(listbox).toMatchSnapshot();
 
@@ -106,7 +106,7 @@ describe("Select", () => {
 
     await user.click(select);
     expect(() =>
-      screen.getByRole("option", { name: "Option 3", checked: true })
+      screen.getByRole("option", { name: "Option 3", checked: true }),
     ).toThrow();
   });
 
@@ -328,7 +328,7 @@ describe("Select", () => {
     const listbox = screen.getByRole("listbox", { name: "Select" });
     expect(select).toHaveAttribute(
       "aria-activedescendant",
-      screen.getByRole("option", { name: "Option 1" }).id
+      screen.getByRole("option", { name: "Option 1" }).id,
     );
 
     await user.keyboard("[Tab]");
@@ -345,7 +345,7 @@ describe("Select", () => {
     expect(onEntering).toHaveBeenCalledTimes(1);
     expect(select).toHaveAttribute(
       "aria-activedescendant",
-      screen.getByRole("option", { name: "Option 1" }).id
+      screen.getByRole("option", { name: "Option 1" }).id,
     );
 
     TRANSITION_CONFIG.disabled = true;
@@ -477,7 +477,7 @@ describe("Select", () => {
         <Form name="form" onSubmit={onSubmit}>
           <Test />
           <Button type="submit">Submit</Button>
-        </Form>
+        </Form>,
       );
 
       const select = screen.getByRole("combobox", { name: "Select" });
@@ -490,7 +490,7 @@ describe("Select", () => {
       expect(onSubmit).not.toHaveBeenCalled();
       expect(select).toHaveAttribute(
         "aria-activedescendant",
-        screen.getByRole("option", { name: "Option 1" }).id
+        screen.getByRole("option", { name: "Option 1" }).id,
       );
 
       await user.keyboard("[Enter]");

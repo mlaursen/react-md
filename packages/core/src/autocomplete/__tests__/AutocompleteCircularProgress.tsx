@@ -14,7 +14,7 @@ describe("AutocompleteCircularProgress", () => {
       <AutocompleteCircularProgress
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(progress).toMatchSnapshot();
   });

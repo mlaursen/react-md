@@ -78,7 +78,7 @@ export interface IsCaseInsensitiveMatchOptions extends CaseInsensitiveStartsWith
  * @since 6.0.0
  */
 export function isCaseInsensitiveMatch(
-  options: IsCaseInsensitiveMatchOptions
+  options: IsCaseInsensitiveMatchOptions,
 ): boolean {
   const { query, value, startsWith } = options;
   const matchIndex = value.indexOf(query);
@@ -170,25 +170,25 @@ export interface CaseInsensitiveOptions<T>
  * @since 6.0.0
  */
 export function caseInsensitiveSearch<T extends AutomaticTextExtraction>(
-  options: CaseInsensitiveOptions<T> & { type?: "filter" }
+  options: CaseInsensitiveOptions<T> & { type?: "filter" },
 ): readonly T[];
 export function caseInsensitiveSearch<T extends AutomaticTextExtraction>(
-  options: CaseInsensitiveOptions<T> & { type: "search" }
+  options: CaseInsensitiveOptions<T> & { type: "search" },
 ): T | undefined;
 export function caseInsensitiveSearch<T>(
   options: CaseInsensitiveOptions<T> & {
     extractor: TextExtractor<T>;
     type?: "filter";
-  }
+  },
 ): readonly T[];
 export function caseInsensitiveSearch<T>(
   options: CaseInsensitiveOptions<T> & {
     extractor: TextExtractor<T>;
     type: "search";
-  }
+  },
 ): T | undefined;
 export function caseInsensitiveSearch<T>(
-  options: CaseInsensitiveOptions<T>
+  options: CaseInsensitiveOptions<T>,
 ): readonly T[] | T | undefined {
   const {
     list,

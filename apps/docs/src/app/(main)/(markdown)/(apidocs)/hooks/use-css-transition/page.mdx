@@ -11,7 +11,7 @@ hooks: [useCSSTransition]
 
 ```ts disableTransform
 function useCSSTransition<E extends HTMLElement>(
-  options: CSSTransitionHookOptions<E>
+  options: CSSTransitionHookOptions<E>,
 ): CSSTransitionHookReturnValue<E>;
 ```
 
@@ -273,8 +273,7 @@ export interface CSSTransitionClassNamesObject {
  * @since 4.0.0
  */
 export type CSSTransitionClassNames =
-  | string
-  | Readonly<CSSTransitionClassNamesObject>;
+  string | Readonly<CSSTransitionClassNamesObject>;
 ```
 
 ## Returns

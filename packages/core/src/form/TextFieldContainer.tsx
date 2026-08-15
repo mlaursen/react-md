@@ -2,8 +2,8 @@
 
 import { type HTMLAttributes, type ReactElement, type Ref } from "react";
 
-import { TextFieldAddon } from "./TextFieldAddon.js";
 import { getFormConfig } from "./formConfig.js";
+import { TextFieldAddon } from "./TextFieldAddon.js";
 import { textFieldContainer } from "./textFieldContainerStyles.js";
 import { type TextFieldContainerOptions } from "./types.js";
 
@@ -30,7 +30,7 @@ export interface TextFieldContainerProps
  * @internal
  */
 export function TextFieldContainer(
-  props: TextFieldContainerProps
+  props: TextFieldContainerProps,
 ): ReactElement {
   const {
     ref,
@@ -56,7 +56,7 @@ export function TextFieldContainer(
   const theme = getFormConfig("theme", propTheme);
   const underlineDirection = getFormConfig(
     "underlineDirection",
-    propUnderlineDirection
+    propUnderlineDirection,
   );
 
   return (

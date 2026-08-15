@@ -286,7 +286,7 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  * @since 4.0.0
  */
 export function useCollapseTransition<E extends HTMLElement>(
-  options: CollapseTransitionHookOptions<E>
+  options: CollapseTransitionHookOptions<E>,
 ): CollapseTransitionHookReturnValue<E> {
   const {
     nodeRef: propNodeRef,
@@ -352,7 +352,7 @@ export function useCollapseTransition<E extends HTMLElement>(
       onEntering(appearing) {
         onEntering(appearing);
         const { maxHeight, paddingTop, paddingBottom } = getElementSizing(
-          nodeRef.current
+          nodeRef.current,
         );
 
         const duration = appearing
@@ -373,7 +373,7 @@ export function useCollapseTransition<E extends HTMLElement>(
       onExit() {
         onExit();
         const { maxHeight, paddingTop, paddingBottom } = getElementSizing(
-          nodeRef.current
+          nodeRef.current,
         );
 
         setStyle({
@@ -422,7 +422,7 @@ export function useCollapseTransition<E extends HTMLElement>(
           minHeight === 0 &&
           minPaddingTop === 0 &&
           minPaddingBottom === 0 &&
-          DISPLAY_NONE_CLASS
+          DISPLAY_NONE_CLASS,
       ) || undefined,
   };
 

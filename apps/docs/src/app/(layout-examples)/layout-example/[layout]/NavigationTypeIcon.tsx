@@ -11,7 +11,7 @@ export interface NavigationTypeIconProps extends SVGIconProps {
 }
 
 export function NavigationTypeIcon(
-  props: NavigationTypeIconProps
+  props: NavigationTypeIconProps,
 ): ReactElement {
   const { navType, ...remaining } = props;
 

@@ -106,7 +106,7 @@ function convertDestructuredItem(options: ConvertDestructuredOptions): string {
       j,
       props,
       value: itemLocalName,
-    })
+    }),
   );
 
   const renames = [
@@ -115,7 +115,7 @@ function convertDestructuredItem(options: ConvertDestructuredOptions): string {
   ].filter(([_name, localName]) => localName);
   if (renames.length) {
     const props = renames.map(
-      ([name, localName]) => localName && createObjectProperty({ j, name })
+      ([name, localName]) => localName && createObjectProperty({ j, name }),
     );
 
     rmdImports.add("useTreeContext");
@@ -129,7 +129,7 @@ function convertDestructuredItem(options: ConvertDestructuredOptions): string {
           j,
           id: value,
           value: useTreeContext,
-        })
+        }),
       );
     }
 
@@ -138,7 +138,7 @@ function convertDestructuredItem(options: ConvertDestructuredOptions): string {
         j,
         props,
         value,
-      })
+      }),
     );
 
     renames.forEach(([name, localName]) => {
@@ -148,9 +148,9 @@ function convertDestructuredItem(options: ConvertDestructuredOptions): string {
           id: j.identifier(localName),
           value: j.callExpression(
             j.memberExpression(j.identifier(name), j.identifier("has")),
-            [j.identifier(itemIdName)]
+            [j.identifier(itemIdName)],
           ),
-        })
+        }),
       );
     });
   }
@@ -159,8 +159,8 @@ function convertDestructuredItem(options: ConvertDestructuredOptions): string {
     itemRendererProps.push(
       j.jsxAttribute(
         j.jsxIdentifier("id"),
-        j.jsxExpressionContainer(j.identifier("id"))
-      )
+        j.jsxExpressionContainer(j.identifier("id")),
+      ),
     );
 
     reactImports.add("useId");
@@ -178,11 +178,11 @@ function convertDestructuredItem(options: ConvertDestructuredOptions): string {
           "===",
           j.memberExpression(
             j.callExpression(j.identifier("useKeyboardMovementContext"), []),
-            j.identifier("activeDescendantId")
+            j.identifier("activeDescendantId"),
           ),
-          j.identifier("id")
+          j.identifier("id"),
         ),
-      })
+      }),
     );
   }
 
@@ -192,7 +192,7 @@ function convertDestructuredItem(options: ConvertDestructuredOptions): string {
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -250,8 +250,8 @@ export default function transformer(
         props.typeAnnotation = j.tsTypeAnnotation(
           j.tsTypeReference(
             j.identifier("TreeItemRendererProps"),
-            id.typeAnnotation.typeAnnotation.typeParameters
-          )
+            id.typeAnnotation.typeAnnotation.typeParameters,
+          ),
         );
 
         const { body } = node.init;
@@ -265,10 +265,10 @@ export default function transformer(
         } else {
           existingReturnStatement = body.body.find(
             (
-              statement
+              statement,
             ): statement is ReturnStatement & { argument: ObjectExpression } =>
               j.ReturnStatement.check(statement) &&
-              j.ObjectExpression.check(statement.argument)
+              j.ObjectExpression.check(statement.argument),
           )?.argument;
         }
 
@@ -313,8 +313,8 @@ export default function transformer(
             itemRendererProps.push(
               j.jsxAttribute(
                 j.jsxIdentifier(name),
-                j.jsxExpressionContainer(value)
-              )
+                j.jsxExpressionContainer(value),
+              ),
             );
           });
         }
@@ -363,8 +363,8 @@ export default function transformer(
         if (j.BlockStatement.check(body)) {
           copiedStatements.push(
             ...body.body.filter(
-              (statement) => !j.ReturnStatement.check(statement)
-            )
+              (statement) => !j.ReturnStatement.check(statement),
+            ),
           );
         }
 
@@ -387,7 +387,7 @@ export default function transformer(
               j.jsxSpreadAttribute(j.identifier("context")),
               j.jsxAttribute(
                 j.jsxIdentifier("expanderIcon"),
-                j.jsxExpressionContainer(expanderIcon)
+                j.jsxExpressionContainer(expanderIcon),
               ),
             ],
             children: [defaultTreeItemRenderer],
@@ -410,18 +410,18 @@ export default function transformer(
         const rendererFunction = j.functionExpression(
           j.identifier("Renderer"),
           [props],
-          j.blockStatement([destructureItemFromProps, ...statements])
+          j.blockStatement([destructureItemFromProps, ...statements]),
         );
         rendererFunction.returnType = j.tsTypeAnnotation(
-          j.tsTypeReference(j.identifier("ReactElement"))
+          j.tsTypeReference(j.identifier("ReactElement")),
         );
 
         const comment = j.commentLine(
-          " TODO: This might need to be renamed to match normal component naming conventions"
+          " TODO: This might need to be renamed to match normal component naming conventions",
         );
 
         j(variableDeclarator).replaceWith(
-          j.variableDeclarator(j.identifier(id.name), rendererFunction)
+          j.variableDeclarator(j.identifier(id.name), rendererFunction),
         );
 
         let exported = false;

@@ -24,7 +24,7 @@ export interface GetTableOfContentsHeadingsOptions extends Required<TableOfConte
  * @since 6.0.0
  */
 export function getTableOfContentsHeadings(
-  options: GetTableOfContentsHeadingsOptions
+  options: GetTableOfContentsHeadingsOptions,
 ): TableOfContentsHeadings {
   const { ssr, selector, getDepth, getHeadingText } = options;
 

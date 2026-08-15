@@ -48,7 +48,7 @@ describe("useWindowSize", () => {
     render(
       <SsrProvider ssr>
         <Test initialRef={initialRef} />
-      </SsrProvider>
+      </SsrProvider>,
     );
 
     expect(initialRef.current).toEqual({
@@ -75,7 +75,7 @@ describe("useWindowSize", () => {
           ssrHeight={ssrHeight}
           ssrWidth={ssrWidth}
         />
-      </SsrProvider>
+      </SsrProvider>,
     );
 
     expect(initialRef.current).toEqual({
@@ -96,7 +96,7 @@ describe("useWindowSize", () => {
     render(
       <SsrProvider>
         <Test initialRef={initialRef} />
-      </SsrProvider>
+      </SsrProvider>,
     );
 
     expect(initialRef.current).toEqual({

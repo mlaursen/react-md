@@ -12,8 +12,8 @@ import { useElementInteraction } from "../interaction/useElementInteraction.js";
 import { useHigherContrastChildren } from "../interaction/useHigherContrastChildren.js";
 import { type CustomLinkComponent } from "../link/Link.js";
 import { type PropsWithRef } from "../types.js";
-import { ListItemChildren } from "./ListItemChildren.js";
 import { getListItemHeight } from "./getListItemHeight.js";
+import { ListItemChildren } from "./ListItemChildren.js";
 import { type ListItemClassNameOptions, listItem } from "./listItemStyles.js";
 import { type ListItemChildrenProps } from "./types.js";
 
@@ -153,7 +153,7 @@ export function ListItemLink(props: ListItemLinkProps): ReactElement {
   });
   const children = useHigherContrastChildren(
     propChildren,
-    !disableTextChildren
+    !disableTextChildren,
   );
 
   const height = getListItemHeight({

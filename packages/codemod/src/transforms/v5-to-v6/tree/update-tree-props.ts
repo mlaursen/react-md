@@ -21,7 +21,7 @@ const RENAMED_PROPS: Record<string, string> = {
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);

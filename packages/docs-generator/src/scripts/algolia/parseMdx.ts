@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+
 import GithubSlugger from "github-slugger";
 import grayMatter from "gray-matter";
 import { type Heading } from "mdast";
@@ -5,7 +7,6 @@ import { fromMarkdown } from "mdast-util-from-markdown";
 import { mdxFromMarkdown } from "mdast-util-mdx";
 import { toString } from "mdast-util-to-string";
 import { mdxjs } from "micromark-extension-mdxjs";
-import { readFile } from "node:fs/promises";
 import { visit } from "unist-util-visit";
 
 import { assertString, assertStringArray } from "../../utils/assertions.js";

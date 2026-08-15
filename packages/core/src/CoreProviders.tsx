@@ -2,15 +2,14 @@
 
 import { type ReactElement, type ReactNode } from "react";
 
-import { SsrProvider } from "./SsrProvider.js";
 import { UserInteractionModeProvider } from "./interaction/UserInteractionModeProvider.js";
-import { AppSizeProvider } from "./media-queries/AppSizeProvider.js";
 import {
   type AppSize,
   type AppSizeQueries,
   DEFAULT_APP_SIZE,
   DEFAULT_APP_SIZE_QUERIES,
 } from "./media-queries/appSize.js";
+import { AppSizeProvider } from "./media-queries/AppSizeProvider.js";
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { type MenuConfigurationProvider } from "./menu/MenuConfigurationProvider.js";
 import {
@@ -18,6 +17,7 @@ import {
   PortalContainerProvider,
 } from "./portal/PortalContainerProvider.js";
 import { type Snackbar } from "./snackbar/Snackbar.js";
+import { SsrProvider } from "./SsrProvider.js";
 import { type LocalStorageColorSchemeProvider } from "./theme/LocalStorageColorSchemeProvider.js";
 import { type ThemeProvider } from "./theme/ThemeProvider.js";
 import { type useColorSchemeProvider } from "./theme/useColorSchemeProvider.js";

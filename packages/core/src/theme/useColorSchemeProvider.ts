@@ -71,16 +71,16 @@ export function useColorSchemeProvider(
   options?: { [key in keyof ColorSchemeState]?: never } & {
     disableMetaTag?: boolean;
     defaultColorScheme?: UseStateInitializer<ColorScheme>;
-  }
+  },
 ): ColorSchemeContext;
 export function useColorSchemeProvider(
   options: ColorSchemeState & {
     disableMetaTag?: boolean;
     defaultColorScheme?: never;
-  }
+  },
 ): ColorSchemeContext;
 export function useColorSchemeProvider(
-  options: ColorSchemeProviderOptions = {}
+  options: ColorSchemeProviderOptions = {},
 ): ColorSchemeContext {
   const {
     disableMetaTag,
@@ -111,6 +111,6 @@ export function useColorSchemeProvider(
       colorScheme,
       setColorScheme,
     }),
-    [currentColor, colorScheme, setColorScheme]
+    [currentColor, colorScheme, setColorScheme],
   );
 }

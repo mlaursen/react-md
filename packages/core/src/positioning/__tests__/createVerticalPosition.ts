@@ -184,7 +184,7 @@ describe("createAnchoredAbove", () => {
         actualY: "above",
       });
       expect(
-        createAnchoredAbove({ ...outOfBoundsConfig, disableVHBounds: true })
+        createAnchoredAbove({ ...outOfBoundsConfig, disableVHBounds: true }),
       ).toEqual({
         top: 0,
         actualY: "above",

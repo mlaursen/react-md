@@ -37,7 +37,7 @@ function Content(): ReactElement {
       className={cnb(
         colorScheme === "light" && styles.light,
         colorScheme === "dark" && styles.dark,
-        colorScheme === "system" && styles.system
+        colorScheme === "system" && styles.system,
       )}
     >
       <Box>

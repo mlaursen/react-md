@@ -2,9 +2,9 @@ import { cnb } from "cnbuilder";
 
 import { cssUtils } from "../cssUtils.js";
 import { bem } from "../utils/bem.js";
+import { tabIndicator } from "./tabIndicatorStyles.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type TabListProps } from "./TabList.js";
-import { tabIndicator } from "./tabIndicatorStyles.js";
 
 const styles = bem("rmd-tab");
 
@@ -95,6 +95,6 @@ export function tab(options: TabClassNameOptions = {}): string {
       activeIndicator &&
       tabIndicator({ vertical: verticalActiveIndicator }),
     cssUtils({ surface: true, textDecoration: isLink ? "none" : undefined }),
-    className
+    className,
   );
 }

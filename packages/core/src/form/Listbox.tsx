@@ -26,7 +26,7 @@ export interface ListboxProps<Value extends ListboxValue>
  * @internal
  */
 export function Listbox<T extends ListboxValue>(
-  props: LabelRequiredForA11y<ListboxProps<T>>
+  props: LabelRequiredForA11y<ListboxProps<T>>,
 ): ReactElement {
   const {
     value,

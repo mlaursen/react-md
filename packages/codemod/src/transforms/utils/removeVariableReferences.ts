@@ -7,7 +7,7 @@ export interface RemoveVariableReferencesOptions {
 }
 
 export function removeVariableReferences(
-  options: RemoveVariableReferencesOptions
+  options: RemoveVariableReferencesOptions,
 ): void {
   const { j, name, scope } = options;
 

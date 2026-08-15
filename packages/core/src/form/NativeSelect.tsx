@@ -10,11 +10,11 @@ import {
 import { getIcon } from "../icon/config.js";
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
+import { getFormConfig } from "./formConfig.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { Label } from "./Label.js";
-import { TextFieldContainer } from "./TextFieldContainer.js";
-import { getFormConfig } from "./formConfig.js";
 import { nativeSelect, nativeSelectContainer } from "./nativeSelectStyles.js";
+import { TextFieldContainer } from "./TextFieldContainer.js";
 import {
   type FormFieldOptions,
   type UserAgentAutocompleteProps,
@@ -153,7 +153,7 @@ export function NativeSelect(props: NativeSelectProps): ReactElement {
   const theme = getFormConfig("theme", propTheme);
   const underlineDirection = getFormConfig(
     "underlineDirection",
-    propUnderlineDirection
+    propUnderlineDirection,
   );
   const icon = getIcon("dropdown", propIcon);
   const underlined = theme === "underline" || theme === "filled";

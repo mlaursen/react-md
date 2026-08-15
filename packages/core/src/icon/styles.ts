@@ -139,7 +139,7 @@ export function icon(options: IconClassNameOptions): string {
       }`,
     !isCurrentColor && cssUtils({ textColor: theme }),
     iconClassName,
-    className
+    className,
   );
 }
 
@@ -172,6 +172,6 @@ export function iconRotator(options: IconRotatorClassNameOptions): string {
       animate: !disableTransition,
       rotated,
     }),
-    className
+    className,
   );
 }

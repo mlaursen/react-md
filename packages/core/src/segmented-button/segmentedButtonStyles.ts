@@ -51,7 +51,7 @@ export interface SegmentedButtonClassNameOptions extends BaseSegmentedButtonClas
  * @since 6.0.0
  */
 export function segmentedButton(
-  options: SegmentedButtonClassNameOptions = {}
+  options: SegmentedButtonClassNameOptions = {},
 ): string {
   const { className, selected, selectedClassName, pressedClassName } = options;
 
@@ -60,6 +60,6 @@ export function segmentedButton(
     selected && selectedClassName,
     pressedClassName,
     cssUtils({ surface: true }),
-    className
+    className,
   );
 }

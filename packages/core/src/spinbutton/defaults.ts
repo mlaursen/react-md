@@ -14,7 +14,7 @@ export const defaultSpinButtonGetValueText: SpinButtonGetValueText = (value) =>
  * @since 6.4.0
  */
 export function defaultGetSpinButtonTextContent(
-  options: GetSpinButtonTextContentOptions
+  options: GetSpinButtonTextContentOptions,
 ): string {
   const {
     min,

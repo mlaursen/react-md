@@ -1,3 +1,6 @@
+import { readFileSync, rmSync } from "node:fs";
+import { join } from "node:path";
+
 import {
   type MaterialSymbolsUrlOptions,
   getMaterialSymbolsUrl,
@@ -5,8 +8,6 @@ import {
 import { type MaterialSymbolName } from "@react-md/core/icon/material";
 import { DEFAULT_MATERIAL_SYMBOL_NAMES } from "@react-md/core/icon/symbols";
 import react from "@vitejs/plugin-react-swc";
-import { readFileSync, rmSync } from "node:fs";
-import { join } from "node:path";
 import { build } from "vite";
 import { afterEach, describe, expect, it } from "vitest";
 
@@ -55,10 +56,10 @@ describe("@react-md/vite-material-symbols-plugin", () => {
   it("should be able to add links to the html", async () => {
     const html = await run();
     expect(html).toContain(
-      '<link rel="preconnect" href="https://fonts.googleapis.com">'
+      '<link rel="preconnect" href="https://fonts.googleapis.com">',
     );
     expect(html).toContain(
-      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">'
+      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">',
     );
     expect(html).toContain(`<link rel="stylesheet" href="${getHref()}">`);
   });
@@ -67,10 +68,10 @@ describe("@react-md/vite-material-symbols-plugin", () => {
     const html = await run({ disablePreconnectLinks: true });
 
     expect(html).not.toContain(
-      '<link rel="preconnect" href="https://fonts.googleapis.com">'
+      '<link rel="preconnect" href="https://fonts.googleapis.com">',
     );
     expect(html).not.toContain(
-      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">'
+      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">',
     );
     expect(html).toContain(`<link rel="stylesheet" href="${getHref()}">`);
   });
@@ -79,7 +80,7 @@ describe("@react-md/vite-material-symbols-plugin", () => {
     const html = await run({ defaultSymbolNames: ["favorite"] });
 
     expect(html).toContain(
-      `<link rel="stylesheet" href="${getHref({ names: ["favorite"] })}">`
+      `<link rel="stylesheet" href="${getHref({ names: ["favorite"] })}">`,
     );
   });
 
@@ -92,17 +93,17 @@ describe("@react-md/vite-material-symbols-plugin", () => {
       "search",
     ] satisfies MaterialSymbolName[];
     expect(html).toContain(
-      `<link rel="stylesheet" href="${getHref({ names })}">`
+      `<link rel="stylesheet" href="${getHref({ names })}">`,
     );
   });
 
   it("should not add any links if no symbols were found", async () => {
     const html = await run({ type: "nothing", defaultSymbolNames: [] });
     expect(html).not.toContain(
-      '<link rel="preconnect" href="https://fonts.googleapis.com">'
+      '<link rel="preconnect" href="https://fonts.googleapis.com">',
     );
     expect(html).not.toContain(
-      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">'
+      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">',
     );
     expect(html).not.toContain('<link rel="stylesheet" href="');
   });

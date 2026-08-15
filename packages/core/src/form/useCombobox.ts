@@ -44,10 +44,10 @@ const noop = (): void => {
  * @since 6.0.0
  */
 export const getNonDisabledOptions = (
-  container: HTMLElement
+  container: HTMLElement,
 ): readonly HTMLElement[] => [
   ...container.querySelectorAll<HTMLLIElement>(
-    '[role="option"]:not([aria-disabled])'
+    '[role="option"]:not([aria-disabled])',
   ),
 ];
 
@@ -77,7 +77,7 @@ export interface ComboboxKeyboardMovementData<
  * @since 6.0.0
  */
 export type ExtendComboboxKeyDown<E extends HTMLElement = HTMLInputElement> = (
-  movementData: ComboboxKeyboardMovementData<E>
+  movementData: ComboboxKeyboardMovementData<E>,
 ) => void;
 
 /**
@@ -196,7 +196,7 @@ export interface ComboboxOptions<
   PopupEl extends HTMLElement = HTMLElement,
 > extends ConfigurableComboboxOptions<ComboboxEl, PopupEl> {
   getEnterDefaultFocusedIndex: (
-    options: ComboboxGetEnterDefaultFocusedIndexOptions
+    options: ComboboxGetEnterDefaultFocusedIndexOptions,
   ) => number;
 }
 
@@ -302,7 +302,7 @@ export interface ComboboxImplementation<
    * with reasonable defaults.
    */
   getMenuProps: (
-    overrides?: ConfigurableComboboxMenuProps
+    overrides?: ConfigurableComboboxMenuProps,
   ) => ComboboxMenuProps<PopupEl>;
 }
 
@@ -313,7 +313,7 @@ export function useCombobox<
   ComboboxEl extends HTMLElement = HTMLInputElement,
   PopupEl extends HTMLElement = HTMLElement,
 >(
-  options: ComboboxOptions<ComboboxEl, PopupEl>
+  options: ComboboxOptions<ComboboxEl, PopupEl>,
 ): ComboboxImplementation<ComboboxEl, PopupEl> {
   const {
     form,

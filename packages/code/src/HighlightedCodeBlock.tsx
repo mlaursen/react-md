@@ -18,19 +18,19 @@ export interface HighlightedCodeBlockProps extends BaseHighlightedCodeBlockProps
 }
 
 export function HighlightedCodeBlock(
-  props: HighlightedCodeBlockProps & { language: SupportedCodeLanguage }
+  props: HighlightedCodeBlockProps & { language: SupportedCodeLanguage },
 ): ReactElement;
 export function HighlightedCodeBlock(
-  props: HighlightedCodeBlockProps & { className: string }
+  props: HighlightedCodeBlockProps & { className: string },
 ): ReactElement;
 export function HighlightedCodeBlock(
   props: HighlightedCodeBlockProps & {
     language: SupportedCodeLanguage;
     className: string;
-  }
+  },
 ): ReactElement;
 export function HighlightedCodeBlock(
-  props: HighlightedCodeBlockProps
+  props: HighlightedCodeBlockProps,
 ): ReactElement {
   const {
     children,
@@ -50,7 +50,7 @@ export function HighlightedCodeBlock(
 
   if (!lang) {
     throw new Error(
-      `HighlightedCodeBlock must provide a language by the \`language\` prop or \`className="language-${language}"\``
+      `HighlightedCodeBlock must provide a language by the \`language\` prop or \`className="language-${language}"\``,
     );
   }
 

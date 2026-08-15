@@ -28,7 +28,7 @@ export interface SpinButtonProps
  * @since 6.4.0
  */
 export function SpinButton(
-  props: LabelRequiredForA11y<SpinButtonProps>
+  props: LabelRequiredForA11y<SpinButtonProps>,
 ): ReactElement {
   const {
     ref,

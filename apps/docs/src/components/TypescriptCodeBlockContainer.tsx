@@ -15,7 +15,7 @@ export interface TypescriptCodeBlockContainerProps extends HighlightedCodeBlockW
 }
 
 export function TypescriptCodeBlockContainer(
-  props: TypescriptCodeBlockContainerProps
+  props: TypescriptCodeBlockContainerProps,
 ): ReactElement {
   const {
     jsCode,

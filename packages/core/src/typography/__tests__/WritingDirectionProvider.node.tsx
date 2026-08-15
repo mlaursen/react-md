@@ -20,7 +20,7 @@ describe("WritingDirectionProvider", () => {
     renderToString(
       <WritingDirectionProvider>
         <Child />
-      </WritingDirectionProvider>
+      </WritingDirectionProvider>,
     );
     expect(dir).toBe("ltr");
   });

@@ -57,20 +57,20 @@ describe("fuzzySearch", () => {
       fuzzySearch({
         list: list1,
         query: "",
-      })
+      }),
     ).toBe(list1);
     expect(
       fuzzySearch({
         list: list1,
         query: "query",
-      })
+      }),
     ).toBe(list1);
 
     expect(
       fuzzySearch({
         list: list2,
         query: "",
-      })
+      }),
     ).toBe(list2);
   });
 
@@ -79,20 +79,20 @@ describe("fuzzySearch", () => {
       fuzzySearch({
         list: FRUITS,
         query: "ae",
-      })
+      }),
     ).toEqual(["Apple", "Orange"]);
     expect(
       fuzzySearch({
         list: FRUITS,
         query: "aE",
-      })
+      }),
     ).toEqual(["Apple", "Orange"]);
 
     expect(
       fuzzySearch({
         list: NON_DEPRECATED_STRING_PROPERTY_NAMES,
         query: "la",
-      })
+      }),
     ).toEqual([
       "lastIndexOf",
       "localeCompare",
@@ -117,7 +117,7 @@ describe("fuzzySearch", () => {
         list,
         query: "ti",
         whitespace: "ignore",
-      })
+      }),
     ).toEqual([item2, item3, item4, item5]);
 
     expect(
@@ -125,7 +125,7 @@ describe("fuzzySearch", () => {
         list,
         query: "t i",
         whitespace: "ignore",
-      })
+      }),
     ).toEqual([item2, item3, item4, item5]);
 
     expect(
@@ -133,14 +133,14 @@ describe("fuzzySearch", () => {
         list,
         query: "rem",
         whitespace: "ignore",
-      })
+      }),
     ).toEqual([item1, item2]);
     expect(
       fuzzySearch({
         list,
         query: "tem",
         whitespace: "ignore",
-      })
+      }),
     ).toEqual([item2]);
   });
 
@@ -150,21 +150,21 @@ describe("fuzzySearch", () => {
         list: NON_DEPRECATED_STRING_PROPERTY_NAMES,
         query: "ad",
         type: "search",
-      })
+      }),
     ).toBe("charCodeAt");
     expect(
       fuzzySearch({
         list: NON_DEPRECATED_STRING_PROPERTY_NAMES,
         query: "add",
         type: "search",
-      })
+      }),
     ).toBe("padEnd");
     expect(
       fuzzySearch({
         list: NON_DEPRECATED_STRING_PROPERTY_NAMES,
         query: "addition",
         type: "search",
-      })
+      }),
     ).toBe(undefined);
   });
 

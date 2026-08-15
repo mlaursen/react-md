@@ -1,4 +1,4 @@
-import { format } from "prettier";
+import { format } from "oxfmt";
 import { type FunctionItem, type MixinItem } from "sassdoc";
 
 import { formatDescription } from "./formatDescription.js";
@@ -10,7 +10,7 @@ import {
 } from "./types.js";
 
 async function formatParameterizedItem(
-  item: MixinItem | FunctionItem
+  item: MixinItem | FunctionItem,
 ): Promise<ParameterizedItem> {
   const {
     parameter,
@@ -37,10 +37,11 @@ async function formatParameterizedItem(
   const prefix = sourceCode.substring(0, sourceCode.indexOf("{") + 1);
   const suffix = sourceCode.substring(sourceCode.lastIndexOf("}"));
   const code = `${prefix} \u2026 ${suffix}`;
+  const formattedSourceCode = await format(item.file.path, sourceCode);
 
   return {
     code,
-    sourceCode: await format(sourceCode, { parser: "scss" }),
+    sourceCode: formattedSourceCode.code,
     parameters: parameter?.map(({ description, ...param }) => ({
       ...param,
       description: formatDescription(description),
@@ -52,7 +53,7 @@ async function formatParameterizedItem(
 
 export async function formatFunctionItem(
   baseItem: FormattedItem,
-  item: FunctionItem
+  item: FunctionItem,
 ): Promise<FormattedFunctionItem> {
   if (!item.return) {
     throw new Error(`${baseItem.name} is missing the @return annotation`);
@@ -68,7 +69,7 @@ export async function formatFunctionItem(
 
 export async function formatMixinItem(
   baseItem: FormattedItem,
-  item: MixinItem
+  item: MixinItem,
 ): Promise<FormattedMixinItem> {
   return {
     ...baseItem,

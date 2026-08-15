@@ -34,7 +34,7 @@ describe("MenuItemFileInput", () => {
         {...props}
         style={{ color: "orange" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(menuItem).toHaveStyle("color: rgb(255, 165, 0)");
     expect(menuItem).toHaveClass("custom-class-name");
@@ -43,7 +43,7 @@ describe("MenuItemFileInput", () => {
 
   it("should default to using the upload icon as the leftAddon", () => {
     const { rerender } = render(
-      <MenuItemFileInput onChange={vi.fn()}>Upload</MenuItemFileInput>
+      <MenuItemFileInput onChange={vi.fn()}>Upload</MenuItemFileInput>,
     );
     const menuItem = screen.getByRole("menuitem", { name: "Upload" });
     expect(menuItem.querySelector(".rmd-icon")).toMatchSnapshot();
@@ -55,7 +55,7 @@ describe("MenuItemFileInput", () => {
         leftAddon={<span data-testid="icon" />}
       >
         Upload
-      </MenuItemFileInput>
+      </MenuItemFileInput>,
     );
     expect(menuItem.querySelector(".rmd-icon")).toBe(null);
     expect(() => screen.getByTestId("icon")).not.toThrow();
@@ -97,7 +97,7 @@ describe("MenuItemFileInput", () => {
     const { rerender } = rmdRender(
       <DropdownMenu buttonChildren="Button">
         <MenuItemFileInput onChange={onChange}>Upload</MenuItemFileInput>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     const button = screen.getByRole("button", { name: "Button" });
@@ -115,7 +115,7 @@ describe("MenuItemFileInput", () => {
         <MenuItemFileInput preventMenuHideOnClick onChange={onChange}>
           Upload
         </MenuItemFileInput>
-      </DropdownMenu>
+      </DropdownMenu>,
     );
     upload = screen.getByRole("menuitem", { name: "Upload" });
     vi.spyOn(document, "createElement").mockReturnValueOnce(input);
@@ -128,7 +128,7 @@ describe("MenuItemFileInput", () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
     const { rerender } = render(
-      <MenuItemFileInput onChange={onChange}>Upload</MenuItemFileInput>
+      <MenuItemFileInput onChange={onChange}>Upload</MenuItemFileInput>,
     );
     const menuItem = screen.getByRole("menuitem", { name: "Upload" });
 
@@ -149,7 +149,7 @@ describe("MenuItemFileInput", () => {
     rerender(
       <MenuItemFileInput onChange={onChange} accept="video/*" multiple capture>
         Upload
-      </MenuItemFileInput>
+      </MenuItemFileInput>,
     );
 
     vi.spyOn(document, "createElement").mockReturnValueOnce(input);
@@ -166,7 +166,7 @@ describe("MenuItemFileInput", () => {
         capture="user"
       >
         Upload
-      </MenuItemFileInput>
+      </MenuItemFileInput>,
     );
     vi.spyOn(document, "createElement").mockReturnValueOnce(input);
     await user.click(menuItem);

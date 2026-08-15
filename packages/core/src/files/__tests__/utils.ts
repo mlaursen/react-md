@@ -122,7 +122,7 @@ describe("isFileAccessError", () => {
 describe("isFileExtensionError", () => {
   it("should return true for instances of FileExtensionError", () => {
     expect(isFileExtensionError(new FileExtensionError([file], ["png"]))).toBe(
-      true
+      true,
     );
     expect(isFileExtensionError(new GenericFileError([file]))).toBe(false);
   });
@@ -245,7 +245,7 @@ describe("getSplitFileUploads", () => {
     ];
 
     expect(
-      getSplitFileUploads([...pending, ...complete, ...uploading])
+      getSplitFileUploads([...pending, ...complete, ...uploading]),
     ).toEqual({
       pending,
       uploading,

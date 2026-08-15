@@ -11,7 +11,7 @@ const loggedExec = (command: string): void => {
 if (commitSha && isNoRemote) {
   const remote = "https://github.com/mlaursen/react-md";
   console.log(
-    `A git remote could not be found. Manually setting it to ${remote}.`
+    `A git remote could not be found. Manually setting it to ${remote}.`,
   );
   loggedExec(`git remote add origin ${remote}`);
 }

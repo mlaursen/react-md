@@ -6,6 +6,7 @@ import Image from "next/image.js";
 import { type ReactElement } from "react";
 
 import algolia from "./Algolia-logo-blue.svg";
+
 import styles from "./AlgoliaFooter.module.scss";
 
 export function AlgoliaFooter(): ReactElement {

@@ -1,3 +1,7 @@
+import { readFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
 // This is a mini port of:
 // https://github.com/facebook/jscodeshift/blob/b07b6c9c46a3198d13b21a004a06409e8c347fc3/src/testUtils.js#L123
 // to be used for testing with ESM only
@@ -8,9 +12,6 @@ import jscodeshift, {
   type Transform,
 } from "jscodeshift";
 import { type TestOptions } from "jscodeshift/src/testUtils.js";
-import { readFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 
 interface TransformModule {
   default: Transform;
@@ -29,7 +30,7 @@ export async function applyTransform(
   transformer: TransformModule | Transform,
   options: Options | null | undefined,
   input: Parameters<Transform>[0],
-  testOptions?: TestOptions
+  testOptions?: TestOptions,
 ): Promise<string> {
   const parser =
     testOptions?.parser ??
@@ -46,8 +47,8 @@ export async function applyTransform(
         stats: () => {},
         report: () => {},
       },
-      options || {}
-    )
+      options || {},
+    ),
   );
 
   return (output || "").trim();
@@ -58,7 +59,7 @@ export function defineTest(
   transformName: string,
   options?: Options | null,
   testFilePrefix = "",
-  testOptions?: TestOptions
+  testOptions?: TestOptions,
 ): void {
   const suffix = testFilePrefix ? `using "${testFilePrefix}" data` : "";
   const testName = "transforms correctly " + suffix;
@@ -75,7 +76,7 @@ export function defineTest(
       const fixtureDir = join(dirName, "..", "__testfixtures__");
       const inputPath = join(
         fixtureDir,
-        testFilePrefix + `.input.${extension}`
+        testFilePrefix + `.input.${extension}`,
       );
       const outputPath = inputPath.replace(".input.", ".output.");
 
@@ -86,7 +87,7 @@ export function defineTest(
         transformer,
         options,
         { source, path: inputPath },
-        testOptions
+        testOptions,
       );
 
       expect(output).toEqual(expected.trim());

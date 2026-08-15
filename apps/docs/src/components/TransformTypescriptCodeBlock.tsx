@@ -11,7 +11,7 @@ export interface TransformTypescriptCodeBlockProps extends HighlightedCodeBlockW
 }
 
 export async function TransformTypescriptCodeBlock(
-  props: TransformTypescriptCodeBlockProps
+  props: TransformTypescriptCodeBlockProps,
 ): Promise<ReactElement> {
   const { isTsx, code, ...remaining } = props;
   const jsCode = await transformTsToJs(code, "");

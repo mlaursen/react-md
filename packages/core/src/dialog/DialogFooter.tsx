@@ -14,7 +14,7 @@ export interface DialogFooterProps
  * @see {@link https://react-md.dev/components/dialog | Dialog Demos}
  */
 export const DialogFooter = function DialogFooter(
-  props: DialogFooterProps
+  props: DialogFooterProps,
 ): ReactElement {
   const { ref, children, className, align = "end", ...remaining } = props;
 

@@ -11,7 +11,7 @@ describe("getListItemHeight", () => {
     expect(getListItemHeight({ height: "auto" })).toBe("auto");
     expect(getListItemHeight({ height: "normal" })).toBe("normal");
     expect(getListItemHeight({ height: "normal", leftAddon: "Addon" })).toBe(
-      "normal"
+      "normal",
     );
     expect(
       getListItemHeight({
@@ -19,7 +19,7 @@ describe("getListItemHeight", () => {
         leftAddon: "Addon",
         rightAddon: "Addon",
         rightAddonType: "large-media",
-      })
+      }),
     ).toBe("normal");
 
     expect(getListItemHeight({ height: "medium" })).toBe("medium");
@@ -28,7 +28,7 @@ describe("getListItemHeight", () => {
         height: "medium",
         leftAddon: "Addon",
         leftAddonType: "media",
-      })
+      }),
     ).toBe("medium");
 
     expect(getListItemHeight({ height: "large" })).toBe("large");
@@ -37,7 +37,7 @@ describe("getListItemHeight", () => {
         height: "large",
         rightAddon: "Addon",
         rightAddonType: "avatar",
-      })
+      }),
     ).toBe("large");
 
     expect(getListItemHeight({ height: "extra-large" })).toBe("extra-large");
@@ -48,39 +48,39 @@ describe("getListItemHeight", () => {
       getListItemHeight({
         leftAddon: "Addon",
         leftAddonType: "media",
-      })
+      }),
     ).toBe("extra-large");
     expect(
       getListItemHeight({
         leftAddon: "Addon",
         leftAddonType: "large-media",
-      })
+      }),
     ).toBe("extra-large");
 
     expect(
       getListItemHeight({
         rightAddon: "Addon",
         rightAddonType: "media",
-      })
+      }),
     ).toBe("extra-large");
     expect(
       getListItemHeight({
         rightAddon: "Addon",
         rightAddonType: "large-media",
-      })
+      }),
     ).toBe("extra-large");
 
     expect(
       getListItemHeight({
         secondaryText: "Secondary Text",
         leftAddon: "Addon",
-      })
+      }),
     ).toBe("extra-large");
     expect(
       getListItemHeight({
         secondaryText: "Secondary Text",
         rightAddon: "Addon",
-      })
+      }),
     ).toBe("extra-large");
 
     expect(
@@ -88,14 +88,14 @@ describe("getListItemHeight", () => {
         secondaryText: "Secondary Text",
         leftAddon: "Addon",
         leftAddonType: "icon",
-      })
+      }),
     ).toBe("extra-large");
     expect(
       getListItemHeight({
         secondaryText: "Secondary Text",
         rightAddon: "Addon",
         rightAddonType: "icon",
-      })
+      }),
     ).toBe("extra-large");
 
     expect(
@@ -103,14 +103,14 @@ describe("getListItemHeight", () => {
         secondaryText: "Secondary Text",
         leftAddon: "Addon",
         leftAddonType: "avatar",
-      })
+      }),
     ).toBe("extra-large");
     expect(
       getListItemHeight({
         secondaryText: "Secondary Text",
         rightAddon: "Addon",
         rightAddonType: "avatar",
-      })
+      }),
     ).toBe("extra-large");
   });
 
@@ -119,13 +119,13 @@ describe("getListItemHeight", () => {
       getListItemHeight({
         leftAddon: "Addon",
         leftAddonType: "avatar",
-      })
+      }),
     ).toBe("large");
     expect(
       getListItemHeight({
         rightAddon: "Addon",
         rightAddonType: "avatar",
-      })
+      }),
     ).toBe("large");
   });
 
@@ -137,13 +137,13 @@ describe("getListItemHeight", () => {
       getListItemHeight({
         leftAddon: "Addon",
         leftAddonType: "icon",
-      })
+      }),
     ).toBe("medium");
     expect(
       getListItemHeight({
         rightAddon: "Addon",
         rightAddonType: "icon",
-      })
+      }),
     ).toBe("medium");
   });
 
@@ -153,7 +153,7 @@ describe("getListItemHeight", () => {
         leftAddonType: "large-media",
         rightAddon: "Addon",
         rightAddonType: "avatar",
-      })
+      }),
     ).toBe("large");
 
     expect(
@@ -162,7 +162,7 @@ describe("getListItemHeight", () => {
         leftAddonType: "large-media",
         rightAddon: "Addon",
         rightAddonType: "avatar",
-      })
+      }),
     ).toBe("extra-large");
 
     expect(
@@ -171,7 +171,7 @@ describe("getListItemHeight", () => {
         leftAddonType: "large-media",
         rightAddon: "Addon",
         rightAddonType: "avatar",
-      })
+      }),
     ).toBe("extra-large");
   });
 });

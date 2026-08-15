@@ -23,7 +23,7 @@ export interface SliderContainerClassNameOptions {
  * @since 6.0.0
  */
 export function sliderContainer(
-  options: SliderContainerClassNameOptions = {}
+  options: SliderContainerClassNameOptions = {},
 ): string {
   const { className, vertical, beforeAddon, afterAddon } = options;
 
@@ -36,7 +36,7 @@ export function sliderContainer(
       "pad-bottom": vertical && !beforeAddon,
       "pad-top": vertical && !afterAddon,
     }),
-    className
+    className,
   );
 }
 
@@ -62,7 +62,7 @@ export function sliderMark(options: SliderMarkClassNameOptions): string {
       h: !vertical,
       v: vertical,
     }),
-    className
+    className,
   );
 }
 
@@ -78,7 +78,7 @@ export interface SliderMarkLabelClassNameOptions {
  * @since 6.0.0
  */
 export function sliderMarkLabel(
-  options: SliderMarkLabelClassNameOptions
+  options: SliderMarkLabelClassNameOptions,
 ): string {
   const { className, vertical } = options;
 
@@ -124,7 +124,7 @@ export function sliderThumb(options: SliderThumbClassNameOptions): string {
       "disabled-h": disabled && !vertical && !mask,
       "disabled-v": disabled && vertical && !mask,
     }),
-    className
+    className,
   );
 }
 /**
@@ -138,7 +138,7 @@ export interface SliderThumbInputClassNameOptions {
  * @since 6.0.0
  */
 export function sliderThumbInput(
-  options: SliderThumbInputClassNameOptions = {}
+  options: SliderThumbInputClassNameOptions = {},
 ): string {
   const { className } = options;
 
@@ -173,7 +173,7 @@ export function sliderTrack(options: SliderTrackClassNameOptions): string {
       v1: vertical && !isRangeSlider,
       v2: vertical && isRangeSlider,
     }),
-    className
+    className,
   );
 }
 
@@ -191,7 +191,7 @@ export interface SliderValueTooltipClassNameOptions {
  * @since 6.0.0
  */
 export function sliderValueTooltip(
-  options: SliderValueTooltipClassNameOptions
+  options: SliderValueTooltipClassNameOptions,
 ): string {
   const { className, index, animate, vertical } = options;
 
@@ -199,6 +199,6 @@ export function sliderValueTooltip(
     sliderValueTooltipStyles({ h: !vertical, v: vertical }),
     animate && "rmd-slider-thumb--animate",
     `rmd-slider-thumb--${vertical ? "v" : "h"}${index}`,
-    className
+    className,
   );
 }

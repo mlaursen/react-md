@@ -54,7 +54,7 @@ export default function MenuItemFileInput(): ReactElement {
       code={{
         jest: DEFAULT_CODE.replaceAll(
           "{FRAMEWORK}",
-          "@jest/globals"
+          "@jest/globals",
         ).replaceAll("{LOCAL}", "jest"),
         vitest: DEFAULT_CODE.replace("jest-globals", "vitest")
           .replaceAll("{FRAMEWORK}", "vitest")

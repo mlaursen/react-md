@@ -55,7 +55,7 @@ describe("useCSSVariables", () => {
     render(<Test />);
     expect(warn).toHaveBeenCalledWith(
       `The "--test" css variable has already been set to "1rem" ` +
-        `on the root element and will be overwritten to "3rem". There might be conflicting overrides.`
+        `on the root element and will be overwritten to "3rem". There might be conflicting overrides.`,
     );
   });
 
@@ -65,7 +65,7 @@ describe("useCSSVariables", () => {
 
       const variables = useMemo<ReadonlyCSSVariableList<CSSVariableName>>(
         () => [{ name: "--test", value: "100px" }],
-        []
+        [],
       );
       useCSSVariables(variables, rootRef);
 
@@ -137,10 +137,10 @@ describe("useCSSVariables", () => {
     const { unmount } = render(<Test />);
     expect(html.style.getPropertyValue("--rmd-background-color")).toBe("#000");
     expect(html.style.getPropertyValue(textPrimaryColorVar)).toBe(
-      "rgba(0, 0, 0, 0.12)"
+      "rgba(0, 0, 0, 0.12)",
     );
     expect(html.style.getPropertyValue("--rdm-on-primary-color")).toBe(
-      "orange"
+      "orange",
     );
     expect(html.style.getPropertyValue("--test")).toBe("3rem");
 

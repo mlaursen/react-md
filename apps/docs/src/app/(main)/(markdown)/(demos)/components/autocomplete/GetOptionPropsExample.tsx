@@ -15,7 +15,7 @@ export default function GetOptionPropsExample(): ReactElement {
       options={desserts}
       getOptionProps={({ index, option }) => ({
         className: cnb(
-          index % 3 === 0 && cssUtils({ textDecoration: "line-through" })
+          index % 3 === 0 && cssUtils({ textDecoration: "line-through" }),
         ),
         leftAddon: <Avatar size="icon">{option.type.charAt(0)}</Avatar>,
       })}

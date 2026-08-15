@@ -31,7 +31,7 @@ export interface FormMessageContainerProps
  * @since 2.5.0
  */
 export function FormMessageContainer(
-  props: FormMessageContainerProps
+  props: FormMessageContainerProps,
 ): ReactElement {
   const { ref, className, children, inline, messageProps, ...remaining } =
     props;

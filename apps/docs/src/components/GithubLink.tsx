@@ -15,8 +15,9 @@ import { type AnchorHTMLAttributes, type ReactElement } from "react";
 import { GITHUB_LINK_URL, GITHUB_URL } from "@/constants/env.js";
 
 import { GithubIcon } from "./GithubIcon.js";
-import styles from "./GithubLink.module.scss";
 import { LinkUnstyled } from "./LinkUnstyled.js";
+
+import styles from "./GithubLink.module.scss";
 
 export interface GithubLinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>, ButtonClassNameOptions {
@@ -84,7 +85,7 @@ export function GithubLink(props: GithubLinkProps): ReactElement {
               buttonType,
             }),
           float && styles.float,
-          className
+          className,
         )}
       >
         {children}

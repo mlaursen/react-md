@@ -17,7 +17,7 @@ export interface TabListScrollButtonContainerClassNameOptions {
  * @since 6.0.0
  */
 export function tabListScrollButtonContainer(
-  options: TabListScrollButtonContainerClassNameOptions
+  options: TabListScrollButtonContainerClassNameOptions,
 ): string {
   const { forward, vertical, className } = options;
 
@@ -28,7 +28,7 @@ export function tabListScrollButtonContainer(
       above: vertical && !forward,
       below: vertical && forward,
     }),
-    className
+    className,
   );
 }
 
@@ -44,7 +44,7 @@ export interface TabListScrollButtonClassNameOptions {
  * @since 6.0.0
  */
 export function tabListScrollButton(
-  options: TabListScrollButtonClassNameOptions = {}
+  options: TabListScrollButtonClassNameOptions = {},
 ): string {
   const { className, vertical } = options;
 

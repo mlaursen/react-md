@@ -87,7 +87,7 @@ export async function getMaterialMetadata(): Promise<MaterialIconAndSymbolMetada
   const iconFamilyTypes = Object.keys(iconsLookup);
   // make it so family types that exist in symbols appear first and can be reused
   iconFamilyTypes.sort((a, b) =>
-    symbolFamilyTypes.includes(a) && !symbolFamilyTypes.includes(b) ? -1 : 1
+    symbolFamilyTypes.includes(a) && !symbolFamilyTypes.includes(b) ? -1 : 1,
   );
 
   const iconCategories = getSortedCategories(iconsByFamilyType);

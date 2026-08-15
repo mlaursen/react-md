@@ -45,7 +45,7 @@ describe("Box", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(box).toMatchSnapshot();
   });
@@ -121,7 +121,7 @@ describe("Box", () => {
     expect(box).toHaveClass("rmd-box--grid-size");
 
     rerender(
-      <Box {...BASE_PROPS} grid gridColumns={4} style={{ color: "red" }} />
+      <Box {...BASE_PROPS} grid gridColumns={4} style={{ color: "red" }} />,
     );
     expect(box).toMatchSnapshot();
   });
@@ -211,7 +211,7 @@ describe("Box", () => {
         {...BASE_PROPS}
         grid
         gridColumns={{ phone: 1, tablet: "fill", desktop: "fit" }}
-      />
+      />,
     );
     expect(box).toHaveClass("rmd-box--grid-phone");
     expect(box).toHaveClass("rmd-box--grid-phone-size");
@@ -222,14 +222,14 @@ describe("Box", () => {
         {...BASE_PROPS}
         grid
         gridColumns={{ tablet: 2, desktop: 4, largeDesktop: "fit" }}
-      />
+      />,
     );
     expect(box).toMatchSnapshot();
   });
 
   it("should allow the grid item size to be configured by different breakpoints", () => {
     const { rerender } = render(
-      <Box {...BASE_PROPS} grid gridItemSize="4rem" />
+      <Box {...BASE_PROPS} grid gridItemSize="4rem" />,
     );
     const box = screen.getByTestId("box");
     expect(box).toMatchSnapshot();
@@ -242,7 +242,7 @@ describe("Box", () => {
         {...BASE_PROPS}
         grid
         gridItemSize={{ phone: "4rem", tablet: "8rem", desktop: "12rem" }}
-      />
+      />,
     );
     expect(box).toMatchSnapshot();
 
@@ -255,7 +255,7 @@ describe("Box", () => {
           desktop: "12rem",
           largeDesktop: "auto",
         }}
-      />
+      />,
     );
     expect(box).toMatchSnapshot();
   });

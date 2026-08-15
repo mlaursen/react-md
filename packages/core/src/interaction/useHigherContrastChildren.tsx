@@ -73,7 +73,7 @@ import { INTERACTION_CONFIG } from "./config.js";
  */
 export function useHigherContrastChildren(
   children: ReactNode,
-  disable = false
+  disable = false,
 ): ReactNode {
   if (!INTERACTION_CONFIG.higherContrast || disable) {
     return children;

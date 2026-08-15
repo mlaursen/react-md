@@ -39,7 +39,7 @@ export interface TypescriptEnabledProviderProps {
 }
 
 export function TypescriptEnabledProvider(
-  props: TypescriptEnabledProviderProps
+  props: TypescriptEnabledProviderProps,
 ): ReactElement {
   const {
     children,
@@ -57,7 +57,7 @@ export function TypescriptEnabledProvider(
         setTypescriptEnabled(enabled);
       },
     }),
-    [isTypescriptEnabled, onTypescriptEnabledChange]
+    [isTypescriptEnabled, onTypescriptEnabledChange],
   );
   return <Provider value={value}>{children}</Provider>;
 }

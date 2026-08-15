@@ -86,7 +86,7 @@ export interface MenuSheetProps extends BaseSheetProps {
  * implementation.
  */
 export function MenuSheet(
-  props: LabelRequiredForA11y<MenuSheetProps>
+  props: LabelRequiredForA11y<MenuSheetProps>,
 ): ReactElement {
   const {
     header,

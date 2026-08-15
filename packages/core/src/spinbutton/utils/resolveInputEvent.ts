@@ -39,7 +39,7 @@ interface ResolveInputEvent {
  * @internal
  */
 export function resolveInputEvent(
-  options: ResolveInputEventOptions
+  options: ResolveInputEventOptions,
 ): ResolveInputEvent {
   const {
     min,

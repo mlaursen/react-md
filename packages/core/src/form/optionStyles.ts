@@ -23,6 +23,6 @@ export function option(options: OptionClassNameOptions): string {
   return cnb(
     styles({ icon, selected }),
     selected && selectedClassName,
-    className
+    className,
   );
 }

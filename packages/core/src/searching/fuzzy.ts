@@ -47,11 +47,11 @@ export function createFuzzyRegExp(query: string): RegExp {
       .join(String.raw`\w*`)
       .replaceAll(
         /(\(|\||\)|\\(?!w\*)|\[|\|-|\.|\^|\+|\$|\?|^(?!w)\*)/g,
-        String.raw`\$1`
+        String.raw`\$1`,
       )
       // Couldn't get the matching of two '*' working, so replace them here..
       .replaceAll("**", String.raw`*\*`),
-    "i"
+    "i",
   );
 }
 
@@ -137,25 +137,25 @@ export type FuzzySearchOptions<T> = BaseSearchOptions<T>;
  * @since 6.0.0
  */
 export function fuzzySearch<T extends AutomaticTextExtraction>(
-  options: FuzzySearchOptions<T> & { type?: "filter" }
+  options: FuzzySearchOptions<T> & { type?: "filter" },
 ): readonly T[];
 export function fuzzySearch<T extends AutomaticTextExtraction>(
-  options: FuzzySearchOptions<T> & { type?: "search" }
+  options: FuzzySearchOptions<T> & { type?: "search" },
 ): T | undefined;
 export function fuzzySearch<T>(
   option: FuzzySearchOptions<T> & {
     extractor: TextExtractor<T>;
     type?: "filter";
-  }
+  },
 ): readonly T[];
 export function fuzzySearch<T>(
   option: FuzzySearchOptions<T> & {
     extractor: TextExtractor<T>;
     type?: "search";
-  }
+  },
 ): T | undefined;
 export function fuzzySearch<T>(
-  options: FuzzySearchOptions<T>
+  options: FuzzySearchOptions<T>,
 ): readonly T[] | T | undefined {
   const {
     list,

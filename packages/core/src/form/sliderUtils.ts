@@ -70,7 +70,7 @@ export type ClosestThumbEventHandlersOptions = RenameKeysWithPrefix<
  * @internal
  */
 export const getClosestThumbEventHandlers = (
-  options: ClosestThumbEventHandlersOptions
+  options: ClosestThumbEventHandlersOptions,
 ): DraggableEventHandlers<HTMLElement> => {
   const {
     thumb1Ref,
@@ -159,7 +159,7 @@ export const getClosestThumbEventHandlers = (
  */
 function getThumbOffset(
   offset: number | undefined,
-  fallback: number
+  fallback: number,
 ): string | undefined {
   if (typeof offset !== "number") {
     return;
@@ -246,7 +246,7 @@ interface ThumbNames {
  */
 export function getSliderInputName(
   name: string | undefined,
-  isRangeSlider: boolean
+  isRangeSlider: boolean,
 ): ThumbNames {
   let thumb1Name = name;
   let thumb2Name = name;

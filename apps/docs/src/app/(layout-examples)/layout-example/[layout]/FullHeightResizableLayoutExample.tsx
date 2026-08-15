@@ -1,10 +1,10 @@
 import { type ReactElement } from "react";
 
-import { ResizableLayoutExample } from "./ResizableLayoutExample.js";
 import { type ExampleLayoutProps } from "./layouts.js";
+import { ResizableLayoutExample } from "./ResizableLayoutExample.js";
 
 export function FullHeightResizableLayoutExample(
-  props: ExampleLayoutProps
+  props: ExampleLayoutProps,
 ): ReactElement {
   return <ResizableLayoutExample {...props} fullHeightNav="static" />;
 }

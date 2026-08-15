@@ -14,7 +14,7 @@ import {
 import { isMaterialIconType } from "./searchParams.js";
 
 export function FilterStylePanel(
-  props: ProvidedExpansionPanelProps
+  props: ProvidedExpansionPanelProps,
 ): ReactElement {
   const { iconType, iconFamily, setIconType, setIconFamily } =
     useMaterialIconsAndSymbols();

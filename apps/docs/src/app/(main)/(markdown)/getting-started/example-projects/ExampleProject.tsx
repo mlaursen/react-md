@@ -26,7 +26,7 @@ export interface ExampleProjectProps {
 }
 
 export function ExampleProject(
-  props: Readonly<ExampleProjectProps>
+  props: Readonly<ExampleProjectProps>,
 ): ReactElement {
   const { js, ts, title, framework } = props;
   const icon = FRAMEWORK_ICONS[framework];

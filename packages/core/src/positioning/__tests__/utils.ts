@@ -75,28 +75,28 @@ describe("getLeftCoord", () => {
         xMargin: 0,
         elWidth: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(0);
     expect(
       getLeftCoord({
         xMargin: 8,
         elWidth: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(-8);
     expect(
       getLeftCoord({
         xMargin: 0,
         elWidth: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(50);
     expect(
       getLeftCoord({
         xMargin: 8,
         elWidth: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(42);
 
     expect(
@@ -104,28 +104,28 @@ describe("getLeftCoord", () => {
         xMargin: 0,
         elWidth: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(-50);
     expect(
       getLeftCoord({
         xMargin: 8,
         elWidth: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(-58);
     expect(
       getLeftCoord({
         xMargin: 0,
         elWidth: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(0);
     expect(
       getLeftCoord({
         xMargin: 8,
         elWidth: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(-8);
   });
 
@@ -136,7 +136,7 @@ describe("getLeftCoord", () => {
         elWidth: 100,
         initialX: 150,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(50);
     expect(
       getLeftCoord({
@@ -144,7 +144,7 @@ describe("getLeftCoord", () => {
         elWidth: 100,
         initialX: 150,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(42);
     expect(
       getLeftCoord({
@@ -152,7 +152,7 @@ describe("getLeftCoord", () => {
         elWidth: 50,
         initialX: 150,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(100);
     expect(
       getLeftCoord({
@@ -160,7 +160,7 @@ describe("getLeftCoord", () => {
         elWidth: 50,
         initialX: 150,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(92);
 
     expect(
@@ -169,7 +169,7 @@ describe("getLeftCoord", () => {
         elWidth: 100,
         initialX: 150,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(50);
     expect(
       getLeftCoord({
@@ -177,7 +177,7 @@ describe("getLeftCoord", () => {
         elWidth: 100,
         initialX: 150,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(42);
     expect(
       getLeftCoord({
@@ -185,7 +185,7 @@ describe("getLeftCoord", () => {
         elWidth: 50,
         initialX: 150,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(100);
     expect(
       getLeftCoord({
@@ -193,7 +193,7 @@ describe("getLeftCoord", () => {
         elWidth: 50,
         initialX: 150,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(92);
   });
 });
@@ -205,21 +205,21 @@ describe("getInnerLeftCoord", () => {
         xMargin: 0,
         elWidth: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(100);
     expect(
       getInnerLeftCoord({
         xMargin: 0,
         elWidth: 40,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(100);
     expect(
       getInnerLeftCoord({
         xMargin: 8,
         elWidth: 40,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(108);
 
     expect(
@@ -227,21 +227,21 @@ describe("getInnerLeftCoord", () => {
         xMargin: 0,
         elWidth: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(50);
     expect(
       getInnerLeftCoord({
         xMargin: 0,
         elWidth: 40,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(50);
     expect(
       getInnerLeftCoord({
         xMargin: 8,
         elWidth: 40,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(58);
   });
 
@@ -252,7 +252,7 @@ describe("getInnerLeftCoord", () => {
         elWidth: 100,
         initialX: 150,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(150);
     expect(
       getInnerLeftCoord({
@@ -260,7 +260,7 @@ describe("getInnerLeftCoord", () => {
         elWidth: 40,
         initialX: 150,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(150);
     expect(
       getInnerLeftCoord({
@@ -268,7 +268,7 @@ describe("getInnerLeftCoord", () => {
         elWidth: 40,
         initialX: 150,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(158);
 
     expect(
@@ -277,7 +277,7 @@ describe("getInnerLeftCoord", () => {
         elWidth: 100,
         initialX: 150,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(150);
     expect(
       getInnerLeftCoord({
@@ -285,7 +285,7 @@ describe("getInnerLeftCoord", () => {
         elWidth: 40,
         initialX: 150,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(150);
     expect(
       getInnerLeftCoord({
@@ -293,7 +293,7 @@ describe("getInnerLeftCoord", () => {
         elWidth: 40,
         initialX: 150,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(158);
   });
 });
@@ -305,14 +305,14 @@ describe("getCenterXCoord", () => {
         xMargin: 0,
         elWidth: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(100);
     expect(
       getCenterXCoord({
         xMargin: 0,
         elWidth: 200,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(50);
   });
 
@@ -322,14 +322,14 @@ describe("getCenterXCoord", () => {
         xMargin: 20,
         elWidth: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(100);
     expect(
       getCenterXCoord({
         xMargin: 20,
         elWidth: 200,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(50);
   });
 
@@ -340,7 +340,7 @@ describe("getCenterXCoord", () => {
         elWidth: 100,
         initialX: 20,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(-30);
 
     expect(
@@ -349,7 +349,7 @@ describe("getCenterXCoord", () => {
         elWidth: 100,
         initialX: 23,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(-27);
 
     expect(
@@ -358,7 +358,7 @@ describe("getCenterXCoord", () => {
         elWidth: 100,
         initialX: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(50);
   });
 });
@@ -370,28 +370,28 @@ describe("getInnerRightCoord", () => {
         xMargin: 0,
         elWidth: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(100);
     expect(
       getInnerRightCoord({
         xMargin: 8,
         elWidth: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(92);
     expect(
       getInnerRightCoord({
         xMargin: 0,
         elWidth: 25,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(175);
     expect(
       getInnerRightCoord({
         xMargin: 8,
         elWidth: 25,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(167);
 
     expect(
@@ -399,28 +399,28 @@ describe("getInnerRightCoord", () => {
         xMargin: 0,
         elWidth: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(150);
     expect(
       getInnerRightCoord({
         xMargin: 8,
         elWidth: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(142);
     expect(
       getInnerRightCoord({
         xMargin: 0,
         elWidth: 25,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(225);
     expect(
       getInnerRightCoord({
         xMargin: 8,
         elWidth: 25,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(217);
   });
 
@@ -431,7 +431,7 @@ describe("getInnerRightCoord", () => {
         elWidth: 100,
         initialX: 325,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(225);
     expect(
       getInnerRightCoord({
@@ -439,7 +439,7 @@ describe("getInnerRightCoord", () => {
         elWidth: 100,
         initialX: 325,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(217);
   });
 });
@@ -451,28 +451,28 @@ describe("getRightCoord", () => {
         xMargin: 0,
         elWidth: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(200);
     expect(
       getRightCoord({
         xMargin: 8,
         elWidth: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(208);
     expect(
       getRightCoord({
         xMargin: 0,
         elWidth: 25,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(200);
     expect(
       getRightCoord({
         xMargin: 8,
         elWidth: 25,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(208);
 
     expect(
@@ -480,28 +480,28 @@ describe("getRightCoord", () => {
         xMargin: 0,
         elWidth: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(250);
     expect(
       getRightCoord({
         xMargin: 8,
         elWidth: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(258);
     expect(
       getRightCoord({
         xMargin: 0,
         elWidth: 25,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(250);
     expect(
       getRightCoord({
         xMargin: 8,
         elWidth: 25,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(258);
   });
 
@@ -512,7 +512,7 @@ describe("getRightCoord", () => {
         elWidth: 100,
         initialX: 325,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(325);
     expect(
       getRightCoord({
@@ -520,7 +520,7 @@ describe("getRightCoord", () => {
         elWidth: 100,
         initialX: 325,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(333);
   });
 });
@@ -532,28 +532,28 @@ describe("getAboveCoord", () => {
         yMargin: 0,
         elHeight: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(-75);
     expect(
       getAboveCoord({
         yMargin: 8,
         elHeight: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(-83);
     expect(
       getAboveCoord({
         yMargin: 0,
         elHeight: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(-25);
     expect(
       getAboveCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(-33);
 
     expect(
@@ -561,28 +561,28 @@ describe("getAboveCoord", () => {
         yMargin: 0,
         elHeight: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(-25);
     expect(
       getAboveCoord({
         yMargin: 8,
         elHeight: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(-33);
     expect(
       getAboveCoord({
         yMargin: 0,
         elHeight: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(25);
     expect(
       getAboveCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(17);
   });
 
@@ -593,7 +593,7 @@ describe("getAboveCoord", () => {
         elHeight: 100,
         initialY: 125,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(25);
     expect(
       getAboveCoord({
@@ -601,7 +601,7 @@ describe("getAboveCoord", () => {
         elHeight: 100,
         initialY: 125,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(17);
     expect(
       getAboveCoord({
@@ -609,7 +609,7 @@ describe("getAboveCoord", () => {
         elHeight: 50,
         initialY: 125,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(75);
     expect(
       getAboveCoord({
@@ -617,7 +617,7 @@ describe("getAboveCoord", () => {
         elHeight: 50,
         initialY: 125,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(67);
 
     expect(
@@ -626,7 +626,7 @@ describe("getAboveCoord", () => {
         elHeight: 100,
         initialY: 125,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(25);
     expect(
       getAboveCoord({
@@ -634,7 +634,7 @@ describe("getAboveCoord", () => {
         elHeight: 100,
         initialY: 125,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(17);
     expect(
       getAboveCoord({
@@ -642,7 +642,7 @@ describe("getAboveCoord", () => {
         elHeight: 50,
         initialY: 125,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(75);
     expect(
       getAboveCoord({
@@ -650,7 +650,7 @@ describe("getAboveCoord", () => {
         elHeight: 50,
         initialY: 125,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(67);
   });
 });
@@ -662,28 +662,28 @@ describe("getTopCoord", () => {
         yMargin: 0,
         elHeight: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(25);
     expect(
       getTopCoord({
         yMargin: 8,
         elHeight: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(33);
     expect(
       getTopCoord({
         yMargin: 0,
         elHeight: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(25);
     expect(
       getTopCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(33);
 
     expect(
@@ -691,28 +691,28 @@ describe("getTopCoord", () => {
         yMargin: 0,
         elHeight: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(75);
     expect(
       getTopCoord({
         yMargin: 8,
         elHeight: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(83);
     expect(
       getTopCoord({
         yMargin: 0,
         elHeight: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(75);
     expect(
       getTopCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(83);
   });
 
@@ -723,7 +723,7 @@ describe("getTopCoord", () => {
         elHeight: 20,
         initialY: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(100);
 
     expect(
@@ -732,7 +732,7 @@ describe("getTopCoord", () => {
         elHeight: 20,
         initialY: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(100);
   });
 });
@@ -744,28 +744,28 @@ describe("getCenterYCoord", () => {
         yMargin: 0,
         elHeight: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(75);
     expect(
       getCenterYCoord({
         yMargin: 0,
         elHeight: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(100);
     expect(
       getCenterYCoord({
         yMargin: 8,
         elHeight: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(83);
     expect(
       getCenterYCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(108);
 
     expect(
@@ -773,28 +773,28 @@ describe("getCenterYCoord", () => {
         yMargin: 0,
         elHeight: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(75);
     expect(
       getCenterYCoord({
         yMargin: 0,
         elHeight: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(100);
     expect(
       getCenterYCoord({
         yMargin: 8,
         elHeight: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(83);
     expect(
       getCenterYCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(108);
   });
 
@@ -805,7 +805,7 @@ describe("getCenterYCoord", () => {
         elHeight: 80,
         initialY: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(60);
     expect(
       getCenterYCoord({
@@ -813,7 +813,7 @@ describe("getCenterYCoord", () => {
         elHeight: 80,
         initialY: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(60);
 
     expect(
@@ -822,7 +822,7 @@ describe("getCenterYCoord", () => {
         elHeight: 80,
         initialY: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(60);
     expect(
       getCenterYCoord({
@@ -830,7 +830,7 @@ describe("getCenterYCoord", () => {
         elHeight: 80,
         initialY: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(60);
   });
 });
@@ -842,28 +842,28 @@ describe("getBottomCoord", () => {
         yMargin: 0,
         elHeight: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(125);
     expect(
       getBottomCoord({
         yMargin: 0,
         elHeight: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(175);
     expect(
       getBottomCoord({
         yMargin: 8,
         elHeight: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(117);
     expect(
       getBottomCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(167);
 
     expect(
@@ -871,28 +871,28 @@ describe("getBottomCoord", () => {
         yMargin: 0,
         elHeight: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(75);
     expect(
       getBottomCoord({
         yMargin: 0,
         elHeight: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(125);
     expect(
       getBottomCoord({
         yMargin: 8,
         elHeight: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(67);
     expect(
       getBottomCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(117);
   });
 
@@ -903,7 +903,7 @@ describe("getBottomCoord", () => {
         elHeight: 80,
         initialY: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(20);
     expect(
       getBottomCoord({
@@ -911,7 +911,7 @@ describe("getBottomCoord", () => {
         elHeight: 80,
         initialY: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(12);
 
     expect(
@@ -920,7 +920,7 @@ describe("getBottomCoord", () => {
         elHeight: 80,
         initialY: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(20);
     expect(
       getBottomCoord({
@@ -928,7 +928,7 @@ describe("getBottomCoord", () => {
         elHeight: 80,
         initialY: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(12);
   });
 });
@@ -940,28 +940,28 @@ describe("getBelowCoord", () => {
         yMargin: 0,
         elHeight: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(225);
     expect(
       getBelowCoord({
         yMargin: 0,
         elHeight: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(225);
     expect(
       getBelowCoord({
         yMargin: 8,
         elHeight: 100,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(233);
     expect(
       getBelowCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(233);
 
     expect(
@@ -969,28 +969,28 @@ describe("getBelowCoord", () => {
         yMargin: 0,
         elHeight: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(175);
     expect(
       getBelowCoord({
         yMargin: 0,
         elHeight: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(175);
     expect(
       getBelowCoord({
         yMargin: 8,
         elHeight: 100,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(183);
     expect(
       getBelowCoord({
         yMargin: 8,
         elHeight: 50,
         containerRect: containerRect2,
-      })
+      }),
     ).toBe(183);
   });
 
@@ -1001,7 +1001,7 @@ describe("getBelowCoord", () => {
         elHeight: 50,
         initialY: 80,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(80);
     expect(
       getBelowCoord({
@@ -1009,7 +1009,7 @@ describe("getBelowCoord", () => {
         elHeight: 50,
         initialY: 80,
         containerRect: containerRect1,
-      })
+      }),
     ).toBe(88);
   });
 });
@@ -1147,7 +1147,7 @@ describe("findSizingContainer", () => {
     element.dataset.sizingSelector = ".query";
 
     expect(() => findSizingContainer(element)).toThrow(
-      "Unable to find a child element using the `data-sizing-selector`"
+      "Unable to find a child element using the `data-sizing-selector`",
     );
   });
 });

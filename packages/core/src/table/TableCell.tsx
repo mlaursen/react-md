@@ -15,8 +15,8 @@ import {
   TableCellContent,
   type TableCellContentsIconRotatorProps,
 } from "./TableCellContent.js";
-import { useTableConfig } from "./TableConfigurationProvider.js";
 import { tableCell } from "./tableCellStyles.js";
+import { useTableConfig } from "./TableConfigurationProvider.js";
 import { type SortOrder, type TableCellConfig } from "./types.js";
 
 export type TableCellAttributes = Omit<

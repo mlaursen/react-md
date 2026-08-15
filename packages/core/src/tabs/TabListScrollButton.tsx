@@ -59,7 +59,7 @@ export interface TabListScrollButtonProps extends BaseTabListScrollButtonProps {
  * @since 6.0.0
  */
 export function TabListScrollButton(
-  props: TabListScrollButtonProps
+  props: TabListScrollButtonProps,
 ): ReactElement {
   const {
     ref,
@@ -134,7 +134,7 @@ export function TabListScrollButton(
                 vertical,
                 container,
                 increment: forward,
-              })
+              }),
             );
           }}
         >

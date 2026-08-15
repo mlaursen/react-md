@@ -6,7 +6,7 @@ import { type GoogleFontsAPIValueOrRange } from "./getMaterialSymbolsUrl.js";
  */
 export function getMaterialSymbolOption<T extends number>(
   value: GoogleFontsAPIValueOrRange<T> | undefined,
-  fallback: T
+  fallback: T,
 ): string {
   if (!value) {
     return `${fallback}`;

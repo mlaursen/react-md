@@ -71,7 +71,7 @@ describe("Dialog", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(dialog).toMatchSnapshot();
   });
@@ -201,7 +201,7 @@ describe("Dialog", () => {
     rmdRender(
       <Test aria-describedby="alert-message" modal>
         <div id="alert-message">Warning</div>
-      </Test>
+      </Test>,
     );
 
     await user.click(screen.getByRole("button", { name: "Show" }));
@@ -218,7 +218,7 @@ describe("Dialog", () => {
     rmdRender(
       <Test aria-describedby="alert-message" modal>
         <div id="alert-message">Warning</div>
-      </Test>
+      </Test>,
     );
 
     await user.click(screen.getByRole("button", { name: "Show" }));
@@ -289,7 +289,7 @@ describe("Dialog", () => {
     rmdRender(
       <Test>
         <InfiniteDialog depth={1} />
-      </Test>
+      </Test>,
     );
 
     await user.click(screen.getByRole("button", { name: "Show" }));

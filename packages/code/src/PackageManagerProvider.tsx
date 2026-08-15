@@ -49,7 +49,7 @@ export interface PackageManagerProviderProps {
 }
 
 export function PackageManagerProvider(
-  props: PackageManagerProviderProps
+  props: PackageManagerProviderProps,
 ): ReactElement {
   const {
     children,
@@ -68,7 +68,7 @@ export function PackageManagerProvider(
         setPackageManager(nextPackageManager);
       },
     }),
-    [onPackageManagerChange, packageManager, packageManagers]
+    [onPackageManagerChange, packageManager, packageManagers],
   );
 
   return <Provider value={value}>{children}</Provider>;

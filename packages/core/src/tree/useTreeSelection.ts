@@ -25,7 +25,7 @@ export interface TreeSelection {
  */
 export function useTreeSelection(
   defaultSelectedIds?: TreeDefaultIds,
-  multiSelect = false
+  multiSelect = false,
 ): Required<TreeSelection> {
   const { value, setValue, toggleValue } = useReadonlySet({
     toggleType: multiSelect ? "multiple" : "single-select",

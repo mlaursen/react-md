@@ -129,7 +129,7 @@ export interface CircularProgressProps
  * rotate while increasing the value and require a label for accessibility.
  */
 export function CircularProgress(
-  props: LabelRequiredForA11y<CircularProgressProps>
+  props: LabelRequiredForA11y<CircularProgressProps>,
 ): ReactElement {
   const {
     ref,

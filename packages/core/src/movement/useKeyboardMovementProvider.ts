@@ -72,7 +72,7 @@ export const DEFAULT_KEYBOARD_MOVEMENT_CONTEXT: Readonly<KeyboardMovementContext
  * @internal
  */
 const context = createContext<KeyboardMovementContext>(
-  DEFAULT_KEYBOARD_MOVEMENT_CONTEXT
+  DEFAULT_KEYBOARD_MOVEMENT_CONTEXT,
 );
 context.displayName = "KeyboardMovement";
 export const { Provider: KeyboardMovementProvider } = context;
@@ -209,7 +209,7 @@ const returnNegative1 = (): number => -1;
  * @internal
  */
 export function useKeyboardMovementProvider<E extends HTMLElement>(
-  options: KeyboardMovementProviderOptions<E> = {}
+  options: KeyboardMovementProviderOptions<E> = {},
 ): KeyboardMovementProviderImplementation<E> {
   const {
     ref: propRef,
@@ -320,7 +320,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
 
       return focused;
     },
-    [getFocusableElementsFromRef, tabIndexBehavior]
+    [getFocusableElementsFromRef, tabIndexBehavior],
   );
   const updateFocusIndex = useCallback(
     (options: KeyboardMovementUpdateFocusIndexOptions) => {
@@ -343,7 +343,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         });
       }
     },
-    [focusCurrent, getFocusableElementsFromRef, onFocusChange]
+    [focusCurrent, getFocusableElementsFromRef, onFocusChange],
   );
 
   const focusNext = useCallback(
@@ -360,7 +360,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         focusables,
       });
     },
-    [getFocusableElementsFromRef, loopable, updateFocusIndex]
+    [getFocusableElementsFromRef, loopable, updateFocusIndex],
   );
   const focusPrevious = useCallback(
     (focusables = getFocusableElementsFromRef(), force = false) => {
@@ -376,7 +376,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         focusables,
       });
     },
-    [getFocusableElementsFromRef, loopable, updateFocusIndex]
+    [getFocusableElementsFromRef, loopable, updateFocusIndex],
   );
   const focusFirst = useCallback(
     (focusables = getFocusableElementsFromRef(), force = false) => {
@@ -389,7 +389,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         focusables,
       });
     },
-    [getFocusableElementsFromRef, includeDisabled, updateFocusIndex]
+    [getFocusableElementsFromRef, includeDisabled, updateFocusIndex],
   );
   const focusLast = useCallback(
     (focusables = getFocusableElementsFromRef(), force = false) => {
@@ -402,7 +402,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
         focusables,
       });
     },
-    [getFocusableElementsFromRef, includeDisabled, updateFocusIndex]
+    [getFocusableElementsFromRef, includeDisabled, updateFocusIndex],
   );
   const focusFromKey = useCallback(
     (options: KeyboardFocusFromKeyOptions) => {
@@ -419,13 +419,18 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
       const index = findMatchIndex({
         value: key,
         values: focusables.map((element) =>
-          getSearchText(element, !isNotFocusable(element, includeDisabled))
+          getSearchText(element, !isNotFocusable(element, includeDisabled)),
         ),
         startIndex: reversed ? -1 : currentFocusIndex.current,
       });
       updateFocusIndex({ index, force, focusables });
     },
-    [getFocusableElementsFromRef, includeDisabled, searchable, updateFocusIndex]
+    [
+      getFocusableElementsFromRef,
+      includeDisabled,
+      searchable,
+      updateFocusIndex,
+    ],
   );
 
   const movementContext = useMemo<KeyboardMovementContext>(
@@ -459,7 +464,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
       searchable,
       tabIndexBehavior,
       updateFocusIndex,
-    ]
+    ],
   );
 
   return {
@@ -488,7 +493,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
 
         const focusables = getFocusableElements(currentTarget, programmatic);
         const focusedIndex = focusables.findIndex(
-          (element) => element === target || element.contains(target)
+          (element) => element === target || element.contains(target),
         );
         if (focusedIndex === -1 || focusables.length === 0) {
           return;
@@ -528,7 +533,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
 
         const focusables = getFocusableElements(
           event.currentTarget,
-          programmatic
+          programmatic,
         );
         if (focusables.length === 0) {
           return;
@@ -589,7 +594,7 @@ export function useKeyboardMovementProvider<E extends HTMLElement>(
 
         const setFocusIndex = (
           index: number,
-          focusables: readonly HTMLElement[]
+          focusables: readonly HTMLElement[],
         ): void => {
           event.preventDefault();
           event.stopPropagation();

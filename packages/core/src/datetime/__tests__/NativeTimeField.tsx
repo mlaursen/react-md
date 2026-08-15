@@ -92,7 +92,7 @@ describe("NativeTimeField", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(field).toMatchSnapshot();
   });

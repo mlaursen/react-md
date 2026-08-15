@@ -127,6 +127,6 @@ export function legend(options: LegendClassNameOptions = {}): string {
         floatingActive: true,
       }),
     cssUtils({ srOnly }),
-    className
+    className,
   );
 }

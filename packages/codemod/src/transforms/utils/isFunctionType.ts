@@ -8,7 +8,7 @@ import {
 } from "jscodeshift";
 
 export function isFunctionType(
-  node: VariableDeclarator
+  node: VariableDeclarator,
 ): node is VariableDeclarator & {
   id: Identifier & {
     typeAnnotation: TSTypeAnnotation & {

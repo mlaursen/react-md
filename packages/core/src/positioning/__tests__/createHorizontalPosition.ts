@@ -583,7 +583,7 @@ describe("createAnchoredRight", () => {
 
   it("should return the screenRight minus the element's width as the left value if swapping is disabled", () => {
     expect(
-      createAnchoredRight({ ...rightBoundsConfig1, disableSwapping: true })
+      createAnchoredRight({ ...rightBoundsConfig1, disableSwapping: true }),
     ).toEqual({
       left: 25,
       actualX: "right",

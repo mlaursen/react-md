@@ -37,7 +37,7 @@ export const pascalCase = (s: string, separator?: string): string =>
  */
 export const titleCase = (
   s: string,
-  splitter: RegExp | string = /(?=[A-Z])/
+  splitter: RegExp | string = /(?=[A-Z])/,
 ): string =>
   s.split(splitter).reduce((result, part, i) => {
     return result + (i ? " " : "") + upperFirst(part);

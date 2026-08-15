@@ -83,6 +83,6 @@ export function tableCell(options: TableCellClassNameOptions = {}): string {
       textAlign: hAlign,
       textOverflow: lineWrap ? undefined : "ellipsis",
     }),
-    className
+    className,
   );
 }

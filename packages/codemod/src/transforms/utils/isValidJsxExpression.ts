@@ -4,7 +4,7 @@ import { type JSXExpression } from "../../types.js";
 
 export function isValidJsxExpression(
   j: JSCodeshift,
-  value: unknown
+  value: unknown,
 ): value is JSXExpression {
   return (
     j.Identifier.check(value) ||

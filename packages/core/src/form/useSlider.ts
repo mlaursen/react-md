@@ -99,7 +99,7 @@ export function useSlider(options: SliderOptions = {}): SliderImplementation {
       max,
       step,
       defaultValue,
-    })
+    }),
   );
 
   return {

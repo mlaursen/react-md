@@ -310,7 +310,7 @@ export function configureIcons(overrides: ConfiguredIcons): void {
  */
 export function getIcon(
   name: ConfigurableIconName,
-  override?: ReactNode
+  override?: ReactNode,
 ): ReactNode {
   if (override !== undefined) {
     return override;

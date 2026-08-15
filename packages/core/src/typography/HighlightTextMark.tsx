@@ -17,7 +17,7 @@ export interface HighlightTextMarkProps
  * @since 6.0.0
  */
 export function HighlightTextMark(
-  props: Readonly<HighlightTextMarkProps>
+  props: Readonly<HighlightTextMarkProps>,
 ): ReactElement {
   const { match: _match, ...remaining } = props;
   return <Mark {...remaining} />;

@@ -5,7 +5,7 @@ import { type AnyFunction, type ThrottledFunction } from "../types.js";
  */
 export function throttle<F extends AnyFunction>(
   fn: F,
-  wait: number
+  wait: number,
 ): ThrottledFunction<F> {
   let args: Parameters<F>;
   let result: ReturnType<F>;

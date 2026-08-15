@@ -8,8 +8,8 @@ import {
   screen,
   userEvent,
 } from "../../test-utils/index.js";
-import { FileInput } from "../FileInput.js";
 import { createAcceptFromExtensions } from "../createAcceptFromExtensions.js";
+import { FileInput } from "../FileInput.js";
 import { type FileUploadOptions, useFileUpload } from "../useFileUpload.js";
 
 function createFile(name: string, bytes: number): File {
@@ -58,7 +58,7 @@ class MockFileReader implements FileReader {
 
   addEventListener(
     name: "progress" | "load",
-    callback: (event: Event) => void
+    callback: (event: Event) => void,
   ) {
     if (name === "progress") {
       this._progressEvents.push(callback);
@@ -241,14 +241,14 @@ describe("useFileUpload", () => {
     expect(file1.size).toBe(32);
     await userEvent.upload(input, file1);
     expect(() =>
-      screen.getByRole("listitem", { name: "FileSizeError" })
+      screen.getByRole("listitem", { name: "FileSizeError" }),
     ).not.toThrow();
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
 
     fireEvent.click(reset);
     expect(() =>
-      screen.getByRole("listitem", { name: "FileSizeError" })
+      screen.getByRole("listitem", { name: "FileSizeError" }),
     ).toThrow();
 
     const file2 = createFile("file2.txt", 2000);
@@ -256,14 +256,14 @@ describe("useFileUpload", () => {
     await userEvent.upload(input, file2);
 
     expect(() =>
-      screen.getByRole("listitem", { name: "FileSizeError" })
+      screen.getByRole("listitem", { name: "FileSizeError" }),
     ).not.toThrow();
     expect(status).toHaveTextContent("");
     expect(fileName).toHaveTextContent("");
 
     fireEvent.click(reset);
     expect(() =>
-      screen.getByRole("listitem", { name: "FileSizeError" })
+      screen.getByRole("listitem", { name: "FileSizeError" }),
     ).toThrow();
 
     const file3 = createFile("file3.txt", 800);
@@ -284,14 +284,14 @@ describe("useFileUpload", () => {
     expect(status).toHaveTextContent("complete");
     expect(fileName).toHaveTextContent(file3.name);
     expect(() =>
-      screen.getByRole("listitem", { name: "FileSizeError" })
+      screen.getByRole("listitem", { name: "FileSizeError" }),
     ).not.toThrow();
 
     fireEvent.click(clearErrors);
     expect(status).toHaveTextContent("complete");
     expect(fileName).toHaveTextContent(file3.name);
     expect(() =>
-      screen.getByRole("listitem", { name: "FileSizeError" })
+      screen.getByRole("listitem", { name: "FileSizeError" }),
     ).toThrow();
   });
 
@@ -314,13 +314,13 @@ describe("useFileUpload", () => {
         maxFileSize={1024}
         minFileSize={612}
         extensions={extensions}
-      />
+      />,
     );
 
     const input = screen.getByLabelText("Upload");
     expect(input).toHaveAttribute(
       "accept",
-      createAcceptFromExtensions(extensions)
+      createAcceptFromExtensions(extensions),
     );
   });
 });

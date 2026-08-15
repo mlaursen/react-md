@@ -14,7 +14,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -51,7 +51,7 @@ export default function transformer(
               j.objectProperty(j.identifier("max"), args[2]),
               j.objectProperty(j.identifier("steps"), args[3]),
               args[4] && j.objectProperty(j.identifier("range"), args[4]),
-            ].filter(Boolean)
+            ].filter(Boolean),
           ),
         ];
       });

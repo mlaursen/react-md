@@ -3,14 +3,14 @@
 import { cnb } from "cnbuilder";
 import { Fragment, type ReactElement, type ReactNode, type Ref } from "react";
 
+import { getIcon } from "../icon/config.js";
+import { icon } from "../icon/styles.js";
 import {
   TextIconSpacing,
   type TextIconSpacingProps,
 } from "../icon/TextIconSpacing.js";
-import { getIcon } from "../icon/config.js";
-import { icon } from "../icon/styles.js";
-import { ListItemText } from "../list/ListItemText.js";
 import { getListItemHeight } from "../list/getListItemHeight.js";
+import { ListItemText } from "../list/ListItemText.js";
 import { MenuItem, type MenuItemProps } from "../menu/MenuItem.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useListboxContext } from "./ListboxProvider.js";
@@ -181,7 +181,7 @@ export function Option(props: OptionProps): ReactElement {
   const selected = isOptionSelected(value);
   const selectedIcon = getIcon(
     "selected",
-    disableSelectedIcon ? null : (propSelectedIcon ?? contextSelectedIcon)
+    disableSelectedIcon ? null : (propSelectedIcon ?? contextSelectedIcon),
   );
   const unselectedIcon = disableSelectedIcon
     ? null
@@ -252,13 +252,13 @@ export function Option(props: OptionProps): ReactElement {
       leftAddonType={leftAddonType}
       leftAddonClassName={cnb(
         leftAddon === icon && "rmd-option__icon",
-        leftAddonClassName
+        leftAddonClassName,
       )}
       rightAddon={rightAddon}
       rightAddonType={rightAddonType}
       rightAddonClassName={cnb(
         rightAddon === icon && "rmd-option__icon",
-        rightAddonClassName
+        rightAddonClassName,
       )}
       disableTextChildren={disableTextChildren}
     >

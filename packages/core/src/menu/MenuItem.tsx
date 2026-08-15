@@ -63,7 +63,7 @@ export function MenuItem(props: MenuItemProps): ReactElement {
       className={cnb(
         "rmd-menu-item",
         tabIndexBehavior === "virtual" && focused && "rmd-menu-item--focused",
-        className
+        className,
       )}
     >
       {children}

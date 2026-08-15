@@ -42,7 +42,7 @@ export interface RootLayoutProps {
 }
 
 export default async function RootLayout(
-  props: RootLayoutProps
+  props: RootLayoutProps,
 ): Promise<ReactElement> {
   const { children } = props;
   const { themeStyles, customProperties, ...providerProps } =
@@ -55,7 +55,7 @@ export default async function RootLayout(
       className={cnb(
         roboto.variable,
         sourceCodePro.variable,
-        themeStyles.container
+        themeStyles.container,
       )}
       beforeBodyChildren={
         <head>

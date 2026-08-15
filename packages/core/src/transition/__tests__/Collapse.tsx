@@ -114,7 +114,7 @@ describe("useCollapseTransition", () => {
 
   it("should default to not being temporary if the minHeight, minPaddingTop, or minPaddingBottom are not 0", () => {
     const { container, rerender } = render(
-      <Test key="first-test" minHeight={120} />
+      <Test key="first-test" minHeight={120} />,
     );
     const getElement = (): HTMLElement => screen.getByTestId("element");
 
@@ -136,7 +136,7 @@ describe("useCollapseTransition", () => {
         minPaddingBottom={16}
         minPaddingTop={8}
         temporary
-      />
+      />,
     );
     expect(getElement).toThrow();
     expect(container).toMatchSnapshot();

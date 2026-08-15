@@ -18,7 +18,7 @@ export const StatusCode = {
 export class CustomError extends Error {
   constructor(
     message: string,
-    public status: number
+    public status: number,
   ) {
     super(message);
 

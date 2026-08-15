@@ -8,8 +8,8 @@ import {
   render,
 } from "../../test-utils/index.js";
 import { spyOnMatchMedia } from "../../test-utils/vitest/index.js";
-import { AppSizeProvider, useAppSize } from "../AppSizeProvider.js";
 import { type AppSize } from "../appSize.js";
+import { AppSizeProvider, useAppSize } from "../AppSizeProvider.js";
 
 const matchMedia = spyOnMatchMedia();
 
@@ -20,7 +20,7 @@ beforeEach(() => {
 describe("AppSizeProvider", () => {
   it("should render without crashing", () => {
     expect(() =>
-      render(<AppSizeProvider>Hello</AppSizeProvider>)
+      render(<AppSizeProvider>Hello</AppSizeProvider>),
     ).not.toThrow();
   });
 
@@ -33,7 +33,7 @@ describe("AppSizeProvider", () => {
       render(
         <AppSizeProvider>
           <AppSizeProvider>Hello</AppSizeProvider>
-        </AppSizeProvider>
+        </AppSizeProvider>,
       );
     }).toThrow("The `AppSizeProvider` cannot be mounted multiple times.");
   });
@@ -51,7 +51,7 @@ describe("useAppSize", () => {
     error.mockImplementation(() => {});
 
     expect(() => render(<Test />)).toThrow(
-      "The `AppSizeProvider` has not been mounted."
+      "The `AppSizeProvider` has not been mounted.",
     );
   });
 
@@ -65,7 +65,7 @@ describe("useAppSize", () => {
     render(
       <AppSizeProvider>
         <Listener />
-      </AppSizeProvider>
+      </AppSizeProvider>,
     );
 
     expect(appSize).toEqual({

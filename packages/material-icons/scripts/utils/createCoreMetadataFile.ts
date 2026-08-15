@@ -8,7 +8,7 @@ import { type MaterialIconAndSymbolMetadata } from "./getMaterialMetadata.js";
 
 export async function createCoreMetadataFIle(
   metadata: MaterialIconAndSymbolMetadata,
-  projectRoot: string
+  projectRoot: string,
 ): Promise<void> {
   const { iconNames, iconFamilyTypes, symbolNames, symbolFamilyTypes } =
     metadata;
@@ -28,7 +28,7 @@ ${printTypeUnion("MaterialSymbolFamily", symbolFamilyTypes)}
 /** @since 6.0.0 */
 ${printTypeUnion("MaterialSymbolName", [...symbolNames])}
 
-`
+`,
   );
 
   const materialTypesPath = join(
@@ -37,7 +37,7 @@ ${printTypeUnion("MaterialSymbolName", [...symbolNames])}
     "core",
     "src",
     "icon",
-    "material.ts"
+    "material.ts",
   );
   await writeFile(materialTypesPath, generatedTypes, "utf8");
   console.log(`Wrote "${materialTypesPath}"`);

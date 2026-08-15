@@ -219,7 +219,7 @@ export interface ResizeObserverHookOptions<E extends HTMLElement> {
  * {@link RefCallback} instead of `[nodeRef, refCallback]`
  */
 export function useResizeObserver<E extends HTMLElement>(
-  options: ResizeObserverHookOptions<E>
+  options: ResizeObserverHookOptions<E>,
 ): RefCallback<E> {
   const {
     ref,

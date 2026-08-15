@@ -67,7 +67,7 @@ export interface LayoutAppBarHeightResult {
  * @since 6.0.0
  */
 export function useLayoutAppBarHeight(
-  ref?: Ref<HTMLDivElement>
+  ref?: Ref<HTMLDivElement>,
 ): LayoutAppBarHeightResult {
   const { height, elementRef, observedOnce } = useElementSize({
     ref,

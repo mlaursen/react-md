@@ -11,15 +11,15 @@ describe("NoSsr", () => {
       renderToString(
         <SsrProvider ssr>
           <NoSsr>Hidden Content</NoSsr>
-        </SsrProvider>
-      )
+        </SsrProvider>,
+      ),
     ).toBe("");
     expect(
       renderToString(
         <SsrProvider>
           <NoSsr>Hidden Content</NoSsr>
-        </SsrProvider>
-      )
+        </SsrProvider>,
+      ),
     ).toBe("Hidden Content");
   });
 });

@@ -10,7 +10,7 @@ type Specifier = ImportSpecifier | ImportDefaultSpecifier;
 
 export function getImportedName(
   importSpecifier: Specifier | ASTPath<Specifier>,
-  fallback = ""
+  fallback = "",
 ): string {
   const node =
     "node" in importSpecifier ? importSpecifier.node : importSpecifier;

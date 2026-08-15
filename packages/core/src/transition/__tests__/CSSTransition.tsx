@@ -10,8 +10,8 @@ import {
 } from "vitest";
 
 import { act, fireEvent, render, screen } from "../../test-utils/index.js";
-import { CSSTransition, type CSSTransitionProps } from "../CSSTransition.js";
 import { TRANSITION_CONFIG } from "../config.js";
+import { CSSTransition, type CSSTransitionProps } from "../CSSTransition.js";
 import {
   type CSSTransitionClassNames,
   type TransitionTimeout,

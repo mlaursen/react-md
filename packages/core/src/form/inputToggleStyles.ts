@@ -80,6 +80,6 @@ export function inputToggle(options: InputToggleClassNameOptions): string {
       uncontrolled,
     }),
     cssUtils({ textColor }),
-    className
+    className,
   );
 }

@@ -1,4 +1,4 @@
-import { format } from "prettier";
+import { format } from "oxfmt";
 import { type VariableItem } from "sassdoc";
 
 import { assertValidVariableDataType } from "./assertions.js";
@@ -73,7 +73,7 @@ function consumeMatchingParens(s: string, totalParens = 0): string {
 
 function isCssFunction(remaining: string, endIndex: number): boolean {
   return /(var|calc|rgba?|rotate(3d)?|translate(X|Y|3d)?|cubic-bezier)\(/.test(
-    remaining.substring(0, endIndex + 1)
+    remaining.substring(0, endIndex + 1),
   );
 }
 
@@ -174,7 +174,7 @@ function parseList(compiledValue: string): SimplePrimative[] {
 function compileVariableValue(
   src: string,
   variable: VariableItem,
-  index?: number
+  index?: number,
 ): ValuedVariable {
   const {
     context: { name, value: originalValue },
@@ -259,11 +259,12 @@ async function stringifyVariableValue(value: VariableValue): Promise<string> {
 
   if (!isNestedList(value)) {
     const prefix = "export default ";
-    const formatted = await format(`${prefix}${JSON.stringify(value)}`, {
-      parser: "typescript",
-    });
+    const formatted = await format(
+      "compiledValue.ts",
+      `${prefix}${JSON.stringify(value)}`,
+    );
 
-    return formatted.substring(prefix.length);
+    return formatted.code.substring(prefix.length);
   }
 
   const parts: string[] = [];
@@ -273,16 +274,16 @@ async function stringifyVariableValue(value: VariableValue): Promise<string> {
   }
   const prefix = "$compiled-to: ";
   const code = `${prefix}(${parts.join(",\n")})`;
-  const formatted = await format(code, { parser: "scss" });
+  const formatted = await format("compiledValue.scss", code);
 
-  return formatted.replace(/;\r?\n$/, "").substring(prefix.length);
+  return formatted.code.replace(/;\r?\n$/, "").substring(prefix.length);
 }
 
 export async function getCompiledVariableValue(
   src: string,
-  variable: VariableItem
+  variable: VariableItem,
 ): Promise<string> {
   return await stringifyVariableValue(
-    compileVariableValue(src, variable).value
+    compileVariableValue(src, variable).value,
   );
 }

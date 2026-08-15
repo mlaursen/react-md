@@ -239,8 +239,8 @@ $sticky-background-color: theme.theme-get-var(background-color) !default;
 ///
 /// @type Map
 $sticky-header-inactive-styles: (
-  transition: background transition.$linear-duration
-    transition.$linear-timing-function,
+  transition:
+    background transition.$linear-duration transition.$linear-timing-function,
   "&::after": (
     box-shadow: box-shadows.box-shadow(4),
     content: "",
@@ -248,8 +248,8 @@ $sticky-header-inactive-styles: (
     pointer-events: none,
     opacity: 0,
     position: absolute,
-    transition: opacity transition.$linear-duration
-      transition.$linear-timing-function,
+    transition:
+      opacity transition.$linear-duration transition.$linear-timing-function,
     z-index: 0,
   ),
 ) !default;
@@ -578,8 +578,7 @@ $row-selected-styles: (
               @include utils.pseudo-element;
 
               background-color: transparent;
-              transition: background
-                transition.$linear-duration
+              transition: background transition.$linear-duration
                 transition.$linear-timing-function;
 
               .rmd-tr--hoverable:hover & {

@@ -8,17 +8,18 @@ import dynamic from "next/dynamic.js";
 import { type ReactElement } from "react";
 
 import { DesktopOnly } from "./DesktopOnly.js";
-import styles from "./HowToUseSheet.module.scss";
 import { HowToUseSheetContent } from "./HowToUseSheetContent.js";
 import { HowToUseSheetHeader } from "./HowToUseSheetHeader.js";
 import { useMaterialIconsAndSymbols } from "./MaterialIconsAndSymbolsProvider.js";
+
+import styles from "./HowToUseSheet.module.scss";
 
 const ResizeHowToUseSheet = dynamic(
   () =>
     import("./ResizeHowToUseSheet.js").then((mod) => mod.ResizeHowToUseSheet),
   {
     ssr: false,
-  }
+  },
 );
 
 export interface HowToUseSheetProps {

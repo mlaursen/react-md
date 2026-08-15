@@ -33,7 +33,7 @@ type PrevDataKey = (typeof PREV_DATA_KEYS)[number];
 
 function isPrevDataKey(
   j: JSCodeshift,
-  node: unknown
+  node: unknown,
 ): node is Identifier & { name: PrevDataKey } {
   return (
     j.Identifier.check(node) &&
@@ -43,7 +43,7 @@ function isPrevDataKey(
 
 function convertCallbackArrowFunction(
   j: JSCodeshift,
-  arrowFunction: ArrowFunctionExpression
+  arrowFunction: ArrowFunctionExpression,
 ): void {
   const [prevArg] = arrowFunction.params;
 
@@ -111,12 +111,12 @@ function convertCallbackArrowFunction(
           } else if (name === "height" || name === "width") {
             replacement = j.memberExpression(
               j.memberExpression(entry, j.identifier("contentRect")),
-              prop
+              prop,
             );
           } else {
             replacement = j.memberExpression(
               j.memberExpression(entry, j.identifier("target")),
-              prop
+              prop,
             );
           }
           j(memberExpression).replaceWith(replacement);
@@ -177,7 +177,7 @@ function convertCallbackArrowFunction(
           width && j.objectProperty(j.identifier("width"), width),
         ].filter((b) => !!b),
         value: j.memberExpression(entry, j.identifier("contentRect")),
-      })
+      }),
     );
   }
 
@@ -187,7 +187,7 @@ function convertCallbackArrowFunction(
         j,
         id: element,
         value: j.memberExpression(entry, j.identifier("target")),
-      })
+      }),
     );
 
     if (scrollHeight || scrollWidth) {
@@ -201,7 +201,7 @@ function convertCallbackArrowFunction(
               j.objectProperty(j.identifier("scrollWidth"), scrollWidth),
           ].filter((b) => !!b),
           value: element,
-        })
+        }),
       );
     }
   } else if (scrollHeight || scrollWidth) {
@@ -215,7 +215,7 @@ function convertCallbackArrowFunction(
             j.objectProperty(j.identifier("scrollWidth"), scrollWidth),
         ].filter((b) => !!b),
         value: j.memberExpression(entry, j.identifier("target")),
-      })
+      }),
     );
   }
 
@@ -225,7 +225,7 @@ function convertCallbackArrowFunction(
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -259,7 +259,7 @@ export default function transformer(
         ) {
           const onUpdate = j.objectProperty(
             j.identifier("onUpdate"),
-            handleResize
+            handleResize,
           );
           const properties: ObjectPropertyKind[] = [onUpdate];
           if (j.Identifier.check(resizeOptions)) {
@@ -374,7 +374,7 @@ export default function transformer(
                   value: j.callExpression(j.identifier("useEnsuredRef"), [
                     node,
                   ]),
-                })
+                }),
               );
             });
 
@@ -395,7 +395,7 @@ export default function transformer(
             j,
             id: ref,
             value: useRef,
-          })
+          }),
         );
 
         hookOptions.properties.push(j.objectProperty(j.identifier("ref"), ref));
@@ -412,7 +412,7 @@ export default function transformer(
         const onUpdate = options.properties.find(
           (prop) =>
             j.ObjectProperty.check(prop) &&
-            getObjectPropertyName(prop) === "onUpdate"
+            getObjectPropertyName(prop) === "onUpdate",
         );
         if (!j.ObjectProperty.check(onUpdate)) {
           return;

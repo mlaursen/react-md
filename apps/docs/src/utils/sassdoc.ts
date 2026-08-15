@@ -18,13 +18,13 @@ export const getGroupName = (itemOrGroup: FormattedItem | string): string => {
 };
 
 export function isFormattedVariableItem(
-  item: FormattedSassDocItem
+  item: FormattedSassDocItem,
 ): item is FormattedVariableItem {
   return item.type !== "mixin" && item.type !== "function";
 }
 
 export function getSassDocLink(
-  item: FormattedSassDocItem | ItemReferenceLink
+  item: FormattedSassDocItem | ItemReferenceLink,
 ): string {
   let { type } = item;
   const { name, group } = item;
@@ -37,7 +37,7 @@ export function getSassDocLink(
 
 export function createTOC(
   lookup: ReadonlyMap<string, FormattedSassDocItem>,
-  children: string
+  children: string,
 ): TableOfContentsHeadings {
   const toc: TableOfContentsHeading[] = [];
   if (lookup.size === 0) {

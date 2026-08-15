@@ -154,7 +154,7 @@ export interface FocusContainerImplementation<E extends HTMLElement> {
  * @since 6.0.0
  */
 export function useFocusContainer<E extends HTMLElement>(
-  options: FocusContainerOptions<E>
+  options: FocusContainerOptions<E>,
 ): FocusContainerImplementation<E> {
   const {
     nodeRef,

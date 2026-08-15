@@ -85,7 +85,7 @@ import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
  */
 export function useDebouncedFunction<F extends AnyFunction>(
   func: F,
-  wait: number
+  wait: number,
 ): DebouncedFunction<F> {
   const timeout = useRef<NodeJS.Timeout>(undefined);
   const funcRef = useRef(func);

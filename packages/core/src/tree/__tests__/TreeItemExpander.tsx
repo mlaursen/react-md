@@ -15,8 +15,8 @@ describe("TreeItemExpander", () => {
           disabled={false}
           expanded={false}
           isLeafNode={false}
-        />
-      )
+        />,
+      ),
     ).toThrow("Cannot find a parent Tree component");
 
     error.mockRestore();
@@ -58,7 +58,7 @@ describe("TreeItemExpander", () => {
           expanded={false}
           isLeafNode={false}
         />
-      </TreeProvider>
+      </TreeProvider>,
     );
 
     const iconWrapper = container.firstElementChild;

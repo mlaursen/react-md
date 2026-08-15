@@ -32,6 +32,6 @@ export function badge(options: BadgeClassNameOptions = {}): string {
   return cnb(
     styles({ greyscale }),
     cssUtils({ backgroundColor: !clear && !greyscale ? theme : undefined }),
-    className
+    className,
   );
 }

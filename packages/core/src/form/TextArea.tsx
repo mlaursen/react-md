@@ -11,12 +11,12 @@ import {
 import { type PropsWithRef } from "../types.js";
 import { useEnsuredId } from "../useEnsuredId.js";
 import { useEnsuredRef } from "../useEnsuredRef.js";
+import { getFormConfig } from "./formConfig.js";
 import { FormMessageContainer } from "./FormMessageContainer.js";
 import { Label } from "./Label.js";
 import { ResizingTextAreaWrapper } from "./ResizingTextAreaWrapper.js";
-import { TextFieldContainer } from "./TextFieldContainer.js";
-import { getFormConfig } from "./formConfig.js";
 import { textArea, textAreaContainer } from "./textAreaStyles.js";
+import { TextFieldContainer } from "./TextFieldContainer.js";
 import { type FormFieldOptions } from "./types.js";
 import {
   type TextAreaResize,
@@ -164,7 +164,7 @@ export function TextArea(props: TextAreaProps): ReactElement {
   const theme = getFormConfig("theme", propTheme);
   const underlineDirection = getFormConfig(
     "underlineDirection",
-    propUnderlineDirection
+    propUnderlineDirection,
   );
   const [areaRef, areaRefCallback] = useEnsuredRef(ref);
 

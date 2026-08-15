@@ -28,7 +28,7 @@ export function isValidVariableDataType(type: unknown): type is DataType {
 }
 
 export function assertValidVariableDataType(
-  type: unknown
+  type: unknown,
 ): asserts type is DataType {
   if (!type || !isValidVariableDataType(type)) {
     throw new Error(`"${type}" is not a valid variable data type`);

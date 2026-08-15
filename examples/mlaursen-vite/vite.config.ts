@@ -1,8 +1,9 @@
+import { resolve } from "node:path";
+
 /// <reference types="vitest/config" />
 import { materialSymbolsPlugin } from "@react-md/vite-material-symbols-plugin";
 import babel from "@rolldown/plugin-babel";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";
-import { resolve } from "node:path";
 import { defineConfig } from "vite";
 
 // https://vite.dev/config/

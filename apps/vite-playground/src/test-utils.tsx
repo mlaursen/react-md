@@ -18,7 +18,7 @@ export function renderWithEverything<
   BaseElement extends Element | DocumentFragment = Container,
 >(
   ui: ReactElement,
-  options: RenderOptions<Q, Container, BaseElement> = {}
+  options: RenderOptions<Q, Container, BaseElement> = {},
 ): RenderResult<Q, Container, BaseElement> {
   const { wrapper: Wrapper = Fragment, ...renderOptions } = options;
 

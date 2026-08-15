@@ -26,7 +26,7 @@ describe("SegmentedButton", () => {
         {...props}
         style={{ color: "white" }}
         className="custom-class-name"
-      />
+      />,
     );
     expect(element).toMatchSnapshot();
 
@@ -47,7 +47,7 @@ describe("SegmentedButton", () => {
         rightAddon={<FontIcon>check</FontIcon>}
       >
         Content
-      </SegmentedButton>
+      </SegmentedButton>,
     );
 
     const button = screen.getByRole("button", { name: "Content" });

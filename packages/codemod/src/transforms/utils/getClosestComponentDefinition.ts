@@ -8,7 +8,7 @@ export interface GetClosestComponentDefinitionOptions {
 }
 
 export function getClosestComponentDefinition(
-  options: GetClosestComponentDefinitionOptions
+  options: GetClosestComponentDefinitionOptions,
 ): ComponentDefinition | undefined {
   const { j, from } = options;
 

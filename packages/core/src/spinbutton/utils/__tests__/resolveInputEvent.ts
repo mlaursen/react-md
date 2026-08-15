@@ -18,7 +18,7 @@ describe("resolveInputEvent", () => {
         prevValue: null,
         text: "",
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "cleared",
       nextValue: null,
@@ -31,7 +31,7 @@ describe("resolveInputEvent", () => {
         prevValue: 3,
         text: "",
         typedCount: 1,
-      })
+      }),
     ).toEqual({
       reason: "cleared",
       nextValue: null,
@@ -52,7 +52,7 @@ describe("resolveInputEvent", () => {
         prevText: "",
         prevValue: null,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "cleared",
       nextValue: null,
@@ -66,7 +66,7 @@ describe("resolveInputEvent", () => {
         prevText: "",
         prevValue: null,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "ignored",
       nextValue: null,
@@ -80,7 +80,7 @@ describe("resolveInputEvent", () => {
         prevText: "",
         prevValue: null,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "typed-to-completion",
       nextValue: 0,
@@ -93,7 +93,7 @@ describe("resolveInputEvent", () => {
         prevText: "AM",
         prevValue: 0,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "typed-to-completion",
       nextValue: 0,
@@ -106,7 +106,7 @@ describe("resolveInputEvent", () => {
         prevText: "PM",
         prevValue: 1,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "typed-to-completion",
       nextValue: 0,
@@ -120,7 +120,7 @@ describe("resolveInputEvent", () => {
         prevText: "PM",
         prevValue: 1,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "typed-to-completion",
       nextValue: 1,
@@ -135,7 +135,7 @@ describe("resolveInputEvent", () => {
         prevText: "",
         prevValue: null,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "ignored",
       nextValue: null,
@@ -147,7 +147,7 @@ describe("resolveInputEvent", () => {
         prevText: "3",
         prevValue: 3,
         typedCount: 1,
-      })
+      }),
     ).toEqual({
       reason: "ignored",
       nextValue: 3,
@@ -160,7 +160,7 @@ describe("resolveInputEvent", () => {
         prevText: "",
         prevValue: null,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "ignored",
       nextValue: null,
@@ -172,7 +172,7 @@ describe("resolveInputEvent", () => {
         prevText: "3",
         prevValue: 3,
         typedCount: 1,
-      })
+      }),
     ).toEqual({
       reason: "ignored",
       nextValue: 3,
@@ -187,7 +187,7 @@ describe("resolveInputEvent", () => {
         prevText: "",
         prevValue: null,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "type",
       nextValue: 3,
@@ -202,7 +202,7 @@ describe("resolveInputEvent", () => {
         prevText: "3",
         prevValue: 3,
         typedCount: 1,
-      })
+      }),
     ).toEqual({
       reason: "typed-to-completion",
       nextValue: 33,
@@ -217,7 +217,7 @@ describe("resolveInputEvent", () => {
         prevText: "",
         prevValue: null,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "placeholder-digit",
       nextValue: 0,
@@ -230,7 +230,7 @@ describe("resolveInputEvent", () => {
         prevText: "",
         prevValue: null,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "type",
       nextValue: 0,
@@ -245,7 +245,7 @@ describe("resolveInputEvent", () => {
         prevValue: null,
         typedCount: 0,
         minDigits: 4,
-      })
+      }),
     ).toEqual({
       reason: "placeholder-digit",
       nextValue: 0,
@@ -288,7 +288,7 @@ describe("resolveInputEvent", () => {
         prevText: "0",
         prevValue: 0,
         typedCount: 1,
-      })
+      }),
     ).toEqual({
       reason: "typed-to-completion",
       nextValue: 0,
@@ -304,7 +304,7 @@ describe("resolveInputEvent", () => {
         prevText: "",
         prevValue: null,
         typedCount: 0,
-      })
+      }),
     ).toEqual({
       reason: "typed-to-completion",
       nextValue: 3,
@@ -317,7 +317,7 @@ describe("resolveInputEvent", () => {
         prevText: "0",
         prevValue: 0,
         typedCount: 1,
-      })
+      }),
     ).toEqual({
       reason: "typed-to-completion",
       nextValue: 3,
@@ -331,7 +331,7 @@ describe("resolveInputEvent", () => {
         prevText: "1",
         prevValue: 0,
         typedCount: 1,
-      })
+      }),
     ).toEqual({
       reason: "typed-to-completion",
       nextValue: 10,

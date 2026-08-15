@@ -30,7 +30,7 @@ describe("ToastActionButton", () => {
     const { rerender } = render(
       <CurrentToastActionsProvider value={actions}>
         <ToastActionButton {...props} />
-      </CurrentToastActionsProvider>
+      </CurrentToastActionsProvider>,
     );
 
     const button = screen.getByRole("button", { name: "Button" });
@@ -45,14 +45,14 @@ describe("ToastActionButton", () => {
           style={{ color: "white" }}
           className="custom-class-name"
         />
-      </CurrentToastActionsProvider>
+      </CurrentToastActionsProvider>,
     );
     expect(button).toMatchSnapshot();
 
     rerender(
       <CurrentToastActionsProvider value={actions}>
         <ToastActionButton {...props} reordered />
-      </CurrentToastActionsProvider>
+      </CurrentToastActionsProvider>,
     );
     expect(button).toMatchSnapshot();
   });
@@ -78,7 +78,7 @@ describe("ToastActionButton", () => {
             {children}
           </CurrentToastActionsProvider>
         ),
-      }
+      },
     );
 
     const button = screen.getByRole("button", { name: "Button" });
@@ -104,7 +104,7 @@ describe("ToastActionButton", () => {
       // do nothing
     });
     expect(() => render(<ToastActionButton />)).toThrow(
-      "The `CurrentToastActionsProvider` has not been initialized"
+      "The `CurrentToastActionsProvider` has not been initialized",
     );
 
     error.mockRestore();

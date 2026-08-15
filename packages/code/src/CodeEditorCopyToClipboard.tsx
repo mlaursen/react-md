@@ -16,7 +16,7 @@ export function CodeEditorCopyToClipboard(
   props: RequireAtLeastOne<
     CodeEditorCopyToClipboardProps,
     "copyText" | "getCopyText"
-  >
+  >,
 ): ReactElement {
   const { className, ...remaining } = props;
   const addToast = useAddToast();

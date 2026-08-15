@@ -33,7 +33,7 @@ type DisableFocusType =
 
 const isDisableFocusType = (
   j: JSCodeshift,
-  value: ObjectProperty["value"]
+  value: ObjectProperty["value"],
 ): value is DisableFocusType =>
   j.Identifier.check(value) ||
   j.BooleanLiteral.check(value) ||
@@ -44,7 +44,7 @@ const isDisableFocusType = (
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -190,8 +190,8 @@ export default function transformer(
           menuProps.push(
             j.jsxAttribute(
               j.jsxIdentifier(propName),
-              getObjectPropertyJSXValue({ j, prop })
-            )
+              getObjectPropertyJSXValue({ j, prop }),
+            ),
           );
         });
         options.properties = properties;
@@ -199,23 +199,23 @@ export default function transformer(
         const isMount = j.binaryExpression(
           "===",
           j.identifier("type"),
-          j.stringLiteral("mount")
+          j.stringLiteral("mount"),
         );
         const isUnmount = j.binaryExpression(
           "===",
           j.identifier("type"),
-          j.stringLiteral("unmount")
+          j.stringLiteral("unmount"),
         );
         let body: ExpressionKind | BlockStatement | undefined;
         if (disableFocusOnMount && disableFocusOnUnmount) {
           body = j.blockStatement([
             j.ifStatement(
               isMount,
-              j.blockStatement([j.returnStatement(disableFocusOnMount)])
+              j.blockStatement([j.returnStatement(disableFocusOnMount)]),
             ),
             j.ifStatement(
               isUnmount,
-              j.blockStatement([j.returnStatement(disableFocusOnUnmount)])
+              j.blockStatement([j.returnStatement(disableFocusOnUnmount)]),
             ),
             j.returnStatement(j.booleanLiteral(false)),
           ]);
@@ -230,9 +230,9 @@ export default function transformer(
             j.jsxAttribute(
               j.jsxIdentifier("isFocusTypeDisabled"),
               j.jsxExpressionContainer(
-                j.arrowFunctionExpression([j.identifier("type")], body)
-              )
-            )
+                j.arrowFunctionExpression([j.identifier("type")], body),
+              ),
+            ),
           );
         }
 

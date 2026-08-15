@@ -73,7 +73,7 @@ const navItems = {
 } satisfies TreeData;
 
 function Render(
-  props: RenderRecursiveItemsProps<DefaultTreeItemNode, Data>
+  props: RenderRecursiveItemsProps<DefaultTreeItemNode, Data>,
 ): ReactElement {
   const {
     item,
@@ -112,7 +112,7 @@ function Render(
 }
 
 function NestedNavigation(
-  props: RenderRecursiveItemsProps<DefaultTreeItemNode, Data>
+  props: RenderRecursiveItemsProps<DefaultTreeItemNode, Data>,
 ): ReactElement {
   const {
     item,

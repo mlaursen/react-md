@@ -94,7 +94,7 @@ describe("useTransition", () => {
       const toggle = screen.getByRole("button", { name: "Toggle" });
 
       expect(() =>
-        screen.getByText(`The current stage is: "exited"`)
+        screen.getByText(`The current stage is: "exited"`),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: false")).not.toThrow();
       expect(stages).toEqual(["exited"]);
@@ -103,14 +103,14 @@ describe("useTransition", () => {
         vi.runAllTimers();
       });
       expect(() =>
-        screen.getByText(`The current stage is: "exited"`)
+        screen.getByText(`The current stage is: "exited"`),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
       fireEvent.click(toggle);
       expect(stages).toEqual(["exited", "enter", "entering"]);
       expect(() =>
-        screen.getByText(`The current stage is: "entering"`)
+        screen.getByText(`The current stage is: "entering"`),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
@@ -120,7 +120,7 @@ describe("useTransition", () => {
 
       expect(stages).toEqual(["exited", "enter", "entering", "entered"]);
       expect(() =>
-        screen.getByText(`The current stage is: "entered"`)
+        screen.getByText(`The current stage is: "entered"`),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
@@ -135,7 +135,7 @@ describe("useTransition", () => {
         "exiting",
       ]);
       expect(() =>
-        screen.getByText(`The current stage is: "exiting"`)
+        screen.getByText(`The current stage is: "exiting"`),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
@@ -152,7 +152,7 @@ describe("useTransition", () => {
         "exited",
       ]);
       expect(() =>
-        screen.getByText(`The current stage is: "exited"`)
+        screen.getByText(`The current stage is: "exited"`),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: false")).not.toThrow();
     });
@@ -246,20 +246,20 @@ describe("useTransition", () => {
     it("should handle non-temporary appear transitions correctly", () => {
       const { rerender } = render(<Test appear />);
       expect(() =>
-        screen.getByText('The current stage is: "exited"')
+        screen.getByText('The current stage is: "exited"'),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: false")).not.toThrow();
       act(() => {
         vi.runAllTimers();
       });
       expect(() =>
-        screen.getByText('The current stage is: "exited"')
+        screen.getByText('The current stage is: "exited"'),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
       rerender(<Test appear defaultTransitionIn key="new-key" />);
       expect(() =>
-        screen.getByText('The current stage is: "entering"')
+        screen.getByText('The current stage is: "entering"'),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
@@ -267,13 +267,13 @@ describe("useTransition", () => {
         vi.runAllTimers();
       });
       expect(() =>
-        screen.getByText('The current stage is: "entered"')
+        screen.getByText('The current stage is: "entered"'),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
       fireEvent.click(screen.getByRole("button"));
       expect(() =>
-        screen.getByText('The current stage is: "exiting"')
+        screen.getByText('The current stage is: "exiting"'),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
@@ -281,7 +281,7 @@ describe("useTransition", () => {
         vi.runAllTimers();
       });
       expect(() =>
-        screen.getByText('The current stage is: "exited"')
+        screen.getByText('The current stage is: "exited"'),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: false")).not.toThrow();
     });
@@ -298,7 +298,7 @@ describe("useTransition", () => {
 
       rerender(<Test appear temporary defaultTransitionIn key="new-key" />);
       expect(() =>
-        screen.getByText('The current stage is: "entering"')
+        screen.getByText('The current stage is: "entering"'),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
@@ -306,13 +306,13 @@ describe("useTransition", () => {
         vi.runAllTimers();
       });
       expect(() =>
-        screen.getByText('The current stage is: "entered"')
+        screen.getByText('The current stage is: "entered"'),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: true")).not.toThrow();
 
       fireEvent.click(screen.getByRole("button"));
       expect(() =>
-        screen.getByText('The current stage is: "exiting"')
+        screen.getByText('The current stage is: "exiting"'),
       ).not.toThrow();
       expect(() => screen.getByText("Appearing: false")).not.toThrow();
 
@@ -352,14 +352,14 @@ describe("useTransition", () => {
       const toggle = screen.getByRole("button", { name: "Toggle" });
 
       expect(() =>
-        screen.getByText(`The current stage is: "exited"`)
+        screen.getByText(`The current stage is: "exited"`),
       ).not.toThrow();
       expect(stages).toEqual(["exited"]);
 
       fireEvent.click(toggle);
       expect(stages).toEqual(["exited", "enter", "entering"]);
       expect(() =>
-        screen.getByText(`The current stage is: "entering"`)
+        screen.getByText(`The current stage is: "entering"`),
       ).not.toThrow();
 
       act(() => {
@@ -367,7 +367,7 @@ describe("useTransition", () => {
       });
       expect(stages).toEqual(["exited", "enter", "entering"]);
       expect(() =>
-        screen.getByText(`The current stage is: "entering"`)
+        screen.getByText(`The current stage is: "entering"`),
       ).not.toThrow();
 
       fireEvent.click(toggle);
@@ -379,7 +379,7 @@ describe("useTransition", () => {
         "exiting",
       ]);
       expect(() =>
-        screen.getByText(`The current stage is: "exiting"`)
+        screen.getByText(`The current stage is: "exiting"`),
       ).not.toThrow();
 
       act(() => {
@@ -394,7 +394,7 @@ describe("useTransition", () => {
         "exited",
       ]);
       expect(() =>
-        screen.getByText(`The current stage is: "exited"`)
+        screen.getByText(`The current stage is: "exited"`),
       ).not.toThrow();
 
       fireEvent.click(toggle);
@@ -425,7 +425,7 @@ describe("useTransition", () => {
         "entered",
       ]);
       expect(() =>
-        screen.getByText(`The current stage is: "entered"`)
+        screen.getByText(`The current stage is: "entered"`),
       ).not.toThrow();
     });
   });
@@ -508,7 +508,7 @@ describe("useTransition", () => {
         <SsrProvider ssr>
           {" "}
           <Test />
-        </SsrProvider>
+        </SsrProvider>,
       );
 
       await waitFor(() => {
@@ -526,7 +526,7 @@ describe("useTransition", () => {
       render(
         <SsrProvider ssr>
           <Test />
-        </SsrProvider>
+        </SsrProvider>,
       );
       await waitFor(() => {
         expect(isSsr).toBe(false);

@@ -55,7 +55,10 @@ function RangeSliderTest(props: RangeSliderTestProps): ReactElement {
 const setupRangeSliderDragTest = (vertical = false) => {
   const rect = document.body.getBoundingClientRect();
   rmdRender(
-    <RangeSliderTest options={{ defaultValue: [30, 60] }} vertical={vertical} />
+    <RangeSliderTest
+      options={{ defaultValue: [30, 60] }}
+      vertical={vertical}
+    />,
   );
   const { sliderTrack, minSlider, maxSlider } = getRangeSliderTestElements();
 
@@ -74,7 +77,7 @@ const setupRangeSliderDragTest = (vertical = false) => {
   vi.spyOn(minSlider, "getBoundingClientRect").mockImplementation(() => {
     const value = Number.parseInt(
       minSlider.getAttribute("aria-valuenow") || "",
-      10
+      10,
     );
     const position = value * 4;
     return {
@@ -86,7 +89,7 @@ const setupRangeSliderDragTest = (vertical = false) => {
   vi.spyOn(maxSlider, "getBoundingClientRect").mockImplementation(() => {
     const value = Number.parseInt(
       maxSlider.getAttribute("aria-valuenow") || "",
-      10
+      10,
     );
     const position = value * 4;
     return {
@@ -113,7 +116,7 @@ describe("Slider", () => {
           containerRef={ref}
           style={{ color: "white" }}
           className="custom-class-name"
-        />
+        />,
       );
       expect(ref.current).toMatchSnapshot();
     });
@@ -282,7 +285,7 @@ describe("Slider", () => {
 
     it("should support a default value as a number or function", () => {
       const { unmount } = rmdRender(
-        <SingleThumbTest options={{ defaultValue: 30 }} />
+        <SingleThumbTest options={{ defaultValue: 30 }} />,
       );
       expect(getSliderTestElements({ name: "Slider" }).slider).toHaveValue(30);
       unmount();
@@ -395,7 +398,7 @@ describe("Slider", () => {
       expect(sliderInput).toHaveAttribute("name", "intensity");
 
       rerender(
-        <SingleThumbTest name="volume" thumbProps={{ name: "intensity" }} />
+        <SingleThumbTest name="volume" thumbProps={{ name: "intensity" }} />,
       );
       expect(sliderInput).toHaveAttribute("name", "intensity");
     });
@@ -414,7 +417,7 @@ describe("Slider", () => {
           containerRef={ref}
           style={{ color: "white" }}
           className="custom-class-name"
-        />
+        />,
       );
       expect(ref.current).toMatchSnapshot();
     });
@@ -784,13 +787,13 @@ describe("Slider", () => {
 
     it("should allow the user to configure the thumb labels", () => {
       const { rerender } = rmdRender(
-        <RangeSliderTest minThumbLabel="Minimum" maxThumbLabel="Maximum" />
+        <RangeSliderTest minThumbLabel="Minimum" maxThumbLabel="Maximum" />,
       );
       expect(() =>
         getRangeSliderTestElements({
           min: { name: "Minimum" },
           max: { name: "Maximum" },
-        })
+        }),
       ).not.toThrow();
 
       rerender(
@@ -801,7 +804,7 @@ describe("Slider", () => {
             minThumbLabelledBy="label-1"
             maxThumbLabelledBy="label-2"
           />
-        </>
+        </>,
       );
       const { minSlider, minSliderInput, maxSlider, maxSliderInput } =
         getRangeSliderTestElements({
@@ -817,7 +820,7 @@ describe("Slider", () => {
 
     it("should support a default value as a number or function", () => {
       const { unmount } = rmdRender(
-        <RangeSliderTest options={{ defaultValue: [30, 60] }} />
+        <RangeSliderTest options={{ defaultValue: [30, 60] }} />,
       );
       let { minSlider, maxSlider } = getRangeSliderTestElements();
       expect(minSlider).toHaveValue(30);
@@ -1046,7 +1049,7 @@ describe("Slider", () => {
         <RangeSliderTest
           minThumbProps={{ name: "intensity" }}
           maxThumbProps={{ name: "value" }}
-        />
+        />,
       );
 
       const { minSliderInput, maxSliderInput } = getRangeSliderTestElements();
@@ -1058,7 +1061,7 @@ describe("Slider", () => {
           name="volume"
           minThumbProps={{ name: "intensity" }}
           maxThumbProps={{ name: "value" }}
-        />
+        />,
       );
       expect(minSliderInput).toHaveAttribute("name", "intensity");
       expect(maxSliderInput).toHaveAttribute("name", "value");
@@ -1108,14 +1111,14 @@ describe("Slider", () => {
 
     it("should support rendering the tooltip always", async () => {
       const { rerender } = rmdRender(
-        <SingleThumbTest discrete tooltipVisibility="always" />
+        <SingleThumbTest discrete tooltipVisibility="always" />,
       );
 
       const tooltip = screen.getByRole("tooltip");
       expect(tooltip).toHaveTextContent("50");
 
       rerender(
-        <SingleThumbTest discrete tooltipVisibility="always" disabled />
+        <SingleThumbTest discrete tooltipVisibility="always" disabled />,
       );
       expect(tooltip).toBeInTheDocument();
     });
@@ -1193,7 +1196,7 @@ describe("Slider", () => {
           getMarkProps={({ value }) => ({
             "data-testid": `mark-${value}`,
           })}
-        />
+        />,
       );
       const { sliderContainer } = getSliderTestElements({ name: "Slider" });
       const marks = screen.getAllByTestId(/^mark-/);
@@ -1209,7 +1212,7 @@ describe("Slider", () => {
           getMarkProps={({ value }) => ({
             "data-testid": `mark-${value}`,
           })}
-        />
+        />,
       );
       const { sliderContainer } = getSliderTestElements({ name: "Slider" });
       const marks = screen.getAllByTestId(/^mark-/);
@@ -1230,7 +1233,7 @@ describe("Slider", () => {
           getMarkProps={({ value }) => ({
             "data-testid": `mark-${value}`,
           })}
-        />
+        />,
       );
       const { sliderContainer } = getSliderTestElements({ name: "Slider" });
       const marks = screen.getAllByTestId(/^mark-/);

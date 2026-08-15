@@ -5,8 +5,8 @@ import {
   type CSSVariable,
   type ConfigurableThemeColors,
 } from "@react-md/core/theme/types";
-import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
 import { useColorScheme } from "@react-md/core/theme/useColorScheme";
+import { useCSSVariables } from "@react-md/core/theme/useCSSVariables";
 import { type ReactElement, type ReactNode, useMemo, useState } from "react";
 
 import { CUSTOM_THEME_KEY } from "@/constants/cookies.js";
@@ -73,7 +73,7 @@ export function CustomThemeProvider({
               }
             },
           }),
-          []
+          [],
         )}
       >
         {children}

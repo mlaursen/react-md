@@ -5,10 +5,11 @@ import { type ReactElement } from "react";
 import { type RowComponentProps } from "react-window";
 
 import { MaterialSymbolOrIcon } from "./MaterialSymbolOrIcon.js";
-import styles from "./RenderVirtualizedRow.module.scss";
-import { VirtualizedMatch } from "./VirtualizedMatch.js";
 import { type CategoryOrIconNames } from "./useVirtualizedWindow.js";
 import { getCategoryName } from "./utils.js";
+import { VirtualizedMatch } from "./VirtualizedMatch.js";
+
+import styles from "./RenderVirtualizedRow.module.scss";
 
 export interface VirtualizedData {
   list: readonly CategoryOrIconNames[];
@@ -18,7 +19,7 @@ export interface VirtualizedData {
 export type RenderVirtualizedRowProps = RowComponentProps<VirtualizedData>;
 
 export function RenderVirtualizedRow(
-  props: RenderVirtualizedRowProps
+  props: RenderVirtualizedRowProps,
 ): ReactElement {
   const { index, style, list, columns } = props;
 

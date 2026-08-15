@@ -48,7 +48,7 @@ export interface MatchMediaMockFunction {
  */
 export function createMatchMediaSpy<SpyFunction extends MatchMediaMockFunction>(
   matchMediaSpy: SpyFunction,
-  defaultMatch: MatchMediaMatcher = matchDesktop
+  defaultMatch: MatchMediaMatcher = matchDesktop,
 ): SpyFunction & MatchMediaChangeViewport {
   type Listener = (event: MediaQueryListEvent) => void;
 
@@ -66,7 +66,7 @@ export function createMatchMediaSpy<SpyFunction extends MatchMediaMockFunction>(
     },
     removeEventListener(
       type: string,
-      listener: Listener | EventListenerObject
+      listener: Listener | EventListenerObject,
     ) {
       /* c8 ignore start */
       if (typeof listener !== "function" || type !== "change") {
@@ -81,7 +81,7 @@ export function createMatchMediaSpy<SpyFunction extends MatchMediaMockFunction>(
 
   const changeViewport = (
     matcher: MatchMediaMatcher,
-    disableAct = false
+    disableAct = false,
   ): void => {
     const update = (): void => {
       globalThis.dispatchEvent(new Event("resize"));

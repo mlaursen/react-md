@@ -6,7 +6,7 @@ import {
 } from "@/components/CustomMdxComponents.js";
 
 export function useMDXComponents(
-  components: MDXComponents
+  components: MDXComponents,
 ): CustomMDXComponents {
   return {
     ...components,

@@ -48,14 +48,14 @@ export interface CircularProgressClassNameOptions {
  * @since 6.2.0
  */
 export function circularProgress(
-  options: CircularProgressClassNameOptions = {}
+  options: CircularProgressClassNameOptions = {},
 ): string {
   const { className, theme = "primary", dense, disableCentered } = options;
 
   return cnb(
     styles({ dense, centered: !disableCentered }),
     theme !== "current-color" && cssUtils({ textColor: theme }),
-    className
+    className,
   );
 }
 
@@ -74,7 +74,7 @@ export interface CircularProgressSvgClassNameOptions {
  * @since 6.2.0
  */
 export function circularProgressSvg(
-  options: CircularProgressSvgClassNameOptions = {}
+  options: CircularProgressSvgClassNameOptions = {},
 ): string {
   const { className, indeterminate, disableShrink } = options;
 
@@ -84,7 +84,7 @@ export function circularProgressSvg(
       indeterminate: indeterminate && !disableShrink,
       "rotate-only": indeterminate && disableShrink,
     }),
-    className
+    className,
   );
 }
 /**
@@ -104,7 +104,7 @@ export interface CircularProgressCircleClassNameOptions {
  * @since 6.2.0
  */
 export function circularProgressCircle(
-  options: CircularProgressCircleClassNameOptions = {}
+  options: CircularProgressCircleClassNameOptions = {},
 ): string {
   const { className, indeterminate, disableShrink, disableTransition } =
     options;
@@ -116,6 +116,6 @@ export function circularProgressCircle(
       indeterminate: indeterminate && !disableShrink,
       "rotate-only": indeterminate && disableShrink,
     }),
-    className
+    className,
   );
 }

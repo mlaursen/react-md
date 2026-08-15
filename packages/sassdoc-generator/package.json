@@ -1,9 +1,16 @@
 {
   "name": "sassdoc-generator",
   "version": "0.0.25",
-  "description": "A custom wrapper around the sassdoc package for generating docs for the website",
-  "type": "module",
   "private": true,
+  "description": "A custom wrapper around the sassdoc package for generating docs for the website",
+  "license": "MIT",
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/sassdoc-generator"
+  },
+  "type": "module",
   "exports": {
     ".": "./dist/generate.js",
     "./types": "./dist/types.d.ts",
@@ -20,27 +27,13 @@
     "clean-dist": "rm -rf dist",
     "clean": "rm -rf .turbo dist node_modules",
     "typecheck": "tsgo --noEmit",
-    "check-format": "prettier --check .",
-    "format": "prettier --write .",
     "lint": "eslint \"src/**/*.{ts,tsx,js,jsx,cjs,mjs}\"",
     "lint-fix": "pnpm lint --fix"
   },
-  "engines": {
-    "pnpm": ">=9",
-    "node": ">=20"
-  },
-  "engineStrict": true,
-  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mlaursen/react-md.git",
-    "directory": "packages/sassdoc-generator"
-  },
-  "license": "MIT",
   "dependencies": {
     "@types/sassdoc": "workspace:*",
     "docs-generator": "workspace:*",
-    "prettier": "^3.8.3",
+    "oxfmt": "^0.68.0",
     "sass": "^1.99.0",
     "sassdoc": "^2.7.4"
   },
@@ -48,10 +41,14 @@
     "@react-md/eslint-config": "workspace:*",
     "@swc/cli": "^0.8.1",
     "@swc/core": "^1.15.33",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.12.2",
     "eslint": "^9.39.4",
     "npm-run-all2": "^8.0.2",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
-  }
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "engineStrict": true
 }

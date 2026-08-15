@@ -44,7 +44,7 @@ export function TestFrameworkProvider({
           value,
           setValue,
         }),
-        [value]
+        [value],
       )}
     >
       {children}

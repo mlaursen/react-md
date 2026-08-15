@@ -39,7 +39,7 @@ import {
 } from "./types.js";
 
 const context = createContext<MaterialIconsAndSymbolsContext | undefined>(
-  undefined
+  undefined,
 );
 const { Provider } = context;
 
@@ -51,7 +51,7 @@ export function useMaterialIconsAndSymbols(): MaterialIconsAndSymbolsContext {
   const value = useContext(context);
   if (!value) {
     throw new Error(
-      "MaterialIconsAndSymbolsProvider is not a parent component."
+      "MaterialIconsAndSymbolsProvider is not a parent component.",
     );
   }
 
@@ -69,7 +69,7 @@ export function MaterialIconsAndSymbolsProvider({
   const [state, dispatch] = useReducer(
     function reducer(
       state: MaterialIconsAndSymbolsState,
-      action: MaterialIconsAndSymbolsAction
+      action: MaterialIconsAndSymbolsAction,
     ) {
       switch (action.type) {
         case "setSearch":
@@ -167,7 +167,7 @@ export function MaterialIconsAndSymbolsProvider({
       }
     },
     INITIAL_STATE,
-    (state) => getInitialState(state, searchParams)
+    (state) => getInitialState(state, searchParams),
   );
   const {
     search,
@@ -291,7 +291,7 @@ export function MaterialIconsAndSymbolsProvider({
       symbolOpticalSize,
       symbolStylesheet,
       symbolWeight,
-    ]
+    ],
   );
 
   const pathname = usePathname();
@@ -313,7 +313,7 @@ export function MaterialIconsAndSymbolsProvider({
         symbolStylesheet,
         symbolOpticalSize,
         symbolWeight,
-      })
+      }),
     );
   }, [
     iconCategory,

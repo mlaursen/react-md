@@ -104,7 +104,7 @@ export interface WindowSplitterImplementation<
  * @since 6.0.0
  */
 export function useWindowSplitter<E extends HTMLElement = HTMLButtonElement>(
-  options: WindowSplitterOptions<E>
+  options: WindowSplitterOptions<E>,
 ): WindowSplitterImplementation<E> {
   const { id: propId, reversed = false, vertical } = options;
 

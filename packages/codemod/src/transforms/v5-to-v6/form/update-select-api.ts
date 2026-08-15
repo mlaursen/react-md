@@ -18,7 +18,7 @@ import { type OptionsMapFunction } from "./utils/select/types.js";
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -91,7 +91,7 @@ export default function transformer(
               // })}`
               if (!j.Identifier.check(value) && !isOptionsDotMap(j, value)) {
                 comments.add(
-                  "TOOD: The `Select` component cannot automatically be converted due to the options not being an identifier or .map"
+                  "TOOD: The `Select` component cannot automatically be converted due to the options not being an identifier or .map",
                 );
                 return;
               }
@@ -118,7 +118,7 @@ export default function transformer(
             //   break;
             case "onChange":
               comments.add(
-                "TODO: The `Select` component no longer provides the `option` and `listboxChangeEventData` as the 2nd and 3rd arguments for the `onChange` handler. Check if the code needs to be updated."
+                "TODO: The `Select` component no longer provides the `option` and `listboxChangeEventData` as the 2nd and 3rd arguments for the `onChange` handler. Check if the code needs to be updated.",
               );
               tryToMigrateOnChange({
                 j,
@@ -156,7 +156,7 @@ export default function transformer(
 
       if (tooMuchEffortToMigrate.size) {
         comments.add(
-          `TODO: The \`Select\` component has props that are too difficult to migrate. Handle them manually: "${[...tooMuchEffortToMigrate].join(", ")}"`
+          `TODO: The \`Select\` component has props that are too difficult to migrate. Handle them manually: "${[...tooMuchEffortToMigrate].join(", ")}"`,
         );
       }
     });

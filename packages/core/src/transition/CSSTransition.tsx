@@ -82,7 +82,7 @@ export interface CSSTransitionProps<E extends HTMLElement>
  * @since 4.0.0
  */
 export function CSSTransition<E extends HTMLElement>(
-  props: CSSTransitionProps<E>
+  props: CSSTransitionProps<E>,
 ): ReactElement | null {
   const { children, className, ...options } = props;
   const child = Children.only(children);

@@ -16,7 +16,7 @@ export interface CompiledScssCodeBlockProps extends Omit<
 }
 
 export function CompiledScssCodeBlock(
-  props: Readonly<CompiledScssCodeBlockProps>
+  props: Readonly<CompiledScssCodeBlockProps>,
 ): ReactElement {
   const { css, scss, fileName, ...remaining } = props;
   return (

@@ -18,24 +18,24 @@ describe("caseInsensitiveSearch", () => {
   it("should filter out all items that do not contain the query string ignoring case", () => {
     const expected1 = ["Apple"];
     expect(caseInsensitiveSearch({ query: "ap", list: FRUITS })).toEqual(
-      expected1
+      expected1,
     );
     expect(caseInsensitiveSearch({ query: "aP", list: FRUITS })).toEqual(
-      expected1
+      expected1,
     );
     expect(caseInsensitiveSearch({ query: "AP", list: FRUITS })).toEqual(
-      expected1
+      expected1,
     );
 
     const expected2 = ["Banana", "Mango", "Orange"];
     expect(caseInsensitiveSearch({ query: "an", list: FRUITS })).toEqual(
-      expected2
+      expected2,
     );
     expect(caseInsensitiveSearch({ query: "AN", list: FRUITS })).toEqual(
-      expected2
+      expected2,
     );
     expect(caseInsensitiveSearch({ query: "aN", list: FRUITS })).toEqual(
-      expected2
+      expected2,
     );
   });
 
@@ -45,14 +45,14 @@ describe("caseInsensitiveSearch", () => {
         query: "ap",
         list: FRUITS,
         startsWith: true,
-      })
+      }),
     ).toEqual(["Apple"]);
     expect(
       caseInsensitiveSearch({
         query: "an",
         list: FRUITS,
         startsWith: true,
-      })
+      }),
     ).toEqual([]);
 
     const list = ["Item 1", "This is Item 1"];
@@ -61,7 +61,7 @@ describe("caseInsensitiveSearch", () => {
         query: "item",
         list,
         startsWith: true,
-      })
+      }),
     ).toEqual(["Item 1"]);
   });
 
@@ -77,14 +77,14 @@ describe("caseInsensitiveSearch", () => {
         query: "ap",
         list,
         extractor: (item) => item.name,
-      })
+      }),
     ).toEqual([apple]);
     expect(
       caseInsensitiveSearch({
         query: "2",
         list,
         extractor: (item) => `${item.value}`,
-      })
+      }),
     ).toEqual([mango]);
 
     expect(
@@ -92,7 +92,7 @@ describe("caseInsensitiveSearch", () => {
         query: "an",
         list,
         extractor: (item) => item.name,
-      })
+      }),
     ).toEqual([banana, mango, orange]);
   });
 
@@ -102,40 +102,40 @@ describe("caseInsensitiveSearch", () => {
         list: FRUITS,
         query: "   app",
         whitespace: "trim",
-      })
+      }),
     ).toEqual(["Apple"]);
     expect(
       caseInsensitiveSearch({
         list: FRUITS,
         query: "   app   ",
         whitespace: "trim",
-      })
+      }),
     ).toEqual(["Apple"]);
   });
 
   it("should throw an error if an extractor is not provided for a non-string or known object list", () => {
     expect(() =>
       // @ts-expect-error
-      caseInsensitiveSearch({ query: "q", list: [0, 1, 2] })
+      caseInsensitiveSearch({ query: "q", list: [0, 1, 2] }),
     ).toThrow(
-      "`caseInsensitiveSearch` requires the `extractor` prop for lists that do not contain strings or known object types."
+      "`caseInsensitiveSearch` requires the `extractor` prop for lists that do not contain strings or known object types.",
     );
 
     expect(() =>
       // @ts-expect-error
-      caseInsensitiveSearch({ query: "q", list: [null, undefined] })
+      caseInsensitiveSearch({ query: "q", list: [null, undefined] }),
     ).toThrow(
-      "`caseInsensitiveSearch` requires the `extractor` prop for lists that do not contain strings or known object types."
+      "`caseInsensitiveSearch` requires the `extractor` prop for lists that do not contain strings or known object types.",
     );
 
     expect(() =>
-      caseInsensitiveSearch({ query: "q", list: [{ name: "Qwerty" }] })
+      caseInsensitiveSearch({ query: "q", list: [{ name: "Qwerty" }] }),
     ).not.toThrow();
     expect(() =>
       caseInsensitiveSearch({
         query: "q",
         list: [{ name: "Qwerty" }, { label: "Another" }, "Hello!"],
-      })
+      }),
     ).not.toThrow();
   });
 
@@ -146,7 +146,7 @@ describe("caseInsensitiveSearch", () => {
         list: fruits,
         query: "ap",
         type: "search",
-      })
+      }),
     ).toBe("Grape");
 
     expect(
@@ -155,7 +155,7 @@ describe("caseInsensitiveSearch", () => {
         query: "ap",
         type: "search",
         startsWith: true,
-      })
+      }),
     ).toBe("Apple");
 
     expect(
@@ -163,7 +163,7 @@ describe("caseInsensitiveSearch", () => {
         list: [],
         query: "",
         type: "search",
-      })
+      }),
     ).toBe(undefined);
   });
 });

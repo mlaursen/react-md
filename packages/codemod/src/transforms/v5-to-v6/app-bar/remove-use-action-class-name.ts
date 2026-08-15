@@ -13,7 +13,7 @@ import { traverseImportSpecifiers } from "../../utils/traverseImportSpecifiers.j
 export default function transformer(
   file: FileInfo,
   api: API,
-  options: Options
+  options: Options,
 ): string {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -32,7 +32,7 @@ export default function transformer(
       .find(
         j.CallExpression,
         (path) =>
-          path.callee.type === "Identifier" && names.has(path.callee.name)
+          path.callee.type === "Identifier" && names.has(path.callee.name),
       )
       .forEach((callExpression) => {
         const node = j(callExpression);
@@ -42,18 +42,18 @@ export default function transformer(
         // className exists
         const className = callExpression.node.arguments
           .find(
-            (arg): arg is ObjectExpression => arg.type === "ObjectExpression"
+            (arg): arg is ObjectExpression => arg.type === "ObjectExpression",
           )
           ?.properties.find(
             (
-              prop
+              prop,
             ): prop is ObjectProperty & {
               key: Identifier;
               value: Identifier;
             } =>
               prop.type === "ObjectProperty" &&
               prop.key.type === "Identifier" &&
-              prop.key.name === "className"
+              prop.key.name === "className",
           )?.value;
 
         // the transforms/removals needs to happen in order or else it'll cause
@@ -76,7 +76,7 @@ export default function transformer(
                 j.variableDeclarator.from({
                   ...variableDeclarator.node,
                   init: className,
-                })
+                }),
               );
             });
           }
@@ -90,7 +90,7 @@ export default function transformer(
               .forEach((jsxExpressionContainer) => {
                 replaced = true;
                 j(jsxExpressionContainer).replaceWith(
-                  j.jsxExpressionContainer(className)
+                  j.jsxExpressionContainer(className),
                 );
               });
           }

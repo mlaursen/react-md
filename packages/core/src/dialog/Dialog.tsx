@@ -7,7 +7,6 @@ import {
   useState,
 } from "react";
 
-import { useSsr } from "../SsrProvider.js";
 import {
   type FocusContainerComponentProps,
   useFocusContainer,
@@ -15,6 +14,7 @@ import {
 import { Overlay } from "../overlay/Overlay.js";
 import { Portal } from "../portal/Portal.js";
 import { useScrollLock } from "../scroll/useScrollLock.js";
+import { useSsr } from "../SsrProvider.js";
 import {
   type CSSTransitionClassNames,
   type CSSTransitionComponentProps,

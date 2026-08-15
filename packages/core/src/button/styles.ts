@@ -174,7 +174,7 @@ export function button(options: ButtonClassNameOptions = {}): string {
       outlineColor,
       backgroundColor,
     }),
-    className
+    className,
   );
 }
 
@@ -189,7 +189,7 @@ export interface ButtonUnstyledClassNameOptions {
  * @since 6.0.0
  */
 export function buttonUnstyled(
-  options: ButtonUnstyledClassNameOptions = {}
+  options: ButtonUnstyledClassNameOptions = {},
 ): string {
   const { className } = options;
 

@@ -13,7 +13,7 @@ keywords: [layout]
 
 ```ts disableTransform
 function useNavigationExpansion(
-  options: NavigationExpansionOptions
+  options: NavigationExpansionOptions,
 ): NavigationExpansionImplementation;
 ```
 
@@ -37,10 +37,11 @@ export function Example(): ReactElement {
   const pathname = usePathname();
   // only the `data` is required for the `Navigation` component. the other properties
   // are returned if custom expansion behavior is required
-  const { data, expandedItems, setExpandedItems, setExpandedItems } = useNavigationExpansion({
-    pathname,
-    linkComponent: Link,
-  });
+  const { data, expandedItems, setExpandedItems, setExpandedItems } =
+    useNavigationExpansion({
+      pathname,
+      linkComponent: Link,
+    });
 
   return <Navigation data={data} items={navItems} />;
 }

@@ -31,7 +31,7 @@ export interface CreateStackBlitzProjectProps extends Pick<
 type TemplateFile = (typeof JS_STACKBLITZ_TEMPLATE)[number];
 
 export function CreateStackBlitzProject(
-  props: CreateStackBlitzProjectProps
+  props: CreateStackBlitzProjectProps,
 ): ReactElement {
   const {
     tsCodeFile,

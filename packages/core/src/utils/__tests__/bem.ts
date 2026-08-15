@@ -9,7 +9,7 @@ describe("bem", () => {
 
   it("should throw an error if the user provides an empty string", () => {
     expect(() => bem("")).toThrow(
-      "bem requires a base block class but none were provided."
+      "bem requires a base block class but none were provided.",
     );
   });
 
@@ -31,10 +31,10 @@ describe("bem", () => {
       expect(block2({ primary: false })).toBe("button");
       expect(block2({ primary: true })).toBe("button button--primary");
       expect(block2({ primary: true, secondary: null })).toBe(
-        "button button--primary"
+        "button button--primary",
       );
       expect(block2({ primary: true, secondary: 1 })).toBe(
-        "button button--primary button--secondary"
+        "button button--primary button--secondary",
       );
     });
 
@@ -42,14 +42,14 @@ describe("bem", () => {
       expect(block2("content", {})).toBe("button__content");
       expect(block2("content", { primary: false })).toBe("button__content");
       expect(block2("content", { primary: true })).toBe(
-        "button__content button__content--primary"
+        "button__content button__content--primary",
       );
     });
 
     it("should throw an error if both arguments are considered a modifier", () => {
       // @ts-expect-error
       expect(() => block1({}, {})).toThrow(
-        "bem does not support having two modifier arguments."
+        "bem does not support having two modifier arguments.",
       );
     });
   });
