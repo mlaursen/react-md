@@ -97,9 +97,5 @@
     "tsx": "^4.22.0",
     "typedoc": "^0.28.19",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
-  },
-  "volta": {
-    "node": "24.15.0",
-    "pnpm": "10.33.2"
   }
 }

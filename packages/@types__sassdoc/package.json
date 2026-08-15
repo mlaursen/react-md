@@ -39,9 +39,5 @@
     "sassdoc": {
       "optional": false
     }
-  },
-  "volta": {
-    "node": "24.15.0",
-    "pnpm": "10.33.2"
   }
 }

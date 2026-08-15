@@ -21,9 +21,5 @@
     "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
-  "license": "MIT",
-  "volta": {
-    "node": "24.15.0",
-    "pnpm": "10.33.2"
-  }
+  "license": "MIT"
 }

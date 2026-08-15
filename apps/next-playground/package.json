@@ -43,9 +43,5 @@
     "serve": "^14.2.6",
     "ts-node": "^10.9.2",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
-  },
-  "volta": {
-    "node": "24.15.0",
-    "pnpm": "10.33.2"
   }
 }

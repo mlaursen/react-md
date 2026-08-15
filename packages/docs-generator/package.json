@@ -101,9 +101,5 @@
     "prism-themes": "^1.9.0",
     "prismjs": "^1.30.0",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
-  },
-  "volta": {
-    "node": "24.15.0",
-    "pnpm": "10.33.2"
   }
 }

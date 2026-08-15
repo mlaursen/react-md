@@ -53,9 +53,5 @@
     "eslint": "^9.39.4",
     "npm-run-all2": "^8.0.2",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
-  },
-  "volta": {
-    "node": "24.15.0",
-    "pnpm": "10.33.2"
   }
 }

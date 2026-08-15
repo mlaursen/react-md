@@ -21,10 +21,10 @@ jobs:
         with:
           version: 10.33.2
 
-      - name: Use Volta Node Version
-        uses: actions/setup-node@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version-file: "package.json"
+          # NOTE: Currently does not support mise.toml
+          node-version: 24.18.0
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm check-format

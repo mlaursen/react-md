@@ -56,9 +56,5 @@
     "**/*.{scss,js,jsx,md,yml,json,ts,tsx}": [
       "prettier --write"
     ]
-  },
-  "volta": {
-    "node": "24.15.0",
-    "pnpm": "10.33.2"
   }
 }
