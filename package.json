@@ -66,8 +66,8 @@
   },
   "engines": {
     "node": "24.18.0",
-    "pnpm": "10.33.2"
+    "pnpm": "11.13.0"
   },
   "engineStrict": true,
-  "packageManager": "pnpm@10.33.2"
+  "packageManager": "pnpm@11.13.0"
 }
