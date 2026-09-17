@@ -53,9 +53,9 @@
     "cross-env": "^10.1.0",
     "eslint": "^9.39.4",
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.4",
+    "lint-staged": "^17.5.1",
     "oxfmt": "^0.68.0",
-    "turbo": "^2.9.14",
+    "turbo": "^2.10.13",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "lint-staged": {

@@ -34,16 +34,16 @@
     "@types/sassdoc": "workspace:*",
     "docs-generator": "workspace:*",
     "oxfmt": "^0.68.0",
-    "sass": "^1.99.0",
+    "sass": "^1.104.1",
     "sassdoc": "^2.7.4"
   },
   "devDependencies": {
     "@react-md/eslint-config": "workspace:*",
     "@swc/cli": "^0.8.1",
-    "@swc/core": "^1.15.33",
+    "@swc/core": "^1.16.2",
     "@types/node": "^24.12.2",
     "eslint": "^9.39.4",
-    "npm-run-all2": "^8.0.2",
+    "npm-run-all2": "^9.0.3",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "engines": {

@@ -46,7 +46,7 @@
     "build": "pnpm build-types && pnpm build-dist"
   },
   "dependencies": {
-    "minimatch": "^10.2.5"
+    "minimatch": "^10.2.6"
   },
   "devDependencies": {
     "@react-md/core": "workspace:*",
@@ -56,12 +56,12 @@
     "@typescript/native-preview": "beta",
     "@vitejs/plugin-react-swc": "^4.3.1",
     "@vitest/coverage-v8": "^4.1.6",
-    "concurrently": "^9.2.1",
+    "concurrently": "^10.0.5",
     "eslint": "^9.39.4",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "rollup": "^4.60.4",
-    "rollup-plugin-dts": "^6.4.1",
+    "rollup": "^4.63.3",
+    "rollup-plugin-dts": "^6.5.1",
     "rollup-plugin-swc3": "^0.12.1",
     "vite": "^8.0.16",
     "vitest": "^4.1.6"
