@@ -69,8 +69,8 @@
     "@swc/core": "^1.16.2",
     "@types/node": "^24.12.2",
     "npm-run-all2": "^9.0.3",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
   },
   "peerDependencies": {
