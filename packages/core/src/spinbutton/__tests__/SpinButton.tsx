@@ -1,3 +1,4 @@
+/* eslint-disable jest-dom/prefer-to-have-value */
 import { type ReactElement, createRef, useState } from "react";
 import { describe, expect, it, vi } from "vitest";
 

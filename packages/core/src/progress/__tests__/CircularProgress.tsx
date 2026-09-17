@@ -81,11 +81,11 @@ describe("CircularProgress", () => {
       <CircularProgress aria-label="Progressbar" value={30} />,
     );
     const progress = screen.getByRole("progressbar", { name: "Progressbar" });
-    expect(progress).toHaveAttribute("aria-valuenow", "30");
+    expect(progress).toHaveValue(30);
     expect(progress).toMatchSnapshot();
 
     rerender(<CircularProgress aria-label="Progressbar" value={50} />);
-    expect(progress).toHaveAttribute("aria-valuenow", "50");
+    expect(progress).toHaveValue(50);
     expect(progress).toMatchSnapshot();
   });
 

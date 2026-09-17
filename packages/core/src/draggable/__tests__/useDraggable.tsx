@@ -1,3 +1,4 @@
+/* eslint-disable jest-dom/prefer-to-have-value */
 import { cnb } from "cnbuilder";
 import {
   type ReactElement,
