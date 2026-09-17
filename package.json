@@ -47,8 +47,8 @@
     "release": "node scripts/release.ts"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.31.0",
-    "@mlaursen/release-script": "^0.4.1",
+    "@changesets/cli": "^3.0.3",
+    "@mlaursen/release-script": "^1.0.0",
     "@typescript/native-preview": "beta",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.4",
