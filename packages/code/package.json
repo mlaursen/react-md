@@ -85,7 +85,7 @@
     "jest-environment-jsdom": "^30.4.1",
     "jest-watch-typeahead": "^3.0.1",
     "npm-run-all2": "^8.0.2",
-    "postcss": "^8.5.16",
+    "postcss": "^8.5.17",
     "postcss-selector-parser": "^7.1.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
