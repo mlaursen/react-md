@@ -442,7 +442,6 @@ export default function transformer(
     // })`
     root
       .find(j.CallExpression, {
-        // @ts-expect-error For some reason this is typeArguments in the type definition?
         typeParameters: {
           type: "TSTypeParameterInstantiation",
           params: [{ typeName: { name } }],
