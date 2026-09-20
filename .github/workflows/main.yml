@@ -21,7 +21,7 @@ jobs:
         with:
           version: 12.4.2
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           # NOTE: Currently does not support mise.toml
           node-version: 24.18.0
@@ -51,7 +51,7 @@ jobs:
   #     - uses: pnpm/action-setup@v2.2.4
 
   #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v6
+  #       uses: actions/setup-node@v7
   #       with:
   #         node-version: ${{ matrix.node-version }}
   #         cache: pnpm
