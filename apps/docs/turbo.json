@@ -1,0 +1,68 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "create-env": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/core/package.json"],
+      "outputs": [".env.local"]
+    },
+    "create-scss-lookup": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/core/src/**/*.scss"],
+      "outputs": ["src/generated/rmdScssLookup.ts"]
+    },
+    "create-stackblitz-template": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/examples/vite-ts/**",
+        "$TURBO_ROOT$/examples/vite-js/**",
+        "!$TURBO_ROOT$/examples/**/README.md",
+        "!$TURBO_ROOT$/examples/**/CHANGELOG.md",
+        "!$TURBO_ROOT$/examples/**/RootLayout*",
+        "!$TURBO_ROOT$/examples/**/*.ico",
+        "!$TURBO_ROOT$/examples/**/*.png",
+        "!$TURBO_ROOT$/examples/**/MainNavigation*",
+        "!$TURBO_ROOT$/examples/**/.git/**",
+        "!$TURBO_ROOT$/examples/**/node_modules/**"
+      ],
+      "outputs": ["src/generated/stackblitz.ts"]
+    },
+    "sassdoc": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/core/src/**/*.scss"],
+      "outputs": [
+        "src/generated/sassdoc.ts",
+        "src/generated/sassdocNavItems.ts"
+      ]
+    },
+    "build-typedoc": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/packages/core/src/**/*.ts",
+        "!$TURBO_ROOT$/packages/core/**/__tests__/**"
+      ],
+      "outputs": ["public/typedoc/**"]
+    },
+    "build": {
+      "dependsOn": [
+        "^build",
+        "create-env",
+        "create-scss-lookup",
+        "create-stackblitz-template",
+        "sassdoc",
+        "build-typedoc"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "src/generated/components/**",
+        "src/generated/customization/**",
+        "src/generated/hooks/**",
+        "src/generated/utils/**"
+      ]
+    }
+  }
+}
