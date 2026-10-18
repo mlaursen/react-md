@@ -33,14 +33,14 @@
   "dependencies": {
     "@types/sassdoc": "workspace:*",
     "docs-generator": "workspace:*",
-    "oxfmt": "^0.68.0",
-    "sass": "^1.104.1",
+    "oxfmt": "^0.73.0",
+    "sass": "^1.105.2",
     "sassdoc": "^2.7.4"
   },
   "devDependencies": {
     "@react-md/eslint-config": "workspace:*",
     "@swc/cli": "^0.8.1",
-    "@swc/core": "^1.16.2",
+    "@swc/core": "^1.16.18",
     "@types/node": "^24.12.2",
     "eslint": "^9.39.4",
     "npm-run-all2": "^9.0.3",
