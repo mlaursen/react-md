@@ -35,7 +35,7 @@
     "clean": "pnpm turbo-s clean && pnpm clean-examples && pnpm clean-root",
     "clean-dist": "pnpm turbo-s clean-dist",
     "clean-root": "rm -rf .turbo coverage node_modules",
-    "clean-examples": "rm -rf examples/*/node_modules",
+    "clean-examples": "rm -rf examples/node_modules examples/*/.next examples/*/dist examples/*/node_modules",
     "core-export-map": "pnpm --filter core export-map",
     "create-react-md": "pnpm --filter core create-react-md",
     "validate": "pnpm lint && pnpm typecheck",

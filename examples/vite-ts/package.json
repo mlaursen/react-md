@@ -13,22 +13,22 @@
     "@react-md/core": "^7.0.1",
     "@react-md/material-icons": "^7.0.2",
     "cnbuilder": "^3.1.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
-    "@types/node": "^25.0.6",
+    "@types/node": "^26.6.6",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react-swc": "^4.2.2",
     "eslint": "^9.30.1",
     "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.20",
+    "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17.0.0",
     "sass-embedded": "^1.86.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.35.1",
-    "vite": "^7.0.4"
+    "vite": "^8.3.5"
   }
 }
