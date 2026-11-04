@@ -51,7 +51,7 @@
     "@types/react": "^19.3.0",
     "@typescript/native-preview": "beta",
     "eslint": "^9.39.4",
-    "glob": "^13.0.6",
+    "glob": "^14.0.2",
     "lodash": "^4.18.1",
     "pretty-ms": "^10.0.0",
     "react": "^19.3.1",

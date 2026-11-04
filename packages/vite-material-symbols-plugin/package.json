@@ -46,7 +46,7 @@
     "build": "pnpm build-types && pnpm build-dist"
   },
   "dependencies": {
-    "minimatch": "^10.2.6"
+    "minimatch": "^11.0.1"
   },
   "devDependencies": {
     "@react-md/core": "workspace:*",
@@ -63,7 +63,7 @@
     "rollup": "^4.64.9",
     "rollup-plugin-dts": "^6.5.1",
     "rollup-plugin-swc3": "^0.12.1",
-    "vite": "^8.3.0",
+    "vite": "^8.3.3",
     "vitest": "^5.0.1"
   },
   "peerDependencies": {
