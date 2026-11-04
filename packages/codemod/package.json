@@ -53,7 +53,7 @@
     "@inquirer/rawlist": "^5.3.6",
     "@inquirer/search": "^4.3.4",
     "commander": "^15.0.0",
-    "glob": "^13.0.6",
+    "glob": "^14.0.2",
     "jscodeshift": "^17.4.0",
     "postcss": "^8.5.30",
     "postcss-scss": "^4.0.9",
