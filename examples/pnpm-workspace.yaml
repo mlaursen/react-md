@@ -4,3 +4,8 @@ allowBuilds:
   '@parcel/watcher': false
   '@swc/core': false
   esbuild: false
+minimumReleaseAgeExclude:
+  - compression@1.8.2
+  - deepmerge@4.3.2
+  - glob@14.0.2
+  - minimatch@11.0.1

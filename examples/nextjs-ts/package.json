@@ -9,8 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@react-md/core": "^7.0.1",
-    "@react-md/material-icons": "^7.0.2",
+    "@react-md/core": "^7.0.7",
+    "@react-md/material-icons": "^7.0.8",
     "cnbuilder": "^3.1.0",
     "next": "16.4.5",
     "react": "19.3.1",
@@ -18,11 +18,11 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
     "eslint-config-next": "16.4.5",
-    "sass": "^1.86.3",
-    "typescript": "^5"
+    "sass": "^1.107.1",
+    "typescript": "^5.9.3"
   }
 }

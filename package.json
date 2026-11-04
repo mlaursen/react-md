@@ -51,7 +51,7 @@
     "@mlaursen/release-script": "^1.0.0",
     "@typescript/native-preview": "beta",
     "cross-env": "^10.1.0",
-    "eslint": "^9.39.4",
+    "eslint": "^9.39.5",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
     "oxfmt": "^0.73.0",
