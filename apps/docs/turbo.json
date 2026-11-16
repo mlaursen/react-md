@@ -47,6 +47,7 @@
       "outputs": ["public/typedoc/**"]
     },
     "build": {
+      "cache": false,
       "dependsOn": [
         "^build",
         "create-env",
