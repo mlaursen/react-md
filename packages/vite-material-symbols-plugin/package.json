@@ -55,16 +55,16 @@
     "@types/node": "^24.12.2",
     "@typescript/native-preview": "beta",
     "@vitejs/plugin-react-swc": "^4.3.3",
-    "@vitest/coverage-v8": "^5.0.1",
-    "concurrently": "^10.0.6",
+    "@vitest/coverage-v8": "^5.1.0",
+    "concurrently": "^10.0.7",
     "eslint": "^9.39.4",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "rollup": "^4.64.9",
+    "rollup": "^4.68.3",
     "rollup-plugin-dts": "^6.5.1",
     "rollup-plugin-swc3": "^0.12.1",
-    "vite": "^8.3.0",
-    "vitest": "^5.0.1"
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
   },
   "peerDependencies": {
     "@react-md/core": "workspace:*",

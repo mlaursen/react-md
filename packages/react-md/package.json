@@ -64,11 +64,11 @@
     "@react-md/core": "workspace:*"
   },
   "devDependencies": {
-    "@mlaursen/cli": "^1.1.0",
-    "@swc/cli": "^0.8.1",
-    "@swc/core": "^1.16.18",
+    "@mlaursen/cli": "^1.1.2",
+    "@swc/cli": "^0.8.2",
+    "@swc/core": "^1.16.22",
     "@types/node": "^24.12.2",
-    "npm-run-all2": "^9.0.3",
+    "npm-run-all2": "^9.0.4",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "typescript": "npm:@typescript/typescript6@^6.0.0"
