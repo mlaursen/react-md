@@ -340,7 +340,7 @@ export interface TooltipImplementation<
  *
  *   // using the `overflowRef` is optional and will default to the
  *   // `event.currentTarget` when `null`
- *   const { overflowRef, elementProps, tooltipProps } = useOverflowTooltip({
+ *   const { overflowRef, elementProps, tooltipProps } = useTooltip({
  *     // just to pass any event handlers
  *     ...remaining,
  *     overflowOnly: true,

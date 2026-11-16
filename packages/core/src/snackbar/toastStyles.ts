@@ -16,7 +16,7 @@ declare module "react" {
 /**
  * @since 6.3.1
  */
-export interface BaseToastClasNameOptions {
+export interface BaseToastClassNameOptions {
   className?: string;
 
   /** @defaultValue `"surface"` */
@@ -27,7 +27,7 @@ export interface BaseToastClasNameOptions {
  * @since 6.0.0
  * @since 6.3.1 Extends BaseToastClasNameOptions
  */
-export interface ToastClassNameOptions extends BaseToastClasNameOptions {
+export interface ToastClassNameOptions extends BaseToastClassNameOptions {
   /** @defaultValue `false` */
   action?: boolean;
   /** @defaultValue `false` */

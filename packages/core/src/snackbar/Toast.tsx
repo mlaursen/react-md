@@ -21,7 +21,7 @@ import { useEnsuredId } from "../useEnsuredId.js";
 import { ToastActionButton } from "./ToastActionButton.js";
 import { ToastCloseButton } from "./ToastCloseButton.js";
 import { ToastContent, type ToastContentProps } from "./ToastContent.js";
-import { type BaseToastClasNameOptions, toast } from "./toastStyles.js";
+import { type BaseToastClassNameOptions, toast } from "./toastStyles.js";
 
 /**
  * @since 6.0.0
@@ -29,7 +29,7 @@ import { type BaseToastClasNameOptions, toast } from "./toastStyles.js";
 export interface ConfigurableToastProps
   extends
     HTMLAttributes<HTMLDivElement>,
-    BaseToastClasNameOptions,
+    BaseToastClassNameOptions,
     TransitionCallbacks {
   ref?: Ref<HTMLDivElement>;
 
